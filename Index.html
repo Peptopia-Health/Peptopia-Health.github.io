@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peptopia Healthcare - Research & Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Base Reset & Typography */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-page: #F4F6FA; --bg-card: #FFFFFF; --bg-card-hover: #FFFFFF;
+            --border-card: rgba(15, 23, 42, 0.07); --border-card-hover: rgba(15, 23, 42, 0.14);
+            --shadow-card: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow-card-hover: 0 12px 28px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+            --text-primary: #0F172A; --text-secondary: #475569; --text-muted: #94A3B8;
+            --brand-purple: #9000F5; --pink: #FF85E1; --cyan: #06B6D4; --orange: #F97316; --purple: #A855F7; --emerald: #10B981;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-primary);
+            min-height: 100vh; line-height: 1.6; display: flex; flex-direction: column;
+        }
+
+        /* Header (Top Nav) */
+        .site-header {
+            padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
+            max-width: 1200px; margin: 0 auto; width: 100%;
+        }
+        .header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .brand-mark {
+            width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--brand-purple), var(--pink));
+            display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif;
+            font-weight: 800; font-size: 1.15rem; color: #fff; box-shadow: 0 0 20px rgba(144, 0, 245, 0.3);
+        }
+        .brand-text { display: flex; flex-direction: column; }
+        .brand-name {
+            font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text-primary);
+            letter-spacing: 2px; text-transform: uppercase; line-height: 1.1;
+        }
+        .brand-tagline { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+        .header-nav { display: flex; align-items: center; gap: 8px; }
+        .nav-link {
+            font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-secondary); text-decoration: none; padding: 8px 16px; border-radius: 8px;
+        }
+        .nav-link:hover { color: var(--text-primary); background: rgba(15, 23, 42, 0.03); }
+
+        /* Hero Section */
+        .hero {
+            text-align: center; padding: 56px 24px 40px; max-width: 800px; margin: 0 auto;
+        }
+        .hero h1 {
+            font-family: 'Outfit', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 16px;
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #0F172A 0%, var(--brand-purple) 50%, var(--pink) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.1rem; color: var(--text-secondary); }
+
+        /* Grid Container - Adjusted to fit 4 across */
+        .container {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px 64px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; flex-grow: 1;
+        }
+
+        /* Cards - Clickable full area */
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px;
+            padding: 24px 20px; display: flex; flex-direction: column; align-items: center; text-align: center;
+            box-shadow: var(--shadow-card); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; color: var(--text-primary);
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; transition: height 0.3s ease;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+        .card:hover::before { height: 4px; }
+        
+        .card-icon {
+            width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 16px; transition: transform 0.3s ease;
+        }
+        .card:hover .card-icon { transform: scale(1.08); }
+
+        /* Accent Colors */
+        .card.accent-cyan::before { background: linear-gradient(90deg, var(--cyan), rgba(6, 182, 212, 0.3)); }
+        .card.accent-cyan .card-icon { background: rgba(6, 182, 212, 0.10); color: var(--cyan); }
+        
+        .card.accent-orange::before { background: linear-gradient(90deg, var(--orange), rgba(249, 115, 22, 0.3)); }
+        .card.accent-orange .card-icon { background: rgba(249, 115, 22, 0.10); color: var(--orange); }
+        
+        .card.accent-purple::before { background: linear-gradient(90deg, var(--purple), rgba(168, 85, 247, 0.3)); }
+        .card.accent-purple .card-icon { background: rgba(168, 85, 247, 0.10); color: var(--purple); }
+
+        .card.accent-emerald::before { background: linear-gradient(90deg, var(--emerald), rgba(16, 185, 129, 0.3)); }
+        .card.accent-emerald .card-icon { background: rgba(16, 185, 129, 0.10); color: var(--emerald); }
+
+        .card h2 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 8px; }
+        .card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 24px; flex-grow: 1; }
+
+        /* Visual Action Indicators (Buttons) */
+        .btn-action {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 24px;
+            border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; color: #fff; width: 100%; transition: all 0.3s ease;
+        }
+        .btn-cyan { background: linear-gradient(135deg, #0891B2, var(--cyan)); }
+        .btn-orange { background: linear-gradient(135deg, #EA580C, var(--orange)); }
+        .btn-purple { background: linear-gradient(135deg, var(--brand-purple), #B347FF); }
+        .btn-emerald { background: linear-gradient(135deg, #059669, var(--emerald)); }
+        .card:hover .btn-action { filter: brightness(1.1); }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="/" class="header-brand">
+            <div class="brand-mark">P</div>
+            <div class="brand-text">
+                <span class="brand-name">Peptopia</span>
+                <span class="brand-tagline">Health & Wellness</span>
+            </div>
+        </a>
+        <nav class="header-nav">
+            <a href="/" class="nav-link active">Home</a>
+            <a href="https://peptopia-health.github.io/X-Peps/orders/" class="nav-link">Orders</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1><span class="gradient-text">Peptopia Healthcare</span></h1>
+        <p>Your trusted source for premium research products and comprehensive clinical education. Choose your path below.</p>
+    </section>
+
+    <main class="container">
+        <a href="https://peptopia-health.github.io/X-Peps/orders/" class="card accent-cyan">
+            <div class="card-icon"><i class="fa-solid fa-flask"></i></div>
+            <h2>Shop Peptopia</h2>
+            <p>Order premium research products: peptides, nootropics, and herbal remedies.</p>
+            <span class="btn-action btn-cyan">
+                <i class="fa-solid fa-bag-shopping"></i> Go to Store
+            </span>
+        </a>
+
+        <a href="https://peptopia-health.github.io/X-Peps/" class="card accent-emerald">
+            <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+            <h2>Product Guides</h2>
+            <p>Safe, educated, and effective research.</p>
+            <span class="btn-action btn-emerald">
+                <i class="fa-solid fa-file-lines"></i> Read the Guides
+            </span>
+        </a>
+
+        <a href="https://peptopia.github.io/NCLEX/" class="card accent-purple">
+            <div class="card-icon"><i class="fa-solid fa-user-nurse"></i></div>
+            <h2>Nursing Education</h2>
+            <p>Dive into our clinical resources and quiz questions designed specifically to educate and empower nurses.</p>
+            <span class="btn-action btn-purple">
+                <i class="fa-solid fa-laptop-medical"></i> Nursing Courseware
+            </span>
+        </a>
+
+        <a href="https://peptopia-health.github.io/Corrections/ERJ_Intake_Screening.html" class="card accent-orange">
+            <div class="card-icon"><i class="fa-solid fa-handcuffs"></i></div>
+            <h2>Corrections Nursing</h2>
+            <p>Access dedicated clinical procedures, screening protocols, and nursing education materials for the corrections environment.</p>
+            <span class="btn-action btn-orange">
+                <i class="fa-solid fa-clipboard-list"></i> Access Portal
+            </span>
+        </a>
+    </main>
+
+</body>
+</html>

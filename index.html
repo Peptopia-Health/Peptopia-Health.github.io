@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peptopia Healthcare - Research & Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#F4F6FA;--card:#FFF;--border:rgba(15,23,42,.07);
+            --sh:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
+            --sh-h:0 12px 28px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
+            --t1:#0F172A;--t2:#475569;--t3:#94A3B8;
+            --purple:#9000F5;--pink:#FF85E1;--cyan:#06B6D4;--orange:#F97316;--violet:#A855F7;--emerald:#10B981
+        }
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;line-height:1.6;display:flex;flex-direction:column}
+        .hdr{padding:10px 24px;display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;width:100%}
+        .hdr-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+        .logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--pink));display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;color:#fff;box-shadow:0 0 20px rgba(144,0,245,.3)}
+        .brand{display:flex;flex-direction:column}
+        .brand-name{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.15rem;color:var(--t1);letter-spacing:2px;text-transform:uppercase;line-height:1.1}
+        .brand-tag{font-size:.7rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase}
+        .nav{display:flex;align-items:center;gap:8px}
+        .nav a{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--t2);text-decoration:none;padding:8px 16px;border-radius:8px}
+        .nav a:hover{color:var(--t1);background:rgba(15,23,42,.03)}
+        .hero{text-align:center;padding:0 24px 12px;max-width:800px;margin:0 auto}
+        .hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;margin-bottom:6px}
+        .hero h1 span{background:linear-gradient(90deg,#0584B0 0%,#07876B 28%,#7C22CE 62%,#D9500E 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        html.dark .hero h1 span{background:linear-gradient(90deg,var(--cyan) 0%,var(--emerald) 28%,var(--violet) 62%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        html.dark{--bg:#0B1120;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--sh:none;--sh-h:0 0 0 0 transparent;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B}
+        .hero p{font-size:1.1rem;color:var(--t2)}
+        .grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:var(--sh);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;text-decoration:none;color:var(--t1)}
+        .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .3s}
+        .card:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+        .card:hover::before{height:4px}
+        .ico{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;transition:transform .3s}
+        .card:hover .ico{transform:scale(1.08)}
+        .c-cyan::before{background:linear-gradient(90deg,var(--cyan),rgba(6,182,212,.3))}.c-cyan .ico{background:rgba(6,182,212,.1);color:var(--cyan)}
+        .c-orange::before{background:linear-gradient(90deg,var(--orange),rgba(249,115,22,.3))}.c-orange .ico{background:rgba(249,115,22,.1);color:var(--orange)}
+        .c-purple::before{background:linear-gradient(90deg,var(--violet),rgba(168,85,247,.3))}.c-purple .ico{background:rgba(168,85,247,.1);color:var(--violet)}
+        .c-emerald::before{background:linear-gradient(90deg,var(--emerald),rgba(16,185,129,.3))}.c-emerald .ico{background:rgba(16,185,129,.1);color:var(--emerald)}
+        .card h2{font-family:'Outfit',sans-serif;font-size:1.3rem;margin-bottom:8px}
+        .card p{color:var(--t2);font-size:.9rem;margin-bottom:12px;flex-grow:1}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 24px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:100%;transition:filter .3s}
+        .b-cyan{background:linear-gradient(135deg,#0891B2,var(--cyan))}
+        .b-orange{background:linear-gradient(135deg,#EA580C,var(--orange))}
+        .b-purple{background:linear-gradient(135deg,var(--purple),#B347FF)}
+        .b-emerald{background:linear-gradient(135deg,#059669,var(--emerald))}
+        .card:hover .btn{filter:brightness(1.1)}
+    </style>
+</head>
+<body>
+    <header class="hdr">
+        <a href="/" class="hdr-brand">
+            <div class="logo">P</div>
+            <div class="brand">
+                <span class="brand-name">Peptopia</span>
+                <span class="brand-tag">Health &amp; Wellness</span>
+            </div>
+        </a>
+        <nav class="nav">
+            <a href="/">Home</a>
+            <a href="https://peptopia-health.github.io/X-Peps/orders/">Orders</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1><span>Peptopia Healthcare</span></h1>
+        <p>Premium research and comprehensive clinical education.</p>
+    </section>
+    <main class="grid">
+        <a href="https://peptopia-health.github.io/X-Peps/orders/" class="card c-cyan">
+            <div class="ico"><i class="fa-solid fa-flask"></i></div>
+            <h2>Shop Peptopia</h2>
+            <p>Order premium research products: peptides, nootropics, and herbal remedies.</p>
+            <span class="btn b-cyan"><i class="fa-solid fa-bag-shopping"></i> Go to Store</span>
+        </a>
+        <a href="https://peptopia-health.github.io/X-Peps/" class="card c-emerald">
+            <div class="ico"><i class="fa-solid fa-book-open"></i></div>
+            <h2>Product Guides</h2>
+            <p>Safe, educated, and effective research.</p>
+            <span class="btn b-emerald"><i class="fa-solid fa-file-lines"></i> Read the Guides</span>
+        </a>
+        <a href="https://peptopia.github.io/NCLEX/" class="card c-purple">
+            <div class="ico"><i class="fa-solid fa-user-nurse"></i></div>
+            <h2>Nursing Education</h2>
+            <p>Clinical resources to educate and empower nurses.</p>
+            <span class="btn b-purple"><i class="fa-solid fa-laptop-medical"></i> Courseware</span>
+        </a>
+        <a href="https://peptopia-health.github.io/Corrections/" class="card c-orange">
+            <div class="ico"><i class="fa-solid fa-handcuffs"></i></div>
+            <h2>Corrections Nursing</h2>
+            <p>Clinical procedures, screening protocols, and nursing education for Corrections.</p>
+            <span class="btn b-orange"><i class="fa-solid fa-clipboard-list"></i> Access Portal</span>
+        </a>
+    </main>
+</body>
+</html>
+

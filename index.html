@@ -6,12 +6,6 @@
     <title>Peptopia Healthcare - Research & Education</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
-    <link rel="manifest" href="/site.webmanifest" />
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
@@ -24,8 +18,14 @@
         body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;line-height:1.6;display:flex;flex-direction:column; overflow-x: hidden;}
         .hdr{padding:10px 24px;display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;width:100%}
         .hdr-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-        /* Logo Styles */
-        .brand-logo-img{width:48px;height:48px;border-radius:12px;object-fit:cover;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+        
+        /* Logo Fix: Force fixed dimensions and containment */
+        .brand-logo-img{
+            width:48px;height:48px;
+            object-fit:contain;
+            border-radius:12px;
+        }
+        
         .brand{display:flex;flex-direction:column}
         .brand-name{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.15rem;color:var(--t1);letter-spacing:2px;text-transform:uppercase;line-height:1.1}
         .brand-tag{font-size:.7rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase}

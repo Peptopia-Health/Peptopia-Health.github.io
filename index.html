@@ -58,7 +58,7 @@
         .hero h1 span{background:linear-gradient(90deg,#0584B0 0%,#07876B 28%,#7C22CE 62%,#D9500E 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         html.dark .hero h1 span{background:linear-gradient(90deg,var(--cyan) 0%,var(--emerald) 28%,var(--violet) 62%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .hero p{font-size:1.1rem;color:var(--t2)}
-        .grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+        .grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap:wrap;justify-content:center;gap:20px}.grid .card{flex:0 1 300px;max-width:340px}
         .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:var(--sh);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;text-decoration:none;color:var(--t1)}
         .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .3s}
         .card:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
@@ -144,13 +144,13 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
     <main class="grid">
         <a href="https://peptopia-health.github.io/X-Peps/orders/" class="card c-emerald">
             <div class="ico"><i class="fa-solid fa-cart-shopping"></i></div>
-            <h2>Shop</h2>
+            <h2>Healthcare Shop</h2>
             <p>Order premium research products: peptides, nootropics, and herbal remedies.</p>
             <span class="btn b-emerald"><i class="fa-solid fa-bag-shopping"></i> Go to Store</span>
         </a>
         <a href="https://peptopia-health.github.io/X-Peps/" class="card c-cyan">
             <div class="ico"><i class="fa-solid fa-book-open"></i></div>
-            <h2>Guides</h2>
+            <h2>Education</h2>
             <p>Safe, educated, and effective research.</p>
             <span class="btn b-cyan"><i class="fa-solid fa-file-lines"></i> Read the Guides</span>
         </a>
@@ -162,13 +162,13 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
         </a>
         <a href="https://peptopia.github.io/NCLEX/" class="card c-purple">
             <div class="ico"><i class="fa-solid fa-user-nurse"></i></div>
-            <h2>Nursing</h2>
+            <h2>Nursing Education</h2>
             <p>Clinical resources to educate and empower nurses.</p>
             <span class="btn b-purple"><i class="fa-solid fa-laptop-medical"></i> Courseware</span>
         </a>
         <a href="https://peptopia-health.github.io/Corrections/" class="card c-orange">
             <div class="ico"><i class="fa-solid fa-handcuffs"></i></div>
-            <h2>Corrections</h2>
+            <h2>Corrections Nursing</h2>
             <p>Clinical procedures, screening protocols, and nursing education for Corrections.</p>
             <span class="btn b-orange"><i class="fa-solid fa-clipboard-list"></i> Access Portal</span>
         </a>

@@ -100,6 +100,11 @@ h1.title .thin{color:var(--lime);font-style:italic;font-weight:700}
 .cast-btn{flex:1;background:linear-gradient(180deg,#2b1065,#170838);color:#eaffea;border:1px solid #9dff70;border-radius:999px;padding:12px 18px;font-size:16.5px;font-family:var(--disp);font-weight:700;cursor:pointer;box-shadow:0 0 18px rgba(20,255,90,.35)}
 .cast-btn:hover{box-shadow:0 0 28px rgba(124,252,0,.75)}
 .ghost-btn{background:transparent;border:1px solid rgba(13,60,8,.5);color:#17450e;border-radius:999px;padding:12px 16px;font-size:14.5px;cursor:pointer}
+.cloud .attzone{margin-top:4px;border:2px dashed rgba(13,60,8,.45);border-radius:12px;padding:12px 13px;background:rgba(255,255,240,.55);font-size:14px;color:#17450e;cursor:pointer;text-align:center}
+.cloud .attzone.drag{border-color:#0d5c06;background:rgba(255,255,240,.92)}
+.cloud .attlist{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.cloud .attchip{background:#173d0c;color:#eaffea;border-radius:999px;padding:4px 8px 4px 12px;font-size:12.5px;display:inline-flex;align-items:center;gap:7px}
+.cloud .attchip button{background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:50%;width:18px;height:18px;cursor:pointer;line-height:1;font-size:12px;padding:0}
 .cloud .orb{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 32%,#eaffd0,#5df03c 65%,#23a313);box-shadow:0 0 10px rgba(60,255,60,.7);animation:orbrise linear forwards;pointer-events:none}
 @keyframes orbrise{to{transform:translateY(-130px) scale(1.25);opacity:0}}
 .rune-opt{display:block;width:100%;text-align:left;margin-top:9px;background:rgba(255,255,240,.85);border:2px solid rgba(13,60,8,.35);border-radius:12px;padding:11px 14px;font-size:15.5px;cursor:pointer;color:#12260c;font-family:var(--sans)}
@@ -382,18 +387,55 @@ function formHTML(fn){
       h += "<input id='cf-" + fd.id + "' type='text' placeholder='" + (fd.ph || "") + "' autocomplete='off'>";
     }
   });
+  h += "<label>Attach references (optional)</label><div class='attzone' id='attZone'>📎 Tap to attach files — or drop them here<div class='attlist' id='attList'></div></div><input type='file' id='cf-files' multiple hidden>";
   h += "<div class='row'><button class='cast-btn' id='castBtn'>✨ Cast the Spell</button><button class='ghost-btn' id='cancelBtn'>Let it fade</button></div>";
   return h;
 }
+
+var attachments = [];
+function renderAttChips(){
+  var list = document.getElementById("attList"); if(!list) return;
+  list.innerHTML = "";
+  attachments.forEach(function(f, i){
+    var chip = document.createElement("span"); chip.className = "attchip";
+    chip.textContent = "📎 " + f.name + " (" + Math.max(1, Math.round(f.size/1024)) + " KB)";
+    var x = document.createElement("button"); x.type = "button"; x.textContent = "×"; x.setAttribute("aria-label", "Remove " + f.name);
+    x.addEventListener("click", function(ev){ ev.stopPropagation(); attachments.splice(i, 1); renderAttChips(); });
+    chip.appendChild(x); list.appendChild(chip);
+  });
+}
+function wireAttachments(){
+  var zone = document.getElementById("attZone"), input = document.getElementById("cf-files");
+  if(!zone || !input) return;
+  zone.addEventListener("click", function(){ input.click(); });
+  input.addEventListener("change", function(){ for(var i = 0; i < input.files.length; i++) attachments.push(input.files[i]); input.value = ""; renderAttChips(); });
+  zone.addEventListener("dragover", function(e){ e.preventDefault(); zone.classList.add("drag"); });
+  zone.addEventListener("dragleave", function(){ zone.classList.remove("drag"); });
+  zone.addEventListener("drop", function(e){ e.preventDefault(); zone.classList.remove("drag"); if(e.dataTransfer) for(var i = 0; i < e.dataTransfer.files.length; i++) attachments.push(e.dataTransfer.files[i]); renderAttChips(); });
+}
+function attachmentBlock(done){
+  if(!attachments.length){ done(""); return; }
+  var block = "\n\nAttached references (I will attach these files in the chat with this message): " + attachments.map(function(f){ return f.name; }).join(", ");
+  var texty = attachments.filter(function(f){ return /\.(txt|md|csv|json|html|xml|log)$/i.test(f.name) && f.size <= 20000; });
+  if(!texty.length){ done(block); return; }
+  var parts = [], left = texty.length;
+  texty.forEach(function(f){
+    var r = new FileReader();
+    r.onload = function(){ parts.push("\n\n--- Reference: " + f.name + " ---\n" + String(r.result).slice(0, 12000)); if(--left === 0) done(block + parts.join("")); };
+    r.onerror = function(){ if(--left === 0) done(block + parts.join("")); };
+    r.readAsText(f);
+  });
+}
 function openFunc(fn){
   if(busy) return;
-  current = fn; values = {};
+  current = fn; values = {}; attachments = [];
   david.classList.remove("casting"); void david.offsetWidth; david.classList.add("casting");
   glow.classList.remove("on"); void glow.offsetWidth; glow.classList.add("on");
   document.querySelectorAll(".potion").forEach(function(p){ p.classList.toggle("casting", p.dataset.fn === fn); });
   setTimeout(function(){ openCloud(formHTML(fn));
     $("#cancelBtn").addEventListener("click", function(){ closeCloud(); clearCasting(); typeLog("<span class='who'>The vapor sighs and thins…</span> The spell is uncast. The potions hum on, patient as cats."); });
     $("#castBtn").addEventListener("click", castSpell);
+    wireAttachments();
     var first = cloud.querySelector("input,select"); if(first) first.focus();
   }, 620);
 }
@@ -435,7 +477,8 @@ function askFollowup(f){
 function finishSpell(){
   busy = false; clearCasting();
   var f = FUNCS[current];
-  var cmd = f.command(values);
+  attachmentBlock(function(extra){
+  var cmd = f.command(values) + extra;
   typeLog("✨ <span class='who'>The spell is sealed in a scroll.</span> One whisper delivers it to Muse, who brews it in earnest — research first, findings in your chat, and nothing published without your word.");
   var sc = $("#scroll");
   sc.innerHTML = "<h2>📜 Your Spell Scroll — " + f.name + "</h2>" +
@@ -451,6 +494,7 @@ function finishSpell(){
     this.textContent = "🕊️ Copied — paste it in the chat & the brewing begins";
   });
   $("#scrollClose").addEventListener("click", function(){ $("#scrollWrap").classList.remove("open"); });
+  });
 }
 document.querySelectorAll(".potion").forEach(function(p){
   p.addEventListener("click", function(){ openFunc(p.dataset.fn); });

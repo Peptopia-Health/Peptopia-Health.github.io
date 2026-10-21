@@ -80,7 +80,7 @@ h1.title .thin{color:var(--lime);font-style:italic;font-weight:700}
 /* ---------- vapor cloud ---------- */
 #cloudWrap{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(3,2,8,.45)}
 #cloudWrap.open{display:flex}
-.cloud{position:relative;width:min(560px,92vw);padding:38px 40px 30px;color:#10240f;font-family:var(--sans);background:
+.cloud{position:relative;width:min(560px,92vw);padding:42px 60px 36px;max-height:92vh;overflow-y:auto;color:#10240f;font-family:var(--sans);background:
   radial-gradient(120px 70px at 18% 24%,rgba(210,255,170,.95),transparent 70%),
   radial-gradient(200px 120px at 78% 16%,rgba(160,255,120,.9),transparent 70%),
   radial-gradient(260px 170px at 50% 60%,rgba(140,255,90,.92),transparent 75%),
@@ -319,13 +319,13 @@ $("#davidWrap").addEventListener("click", function(){
 $("#davidFull").addEventListener("click", function(){ this.classList.remove("open"); });
 document.addEventListener("keydown", function(e){ if(e.key === "Escape") $("#davidFull").classList.remove("open"); });
 var FUNCS = {
-  guide: { name:"Brew a Guide", icon:"📖",
-    intro:"Name the subject, and a full Peptopia guide shall bubble forth — research, graphics, pie charts and all.",
-    fields:[{id:"topic", label:"Topic for the guide", ph:"e.g. Kratom Blending & Stacking", req:1},
-            {id:"notes", label:"Anything special? (optional)", ph:"e.g. compare two vendors, focus on greens…"}],
-    followup:{ q:"Shall the witch include the sacred trappings?",
-      opts:["Full Peptopia standard — comparison graphic, effect pies, the works",
-            "Lean & quick — research and prose, lighter graphics"],
+  guide: { name:"Guide Build", icon:"📖",
+    intro:"Name a topic — a full guide brews.",
+    fields:[{id:"topic", label:"Topic", ph:"e.g. Kratom Blending & Stacking", req:1},
+            {id:"notes", label:"Notes (optional)", ph:"e.g. focus on greens…"}],
+    followup:{ q:"Include the full trappings?",
+      opts:["Full standard — graphics, pies, all of it",
+            "Lean — research & prose, light graphics"],
       key:"trappings" },
     lines:function(v){ return [
       "🔮 The witch uncorks the great flask… “" + v.topic + ", is it? Heh heh heh…”",
@@ -336,12 +336,12 @@ var FUNCS = {
     command:function(v){ return "Peptopia guide: " + v.topic + (v.notes ? "\nNotes: " + v.notes : "") + (v.trappings ? "\nTrappings: " + v.trappings : ""); }
   },
   vendor: { name:"Vendor Review", icon:"🔍",
-    intro:"Name the vendor, and the witch investigates — catalog, lab reports, community verdicts, the honest and the ugly.",
-    fields:[{id:"vendor", label:"Vendor name or website", ph:"e.g. bewitchedbotanicals.com", req:1},
-            {id:"notes", label:"Anything special? (optional)", ph:"e.g. I already own their Cleopatra and Supernova…"}],
-    followup:{ q:"How deep shall the investigation dig?",
-      opts:["Full TreeLeaf-grade strain guide — every strain carded",
-            "Review only — verdict, strengths, weaknesses, value"],
+    intro:"Name a vendor — the honest verdict.",
+    fields:[{id:"vendor", label:"Vendor or website", ph:"e.g. bewitchedbotanicals.com", req:1},
+            {id:"notes", label:"Notes (optional)", ph:"e.g. strains you own…"}],
+    followup:{ q:"How deep?",
+      opts:["Full strain guide — every strain carded",
+            "Review only — verdict & value"],
       key:"depth" },
     lines:function(v){ return [
       "🔮 “" + v.vendor + "…” The witch's eyes narrow pleasantly. “Let us see what hides in THIS shop…”",
@@ -351,8 +351,8 @@ var FUNCS = {
       "⚖️ The verdict is brewed and bottled, with a card for every strain worth naming." ]; },
     command:function(v){ return "Build a vendor review / kratom guide for " + v.vendor + ", TreeLeaf-grade, brutally honest." + (v.notes ? "\nNotes: " + v.notes : "") + (v.depth ? "\nDepth: " + v.depth : ""); }
   },
-  news: { name:"News Brew", icon:"📰",
-    intro:"The crystal orb stirs with the week's GLP-1 research. Give it a nudge, or let it choose the strongest signal.",
+  news: { name:"Publish Article", icon:"📰",
+    intro:"The week's GLP-1 research, as a story.",
     fields:[{id:"topic", label:"Topic hint (optional)", ph:"e.g. retatrutide, oral GLP-1s, aging…"}],
     lines:function(v){ return [
       "🔮 The orb clouds, then clears — this week's research rises into view…",
@@ -361,9 +361,9 @@ var FUNCS = {
       "✨ The story is drafted to Peptopia news standard, icon before its headline." ]; },
     command:function(v){ return "Build this week's GLP-1 news story" + (v.topic ? " — topic hint: " + v.topic : "") + ". Follow the standing news rules: 3-topic approval first if you haven't already, new card on top, archive behind the popup list."; }
   },
-  audio: { name:"Voice Elixir", icon:"🎙️",
-    intro:"Name a subject, and the witch distills it into a Smooth-voice audio elixir for your chat.",
-    fields:[{id:"subject", label:"Subject of the briefing", ph:"e.g. my Tree Leaf order, tomorrow's weather & shifts…", req:1},
+  audio: { name:"Voice Briefing", icon:"🎙️",
+    intro:"Your subject, in the Smooth voice.",
+    fields:[{id:"subject", label:"Subject", ph:"e.g. my Tree Leaf order…", req:1},
             {id:"length", label:"Length", type:"select", opts:["A few minutes","One minute — just the essence","Long & thorough"]}],
     lines:function(v){ return [
       "🔮 The elixir warms. “" + v.subject + " — a fine vintage to distill…”",
@@ -372,10 +372,10 @@ var FUNCS = {
       "✨ Bottled and corked — your audio awaits in the chat, and a copy flies to the Muse Audio vault." ]; },
     command:function(v){ return "Record a Smooth-voice audio briefing on: " + v.subject + (v.length ? "\nLength: " + v.length : "") + "\nDeliver the audio file in chat and archive a copy to the Muse Audio Drive folder."; }
   },
-  publish: { name:"Publish Portal", icon:"🌀",
-    intro:"Name the finished work, and the portal opens — files fly to GitHub and appear upon the living web.",
-    fields:[{id:"what", label:"What shall be published?", ph:"e.g. the Bewitched Botanicals guide", req:1},
-            {id:"where", label:"Destination (optional)", ph:"e.g. x-peps.com/X-Peps — or leave blank, the witch knows the shelves"}],
+  publish: { name:"Site Update", icon:"🌀",
+    intro:"Finished work, pushed live.",
+    fields:[{id:"what", label:"Publish what?", ph:"e.g. the Bewitched Botanicals guide", req:1},
+            {id:"where", label:"Destination (optional)", ph:"Blank = the usual shelf"}],
     lines:function(v){ return [
       "🔮 The portal swirls open above the pentagram, humming with far-off thunder…",
       "📦 “" + v.what + "” is wrapped in lightning-proof parchment…",
@@ -383,10 +383,10 @@ var FUNCS = {
       "🔐 A gate remains: your approval tap, in the chat, seals the spell. No signature, no sorcery." ]; },
     command:function(v){ return "Publish to the web: " + v.what + (v.where ? "\nDestination: " + v.where : "") + "\nPush via GitHub and verify it live before reporting done."; }
   },
-  inventory: { name:"Inventory Draught", icon:"⚖️",
-    intro:"The ledgers unroll themselves. The draught recounts every gram from the canonical purchase record.",
+  inventory: { name:"Inventory Count", icon:"⚖️",
+    intro:"Every gram, recounted from your ledger.",
     fields:[{id:"scope", label:"Scope", type:"select", opts:["Full kratom inventory refresh","One vendor only (name it below)","Peptide holdings instead"]},
-            {id:"notes", label:"Vendor or notes (optional)", ph:"e.g. Tree Leaf Naturalist"}],
+            {id:"notes", label:"Vendor / notes (optional)", ph:"e.g. Tree Leaf Naturalist"}],
     lines:function(v){ return [
       "🔮 The scales tip, settle, and begin to glow…",
       "🧾 The canonical ledger unrolls — every order, every gram, vendor by vendor…",
@@ -426,7 +426,7 @@ function formHTML(fn){
       h += "<input id='cf-" + fd.id + "' type='text' placeholder='" + (fd.ph || "") + "' autocomplete='off'>";
     }
   });
-  h += "<label>Attach references (optional)</label><div class='attzone' id='attZone'>📎 Tap to attach files — or drop them here<div class='attlist' id='attList'></div></div><input type='file' id='cf-files' multiple hidden>";
+  h += "<label>References (optional)</label><div class='attzone' id='attZone'>📎 Tap or drop files<div class='attlist' id='attList'></div></div><input type='file' id='cf-files' multiple hidden>";
   h += "<div class='row'><button class='cast-btn' id='castBtn'>✨ Cast the Spell</button><button class='ghost-btn' id='cancelBtn'>Let it fade</button></div>";
   return h;
 }

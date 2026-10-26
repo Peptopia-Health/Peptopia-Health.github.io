@@ -86,10 +86,9 @@
   .authbody{overflow-y:auto;padding:18px 20px 20px;text-align:left}
   .authnote{font-size:14.5px;color:var(--dim);background:#FFF7E8;border:1px solid #F5C98A;border-radius:10px;padding:10px 12px;margin:0 0 16px;line-height:1.5}
   .authbody label{display:block;font-family:"Outfit",sans-serif;font-weight:700;font-size:13.5px;letter-spacing:.03em;color:var(--ink);margin:0 0 12px}
-  .authbody input[type="text"],.authbody input[type="email"],.authbody select,.authbody textarea{width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#FFFDF9;color:var(--ink);font-family:"DM Sans",sans-serif;font-size:15.5px;font-weight:400}
+  .authbody input[type="text"],.authbody input[type="email"],.authbody input[type="password"],.authbody select,.authbody textarea{width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#FFFDF9;color:var(--ink);font-family:"DM Sans",sans-serif;font-size:15.5px;font-weight:400}
   .authbody input[type="file"]{width:100%;margin-top:6px;font-family:"DM Sans",sans-serif;font-size:14px;font-weight:400;color:var(--dim)}
-  .authrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:560px){.authrow{grid-template-columns:1fr}}
+    @media(max-width:560px){.authrow{grid-template-columns:1fr}}
   .authfine{font-size:13px;color:var(--dim);margin:-4px 0 10px;line-height:1.45}
   .authstatus{display:none;border-radius:10px;padding:10px 12px;font-size:14.5px;line-height:1.5;margin:4px 0 14px}
   .authstatus.show{display:block}
@@ -101,8 +100,25 @@
   .authcast{color:#fff;background:linear-gradient(180deg,#FB923C 0%,#EA580C 100%);border:2px solid #7C2D12;box-shadow:0 3px 0 #7C2D12,0 8px 16px rgba(234,88,12,.30),inset 0 1px 0 rgba(255,255,255,.6)}
   .authcast:active{transform:translateY(2px);box-shadow:0 1px 0 #7C2D12}
   .authcast[disabled]{opacity:.55;cursor:wait}
-  .authdust{background:#fff;color:var(--dim);border:2px solid var(--line)}
-  @media print{.author-cta,.author-btn{display:none!important}}
+    @media print{.author-cta,.author-btn{display:none!important}}
+
+.patmodal.taauth{align-items:flex-start;padding-top:max(26px,calc(env(safe-area-inset-top,0px) + 18px));overflow-y:auto}
+.patmodal.taauth .patbox{max-width:620px;height:auto;max-height:calc(100dvh - 64px)}
+.tagate{padding:28px 20px 26px;text-align:center}
+.tagate-t{font-family:"Outfit",sans-serif;font-weight:800;font-size:17px;color:var(--ink);margin:0 0 6px}
+.tagate-p{font-size:15px;color:var(--dim);margin:0 0 16px;line-height:1.5}
+.tagate input{width:170px;max-width:72%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#FFFDF9;color:var(--ink);font-family:"DM Sans",sans-serif;font-size:18px;text-align:center;letter-spacing:.35em}
+.tagate-err{min-height:1.35em;font-size:14px;color:#B91C1C;margin:10px 0 12px}
+.tacats{display:flex;flex-direction:column;gap:12px;margin:0 0 16px}
+.tacat{border:1px solid var(--line);border-radius:12px;padding:10px 12px 6px}
+.tacat h4{font-family:"Outfit",sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--orange);margin:0 0 4px}
+.tasubs{margin-left:12px;display:flex;flex-direction:column}
+.authbody label.tasub{display:flex;align-items:center;gap:9px;font-family:"DM Sans",sans-serif;font-weight:400;font-size:15.5px;letter-spacing:0;color:var(--ink);margin:0;padding:7px 8px;border-radius:8px;cursor:pointer}
+.authbody label.tasub:hover{background:rgba(234,88,12,.08)}
+.authbody label.tasub input{margin:0;accent-color:var(--orange);width:17px;height:17px;flex:none}
+.authbody label.tasub.soon{opacity:.55;cursor:not-allowed}
+.soon-tag{font-family:"Outfit",sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+@media(max-width:760px){body{padding-top:max(6px,env(safe-area-inset-top,0px))}}
 </style>
 </head>
 <body>
@@ -305,36 +321,48 @@
 <div class="infobody" id="infoBody"></div>
 </div>
 </div>
-<div class="patmodal" id="taAuthorModal" role="dialog" aria-modal="true" aria-label="Start a build">
+<div class="patmodal taauth" id="taAuthorModal" role="dialog" aria-modal="true" aria-label="Start a build">
 <div class="patbox authbox">
-<div class="pathead"><span>✒️ Start a build</span><button type="button" class="patclose" data-ta-close>Close ✕</button></div>
-<form class="authbody" id="taAuthorForm">
-<p class="authnote">Submissions go to the Arboretum&rsquo;s editor for review &mdash; nothing is published automatically. If a build is approved, it is researched and built by hand, then added to the collection.</p>
-<label>What should we build?
-<select id="taCmd">
-<option value="Build an artifact" selected>Build an artifact</option>
-<option value="Peptopia guide">Peptopia guide</option>
-<option value="Articles">Articles</option>
-<option value="Podcasts">Podcasts</option>
-<option value="Updates">Updates</option>
+<div class="pathead"><span>✍️ Start a build</span><button type="button" class="patclose" data-ta-close>Close ✕</button></div>
+<div class="tagate" id="taGate">
+<p class="tagate-t">Authors only</p>
+<p class="tagate-p">Enter the author number to open the build form.</p>
+<input type="password" id="taCode" inputmode="numeric" autocomplete="off" aria-label="Author number">
+<div class="tagate-err" id="taGateErr" role="alert"></div>
+<button type="button" class="authact authcast" id="taGateBtn">Continue</button>
+</div>
+<form class="authbody" id="taAuthorForm" style="display:none">
+<p class="authnote">Submissions are built and published automatically. You will be emailed a confirmation when complete.</p>
+<div class="tacats" role="radiogroup" aria-label="Choose a build">
+<div class="tacat"><h4>Arboretum</h4><div class="tasubs">
+<label class="tasub"><input type="radio" name="taSub" value="Arboretum|Bottles" checked> Bottles</label>
+<label class="tasub soon"><input type="radio" name="taSub" value="Arboretum|Marbles" disabled> Marbles <span class="soon-tag">Coming soon</span></label>
+<label class="tasub soon"><input type="radio" name="taSub" value="Arboretum|China" disabled> China <span class="soon-tag">Coming soon</span></label>
+</div></div>
+<div class="tacat"><h4>Peptopia</h4><div class="tasubs">
+<label class="tasub"><input type="radio" name="taSub" value="Peptopia|Guides"> Guides</label>
+<label class="tasub"><input type="radio" name="taSub" value="Peptopia|Reviews"> Reviews</label>
+<label class="tasub"><input type="radio" name="taSub" value="Peptopia|Articles"> Articles</label>
+<label class="tasub"><input type="radio" name="taSub" value="Peptopia|Podcasts"> Podcasts</label>
+<label class="tasub"><input type="radio" name="taSub" value="Peptopia|Updates"> Updates</label>
+<label class="tasub"><input type="radio" name="taSub" value="Peptopia|Inventory"> Inventory</label>
+</div></div>
+</div>
+<label id="taArtRow" style="display:none">Article type
+<select id="taArtType">
+<option value="GLP News" selected>GLP News</option>
+<option value="Kratom News">Kratom News</option>
 </select></label>
 <label>Topic
-<input type="text" id="taTopic" placeholder="Build an artifact: West Virginia Glass" autocomplete="off"></label>
+<input type="text" id="taTopic" placeholder="The bottle&rsquo;s name &mdash; e.g. West Virginia Glass" autocomplete="off"></label>
 <label>Details
-<textarea id="taDetails" rows="4" placeholder="What was found, where (in general terms &mdash; a neighborhood or landscape, never an exact address), and anything else we should know"></textarea></label>
-<label>Photos of the find (optional, up to 4)
+<textarea id="taDetails" rows="4" placeholder="For an artifact: what was found, where it was found (in general terms &mdash; a neighborhood or landscape, never an exact address), and the date found. For any build: anything else we should know."></textarea></label>
+<label>Photos (optional, up to 4)
 <input type="file" id="taPhotos" accept="image/*" multiple></label>
-<p class="authfine" id="taPhotoNote">Photos are resized in your browser and sent with the submission. We only use your email to reply about this submission.</p>
-<div class="authrow">
-<label>Your name
-<input type="text" id="taName" autocomplete="name"></label>
-<label>Your email
-<input type="email" id="taEmail" autocomplete="email" placeholder="you@example.org"></label>
-</div>
+<p class="authfine" id="taPhotoNote">Photos are resized in your browser and sent with the submission.</p>
 <div class="authstatus" id="taStatus" role="status"></div>
 <div class="authactions">
-<button type="button" class="authact authdust" data-ta-close>🪄 Dust &mdash; never mind</button>
-<button type="submit" class="authact authcast" id="taCast">⭐ Cast &mdash; send it in</button>
+<button type="submit" class="authact authcast" id="taSubmit">Submit</button>
 </div>
 </form>
 </div>
@@ -353,41 +381,49 @@ document.getElementById('infoModal').addEventListener('click',function(e){if(e.t
 <script>
 (function(){
 var modal=document.getElementById('taAuthorModal');if(!modal)return;
-var form=document.getElementById('taAuthorForm'),cmd=document.getElementById('taCmd'),topic=document.getElementById('taTopic'),details=document.getElementById('taDetails'),photos=document.getElementById('taPhotos'),nm=document.getElementById('taName'),em=document.getElementById('taEmail'),status=document.getElementById('taStatus'),cast=document.getElementById('taCast'),photoNote=document.getElementById('taPhotoNote');
-var NOTE0='Photos are resized in your browser and sent with the submission. We only use your email to reply about this submission.';
-var HINTS={'Build an artifact':'Build an artifact: West Virginia Glass','Peptopia guide':'Peptopia guide: [topic]','Articles':'Article topic \u2014 e.g. Martinsburg\u2019s glassworks','Podcasts':'Podcast topic \u2014 e.g. The Hamilton bottle story','Updates':'Update \u2014 e.g. A new photo for the Hamilton bottle page'};
-function openM(){modal.classList.add('open');document.body.style.overflow='hidden';setTimeout(function(){try{cmd.focus();}catch(e){}},40);}
-function closeM(){modal.classList.remove('open');document.body.style.overflow='';}
+var gate=document.getElementById('taGate'),code=document.getElementById('taCode'),gateBtn=document.getElementById('taGateBtn'),gateErr=document.getElementById('taGateErr');
+var form=document.getElementById('taAuthorForm'),topic=document.getElementById('taTopic'),details=document.getElementById('taDetails'),photos=document.getElementById('taPhotos'),status=document.getElementById('taStatus'),submitBtn=document.getElementById('taSubmit'),photoNote=document.getElementById('taPhotoNote'),artRow=document.getElementById('taArtRow'),artType=document.getElementById('taArtType');
+var NOTE0='Photos are resized in your browser and sent with the submission.';
+var HINTS={'Bottles':'The bottle\u2019s name \u2014 e.g. West Virginia Glass','Guides':'Guide topic \u2014 e.g. a new strain guide','Reviews':'Vendor to review \u2014 e.g. Wildcraft Herb Company','Articles':'The story \u2014 e.g. a new GLP-1 study on aging','Podcasts':'Podcast topic \u2014 e.g. the Hamilton bottle story','Updates':'Update \u2014 e.g. a new photo for the Hamilton bottle page','Inventory':'Kratom inventory report'};
+function sel(){var r=form.querySelector('input[name="taSub"]:checked');if(!r){return['Arboretum','Bottles'];}return r.value.split('|');}
+function syncSel(){var cs=sel();artRow.style.display=(cs[1]==='Articles')?'':'none';topic.placeholder=HINTS[cs[1]]||HINTS['Bottles'];}
+function openM(){modal.classList.add('open');document.body.style.overflow='hidden';setTimeout(function(){try{(form.style.display==='none'?code:topic).focus();}catch(e){}},40);}
+function closeM(){modal.classList.remove('open');document.body.style.overflow='';gate.style.display='';form.style.display='none';code.value='';gateErr.textContent='';}
 Array.prototype.forEach.call(document.querySelectorAll('[data-ta-open]'),function(b){b.addEventListener('click',openM);});
 Array.prototype.forEach.call(modal.querySelectorAll('[data-ta-close]'),function(b){b.addEventListener('click',closeM);});
 modal.addEventListener('click',function(e){if(e.target===modal)closeM();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM();});
-cmd.addEventListener('change',function(){topic.placeholder=HINTS[cmd.value]||HINTS['Build an artifact'];});
+function tryGate(){if(code.value.replace(/\s+/g,'')==='57'){gateErr.textContent='';gate.style.display='none';form.style.display='';syncSel();setTimeout(function(){try{topic.focus();}catch(e){}},30);}else{gateErr.textContent='That number doesn\u2019t match \u2014 please try again.';try{code.select();}catch(e){}}}
+gateBtn.addEventListener('click',tryGate);
+code.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();tryGate();}});
+Array.prototype.forEach.call(form.querySelectorAll('input[name="taSub"]'),function(r){r.addEventListener('change',syncSel);});
 photos.addEventListener('change',function(){var fs=photos.files||[];if(!fs.length){photoNote.textContent=NOTE0;return;}var tot=0,i;for(i=0;i<fs.length;i++){tot+=fs[i].size;}photoNote.textContent=fs.length+' photo'+(fs.length>1?'s':'')+' attached ('+Math.max(1,Math.round(tot/1024))+' KB before resizing).';});
 function setStatus(kind,msg){status.className='authstatus show '+kind;status.innerHTML=msg;}
 function readPhoto(file){return new Promise(function(res){var url=URL.createObjectURL(file);var img=new Image();img.onload=function(){var max=1400,w=img.naturalWidth||max,h=img.naturalHeight||max,s=Math.min(1,max/Math.max(w,h));var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));try{c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',0.82));}catch(e){res(null);}URL.revokeObjectURL(url);};img.onerror=function(){URL.revokeObjectURL(url);res(null);};img.src=url;});}
 form.addEventListener('submit',function(e){e.preventDefault();
+var cs=sel();
 var t=topic.value.trim();
+if(cs[1]==='Inventory'&&!t){t='Kratom inventory report';}
 if(!t){setStatus('err','Please give the build a topic \u2014 one line is plenty.');topic.focus();return;}
-var prefix=cmd.value+':';
-var subj=(t.toLowerCase().indexOf(prefix.toLowerCase())===0)?t:(cmd.value+': '+t);
-cast.disabled=true;setStatus('sending','\u2B50 Casting\u2026 your build request is on its way.');
-var payload={name:nm.value.trim(),email:em.value.trim(),_replyto:em.value.trim(),_subject:subj,command:cmd.value,topic:t,message:details.value.trim(),_template:'table',_captcha:'false',_honey:''};
+var subj=cs[0]+' / '+cs[1]+': '+t;
+submitBtn.disabled=true;setStatus('sending','Sending\u2026 your build is being queued.');
+var payload={_subject:subj,category:cs[0],subcategory:cs[1],topic:t,message:details.value.trim(),_template:'table',_captcha:'false',_honey:''};
+if(cs[1]==='Articles'){payload.article_type=artType.value;}
 var fs=[];if(photos.files){for(var i=0;i<Math.min(4,photos.files.length);i++){fs.push(photos.files[i]);}}
 var names=[];var chain=Promise.resolve();
 fs.forEach(function(f,idx){chain=chain.then(function(){return readPhoto(f).then(function(d){if(d){payload['photo_'+(idx+1)+'_filename']=f.name;payload['photo_'+(idx+1)+'_jpeg_base64']=d;names.push(f.name);}});});});
 chain.then(function(){
 if(names.length){payload.photo_manifest=names.join(', ');}
-if(JSON.stringify(payload).length>9500000){cast.disabled=false;setStatus('err','Those photos are too large to send this way. Please attach fewer photos, or email them with your topic to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');return null;}
+if(JSON.stringify(payload).length>9500000){submitBtn.disabled=false;setStatus('err','Those photos are too large to send this way. Please attach fewer photos, or email them with your topic to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');return null;}
 return fetch('https://formsubmit.co/ajax/peptopia@x-peps.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(!r.ok){throw new Error('send failed');}return r.json();});
 }).then(function(j){
 if(j===null){return;}
-cast.disabled=false;
-setStatus('ok','\u2728 <strong>Sent!</strong> Your build request went to the Arboretum&rsquo;s editor for review &mdash; nothing publishes automatically. If it&rsquo;s a fit, research begins and the finished piece joins the collection here.');
-form.reset();photoNote.textContent=NOTE0;topic.placeholder=HINTS['Build an artifact'];
+submitBtn.disabled=false;
+setStatus('ok','\u2728 <strong>Sent!</strong> Your build has been queued. It will be researched, built, and published automatically \u2014 one build at a time \u2014 and you will be emailed a confirmation when complete.');
+form.reset();photoNote.textContent=NOTE0;syncSel();
 }).catch(function(){
-cast.disabled=false;
-setStatus('err','That didn&rsquo;t go through. Please try once more, or email the same details to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');
+submitBtn.disabled=false;
+setStatus('err','That didn\u2019t go through. Please try once more, or email the same details to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');
 });
 });
 })();

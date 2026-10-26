@@ -93,7 +93,40 @@ html.dark .peptopia-ftr .ftr-email-line a{color:#94a3b8}
 .peptopia-ftr .ftr-logo img{width:18px;height:18px;border-radius:50%;filter:grayscale(1);opacity:.55}
 .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
 @media(max-width:640px){.peptopia-hdr{padding:10px 12px;gap:8px}.peptopia-brand{gap:8px}.peptopia-logo{width:38px;height:38px}.peptopia-wordmark{font-size:.85rem}.peptopia-nav{gap:.6rem}.peptopia-nav>a{font-size:.7rem;letter-spacing:.08em}.peptopia-iconbtn{width:34px;height:34px;flex:none}}
-@media print{.peptopia-hdr,.peptopia-ftr{display:none!important}}
+.author-btn{display:inline-flex;align-items:center;gap:7px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(180deg,#FB923C 0%,#EA580C 100%);border:2px solid #7C2D12;border-radius:999px;padding:8px 16px;cursor:pointer;box-shadow:0 3px 0 #7C2D12,0 8px 16px rgba(234,88,12,.30),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;white-space:nowrap}
+.author-btn:hover{filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 4px 0 #7C2D12,0 10px 18px rgba(234,88,12,.34),inset 0 1px 0 rgba(255,255,255,.6)}
+.author-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #7C2D12,0 4px 8px rgba(234,88,12,.30),inset 0 1px 0 rgba(255,255,255,.5)}
+@media(max-width:640px){.author-btn{padding:7px 11px;font-size:.64rem;gap:5px}}
+.author-cta{max-width:1200px;margin:44px auto 0;padding:0 24px;text-align:center;position:relative;z-index:1}
+.author-cta p{color:var(--t2);font-size:.94rem;margin-bottom:12px}
+.authmodal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.66);align-items:center;justify-content:center;padding:16px}
+.authmodal.open{display:flex}
+.authbox{background:#fff;border-radius:16px;max-width:620px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 18px 50px rgba(0,0,0,.45);border:1px solid var(--border);display:flex;flex-direction:column}
+html.dark .authbox{background:#111C33}
+.authhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;background:linear-gradient(135deg,#FFF3E4,#FFE7C7);border-bottom:1px solid var(--border);font-family:'Outfit',sans-serif;font-weight:800;color:#9A3412;font-size:1.05rem;flex:none}
+html.dark .authhead{background:rgba(234,88,12,.16);color:#FDBA74}
+.authx{font-family:'Outfit',sans-serif;font-weight:700;font-size:.85rem;color:#fff;background:var(--orange);border:none;border-radius:999px;padding:7px 14px;cursor:pointer;flex:none}
+.authbody{padding:18px 20px 20px;overflow-y:auto}
+.authnote{font-size:.9rem;color:var(--t2);background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.35);border-radius:10px;padding:10px 12px;margin:0 0 16px;line-height:1.5}
+.authbody label{display:block;font-family:'Outfit',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;color:var(--t1);margin:0 0 12px}
+.authbody input[type="text"],.authbody input[type="email"],.authbody select,.authbody textarea{width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--t1);font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:400}
+.authbody input[type="file"]{width:100%;margin-top:6px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:400;color:var(--t2)}
+.authrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.authrow{grid-template-columns:1fr}}
+.authfine{font-size:.8rem;color:var(--t3);margin:-4px 0 10px;line-height:1.45}
+.authstatus{display:none;border-radius:10px;padding:10px 12px;font-size:.9rem;line-height:1.5;margin:4px 0 14px}
+.authstatus.show{display:block}
+.authstatus.sending{background:rgba(6,182,212,.12);color:var(--t1)}
+.authstatus.ok{background:rgba(16,185,129,.14);color:var(--t1)}
+.authstatus.err{background:rgba(185,28,28,.10);color:#B91C1C}
+html.dark .authstatus.err{color:#FCA5A5}
+.authactions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:6px}
+.authact{font-family:'Outfit',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.05em;border-radius:999px;padding:11px 20px;cursor:pointer}
+.authcast{color:#fff;background:linear-gradient(180deg,#FB923C 0%,#EA580C 100%);border:2px solid #7C2D12;box-shadow:0 3px 0 #7C2D12,0 8px 16px rgba(234,88,12,.30),inset 0 1px 0 rgba(255,255,255,.6)}
+.authcast:active{transform:translateY(2px);box-shadow:0 1px 0 #7C2D12}
+.authcast[disabled]{opacity:.55;cursor:wait}
+.authdust{background:transparent;color:var(--t2);border:2px solid var(--border)}
+@media print{.peptopia-hdr,.peptopia-ftr,.author-cta,.authmodal{display:none!important}}
 </style>
 </head>
 <body><header class="peptopia-hdr">
@@ -142,6 +175,10 @@ Copy this <article class="artifact-entry"> block for every future artifact.
 </article>
 </section>
 </main>
+<div class="author-cta">
+<p><strong>Researching a find of your own?</strong> Start a build &mdash; send a topic and photos, and an approved submission becomes a researched guide in this collection.</p>
+<button type="button" class="author-btn" data-ta-open>✒️ Author &mdash; start a build</button>
+</div>
 <footer class="peptopia-ftr">
 <div>&copy; 2026 Tuscarora Arboretum &bull; A Peptopia project &bull; Martinsburg, West Virginia</div>
 <div class="ftr-email-line"><a href="mailto:Peptopia@x-peps.com?subject=From%20the%20Tuscarora%20Arboretum%20Website">Peptopia@x-peps.com</a></div>
@@ -151,6 +188,82 @@ Copy this <article class="artifact-entry"> block for every future artifact.
 </footer><script>
 function toggleTheme(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('ta-theme',d?'dark':'light')}catch(e){}}
 try{if(localStorage.getItem('ta-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}
+</script>
+<div class="authmodal" id="taAuthorModal" role="dialog" aria-modal="true" aria-label="Start a build">
+<div class="authbox">
+<div class="authhead"><span>✒️ Start a build</span><button type="button" class="authx" data-ta-close aria-label="Close">Close ✕</button></div>
+<form class="authbody" id="taAuthorForm">
+<p class="authnote">Submissions go to the Arboretum&rsquo;s editor for review &mdash; nothing is published automatically. If a build is approved, it is researched and built by hand, then added to the collection.</p>
+<label>What should we build?
+<select id="taCmd">
+<option value="Build an artifact" selected>Build an artifact</option>
+<option value="Peptopia guide">Peptopia guide</option>
+<option value="Articles">Articles</option>
+<option value="Podcasts">Podcasts</option>
+<option value="Updates">Updates</option>
+</select></label>
+<label>Topic
+<input type="text" id="taTopic" placeholder="Build an artifact: West Virginia Glass" autocomplete="off"></label>
+<label>Details
+<textarea id="taDetails" rows="4" placeholder="What was found, where (in general terms &mdash; a neighborhood or landscape, never an exact address), and anything else we should know"></textarea></label>
+<label>Photos of the find (optional, up to 4)
+<input type="file" id="taPhotos" accept="image/*" multiple></label>
+<p class="authfine" id="taPhotoNote">Photos are resized in your browser and sent with the submission. We only use your email to reply about this submission.</p>
+<div class="authrow">
+<label>Your name
+<input type="text" id="taName" autocomplete="name"></label>
+<label>Your email
+<input type="email" id="taEmail" autocomplete="email" placeholder="you@example.org"></label>
+</div>
+<div class="authstatus" id="taStatus" role="status"></div>
+<div class="authactions">
+<button type="button" class="authact authdust" data-ta-close>🪄 Dust &mdash; never mind</button>
+<button type="submit" class="authact authcast" id="taCast">⭐ Cast &mdash; send it in</button>
+</div>
+</form>
+</div>
+</div>
+<script>
+(function(){
+var modal=document.getElementById('taAuthorModal');if(!modal)return;
+var form=document.getElementById('taAuthorForm'),cmd=document.getElementById('taCmd'),topic=document.getElementById('taTopic'),details=document.getElementById('taDetails'),photos=document.getElementById('taPhotos'),nm=document.getElementById('taName'),em=document.getElementById('taEmail'),status=document.getElementById('taStatus'),cast=document.getElementById('taCast'),photoNote=document.getElementById('taPhotoNote');
+var NOTE0='Photos are resized in your browser and sent with the submission. We only use your email to reply about this submission.';
+var HINTS={'Build an artifact':'Build an artifact: West Virginia Glass','Peptopia guide':'Peptopia guide: [topic]','Articles':'Article topic \u2014 e.g. Martinsburg\u2019s glassworks','Podcasts':'Podcast topic \u2014 e.g. The Hamilton bottle story','Updates':'Update \u2014 e.g. A new photo for the Hamilton bottle page'};
+function openM(){modal.classList.add('open');document.body.style.overflow='hidden';setTimeout(function(){try{cmd.focus();}catch(e){}},40);}
+function closeM(){modal.classList.remove('open');document.body.style.overflow='';}
+Array.prototype.forEach.call(document.querySelectorAll('[data-ta-open]'),function(b){b.addEventListener('click',openM);});
+Array.prototype.forEach.call(modal.querySelectorAll('[data-ta-close]'),function(b){b.addEventListener('click',closeM);});
+modal.addEventListener('click',function(e){if(e.target===modal)closeM();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM();});
+cmd.addEventListener('change',function(){topic.placeholder=HINTS[cmd.value]||HINTS['Build an artifact'];});
+photos.addEventListener('change',function(){var fs=photos.files||[];if(!fs.length){photoNote.textContent=NOTE0;return;}var tot=0,i;for(i=0;i<fs.length;i++){tot+=fs[i].size;}photoNote.textContent=fs.length+' photo'+(fs.length>1?'s':'')+' attached ('+Math.max(1,Math.round(tot/1024))+' KB before resizing).';});
+function setStatus(kind,msg){status.className='authstatus show '+kind;status.innerHTML=msg;}
+function readPhoto(file){return new Promise(function(res){var url=URL.createObjectURL(file);var img=new Image();img.onload=function(){var max=1400,w=img.naturalWidth||max,h=img.naturalHeight||max,s=Math.min(1,max/Math.max(w,h));var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));try{c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',0.82));}catch(e){res(null);}URL.revokeObjectURL(url);};img.onerror=function(){URL.revokeObjectURL(url);res(null);};img.src=url;});}
+form.addEventListener('submit',function(e){e.preventDefault();
+var t=topic.value.trim();
+if(!t){setStatus('err','Please give the build a topic \u2014 one line is plenty.');topic.focus();return;}
+var prefix=cmd.value+':';
+var subj=(t.toLowerCase().indexOf(prefix.toLowerCase())===0)?t:(cmd.value+': '+t);
+cast.disabled=true;setStatus('sending','\u2B50 Casting\u2026 your build request is on its way.');
+var payload={name:nm.value.trim(),email:em.value.trim(),_replyto:em.value.trim(),_subject:subj,command:cmd.value,topic:t,message:details.value.trim(),_template:'table',_captcha:'false',_honey:''};
+var fs=[];if(photos.files){for(var i=0;i<Math.min(4,photos.files.length);i++){fs.push(photos.files[i]);}}
+var names=[];var chain=Promise.resolve();
+fs.forEach(function(f,idx){chain=chain.then(function(){return readPhoto(f).then(function(d){if(d){payload['photo_'+(idx+1)+'_filename']=f.name;payload['photo_'+(idx+1)+'_jpeg_base64']=d;names.push(f.name);}});});});
+chain.then(function(){
+if(names.length){payload.photo_manifest=names.join(', ');}
+if(JSON.stringify(payload).length>9500000){cast.disabled=false;setStatus('err','Those photos are too large to send this way. Please attach fewer photos, or email them with your topic to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');return null;}
+return fetch('https://formsubmit.co/ajax/peptopia@x-peps.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(!r.ok){throw new Error('send failed');}return r.json();});
+}).then(function(j){
+if(j===null){return;}
+cast.disabled=false;
+setStatus('ok','\u2728 <strong>Sent!</strong> Your build request went to the Arboretum&rsquo;s editor for review &mdash; nothing publishes automatically. If it&rsquo;s a fit, research begins and the finished piece joins the collection here.');
+form.reset();photoNote.textContent=NOTE0;topic.placeholder=HINTS['Build an artifact'];
+}).catch(function(){
+cast.disabled=false;
+setStatus('err','That didn&rsquo;t go through. Please try once more, or email the same details to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');
+});
+});
+})();
 </script>
 </body>
 </html>

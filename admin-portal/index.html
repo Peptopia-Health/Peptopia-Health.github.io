@@ -113,6 +113,33 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   .astat{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--accsoft);color:var(--acc);font-size:12px;font-weight:700;vertical-align:middle}
   #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:12px;font-size:14px;max-width:88vw;text-align:center;opacity:0;pointer-events:none;transition:all .25s ease;z-index:300;box-shadow:var(--shadow)}
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .vein-band{font-family:Outfit,sans-serif;font-weight:800;font-size:17px;border-radius:12px;padding:11px 16px;margin:24px 0 4px;display:flex;justify-content:space-between;align-items:center}
+  .vein-count{font-size:13px;font-weight:700;opacity:.85}
+  .vein-sub{color:var(--mut);font-size:14px;margin:0 0 10px}
+  .vein-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .vein-grid .card{margin:0}
+
+  /* kratom quick pick */
+  .qp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);margin:18px 0 6px}
+  .qp h2{margin:0 0 2px}
+  .qp-wheel{position:relative;width:min(360px,94vw);aspect-ratio:1/1;margin:8px auto 4px}
+  .qp-spoke{position:absolute;left:50%;top:50%;width:41%;height:2px;background:var(--line);transform-origin:0 50%;border-radius:2px}
+  .qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;background:var(--accsoft,#DBEAFE);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:38px;z-index:2}
+  .qp-node{position:absolute;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:var(--card);border:2px solid var(--nc);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;z-index:3;padding:0;font-family:Outfit,sans-serif}
+  .qp-node .qp-emo{font-size:24px;line-height:1}
+  .qp-node small{font-size:11px;font-weight:700;letter-spacing:.03em}
+  .qp-node.on{background:var(--nc);color:#fff}
+  .qp-name{font-family:Outfit,sans-serif;font-weight:800;font-size:26px;color:#EA580C;line-height:1.15}
+  .qp-meta{color:var(--mut);font-size:14px;margin:2px 0 6px}
+  .qp-why{font-size:15px;margin:0 0 6px}
+  .qp-bars{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}
+  .qp-bar{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--mut)}
+  .qp-dots{display:flex;gap:3px;margin-top:3px}
+  .qp-dots i{width:14px;height:8px;border-radius:3px;display:block}
+  .qp-runner{font-size:14px;color:var(--mut);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .qp-runner b{color:var(--ink)}
+  .qp-note{font-size:12px;color:var(--mut);margin:10px 0 0}
 </style>
 </head>
 <body>
@@ -137,23 +164,38 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
 <nav class="peptopia-nav" aria-label="Site">
 <a href="https://x-peps.com/">HOME</a>
 <a href="https://x-peps.com/X-Peps/orders/">ORDERS</a>
+<a href="#quickpick">QUICK PICK</a>
 <button type="button" class="peptopia-iconbtn peptopia-theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme"><svg class="pp-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pp-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
 </nav>
 </header>
 
 <main>
   <h1 class="ptitle">Peptopia Health — Admin Portal</h1>
-  <p class="psub">Private working index · updated Oct 26, 2026</p>
-  <div class="strip">
-    <span class="stat"><b>25</b> chats imported (20 unique)</span>
-    <span class="stat"><b>44</b> archive products</span>
-    <span class="stat"><b>1</b> script project</span>
-    <span class="stat"><b>8</b> open actions</span>
-  </div>
-  <div class="priv"><strong>Private.</strong> Standing rule: imports are <strong>additive only</strong> — nothing already built gets replaced or deleted because a new source arrived.</div>
+  <p class="psub">Private working index · updated Oct 27, 2026</p>
+
+  <section class="qp" id="quickpick">
+    <h2>🌿 Kratom Quick Pick</h2>
+    <p class="sub">From your own shelf — one tap: the pick, the batch, and why. Ratings from your guides.</p>
+    <div class="qp-wheel" id="qpWheel">
+      <span class="qp-spoke" style="transform:rotate(-90deg)"></span>
+      <span class="qp-spoke" style="transform:rotate(-30deg)"></span>
+      <span class="qp-spoke" style="transform:rotate(30deg)"></span>
+      <span class="qp-spoke" style="transform:rotate(90deg)"></span>
+      <span class="qp-spoke" style="transform:rotate(150deg)"></span>
+      <span class="qp-spoke" style="transform:rotate(210deg)"></span>
+      <div class="qp-hub">&#127807;</div>
+      <button type="button" class="qp-node" data-sit="energy" style="left:50%;top:9%;--nc:#F59E0B"><span class="qp-emo">&#9889;</span><small>Energy</small></button>
+      <button type="button" class="qp-node" data-sit="focus" style="left:85.5%;top:29.5%;--nc:#5BA3D9"><span class="qp-emo">&#127919;</span><small>Focus</small></button>
+      <button type="button" class="qp-node" data-sit="mood" style="left:85.5%;top:70.5%;--nc:#2E7D4F"><span class="qp-emo">&#129505;</span><small>Mood</small></button>
+      <button type="button" class="qp-node" data-sit="sleep" style="left:50%;top:91%;--nc:#6366F1"><span class="qp-emo">&#128564;</span><small>Sleep</small></button>
+      <button type="button" class="qp-node" data-sit="relief" style="left:14.5%;top:70.5%;--nc:#B03A3A"><span class="qp-emo">&#129657;</span><small>Relief</small></button>
+      <button type="button" class="qp-node" data-sit="calm" style="left:14.5%;top:29.5%;--nc:#E8873A"><span class="qp-emo">&#128524;</span><small>Calm</small></button>
+    </div>
+    <div id="qpResult"><p class="qp-why">Tap how you feel — get the pick.</p></div>
+    <p class="qp-note">Shelf per your Oct 25 photos. ✦ = enhanced — runs stronger per gram.</p>
+  </section>
 
   <h2>Command Phrases</h2>
-  <p class="sub">Say the phrase, get the finished product. Each one is labeled with what it launches.</p>
 
   <div class="cmd-group">Say it to Muse in chat</div>
   <div class="cmd-grid">
@@ -201,62 +243,134 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   <h2>Imported Gemini Chats</h2>
   <p class="sub">Each card: what it is, what it's worth, what we do with it. “Open chat” goes to the private Gemini share page.</p>
 
+  <div class="vein-band" style="background:#E8EDF3;color:#0F172A"><span>⚪ WHITE VEIN — Bright &amp; Driving</span><span class="vein-count">6 chats</span></div>
+  <p class="vein-sub">Build, business &amp; command — the fast movers.</p>
+  <div class="vein-grid">
   <div class="card">
-    <h3><span class="dot" style="background:#64748B"></span>Chat Backup</h3>
+    <h3><span class="dot" style="background:#B6C2D2"></span>Chat Backup</h3>
     <p class="meta">Meta — Archive HQ · 13 exchanges · Oct 26, 2026</p>
     <span class="pill">Meta</span><span class="pill status">Imported</span>
     <p class="assess">The headquarters chat: built the 44-product manifest, both export scripts, and the final retention audit. Its audit names three blind spots — Gmail-only attachments, live site pages, browser-stored state — that Muse can close because Muse has Gmail, Drive, and site access.</p>
     <a class="open" href="https://share.gemini.google/YBZuIz1wN5KW" target="_blank" rel="noopener">Open chat ↗</a>
     <ul><li>Run the Gmail attachment sweep to recover products the Drive script cannot see</li><li>Keep this chat as the archive program's reference record</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#A855F7"></span>Peptopia Guides</h3>
+    <h3><span class="dot" style="background:#B6C2D2"></span>Peptopia Guides</h3>
     <p class="meta">Peptopia Business / Web &amp; Guides · 34 exchanges · May 13, 2026</p>
     <span class="pill">Peptopia</span><span class="pill status">Imported</span>
     <p class="assess">Origin of the Peptopia guide template (the design DNA behind the manifest styling). Produced the Tesofensine and SLU-PP-332 guides and the Sacubitril/Valsartan patient guide. Gemini failed four times to deliver a Cagrilintide guide, and a Capecitabine guide failed too — Cagrilintide is a live store product with no guide.</p>
     <a class="open" href="https://share.gemini.google/S6zPwXNeRCjZ" target="_blank" rel="noopener">Open chat ↗</a>
     <ul><li><strong>Build the Cagrilintide guide</strong> (top action of the whole import)</li><li>Note the Capecitabine gap for a later decision</li><li>Preserve David's SLU-PP-332 editorial wording decisions as his, layered as preference</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#22C55E"></span>Strain Guide — DTE Monograph</h3>
+    <h3><span class="dot" style="background:#B6C2D2"></span>Peptopia Guide Author Skill</h3>
+    <p class="meta">Peptopia / Guide-build system · ~14 exchanges · Sep 26, 2026</p>
+    <span class="pill">Guide system</span><span class="pill status">★ Script chat</span>
+    <p class="assess">The especially important one: Gemini's persistent “Guide Author” skill — post a topic, get a Peptopia-styled guide. It encodes design tokens (cyan, emerald, violet, orange, coral, amber), Outfit/DM Sans, reusable components, and community-source research discipline. Its worked example is a 53-offering DTE Color Atlas with a time-of-day “Chronobiological Daily Protocol,” 0–5 effect scores, and standardized alkaloid tables.</p>
+    <a class="open" href="https://share.gemini.google/XyqKYEfTGvcj" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Integration candidates for our build script — additive only, ours stays canonical: design tokens, the daily-protocol summary, the 8-alkaloid COA table, 0–5 scores beside the pie popups, bespoke SVG icons, and the print/PDF button Gemini never finished</li><li>Its bottom-disclaimer habit does NOT carry over — our published guides follow David’s standing no-disclaimer rule</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#B6C2D2"></span>Townie Bar Facebook Ad Concept</h3>
+    <p class="meta">The Berkeley · Marketing · 5 exchanges · Sep 5, 2026</p>
+    <span class="pill">Bar</span><span class="pill status">Imported</span>
+    <p class="assess">Game-day ad and caption (noon opening, all-day $2 beer list) and the Fall Fest door poster — invitation only, QR code plus valid photo ID, no exceptions — for the Oct 3, 2026 celebration at 115 South Queen Street.</p>
+    <a class="open" href="https://share.gemini.google/jwXNmelRAP0a" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Door-control framework (invitation + QR + ID) is the reusable piece</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#B6C2D2"></span>Brand Name Change on Vial</h3>
+    <p class="meta">Peptopia Business · 1 exchange · Oct 9, 2026</p>
+    <span class="pill">Peptopia</span><span class="pill status">Imported</span>
+    <p class="assess">The AVERIX → Peptopia rebrand: a KLOW 80mg vial label reworked to PEPTOPIA LABORATORIES with everything else untouched. A small, clean piece of brand history.</p>
+    <a class="open" href="https://share.gemini.google/ZcfpCuX5jbqk" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Banked as brand history</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#B6C2D2"></span>Setting Up Chrome Bookmark Sync</h3>
+    <p class="meta">Utility · 2 exchanges · Oct 17, 2026</p>
+    <span class="pill">Utility</span><span class="pill status">Imported</span>
+    <p class="assess">A “Chrome Sync Guide”: in the new Chrome, signing in replaces the old “Turn on Sync” button. Left unresolved — the steps were never verified against David’s Chrome.</p>
+    <a class="open" href="https://share.gemini.google/ly72PHgEkimA" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Low value — reopen only if bookmark sync is still wanted</li></ul>
+  </div>
+  </div>
+
+  <div class="vein-band" style="background:#2E7D4F;color:#FFFFFF"><span>🟢 GREEN VEIN — The Daily Drivers</span><span class="vein-count">8 chats</span></div>
+  <p class="vein-sub">The kratom shelf &amp; study — balanced, everyday work.</p>
+  <div class="vein-grid">
+  <div class="card">
+    <h3><span class="dot" style="background:#2E7D4F"></span>Strain Guide — DTE Monograph</h3>
     <p class="meta">Kratom · 3 exchanges · Oct 11, 2026</p>
     <span class="pill">Kratom</span><span class="pill status">Imported</span>
     <p class="assess">Gemini's own Down to Earth strain monograph with roughly 19 strain names, batch codes, and alkaloid figures (30-Year Pure Green MD, Imperial Green Dragon, Super White Elephant, Old School Red Sumatra, Elder Tree Gold, and more). Our live DTE guide stays canonical — this is a data mine, not a replacement.</p>
     <a class="open" href="https://share.gemini.google/PgjEv3mA0KSs" target="_blank" rel="noopener">Open chat ↗</a>
     <ul><li>Cross-check every name against the live DTE guide and the purchase record</li><li>Bring David the genuinely-new strains as a candidate addition list</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#EC4899"></span>Interactive Clinical Modules</h3>
-    <p class="meta">Nursing · 1 exchange · Oct 8, 2026</p>
-    <span class="pill">Nursing</span><span class="pill status">Imported</span>
-    <p class="assess">Five unbuilt concepts: NCLEX case-study simulator, Peptide &amp; Pharmacology Titration Sandbox, EKG rhythm &amp; caliper tool, PICO(T) constructor, auscultation mapper. The Titration Sandbox (syringe visual + half-life graph) layers directly onto the existing peptide reconstitution calculator plan.</p>
-    <a class="open" href="https://share.gemini.google/ojGp9aflHVdk" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Add the sandbox ideas to the reconstitution calculator backlog</li><li>Bank the other four as nursing-school build candidates</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#22C55E"></span>Enhanced Kratom</h3>
+    <h3><span class="dot" style="background:#2E7D4F"></span>Enhanced Kratom</h3>
     <p class="meta">Kratom — Reference · 1 exchange · Oct 4, 2026</p>
     <span class="pill">Kratom</span><span class="pill status">Imported</span>
     <p class="assess">One exchange, but a keeper: a clean potency yardstick in milligrams per gram. Standard leaf ≈ 1.5% ≈ 15 mg/g; standardized to 3% total = 30 mg/g (2×); enhanced by adding 3% = 45 mg/g (3×).</p>
     <a class="open" href="https://share.gemini.google/QSyPqbqtOTGH" target="_blank" rel="noopener">Open chat ↗</a>
     <ul><li>File the mg/g yardstick with the enhanced-product documentation</li><li>Hold for the blending/stacking guide's math section</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#22C55E"></span>Tea Journey</h3>
+    <h3><span class="dot" style="background:#2E7D4F"></span>Tea Journey</h3>
     <p class="meta">Kratom / Tree Leaf · 7 exchanges · Sep 17, 2026</p>
     <span class="pill">Kratom</span><span class="pill status">Imported</span>
     <p class="assess">The Tree Leaf day: Ivory Sunrise before breakfast, Asian Pear Apple before lunch, DK's Batch mid-afternoon, Gold Matrix before dinner, Dark Hematoma before bed — plus the “A Tree Leaf Perfect Day” infographic. Its closing question (“Do I own Gold MD2 from DTE?”) is answered from our records: the DTE guide carries a full Super Gold MD card, but there is no tracked Gold MD2 purchase — Gold Dragon A22 is the owned near-name.</p>
     <a class="open" href="https://share.gemini.google/sgHfzXGSFN3z" target="_blank" rel="noopener">Open chat ↗</a>
     <ul><li>Bank the daily routine and infographic spec as the canonical Tree Leaf day record</li><li>Interaction lists stay private reference only (never published)</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#84CC16"></span>Hoya Plant Identification and Care</h3>
+    <h3><span class="dot" style="background:#2E7D4F"></span>DTE Botanicals Master Research Guide</h3>
+    <p class="meta">Kratom / Guide template · 6 exchanges · Oct 11, 2026</p>
+    <span class="pill">Kratom</span><span class="pill status">Imported</span>
+    <p class="assess">The Gemini-era DTE guide build: dark “Master Monograph” revised into the light Complete Strain Guide with a master matrix, Standouts boxes, and animated score meters. Its template scaffolding (tokens, 4-quadrant comparison, 7-row alkaloid table) is a second source for the integration analysis. Caution: its alkaloid percentages are Gemini estimates, not verified COAs — our live guide and real lab documents govern.</p>
+    <a class="open" href="https://share.gemini.google/0xNRV1zd8EZC" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Strain names merge into the DTE cross-check on the Action Board</li><li>Never import its figures as fact</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#2E7D4F"></span>Kratom Trees</h3>
+    <p class="meta">Kratom / Artwork · ~24 exchanges · Aug 24, 2026</p>
+    <span class="pill">Kratom</span><span class="pill status">Imported</span>
+    <p class="assess">Iterative artwork: the ancient Elder Tree with whole golden leaves only at cluster tips, and the younger Deep Jungle Red Nanga with gentle green-to-red gradients. Holds David’s own experience posts — Elder Tree Gold, his 10/10; Deep Jungle Red, his 9/10 (3 AM dose, two hours of drive, then eight hours of sleep).</p>
+    <a class="open" href="https://share.gemini.google/eR4LzrTnFI54" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Ratings feed the DTE cross-check</li><li>The final pink-leaf refinement was left unanswered by Gemini — Muse can finish it on request</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#2E7D4F"></span>Expert Leaf Tolerancing and Reset</h3>
+    <p class="meta">Kratom · Private reference · 2 exchanges · Sep 18, 2026</p>
+    <span class="pill">Kratom</span><span class="pill status">Private</span>
+    <p class="assess">David’s “leaf holiday” framework in his own words: a one-week break every two months, symptoms peaking day two, full reset within seven days, with agmatine, magnesium, black seed oil and tyrosine as helpers — plus the TreeLeaf review draft that singles out Ivory Sunrise. Private reference only; interaction material is never published.</p>
+    <a class="open" href="https://share.gemini.google/nlAqq5n2Rv9u" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>File with the private kratom reference, beside the held potentiation protocol</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#2E7D4F"></span>Receptor Resensitization and Overdose Risks</h3>
+    <p class="meta">Kratom · Private reference · 1 exchange · Sep 18, 2026</p>
+    <span class="pill">Kratom</span><span class="pill status">Private</span>
+    <p class="assess">Companion explainer from the same reading session: how resensitizing receptors makes an old tolerance-level dose dangerous — the mechanism behind the tolerance framework. Private reference only.</p>
+    <a class="open" href="https://share.gemini.google/2gFi2pWebJEc" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Keep paired with the Tolerancing chat</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#2E7D4F"></span>Comparing Different Green Kratom Varieties</h3>
+    <p class="meta">Kratom · 1 exchange · Sep 17, 2026</p>
+    <span class="pill">Kratom</span><span class="pill status">Imported</span>
+    <p class="assess">A five-green spectrum: Green Vietnam calmest, Green Hulk boldest for daytime focus, Green Elephant smooth and long, Green Monster mid-fast with a calming undertone — which supports the Rando guide’s Monster read — and Nano Super Green balanced.</p>
+    <a class="open" href="https://share.gemini.google/NGtORPF3c9vV" target="_blank" rel="noopener">Open chat ↗</a>
+    <a class="open" href="https://share.gemini.google/YzNNQD1n3ZTC" target="_blank" rel="noopener">Second share link ↗</a>
+    <ul><li>General reference for green-strain questions</li></ul>
+  </div>
+  </div>
+
+  <div class="vein-band" style="background:#D97706;color:#FFFFFF"><span>🟡 GOLD VEIN — Mellow &amp; Slow</span><span class="vein-count">2 chats</span></div>
+  <p class="vein-sub">Home, plants &amp; money — the unhurried shelf.</p>
+  <div class="vein-grid">
+  <div class="card">
+    <h3><span class="dot" style="background:#D97706"></span>Hoya Plant Identification and Care</h3>
     <p class="meta">Plants — his collection · ~12 prompts · Sep 14, 2026</p>
     <span class="pill">Plants</span><span class="pill status">Imported</span>
     <p class="assess">A 9-entry care log built from David's own photos: Hoya (latifolia type), Paraiso Verde, Snowdrift, Florida Green, Cyrtosperma johnstonii (the keep-it-wet exception), Painted Lady, Monstera Albo, variegated adansonii, and billietiae — that last one corrected by David himself from Gemini's wrong “Thai Sunrise” call. The planned Google Docs export was never finished.</p>
@@ -264,9 +378,29 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
     <a class="open" href="https://share.gemini.google/25WKMJjtQnmh" target="_blank" rel="noopener">Second share link ↗</a>
     <ul><li>Produce the finished care guide as a proper document in the Drive Plants folder</li><li>Cat-safety notes (calcium oxalate) stay attached to the aroid entries — Weenie's house</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#22C55E"></span>RN Position Resume</h3>
+    <h3><span class="dot" style="background:#D97706"></span>WV Senior Property Tax Relief</h3>
+    <p class="meta">Finance · 1 exchange · Oct 10, 2026</p>
+    <span class="pill">Finance</span><span class="pill status">Imported</span>
+    <p class="assess">No WV tax freeze for seniors — but the Homestead Exemption removes the first $20,000 of assessed value: 65 or older (or permanently disabled), own and occupy, two years a WV resident, apply at the Berkeley County Assessor between July 1 and December 1, then it carries forward automatically. A Senior Citizens Tax Credit may stack for lower incomes.</p>
+    <a class="open" href="https://share.gemini.google/wl4r9UhUmEyd" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Future retirement-planning item — the age route opens at 65</li></ul>
+  </div>
+  </div>
+
+  <div class="vein-band" style="background:#B03A3A;color:#FFFFFF"><span>🔴 RED VEIN — Deep &amp; Heavy</span><span class="vein-count">4 chats</span></div>
+  <p class="vein-sub">Career, clearance &amp; health — the weighty files.</p>
+  <div class="vein-grid">
+  <div class="card">
+    <h3><span class="dot" style="background:#B03A3A"></span>Interactive Clinical Modules</h3>
+    <p class="meta">Nursing · 1 exchange · Oct 8, 2026</p>
+    <span class="pill">Nursing</span><span class="pill status">Imported</span>
+    <p class="assess">Five unbuilt concepts: NCLEX case-study simulator, Peptide &amp; Pharmacology Titration Sandbox, EKG rhythm &amp; caliper tool, PICO(T) constructor, auscultation mapper. The Titration Sandbox (syringe visual + half-life graph) layers directly onto the existing peptide reconstitution calculator plan.</p>
+    <a class="open" href="https://share.gemini.google/ojGp9aflHVdk" target="_blank" rel="noopener">Open chat ↗</a>
+    <ul><li>Add the sandbox ideas to the reconstitution calculator backlog</li><li>Bank the other four as nursing-school build candidates</li></ul>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#B03A3A"></span>RN Position Resume</h3>
     <p class="meta">VA Career · 39 exchanges · Jul–Sep 2026 · shared via two links (same chat)</p>
     <span class="pill">VA Career</span><span class="pill status">Imported</span>
     <p class="assess">The complete VA hiring campaign: PBI interview prep with five polished STAR stories, the VA Interview Study Guide, and five tailored resumes (Roxbury, Luther Ridge, Shenandoah case manager, behavioral-health inpatient, and the final VA version). Ends with the Martinsburg VAMC Mental Health Intake offer. Also holds the ANCC credential-order framework — “MBA, RN” is his VA form.</p>
@@ -275,18 +409,8 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
     <a class="open" href="https://share.gemini.google/PbeDyqCMyBcq" target="_blank" rel="noopener">Third share link ↗</a>
     <ul><li>Bank the five STAR stories and credential framework into the career file for future interviews and appraisals</li><li>Flag to settle: the chat says the VA mental-health rotation was 2 months in most places, 3 in one resume — David's word decides</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#EA580C"></span>Peptopia Guide Author Skill</h3>
-    <p class="meta">Peptopia / Guide-build system · ~14 exchanges · Sep 26, 2026</p>
-    <span class="pill">Guide system</span><span class="pill status">★ Script chat</span>
-    <p class="assess">The especially important one: Gemini's persistent “Guide Author” skill — post a topic, get a Peptopia-styled guide. It encodes design tokens (cyan, emerald, violet, orange, coral, amber), Outfit/DM Sans, reusable components, and community-source research discipline. Its worked example is a 53-offering DTE Color Atlas with a time-of-day “Chronobiological Daily Protocol,” 0–5 effect scores, and standardized alkaloid tables.</p>
-    <a class="open" href="https://share.gemini.google/XyqKYEfTGvcj" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Integration candidates for our build script — additive only, ours stays canonical: design tokens, the daily-protocol summary, the 8-alkaloid COA table, 0–5 scores beside the pie popups, bespoke SVG icons, and the print/PDF button Gemini never finished</li><li>Its bottom-disclaimer habit does NOT carry over — our published guides follow David’s standing no-disclaimer rule</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#16A34A"></span>VA Clearance</h3>
+    <h3><span class="dot" style="background:#B03A3A"></span>VA Clearance</h3>
     <p class="meta">VA Career &amp; Retirement · ~85 exchanges · Aug 26, 2026</p>
     <span class="pill">Green</span><span class="pill status">Imported</span>
     <p class="assess">The source chat behind the canonical Drive product: the full SF-85 suitability campaign — the nexus framework, the Makpar/BSEE wording, three draft reviews, onboarding status, and the “Peptopia Protocol” clearance &amp; retirement matrix. Its retirement figures are Gemini-era and superseded by our Oct 25, 2026 baseline.</p>
@@ -294,96 +418,14 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
     <a class="open" href="https://share.gemini.google/PzI7Fd7ZNHSM" target="_blank" rel="noopener">Second share link ↗</a>
     <ul><li>Keep as the reference record for the clearance file</li><li>Framing guard: David’s own account of 2012 governs — Gemini’s characterization is never treated as verified fact</li></ul>
   </div>
-
   <div class="card">
-    <h3><span class="dot" style="background:#65A30D"></span>DTE Botanicals Master Research Guide</h3>
-    <p class="meta">Kratom / Guide template · 6 exchanges · Oct 11, 2026</p>
-    <span class="pill">Kratom</span><span class="pill status">Imported</span>
-    <p class="assess">The Gemini-era DTE guide build: dark “Master Monograph” revised into the light Complete Strain Guide with a master matrix, Standouts boxes, and animated score meters. Its template scaffolding (tokens, 4-quadrant comparison, 7-row alkaloid table) is a second source for the integration analysis. Caution: its alkaloid percentages are Gemini estimates, not verified COAs — our live guide and real lab documents govern.</p>
-    <a class="open" href="https://share.gemini.google/0xNRV1zd8EZC" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Strain names merge into the DTE cross-check on the Action Board</li><li>Never import its figures as fact</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#65A30D"></span>Kratom Trees</h3>
-    <p class="meta">Kratom / Artwork · ~24 exchanges · Aug 24, 2026</p>
-    <span class="pill">Kratom</span><span class="pill status">Imported</span>
-    <p class="assess">Iterative artwork: the ancient Elder Tree with whole golden leaves only at cluster tips, and the younger Deep Jungle Red Nanga with gentle green-to-red gradients. Holds David’s own experience posts — Elder Tree Gold, his 10/10; Deep Jungle Red, his 9/10 (3 AM dose, two hours of drive, then eight hours of sleep).</p>
-    <a class="open" href="https://share.gemini.google/eR4LzrTnFI54" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Ratings feed the DTE cross-check</li><li>The final pink-leaf refinement was left unanswered by Gemini — Muse can finish it on request</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#65A30D"></span>Expert Leaf Tolerancing and Reset</h3>
-    <p class="meta">Kratom · Private reference · 2 exchanges · Sep 18, 2026</p>
-    <span class="pill">Kratom</span><span class="pill status">Private</span>
-    <p class="assess">David’s “leaf holiday” framework in his own words: a one-week break every two months, symptoms peaking day two, full reset within seven days, with agmatine, magnesium, black seed oil and tyrosine as helpers — plus the TreeLeaf review draft that singles out Ivory Sunrise. Private reference only; interaction material is never published.</p>
-    <a class="open" href="https://share.gemini.google/nlAqq5n2Rv9u" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>File with the private kratom reference, beside the held potentiation protocol</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#65A30D"></span>Receptor Resensitization and Overdose Risks</h3>
-    <p class="meta">Kratom · Private reference · 1 exchange · Sep 18, 2026</p>
-    <span class="pill">Kratom</span><span class="pill status">Private</span>
-    <p class="assess">Companion explainer from the same reading session: how resensitizing receptors makes an old tolerance-level dose dangerous — the mechanism behind the tolerance framework. Private reference only.</p>
-    <a class="open" href="https://share.gemini.google/2gFi2pWebJEc" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Keep paired with the Tolerancing chat</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#65A30D"></span>Comparing Different Green Kratom Varieties</h3>
-    <p class="meta">Kratom · 1 exchange · Sep 17, 2026</p>
-    <span class="pill">Kratom</span><span class="pill status">Imported</span>
-    <p class="assess">A five-green spectrum: Green Vietnam calmest, Green Hulk boldest for daytime focus, Green Elephant smooth and long, Green Monster mid-fast with a calming undertone — which supports the Rando guide’s Monster read — and Nano Super Green balanced.</p>
-    <a class="open" href="https://share.gemini.google/NGtORPF3c9vV" target="_blank" rel="noopener">Open chat ↗</a>
-    <a class="open" href="https://share.gemini.google/YzNNQD1n3ZTC" target="_blank" rel="noopener">Second share link ↗</a>
-    <ul><li>General reference for green-strain questions</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#F59E0B"></span>Townie Bar Facebook Ad Concept</h3>
-    <p class="meta">The Berkeley · Marketing · 5 exchanges · Sep 5, 2026</p>
-    <span class="pill">Bar</span><span class="pill status">Imported</span>
-    <p class="assess">Game-day ad and caption (noon opening, all-day $2 beer list) and the Fall Fest door poster — invitation only, QR code plus valid photo ID, no exceptions — for the Oct 3, 2026 celebration at 115 South Queen Street.</p>
-    <a class="open" href="https://share.gemini.google/jwXNmelRAP0a" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Door-control framework (invitation + QR + ID) is the reusable piece</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#A855F7"></span>Brand Name Change on Vial</h3>
-    <p class="meta">Peptopia Business · 1 exchange · Oct 9, 2026</p>
-    <span class="pill">Peptopia</span><span class="pill status">Imported</span>
-    <p class="assess">The AVERIX → Peptopia rebrand: a KLOW 80mg vial label reworked to PEPTOPIA LABORATORIES with everything else untouched. A small, clean piece of brand history.</p>
-    <a class="open" href="https://share.gemini.google/ZcfpCuX5jbqk" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Banked as brand history</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#0EA5E9"></span>WV Senior Property Tax Relief</h3>
-    <p class="meta">Finance · 1 exchange · Oct 10, 2026</p>
-    <span class="pill">Finance</span><span class="pill status">Imported</span>
-    <p class="assess">No WV tax freeze for seniors — but the Homestead Exemption removes the first $20,000 of assessed value: 65 or older (or permanently disabled), own and occupy, two years a WV resident, apply at the Berkeley County Assessor between July 1 and December 1, then it carries forward automatically. A Senior Citizens Tax Credit may stack for lower incomes.</p>
-    <a class="open" href="https://share.gemini.google/wl4r9UhUmEyd" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Future retirement-planning item — the age route opens at 65</li></ul>
-  </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#2563EB"></span>Entresto vs. Sacubitril/Valsartan Comparison</h3>
+    <h3><span class="dot" style="background:#B03A3A"></span>Entresto vs. Sacubitril/Valsartan Comparison</h3>
     <p class="meta">Nursing / Medication · 1 exchange · Oct 8, 2026</p>
     <span class="pill">Nursing</span><span class="pill status">Imported</span>
     <p class="assess">Photo-based confirmation that Sacubrook-V 50 (labeled by combined weight, 24 + 26) and Entresto 24-26 mg are the same ARNI at the same dose — a labeling difference, not a drug difference. Matches the patient guide banked from the Peptopia Guides chat.</p>
     <a class="open" href="https://share.gemini.google/VcBYTlL3b2F2" target="_blank" rel="noopener">Open chat ↗</a>
     <ul><li>Reference for the Sacubitril/Valsartan guide</li></ul>
   </div>
-
-  <div class="card">
-    <h3><span class="dot" style="background:#64748B"></span>Setting Up Chrome Bookmark Sync</h3>
-    <p class="meta">Utility · 2 exchanges · Oct 17, 2026</p>
-    <span class="pill">Utility</span><span class="pill status">Imported</span>
-    <p class="assess">A “Chrome Sync Guide”: in the new Chrome, signing in replaces the old “Turn on Sync” button. Left unresolved — the steps were never verified against David’s Chrome.</p>
-    <a class="open" href="https://share.gemini.google/ly72PHgEkimA" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li>Low value — reopen only if bookmark sync is still wanted</li></ul>
   </div>
 
   <h2>The 44-Product Drive Archive</h2>
@@ -506,6 +548,62 @@ function toggleTheme(){
         .catch(function(){toast('Marked here, but the queue message could not send \u2014 tell Muse: run queued portal actions.');});
     });
   });
+})();
+</script>
+<script>
+(function(){
+  var S=[
+   {n:"Dark Hematoma",v:"TreeLeaf",b:"Batch SR-DH02",sp:"Slow",e:1,m:3,c:1,ca:5,r:3,w:"Slow red — community report: \u201clike sitting in a jacuzzi.\u201d Warm and settled, zero wire."},
+   {n:"Red Fuzzy Blanket",v:"WestKoast",b:"Batch #0726FC#B",sp:"Slow",e:1,m:3,c:1,ca:5,r:4,w:"Cozy heavy red — the name is the description. Built for the couch, then bed."},
+   {n:"21K Gold Bali",v:"TreeLeaf",b:"Batch BID-B01 · 10 g sampler",sp:"Slow",e:1,m:3,c:1,ca:5,r:4,w:"The slowest gold — deep, even settle."},
+   {n:"Deep Red",v:"TreeLeaf",b:"DK's red blend",sp:"Slow\u2013Mid",e:1,m:3,c:1,ca:5,r:3,w:"Heavy, warm red blend — evening weight."},
+   {n:"Wild Red Dragon",v:"DTE",b:"Batch A27 · 250 g bag",sp:"Mid",e:2,m:3,c:1,ca:4,r:5,w:"Strong red, relief-forward — the one for aches."},
+   {n:"Yellow Dream",v:"TreeLeaf",b:"Batch BID-YD01",sp:"Slow\u2013Mid",e:2,m:4,c:2,ca:4,r:3,w:"Gentle yellow — a tester favorite; smooth mood, no edge."},
+   {n:"Gold Alchemist",v:"TreeLeaf",b:"Enhanced 2.1+% \u2726",sp:"Mid",e:2,m:4,c:2,ca:4,r:3,w:"Enhanced gold — warm lift that stays mellow."},
+   {n:"DK's Special Batch",v:"TreeLeaf",b:"Enhanced · 50 g \u2726",sp:"Mid",e:3,m:4,c:2,ca:3,r:3,w:"DK's enhanced house batch — balanced, stronger per gram."},
+   {n:"Beetlejuice Green 2.0",v:"DTE",b:"125 g bag",sp:"Mid\u2013Fast",e:4,m:4,c:3,ca:2,r:2,w:"Green lift — energy with mood, not jitter."},
+   {n:"Jade Junction",v:"TreeLeaf",b:"Enhanced green 2.1+% \u2726",sp:"Mid",e:4,m:4,c:3,ca:2,r:2,w:"Enhanced green — bright and clean."},
+   {n:"Sunrise Blend",v:"Phantom Herbal",b:"100 g bag",sp:"Mid",e:4,m:4,c:4,ca:1,r:1,w:"Phantom's morning blend — built to start a day clear."},
+   {n:"Happy Phantom",v:"Phantom Herbal",b:"100 g bag",sp:"Mid",e:3,m:5,c:2,ca:3,r:2,w:"Mood-forward blend — the name is the brief."},
+   {n:"Velociraptor",v:"TreeLeaf",b:"Double-stack enhanced 3.0% \u2726",sp:"Mid\u2013Fast",e:4,m:3,c:2,ca:2,r:3,w:"The strongest green on the shelf — a small serving goes far."},
+   {n:"Wild White Borneo",v:"Sakti",b:"28 g · MIT 1.71%",sp:"Fast",e:5,m:3,c:4,ca:1,r:1,w:"Clean white fuel — focus and drive for a shift."}
+  ];
+  var W={
+   calm:{e:-3,m:1,c:0,ca:3,r:0},
+   energy:{e:3,m:1,c:1,ca:-1,r:0},
+   focus:{e:1,m:0,c:3,ca:1,r:0},
+   mood:{e:1,m:3,c:0,ca:1,r:0},
+   relief:{e:0,m:0,c:0,ca:1,r:3},
+   sleep:{e:-3,m:0,c:0,ca:3,r:2}
+  };
+  var DIMS=[["e","Energy","#F59E0B"],["m","Mood","#2E7D4F"],["c","Clarity","#5BA3D9"],["ca","Calm","#E8873A"],["r","Relief","#B03A3A"]];
+  function score(s,w){return s.e*w.e+s.m*w.m+s.c*w.c+s.ca*w.ca+s.r*w.r;}
+  function bars(s){
+    var h='<div class="qp-bars">';
+    DIMS.forEach(function(d){
+      h+='<div class="qp-bar">'+d[1]+'<div class="qp-dots">';
+      for(var i=0;i<5;i++){h+='<i style="background:'+(i<s[d[0]]?d[2]:'var(--line)')+'"></i>';}
+      h+='</div></div>';
+    });
+    return h+'</div>';
+  }
+  var chips=document.getElementById('qpWheel'),res=document.getElementById('qpResult');
+  if(chips&&res){
+    chips.addEventListener('click',function(ev){
+      var btn=ev.target.closest('.qp-node'); if(!btn)return;
+      var all=chips.querySelectorAll('.qp-node');
+      for(var k=0;k<all.length;k++){all[k].classList.remove('on');}
+      btn.classList.add('on');
+      var w=W[btn.getAttribute('data-sit')];
+      var ranked=S.map(function(s,i){return {s:s,i:i,sc:score(s,w)};}).sort(function(a,b){return b.sc-a.sc||a.i-b.i;});
+      var t=ranked[0].s, r2=ranked[1].s;
+      res.innerHTML='<div class="qp-name">'+t.n+'</div>'
+        +'<div class="qp-meta">'+t.v+' · '+t.b+' · '+t.sp+' speed · on your shelf</div>'
+        +'<p class="qp-why">'+t.w+'</p>'
+        +bars(t)
+        +'<div class="qp-runner">Runner-up: <b>'+r2.n+'</b> — '+r2.v+' · '+r2.b+'</div>';
+    });
+  }
 })();
 </script>
   <div id="toast" role="status"></div>

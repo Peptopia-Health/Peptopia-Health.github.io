@@ -98,6 +98,7 @@ th{font-family:var(--font-head);color:var(--t1)}
 .score{font-weight:700;color:var(--t1)}
 label.act{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);color:var(--t2);font-size:.95rem;cursor:pointer}
 label.act input{width:20px;height:20px;margin-top:2px;accent-color:var(--theme)}
+.act.done{opacity:.62}
 .priv{background:#DBEAFE;border:1px solid #93C5FD;color:#1E3A8A;border-radius:12px;padding:12px 14px;font-size:.9rem;margin-top:14px}
 html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
 @media print{#gate,.peptopia-iconbtn{display:none}#portalRoot{display:block!important}}
@@ -108,6 +109,8 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   .cmd-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
   .cmd-phrase{font-family:Outfit,sans-serif;font-weight:800;font-size:16px;color:var(--ink);background:var(--accsoft);border:1px dashed var(--acc);border-radius:10px;padding:8px 12px;display:inline-block;margin-bottom:8px}
   .cmd-card p{margin:0;color:var(--mut);font-size:14px}
+  .pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .open-ico{flex:0 0 auto;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--accsoft);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;line-height:1}
   .cmd-card a,.cmd-group a{color:var(--acc);font-weight:700;text-decoration:none}
 
   .astat{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--accsoft);color:var(--acc);font-size:12px;font-weight:700;vertical-align:middle}
@@ -123,12 +126,12 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   /* kratom quick pick */
   .qp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);margin:18px 0 6px}
   .qp h2{margin:0 0 2px}
-  .qp-wheel{position:relative;width:min(360px,94vw);aspect-ratio:1/1;margin:8px auto 4px}
-  .qp-spoke{position:absolute;left:50%;top:50%;width:41%;height:2px;background:var(--line);transform-origin:0 50%;border-radius:2px}
-  .qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;background:var(--accsoft,#DBEAFE);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:38px;z-index:2}
-  .qp-node{position:absolute;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:var(--card);border:2px solid var(--nc);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;z-index:3;padding:0;font-family:Outfit,sans-serif}
-  .qp-node .qp-emo{font-size:24px;line-height:1}
-  .qp-node small{font-size:11px;font-weight:700;letter-spacing:.03em}
+  .qp-wheel{position:relative;width:min(390px,96vw);aspect-ratio:1/1;margin:8px auto 4px}
+  .qp-spoke{position:absolute;left:50%;top:50%;width:37.5%;height:2px;background:var(--line);transform-origin:0 50%;border-radius:2px}
+  .qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:var(--accsoft,#DBEAFE);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:41px;z-index:2}
+  .qp-node{position:absolute;transform:translate(-50%,-50%);width:106px;height:106px;border-radius:50%;background:color-mix(in srgb,var(--nc) 13%,var(--card));border:3px solid var(--nb,var(--nc));color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;z-index:3;padding:0;font-family:Outfit,sans-serif}
+  .qp-node .qp-emo{font-size:30px;line-height:1}
+  .qp-node small{font-size:12.5px;font-weight:700;letter-spacing:.03em}
   .qp-node.on{background:var(--nc);color:#fff}
   .qp-name{font-family:Outfit,sans-serif;font-weight:800;font-size:26px;color:#EA580C;line-height:1.15}
   .qp-meta{color:var(--mut);font-size:14px;margin:2px 0 6px}
@@ -184,23 +187,22 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
       <span class="qp-spoke" style="transform:rotate(150deg)"></span>
       <span class="qp-spoke" style="transform:rotate(210deg)"></span>
       <div class="qp-hub">&#127807;</div>
-      <button type="button" class="qp-node" data-sit="energy" style="left:50%;top:9%;--nc:#F59E0B"><span class="qp-emo">&#9889;</span><small>Energy</small></button>
-      <button type="button" class="qp-node" data-sit="focus" style="left:85.5%;top:29.5%;--nc:#5BA3D9"><span class="qp-emo">&#127919;</span><small>Focus</small></button>
-      <button type="button" class="qp-node" data-sit="mood" style="left:85.5%;top:70.5%;--nc:#2E7D4F"><span class="qp-emo">&#129505;</span><small>Mood</small></button>
-      <button type="button" class="qp-node" data-sit="sleep" style="left:50%;top:91%;--nc:#6366F1"><span class="qp-emo">&#128564;</span><small>Sleep</small></button>
-      <button type="button" class="qp-node" data-sit="relief" style="left:14.5%;top:70.5%;--nc:#B03A3A"><span class="qp-emo">&#129657;</span><small>Relief</small></button>
-      <button type="button" class="qp-node" data-sit="calm" style="left:14.5%;top:29.5%;--nc:#E8873A"><span class="qp-emo">&#128524;</span><small>Calm</small></button>
+      <button type="button" class="qp-node" data-sit="energy" style="left:50%;top:12.5%;--nc:#F59E0B;--nb:#B45309"><span class="qp-emo">&#9889;</span><small>Energy</small></button>
+      <button type="button" class="qp-node" data-sit="focus" style="left:82.5%;top:31.3%;--nc:#5BA3D9;--nb:#2F6DA3"><span class="qp-emo">&#127919;</span><small>Focus</small></button>
+      <button type="button" class="qp-node" data-sit="mood" style="left:82.5%;top:68.7%;--nc:#2E7D4F;--nb:#17452A"><span class="qp-emo">&#129505;</span><small>Mood</small></button>
+      <button type="button" class="qp-node" data-sit="sleep" style="left:50%;top:87.5%;--nc:#6366F1;--nb:#4338CA"><span class="qp-emo">&#128564;</span><small>Sleep</small></button>
+      <button type="button" class="qp-node" data-sit="relief" style="left:17.5%;top:68.7%;--nc:#B03A3A;--nb:#7A2222"><span class="qp-emo">&#129657;</span><small>Relief</small></button>
+      <button type="button" class="qp-node" data-sit="calm" style="left:17.5%;top:31.3%;--nc:#E8873A;--nb:#A85A12"><span class="qp-emo">&#128524;</span><small>Calm</small></button>
     </div>
     <div id="qpResult"><p class="qp-why">Tap how you feel — get the pick.</p></div>
-    <p class="qp-note">Shelf per your Oct 25 photos. ✦ = enhanced — runs stronger per gram.</p>
   </section>
 
   <h2>Command Phrases</h2>
 
   <div class="cmd-group">Say it to Muse in chat</div>
   <div class="cmd-grid">
-    <div class="cmd-card"><span class="cmd-phrase">Peptopia guide: [topic]</span><p>Builds a complete Peptopia guide in the house standard — research, build, audio summary in chat, published on your approval. Strain guides, vendor guides, product guides.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Build an artifact: [brief]</span><p>Builds a full Tuscarora Arboretum artifact package — storytelling guide with timeline, best photos, short audio brief, patent link when one is found, live on the Arboretum site.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">Guide: [topic]</span><p>Builds a complete Peptopia guide in the house standard — research, build, audio summary in chat, published on your approval. Strain guides, vendor guides, product guides.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">Artifact: [brief]</span><p>Builds a full Tuscarora Arboretum artifact package — storytelling guide with timeline, best photos, short audio brief, patent link when one is found, live on the Arboretum site.</p></div>
   </div>
 
   <div class="cmd-group">Cast it at the Potions portal — <a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">x-peps.com/bewitched</a> (or just ask in chat)</div>
@@ -229,21 +231,21 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   <h2>Portals &amp; Tools</h2>
   <p class="sub">Every front door in one place — the portals, the store, the reports, and the outside tools.</p>
   <div class="cmd-grid">
-    <div class="cmd-card"><span class="cmd-phrase">🧪 Peptopia Potions — Bewitched</span><p>The creator portal with the six flasks: 📖 Guides · ⭐ Reviews · 📰 Articles · 🎙️ Podcasts · 🔄 Updates · 📦 Inventory. Cast a spell to start a build. <a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">Open Bewitched ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">🏺 Tuscarora Arboretum</span><p>The artifact portal — Bottles, Marbles, China — with the ✒️ Author button (57) for new finds. <a href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">Open the Arboretum ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">🛍️ Peptopia Orders</span><p>The store orders page — Square checkout links for every product. <a href="https://x-peps.com/X-Peps/orders/" target="_blank" rel="noopener">Open Orders ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">📦 Shipment Tracking</span><p>Every tracked package, swept morning and evening. <a href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">Open the report ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">🌿 Kratom Vendor Reviews</span><p>The reviews hub — every vendor guide in one place. <a href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener">Open the hub ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">🏥 Corrections Nursing Portal</span><p>The Gemini-built master portal for corrections nursing. <a href="https://x-peps.com/Corrections/" target="_blank" rel="noopener">Open the portal ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">🎧 Muse Audio — Drive</span><p>Every audio brief Muse sends, archived by topic. <a href="https://drive.google.com/drive/folders/1qVS64dNtlWOLCO0l5KKhRyxzedt0cpV9" target="_blank" rel="noopener">Open Muse Audio ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">✨ Gemini</span><p>Your Gemini home. Muse reads chats from share links, or from your signed-in session here. <a href="https://gemini.google.com/app" target="_blank" rel="noopener">Open Gemini ↗</a></p></div>
-    <div class="cmd-card"><span class="cmd-phrase">📓 NotebookLM</span><p>Your notebooks — share a notebook link in chat and Muse will read it. <a href="https://notebooklm.google.com" target="_blank" rel="noopener">Open NotebookLM ↗</a></p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🧪 Peptopia Potions — Bewitched</span><a class="open-ico" href="https://x-peps.com/bewitched" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The creator portal with the six flasks:<br>📖 Guides<br>⭐ Reviews<br>📰 Articles<br>🎙️ Podcasts<br>🔄 Updates<br>📦 Inventory<br>Cast a spell to start a build.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🏺 Tuscarora Arboretum</span><a class="open-ico" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The artifact portal — Bottles, Marbles, China — with the ✒️ Author button (57) for new finds.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🛍️ Peptopia Orders</span><a class="open-ico" href="https://x-peps.com/X-Peps/orders/" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The store orders page.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">📦 Shipment Tracking</span><a class="open-ico" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Every tracked package, swept morning and evening.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🌿 Kratom Vendor Reviews</span><a class="open-ico" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The reviews hub — every vendor guide in one place.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🏥 Corrections Nursing Portal</span><a class="open-ico" href="https://x-peps.com/Corrections/" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The master portal for corrections nursing.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🎧 Muse Audio — Drive</span><a class="open-ico" href="https://drive.google.com/drive/folders/1qVS64dNtlWOLCO0l5KKhRyxzedt0cpV9" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Every audio brief Muse sends, archived by topic.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">✨ Gemini</span><a class="open-ico" href="https://gemini.google.com/app" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Muse reads chats from share links.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">📓 NotebookLM</span><a class="open-ico" href="https://notebooklm.google.com" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Share a notebook link so Muse will read it.</p></div>
   </div>
 
   <h2>Imported Gemini Chats</h2>
   <p class="sub">Each card: what it is, what it's worth, what we do with it. “Open chat” goes to the private Gemini share page.</p>
 
-  <div class="vein-band" style="background:#E8EDF3;color:#0F172A"><span>⚪ WHITE VEIN — Bright &amp; Driving</span><span class="vein-count">6 chats</span></div>
+  <div class="vein-band" style="background:#E8EDF3;color:#0F172A"><span>Command</span><span class="vein-count">6 chats</span></div>
   <p class="vein-sub">Build, business &amp; command — the fast movers.</p>
   <div class="vein-grid">
   <div class="card">
@@ -296,7 +298,7 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   </div>
   </div>
 
-  <div class="vein-band" style="background:#2E7D4F;color:#FFFFFF"><span>🟢 GREEN VEIN — The Daily Drivers</span><span class="vein-count">8 chats</span></div>
+  <div class="vein-band" style="background:#2E7D4F;color:#FFFFFF"><span>Kratom</span><span class="vein-count">8 chats</span></div>
   <p class="vein-sub">The kratom shelf &amp; study — balanced, everyday work.</p>
   <div class="vein-grid">
   <div class="card">
@@ -366,7 +368,7 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   </div>
   </div>
 
-  <div class="vein-band" style="background:#D97706;color:#FFFFFF"><span>🟡 GOLD VEIN — Mellow &amp; Slow</span><span class="vein-count">2 chats</span></div>
+  <div class="vein-band" style="background:#D97706;color:#FFFFFF"><span>Home</span><span class="vein-count">2 chats</span></div>
   <p class="vein-sub">Home, plants &amp; money — the unhurried shelf.</p>
   <div class="vein-grid">
   <div class="card">
@@ -388,7 +390,7 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   </div>
   </div>
 
-  <div class="vein-band" style="background:#B03A3A;color:#FFFFFF"><span>🔴 RED VEIN — Deep &amp; Heavy</span><span class="vein-count">4 chats</span></div>
+  <div class="vein-band" style="background:#B03A3A;color:#FFFFFF"><span>Career</span><span class="vein-count">4 chats</span></div>
   <p class="vein-sub">Career, clearance &amp; health — the weighty files.</p>
   <div class="vein-grid">
   <div class="card">
@@ -457,31 +459,32 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   <h2>Scripts &amp; Automations</h2>
   <p class="sub">Everything that runs on its own — the standing machinery behind the briefings, builds, and sweeps.</p>
   <div class="cmd-grid">
-    <div class="cmd-card"><span class="cmd-phrase">Morning briefing</span><p>About 6 AM daily — audio in chat, Smooth voice: markets, balances, calendar, weather, work reminder.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Evening briefing</span><p>About 7:30 PM daily — market close, balances, retirement snapshot, tomorrow, shipping, kratom desk, email, bar, nursing.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Arboretum submission processor</span><p>Every 30 minutes — reads Author-button submissions from the store mailbox and builds &amp; publishes them automatically, one at a time.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Admin action processor</span><p>Every 30 minutes — watches for Action Board requests from this page and runs them, reporting results in chat, the audio brief, and on the board.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Order-history watcher</span><p>Every 3 hours — appends new purchases to the canonical shop-order-history.csv.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Guides Drive sync</span><p>Every 6 hours — backs new and updated guides up to Drive.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Shipment sweeps</span><p>5:30 AM and 7 PM — refreshes the self-hosted tracking report from Gmail and carrier pages.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Weekly GLP-1 update</span><p>Mondays — new research, three topics for David’s pick, then the article builds.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Prior-service email watch</span><p>Daily — watches for VA HR word on the 9.2-year credit verification.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Job-lead inbox sweep</span><p>Every 3 hours — clears recruiter and job-lead mail from the inboxes.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">VA email command bridge</span><p>Watches for David’s emailed commands from his VA address and runs them.</p></div>
-    <div class="cmd-card"><span class="cmd-phrase">Apps Script — ExportGreenCategory</span><p>Gemini-written, run by David from his Google account — copies the 44 archive products into the Drive category folders. Muse maintains the code with him.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">🌅 Morning briefing</span><p>About 6 AM daily — audio in chat, Smooth voice: markets, balances, calendar, weather, work reminder.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">🌙 Evening briefing</span><p>About 7:30 PM daily — market close, balances, retirement snapshot, tomorrow, shipping, kratom desk, email, bar, nursing.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">🏺 Arboretum submission processor</span><p>Every 30 minutes — reads Author-button submissions from the store mailbox and builds &amp; publishes them automatically, one at a time.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">🎯 Admin action processor</span><p>Every 30 minutes — watches for Action Board requests from this page and runs them, reporting results in chat, the audio brief, and on the board.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">📋 Action Board weekly review</span><p>Mondays — refreshes the board below: completed actions marked, the rest re-listed in priority order, page republished. The summary rides the briefings.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">🛒 Order-history watcher</span><p>Every 3 hours — appends new purchases to the canonical shop-order-history.csv.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">☁️ Guides Drive sync</span><p>Every 6 hours — backs new and updated guides up to Drive.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">📦 Shipment sweeps</span><p>5:30 AM and 7 PM — refreshes the self-hosted tracking report from Gmail and carrier pages.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">📰 Weekly GLP-1 update</span><p>Mondays — new research, three topics for David’s pick, then the article builds.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">📧 Prior-service email watch</span><p>Daily — watches for VA HR word on the 9.2-year credit verification.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">🧹 Job-lead inbox sweep</span><p>Every 3 hours — clears recruiter and job-lead mail from the inboxes.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">📨 VA email command bridge</span><p>Watches for David’s emailed commands from his VA address and runs them.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">📜 Apps Script — ExportGreenCategory</span><p>Gemini-written, run by David from his Google account — copies the 44 archive products into the Drive category folders. Muse maintains the code with him.</p></div>
   </div>
 
   <h2>Action Board</h2>
-  <p class="sub">Tap a task’s square to start it: you confirm once, then Muse runs it. Results come back in chat, in the audio brief, and here on this board.</p>
+  <p class="sub">Tap a task’s square to start it: you confirm once, then Muse runs it. Results come back in chat, in the audio brief, and here on this board. The board is refreshed every Monday, in priority order.</p>
   <div class="card">
     <label class="act"><input type="checkbox" data-k="a1"><span><strong>Build the Cagrilintide guide</strong> — Gemini failed 4×; it's a live store product. (Proposed)</span></label>
-    <label class="act"><input type="checkbox" data-k="a2"><span><strong>Cross-check Gemini-era DTE strains</strong> against the live guide + purchase record. (Proposed)</span></label>
-    <label class="act"><input type="checkbox" data-k="a3"><span><strong>Gmail attachment sweep</strong> — recover attachment-only products the Drive script can't see. (Proposed)</span></label>
-    <label class="act"><input type="checkbox" data-k="a4"><span><strong>Patch the Apps Script</strong> — dedupe check + exact match + run report. (Proposed)</span></label>
-    <label class="act"><input type="checkbox" data-k="a5"><span><strong>Dedupe the Drive archive</strong> — keep the newest clean copy of each product. (Awaiting David's choice)</span></label>
-    <label class="act"><input type="checkbox" data-k="a6"><span><strong>Adopt the 6 styling upgrades</strong> — design tokens, dark mode, pills/badges, persisted checklists, JSON export, print stylesheet. (Proposed)</span></label>
     <label class="act"><input type="checkbox" data-k="a7"><span><strong>Build the living manifest</strong> — regenerate backup status from live Drive, one source of truth. (Proposed)</span></label>
+    <label class="act"><input type="checkbox" data-k="a2"><span><strong>Cross-check Gemini-era DTE strains</strong> against the live guide + purchase record. (Proposed)</span></label>
+    <label class="act"><input type="checkbox" data-k="a4"><span><strong>Patch the Apps Script</strong> — dedupe check + exact match + run report. (Proposed)</span></label>
+    <label class="act"><input type="checkbox" data-k="a3"><span><strong>Gmail attachment sweep</strong> — recover attachment-only products the Drive script can't see. (Proposed)</span></label>
+    <label class="act"><input type="checkbox" data-k="a6"><span><strong>Adopt the 6 styling upgrades</strong> — design tokens, dark mode, pills/badges, persisted checklists, JSON export, print stylesheet. (Proposed)</span></label>
     <label class="act"><input type="checkbox" data-k="a8"><span><strong>Rename &amp; reorganize</strong> originals to the Drive naming standard, in approved batches. (Proposed)</span></label>
+    <label class="act done"><input type="checkbox" data-k="a5" disabled><span><strong>Dedupe the Drive archive</strong> — keep the newest clean copy of each product. (Done — Oct 27, 2026)</span></label>
   </div>
 </main>
 

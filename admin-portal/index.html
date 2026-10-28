@@ -145,6 +145,17 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   .qp-runner{font-size:14px;color:var(--mut);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
   .qp-runner b{color:var(--ink)}
   .qp-note{font-size:12px;color:var(--mut);margin:10px 0 0}
+  .qp-dual{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+  @media (max-width:560px){.qp-dual{grid-template-columns:1fr}}
+  .qp-pick{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--card)}
+  .qp-tag{font-family:Outfit,sans-serif;font-weight:800;font-size:12px;letter-spacing:.06em;color:#EA580C;text-transform:uppercase;margin-bottom:4px}
+  .qp-tag.rot{color:#2E7D4F}
+  .qp-pick .qp-name{font-size:22px}
+  .qp-rotwhy{font-size:13px;color:var(--mut);margin:4px 0 0}
+  .qp-take{margin-top:8px;font-family:Outfit,sans-serif;font-weight:700;font-size:14px;padding:9px 14px;border-radius:999px;border:2px solid var(--ink);background:color-mix(in srgb,#F59E0B 16%,var(--card));color:var(--ink);cursor:pointer;box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -3px 5px rgba(0,0,0,.12),0 3px 6px rgba(0,0,0,.2);transition:transform .07s ease,box-shadow .07s ease}
+  .qp-take.rot{background:color-mix(in srgb,#2E7D4F 16%,var(--card))}
+  .qp-take:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.25)}
+  .qp-logged{font-size:14px;font-weight:700;color:#2E7D4F;margin-top:8px}
 </style>
 </head>
 <body>
@@ -601,32 +612,73 @@ function toggleTheme(){
     function rankedFor(sit){
       return S.map(function(s,i){return {s:s,i:i,sc:score(s,W[sit])};}).sort(function(a,b){return b.sc-a.sc||a.i-b.i;});
     }
-    var ORDER=['energy','focus','mood','calm','relief','sleep'];
-    var ASSIGN={},WINNERS={};
-    ORDER.forEach(function(sit){
+    var COL={"Dark Hematoma":"red","Red Fuzzy Blanket":"red","21K Gold Bali":"gold","Deep Red":"red","Wild Red Dragon":"red","Yellow Dream":"gold","Gold Alchemist":"gold","DK's Special Batch":"blend","Beetlejuice Green 2.0":"green","Jade Junction":"green","Sunrise Blend":"blend","Happy Phantom":"blend","Velociraptor":"green","Wild White Borneo":"white","Green Hulk":"green","White Lemon":"white","OG Imperial Green Dragon":"green","Old School Red Sumatra":"red"};
+    var ENH={"DK's Special Batch":1,"Jade Junction":1,"Gold Alchemist":1,"Velociraptor":1};
+    var MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function todayStr(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+    function fmtD(iso){var p=iso.split('-');return MN[parseInt(p[1],10)-1]+' '+parseInt(p[2],10);}
+    function loadHist(){try{return JSON.parse(localStorage.getItem('qpHistory')||'[]');}catch(e){return[];}}
+    function saveHist(h){try{localStorage.setItem('qpHistory',JSON.stringify(h.slice(-60)));}catch(e){}}
+    function colOf(s){return COL[s.n]||'blend';}
+    function rotationPick(sit,winIdx,hist){
+      var lastSit=null,lastAny=hist.length?hist[hist.length-1]:null,i;
+      for(i=hist.length-1;i>=0;i--){if(hist[i].sit===sit){lastSit=hist[i];break;}}
       var r=rankedFor(sit);
-      for(var i=0;i<r.length;i++){ if(!WINNERS[r[i].i]){ ASSIGN[sit]=r[i].i; WINNERS[r[i].i]=true; break; } }
-    });
-    var CYCLE={};
-    ORDER.forEach(function(sit){
-      CYCLE[sit]=rankedFor(sit).filter(function(r){return r.i===ASSIGN[sit]||!WINNERS[r.i];}).map(function(r){return r.i;});
-    });
-    var CURSIT=null,POS={};
+      function okStrict(c){
+        if(c.i===winIdx)return false;
+        if(lastSit&&(c.s.n===lastSit.n||c.s.v===lastSit.v))return false;
+        if(lastAny&&colOf(c.s)===lastAny.col)return false;
+        if(ENH[c.s.n]&&lastAny&&lastAny.x)return false;
+        return true;
+      }
+      function okRelaxed(c){
+        if(c.i===winIdx)return false;
+        if(lastSit&&c.s.n===lastSit.n)return false;
+        return true;
+      }
+      for(i=0;i<r.length;i++){if(okStrict(r[i]))return r[i].i;}
+      for(i=0;i<r.length;i++){if(okRelaxed(r[i]))return r[i].i;}
+      for(i=0;i<r.length;i++){if(r[i].i!==winIdx)return r[i].i;}
+      return winIdx;
+    }
+    var CURSIT=null,CURWIN=-1,CURROT=-1,LOGGED=false;
+    function pickCard(tag,cls,s,extra){
+      return '<div class="qp-pick"><div class="qp-tag '+cls+'">'+tag+'</div>'
+        +'<div class="qp-name">'+s.n+'</div>'
+        +'<div class="qp-meta">'+s.v+' · '+s.b+' · '+s.sp+' speed · on your shelf</div>'
+        +'<p class="qp-why">'+s.w+'</p>'
+        +bars(s)
+        +(extra?'<p class="qp-rotwhy">'+extra+'</p>':'')
+        +'<button type="button" class="qp-take '+cls+'" data-take="'+cls+'">Take this one</button></div>';
+    }
     function show(sit){
-      var cyc=CYCLE[sit]; var pos=(POS[sit]||0)%cyc.length;
-      var t=S[cyc[pos]], r2=S[cyc[(pos+1)%cyc.length]];
-      res.innerHTML='<div class="qp-name">'+t.n+'</div>'
-        +'<div class="qp-meta">'+t.v+' · '+t.b+' · '+t.sp+' speed · on your shelf</div>'
-        +'<p class="qp-why">'+t.w+'</p>'
-        +bars(t)
-        +'<div class="qp-runner">Runner-up: <b>'+r2.n+'</b> — '+r2.v+' · '+r2.b+'</div>'
-        +'<p class="qp-note">Tap the leaf to clear the pick and start over.</p>';
+      var hist=loadHist();
+      var r=rankedFor(sit); var winIdx=r[0].i; var rotIdx=rotationPick(sit,winIdx,hist);
+      CURWIN=winIdx; CURROT=rotIdx; LOGGED=false;
+      var lastSit=null,i;
+      for(i=hist.length-1;i>=0;i--){if(hist[i].sit===sit){lastSit=hist[i];break;}}
+      var win=S[winIdx], rot=S[rotIdx];
+      var winNote='';
+      if(lastSit&&lastSit.n===win.n)winNote='Won again — you last took it '+fmtD(lastSit.d)+'.';
+      var lastAny=hist.length?hist[hist.length-1]:null;
+      var parts=[];
+      if(lastSit)parts.push('Rests '+lastSit.n+' (took it '+fmtD(lastSit.d)+')');
+      if(lastSit&&rot.v!==lastSit.v)parts.push('different vendor');
+      if(lastAny&&colOf(rot)!==lastAny.col)parts.push('different color');
+      if(!lastSit&&!lastAny)parts.push('First logged pick starts your rotation history');
+      var lastLine=lastSit?'<div class="qp-runner">Last '+sit+' pick: <b>'+lastSit.n+'</b> — '+lastSit.v+' · '+fmtD(lastSit.d)+'</div>':'';
+      res.innerHTML='<div class="qp-dual">'
+        +pickCard('★ The Winner','win',win,winNote)
+        +pickCard('↻ The Rotation Pick','rot',rot,parts.join(' · '))
+        +'</div>'
+        +lastLine
+        +'<p class="qp-note">Tap the leaf to clear the picks and start over. Your logged history stays — it runs the rotation.</p>';
     }
     chips.addEventListener('click',function(ev){
       if(ev.target.closest('.qp-hub')){
         var all0=chips.querySelectorAll('.qp-node');
         for(var j=0;j<all0.length;j++){all0[j].classList.remove('on');}
-        CURSIT=null; POS={};
+        CURSIT=null; CURWIN=-1; CURROT=-1; LOGGED=false;
         res.innerHTML='<p class="qp-why">Tap how you feel — get the pick.</p>';
         return;
       }
@@ -634,8 +686,20 @@ function toggleTheme(){
       var all=chips.querySelectorAll('.qp-node');
       for(var k=0;k<all.length;k++){all[k].classList.remove('on');}
       btn.classList.add('on');
-      CURSIT=btn.getAttribute('data-sit'); POS[CURSIT]=0;
+      CURSIT=btn.getAttribute('data-sit');
       show(CURSIT);
+    });
+    res.addEventListener('click',function(ev){
+      var tb=ev.target.closest('.qp-take'); if(!tb||!CURSIT||LOGGED)return;
+      var idx=tb.getAttribute('data-take')==='rot'?CURROT:CURWIN;
+      var s=S[idx]; var hist=loadHist();
+      hist.push({d:todayStr(),sit:CURSIT,n:s.n,v:s.v,col:colOf(s),x:ENH[s.n]?1:0});
+      saveHist(hist); LOGGED=true;
+      var note=document.createElement('p'); note.className='qp-logged';
+      note.textContent='Logged: '+s.n+' — rotation updated.';
+      res.appendChild(note);
+      var btns=res.querySelectorAll('.qp-take');
+      for(var k=0;k<btns.length;k++){btns[k].disabled=true;btns[k].style.opacity='.45';}
     });
   }
 })();

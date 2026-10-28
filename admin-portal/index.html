@@ -571,7 +571,11 @@ function toggleTheme(){
    {n:"Sunrise Blend",v:"Phantom Herbal",b:"100 g bag",sp:"Mid",e:4,m:4,c:4,ca:1,r:1,w:"Phantom's morning blend — built to start a day clear."},
    {n:"Happy Phantom",v:"Phantom Herbal",b:"100 g bag",sp:"Mid",e:3,m:5,c:2,ca:3,r:2,w:"Mood-forward blend — the name is the brief."},
    {n:"Velociraptor",v:"TreeLeaf",b:"Double-stack enhanced 3.0% \u2726",sp:"Mid\u2013Fast",e:4,m:3,c:2,ca:2,r:3,w:"The strongest green on the shelf — a small serving goes far."},
-   {n:"Wild White Borneo",v:"Sakti",b:"28 g · MIT 1.71%",sp:"Fast",e:5,m:3,c:4,ca:1,r:1,w:"Clean white fuel — focus and drive for a shift."}
+   {n:"Wild White Borneo",v:"Sakti",b:"28 g · MIT 1.71%",sp:"Fast",e:5,m:3,c:4,ca:1,r:1,w:"Clean white fuel — focus and drive for a shift."},
+   {n:"Green Hulk",v:"WestKoast",b:"Batch 1026 · 500 g",sp:"Mid\u2013Fast",e:4,m:4,c:3,ca:1,r:1,w:"Your newest WestKoast green — Kristan's high-energy 1026 batch: kick and mood, not winding."},
+   {n:"White Lemon",v:"WestKoast",b:"Batch 1026 · 250 g",sp:"Fast",e:4,m:3,c:4,ca:1,r:1,w:"Fast, functional morning white — clean energy without the jittery feel."},
+   {n:"OG Imperial Green Dragon",v:"DTE",b:"String Dried D11 · 250 g",sp:"Mid",e:4,m:5,c:3,ca:3,r:2,w:"DTE's flagship string-dried green from your October lot — the guide's smoothest long burn."},
+   {n:"Old School Red Sumatra",v:"DTE",b:"String Dried D11 · 250 g",sp:"Slow\u2013Mid",e:2,m:5,c:2,ca:5,r:4,w:"Bright-mood red from your October lot — warm euphoria settling into deep calm."}
   ];
   var W={
    calm:{e:-3,m:1,c:0,ca:3,r:0},
@@ -594,25 +598,46 @@ function toggleTheme(){
   }
   var chips=document.getElementById('qpWheel'),res=document.getElementById('qpResult');
   if(chips&&res){
+    function rankedFor(sit){
+      return S.map(function(s,i){return {s:s,i:i,sc:score(s,W[sit])};}).sort(function(a,b){return b.sc-a.sc||a.i-b.i;});
+    }
+    var ORDER=['energy','focus','mood','calm','relief','sleep'];
+    var ASSIGN={},WINNERS={};
+    ORDER.forEach(function(sit){
+      var r=rankedFor(sit);
+      for(var i=0;i<r.length;i++){ if(!WINNERS[r[i].i]){ ASSIGN[sit]=r[i].i; WINNERS[r[i].i]=true; break; } }
+    });
+    var CYCLE={};
+    ORDER.forEach(function(sit){
+      CYCLE[sit]=rankedFor(sit).filter(function(r){return r.i===ASSIGN[sit]||!WINNERS[r.i];}).map(function(r){return r.i;});
+    });
+    var CURSIT=null,POS={};
+    function show(sit){
+      var cyc=CYCLE[sit]; var pos=(POS[sit]||0)%cyc.length;
+      var t=S[cyc[pos]], r2=S[cyc[(pos+1)%cyc.length]];
+      res.innerHTML='<div class="qp-name">'+t.n+'</div>'
+        +'<div class="qp-meta">'+t.v+' · '+t.b+' · '+t.sp+' speed · on your shelf</div>'
+        +'<p class="qp-why">'+t.w+'</p>'
+        +bars(t)
+        +'<div class="qp-runner">Runner-up: <b>'+r2.n+'</b> — '+r2.v+' · '+r2.b+'</div>'
+        +'<p class="qp-note">Not the one? Tap the leaf for a second chance — a different pick for the same feeling.</p>';
+    }
     chips.addEventListener('click',function(ev){
       if(ev.target.closest('.qp-hub')){
-        var all0=chips.querySelectorAll('.qp-node');
-        for(var j=0;j<all0.length;j++){all0[j].classList.remove('on');}
-        res.innerHTML='<p class="qp-why">Tap how you feel — get the pick.</p>';
+        if(CURSIT){ POS[CURSIT]=(POS[CURSIT]||0)+1; show(CURSIT); }
+        else{
+          var all0=chips.querySelectorAll('.qp-node');
+          for(var j=0;j<all0.length;j++){all0[j].classList.remove('on');}
+          res.innerHTML='<p class="qp-why">Tap how you feel — get the pick.</p>';
+        }
         return;
       }
       var btn=ev.target.closest('.qp-node'); if(!btn)return;
       var all=chips.querySelectorAll('.qp-node');
       for(var k=0;k<all.length;k++){all[k].classList.remove('on');}
       btn.classList.add('on');
-      var w=W[btn.getAttribute('data-sit')];
-      var ranked=S.map(function(s,i){return {s:s,i:i,sc:score(s,w)};}).sort(function(a,b){return b.sc-a.sc||a.i-b.i;});
-      var t=ranked[0].s, r2=ranked[1].s;
-      res.innerHTML='<div class="qp-name">'+t.n+'</div>'
-        +'<div class="qp-meta">'+t.v+' · '+t.b+' · '+t.sp+' speed · on your shelf</div>'
-        +'<p class="qp-why">'+t.w+'</p>'
-        +bars(t)
-        +'<div class="qp-runner">Runner-up: <b>'+r2.n+'</b> — '+r2.v+' · '+r2.b+'</div>';
+      CURSIT=btn.getAttribute('data-sit'); POS[CURSIT]=0;
+      show(CURSIT);
     });
   }
 })();

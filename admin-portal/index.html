@@ -570,7 +570,7 @@ function toggleTheme(){
 (function(){
   var S=[
    {n:"Dark Hematoma",v:"TreeLeaf",b:"Batch SR-DH02",sp:"Slow",e:1,m:3,c:1,ca:5,r:3,w:"Slow red — community report: \u201clike sitting in a jacuzzi.\u201d Warm and settled, zero wire."},
-   {n:"Red Fuzzy Blanket",v:"WestKoast",b:"Batch #0726FC#B",sp:"Slow",e:1,m:3,c:1,ca:5,r:4,w:"Cozy heavy red — the name is the description. Built for the couch, then bed."},
+   {n:"Red Fuzzy Blanket",v:"WestKoast",b:"Batch 1026 · 250 g",sp:"Slow",e:1,m:3,c:1,ca:5,r:4,w:"Cozy heavy red — the name is the description. Built for the couch, then bed."},
    {n:"21K Gold Bali",v:"TreeLeaf",b:"Batch BID-B01 · 10 g sampler",sp:"Slow",e:1,m:3,c:1,ca:5,r:4,w:"The slowest gold — deep, even settle."},
    {n:"Deep Red",v:"TreeLeaf",b:"DK's red blend",sp:"Slow\u2013Mid",e:1,m:3,c:1,ca:5,r:3,w:"Heavy, warm red blend — evening weight."},
    {n:"Wild Red Dragon",v:"DTE",b:"Batch A27 · 250 g bag",sp:"Mid",e:2,m:3,c:1,ca:4,r:5,w:"Strong red, relief-forward — the one for aches."},
@@ -586,7 +586,10 @@ function toggleTheme(){
    {n:"Green Hulk",v:"WestKoast",b:"Batch 1026 · 500 g",sp:"Mid\u2013Fast",e:4,m:4,c:3,ca:1,r:1,w:"Your newest WestKoast green — Kristan's high-energy 1026 batch: kick and mood, not winding."},
    {n:"White Lemon",v:"WestKoast",b:"Batch 1026 · 250 g",sp:"Fast",e:4,m:3,c:4,ca:1,r:1,w:"Fast, functional morning white — clean energy without the jittery feel."},
    {n:"OG Imperial Green Dragon",v:"DTE",b:"String Dried D11 · 250 g",sp:"Mid",e:4,m:5,c:3,ca:3,r:2,w:"DTE's flagship string-dried green from your October lot — the guide's smoothest long burn."},
-   {n:"Old School Red Sumatra",v:"DTE",b:"String Dried D11 · 250 g",sp:"Slow\u2013Mid",e:2,m:5,c:2,ca:5,r:4,w:"Bright-mood red from your October lot — warm euphoria settling into deep calm."}
+   {n:"Old School Red Sumatra",v:"DTE",b:"String Dried D11 · 250 g",sp:"Slow\u2013Mid",e:2,m:5,c:2,ca:5,r:4,w:"Bright-mood red from your October lot — warm euphoria settling into deep calm."},
+{n:"Green Bali",v:"WestKoast",b:"Batch 1026 · 250 g",sp:"Mid",e:4,m:4,c:2,ca:3,r:2,w:"The 1026 drop's best-reviewed green (4.92★, 13 reviews) — classic balanced Bali: uplifted mood, clean energy, mellow landing."},
+{n:"Bright Green",v:"WestKoast",b:"Batch 1026 · 250 g",sp:"Mid–Fast",e:4,m:4,c:4,ca:1,r:2,w:"Fresh-drop green — clean energy and focus without the jitters; strong, bright mood."},
+{n:"White Asia",v:"WestKoast",b:"Batch 1026 · 250 g",sp:"Fast",e:4,m:3,c:4,ca:1,r:1,w:"Clean white from the 1026 drop — bright energy and clarity for mornings and shift starts."}
   ];
   var W={
    calm:{e:-3,m:1,c:0,ca:3,r:0},
@@ -612,7 +615,7 @@ function toggleTheme(){
     function rankedFor(sit){
       return S.map(function(s,i){return {s:s,i:i,sc:score(s,W[sit])};}).sort(function(a,b){return b.sc-a.sc||a.i-b.i;});
     }
-    var COL={"Dark Hematoma":"red","Red Fuzzy Blanket":"red","21K Gold Bali":"gold","Deep Red":"red","Wild Red Dragon":"red","Yellow Dream":"gold","Gold Alchemist":"gold","DK's Special Batch":"blend","Beetlejuice Green 2.0":"green","Jade Junction":"green","Sunrise Blend":"blend","Happy Phantom":"blend","Velociraptor":"green","Wild White Borneo":"white","Green Hulk":"green","White Lemon":"white","OG Imperial Green Dragon":"green","Old School Red Sumatra":"red"};
+    var COL={"Dark Hematoma":"red","Red Fuzzy Blanket":"red","21K Gold Bali":"gold","Deep Red":"red","Wild Red Dragon":"red","Yellow Dream":"gold","Gold Alchemist":"gold","DK's Special Batch":"blend","Beetlejuice Green 2.0":"green","Jade Junction":"green","Sunrise Blend":"blend","Happy Phantom":"blend","Velociraptor":"green","Wild White Borneo":"white","Green Hulk":"green","White Lemon":"white","OG Imperial Green Dragon":"green","Old School Red Sumatra":"red","Green Bali":"green","Bright Green":"green","White Asia":"white"};
     var ENH={"DK's Special Batch":1,"Jade Junction":1,"Gold Alchemist":1,"Velociraptor":1};
     var MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     function todayStr(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}

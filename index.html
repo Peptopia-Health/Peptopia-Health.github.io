@@ -19,7 +19,7 @@
             --sh:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
             --sh-h:0 12px 28px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
             --t1:#0F172A;--t2:#475569;--t3:#94A3B8;
-            --purple:#9000F5;--pink:#FF85E1;--cyan:#06B6D4;--orange:#F97316;--violet:#A855F7;--emerald:#10B981;--amber:#F59E0B;
+            --purple:#9000F5;--pink:#FF85E1;--cyan:#06B6D4;--orange:#F97316;--violet:#A855F7;--emerald:#10B981;--amber:#F59E0B;--red:#DC2626;
             --neon-border: #00FFCC;
         }
         html.dark{--bg:#0B1120;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--sh:none;--sh-h:0 0 0 0 transparent;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B}
@@ -70,6 +70,7 @@
         .c-purple::before{background:linear-gradient(90deg,var(--violet),rgba(168,85,247,.3))}.c-purple .ico{background:rgba(168,85,247,.1);color:var(--violet)}
         .c-emerald::before{background:linear-gradient(90deg,var(--emerald),rgba(16,185,129,.3))}.c-emerald .ico{background:rgba(16,185,129,.1);color:var(--emerald)}
         .c-amber::before{background:linear-gradient(90deg,var(--amber),rgba(245,158,11,.3))}.c-amber .ico{background:rgba(245,158,11,.1);color:var(--amber)}
+        .c-red::before{background:linear-gradient(90deg,var(--red),rgba(220,38,38,.3))}.c-red .ico{background:rgba(220,38,38,.1);color:var(--red)}
         .card h2{font-family:'Outfit',sans-serif;font-size:1.3rem;margin-bottom:8px}
         .card p{color:var(--t2);font-size:.9rem;margin-bottom:12px;flex-grow:1}
         .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 24px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:100%;transition:filter .3s}
@@ -81,6 +82,7 @@
         .b-purple{background:linear-gradient(135deg,var(--purple),#B347FF)}
         .b-emerald{background:linear-gradient(135deg,#059669,var(--emerald))}
         .b-amber{background:linear-gradient(135deg,#D97706,var(--amber))}
+        .b-red{background:linear-gradient(135deg,#B91C1C,var(--red))}
         .card:hover .btn{filter:brightness(1.1)}
         @media (max-width: 768px) {
             .grid { grid-template-columns: 1fr; padding: 0 16px 24px; }
@@ -309,11 +311,11 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             <p>Safe, educated, and effective research.</p>
             <span class="btn b-cyan"><i class="fa-solid fa-file-lines"></i> Read the Guides</span>
         </a>
-        <a href="https://x-peps.com/X-Peps/biohacking-news.html" class="card c-amber">
+        <a href="https://x-peps.com/X-Peps/biohacking-news.html" class="card c-red">
             <div class="ico"><i class="fa-solid fa-newspaper"></i></div>
             <h2>Biohacking News</h2>
             <p>Weekly smart-drug news: GLP-1 breakthroughs, peptide research, and the studies that matter.</p>
-            <span class="btn b-amber"><i class="fa-solid fa-bolt"></i> Read the News</span>
+            <span class="btn b-red"><i class="fa-solid fa-bolt"></i> Read the News</span>
         </a>
         <a href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" class="card c-pink">
             <div class="ico"><i class="fa-solid fa-star"></i></div>

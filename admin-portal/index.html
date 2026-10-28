@@ -620,16 +620,14 @@ function toggleTheme(){
         +'<p class="qp-why">'+t.w+'</p>'
         +bars(t)
         +'<div class="qp-runner">Runner-up: <b>'+r2.n+'</b> — '+r2.v+' · '+r2.b+'</div>'
-        +'<p class="qp-note">Not the one? Tap the leaf for a second chance — a different pick for the same feeling.</p>';
+        +'<p class="qp-note">Tap the leaf to clear the pick and start over.</p>';
     }
     chips.addEventListener('click',function(ev){
       if(ev.target.closest('.qp-hub')){
-        if(CURSIT){ POS[CURSIT]=(POS[CURSIT]||0)+1; show(CURSIT); }
-        else{
-          var all0=chips.querySelectorAll('.qp-node');
-          for(var j=0;j<all0.length;j++){all0[j].classList.remove('on');}
-          res.innerHTML='<p class="qp-why">Tap how you feel — get the pick.</p>';
-        }
+        var all0=chips.querySelectorAll('.qp-node');
+        for(var j=0;j<all0.length;j++){all0[j].classList.remove('on');}
+        CURSIT=null; POS={};
+        res.innerHTML='<p class="qp-why">Tap how you feel — get the pick.</p>';
         return;
       }
       var btn=ev.target.closest('.qp-node'); if(!btn)return;

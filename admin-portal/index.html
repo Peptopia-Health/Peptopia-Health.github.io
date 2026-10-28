@@ -128,11 +128,13 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   .qp h2{margin:0 0 2px}
   .qp-wheel{position:relative;width:min(390px,96vw);aspect-ratio:1/1;margin:8px auto 4px}
   .qp-spoke{position:absolute;left:50%;top:50%;width:37.5%;height:2px;background:var(--line);transform-origin:0 50%;border-radius:2px}
-  .qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:var(--accsoft,#DBEAFE);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:41px;z-index:2}
-  .qp-node{position:absolute;transform:translate(-50%,-50%);width:106px;height:106px;border-radius:50%;background:color-mix(in srgb,var(--nc) 13%,var(--card));border:3px solid var(--nb,var(--nc));color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;z-index:3;padding:0;font-family:Outfit,sans-serif}
+  .qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:color-mix(in srgb,#2E7D4F 13%,var(--card));border:3px solid #17452A;display:flex;align-items:center;justify-content:center;font-size:60px;z-index:2;cursor:pointer;padding:0;box-shadow:inset 0 3px 4px rgba(255,255,255,.6),inset 0 -4px 7px rgba(0,0,0,.15),0 5px 9px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease}
+  .qp-hub:active{transform:translate(-50%,-50%) translateY(3px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),inset 0 -2px 4px rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.25)}
+  .qp-node{position:absolute;transform:translate(-50%,-50%);width:106px;height:106px;border-radius:50%;background:color-mix(in srgb,var(--nc) 13%,var(--card));border:3px solid var(--nb,var(--nc));color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;z-index:3;padding:0;font-family:Outfit,sans-serif;box-shadow:inset 0 3px 4px rgba(255,255,255,.6),inset 0 -4px 7px rgba(0,0,0,.15),0 5px 9px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease,background .15s ease}
   .qp-node .qp-emo{font-size:30px;line-height:1}
-  .qp-node small{font-size:12.5px;font-weight:700;letter-spacing:.03em}
+  .qp-node small{font-size:25px;font-weight:700;letter-spacing:.03em}
   .qp-node.on{background:var(--nc);color:#fff}
+  .qp-node:active{transform:translate(-50%,-50%) translateY(3px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),inset 0 -2px 4px rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.25)}
   .qp-name{font-family:Outfit,sans-serif;font-weight:800;font-size:26px;color:#EA580C;line-height:1.15}
   .qp-meta{color:var(--mut);font-size:14px;margin:2px 0 6px}
   .qp-why{font-size:15px;margin:0 0 6px}
@@ -186,7 +188,7 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
       <span class="qp-spoke" style="transform:rotate(90deg)"></span>
       <span class="qp-spoke" style="transform:rotate(150deg)"></span>
       <span class="qp-spoke" style="transform:rotate(210deg)"></span>
-      <div class="qp-hub">&#127807;</div>
+      <button type="button" class="qp-hub" id="qpHub" aria-label="Reset — clear the pick">&#127807;</button>
       <button type="button" class="qp-node" data-sit="energy" style="left:50%;top:12.5%;--nc:#F59E0B;--nb:#B45309"><span class="qp-emo">&#9889;</span><small>Energy</small></button>
       <button type="button" class="qp-node" data-sit="focus" style="left:82.5%;top:31.3%;--nc:#5BA3D9;--nb:#2F6DA3"><span class="qp-emo">&#127919;</span><small>Focus</small></button>
       <button type="button" class="qp-node" data-sit="mood" style="left:82.5%;top:68.7%;--nc:#2E7D4F;--nb:#17452A"><span class="qp-emo">&#129505;</span><small>Mood</small></button>
@@ -593,6 +595,12 @@ function toggleTheme(){
   var chips=document.getElementById('qpWheel'),res=document.getElementById('qpResult');
   if(chips&&res){
     chips.addEventListener('click',function(ev){
+      if(ev.target.closest('.qp-hub')){
+        var all0=chips.querySelectorAll('.qp-node');
+        for(var j=0;j<all0.length;j++){all0[j].classList.remove('on');}
+        res.innerHTML='<p class="qp-why">Tap how you feel — get the pick.</p>';
+        return;
+      }
       var btn=ev.target.closest('.qp-node'); if(!btn)return;
       var all=chips.querySelectorAll('.qp-node');
       for(var k=0;k<all.length;k++){all[k].classList.remove('on');}

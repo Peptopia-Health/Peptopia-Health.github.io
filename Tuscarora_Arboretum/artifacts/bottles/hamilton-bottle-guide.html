@@ -120,8 +120,19 @@
 .soon-tag{font-family:"Outfit",sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
 @media(max-width:760px){body{padding-top:max(6px,env(safe-area-inset-top,0px))}}
 </style>
+<style>
+  /* GUIDE STANDARD: toolbar, dark theme, optimized print */
+  .gd-tools{position:fixed; top:12px; right:12px; z-index:9999; display:flex; gap:8px;}
+  .gd-tools button{font-family:"Outfit",sans-serif; font-weight:700; font-size:13.5px; padding:7px 14px; border-radius:999px; border:2px solid #0d1b34; background:#ffffff; color:#0d1b34; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.20);}
+  .gd-tools button:hover{background:#ffedd5;}
+  html.dark{--ink:#ece7db; --dim:#a8a29e; --bg:#171310; --card:#221d18; --line:#3d342a; --tint:#2e2417;}
+  html.dark .timeline{background:#221d18;}
+  @page{size:Letter; margin:0.6in;}
+  @media print{.gd-tools{display:none!important} p{orphans:3; widows:3;}}
+</style>
 </head>
 <body>
+<div class="gd-tools"><button type="button" id="gd-themebtn" title="Switch light / dark theme">🌙 Dark</button><button type="button" onclick="window.print()" title="Print or save as PDF">🖨 Print</button></div>
 <div style="font-family:'DM Sans',sans-serif;font-size:.85rem;padding:12px 20px;background:#FFF7ED;border-bottom:1px solid #F1E3D3"><a href="../../index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Tuscarora Arboretum</a> &nbsp;/&nbsp; <a href="../index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Artifacts</a> &nbsp;/&nbsp; <a href="index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Bottles</a> &nbsp;/&nbsp; The 1937 Hamilton Bottle — Study Guide</div>
 <div class="wrap">
 <p class="meta">Tuscarora Arboretum &middot; Artifact No. 1</p>
@@ -427,6 +438,9 @@ setStatus('err','That didn\u2019t go through. Please try once more, or email the
 });
 });
 })();
+</script>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('gd-themebtn');if(!b)return;function paint(){b.textContent=r.classList.contains('dark')?'☀️ Light':'🌙 Dark';}try{if(localStorage.getItem('gd-theme')==='dark'){r.classList.add('dark');}}catch(e){}b.addEventListener('click',function(){r.classList.toggle('dark');try{localStorage.setItem('gd-theme',r.classList.contains('dark')?'dark':'light');}catch(e){}paint();});paint();})();
 </script>
 </body>
 </html>

@@ -351,6 +351,15 @@ a.batch:active{transform:translateY(1px)}
 .qp-take.rot{background:color-mix(in srgb,#2E7D4F 16%,var(--card))}
 .qp-take:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.25)}
 .qp-logged{font-size:14px;font-weight:700;color:#2E7D4F;margin-top:8px}
+.wc-spec{position:relative;border:1px solid var(--line);border-radius:12px;padding:12px 14px 8px;background:linear-gradient(90deg,rgba(176,58,58,.10),rgba(232,135,58,.10),rgba(245,158,11,.10),rgba(46,125,79,.10));margin:14px 0 4px}
+.wc-shead{display:flex;justify-content:space-between;font:700 .78rem 'Outfit',sans-serif;color:var(--muted);margin-bottom:6px}
+.wc-lane{position:relative;height:28px;border-top:1px solid var(--line)}
+.wc-lane>span{position:absolute;left:0;top:50%;transform:translateY(-50%);font:700 .72rem 'Outfit',sans-serif;letter-spacing:.04em}
+.wc-track{position:absolute;left:70px;right:4px;top:0;bottom:0}
+.wc-dot{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);border:2.5px solid;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);z-index:1}
+.wc-dot:hover{z-index:3;transform:translate(-50%,-50%) scale(1.25)}
+.wc-specnote{font-size:.8rem;color:var(--muted);margin:6px 0 2px}
+html.dark .wc-dot{background:#1C211C}
 /* dark theme */
 html.dark{--paper:#131711;--paper2:#1D231C;--ink:#EDEAE0;--muted:#ABA291;--line:#3C463A;--accent:#7FB069}
 html.dark body{background:var(--paper);color:var(--ink)}
@@ -509,6 +518,7 @@ document.querySelectorAll('svg.pie').forEach(function(svg){
   });
 });
 </script>
+<div class="wc-spec"><div class="wc-shead"><span>← Slow · Relaxing</span><span>Fast · Energizing →</span></div><div class="wc-lane"><span style="color:#9E9E9E">WHITE</span><div class="wc-track"><a class="wc-dot" href="#strain-premium-select-white-vein" style="left:73%;border-color:#9E9E9E" title="Premium Select — White Vein"></a><a class="wc-dot" href="#strain-pure-white-vein-powdered-leaf" style="left:71%;border-color:#9E9E9E" title="Pure White Vein Powdered Leaf"></a><a class="wc-dot" href="#strain-vintage-micro-white" style="left:69%;border-color:#9E9E9E" title="Vintage Micro White"></a></div></div><div class="wc-lane"><span style="color:#2E7D4F">GREEN</span><div class="wc-track"><a class="wc-dot" href="#strain-premium-select-green-vein" style="left:58%;border-color:#2E7D4F" title="Premium Select — Green Vein"></a><a class="wc-dot" href="#strain-og-wild-green" style="left:52%;border-color:#2E7D4F" title="OG Wild Green"></a><a class="wc-dot" href="#strain-pure-green-vein-powdered-leaf" style="left:54%;border-color:#2E7D4F" title="Pure Green Vein Powdered Leaf"></a><a class="wc-dot" href="#strain-private-garden-green" style="left:49%;border-color:#2E7D4F" title="Private Garden Green"></a><a class="wc-dot" href="#strain-vintage-micro-green" style="left:51%;border-color:#2E7D4F" title="Vintage Micro Green"></a><a class="wc-dot" href="#strain-hutan-village-green-batch-1016" style="left:53%;border-color:#2E7D4F" title="Hutan Village Green — Batch #1016"></a><a class="wc-dot" href="#strain-grounded-in-green-limited-release" style="left:45%;border-color:#2E7D4F" title="Grounded in Green — Limited Release"></a><a class="wc-dot" href="#strain-premium-green-thai-gv1" style="left:58%;border-color:#2E7D4F" title="Premium Green Thai GV1"></a><a class="wc-dot" href="#strain-20-year-green-thai-gv2" style="left:55%;border-color:#2E7D4F" title="20 Year Green Thai GV2"></a><a class="wc-dot" href="#strain-cargo-line-pure-green-red-white" style="left:50%;border-color:#2E7D4F" title="Cargo Line — Pure Green / Red / White"></a></div></div><div class="wc-lane"><span style="color:#D4A017">GOLD</span><div class="wc-track"><a class="wc-dot" href="#strain-golden-powdered-leaf-premium-select" style="left:34%;border-color:#D4A017" title="Golden Powdered Leaf — Premium Select"></a></div></div><div class="wc-lane"><span style="color:#B03A3A">RED</span><div class="wc-track"><a class="wc-dot" href="#strain-premium-select-red-vein" style="left:20%;border-color:#B03A3A" title="Premium Select — Red Vein"></a><a class="wc-dot" href="#strain-og-wild-red" style="left:17%;border-color:#B03A3A" title="OG Wild Red"></a><a class="wc-dot" href="#strain-pure-red-vein-powdered-leaf" style="left:20%;border-color:#B03A3A" title="Pure Red Vein Powdered Leaf"></a><a class="wc-dot" href="#strain-vintage-micro-red" style="left:22%;border-color:#B03A3A" title="Vintage Micro Red"></a><a class="wc-dot" href="#strain-rooted-in-red" style="left:19%;border-color:#B03A3A" title="Rooted in Red"></a><a class="wc-dot" href="#strain-deep-red-blend" style="left:16%;border-color:#B03A3A" title="Deep Red Blend"></a><a class="wc-dot" href="#strain-red-fermented-powdered-leaf" style="left:18%;border-color:#B03A3A" title="Red Fermented Powdered Leaf"></a><a class="wc-dot" href="#strain-thai-bentuangie-red-ferment-r1" style="left:20%;border-color:#B03A3A" title="Thai Bentuangie (Red Ferment) R1"></a></div></div><div class="wc-lane"><span style="color:#7A4C93">BLENDS</span><div class="wc-track"><a class="wc-dot" href="#strain-here-comes-the-sun-premium-select" style="left:44%;border-color:#7A4C93" title="Here Comes the Sun — Premium Select"></a><a class="wc-dot" href="#strain-breakfast-blend-premium-select" style="left:68%;border-color:#7A4C93" title="Breakfast Blend — Premium Select"></a><a class="wc-dot" href="#strain-full-spectrum-premium-select" style="left:48%;border-color:#7A4C93" title="Full Spectrum — Premium Select"></a><a class="wc-dot" href="#strain-here-comes-the-sun-blend" style="left:44%;border-color:#7A4C93" title="Here Comes the Sun Blend"></a><a class="wc-dot" href="#strain-breakfast-blend-batch-1018" style="left:66%;border-color:#7A4C93" title="Breakfast Blend — Batch #1018"></a><a class="wc-dot" href="#strain-full-spectrum-blend" style="left:48%;border-color:#7A4C93" title="Full Spectrum Blend"></a><a class="wc-dot" href="#strain-bodhisattva-blend-batch-1018" style="left:40%;border-color:#7A4C93" title="Bodhisattva Blend — Batch #1018"></a><a class="wc-dot" href="#strain-full-send-blend-batch-1016" style="left:58%;border-color:#7A4C93" title="Full Send Blend — Batch #1016"></a></div></div><p class="wc-specnote">Every strain in this guide, plotted from its own card scores (energy against calm) — the guide's synthesis. Tap a dot to jump to its card.</p></div>
 <div class="catintro">
   <b>Reading a Strain Card</b>
   <ul class="wc-howlist">
@@ -607,6 +617,7 @@ document.querySelectorAll('svg.pie').forEach(function(svg){
 <tr><td>🟡 <b>Heritage &amp; Village</b></td><td>Vintage Micro Green / Red / White, Hutan Village Green, Rooted in Red, Deep Red, Red Fermented, Grounded in Green</td><td>Standard-line pricing</td></tr>
 <tr><td>🇹🇭 <b>Thai Line</b></td><td>Premium Green Thai GV1, 20 Year Green Thai GV2, Thai Bentuangie R1</td><td>Standard-line pricing</td></tr>
 <tr><td>📦 <b>Cargo Line</b></td><td>Pure Green / Red / White by the kilo (Batch C-002)</td><td>$65 per kilo — $0.065/g</td></tr>
+<tr><td>🎁 <b>Extras</b></td><td>Sample flights, 80 g two/three/five-bag bundles, half-kilo and full-kilo splits, pre-filled capsules in all three veins</td><td>Flights $15 · bundles $28/$40/$64</td></tr>
 </table>
 <div class="catintro">
   <p><b>68 strains</b> stand on the menu as of October 2026 — this guide profiles the <b>30</b> with the deepest
@@ -890,7 +901,12 @@ document.querySelectorAll('svg.pie').forEach(function(svg){
   <p>Vintage Lots · Village Harvests · Traditional Ferments</p>
   <button type="button" class="bigicon wc-tgl" aria-expanded="false" title="Open this section">🟡</button>
 </div>
-<div class="catintro">The heritage shelf is where WildCraft's range shows: <b>Vintage Micro</b> lots of mature leaf, a green
+<div class="catintro"><div class="wc-grid">
+  <div class="wc-card"><h4>🌿 Natural Leaf</h4><p>Picked mature, dried, and milled — the baseline every other style starts from.</p></div>
+  <div class="wc-card"><h4>☀️ Sun-Cured — the Golds</h4><p>Extended sun-drying yellows the leaf and rounds it out: warmer, mellower, mid-speed.</p></div>
+  <div class="wc-card"><h4>🫙 Fermented — Bentuangie Style</h4><p>The traditional ferment deepens the reds: heavier, warmer, built for the evening.</p></div>
+</div>
+The heritage shelf is where WildCraft's range shows: <b>Vintage Micro</b> lots of mature leaf, a green
   hand-selected from a forest village with its test result published before sale, two distinct high-scoring
   house reds, a traditional ferment sold by the kilo, and a calm-forward limited green. Buyers who only know
   the Premium Select line are missing half the argument for this vendor.</div>
@@ -1128,7 +1144,10 @@ document.querySelectorAll('svg.pie').forEach(function(svg){
 <tr><td>Premium Select White (PR Select 01)</td><td><a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/07/WCHC-LABS-PR.Select01.pdf" target="_blank" rel="noopener">Murray Brown 2606E84 · Jun 2026</a></td><td><b>1.53%</b></td><td>2.31%</td><td>&lt;0.0196%</td></tr>
 <tr><td>Private Garden Green (PGG 01)</td><td><a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/08/COA-and-Lab-Analysis.pdf" target="_blank" rel="noopener">Murray Brown 2607E68 · Jul 2026</a></td><td><b>1.46%</b></td><td>2.23%</td><td>&lt;0.0196%</td></tr>
 <tr><td>Golden Leaf — Premium Select</td><td><a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/09/COA-and-Lab-Analysis-3.pdf" target="_blank" rel="noopener">Murray Brown 2609725 · Sep 2026</a></td><td><b>1.32%</b></td><td>1.99%</td><td>—</td></tr>
-<tr><td>Hutan Village Green (#1016)</td><td>Vendor newsletter lab summary</td><td><b>1.69%</b></td><td>—</td><td>—</td></tr>
+<tr><td>Hutan Village Green (#1016)</td><td><a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2025/10/WCHC-LABS-1016-.pdf" target="_blank" rel="noopener">Batch #1016 report (PDF)</a></td><td><b>1.69%</b></td><td>—</td><td>—</td></tr>
+<tr><td>Cargo Line — Pure Green (C-002)</td><td><a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/06/WCHC-LABS-C-002-.pdf" target="_blank" rel="noopener">Cora Science COA (PDF)</a></td><td><b>1.66%</b></td><td>2.66%</td><td>—</td></tr>
+<tr><td>Pure Green Vein — 1017-D (#1017D/#1018)</td><td><a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/04/WCHC-LABS-1017D1018-2.pdf" target="_blank" rel="noopener">Murray Brown batch report (PDF)</a></td><td><b>1.63%</b></td><td>2.52%</td><td>—</td></tr>
+<tr><td>Batch #1007 (incl. Vintage Micro Green)</td><td><a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2023/12/Batch-1007-Labs-2.pdf" target="_blank" rel="noopener">Batch report (PDF)</a></td><td>—</td><td>—</td><td>—</td></tr>
 </table>
 <div class="catintro">
   <p><b>Private Garden Green — the full panel</b> (the most complete report in this guide): paynantheine
@@ -1138,6 +1157,17 @@ document.querySelectorAll('svg.pie').forEach(function(svg){
   0.8% and 1.5% mitragynine — WildCraft's published line sits at or above the top of that range, with the
   paperwork public.</p>
 </div>
+<div class="catintro">
+  <p><b>Reading the Batch Codes</b> — every lot in the catalog carries one of these systems:</p>
+</div>
+<table class="wc-table">
+<tr><th>Code</th><th>What It Means</th></tr>
+<tr><td><b>#1005 – #1020</b></td><td>Numbered signature-supplier harvests — each number is one harvest lot; when it sells out, it is gone.</td></tr>
+<tr><td><b>PR Select NN</b></td><td>Premium Select batches — the flagship line's own numbering; PR Select 01 is the current tested batch.</td></tr>
+<tr><td><b>MS codes</b></td><td>Individual micro-lots (MS1021-2, MS1001-7) — the smallest tracked units in the catalog.</td></tr>
+<tr><td><b>PGG 01</b></td><td>Private Garden Green, batch 01 — the single-garden lot with the full-panel COA.</td></tr>
+<tr><td><b>C-002</b></td><td>Cargo Line batch — the kilo value line, tested by Cora Science.</td></tr>
+</table>
 
 <div class="colorband band-neutral" id="value">
   <h2><span class="icobtn" style="--bb:#e6f2ea;--bm:#9cc7a8;--bd:#1E4D3B">💵</span> Price &amp; Value — What the Premium Buys</h2>
@@ -1219,6 +1249,12 @@ document.querySelectorAll('svg.pie').forEach(function(svg){
   <h2><span class="icobtn" style="--bb:#e6f2ea;--bm:#9cc7a8;--bd:#1E4D3B">🛒</span> Ordering, Shipping &amp; Policies</h2>
   <p>How Buying From WildCraft Actually Works</p>
   <button type="button" class="bigicon wc-tgl" aria-expanded="false" title="Open this section">🛒</button>
+</div>
+<div class="wc-grid">
+  <div class="wc-card"><h4>✉️ Email</h4><p>wildcraftherbcompany@proton.me</p></div>
+  <div class="wc-card"><h4>📞 Phone</h4><p>(603) 416-4825</p></div>
+  <div class="wc-card"><h4>📬 Mail</h4><p>PO Box 714, Epping, New Hampshire</p></div>
+  <div class="wc-card"><h4>🚚 Ship Window</h4><p>48–72 hours processing · USPS · no Saturday shipping</p></div>
 </div>
 <div class="wc-grid">
   <div class="wc-card"><h4>🚚 Shipping</h4><p>US only. The vendor aims for same-day shipping and states 48–72 hours for processing; no Saturday shipping; expect delays around big drops. USPS is the carrier named in policy; observed checkout options included Ground and Priority at $5.75–$9.75. Historical offers of free shipping over $130 have appeared in review coverage — check the site banner for the current threshold, as none is stated in the standing policy.</p></div>

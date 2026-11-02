@@ -342,6 +342,31 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
 .peptopia-ftr a.ftr-email:hover{color:#be185d;text-decoration:underline}
 @media print{.peptopia-nav .peptopia-iconbtn,.peptopia-ftr-icons{display:none!important}.statcard,.statgrid,table,thead,tbody,tr,figure,figcaption,blockquote,.coa-callout,.card,.strain-card,pre,.callout,img{break-inside:avoid!important;page-break-inside:avoid!important}h1,h2,h3,h4,h5,h6{break-after:avoid!important;page-break-after:avoid!important}p,li{orphans:3;widows:3}a{color:inherit;text-decoration:none}body{background:#fff!important}}
 
+
+        /* ─── GLOW VENN CARD ─── */
+        .glow-stage { container-type: inline-size; }
+        .glow-benefits { display:flex; align-items:center; justify-content:center; gap:2.6cqw; margin:2px 0 6px; }
+        .glow-benefits .bic { height:18cqw; max-height:64px; width:auto; }
+        .glow-benefits .plus { height:10.8cqw; max-height:38px; width:auto; }
+        .glow-venn { position:relative; width:100%; max-width:300px; aspect-ratio:300/212; margin:2px auto 0; }
+        .glow-orb { position:absolute; width:37.34%; aspect-ratio:1; border-radius:50%;
+            display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+            text-decoration:none; font-family:'Outfit',sans-serif; text-align:center;
+            border:3px solid rgba(0,0,0,.28);
+            box-shadow: inset 0 3px 6px rgba(255,255,255,.55), inset 0 -8px 14px rgba(0,0,0,.22), 0 5px 10px rgba(15,23,42,.25);
+            transition:transform .12s ease, box-shadow .12s ease; }
+        .glow-orb:active { transform:translateY(3px); box-shadow: inset 0 2px 4px rgba(255,255,255,.4), inset 0 -3px 8px rgba(0,0,0,.25), 0 1px 3px rgba(15,23,42,.25); }
+        .glow-orb .nm { font-weight:800; font-size:min(6.5cqw, 20.8px); line-height:1.05; letter-spacing:.02em; }
+        .glow-orb .pr { font-weight:700; font-size:min(5.2cqw, 16.3px); opacity:.95; }
+        .orb-glow { left:31.33%; top:0; background:radial-gradient(circle at 32% 28%, #FFFFC8 0%, #F0F000 55%, #D8D800 100%); color:#3A3400; }
+        .orb-klow { left:11.33%; top:47.17%; background:radial-gradient(circle at 32% 28%, #FFB37A 0%, #F06000 55%, #C24E00 100%); color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35); }
+        .orb-ghk  { left:51.33%; top:47.17%; background:radial-gradient(circle at 32% 28%, #7AC0FF 0%, #0070D0 55%, #005AA8 100%); color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35); }
+        .glow-tap { text-align:center; font-family:'Outfit',sans-serif; font-weight:700; font-size:1.15rem; color:var(--t1); margin:6px 0 10px; }
+        .glow-guide-btn { display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;
+            font-family:'Outfit',sans-serif; font-weight:700; font-size:.95rem; color:#065F46;
+            background:linear-gradient(180deg,#ECFDF5,#D1FAE5); border:2px solid var(--emerald); border-radius:9999px;
+            padding:9px 18px; box-shadow:0 3px 6px rgba(5,150,105,.25), inset 0 2px 3px rgba(255,255,255,.8); }
+        .glow-guide-btn:active { transform:translateY(2px); box-shadow:0 1px 2px rgba(5,150,105,.25); }
 </style>
 </head>
 <body>
@@ -419,8 +444,51 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             <div class="card accent-emerald">
                 <div class="icon-box"><i class="fa-solid fa-sun" style="color:var(--emerald)"></i></div>
                 <div class="card-title">GLOW, KLOW, & GHK-Cu</div>
-                <p class="card-desc">These advanced compounds focus entirely on vastly improving <mark>cellular vitality and skin health</mark>. As Copper-centric compounds, they rejuvenate aged or damaged skin, reverse hair loss, strengthen nails, and heal tissue damage.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/oNYFMvtQ" target="_blank" rel="noopener">GLOW - $325</a> <a class="price-bubble" href="https://square.link/u/bXCJ6r1s" target="_blank" rel="noopener">KLOW - $375</a> <a class="price-bubble" href="https://square.link/u/nBxV33Sv" target="_blank" rel="noopener">GHK-Cu - $285</a></div>
+                <p class="card-desc">These advanced compounds focus entirely on vastly improving <mark>cellular vitality and skin health</mark>.<br>As Copper-centric compounds, they rejuvenate aged or damaged skin, reverse hair loss, strengthen nails, and heal tissue damage.</p>
+                <div class="glow-stage">
+                <div class="glow-benefits" aria-hidden="true">
+                <!-- hair: lady with highlighted hair -->
+                <svg class="bic" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <defs><linearGradient id="hairg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#F59E0B"/><stop offset="1" stop-color="#EA580C"/>
+                  </linearGradient></defs>
+                  <path d="M24 2.5c8.5 0 14 6.2 14 15.5 0 5.5-1 9.5.2 15 .8 3.6.2 7.5-1.7 11H11.5C9.6 40.5 9 36.6 9.8 33c1.2-5.5.2-9.5.2-15C10 8.7 15.5 2.5 24 2.5Z" fill="url(#hairg)" stroke="#9A3412" stroke-width="1.8"/>
+                  <ellipse cx="24" cy="21" rx="7.6" ry="9.2" fill="#FFF7ED" stroke="#0F172A" stroke-width="1.6"/>
+                  <path d="M20 20.5c.8-1 2.2-1 3 0M25 20.5c.8-1 2.2-1 3 0" stroke="#0F172A" stroke-width="1.5"/>
+                  <path d="M21.5 26.5c1.6 1.3 3.4 1.3 5 0" stroke="#0F172A" stroke-width="1.5"/>
+                  <path d="M14.5 10c-1.8 2.5-2.4 5.5-2.2 9M33.5 10c1.8 2.5 2.4 5.5 2.2 9" stroke="#FFF7ED" stroke-width="2" opacity="0.75"/>
+                </svg>
+<svg class="plus" viewBox="0 0 24 24" fill="none"><path d="M12 3.5v17M3.5 12h17" stroke="#E01020" stroke-width="2.5" stroke-linecap="round"/></svg>
+                <!-- nails: fingertip with nail (kept) -->
+                <svg class="bic" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <g transform="translate(24 24) scale(1.22) translate(-24 -27.5)"><defs><linearGradient id="nailg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#FDA4AF"/><stop offset="1" stop-color="#F97316"/>
+                  </linearGradient></defs>
+                  <path d="M14 45V20a10 10 0 0 1 20 0v25" fill="#FFDDBB" stroke="#0F172A" stroke-width="2.2"/>
+                  <path d="M18.5 21.5a5.5 7.5 0 0 1 11 0v6.5a5.5 5.5 0 0 1-11 0Z" fill="url(#nailg)" stroke="#9A3412" stroke-width="1.8"/>
+                  <path d="M21 24.5c-.6 1.8-.6 3.8 0 5.5" stroke="#FFF7ED" stroke-width="1.8" opacity="0.85"/>
+                  <path d="M18 36.5h12" stroke="#0F172A" stroke-width="2"/>
+                </g></svg>
+<svg class="plus" viewBox="0 0 24 24" fill="none"><path d="M12 3.5v17M3.5 12h17" stroke="#E01020" stroke-width="2.5" stroke-linecap="round"/></svg>
+                <!-- tissue repair: bandage (kept) -->
+                <svg class="bic" viewBox="0 0 64 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <g transform="translate(32 24) scale(1.55) translate(-24 -24)"><defs><linearGradient id="bandg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#FDBA74"/><stop offset="1" stop-color="#FB923C"/>
+                  </linearGradient></defs>
+                  <rect x="7" y="17" width="34" height="14" rx="7" transform="rotate(-24 24 24)" fill="url(#bandg)" stroke="#9A3412" stroke-width="2"/>
+                  <rect x="19" y="18.5" width="10" height="11" rx="2.5" transform="rotate(-24 24 24)" fill="#FFEDD5" stroke="#9A3412" stroke-width="1.6"/>
+                  <circle cx="13.5" cy="28" r="1.3" fill="#9A3412"/><circle cx="34.5" cy="20" r="1.3" fill="#9A3412"/>
+                  <circle cx="30.5" cy="30.5" r="1.3" fill="#9A3412"/><circle cx="17.5" cy="17.5" r="1.3" fill="#9A3412"/>
+                </g></svg>
+      </div>
+                <div class="glow-venn">
+                <a class="glow-orb orb-glow" href="https://square.link/u/oNYFMvtQ" target="_blank" rel="noopener"><span class="nm">GLOW</span><span class="pr">$325</span></a>
+                <a class="glow-orb orb-klow" href="https://square.link/u/bXCJ6r1s" target="_blank" rel="noopener"><span class="nm">KLOW</span><span class="pr">$375</span></a>
+                <a class="glow-orb orb-ghk" href="https://square.link/u/nBxV33Sv" target="_blank" rel="noopener"><span class="nm">GHK-Cu</span><span class="pr">$285</span></a>
+      </div>
+                <div class="glow-tap">Tap to Order</div>
+                <a class="glow-guide-btn" href="https://x-peps.com/X-Peps/glow_klow_guide.html" target="_blank" rel="noopener"><i class="fa-solid fa-book-open"></i> Read the GLOW · KLOW · GHK-Cu Guide</a>
+            </div>
             </div>
         </div>
     </div>

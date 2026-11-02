@@ -390,6 +390,32 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             box-shadow: inset 0 2px 3px rgba(255,255,255,.7), inset 0 -2px 5px rgba(0,0,0,.3),
                         inset 3px 0 5px rgba(255,255,255,.25), inset -3px 0 5px rgba(0,0,0,.15),
                         0 3px 7px rgba(15,23,42,.35), 0 1px 3px rgba(15,23,42,.25); }
+
+        /* ─── GLOW POPUP + LABELED ICONS ─── */
+        .glow-benefits-labeled .bic-unit { display:flex; flex-direction:column; align-items:center; gap:3px; }
+        .glow-benefits-labeled .bic-lab { font-family:'Outfit',sans-serif; font-weight:800; font-size:10.5px; letter-spacing:.06em; color:#475569; }
+        .glow-benefits-labeled .plus { margin-top:13px; }
+        .metal-btn-sm { font-size:1.02rem; padding:11px 18px; }
+        button.glow-orb, button.metal-btn { cursor:pointer; }
+        .buy-pop { position:fixed; inset:0; background:rgba(15,23,42,.48); display:flex; align-items:center; justify-content:center; z-index:80; padding:18px; }
+        .buy-pop[hidden] { display:none; }
+        .buy-pop-card { background:#fff; border-radius:16px; border-top:4px solid var(--emerald); padding:24px 20px 20px; width:100%; max-width:330px; position:relative; box-shadow:0 24px 48px rgba(15,23,42,.35); }
+        .buy-pop-title { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.3rem; color:#065F46; text-align:center; margin-bottom:6px; }
+        .buy-pop-x { position:absolute; top:10px; right:10px; width:32px; height:32px; border-radius:50%; border:2px solid #065F46;
+            background:radial-gradient(circle at 32% 28%, #F0FFF8 0%, #A7F3D0 55%, #34D399 100%); color:#065F46;
+            font-family:'Outfit',sans-serif; font-weight:800; font-size:1.05rem; line-height:1; cursor:pointer;
+            box-shadow: inset 0 2px 3px rgba(255,255,255,.8), inset 0 -3px 5px rgba(0,0,0,.2), 0 3px 6px rgba(15,23,42,.3); }
+        .buy-pop-x:active { transform:translateY(2px); }
+        .pop-btn { position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; text-decoration:none;
+            font-family:'Outfit',sans-serif; font-weight:800; font-size:1.12rem; border-radius:9999px; padding:12px 22px; margin-top:10px;
+            border:2px solid rgba(0,0,0,.3);
+            box-shadow: inset 0 2px 2px rgba(255,255,255,.9), inset 0 -4px 7px rgba(0,0,0,.3), 0 7px 14px rgba(15,23,42,.3); }
+        .pop-btn::after { content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+            background:linear-gradient(112deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.16) 46%, rgba(255,255,255,.03) 60%, rgba(255,255,255,0) 78%); }
+        .pop-btn:active { transform:translateY(2px); }
+        .pop-glow { background:linear-gradient(180deg,#FFFFD8 0%,#F5F52E 45%,#F0F000 70%,#CFCF00 100%); color:#3A3400; }
+        .pop-klow { background:linear-gradient(180deg,#FFC79A 0%,#F97F26 45%,#F06000 70%,#C24E00 100%); color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35); }
+        .pop-ghk  { background:linear-gradient(180deg,#8FC6FF 0%,#2E8FFF 45%,#0070D0 70%,#005AA8 100%); color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35); }
 </style>
 </head>
 <body>
@@ -512,14 +538,15 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             </div>
             </div>
             
-            <div class="card accent-emerald">
+            <div class="card accent-emerald neo">
                 <div class="icon-box"><i class="fa-solid fa-sun" style="color:var(--emerald)"></i></div>
                 <div class="card-title">GLOW, KLOW, & GHK-Cu</div>
-                <p class="card-desc">These advanced compounds focus entirely on vastly improving <mark>cellular vitality and skin health</mark>.<br>As Copper-centric compounds, they rejuvenate aged or damaged skin, reverse hair loss, strengthen nails, and heal tissue damage.</p>
+                <div class="punch">The Glow Trio</div>
+                <p class="card-desc">Three copper-peptide blends that <mark>rejuvenate skin, restore hair, strengthen nails</mark>, and heal tissue damage.</p>
                 <div class="glow-stage">
-                <div class="glow-benefits" aria-hidden="true">
+                <div class="glow-benefits glow-benefits-labeled" aria-hidden="true">
                 <!-- hair: lady with highlighted hair -->
-                <svg class="bic" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <span class="bic-unit"><svg class="bic" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <defs><linearGradient id="hairg" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0" stop-color="#F59E0B"/><stop offset="1" stop-color="#EA580C"/>
                   </linearGradient></defs>
@@ -528,10 +555,10 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
                   <path d="M20 20.5c.8-1 2.2-1 3 0M25 20.5c.8-1 2.2-1 3 0" stroke="#0F172A" stroke-width="1.5"/>
                   <path d="M21.5 26.5c1.6 1.3 3.4 1.3 5 0" stroke="#0F172A" stroke-width="1.5"/>
                   <path d="M14.5 10c-1.8 2.5-2.4 5.5-2.2 9M33.5 10c1.8 2.5 2.4 5.5 2.2 9" stroke="#FFF7ED" stroke-width="2" opacity="0.75"/>
-                </svg>
+                </svg><span class="bic-lab">HAIR</span></span>
 <svg class="plus" viewBox="0 0 24 24" fill="none"><path d="M12 3.5v17M3.5 12h17" stroke="#E01020" stroke-width="2.5" stroke-linecap="round"/></svg>
                 <!-- nails: fingertip with nail (kept) -->
-                <svg class="bic" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <span class="bic-unit"><svg class="bic" viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <g transform="translate(24 24) scale(1.22) translate(-24 -27.5)"><defs><linearGradient id="nailg" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0" stop-color="#FDA4AF"/><stop offset="1" stop-color="#F97316"/>
                   </linearGradient></defs>
@@ -539,10 +566,10 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
                   <path d="M18.5 21.5a5.5 7.5 0 0 1 11 0v6.5a5.5 5.5 0 0 1-11 0Z" fill="url(#nailg)" stroke="#9A3412" stroke-width="1.8"/>
                   <path d="M21 24.5c-.6 1.8-.6 3.8 0 5.5" stroke="#FFF7ED" stroke-width="1.8" opacity="0.85"/>
                   <path d="M18 36.5h12" stroke="#0F172A" stroke-width="2"/>
-                </g></svg>
+                </g></svg><span class="bic-lab">NAILS</span></span>
 <svg class="plus" viewBox="0 0 24 24" fill="none"><path d="M12 3.5v17M3.5 12h17" stroke="#E01020" stroke-width="2.5" stroke-linecap="round"/></svg>
                 <!-- tissue repair: bandage (kept) -->
-                <svg class="bic" viewBox="0 0 64 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <span class="bic-unit"><svg class="bic" viewBox="0 0 64 48" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <g transform="translate(32 24) scale(1.55) translate(-24 -24)"><defs><linearGradient id="bandg" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0" stop-color="#FDBA74"/><stop offset="1" stop-color="#FB923C"/>
                   </linearGradient></defs>
@@ -550,17 +577,30 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
                   <rect x="19" y="18.5" width="10" height="11" rx="2.5" transform="rotate(-24 24 24)" fill="#FFEDD5" stroke="#9A3412" stroke-width="1.6"/>
                   <circle cx="13.5" cy="28" r="1.3" fill="#9A3412"/><circle cx="34.5" cy="20" r="1.3" fill="#9A3412"/>
                   <circle cx="30.5" cy="30.5" r="1.3" fill="#9A3412"/><circle cx="17.5" cy="17.5" r="1.3" fill="#9A3412"/>
-                </g></svg>
+                </g></svg><span class="bic-lab">TISSUE</span></span>
       </div>
                 <div class="glow-venn">
-                <a class="glow-orb orb-glow" href="https://square.link/u/oNYFMvtQ" target="_blank" rel="noopener"><span class="nm">GLOW</span><span class="pr">$325</span></a>
-                <a class="glow-orb orb-klow" href="https://square.link/u/bXCJ6r1s" target="_blank" rel="noopener"><span class="nm">KLOW</span><span class="pr">$375</span></a>
-                <a class="glow-orb orb-ghk" href="https://square.link/u/nBxV33Sv" target="_blank" rel="noopener"><span class="nm">GHK-Cu</span><span class="pr">$285</span></a>
+                <button type="button" class="glow-orb orb-glow" data-buy-open aria-haspopup="dialog"><span class="nm">GLOW</span><span class="pr">$325</span></button>
+                <button type="button" class="glow-orb orb-klow" data-buy-open aria-haspopup="dialog"><span class="nm">KLOW</span><span class="pr">$375</span></button>
+                <button type="button" class="glow-orb orb-ghk" data-buy-open aria-haspopup="dialog"><span class="nm">GHK-Cu</span><span class="pr">$285</span></button>
       </div>
-                <div class="glow-tap">Tap to Order</div>
-                <a class="glow-guide-btn" href="https://x-peps.com/X-Peps/glow_klow_guide.html" target="_blank" rel="noopener"><i class="fa-solid fa-book-open"></i> Read the GLOW · KLOW · GHK-Cu Guide</a>
+                
+                <div class="btn-col">
+                    <button type="button" class="metal-btn metal-btn-sm" data-buy-open>Purchase Options</button>
+                    <a class="metal-btn metal-btn-sm" href="https://x-peps.com/X-Peps/glow_klow_guide.html" target="_blank" rel="noopener">GLOW · KLOW · GHK-Cu — Guide</a>
+                </div>
+            
+                <div class="buy-pop" id="glowBuyPop" hidden>
+                    <div class="buy-pop-card" role="dialog" aria-modal="true" aria-label="Choose your blend">
+                        <button type="button" class="buy-pop-x" data-buy-close aria-label="Close">×</button>
+                        <div class="buy-pop-title">Tap to Order</div>
+                        <a class="pop-btn pop-glow" href="https://square.link/u/oNYFMvtQ" target="_blank" rel="noopener"><span>GLOW</span><span>$325</span></a>
+                        <a class="pop-btn pop-klow" href="https://square.link/u/bXCJ6r1s" target="_blank" rel="noopener"><span>KLOW</span><span>$375</span></a>
+                        <a class="pop-btn pop-ghk" href="https://square.link/u/nBxV33Sv" target="_blank" rel="noopener"><span>GHK-Cu</span><span>$285</span></a>
+                    </div>
+                </div>
             </div>
-            </div>
+</div>
         </div>
     </div>
 
@@ -642,6 +682,19 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
 var ppStore=(function(){try{if(window.self!==window.top)return null;var s=window.localStorage;s.setItem('__pp_t','1');s.removeItem('__pp_t');return s}catch(e){return null}})();
 function toggleTheme(){var d=document.documentElement.classList.toggle('dark');if(ppStore){try{ppStore.setItem('peptopia-theme',d?'dark':'light')}catch(e){}}return false}
 (function(){try{var t=ppStore&&ppStore.getItem('peptopia-theme');if(t==='dark')document.documentElement.classList.add('dark')}catch(e){}})();
+</script>
+
+<script>
+(function(){
+  var pop = document.getElementById('glowBuyPop');
+  if(!pop) return;
+  function open(){ pop.hidden = false; }
+  function close(){ pop.hidden = true; }
+  document.querySelectorAll('[data-buy-open]').forEach(function(el){ el.addEventListener('click', open); });
+  pop.querySelectorAll('[data-buy-close]').forEach(function(el){ el.addEventListener('click', close); });
+  pop.addEventListener('click', function(e){ if(e.target === pop) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+})();
 </script>
 </body>
 </html>

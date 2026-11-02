@@ -367,6 +367,29 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             background:linear-gradient(180deg,#ECFDF5,#D1FAE5); border:2px solid var(--emerald); border-radius:9999px;
             padding:9px 18px; box-shadow:0 3px 6px rgba(5,150,105,.25), inset 0 2px 3px rgba(255,255,255,.8); }
         .glow-guide-btn:active { transform:translateY(2px); box-shadow:0 1px 2px rgba(5,150,105,.25); }
+
+        /* ─── NEO CARD STANDARD (build script §36) ─── */
+        .card.neo .card-title { font-weight:800; font-size:1.3rem; color:#065F46; letter-spacing:.01em; margin-bottom:2px; }
+        .card.neo .punch { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.3rem; color:#065F46; letter-spacing:.01em; margin-bottom:4px; }
+        .card.neo .card-desc mark { background:#D9FBEA; font-weight:700; }
+        .bpc-stage { width:100%; max-width:340px; margin:0 auto; }
+        .bpc-stage svg { width:100%; height:auto; display:block; }
+        .btn-col { display:flex; flex-direction:column; width:max-content; max-width:100%; margin:10px auto 0; gap:10px; }
+        .metal-btn { position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font-family:'Outfit',sans-serif; font-weight:800; font-size:1.15rem; color:#064E3B;
+            text-shadow:0 1px 0 rgba(255,255,255,.55);
+            background:linear-gradient(180deg,#EFFFF7 0%,#B9F6DC 26%,#4ADE9C 52%,#17B978 76%,#0A8F5D 100%);
+            border:2px solid #065F46; border-radius:9999px; padding:11px 26px;
+            box-shadow: inset 0 2px 2px rgba(255,255,255,.95), inset 0 -4px 7px rgba(0,0,0,.35),
+                        inset 3px 0 5px rgba(255,255,255,.35), inset -3px 0 5px rgba(0,0,0,.18),
+                        0 9px 18px rgba(15,23,42,.38), 0 2px 5px rgba(15,23,42,.28);
+            transition:transform .1s ease, box-shadow .1s ease; }
+        .metal-btn::after { content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+            background:linear-gradient(112deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.16) 46%, rgba(255,255,255,.03) 60%, rgba(255,255,255,0) 78%); }
+        .metal-btn:active { transform:translateY(3px);
+            box-shadow: inset 0 2px 3px rgba(255,255,255,.7), inset 0 -2px 5px rgba(0,0,0,.3),
+                        inset 3px 0 5px rgba(255,255,255,.25), inset -3px 0 5px rgba(0,0,0,.15),
+                        0 3px 7px rgba(15,23,42,.35), 0 1px 3px rgba(15,23,42,.25); }
 </style>
 </head>
 <body>
@@ -434,11 +457,59 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
                 <div class="btn-container"><a class="price-bubble" href="https://square.link/u/R1X4VS9q" target="_blank" rel="noopener">$95</a></div>
             </div>
             
-            <div class="card accent-emerald">
-                <div class="icon-box"><i class="fa-solid fa-shield-halved" style="color:var(--emerald)"></i></div>
+            <div class="card accent-emerald neo">
                 <div class="card-title">BPC-157</div>
-                <p class="card-desc">A specialized peptide renowned for accelerating <mark>systemic tissue repair and lowering inflammation</mark>. It actively helps your body recover effectively from various physical and environmental stressors.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/gRT22jih" target="_blank" rel="noopener">$265</a></div>
+                <div class="punch">The Body Shield</div>
+                <p class="card-desc">A repair peptide that speeds healing of <mark>tissue, tendons, gut, and muscle</mark> while calming inflammation.</p>
+                <div class="bpc-stage" role="img" aria-label="BPC-157 repair shield with joint, gut, and muscle satellites">
+                <svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="shieldg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3B9BFF"/><stop offset="1" stop-color="#005AA8"/>
+            </linearGradient>
+            <radialGradient id="satgold" cx="0.35" cy="0.3" r="0.95">
+              <stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/>
+            </radialGradient>
+            <radialGradient id="satgreen" cx="0.35" cy="0.3" r="0.95">
+              <stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/>
+            </radialGradient>
+            <radialGradient id="satorange" cx="0.35" cy="0.3" r="0.95">
+              <stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/>
+            </radialGradient>
+          </defs>
+
+          <!-- dotted connector arcs -->
+          <path d="M112 58 C 132 68, 142 78, 150 90" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/>
+          <path d="M228 58 C 208 68, 198 78, 190 90" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/>
+          <path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/>
+
+          <!-- center shield medallion -->
+          <path d="M170 52 L216 69 V114 C216 149 197 169 170 181 C143 169 124 149 124 114 V69 Z" fill="url(#shieldg)" stroke="#0F172A" stroke-width="3"/>
+          <ellipse cx="151" cy="80" rx="16" ry="9" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 151 80)"/>
+          <path d="M170 78 v42 M149 99 h42" stroke="#FFFFFF" stroke-width="11"/>
+          <path d="M134 124 h17 l5-9 7 18 6-9 h37" stroke="#F0F000" stroke-width="4" fill="none"/>
+
+          <!-- satellite: joints & tendons (gold) -->
+          <circle cx="86" cy="50" r="27" fill="url(#satgold)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <path d="M78 36 l16 7 -16 7 16 7 -16 7" stroke="#3A3400" stroke-width="3.4" fill="none"/>
+          <text x="86" y="92" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">JOINTS</text>
+
+          <!-- satellite: gut (green) -->
+          <circle cx="254" cy="50" r="27" fill="url(#satgreen)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <path d="M254 38a12 12 0 1 1-12 12 9.5 9.5 0 1 0 9.5-9.5 7 7 0 1 1-7 7" stroke="#FFFFFF" stroke-width="3.2" fill="none"/>
+          <text x="254" y="92" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">GUT</text>
+
+          <!-- satellite: muscle (tangerine) -->
+          <circle cx="170" cy="208" r="23" fill="url(#satorange)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <path d="M158 198c4 3 8 4 12 4s8-1 12-4M158 208c4 3 8 4 12 4s8-1 12-4M158 218c4 3 8 4 12 4s8-1 12-4" stroke="#FFFFFF" stroke-width="3"/>
+          <text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">MUSCLE</text>
+        </svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn" href="https://square.link/u/gRT22jih" target="_blank" rel="noopener">BPC-157 — $265</a>
+                    <a class="metal-btn" href="https://x-peps.com/X-Peps/bpc_157_kpv_guide.html" target="_blank" rel="noopener">BPC-157 — Guide</a>
+                </div>
+            </div>
             </div>
             
             <div class="card accent-emerald">

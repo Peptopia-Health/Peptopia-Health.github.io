@@ -684,5 +684,112 @@ document.addEventListener("keydown", function(e){
 });
 })();
 </script>
+<!-- GBR: Guide Build Request direct-send (added 2026-11-02). Self-contained; does not modify any existing Potions function. -->
+<style>
+.gbr-wrap{max-width:640px;margin:34px auto 46px;padding:0 16px;font-family:'DM Sans',system-ui,sans-serif;color:#f3e9d2}
+.gbr-card{background:linear-gradient(160deg,#241433,#170b26);border:1.5px solid #b98a2f;border-radius:18px;padding:20px 18px 16px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.gbr-card h2{font-family:'Outfit',system-ui,sans-serif;font-weight:800;font-size:1.35rem;margin:0 0 6px;color:#ffb347}
+.gbr-card p{margin:0 0 12px;font-size:.95rem;line-height:1.45;color:#e8dcc0}
+.gbr-card label{display:block;font-weight:700;font-size:.85rem;margin:12px 0 5px;color:#ffd98a}
+.gbr-card input[type=text],.gbr-card select,.gbr-card textarea{width:100%;box-sizing:border-box;background:#12081f;border:1px solid #6b4fa1;border-radius:10px;color:#fff;padding:11px 12px;font-size:1rem;font-family:inherit}
+.gbr-card textarea{min-height:74px;resize:vertical}
+.gbr-att{border:1.5px dashed #6b4fa1;border-radius:10px;padding:12px;text-align:center;cursor:pointer;color:#d9c9f5;font-size:.95rem}
+.gbr-attlist{font-size:.85rem;margin-top:8px;text-align:left;color:#e8dcc0}
+.gbr-send{margin-top:16px;width:100%;border:2px solid #7a4d00;border-radius:999px;padding:14px 10px;font-family:'Outfit',system-ui,sans-serif;font-weight:800;font-size:1.08rem;color:#2a1503;background:radial-gradient(120% 160% at 25% 15%,#ffe9a8,#ffb347 55%,#e07b1f);box-shadow:0 5px 0 #7a4d00,0 10px 18px rgba(0,0,0,.5);cursor:pointer}
+.gbr-send:active{transform:translateY(4px);box-shadow:0 1px 0 #7a4d00,0 4px 8px rgba(0,0,0,.5)}
+.gbr-status{margin-top:12px;font-size:.95rem;line-height:1.45;min-height:1.2em}
+.gbr-status.ok{color:#9be15d}.gbr-status.err{color:#ff9d9d}
+.gbr-sendbtn{margin-left:8px;border:2px solid #7a4d00;border-radius:999px;padding:10px 16px;font-family:'Outfit',system-ui,sans-serif;font-weight:800;font-size:.98rem;color:#2a1503;background:radial-gradient(120% 160% at 25% 15%,#ffe9a8,#ffb347 55%,#e07b1f);box-shadow:0 4px 0 #7a4d00;cursor:pointer}
+.gbr-sendbtn:active{transform:translateY(3px);box-shadow:0 1px 0 #7a4d00}
+</style>
+<div class="gbr-wrap" id="gbrWrap">
+  <div class="gbr-card">
+    <h2>📨 Send a build request straight to Muse</h2>
+    <p>No copy-and-paste. Fill this in, attach any supporting files, and tap <strong>Send</strong> — Muse picks it up within the half hour and starts the build. The finished guide and its audio story arrive in your chat.</p>
+    <label for="gbr-fn">What kind of build?</label>
+    <select id="gbr-fn">
+      <option>Guide</option><option>Review</option><option>Article</option>
+      <option>Podcast</option><option>Update</option><option>Inventory</option>
+    </select>
+    <label for="gbr-topic">Topic</label>
+    <input type="text" id="gbr-topic" placeholder="e.g. Kratom Blending &amp; Stacking" autocomplete="off">
+    <label for="gbr-notes">Notes (optional)</label>
+    <textarea id="gbr-notes" placeholder="Anything Muse should know — focus, sources, files you attached…"></textarea>
+    <label>Supporting files (optional)</label>
+    <div class="gbr-att" id="gbr-attzone">📎 Tap to attach files<div class="gbr-attlist" id="gbr-attlist"></div></div>
+    <input type="file" id="gbr-files" multiple hidden>
+    <button class="gbr-send" id="gbr-send" type="button">⭐ Send — start the build</button>
+    <div class="gbr-status" id="gbr-status"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var EP='https://formsubmit.co/ajax/peptopia@x-peps.com', KEY='potions-57';
+  function post(payload){
+    return fetch(EP,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).then(function(r){ if(!r.ok) throw new Error('send failed'); return r.json(); });
+  }
+  function readB64(f){
+    return new Promise(function(res,rej){
+      var r=new FileReader();
+      r.onload=function(){ var d=String(r.result); var i=d.indexOf(','); res(i>=0?d.slice(i+1):d); };
+      r.onerror=rej; r.readAsDataURL(f);
+    });
+  }
+  function withFiles(files, base, done){
+    var payload={}; for(var k in base) payload[k]=base[k];
+    if(!files.length){ done(payload); return; }
+    var names=[], chain=Promise.resolve();
+    files.forEach(function(f,idx){
+      chain=chain.then(function(){ return readB64(f).then(function(b){ payload['file_'+(idx+1)+'_name']=f.name; payload['file_'+(idx+1)+'_b64']=b; names.push(f.name); }); });
+    });
+    chain.then(function(){ payload.file_manifest=names.join(', '); done(payload); }).catch(function(){ done(payload); });
+  }
+  /* --- direct panel --- */
+  var files=[];
+  var zone=document.getElementById('gbr-attzone'), fin=document.getElementById('gbr-files'), list=document.getElementById('gbr-attlist'), st=document.getElementById('gbr-status'), btn=document.getElementById('gbr-send');
+  if(zone&&fin){
+    zone.addEventListener('click',function(){ fin.click(); });
+    fin.addEventListener('change',function(){ for(var i=0;i<fin.files.length;i++) files.push(fin.files[i]); fin.value=''; render(); });
+  }
+  function render(){ if(list) list.innerHTML=files.map(function(f){ return '📎 '+f.name+' ('+Math.max(1,Math.round(f.size/1024))+' KB)'; }).join('<br>'); }
+  function setSt(cls,html){ st.className='gbr-status '+cls; st.innerHTML=html; }
+  if(btn) btn.addEventListener('click',function(){
+    var fn=document.getElementById('gbr-fn').value;
+    var topic=document.getElementById('gbr-topic').value.trim();
+    var notes=document.getElementById('gbr-notes').value.trim();
+    if(!topic){ setSt('err','Give the build a topic first — one line is plenty.'); return; }
+    btn.disabled=true; setSt('','⏳ Sending…');
+    var cmd=(fn==='Guide'?'Guide: ':(fn+': '))+topic+(notes?'\nNotes: '+notes:'');
+    var base={_subject:'Guide Build Request: '+fn+' — '+topic, _template:'table', portal_key:KEY, source:'potions-direct-panel', build_function:fn, topic:topic, notes:notes, command:cmd};
+    withFiles(files, base, function(payload){
+      if(JSON.stringify(payload).length>9500000){ btn.disabled=false; setSt('err','Those files are too large to send this way. Please attach fewer files, or email them with your topic to peptopia@x-peps.com.'); return; }
+      post(payload).then(function(){ btn.disabled=false; setSt('ok','✨ <strong>Sent!</strong> Your build request is queued. Muse starts it within the half hour — the finished guide and its audio story will arrive in your chat.'); document.getElementById('gbr-topic').value=''; document.getElementById('gbr-notes').value=''; files=[]; render(); })
+      .catch(function(){ btn.disabled=false; setSt('err','That didn’t go through. Please try once more, or email the same details to peptopia@x-peps.com.'); });
+    });
+  });
+  /* --- wire the spell scroll: add a Send button beside Copy --- */
+  function wireScroll(){
+    var pre=document.getElementById('cmdText');
+    if(!pre || pre.dataset.gbrWired) return;
+    var row=pre.parentElement ? pre.parentElement.querySelector('.row') : null;
+    if(!row) return;
+    pre.dataset.gbrWired='1';
+    var b=document.createElement('button'); b.type='button'; b.className='gbr-sendbtn'; b.textContent='📨 Send to Muse — start the build';
+    b.addEventListener('click',function(){
+      var cmd=pre.textContent||''; if(!cmd.trim()) return;
+      b.disabled=true; b.textContent='⏳ Sending…';
+      var firstLine=cmd.split('\n')[0].slice(0,90);
+      post({_subject:'Guide Build Request: '+firstLine, _template:'table', portal_key:KEY, source:'potions-scroll', command:cmd})
+      .then(function(){ b.textContent='✅ Sent — Muse is on it'; })
+      .catch(function(){ b.disabled=false; b.textContent='📨 Send to Muse — try again'; });
+    });
+    row.appendChild(b);
+  }
+  var mo=new MutationObserver(function(){ wireScroll(); });
+  mo.observe(document.body,{childList:true,subtree:true});
+  wireScroll();
+})();
+</script>
+
 </body>
 </html>

@@ -416,6 +416,9 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
         .pop-glow { background:linear-gradient(180deg,#FFFFD8 0%,#F5F52E 45%,#F0F000 70%,#CFCF00 100%); color:#3A3400; }
         .pop-klow { background:linear-gradient(180deg,#FFC79A 0%,#F97F26 45%,#F06000 70%,#C24E00 100%); color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35); }
         .pop-ghk  { background:linear-gradient(180deg,#8FC6FF 0%,#2E8FFF 45%,#0070D0 70%,#005AA8 100%); color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35); }
+
+        .slu-stage { width:100%; max-width:340px; margin:0 auto; }
+        .slu-stage svg { width:100%; height:auto; display:block; }
 </style>
 </head>
 <body>
@@ -476,11 +479,53 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
     <div class="cat-wrap cat-emerald">
         <h2 class="cat-title" style="color:var(--emerald)">Bioenhancement Agents</h2>
         <div class="grid">
-            <div class="card accent-emerald">
-                <div class="icon-box"><i class="fa-solid fa-dumbbell" style="color:var(--emerald)"></i></div>
+            <div class="card accent-emerald neo">
                 <div class="card-title">SLU-PP-332 (20mg)</div>
-                <p class="card-desc">This novel compound acts as an exercise mimetic by activating essential metabolic pathways within the muscle. It effectively <mark>mimics the physiological benefits of training without the associated physical stress</mark>.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/R1X4VS9q" target="_blank" rel="noopener">$95</a></div>
+                <div class="punch">The Exercise Mimetic</div>
+                <p class="card-desc">A compound that switches on the muscle’s own exercise pathways — <mark>the benefits of training</mark>, without the physical stress.</p>
+                <div class="slu-stage" role="img" aria-label="SLU-PP-332 energy medallion with burn, muscle, and stamina satellites">
+                <svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <radialGradient id="coreg" cx="0.35" cy="0.3" r="0.95">
+              <stop offset="0" stop-color="#8FC6FF"/><stop offset="0.55" stop-color="#0070D0"/><stop offset="1" stop-color="#005AA8"/>
+            </radialGradient>
+            <radialGradient id="satgold" cx="0.35" cy="0.3" r="0.95">
+              <stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/>
+            </radialGradient>
+            <radialGradient id="satgreen" cx="0.35" cy="0.3" r="0.95">
+              <stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/>
+            </radialGradient>
+            <radialGradient id="satorange" cx="0.35" cy="0.3" r="0.95">
+              <stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/>
+            </radialGradient>
+          </defs>
+          <path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/>
+          <path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/>
+          <path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/>
+          <!-- center energy medallion -->
+          <circle cx="170" cy="117" r="58" fill="url(#coreg)" stroke="#0F172A" stroke-width="3"/>
+          <ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/>
+          <path d="M178 66 L146 122 h20 L158 168 L196 104 h-21 Z" fill="#F0F000" stroke="#B8860B" stroke-width="2"/>
+          <!-- satellite: burn (gold, flame) -->
+          <circle cx="80" cy="46" r="27" fill="url(#satgold)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <path d="M80 30c4 7 10 11 10 18a10 10 0 1 1-20 0c0-4 2-7 4-10 1 2 2 3 3 4-1-5 0-9 3-12Z" fill="#F06000" stroke="#9A3412" stroke-width="1.8"/>
+          <text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">BURN</text>
+          <!-- satellite: muscle (green, fibers) -->
+          <circle cx="260" cy="46" r="27" fill="url(#satgreen)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <path d="M248 36c4 3 8 4 12 4s8-1 12-4M248 46c4 3 8 4 12 4s8-1 12-4M248 56c4 3 8 4 12 4s8-1 12-4" stroke="#FFFFFF" stroke-width="3"/>
+          <text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">MUSCLE</text>
+          <!-- satellite: stamina (tangerine, gauge) -->
+          <circle cx="170" cy="208" r="23" fill="url(#satorange)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <path d="M157 214a14 14 0 1 1 26 0" stroke="#FFFFFF" stroke-width="3"/>
+          <path d="M170 214 L179 203" stroke="#FFFFFF" stroke-width="3"/>
+          <circle cx="170" cy="214" r="2.6" fill="#FFFFFF"/>
+          <text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">STAMINA</text>
+        </svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn" href="https://square.link/u/R1X4VS9q" target="_blank" rel="noopener">SLU-PP-332 — $95</a>
+                    <a class="metal-btn" href="https://x-peps.com/X-Peps/slu_pp_332_guide.html" target="_blank" rel="noopener">SLU-PP-332 — Guide</a>
+                </div>
             </div>
             
             <div class="card accent-emerald neo">

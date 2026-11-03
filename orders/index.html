@@ -103,7 +103,7 @@
         /* ─── GRID & LAYOUT ─── */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
+            grid-template-columns: repeat(3, minmax(0, 1fr)); 
             gap: 20px; 
         }
         
@@ -426,6 +426,20 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
 
         .slu-stage { width:100%; max-width:340px; margin:0 auto; }
         .slu-stage svg { width:100%; height:auto; display:block; }
+        /* ─── §36 SECTION VARIANTS (Weight Mgmt / Wakefulness / Supplies) ─── */
+        .card.wm .card-title, .card.wm .punch { color:#4C1D95; }
+        .card.wake .card-title, .card.wake .punch { color:#9A3412; }
+        .card.sup .card-title, .card.sup .punch { color:#004E96; }
+        .metal-btn.metal-tang { background:linear-gradient(180deg,#FFE7C4 0%,#FFB37A 32%,#F97F26 68%,#F06000 100%); border-color:#9A3412; color:#FFFFFF;
+            text-shadow:0 1px 2px rgba(0,0,0,.35);
+            box-shadow: inset 0 2px 2px rgba(255,255,255,.9), inset 0 -5px 8px rgba(154,52,18,.4), inset 2px 0 4px rgba(255,255,255,.3), inset -2px 0 4px rgba(154,52,18,.25), 0 8px 16px rgba(154,52,18,.35); }
+        .metal-btn.metal-tang:active { box-shadow: inset 0 3px 8px rgba(0,0,0,.5), 0 2px 4px rgba(154,52,18,.35); }
+        .metal-btn.metal-cob { background:linear-gradient(180deg,#D8ECFF 0%,#7DB9F5 32%,#2E8FFF 68%,#0070D0 100%); border-color:#004E96; color:#FFFFFF;
+            text-shadow:0 1px 2px rgba(0,0,0,.3);
+            box-shadow: inset 0 2px 2px rgba(255,255,255,.9), inset 0 -5px 8px rgba(0,78,150,.4), inset 2px 0 4px rgba(255,255,255,.3), inset -2px 0 4px rgba(0,78,150,.25), 0 8px 16px rgba(0,78,150,.35); }
+        .metal-btn.metal-cob:active { box-shadow: inset 0 3px 8px rgba(0,0,0,.5), 0 2px 4px rgba(0,78,150,.35); }
+        .viz-stage { width:100%; max-width:340px; margin:0 auto; }
+        .viz-stage svg { width:100%; height:auto; display:block; }
 </style>
 </head>
 <body>
@@ -451,18 +465,43 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
     <div class="cat-wrap cat-purple">
         <h2 class="cat-title" style="color:var(--purple)">Weight Management Agents</h2>
         <div class="grid">
-            <div class="card accent-purple">
-                <div class="icon-box"><i class="fa-solid fa-dna" style="color:var(--purple)"></i></div>
+            <div class="card accent-purple neo wm">
                 <div class="card-title">Tirzepatide (30mg)</div>
-                <p class="card-desc">This dual GIP and GLP-1 receptor agonist offers advanced metabolic support by targeting two pathways. It enhances glucose control significantly better than traditional options. This compound <mark>yields more robust weight loss results compared to single-agonist treatments</mark>.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/6QZmSfMm" target="_blank" rel="noopener">$395</a></div>
+                <div class="punch">The Dual Agonist</div>
+                <p class="card-desc">This dual GIP and GLP-1 receptor agonist targets two pathways at once for advanced metabolic support and glucose control. It <mark>yields more robust weight loss results compared to single-agonist treatments</mark>.</p>
+                <div class="viz-stage" role="img" aria-label="Tirzepatide dual-agonist diagram: GLP-1 and GIP receptors around one core">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <defs><radialGradient id="tirz-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="tirz-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient><radialGradient id="tirz-gip" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="tirz-vio" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#D8CCFF"/><stop offset="0.55" stop-color="#7C3AED"/><stop offset="1" stop-color="#5B21B6"/></radialGradient></defs>
+          <path d="M170 84 L170 68" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/>
+          <path d="M140 141 L122 153" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5.5"/>
+          <path d="M200 141 L218 153" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5.5"/>
+          <circle cx="170" cy="124" r="38" fill="url(#tirz-core)" stroke="#0F172A" stroke-width="3"/>
+          <ellipse cx="156" cy="100" rx="13" ry="7" fill="#FFFFFF" opacity="0.4" transform="rotate(-24 156 100)"/>
+          <text x="170" y="136" text-anchor="middle" font-family="Outfit, sans-serif" font-size="27" font-weight="800" fill="#3A3400">2×</text>
+          <circle cx="170" cy="36" r="29" fill="url(#tirz-glp)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <text x="170" y="42" text-anchor="middle" font-family="Outfit, sans-serif" font-size="15" font-weight="800" fill="#0B2B36">GLP-1</text>
+          <circle cx="94" cy="168" r="29" fill="url(#tirz-gip)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <text x="94" y="175" text-anchor="middle" font-family="Outfit, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">GIP</text>
+          <circle cx="246" cy="168" r="29" fill="url(#tirz-vio)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
+          <g transform="translate(246 168)"><circle cx="-8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle cx="8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/></g>
+          <text x="246" y="211" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">TWO PATHS</text>
+        </svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-lav" href="https://square.link/u/6QZmSfMm" target="_blank" rel="noopener">Tirzepatide — $395</a>
+                </div>
             </div>
             
-            <div class="card accent-purple">
-                <div class="icon-box"><i class="fa-solid fa-flask-vial" style="color:var(--purple)"></i></div>
+            <div class="card accent-purple neo wm">
                 <div class="card-title">Semaglutide (10mg)</div>
-                <p class="card-desc">A highly potent GLP-1 receptor agonist widely utilized for consistent, chronic weight management. It effectively slows gastric emptying to increase satiety and control appetite. This agent is universally established as <mark>the gold standard</mark> for long-term weight maintenance.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/nBxV33Sv" target="_blank" rel="noopener">$285</a></div>
+                <div class="punch">The Gold Standard</div>
+                <p class="card-desc">A highly potent GLP-1 receptor agonist for consistent, chronic weight management — it slows gastric emptying to increase satiety and control appetite. Universally established as <mark>the gold standard</mark> for long-term weight maintenance.</p>
+                <div class="viz-stage" role="img" aria-label="Semaglutide GLP-1 medallion with appetite, satiety, and weight satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="sema-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#D8CCFF"/><stop offset="0.55" stop-color="#7C3AED"/><stop offset="1" stop-color="#5B21B6"/></radialGradient><radialGradient id="sema-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="sema-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="sema-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#sema-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><text x="170" y="125" text-anchor="middle" font-family="Outfit, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF">GLP-1</text><circle cx="80" cy="46" r="27" fill="url(#sema-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="10" fill="none" stroke="#3A3400" stroke-width="3"/><circle r="4.5" fill="none" stroke="#3A3400" stroke-width="3"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">APPETITE</text><circle cx="260" cy="46" r="27" fill="url(#sema-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M-13 6a14 14 0 1 1 26 0" stroke="#FFFFFF" stroke-width="3" fill="none"/><path d="M0 6 L9 -5" stroke="#FFFFFF" stroke-width="3"/><circle cy="6" r="2.6" fill="#FFFFFF"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">SATIETY</text><circle cx="170" cy="208" r="23" fill="url(#sema-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M0 -11 v20 M-8 1 L0 10 L8 1" stroke="#FFFFFF" stroke-width="4.5" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">WEIGHT</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-lav" href="https://square.link/u/nBxV33Sv" target="_blank" rel="noopener">Semaglutide — $285</a>
+                </div>
             </div>
             
             <div class="card accent-purple neo reta">
@@ -507,11 +546,16 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             </div>
             
             <!-- Centered 4th Tile -->
-            <div class="card accent-purple cagri-centered">
-                <div class="icon-box"><i class="fa-solid fa-prescription-bottle" style="color:var(--purple)"></i></div>
+            <div class="card accent-purple neo wm">
                 <div class="card-title">Cagrilintide (10mg)</div>
-                <p class="card-desc">A long-acting amylin analog that functions synergistically to amplify the effects of GLP-1 agents. It utilizes independent hypothalamic pathways to provide superior, sustained appetite suppression. It is an <mark>excellent choice for individuals aiming to break through stubborn weight loss plateaus</mark>.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/Vk730Uf7" target="_blank" rel="noopener">$295</a></div>
+                <div class="punch">The Plateau Breaker</div>
+                <p class="card-desc">A long-acting amylin analog that amplifies the effects of GLP-1 agents through independent hypothalamic pathways. An <mark>excellent choice for individuals aiming to break through stubborn weight loss plateaus</mark>.</p>
+                <div class="viz-stage" role="img" aria-label="Cagrilintide amylin medallion with appetite, synergy, and plateau satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="cag-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#D8CCFF"/><stop offset="0.55" stop-color="#7C3AED"/><stop offset="1" stop-color="#5B21B6"/></radialGradient><radialGradient id="cag-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="cag-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="cag-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#cag-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><text x="170" y="124" text-anchor="middle" font-family="Outfit, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">AMYLIN</text><circle cx="80" cy="46" r="27" fill="url(#cag-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="10" fill="none" stroke="#3A3400" stroke-width="3"/><circle r="4.5" fill="none" stroke="#3A3400" stroke-width="3"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">APPETITE</text><circle cx="260" cy="46" r="27" fill="url(#cag-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle cx="-8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle cx="8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">SYNERGY</text><circle cx="170" cy="208" r="23" fill="url(#cag-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-12 11 h7 v-7 h7 v-7 h7" stroke="#FFFFFF" stroke-width="3.5" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">PLATEAU</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-lav" href="https://square.link/u/Vk730Uf7" target="_blank" rel="noopener">Cagrilintide — $295</a>
+                </div>
             </div>
         </div>
     </div>
@@ -693,27 +737,41 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
     <div class="cat-wrap cat-orange">
         <h2 class="cat-title" style="color:var(--orange)">Wakefulness Agents</h2>
         <div class="grid">
-            <div class="card accent-orange">
-                <div class="icon-box"><i class="fa-solid fa-brain" style="color:var(--orange)"></i></div>
+            <div class="card accent-orange neo wake">
                 <div class="card-title">Modafinil (200mg)</div>
-                <p class="card-desc">This CNS stimulant promotes alertness without the jittery side effects commonly seen in traditional amphetamines. Unlike the longer-lasting Armodafinil, it provides a balanced duration of clean focus. It is <mark>ideal for those combatting excessive sleepiness and needing high productivity</mark>.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/FpWU3zTM" target="_blank" rel="noopener">$280</a></div>
+                <div class="punch">The Clean Focus</div>
+                <p class="card-desc">This CNS stimulant promotes alertness without the jittery side effects of traditional amphetamines, with a balanced duration of clean focus. <mark>Ideal for those combatting excessive sleepiness and needing high productivity</mark>.</p>
+                <div class="viz-stage" role="img" aria-label="Modafinil alertness medallion with alert, steady, and duration satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="mod-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="mod-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="mod-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="mod-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#mod-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.0)"><path d="M-38 0 C-26 -15 -13 -21 0 -21 C13 -21 26 -15 38 0 C26 15 13 21 0 21 C-13 21 -26 15 -38 0 Z" fill="none" stroke="#FFFFFF" stroke-width="4"/><circle r="10" fill="none" stroke="#FFFFFF" stroke-width="4"/><circle r="4" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#mod-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="5.5" fill="none" stroke="#3A3400" stroke-width="3"/><path d="M0 -13 v4 M0 9 v4 M-13 0 h4 M9 0 h4 M-9.5 -9.5 l3 3 M6.5 -6.5 l3 -3 M9.5 9.5 l-3 -3 M-6.5 6.5 l-3 3" stroke="#3A3400" stroke-width="3"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">ALERT</text><circle cx="260" cy="46" r="27" fill="url(#mod-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M-14 0 h28" stroke="#FFFFFF" stroke-width="3.5"/><circle r="2.4" fill="#FFFFFF"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">STEADY</text><circle cx="170" cy="208" r="23" fill="url(#mod-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><circle r="11" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">DURATION</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-tang" href="https://square.link/u/FpWU3zTM" target="_blank" rel="noopener">Modafinil — $280</a>
+                </div>
             </div>
             
-            <div class="card accent-orange">
-                <div class="icon-box"><i class="fa-solid fa-stopwatch" style="color:var(--orange)"></i></div>
+            <div class="card accent-orange neo wake">
                 <div class="card-title">Armodafinil</div>
-                <p class="card-desc">This unique formulation contains only the R-enantiomer, offering a notably longer duration of action than standard Modafinil. It is often <mark>preferred by those requiring sustained cognitive focus late into the day</mark>. This is widely considered the superior choice for handling extended work shifts.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/FpWU3zTM" target="_blank" rel="noopener">$280</a></div>
+                <div class="punch">The Long Shift</div>
+                <p class="card-desc">Only the R-enantiomer, offering a notably longer duration of action than standard Modafinil. Often <mark>preferred by those requiring sustained cognitive focus late into the day</mark> — the superior choice for extended work shifts.</p>
+                <div class="viz-stage" role="img" aria-label="Armodafinil long-duration medallion with duration, focus, and shifts satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="arm-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="arm-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="arm-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="arm-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#arm-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(2.1)"><circle r="11" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><circle cx="80" cy="46" r="27" fill="url(#arm-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="11" fill="none" stroke="#3A3400" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#3A3400" stroke-width="3" fill="none"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">DURATION</text><circle cx="260" cy="46" r="27" fill="url(#arm-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle r="10" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle r="4.5" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">FOCUS</text><circle cx="170" cy="208" r="23" fill="url(#arm-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M11 -12 A14.5 14.5 0 1 0 11 12 A17.5 17.5 0 1 1 11 -12 Z" fill="#FFFFFF"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">SHIFTS</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-tang" href="https://square.link/u/FpWU3zTM" target="_blank" rel="noopener">Armodafinil — $280</a>
+                </div>
             </div>
             
-            <div class="card accent-orange">
-                <div class="icon-box"><i class="fa-solid fa-bolt" style="color:var(--orange)"></i></div>
+            <div class="card accent-orange neo wake">
                 <div class="card-title">Tesofensine</div>
-                <p class="card-desc">A potent monoamine reuptake inhibitor offering <mark>distinct cognitive and metabolic advantages</mark>. It serves a profoundly different function than traditional wakefulness agents by acting on multiple neurotransmitters simultaneously.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/DlXBBC4Z" target="_blank" rel="noopener">$260</a></div>
-                <br>
-                <div class="btn-container"><a href="https://x-peps.com/X-Peps/tesofensine.html" class="price-bubble">User Guide</a></div>
+                <div class="punch">The Cognitive Edge</div>
+                <p class="card-desc">A potent monoamine reuptake inhibitor acting on multiple neurotransmitters simultaneously. It offers <mark>distinct cognitive and metabolic advantages</mark> — a profoundly different function than traditional wakefulness agents.</p>
+                <div class="viz-stage" role="img" aria-label="Tesofensine multi-transmitter medallion with cognition, metabolism, and multi-pathway satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="tes-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="tes-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="tes-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="tes-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#tes-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.5)"><path d="M-16 10 L0 -14 M0 -14 L16 10 M-16 10 L16 10" stroke="#FFFFFF" stroke-width="3"/><circle cx="-16" cy="10" r="5.5" fill="#FFFFFF"/><circle cx="16" cy="10" r="5.5" fill="#FFFFFF"/><circle cy="-14" r="5.5" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#tes-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M3 -13 L-9 3 h6 L-4 13 L10 -4 H3 Z" fill="#9A3412"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">COGNITION</text><circle cx="260" cy="46" r="27" fill="url(#tes-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M0 -16 c4 7 10 11 10 18 a10 10 0 1 1 -20 0 c0-4 2-7 4-10 1 2 2 3 3 4 -1-5 0-9 3-12 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">METABOLISM</text><circle cx="170" cy="208" r="23" fill="url(#tes-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><circle cx="-8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle cx="8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">MULTI</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-tang" href="https://square.link/u/DlXBBC4Z" target="_blank" rel="noopener">Tesofensine — $260</a>
+                    <a class="metal-btn metal-tang" href="https://x-peps.com/X-Peps/tesofensine.html" target="_blank" rel="noopener">Tesofensine — Guide</a>
+                </div>
             </div>
         </div>
     </div>
@@ -722,25 +780,40 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
     <div class="cat-wrap cat-slate">
         <h2 class="cat-title" style="color:var(--slate)">Supplies</h2>
         <div class="grid">
-            <div class="card accent-slate">
-                <div class="icon-box"><i class="fa-solid fa-droplet" style="color:var(--slate)"></i></div>
+            <div class="card accent-slate neo sup">
                 <div class="card-title">Bacteriostatic Water</div>
-                <p class="card-desc">This sterile diluent is absolutely essential for all injectable peptide and compound research. This is a mandatory component for the precise and safe reconstitution of your testing compounds.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/ffkbgis3" target="_blank" rel="noopener">$70</a></div>
+                <div class="punch">The Essential Diluent</div>
+                <p class="card-desc">This sterile diluent is absolutely essential for all injectable peptide and compound research — the mandatory component for the <mark>precise and safe reconstitution</mark> of your testing compounds.</p>
+                <div class="viz-stage" role="img" aria-label="Bacteriostatic water medallion with sterile, precise, and diluent satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="bac-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#8FC6FF"/><stop offset="0.55" stop-color="#0070D0"/><stop offset="1" stop-color="#005AA8"/></radialGradient><radialGradient id="bac-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="bac-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="bac-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#bac-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(2.0)"><path d="M0 -13 C7 -3 10 2 10 7 a10 10 0 1 1 -20 0 C-10 2 -7 -3 0 -13 Z" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#bac-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M-9 0 l6 7 L10 -8" stroke="#3A3400" stroke-width="4" fill="none"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">STERILE</text><circle cx="260" cy="46" r="27" fill="url(#bac-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle r="9" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 -14 v5 M0 9 v5 M-14 0 h5 M9 0 h5" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">PRECISE</text><circle cx="170" cy="208" r="23" fill="url(#bac-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-5 -12 h10 M-3 -12 v8 l-7 13 a2.5 2.5 0 0 0 2 3 h12 a2.5 2.5 0 0 0 2 -3 L3 -4 v-8" stroke="#FFFFFF" stroke-width="3" fill="none"/><path d="M-6 4 h12" stroke="#FFFFFF" stroke-width="3"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">DILUENT</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-cob" href="https://square.link/u/ffkbgis3" target="_blank" rel="noopener">Bacteriostatic Water — $70</a>
+                </div>
             </div>
             
-            <div class="card accent-slate">
-                <div class="icon-box"><i class="fa-solid fa-syringe" style="color:var(--slate)"></i></div>
+            <div class="card accent-slate neo sup">
                 <div class="card-title">Syringes</div>
-                <p class="card-desc">These high-precision insulin syringes are expertly designed for accurate and consistent clinical dosing. Every single unit comes fully guaranteed with secure, sterile, individual packaging.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/ytQ3dqvF" target="_blank" rel="noopener">$110</a></div>
+                <div class="punch">The Precision Dose</div>
+                <p class="card-desc">High-precision insulin syringes expertly designed for <mark>accurate and consistent clinical dosing</mark>. Every unit comes fully guaranteed with secure, sterile, individual packaging.</p>
+                <div class="viz-stage" role="img" aria-label="Syringes medallion with accurate, consistent, and sterile satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="syr-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#8FC6FF"/><stop offset="0.55" stop-color="#0070D0"/><stop offset="1" stop-color="#005AA8"/></radialGradient><radialGradient id="syr-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="syr-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="syr-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#syr-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.0)"><g transform="rotate(-45)"><rect x="-16" y="-5" width="24" height="10" rx="2" fill="none" stroke="#FFFFFF" stroke-width="3.5"/><path d="M8 0 h15 M-16 0 h-8 M-24 -7 v14 M-13 -8 v16" stroke="#FFFFFF" stroke-width="3.5"/><path d="M-8 -5 v5 M-2 -5 v5 M4 -5 v5" stroke="#FFFFFF" stroke-width="2.5"/></g></g><circle cx="80" cy="46" r="27" fill="url(#syr-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="10" fill="none" stroke="#3A3400" stroke-width="3"/><circle r="4.5" fill="none" stroke="#3A3400" stroke-width="3"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">ACCURATE</text><circle cx="260" cy="46" r="27" fill="url(#syr-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M-12 -10 c4 3 8 4 12 4 s8 -1 12 -4 M-12 0 c4 3 8 4 12 4 s8 -1 12 -4 M-12 10 c4 3 8 4 12 4 s8 -1 12 -4" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">CONSISTENT</text><circle cx="170" cy="208" r="23" fill="url(#syr-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-9 0 l6 7 L10 -8" stroke="#FFFFFF" stroke-width="4" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">STERILE</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-cob" href="https://square.link/u/ytQ3dqvF" target="_blank" rel="noopener">Syringes — $110</a>
+                </div>
             </div>
             
-            <div class="card accent-slate">
-                <div class="icon-box"><i class="fa-solid fa-pump-medical" style="color:var(--slate)"></i></div>
+            <div class="card accent-slate neo sup">
                 <div class="card-title">Alcohol Pads</div>
-                <p class="card-desc">These professional-grade alcohol prep pads are used for thorough and rapid site sterilization. Proper surface preparation is mandatory for maintaining the cleanest possible research protocols.</p>
-                <div class="btn-container"><a class="price-bubble" href="https://square.link/u/gxlrmvzV" target="_blank" rel="noopener">$25</a></div>
+                <div class="punch">The Clean Start</div>
+                <p class="card-desc">Professional-grade alcohol prep pads for <mark>thorough and rapid site sterilization</mark>. Proper surface preparation is mandatory for maintaining the cleanest possible research protocols.</p>
+                <div class="viz-stage" role="img" aria-label="Alcohol pads medallion with rapid, clean, and sterile satellites">
+<svg viewBox="34 2 272 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="pad-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#8FC6FF"/><stop offset="0.55" stop-color="#0070D0"/><stop offset="1" stop-color="#005AA8"/></radialGradient><radialGradient id="pad-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="pad-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="pad-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#pad-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.0)"><rect x="-17" y="-17" width="34" height="34" rx="7" fill="none" stroke="#FFFFFF" stroke-width="3.5"/><path d="M0 -11 L2.3 -2.7 L11 0 L2.3 2.7 L0 11 L-2.3 2.7 L-11 0 L-2.3 -2.7 Z" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#pad-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M3 -13 L-9 3 h6 L-4 13 L10 -4 H3 Z" fill="#9A3412"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">RAPID</text><circle cx="260" cy="46" r="27" fill="url(#pad-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M0 -11 L2.3 -2.7 L11 0 L2.3 2.7 L0 11 L-2.3 2.7 L-11 0 L-2.3 -2.7 Z" fill="#FFFFFF"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">CLEAN</text><circle cx="170" cy="208" r="23" fill="url(#pad-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-9 0 l6 7 L10 -8" stroke="#FFFFFF" stroke-width="4" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.06em" fill="#475569">STERILE</text></svg>
+                </div>
+                <div class="btn-col">
+                    <a class="metal-btn metal-cob" href="https://square.link/u/gxlrmvzV" target="_blank" rel="noopener">Alcohol Pads — $25</a>
+                </div>
             </div>
         </div>
     </div>

@@ -58,7 +58,7 @@
         .hero h1 span{background:linear-gradient(90deg,#0584B0 0%,#07876B 28%,#7C22CE 62%,#D9500E 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         html.dark .hero h1 span{background:linear-gradient(90deg,var(--cyan) 0%,var(--emerald) 28%,var(--violet) 62%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .hero p{font-size:1.1rem;color:var(--t2)}
-        .grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap:wrap;justify-content:center;gap:20px}.grid .card{flex:0 1 300px;max-width:340px}
+        .grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;justify-items:center}.grid .card{width:100%;max-width:340px}@media (max-width:1024px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
         .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:var(--sh);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;text-decoration:none;color:var(--t1)}
         .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .3s}
         .card:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}

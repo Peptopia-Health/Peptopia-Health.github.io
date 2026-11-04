@@ -252,12 +252,78 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🏺 Tuscarora Arboretum</span><a class="open-ico" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The artifact portal — Bottles, Marbles, China — with the ✒️ Author button (57) for new finds.</p></div>
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🛍️ Peptopia Orders</span><a class="open-ico" href="https://x-peps.com/orders/" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The store orders page.</p></div>
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">📦 Shipment Tracking</span><a class="open-ico" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Every tracked package, swept morning and evening.</p></div>
+    <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🛡️ Customer Vetting</span><a class="open-ico" href="#vetting" aria-label="Open">↗</a></div><p>Check any customer <b>before</b> work begins — <b>2 BANNED · 2 CAUTION</b> on file.<br>Lookup + flag list in the Vetting section below.</p></div>
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🌿 Kratom Vendor Reviews</span><a class="open-ico" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The reviews hub — every vendor guide in one place.</p></div>
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🏥 Corrections Nursing Portal</span><a class="open-ico" href="https://x-peps.com/Corrections/" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The master portal for corrections nursing.</p></div>
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🎧 Muse Audio — Drive</span><a class="open-ico" href="https://drive.google.com/drive/folders/1qVS64dNtlWOLCO0l5KKhRyxzedt0cpV9" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Every audio brief Muse sends, archived by topic.</p></div>
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">✨ Gemini</span><a class="open-ico" href="https://gemini.google.com/app" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Muse reads chats from share links.</p></div>
     <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">📓 NotebookLM</span><a class="open-ico" href="https://notebooklm.google.com" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Share a notebook link so Muse will read it.</p></div>
   </div>
+
+  <h2 id="vetting">🛡️ Customer Vetting</h2>
+  <p class="sub">Check <b>before</b> any unpaid work — no assembly, guides, or labels for flagged customers. Snapshot: November 4, 2026 · 1,511 customers on file · the full database lives in Drive.</p>
+  <style>
+  .vet-box{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--sh);padding:18px;margin:0 0 18px}
+  .vet-row{display:flex;gap:10px;flex-wrap:wrap}
+  .vet-row input{flex:1;min-width:220px;font-family:var(--font-body);font-size:1rem;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card-sub);color:var(--t1)}
+  .vet-btn{font-family:var(--font-head);font-weight:800;letter-spacing:.04em;color:#fff;background:linear-gradient(180deg,#3B82F6,#2563EB 55%,#1D4ED8);border:1px solid #1E40AF;border-radius:999px;padding:12px 22px;cursor:pointer;box-shadow:0 3px 0 #1E3A8A,0 6px 14px rgba(37,99,235,.35),inset 0 1px 0 rgba(255,255,255,.45)}
+  .vet-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #1E3A8A,0 3px 8px rgba(37,99,235,.3),inset 0 1px 0 rgba(255,255,255,.45)}
+  .vet-result{margin-top:14px;border-radius:12px;padding:14px 16px;display:none}
+  .vet-result.show{display:block}
+  .vet-banned{background:#FEF2F2;border:1px solid #FECACA;color:#7F1D1D}
+  html.dark .vet-banned{background:#450A0A;border-color:#7F1D1D;color:#FECACA}
+  .vet-caution{background:#FFFBEB;border:1px solid #FDE68A;color:#78350F}
+  html.dark .vet-caution{background:#451A03;border-color:#92400E;color:#FDE68A}
+  .vet-clear{background:#F0FDF4;border:1px solid #BBF7D0;color:#14532D}
+  html.dark .vet-clear{background:#052E16;border-color:#166534;color:#BBF7D0}
+  .vet-chip{display:inline-block;font-family:var(--font-head);font-weight:800;font-size:.72rem;letter-spacing:.08em;border-radius:999px;padding:3px 10px;color:#fff;vertical-align:2px}
+  .chip-b{background:#DC2626}.chip-c{background:#D97706}
+  .vet-item{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:0 0 10px;background:var(--card-sub)}
+  .vet-item h4{margin:0 0 4px;font-family:var(--font-head);font-size:1rem}
+  .vet-item p{margin:2px 0;color:var(--t2);font-size:.92rem}
+  .vet-note{color:var(--t2);font-size:.92rem}
+  .vet-note a{color:var(--theme-dark);font-weight:700}
+  </style>
+  <div class="vet-box">
+    <div class="vet-row">
+      <input id="vetInput" type="text" placeholder="Type a customer name — e.g. Bates, Cervantes, Schneider…" aria-label="Customer name to check">
+      <button class="vet-btn" type="button" onclick="vetCheck()">CHECK</button>
+    </div>
+    <div id="vetResult" class="vet-result" role="status"></div>
+    <h3 style="font-family:var(--font-head);margin:20px 0 10px">Flagged customers</h3>
+    <div id="vetList"></div>
+    <p class="vet-note"><b>Managing flags:</b> tell Muse in chat — “flag X as CAUTION”, “ban Y”, “clear Z” — and the Customer Vetting database (local CSV + <a href="https://drive.google.com/file/d/1yZG8vhyxwEY7YSOGIUvpi6FCmK3ARPDm/view" target="_blank" rel="noopener">Drive copy</a>) and this snapshot are updated the same turn. <b>BANNED</b> = no sales at all (mirrors the do-not-sell list checked at fulfillment). <b>CAUTION</b> = payment first, before any work. A name with no flag still gets the standard new-customer checks.</p>
+  </div>
+  <script>
+  var VET_FLAGS=[
+   {name:"Kristina Bates",aka:["kristy","kristy bates","bates"],flag:"BANNED",since:"Nov 4, 2026",where:"Dunedin, FL",reason:"$418.70 chargeback on delivered order #1004 (GoDaddy dispute 81e667d0). Admitted Oct 22 it was her bank's error and promised to repay — never did; her Nov 4 claim of repaying via the website was verified false in Square the same day. Damage included GoDaddy terminating processing + a global ban, a Cash App ban, and the site down a week. No sales at all."},
+   {name:"Deborah Osborne",aka:["deborah","debbie","osborne"],flag:"BANNED",since:"Oct 23, 2026",where:"Jupiter, FL",reason:"Reported a full 10-vial kit ineffective only after finishing it; took a goodwill replacement (2 free vials). On the do-not-sell list — no further sales to this name or address."},
+   {name:"Christian Cervantes",aka:["christian","cervantes"],flag:"CAUTION",since:"Nov 3, 2026",where:"Scottsdale, AZ",reason:"Ghosted a $395 order after assembly, a 25% member discount, a product guide, and a purchased shipping label — all unpaid. Label refund approved Nov 4. Payment first before any future work."},
+   {name:"Tammy Schneider",aka:["tammy","schneider"],flag:"CAUTION",since:"Nov 3, 2026 · confirmed Nov 4",where:"Referrer",reason:"Referred Kristina Bates (now BANNED). Says she has referred 11 people in total and also introduced Shirli Pollard. Vet anyone she refers before any unpaid work."}
+  ];
+  function vetNorm(x){return (x||"").toLowerCase().replace(/[^a-z\s]/g," ").replace(/\s+/g," ").trim();}
+  function vetRender(){
+    var el=document.getElementById("vetList"); if(!el) return;
+    el.innerHTML=VET_FLAGS.map(function(p){
+      return '<div class="vet-item"><h4>'+p.name+' <span class="vet-chip '+(p.flag==="BANNED"?"chip-b":"chip-c")+'">'+p.flag+'</span></h4><p><b>'+p.where+'</b> · flagged '+p.since+'</p><p>'+p.reason+'</p></div>';
+    }).join("");
+  }
+  function vetCheck(){
+    var q=vetNorm(document.getElementById("vetInput").value);
+    var box=document.getElementById("vetResult");
+    if(q.length<3){box.className="vet-result show vet-caution";box.innerHTML="<b>Type at least 3 letters</b> of the customer's name.";return;}
+    var hit=null;
+    for(var i=0;i<VET_FLAGS.length;i++){var p=VET_FLAGS[i];
+      if(vetNorm(p.name).indexOf(q)>-1||q.indexOf(vetNorm(p.name))>-1){hit=p;break;}
+      for(var j=0;j<p.aka.length;j++){if(p.aka[j]===q||vetNorm(p.name).split(" ").indexOf(q)>-1){hit=p;break;}}
+      if(hit)break;}
+    if(hit){box.className="vet-result show "+(hit.flag==="BANNED"?"vet-banned":"vet-caution");
+      box.innerHTML='<span class="vet-chip '+(hit.flag==="BANNED"?"chip-b":"chip-c")+'">'+hit.flag+'</span> <b>'+hit.name+'</b> — '+hit.where+' · flagged '+hit.since+'<br>'+hit.reason;}
+    else{box.className="vet-result show vet-clear";
+      box.innerHTML="<b>No flag on file</b> for “"+document.getElementById("vetInput").value.replace(/</g,"")+"”. Standard checks still apply — for a brand-new customer, payment first is the safe default.";}
+  }
+  document.addEventListener("DOMContentLoaded",function(){vetRender();var inp=document.getElementById("vetInput");if(inp){inp.addEventListener("keydown",function(e){if(e.key==="Enter"){vetCheck();}});}});
+  </script>
 
   <h2>Imported Gemini Chats</h2>
   <p class="sub">Each card: what it is, what it's worth, what we do with it. “Open chat” goes to the private Gemini share page.</p>

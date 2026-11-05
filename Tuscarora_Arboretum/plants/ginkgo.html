@@ -166,6 +166,38 @@ html.dark .callout{background:rgba(120,53,15,.25)}
 .secmenu a:hover{background:rgba(242,183,5,.18)}
 @media print{.jumpnav,.secmenu{display:none!important}}
 </style>
+<style id="ginkgo-responsive-print-standard">
+html,body{overflow-x:clip}
+@media(max-width:640px){
+  .grid.g2{grid-template-columns:1fr}
+  table{font-size:.84rem}
+  .idcard td.k{white-space:normal}
+}
+html:not(.dark) .person .prole{color:#9A3412}
+html.dark section a{color:#FBBF24}
+html.dark footer a{color:#FBBF24}
+html.dark section a:visited{color:#F59E0B}
+html.dark .tl-when{color:#FBBF24}
+html.dark .chain .cnode small{color:#CBD5E1}
+html.dark p[style*="color:#78716C"]{color:#D6D3D1!important}
+html.dark #sec-meet svg text{fill:#FCD34D}
+html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
+@media print{
+  @page{size:Letter;margin:.5in}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html{font-size:10pt}
+  html.dark{--cream:#FFFBEB;--paper:#FFFDF5;--ink:#1C1917;--ink2:#57534E;--card:#FFFFFF;--line:#FDE68A;--bark:#44403C}
+  body{background:#fff}
+  section{break-inside:auto}
+  .person,.callout,.qa,.photo,.stat,table,.tl-row,.chain,.bigplay,figure{break-inside:avoid}
+  tr{break-inside:avoid}
+  thead{display:table-header-group}
+  h2,h3,h4{break-after:avoid}
+  img:not(.pthumb){max-width:100%!important;max-height:3.2in!important;width:auto!important;height:auto!important}
+  svg{max-width:100%!important;height:auto!important;max-height:4.4in!important}
+  .jumpnav,.tgl,.clip,.narrate,.secmenu,#mappop,#lightbox,audio,button{display:none!important}
+}
+</style>
 </head>
 <body>
 <div class="banner"><a href="https://x-peps.com/Tuscarora_Arboretum/">Tuscarora Arboretum</a> / <a href="https://x-peps.com/Tuscarora_Arboretum/artifacts/">Artifacts</a> / <a href="https://x-peps.com/Tuscarora_Arboretum/plants/">Plants</a> / Ginkgo</div>

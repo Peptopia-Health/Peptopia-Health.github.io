@@ -18,7 +18,7 @@ h1{font-size:1.66rem;font-weight:800;color:#EA580C;line-height:1.12}
 .sci{font-style:italic;color:#1B7A43;font-weight:700;font-size:.98rem}
 .sub{margin-top:5px;font-size:.92rem;line-height:1.45}
 .swatches{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
-.sw{flex:1;min-width:82px;border-radius:10px;padding:5px 6px;text-align:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:.66rem;border:1.5px solid rgba(0,0,0,.25);line-height:1.25}
+.sw{flex:1;min-width:82px;border-radius:10px;padding:5px 6px;text-align:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:.66rem;border:1.5px solid rgba(0,0,0,.25);line-height:1.25;color:#263238}
 .taxo{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .taxo span{background:#14532D;color:#fff;border-radius:8px;padding:5px 9px;font-size:.74rem;font-weight:700;font-family:'Outfit',sans-serif}
 .taxo span.alt{background:#fff;color:#14532D;border:2px solid #14532D;padding:3px 9px}
@@ -47,7 +47,7 @@ ol.steps{margin:2px 0 0 18px;font-size:.88rem;line-height:1.5}
 .figs figcaption b{font-family:'Outfit',sans-serif;color:#1B7A43}
 .foot{text-align:center;color:#8A7D6B;font-size:.72rem;margin-top:12px;line-height:1.5}
 .foot a{color:#1B7A43;font-weight:700}
-b.hl{background:#FEF08A;padding:0 3px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+b.hl{background:#FEF08A;color:#263238;padding:0 3px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 html.dark body{background:#0E1A12;color:#E4F0E7}
 html.dark .card,html.dark .figs figure{background:#152419;border-color:#2C4A38}
 html.dark td{border-bottom-color:#24402E}
@@ -58,8 +58,39 @@ html.dark .taxo span.alt{background:#152419;color:#BEE3C8}
 html.dark .tip{background:#2B1A24}
 html.dark .warn{background:#2B1618}
 html.dark .foot{color:#9DB4A4}
+html.dark .hero{background:linear-gradient(120deg,#14231A,#182A1E 55%,#2B1A24);border-color:#2C4A38}
+html.dark .sci{color:#7CC79B}
+html.dark .kicker{color:#F0A0BC}
+html.dark .card h2{color:#7CC79B}
+html.dark .figs figcaption b{color:#7CC79B}
+html.dark td.k{color:#8FD3A6}
+html.dark .leafcap{color:#BEE3C8}
+html.dark .foot a{color:#8FD3A6}
 @page{size:Letter;margin:10mm}
-@media print{body{background:#fff;padding:0}}
+@media print{
+html{font-size:9.5pt}
+body{background:#fff;padding:0;color:#263238}
+.toprow{display:none !important}
+.hero,.card,.figs figure,.tip,.warn{break-inside:avoid}
+h2{break-after:avoid}
+table,tr{break-inside:avoid}
+.figs img{height:auto !important;max-height:52mm !important}
+.hero .art img{height:auto !important;max-height:48mm !important}
+html.dark body{background:#fff !important;color:#263238 !important}
+html.dark .card,html.dark .figs figure{background:#fff !important}
+html.dark .hero{background:linear-gradient(120deg,#DCF5E3,#FDF9F3 55%,#FDE7F1) !important}
+html.dark td.k{background:#F0FAF3 !important;color:#1B7A43 !important}
+html.dark .chip{background:#fff !important;color:#14532D !important}
+html.dark .taxo span.alt{background:#fff !important;color:#14532D !important}
+html.dark .tip{background:#FDF2F8 !important}
+html.dark .warn{background:#FEF2F2 !important}
+html.dark .card h2,html.dark .sci,html.dark .figs figcaption b{color:#1B7A43 !important}
+html.dark .kicker{color:#B03060 !important}
+html.dark .leafcap{color:#14532D !important}
+html.dark .meter label{color:#374151 !important}
+html.dark .foot{color:#8A7D6B !important}
+html.dark .foot a{color:#1B7A43 !important}
+}
 </style></head><body>
 <div style="background:#FFF7ED;border-bottom:1px solid #F1E3D3;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:7px 16px;text-align:left"><a href="../index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Tuscarora Arboretum</a> <span style="color:#A8A29E">/</span> <a href="../artifacts/index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Artifacts</a> <span style="color:#A8A29E">/</span> <a href="index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Plants</a> <span style="color:#A8A29E">/</span> <span style="color:#78716C">Coral Cactus</span></div>
 <div class="page">

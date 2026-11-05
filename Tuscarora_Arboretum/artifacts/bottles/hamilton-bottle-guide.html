@@ -130,6 +130,29 @@
   @page{size:Letter; margin:0.6in;}
   @media print{.gd-tools{display:none!important} p{orphans:3; widows:3;}}
 </style>
+<style id="hamilton-bottle-responsive-print-standard">
+/* Standing responsive + print standard — must stay LAST in <head> */
+html,body{overflow-x:clip}
+img,svg,video{max-width:100%;height:auto}
+table{max-width:100%}
+@media (max-width:640px){
+  body{overflow-x:clip}
+  .grid,.cards,.card-grid,.stat-grid,.statgrid,.mech-grid-3,.mechanism-grid-3,.storage-grid{grid-template-columns:1fr}
+  .tagline,.band-sub{white-space:normal}
+  table{font-size:12px}
+  th,td{padding:8px 9px}
+}
+@media print{
+  @page{size:Letter;margin:0.6in}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff}
+  .peptopia-nav,.peptopia-ftr-icons,.gd-tools,#topBtn{display:none!important}
+  .card,.statcard,.info-box,.mech-card,.stat-card,.step-item,.callout,figure,blockquote,pre{break-inside:avoid}
+  tr{break-inside:avoid}
+  h1,h2,h3{break-after:avoid}
+  p,li{orphans:3;widows:3}
+}
+</style>
 </head>
 <body> <div style="font-family:'DM Sans',sans-serif;font-size:.85rem;padding:12px 20px;background:#FFF7ED;border-bottom:1px solid #F1E3D3"><a href="../../index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Tuscarora Arboretum</a> &nbsp;/&nbsp; <a href="../index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Artifacts</a> &nbsp;/&nbsp; <a href="index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Bottles</a> &nbsp;/&nbsp; The 1937 Hamilton Bottle — Study Guide</div> 
 <div class="gd-tools"><button type="button" id="gd-themebtn" title="Switch light / dark theme">🌙 Dark</button><button type="button" onclick="window.print()" title="Print or save as PDF">🖨 Print</button></div>
@@ -440,7 +463,7 @@ setStatus('err','That didn\u2019t go through. Please try once more, or email the
 })();
 </script>
 <script>
-(function(){var r=document.documentElement,b=document.getElementById('gd-themebtn');if(!b)return;function paint(){b.textContent=r.classList.contains('dark')?'☀️ Light':'🌙 Dark';}try{if(localStorage.getItem('gd-theme')==='dark'){r.classList.add('dark');}}catch(e){}b.addEventListener('click',function(){r.classList.toggle('dark');try{localStorage.setItem('gd-theme',r.classList.contains('dark')?'dark':'light');}catch(e){}paint();});paint();})();
+(function(){var r=document.documentElement,b=document.getElementById('gd-themebtn');if(!b)return;function paint(){b.textContent=r.classList.contains('dark')?'☀️ Light':'🌙 Dark';}b.addEventListener('click',function(){r.classList.toggle('dark');paint();});paint();})();
 </script>
 </body>
 </html>

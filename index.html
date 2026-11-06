@@ -21,6 +21,7 @@
             --t1:#0F172A;--t2:#475569;--t3:#94A3B8;
             --purple:#9000F5;--pink:#FF85E1;--cyan:#06B6D4;--orange:#F97316;--violet:#A855F7;--emerald:#10B981;--amber:#F59E0B;--red:#DC2626;
             --neon-border: #00FFCC;
+            --pal-energy:#FFFFFF;--pal-focus:#F06000;--pal-mood:#10C000;--pal-calm:#F0F000;--pal-pain:#E01020;--pal-sleep:#0A0A0A;--pal-cobalt:#0070D0;--pal-purple:#6C4FE0;--pal-purple-lt:#7759ED;
         }
         html.dark{--bg:#0B1120;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--sh:none;--sh-h:0 0 0 0 transparent;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B}
         
@@ -83,6 +84,8 @@
         .b-emerald{background:linear-gradient(135deg,#059669,var(--emerald))}
         .b-amber{background:linear-gradient(135deg,#D97706,var(--amber))}
         .b-red{background:linear-gradient(135deg,#B91C1C,var(--red))}
+        .c-bio::before{background:linear-gradient(90deg,var(--pal-purple),rgba(108,79,224,.3))}.c-bio .ico{background:rgba(108,79,224,.12);color:var(--pal-purple)}
+        .b-bio{background:linear-gradient(135deg,var(--pal-purple),var(--pal-purple-lt))}
         .card:hover .btn{filter:brightness(1.1)}
         @media (max-width: 768px) {
             .grid { grid-template-columns: 1fr; padding: 0 16px 24px; }
@@ -311,14 +314,14 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             <p>Safe, educated, and effective research.</p>
             <span class="btn b-cyan"><i class="fa-solid fa-file-lines"></i> Read the Guides</span>
         </a>
-        <a href="https://x-peps.com/X-Peps/biohacking-news.html" class="card c-red">
+        <a href="https://x-peps.com/X-Peps/biohacking-news.html" class="card c-bio">
             <div class="ico"><i class="fa-solid fa-newspaper"></i></div>
             <h2>Biohacking News</h2>
             <p>Weekly smart-drug news: GLP-1 breakthroughs, peptide research, and the studies that matter.</p>
-            <span class="btn b-red"><i class="fa-solid fa-bolt"></i> Read the News</span>
+            <span class="btn b-bio"><i class="fa-solid fa-bolt"></i> Read the News</span>
         </a>
         <a href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" class="card c-pink">
-            <div class="ico"><i class="fa-solid fa-star"></i></div>
+            <div class="ico"><svg viewBox="0 0 24 24" width="28" height="28" fill="#43A047" stroke="#F0F000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-6 16-16 16Z"/><path d="M4 20c3-6 8-11 13-13" fill="none"/></svg></div>
             <h2>Kratom Reviews</h2>
             <p>Independent, in-depth reviews of kratom vendors. Lab analysis, strain guides, and honest verdicts.</p>
             <span class="btn b-pink"><i class="fa-solid fa-magnifying-glass"></i> Read Reviews</span>

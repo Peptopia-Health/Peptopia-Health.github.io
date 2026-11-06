@@ -59,8 +59,8 @@
         .hero h1 span{background:linear-gradient(90deg,#0584B0 0%,#07876B 28%,#7C22CE 62%,#D9500E 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         html.dark .hero h1 span{background:linear-gradient(90deg,var(--cyan) 0%,var(--emerald) 28%,var(--violet) 62%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .hero p{font-size:1.1rem;color:var(--t2)}
-        .grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;justify-items:center}.grid .card{width:100%;max-width:340px}@media (max-width:1024px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-        .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:var(--sh);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;text-decoration:none;color:var(--t1)}
+        .grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;justify-items:center}.grid .card{width:100%;max-width:340px}@media (max-width:1024px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 18px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:var(--sh);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;text-decoration:none;color:var(--t1)}
         .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .3s}
         .card:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
         .card:hover::before{height:4px}
@@ -72,8 +72,8 @@
         .c-emerald::before{background:linear-gradient(90deg,var(--emerald),rgba(16,185,129,.3))}.c-emerald .ico{background:rgba(16,185,129,.1);color:var(--emerald)}
         .c-amber::before{background:linear-gradient(90deg,var(--amber),rgba(245,158,11,.3))}.c-amber .ico{background:rgba(245,158,11,.1);color:var(--amber)}
         .c-red::before{background:linear-gradient(90deg,var(--red),rgba(220,38,38,.3))}.c-red .ico{background:rgba(220,38,38,.1);color:var(--red)}
-        .card h2{font-family:'Outfit',sans-serif;font-size:1.3rem;margin-bottom:8px}
-        .card p{color:var(--t2);font-size:.9rem;margin-bottom:12px;flex-grow:1}
+        .card h2{font-family:'Outfit',sans-serif;font-size:1.3rem;margin:0 0 6px}
+        .card p{color:var(--t2);font-size:.9rem;margin:0 0 12px;line-height:1.38;flex-grow:1}
         .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 24px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:100%;transition:filter .3s}
         .b-cyan{background:linear-gradient(135deg,#0891B2,var(--cyan))}
         .b-orange{background:linear-gradient(135deg,#EA580C,var(--orange))}
@@ -87,6 +87,30 @@
         .c-bio::before{background:linear-gradient(90deg,var(--pal-purple),rgba(108,79,224,.3))}.c-bio .ico{background:rgba(108,79,224,.12);color:var(--pal-purple)}
         .b-bio{background:linear-gradient(135deg,var(--pal-purple),var(--pal-purple-lt))}
         .card:hover .btn{filter:brightness(1.1)}
+        /* Round 2: circular neon push-button card icons (black core, glowing ring, raised gloss) */
+        .card .ico{width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#2A2F3A,#0B0D12 62%,#05070A);font-size:3.3rem;margin:0 0 10px;position:relative}
+        .card .ico::after{content:'';position:absolute;top:7%;left:12%;width:55%;height:38%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);opacity:.5;pointer-events:none}
+        .card .ico i{transform:scale(1.3)}
+        .card:active .ico{transform:translateY(2px)}
+        .c-emerald .ico{border:3px solid #34D399;color:#34D399;box-shadow:0 0 18px #34D399CC,0 0 44px #34D39955,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-emerald .ico i{filter:drop-shadow(0 0 10px #34D399) drop-shadow(0 0 24px #34D39988)}
+        .c-emerald:active .ico{box-shadow:0 0 18px #34D399CC,0 0 44px #34D39955,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+        .c-cyan .ico{border:3px solid #22D3EE;color:#22D3EE;box-shadow:0 0 18px #22D3EECC,0 0 44px #22D3EE55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-cyan .ico i{filter:drop-shadow(0 0 10px #22D3EE) drop-shadow(0 0 24px #22D3EE88)}
+        .c-cyan:active .ico{box-shadow:0 0 18px #22D3EECC,0 0 44px #22D3EE55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+        .c-bio .ico{border:3px solid #8B6FF0;color:#8B6FF0;box-shadow:0 0 18px #8B6FF0CC,0 0 44px #8B6FF055,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-bio .ico i{filter:drop-shadow(0 0 10px #8B6FF0) drop-shadow(0 0 24px #8B6FF088)}
+        .c-bio:active .ico{box-shadow:0 0 18px #8B6FF0CC,0 0 44px #8B6FF055,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+        .c-pink .ico{border:3px solid #F472B6;box-shadow:0 0 18px #F472B6CC,0 0 44px #F472B655,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-pink .ico svg{filter:drop-shadow(0 0 12px rgba(16,192,0,.55))}
+        .c-pink:active .ico{box-shadow:0 0 18px #F472B6CC,0 0 44px #F472B655,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+        .c-purple .ico{border:3px solid #B347FF;color:#B347FF;box-shadow:0 0 18px #B347FFCC,0 0 44px #B347FF55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-purple .ico i{filter:drop-shadow(0 0 10px #B347FF) drop-shadow(0 0 24px #B347FF88)}
+        .c-purple:active .ico{box-shadow:0 0 18px #B347FFCC,0 0 44px #B347FF55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+        .c-orange .ico{border:3px solid #FB923C;color:#FB923C;box-shadow:0 0 18px #FB923CCC,0 0 44px #FB923C55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-orange .ico i{filter:drop-shadow(0 0 10px #FB923C) drop-shadow(0 0 24px #FB923C88)}
+        .c-orange .ico i.fa-handcuffs{transform:scale(1.15)}
+        .c-orange:active .ico{box-shadow:0 0 18px #FB923CCC,0 0 44px #FB923C55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
         @media (max-width: 768px) {
             .grid { grid-template-columns: 1fr; padding: 0 16px 24px; }
             .hdr { flex-direction: column; gap: 12px; padding: 16px; }
@@ -305,37 +329,37 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
         <a href="https://peptopia-health.github.io/X-Peps/orders/" class="card c-emerald">
             <div class="ico"><i class="fa-solid fa-cart-shopping"></i></div>
             <h2>Healthcare Shop</h2>
-            <p>Order premium research products: peptides, nootropics, and herbal remedies.</p>
+            <p>Order <strong>Premium Research Products</strong>: Peptides, Nootropics, And Herbal Remedies.</p>
             <span class="btn b-emerald"><i class="fa-solid fa-bag-shopping"></i> Go to Store</span>
         </a>
         <a href="https://peptopia-health.github.io/X-Peps/" class="card c-cyan">
             <div class="ico"><i class="fa-solid fa-book-open"></i></div>
             <h2>Education</h2>
-            <p>Safe, educated, and effective research.</p>
+            <p><strong>Safe, Educated, And Effective</strong> Research For Every Compound You Study.</p>
             <span class="btn b-cyan"><i class="fa-solid fa-file-lines"></i> Read the Guides</span>
         </a>
         <a href="https://x-peps.com/X-Peps/biohacking-news.html" class="card c-bio">
             <div class="ico"><i class="fa-solid fa-newspaper"></i></div>
             <h2>Biohacking News</h2>
-            <p>Weekly smart-drug news: GLP-1 breakthroughs, peptide research, and the studies that matter.</p>
+            <p>Catch Weekly <strong>GLP-1 Breakthroughs</strong>, Peptide Research, And The Studies That Matter Most.</p>
             <span class="btn b-bio"><i class="fa-solid fa-bolt"></i> Read the News</span>
         </a>
         <a href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" class="card c-pink">
-            <div class="ico"><svg viewBox="0 0 24 24" width="28" height="28" fill="#43A047" stroke="#F0F000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-6 16-16 16Z"/><path d="M4 20c3-6 8-11 13-13" fill="none"/></svg></div>
+            <div class="ico"><svg viewBox="0 0 24 24" width="66" height="66" fill="#43A047" stroke="#F0F000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-6 16-16 16Z"/><path d="M4 20c3-6 8-11 13-13" fill="none"/></svg></div>
             <h2>Kratom Reviews</h2>
-            <p>Independent, in-depth reviews of kratom vendors. Lab analysis, strain guides, and honest verdicts.</p>
+            <p><strong>Independent Reviews</strong> - Honest Verdicts.</p>
             <span class="btn b-pink"><i class="fa-solid fa-magnifying-glass"></i> Read Reviews</span>
         </a>
         <a href="https://peptopia.github.io/NCLEX/" class="card c-purple">
             <div class="ico"><i class="fa-solid fa-user-nurse"></i></div>
             <h2>Nursing Education</h2>
-            <p>Clinical resources to educate and empower nurses.</p>
+            <p><strong>Clinical Resources</strong> That Educate And Empower Nurses On Every Shift.</p>
             <span class="btn b-purple"><i class="fa-solid fa-laptop-medical"></i> Courseware</span>
         </a>
         <a href="https://peptopia-health.github.io/Corrections/" class="card c-orange">
             <div class="ico"><i class="fa-solid fa-handcuffs"></i></div>
             <h2>Corrections Nursing</h2>
-            <p>Clinical procedures, screening protocols, and nursing education for Corrections.</p>
+            <p><strong>Clinical Procedures</strong>, Screening Protocols, And Nursing Education For Corrections.</p>
             <span class="btn b-orange"><i class="fa-solid fa-clipboard-list"></i> Access Portal</span>
         </a>
     </main>

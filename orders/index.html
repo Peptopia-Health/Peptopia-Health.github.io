@@ -901,16 +901,10 @@ html.dark .og-cancel{color:#B6C2D4;border-color:#2A3B55}
 .og-thanks{display:none;text-align:center}
 .og-thanks .og-check{font-size:38px;line-height:1}
 .og-thanks p{font-size:15.5px;margin:10px 0 18px}
-.og-help{font-size:13px;text-align:center;margin:12px 0 0;color:#5B6B82}
-html.dark .og-help{color:#93A5C0}
-.og-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#E8F7EE;color:#14532D;border-bottom:2px solid #22C55E;padding:12px 48px 12px 16px;font-size:15px;line-height:1.45;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.18)}
-.og-banner.show{display:block}
-.og-banner button{position:absolute;top:6px;right:10px;background:none;border:none;font-size:22px;line-height:1;color:#14532D;cursor:pointer;padding:4px 8px}
 </style>
-<div id="ogBanner" class="og-banner" role="status">&#9989; <b>Request received &mdash; thank you!</b> Every order is reviewed personally. If your order is accepted, we&rsquo;ll email your payment link shortly.<button type="button" id="ogBannerClose" aria-label="Dismiss">&times;</button></div>
 <div id="orderGateModal" class="og-overlay" role="dialog" aria-modal="true" aria-labelledby="ogTitle">
   <div class="og-card">
-    <form id="ogForm" action="https://formsubmit.co/peptopia@x-peps.com" method="POST" novalidate>
+    <form id="ogForm" novalidate>
       <h3 id="ogTitle">Request your order</h3>
       <div class="og-prod" id="ogProduct"></div>
       <p class="og-price" id="ogPriceLine"></p>
@@ -919,20 +913,11 @@ html.dark .og-help{color:#93A5C0}
       <input id="ogName" name="name" type="text" autocomplete="name" required>
       <label for="ogEmail">Your email</label>
       <input id="ogEmail" name="email" type="email" autocomplete="email" required>
-      <input type="hidden" name="_subject" value="Peptopia Order Request">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://x-peps.com/orders/?requested=1">
-      <input type="hidden" name="_replyto" id="ogReplyToField">
-      <input type="hidden" name="product" id="ogProductField">
-      <input type="hidden" name="price" id="ogPriceField">
-      <input type="hidden" name="link_code" id="ogCodeField">
       <div class="og-err" id="ogError"></div>
       <div class="og-actions">
         <button type="button" class="og-cancel" id="ogCancel">Cancel</button>
         <button type="submit" class="og-submit" id="ogSubmit">Request order</button>
       </div>
-      <p class="og-help">Trouble sending? Reach us on WhatsApp at 1-304-620-2576.</p>
     </form>
     <div class="og-thanks" id="ogThanks">
       <div class="og-check">&#128230;</div>
@@ -951,9 +936,6 @@ html.dark .og-help{color:#93A5C0}
     cur={product:btn.getAttribute('data-og-product'),price:btn.getAttribute('data-og-price'),code:btn.getAttribute('data-og-code')};
     document.getElementById('ogProduct').textContent=cur.product;
     document.getElementById('ogPriceLine').textContent='$'+cur.price+' \u2014 Peptopia Health \u2014 Custom Order';
-    document.getElementById('ogProductField').value=cur.product;
-    document.getElementById('ogPriceField').value='$'+cur.price;
-    document.getElementById('ogCodeField').value=cur.code;
     form.style.display='block';thanks.style.display='none';err.style.display='none';
     modal.classList.add('open');
     setTimeout(function(){document.getElementById('ogName').focus();},50);
@@ -965,21 +947,28 @@ html.dark .og-help{color:#93A5C0}
   modal.addEventListener('click',function(e){if(e.target===modal)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
   form.addEventListener('submit',function(ev){
+    ev.preventDefault();
     var name=document.getElementById('ogName').value.trim(),
         email=document.getElementById('ogEmail').value.trim();
     if(name.length<2||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      ev.preventDefault();
       err.textContent='Please enter your name and a valid email address.';err.style.display='block';return;
     }
-    document.getElementById('ogReplyToField').value=email;
     var btn=document.getElementById('ogSubmit');btn.disabled=true;btn.textContent='Sending\u2026';
-  });
-  if(/[?&]requested=1(?:&|$)/.test(location.search)){
-    document.getElementById('ogBanner').classList.add('show');
-    if(history.replaceState)history.replaceState(null,'',location.pathname+location.hash);
-  }
-  document.getElementById('ogBannerClose').addEventListener('click',function(){
-    document.getElementById('ogBanner').classList.remove('show');
+    fetch('https://api.web3forms.com/submit',{method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:'c3378175-a412-4313-bf5b-12fae9f925f3',subject:'Peptopia Order Request',
+        from_name:'Peptopia Order Gate',name:name,email:email,product:cur.product,price:'$'+cur.price,link_code:cur.code,replyto:email})})
+    .then(function(r){if(!r.ok)throw new Error('send failed');return r.json();})
+    .then(function(j){if(j&&j.success===false)throw new Error('send failed');})
+    .then(function(){
+      document.getElementById('ogThanksEmail').textContent=email;
+      form.style.display='none';thanks.style.display='block';
+    })
+    .catch(function(){
+      err.textContent='Something went wrong sending your request. Please try again, or reach us on WhatsApp at 1-304-620-2576.';
+      err.style.display='block';
+    })
+    .finally(function(){btn.disabled=false;btn.textContent='Request order';});
   });
 })();
 </script>

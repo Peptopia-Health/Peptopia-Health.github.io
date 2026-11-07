@@ -14,6 +14,7 @@
   --t1:#0F172A; --t2:#475569; --t3:#64748B;
   --orange:#EA580C; --theme:#2563EB; --theme-dark:#1D4ED8;
   --font-head:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
+  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000; --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0; --pal-purple-lt:#7759ED;
 }
 html.dark{
   --bg:#020617; --card:#0F172A; --card-sub:#1E293B; --border:rgba(148,163,184,.18);
@@ -269,7 +270,7 @@ html.dark .pushbtn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#2
 <section class="catsec" id="cat-briefings">
   <h2 class="cat-title">🎧 Briefings &amp; Audio</h2>
   <div class="cmd-grid">
-<div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🎧 Briefing Player</span><a class="open-ico" href="https://x-peps.com/briefings/morning-briefing-player-11-07-26.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The animated briefing wheel — press David to play.<br>Latest: Morning Briefing, Saturday, November 7, 2026.</p></div>
+<div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🎧 Briefing Player</span><a class="open-ico" href="https://x-peps.com/briefings/evening-briefing-player-11-06-26.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The animated briefing wheel — press David to play.<br>Latest: Evening Briefing, Friday, November 6, 2026.</p></div>
 <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🎧 Muse Audio — Drive</span><a class="open-ico" href="https://drive.google.com/drive/folders/1qVS64dNtlWOLCO0l5KKhRyxzedt0cpV9" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Every audio brief Muse sends, archived by topic.</p></div>
   </div>
 <div class="cmd-group">Running on their own — no phrase needed</div>
@@ -677,8 +678,9 @@ html.dark .pushbtn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#2
   <h2 class="cat-title">✅ Boards &amp; Admin</h2>
 <h2>Action Board</h2>
   <p class="sub">Tap a task’s square to start it: you confirm once, then Muse runs it. Results come back in chat, in the audio brief, and here on this board. The board is refreshed every Monday, in priority order.</p>
+  <div style="margin:14px 0;padding:12px 16px;border:2px solid var(--pal-cobalt);border-radius:14px;background:var(--card);color:var(--t1)">🏁 <strong>Kratom guide conformance sweep — COMPLETE · Nov 7, 2026.</strong> All 8 vendor guides rebuilt on the WildCraft template and published; the Kratom Reviews page is verified with them.</div>
   <div class="card">
-    <label class="act"><input type="checkbox" data-k="a1"><span><strong>Build the Cagrilintide guide</strong> — Gemini failed 4×; it's a live store product. (Proposed)</span></label>
+    <label class="act"><input type="checkbox" data-k="a1" checked><span style="text-decoration:line-through;opacity:.65"><strong>Build the Cagrilintide guide</strong> — Gemini failed 4×; it's a live store product. (Proposed)</span> <span><strong>✅ COMPLETE — Nov 7, 2026</strong> (closed with the guide sweep, at David's direction)</span></label>
     <label class="act"><input type="checkbox" data-k="a7"><span><strong>Build the living manifest</strong> — regenerate backup status from live Drive, one source of truth. (Proposed)</span></label>
     <label class="act"><input type="checkbox" data-k="a2"><span><strong>Cross-check Gemini-era DTE strains</strong> against the live guide + purchase record. (Proposed)</span></label>
     <label class="act"><input type="checkbox" data-k="a4"><span><strong>Patch the Apps Script</strong> — dedupe check + exact match + run report. (Proposed)</span></label>

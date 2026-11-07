@@ -843,8 +843,8 @@ html.dark .hero p{color:var(--t2)}
 <script>
 /* Peptopia theme: light default, toggle persists via localStorage */
 var ppStore=(function(){try{if(window.self!==window.top)return null;var s=window.localStorage;s.setItem('__pp_t','1');s.removeItem('__pp_t');return s}catch(e){return null}})();
-function toggleTheme(){var d=document.documentElement.classList.toggle('dark');if(ppStore){try{ppStore.setItem('peptopia-theme',d?'dark':'light')}catch(e){}}return false}
-(function(){try{var t=ppStore&&ppStore.getItem('peptopia-theme');if(t==='dark')document.documentElement.classList.add('dark')}catch(e){}})();
+function toggleTheme(){document.documentElement.classList.toggle('dark');return false}
+
 </script>
 
 <script>
@@ -872,6 +872,166 @@ function toggleTheme(){var d=document.documentElement.classList.toggle('dark');i
 function tbdPop(name){document.getElementById('tbdName').textContent=name;var m=document.getElementById('tbdModal');m.style.display='flex';}
 function tbdClose(){document.getElementById('tbdModal').style.display='none';}
 document.getElementById('tbdModal').addEventListener('click',function(e){if(e.target===this)tbdClose();});
+</script>
+
+
+<style id="cart-v2-css">
+/* ===== Cart v2 (Nov 7, 2026) — staged, not yet published ===== */
+.og-addcart{font-family:Outfit,sans-serif;font-weight:700;font-size:13.5px;color:#0F172A;background:linear-gradient(180deg,#FFFFFF,#E2E8F0);border:2px solid #64748B;border-radius:999px;padding:7px 14px;cursor:pointer;box-shadow:0 2px 0 #64748B;margin-top:8px}
+.og-addcart:active{transform:translateY(2px);box-shadow:0 0 0 #64748B}
+.og-addcart.added{background:linear-gradient(180deg,#DCFCE7,#BBF7D0);border-color:#15803D;box-shadow:0 2px 0 #15803D}
+html.dark .og-addcart{color:#F1F5F9;background:linear-gradient(180deg,#334155,#1E293B);border-color:#94A3B8;box-shadow:0 2px 0 #94A3B8}
+html.dark .og-addcart.added{background:linear-gradient(180deg,#14532D,#166534);border-color:#4ADE80;box-shadow:0 2px 0 #4ADE80}
+#cartBar{position:fixed;left:50%;transform:translateX(-50%) translateY(140%);bottom:16px;z-index:990;background:#0F172A;color:#F8FAFC;border:2px solid #6C4FE0;border-radius:999px;padding:10px 12px 10px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 14px 40px rgba(15,10,40,.45);font-family:'DM Sans',sans-serif;transition:transform .25s ease;max-width:94vw}
+#cartBar.show{transform:translateX(-50%) translateY(0)}
+#cartBar .cb-count{font-weight:700;font-size:15px;white-space:nowrap}
+#cartBar .cb-total{font-family:Outfit,sans-serif;font-weight:800;font-size:17px;white-space:nowrap}
+#cartCheckout{font-family:Outfit,sans-serif;font-weight:800;font-size:15px;color:#3B0764;background:linear-gradient(180deg,#EDE9FE,#C4B5FD);border:2px solid #5B21B6;border-radius:999px;padding:9px 20px;cursor:pointer;box-shadow:0 3px 0 #5B21B6;white-space:nowrap}
+#cartCheckout:active{transform:translateY(2px);box-shadow:0 1px 0 #5B21B6}
+#cartView{font-family:Outfit,sans-serif;font-weight:700;font-size:14px;color:#F8FAFC;background:transparent;border:2px solid #64748B;border-radius:999px;padding:8px 16px;cursor:pointer;white-space:nowrap}
+.og-cartlist{margin:4px 0 6px;text-align:left}
+.og-cartrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #E2E8F0;font-size:14.5px}
+html.dark .og-cartrow{border-color:#2A3B55}
+.og-cartrow .nm{flex:1;font-weight:600}
+.og-cartrow .pr{font-weight:700;white-space:nowrap}
+.og-qty{display:flex;align-items:center;gap:6px}
+.og-qty button{width:26px;height:26px;border-radius:50%;border:2px solid #64748B;background:transparent;color:inherit;font-weight:800;cursor:pointer;line-height:1;font-size:15px}
+.og-rm{border:none;background:transparent;color:#B91C1C;font-size:17px;cursor:pointer;padding:2px 4px}
+html.dark .og-rm{color:#FCA5A5}
+.og-carttotal{font-family:Outfit,sans-serif;font-weight:800;font-size:18px;text-align:right;margin:12px 0 2px}
+.og-empty{font-size:15px;color:#475569;margin:8px 0 4px}
+html.dark .og-empty{color:#B6C2D4}
+</style>
+
+
+<div id="cartBar" aria-live="polite">
+  <span class="cb-count" id="cartCount">Cart: 0 items</span>
+  <span class="cb-total" id="cartTotal">$0</span>
+  <button type="button" id="cartView">View cart</button>
+  <button type="button" id="cartCheckout">Check out</button>
+</div>
+
+<div id="cartModal" class="og-overlay" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="og-card">
+    <form id="cartForm" novalidate>
+      <h3 id="cartTitle">Your cart</h3>
+      <div class="og-cartlist" id="cartList"></div>
+      <p class="og-empty" id="cartEmpty">Your cart is empty &mdash; add items from the products above.</p>
+      <div class="og-carttotal" id="cartFormTotal"></div>
+      <p class="og-note">One order, one payment. Every order is reviewed personally before payment. If your order is accepted, we&rsquo;ll email your single payment link for the full total &mdash; nothing is charged now.</p>
+      <label for="cartName">Your name</label>
+      <input id="cartName" name="name" type="text" autocomplete="name" required>
+      <label for="cartEmail">Your email</label>
+      <input id="cartEmail" name="email" type="email" autocomplete="email" required>
+      <div class="og-err" id="cartError"></div>
+      <div class="og-actions">
+        <button type="button" class="og-cancel" id="cartCancel">Keep shopping</button>
+        <button type="submit" class="og-submit" id="cartSubmit">Request order</button>
+      </div>
+    </form>
+    <div class="og-thanks" id="cartThanks">
+      <div class="og-check">&#128230;</div>
+      <h3>Request received</h3>
+      <p>Thank you &mdash; every order is reviewed personally. If your order is accepted, we&rsquo;ll email your single payment link for the full cart total to <b id="cartThanksEmail"></b> shortly.</p>
+      <div class="og-actions"><button type="button" class="og-submit" id="cartDone">Done</button></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ===== Cart v2: add items, one checkout, ONE Web3Forms submission =====
+   A 1-item cart submits the classic single-item fields (fixed-link flow);
+   a multi-item (or qty>1) cart submits name/email + cart JSON + cart_total
+   and the processor creates one custom payment link for the exact total. */
+(function(){
+  var KEY='c3378175-a412-4313-bf5b-12fae9f925f3';
+  var cart={}; /* code -> {product, price, code, qty} */
+  function money(n){return '$'+n;}
+  function totals(){var c=0,t=0;for(var k in cart){c+=cart[k].qty;t+=cart[k].price*cart[k].qty;}return{count:c,total:t};}
+  function entries(){var a=[];for(var k in cart)a.push(cart[k]);return a;}
+  function isCartSubmission(){var a=entries();return a.length>1||(a.length===1&&a[0].qty>1);}
+  function render(){
+    var tt=totals(),bar=document.getElementById('cartBar');
+    document.getElementById('cartCount').textContent='Cart: '+tt.count+(tt.count===1?' item':' items');
+    document.getElementById('cartTotal').textContent=money(tt.total);
+    bar.classList.toggle('show',tt.count>0);
+    var list=document.getElementById('cartList');list.innerHTML='';
+    entries().forEach(function(it){
+      var row=document.createElement('div');row.className='og-cartrow';
+      row.innerHTML='<span class="nm"></span><span class="og-qty"><button type="button" data-dec aria-label="Decrease quantity">\u2212</button><span></span><button type="button" data-inc aria-label="Increase quantity">+</button></span><span class="pr"></span><button type="button" class="og-rm" data-rm aria-label="Remove item">\u00D7</button>';
+      row.querySelector('.nm').textContent=it.product;
+      row.querySelector('.og-qty span').textContent=it.qty;
+      row.querySelector('.pr').textContent=money(it.price*it.qty);
+      row.querySelector('[data-inc]').addEventListener('click',function(){it.qty++;render();});
+      row.querySelector('[data-dec]').addEventListener('click',function(){it.qty--;if(it.qty<=0)delete cart[it.code];render();});
+      row.querySelector('[data-rm]').addEventListener('click',function(){delete cart[it.code];render();});
+      list.appendChild(row);
+    });
+    document.getElementById('cartEmpty').style.display=tt.count?'none':'block';
+    document.getElementById('cartFormTotal').textContent=tt.count?('Total: '+money(tt.total)):'';
+    document.getElementById('cartSubmit').disabled=!tt.count;
+  }
+  document.querySelectorAll('.order-gate-btn').forEach(function(b){
+    var add=document.createElement('button');
+    add.type='button';add.className='og-addcart';add.textContent='Add to cart';
+    add.addEventListener('click',function(){
+      var code=b.getAttribute('data-og-code')+'|'+b.getAttribute('data-og-product');
+      if(!cart[code])cart[code]={product:b.getAttribute('data-og-product'),price:parseInt(b.getAttribute('data-og-price'),10),code:b.getAttribute('data-og-code'),qty:0};
+      cart[code].qty++;render();
+      add.textContent='Added \u2713';add.classList.add('added');
+      setTimeout(function(){add.textContent='Add to cart';add.classList.remove('added');},1200);
+    });
+    b.parentNode.insertBefore(add,b.nextSibling);
+  });
+  var modal=document.getElementById('cartModal'),form=document.getElementById('cartForm'),
+      thanks=document.getElementById('cartThanks'),err=document.getElementById('cartError');
+  function openCart(){render();form.style.display='block';thanks.style.display='none';err.style.display='none';modal.classList.add('open');setTimeout(function(){document.getElementById('cartName').focus();},50);}
+  function closeCart(){modal.classList.remove('open');}
+  document.getElementById('cartCheckout').addEventListener('click',openCart);
+  document.getElementById('cartView').addEventListener('click',openCart);
+  document.getElementById('cartCancel').addEventListener('click',closeCart);
+  document.getElementById('cartDone').addEventListener('click',closeCart);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeCart();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCart();});
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var name=document.getElementById('cartName').value.trim(),
+        email=document.getElementById('cartEmail').value.trim();
+    if(name.length<2||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      err.textContent='Please enter your name and a valid email address.';err.style.display='block';return;
+    }
+    var tt=totals();if(!tt.count){err.textContent='Your cart is empty.';err.style.display='block';return;}
+    var btn=document.getElementById('cartSubmit');btn.disabled=true;btn.textContent='Sending\u2026';
+    var payload;
+    if(isCartSubmission()){
+      payload={access_key:KEY,subject:'Peptopia Order Request',from_name:'Peptopia Order Gate',
+        name:name,email:email,replyto:email,
+        cart:JSON.stringify(entries().map(function(it){return{product:it.product,price:it.price,link_code:it.code,qty:it.qty};})),
+        cart_total:money(tt.total)};
+    }else{
+      var it=entries()[0];
+      payload={access_key:KEY,subject:'Peptopia Order Request',from_name:'Peptopia Order Gate',
+        name:name,email:email,replyto:email,product:it.product,price:money(it.price),link_code:it.code};
+    }
+    fetch('https://api.web3forms.com/submit',{method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)})
+    .then(function(r){if(!r.ok)throw new Error('send failed');return r.json();})
+    .then(function(j){if(j&&j.success===false)throw new Error('send failed');})
+    .then(function(){
+      document.getElementById('cartThanksEmail').textContent=email;
+      form.style.display='none';thanks.style.display='block';
+      cart={};render();
+    })
+    .catch(function(){
+      err.textContent='Something went wrong sending your request. Please try again, or reach us on WhatsApp at 1-304-620-2576.';
+      err.style.display='block';
+    })
+    .finally(function(){btn.disabled=false;btn.textContent='Request order';});
+  });
+  render();
+})();
 </script>
 
 <style id="order-gate-css">
@@ -935,7 +1095,7 @@ html.dark .og-cancel{color:#B6C2D4;border-color:#2A3B55}
   function open(btn){
     cur={product:btn.getAttribute('data-og-product'),price:btn.getAttribute('data-og-price'),code:btn.getAttribute('data-og-code')};
     document.getElementById('ogProduct').textContent=cur.product;
-    document.getElementById('ogPriceLine').textContent='$'+cur.price+' \u2014 Peptopia Health \u2014 Custom Order';
+    document.getElementById('ogPriceLine').textContent='$'+cur.price+' \u2014 Peptopia Health \u2014 Order';
     form.style.display='block';thanks.style.display='none';err.style.display='none';
     modal.classList.add('open');
     setTimeout(function(){document.getElementById('ogName').focus();},50);

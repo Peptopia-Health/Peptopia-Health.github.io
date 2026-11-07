@@ -11,16 +11,14 @@
   --bg:#F4F6FA; --card:#FFFFFF; --card-sub:#F8FAFC; --border:rgba(15,23,42,.09);
   --sh:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
   --sh-h:0 12px 28px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
-  --t1:#0F172A; --t2:#475569; --t3:#5B6B82;
+  --t1:#0F172A; --t2:#475569; --t3:#64748B;
   --orange:#EA580C; --theme:#2563EB; --theme-dark:#1D4ED8;
-  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000; --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0; --pal-purple-lt:#7759ED;
-  --line:rgba(15,23,42,.12); --acc:#2563EB; --accsoft:#E3ECFA; --ink:#0F172A; --mut:#475569; --shadow:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
   --font-head:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
+  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000; --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0; --pal-purple-lt:#7759ED;
 }
 html.dark{
   --bg:#020617; --card:#0F172A; --card-sub:#1E293B; --border:rgba(148,163,184,.18);
   --t1:#F8FAFC; --t2:#CBD5E1; --t3:#94A3B8;
-  --line:rgba(148,163,184,.22); --acc:#7CC4FF; --accsoft:#1E293B; --ink:#F8FAFC; --mut:#CBD5E1; --shadow:0 1px 3px rgba(0,0,0,.4),0 1px 2px rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--t1);font-family:var(--font-body);line-height:1.5}
@@ -33,24 +31,23 @@ html.dark .peptopia-logo.logo-light,html.dark .ftr-logo .logo-light{display:bloc
 html.dark .peptopia-logo.logo-dark,html.dark .ftr-logo .logo-dark{display:none}
 .peptopia-wordmark{display:flex;flex-direction:column;font-family:var(--font-head);font-weight:800;font-size:1.02rem;line-height:1.15;letter-spacing:.14em;color:#1e1b4b}
 html.dark .peptopia-wordmark{color:#f1f5f9}
-.peptopia-tagline{font-size:.6rem;font-weight:600;letter-spacing:.3em;color:#5B6B82}
+.peptopia-tagline{font-size:.6rem;font-weight:600;letter-spacing:.3em;color:#64748b}
 html.dark .peptopia-tagline{color:#94a3b8}
 .peptopia-nav{display:flex;align-items:center;gap:1.25rem}
 .peptopia-nav>a{font-family:var(--font-head);font-weight:700;font-size:.8rem;letter-spacing:.12em;color:#334155;text-decoration:none}
 html.dark .peptopia-nav>a{color:#cbd5e1}
 .peptopia-nav>a:hover{color:var(--theme-dark)}
-.peptopia-iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,23,42,.12);background:linear-gradient(180deg,#FFFFFF,#E3ECFA);color:#475569;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 4px rgba(37,99,235,.18),0 2px 5px rgba(15,23,42,.14);transition:transform .05s ease,box-shadow .05s ease}
-.peptopia-iconbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(15,23,42,.25)}
+.peptopia-iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,23,42,.12);background:#fff;color:#475569;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 html.dark .peptopia-iconbtn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#cbd5e1}
 .peptopia-iconbtn:hover{border-color:var(--theme);color:var(--theme-dark)}
 .peptopia-iconbtn svg{width:17px;height:17px}
 .peptopia-theme-toggle .pp-sun{display:none}
 html.dark .peptopia-theme-toggle .pp-sun{display:block}
 html.dark .peptopia-theme-toggle .pp-moon{display:none}
-.peptopia-ftr{border-top:1px solid rgba(15,23,42,.08);margin-top:48px;padding:22px 24px;text-align:center;font-weight:500;font-size:.8rem;line-height:1.6;color:#5B6B82}
+.peptopia-ftr{border-top:1px solid rgba(15,23,42,.08);margin-top:48px;padding:22px 24px;text-align:center;font-weight:500;font-size:.8rem;line-height:1.6;color:#64748b}
 html.dark .peptopia-ftr{border-color:rgba(255,255,255,.08);color:#94a3b8}
 .peptopia-ftr .ftr-email-line{text-align:center;margin:6px 0}
-.peptopia-ftr .ftr-email-line a{color:#5B6B82;text-decoration:none}
+.peptopia-ftr .ftr-email-line a{color:#64748b;text-decoration:none}
 html.dark .peptopia-ftr .ftr-email-line a{color:#94a3b8}
 .peptopia-ftr .peptopia-ftr-icons{display:flex;gap:16px;justify-content:center;margin-top:10px}
 .peptopia-ftr .peptopia-ftr-icons a{color:#64748b;display:inline-flex}
@@ -69,8 +66,7 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
 #gate h1{font-family:var(--font-head);font-weight:800;color:var(--orange);font-size:1.3rem;margin:14px 0 4px}
 #gate p{color:var(--t2);font-size:.92rem;margin:0 0 16px}
 #gate input{width:120px;font-size:1.3rem;text-align:center;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card-sub);color:var(--t1);font-family:var(--font-head);font-weight:700;letter-spacing:.2em}
-#gate button{display:block;margin:14px auto 0;background:linear-gradient(180deg,#3B82F6,#2563EB 55%,#1D4ED8);color:#fff;border:1px solid #1E40AF;border-radius:999px;padding:11px 30px;font-family:var(--font-head);font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:0 3px 0 #1E3A8A,0 6px 14px rgba(37,99,235,.35),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .05s ease,box-shadow .05s ease}
-#gate button:active{transform:translateY(2px);box-shadow:0 1px 0 #1E3A8A,0 3px 8px rgba(37,99,235,.3),inset 0 1px 0 rgba(255,255,255,.45)}
+#gate button{display:block;margin:14px auto 0;background:var(--theme);color:#fff;border:none;border-radius:999px;padding:11px 30px;font-family:var(--font-head);font-weight:700;font-size:.95rem;cursor:pointer}
 #gate button:hover{background:var(--theme-dark)}
 #gateErr{color:#DC2626;font-size:.85rem;min-height:1.2em;margin-top:10px}
 #portalRoot{display:none}
@@ -105,7 +101,7 @@ label.act input{width:20px;height:20px;margin-top:2px;accent-color:var(--theme)}
 .act.done{opacity:.62}
 .priv{background:#DBEAFE;border:1px solid #93C5FD;color:#1E3A8A;border-radius:12px;padding:12px 14px;font-size:.9rem;margin-top:14px}
 html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
-@media print{#gate,.peptopia-iconbtn,.jumpnav{display:none}#portalRoot{display:block!important}.card,.cmd-card,.vet-box,.pal-wrap{break-inside:avoid}}
+@media print{#gate,.peptopia-iconbtn{display:none}#portalRoot{display:block!important}}
 
   /* command phrases */
   .cmd-group{font-family:Outfit,sans-serif;font-weight:700;color:var(--acc);margin:18px 0 8px;font-size:15px}
@@ -114,10 +110,7 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   .cmd-phrase{font-family:Outfit,sans-serif;font-weight:800;font-size:16px;color:var(--ink);background:var(--accsoft);border:1px dashed var(--acc);border-radius:10px;padding:8px 12px;display:inline-block;margin-bottom:8px}
   .cmd-card p{margin:0;color:var(--mut);font-size:14px}
   .pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .open-ico{flex:0 0 auto;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--accsoft);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;line-height:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 4px rgba(15,23,42,.12),0 2px 4px rgba(15,23,42,.14);transition:transform .05s ease,box-shadow .05s ease}
-.open-ico:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(15,23,42,.25)}
-.cmd-card a.open-ico{color:#1D4ED8}
-html.dark .cmd-card a.open-ico{color:#7CC4FF}
+  .open-ico{flex:0 0 auto;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--accsoft);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;line-height:1}
   .cmd-card a,.cmd-group a{color:var(--acc);font-weight:700;text-decoration:none}
   .gbuild-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
   @media (max-width:640px){.gbuild-row{grid-template-columns:1fr}}
@@ -156,7 +149,7 @@ html.dark .cmd-card a.open-ico{color:#7CC4FF}
   /* kratom quick pick */
   .qp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);margin:18px 0 6px}
   .qp h2{margin:0 0 2px}
-  .qp-wheel{position:relative;width:min(390px,100%);aspect-ratio:1/1;margin:8px auto 4px}
+  .qp-wheel{position:relative;width:min(390px,96vw);aspect-ratio:1/1;margin:8px auto 4px}
   .qp-spoke{position:absolute;left:50%;top:50%;width:37.5%;height:2px;background:var(--line);transform-origin:0 50%;border-radius:2px}
   .qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:color-mix(in srgb,#2E7D4F 13%,var(--card));border:3px solid #17452A;display:flex;align-items:center;justify-content:center;font-size:60px;z-index:2;cursor:pointer;padding:0;box-shadow:inset 0 3px 4px rgba(255,255,255,.6),inset 0 -4px 7px rgba(0,0,0,.15),0 5px 9px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease}
   .qp-hub:active{transform:translate(-50%,-50%) translateY(3px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),inset 0 -2px 4px rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.25)}
@@ -260,7 +253,7 @@ html.dark .pushbtn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#2
 
 <main>
 <h1 class="ptitle">Peptopia Health — Admin Portal</h1>
-  <p class="psub">Private working index · updated Nov 7, 2026</p>
+  <p class="psub">Private working index · updated Oct 27, 2026</p>
 
 <nav class="jumpnav" aria-label="Portal categories">
   <a class="jnav-btn" href="#cat-briefings">🎧 Briefings &amp; Audio</a>
@@ -380,11 +373,8 @@ html.dark .pushbtn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#2
   html.dark .vet-caution{background:#451A03;border-color:#92400E;color:#FDE68A}
   .vet-clear{background:#F0FDF4;border:1px solid #BBF7D0;color:#14532D}
   html.dark .vet-clear{background:#052E16;border-color:#166534;color:#BBF7D0}
-html.dark .open{color:#7CC4FF}
-html.dark .vet-note a{color:#7CC4FF}
-html.dark .gb-cancel{color:#94A3B8}
   .vet-chip{display:inline-block;font-family:var(--font-head);font-weight:800;font-size:.72rem;letter-spacing:.08em;border-radius:999px;padding:3px 10px;color:#fff;vertical-align:2px}
-  .chip-b{background:#DC2626}.chip-c{background:#B45309}
+  .chip-b{background:#DC2626}.chip-c{background:#D97706}
   .vet-item{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:0 0 10px;background:var(--card-sub)}
   .vet-item h4{margin:0 0 4px;font-family:var(--font-head);font-size:1rem}
   .vet-item p{margin:2px 0;color:var(--t2);font-size:.92rem}
@@ -446,12 +436,12 @@ html.dark .gb-cancel{color:#94A3B8}
       <span class="qp-spoke" style="transform:rotate(150deg)"></span>
       <span class="qp-spoke" style="transform:rotate(210deg)"></span>
       <button type="button" class="qp-hub" id="qpHub" aria-label="Reset — clear the pick">&#127807;</button>
-      <button type="button" class="qp-node" data-sit="energy" style="left:50%;top:12.5%;--nc:#FFFFFF;--nb:#9AA3AF"><span class="qp-emo">&#9889;</span><small>Energy</small></button>
-      <button type="button" class="qp-node" data-sit="focus" style="left:82.5%;top:31.3%;--nc:#F06000;--nb:#F06000"><span class="qp-emo">&#127919;</span><small>Focus</small></button>
-      <button type="button" class="qp-node" data-sit="mood" style="left:82.5%;top:68.7%;--nc:#10C000;--nb:#10C000"><span class="qp-emo">&#129505;</span><small>Mood</small></button>
-      <button type="button" class="qp-node" data-sit="sleep" style="left:50%;top:87.5%;--nc:#0A0A0A;--nb:#0A0A0A"><span class="qp-emo">&#128564;</span><small>Sleep</small></button>
-      <button type="button" class="qp-node" data-sit="relief" style="left:17.5%;top:68.7%;--nc:#E01020;--nb:#E01020"><span class="qp-emo">&#129657;</span><small>Relief</small></button>
-      <button type="button" class="qp-node" data-sit="calm" style="left:17.5%;top:31.3%;--nc:#F0F000;--nb:#B8B800"><span class="qp-emo">&#128524;</span><small>Calm</small></button>
+      <button type="button" class="qp-node" data-sit="energy" style="left:50%;top:12.5%;--nc:#F59E0B;--nb:#B45309"><span class="qp-emo">&#9889;</span><small>Energy</small></button>
+      <button type="button" class="qp-node" data-sit="focus" style="left:82.5%;top:31.3%;--nc:#5BA3D9;--nb:#2F6DA3"><span class="qp-emo">&#127919;</span><small>Focus</small></button>
+      <button type="button" class="qp-node" data-sit="mood" style="left:82.5%;top:68.7%;--nc:#2E7D4F;--nb:#17452A"><span class="qp-emo">&#129505;</span><small>Mood</small></button>
+      <button type="button" class="qp-node" data-sit="sleep" style="left:50%;top:87.5%;--nc:#6366F1;--nb:#4338CA"><span class="qp-emo">&#128564;</span><small>Sleep</small></button>
+      <button type="button" class="qp-node" data-sit="relief" style="left:17.5%;top:68.7%;--nc:#B03A3A;--nb:#7A2222"><span class="qp-emo">&#129657;</span><small>Relief</small></button>
+      <button type="button" class="qp-node" data-sit="calm" style="left:17.5%;top:31.3%;--nc:#E8873A;--nb:#A85A12"><span class="qp-emo">&#128524;</span><small>Calm</small></button>
     </div>
     <div id="qpResult"><p class="qp-why">Tap how you feel — get the pick.</p></div>
   </section>
@@ -478,9 +468,9 @@ html.dark .gb-cancel{color:#94A3B8}
     <h3><span class="dot" style="background:#B6C2D2"></span>Peptopia Guides</h3>
     <p class="meta">Peptopia Business / Web &amp; Guides · 34 exchanges · May 13, 2026</p>
     <span class="pill">Peptopia</span><span class="pill status">Imported</span>
-    <p class="assess">Origin of the Peptopia guide template (the design DNA behind the manifest styling). Produced the Tesofensine and SLU-PP-332 guides and the Sacubitril/Valsartan patient guide. Gemini failed four times to deliver a Cagrilintide guide, and a Capecitabine guide failed too — Muse built and published the Cagrilintide guide on Oct 28, 2026.</p>
+    <p class="assess">Origin of the Peptopia guide template (the design DNA behind the manifest styling). Produced the Tesofensine and SLU-PP-332 guides and the Sacubitril/Valsartan patient guide. Gemini failed four times to deliver a Cagrilintide guide, and a Capecitabine guide failed too — Cagrilintide is a live store product with no guide.</p>
     <a class="open" href="https://share.gemini.google/S6zPwXNeRCjZ" target="_blank" rel="noopener">Open chat ↗</a>
-    <ul><li><strong>Build the Cagrilintide guide</strong> — done Oct 28, 2026 (was the top action of the whole import)</li><li>Note the Capecitabine gap for a later decision</li><li>Preserve David's SLU-PP-332 editorial wording decisions as his, layered as preference</li></ul>
+    <ul><li><strong>Build the Cagrilintide guide</strong> (top action of the whole import)</li><li>Note the Capecitabine gap for a later decision</li><li>Preserve David's SLU-PP-332 editorial wording decisions as his, layered as preference</li></ul>
   </div>
   <div class="card">
     <h3><span class="dot" style="background:#B6C2D2"></span>Peptopia Guide Author Skill</h3>
@@ -586,7 +576,7 @@ html.dark .gb-cancel{color:#94A3B8}
   </div>
   </div>
 
-  <div class="vein-band" style="background:#B45309;color:#FFFFFF"><span>Home</span><span class="vein-count">2 chats</span></div>
+  <div class="vein-band" style="background:#D97706;color:#FFFFFF"><span>Home</span><span class="vein-count">2 chats</span></div>
   <p class="vein-sub">Home, plants &amp; money — the unhurried shelf.</p>
   <div class="vein-grid">
   <div class="card">
@@ -688,8 +678,9 @@ html.dark .gb-cancel{color:#94A3B8}
   <h2 class="cat-title">✅ Boards &amp; Admin</h2>
 <h2>Action Board</h2>
   <p class="sub">Tap a task’s square to start it: you confirm once, then Muse runs it. Results come back in chat, in the audio brief, and here on this board. The board is refreshed every Monday, in priority order.</p>
+  <div style="margin:14px 0;padding:12px 16px;border:2px solid var(--pal-cobalt);border-radius:14px;background:var(--card);color:var(--t1)">🏁 <strong>Kratom guide conformance sweep — COMPLETE · Nov 7, 2026.</strong> All 8 vendor guides rebuilt on the WildCraft template and published; the Kratom Reviews page is verified with them.</div>
   <div class="card">
-    <label class="act done"><input type="checkbox" data-k="a1" disabled><span><strong>Build the Cagrilintide guide</strong> — Gemini failed 4×; it's a live store product. (Done — Oct 28, 2026)</span></label>
+    <label class="act"><input type="checkbox" data-k="a1" checked><span style="text-decoration:line-through;opacity:.65"><strong>Build the Cagrilintide guide</strong> — Gemini failed 4×; it's a live store product. (Proposed)</span> <span><strong>✅ COMPLETE — Nov 7, 2026</strong> (closed with the guide sweep, at David's direction)</span></label>
     <label class="act"><input type="checkbox" data-k="a7"><span><strong>Build the living manifest</strong> — regenerate backup status from live Drive, one source of truth. (Proposed)</span></label>
     <label class="act"><input type="checkbox" data-k="a2"><span><strong>Cross-check Gemini-era DTE strains</strong> against the live guide + purchase record. (Proposed)</span></label>
     <label class="act"><input type="checkbox" data-k="a4"><span><strong>Patch the Apps Script</strong> — dedupe check + exact match + run report. (Proposed)</span></label>
@@ -760,8 +751,7 @@ html.dark .gb-cancel{color:#94A3B8}
       <tr><td class="tok">--pal-pain</td><td><span class="pal-sw" style="background:#E01020"></span>#E01020</td><td>Kratom guides — Pain chips and labels. (The picker wheel's Pain cross glyph itself is neon green #2BFF5C under its own settled rule.)</td></tr>
       <tr><td class="tok">--pal-sleep</td><td><span class="pal-sw" style="background:#0A0A0A"></span>#0A0A0A</td><td>Kratom guides — Sleep chips and the picker satellite.</td></tr>
       <tr><td class="tok">--pal-cobalt</td><td><span class="pal-sw" style="background:#0070D0"></span>#0070D0</td><td>The default icon color across the guides — the picker hub sprout, catalog icons, and anything with no effect of its own.</td></tr>
-      <tr><td class="tok">--pal-purple</td><td><span class="pal-sw" style="background:#6C4FE0"></span>#6C4FE0</td><td>Biohacking News homepage card — icon, tile tint, top edge and button (gradient stop --pal-purple-lt #7759ED). Homepage card published live Nov 6, 2026; also this panel.</td></tr>
-      <tr><td class="tok">--pal-purple-lt</td><td><span class="pal-sw" style="background:#7759ED"></span>#7759ED</td><td>Light gradient stop paired with --pal-purple — Biohacking News homepage card button gradient.</td></tr>
+      <tr><td class="tok">--pal-purple</td><td><span class="pal-sw" style="background:#6C4FE0"></span>#6C4FE0</td><td>Biohacking News homepage card — icon, tile tint, top edge and button (gradient stop --pal-purple-lt #7759ED). Homepage mockup Nov 6, 2026, awaiting David's approval; also this panel.</td></tr>
     </table>
     <p class="pal-note">The seven effect tokens drive the kratom guides: every effect chip, picker satellite, wheel and spectrum accent reads them, so a palette change here is the change everywhere. Homepage cards are migrating onto the same tokens — Biohacking News first, via --pal-purple. <b>Separate set:</b> the Orders page's receptor colors (GLP-1 cyan, GIP green, Glucagon orange, Amylin violet) are fixed medallion colors, <b>not</b> palette tokens, and do not change with the palette.</p>
   </div>

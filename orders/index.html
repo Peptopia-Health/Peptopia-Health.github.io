@@ -466,6 +466,14 @@ html.dark .hero p{color:var(--t2)}
 .cat-purple .viz-stage{max-width:none}
 </style><style id="wm-graphics-85">
 .cat-purple .viz-stage, .cat-purple .bpc-stage{width:85%;margin:0 auto}
+</style>
+<style id="card-scale-mobile">
+/* David, Nov 8, 2026: order-card content reads too large on mobile —
+   scale EVERYTHING inside the order cards (type, medallions, buttons,
+   spacing) to ~74% (~26% smaller) at phone widths. Desktop unchanged. */
+@media (max-width:900px){
+  .card{zoom:0.74}
+}
 </style></head>
 <body>
 

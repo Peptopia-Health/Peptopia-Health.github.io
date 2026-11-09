@@ -393,18 +393,7 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
         .glow-benefits-labeled .bic-unit { display:flex; flex-direction:column; align-items:center; gap:3px; }
         .glow-benefits-labeled .bic-lab { font-family:'Outfit',sans-serif; font-weight:800; font-size:10.5px; letter-spacing:.06em; color:#475569; }
         .glow-benefits-labeled .plus { margin-top:13px; }
-        .buy-pop { position:fixed; inset:0; background:rgba(15,23,42,.48); display:flex; align-items:center; justify-content:center; z-index:80; padding:18px; }
-        .buy-pop[hidden] { display:none; }
-        .buy-pop-card { background:#fff; border-radius:16px; border-top:4px solid var(--emerald); padding:24px 20px 20px; width:100%; max-width:330px; position:relative; box-shadow:0 24px 48px rgba(15,23,42,.35); }
-        .buy-pop-title { font-family:'Outfit',sans-serif; font-weight:800; font-size:1.3rem; color:#065F46; text-align:center; margin-bottom:6px; }
-        .buy-pop-x { position:absolute; top:10px; right:10px; width:32px; height:32px; border-radius:50%; border:2px solid #065F46;
-            background:radial-gradient(circle at 32% 28%, #F0FFF8 0%, #A7F3D0 55%, #34D399 100%); color:#065F46;
-            font-family:'Outfit',sans-serif; font-weight:800; font-size:1.05rem; line-height:1; cursor:pointer;
-            box-shadow: inset 0 2px 3px rgba(255,255,255,.8), inset 0 -3px 5px rgba(0,0,0,.2), 0 3px 6px rgba(15,23,42,.3); }
-        .buy-pop-x:active { transform:translateY(2px); }
-        /* H5: legacy pop-btn recipe retired - variant buttons are the
-           homepage prototype too (#h5-restyle .pb-*); layout in #h5-restyle. */
-        .pop-btn { margin-top:10px; }
+        /* H7 (Nov 9, 2026): .buy-pop / .pop-btn styles REMOVED with the variant popup - trio selection styles live in #h7-restyle. */
 
         .slu-stage { width:100%; max-width:340px; margin:0 auto; }
         .slu-stage svg { width:100%; height:auto; display:block; }
@@ -434,7 +423,6 @@ html.dark .cat-slate .card.neo .card-title,html.dark .cat-slate .card.neo .punch
 html.dark mark{color:#0F172A}
 html.dark text[fill="#475569"]{fill:#FFFFFF;stroke:none}
 html.dark .footer-banner{background:#131E30;border-color:#2A3B55}
-html.dark .buy-pop-card{background:#16233A;color:#F1F5F9}
 html.dark .hero p{color:var(--t2)}
 </style>
 <style id="wm-compact-row">
@@ -456,7 +444,6 @@ html.dark .hero p{color:var(--t2)}
 .card{padding-bottom:10px}
 mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .txt-o{color:#C75000;font-weight:800}
-.buy-pop .pop-btn{width:100%;box-sizing:border-box;cursor:pointer;font-family:'Outfit',sans-serif}
 #glowOrderBtn{cursor:pointer}
 </style>
 </head>
@@ -708,13 +695,13 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 </g></svg><span class="bic-lab">TISSUE</span></span>
       </div>
                 <div class="glow-venn">
-                <button type="button" class="glow-orb orb-glow"><span class="nm">GLOW</span><span class="pr">$325</span></button>
-                <button type="button" class="glow-orb orb-klow"><span class="nm">KLOW</span><span class="pr">$375</span></button>
-                <button type="button" class="glow-orb orb-ghk"><span class="nm">GHK-Cu</span><span class="pr">$285</span></button>
+                <button type="button" class="glow-orb orb-glow" data-trio-orb data-og-product="GLOW" data-og-price="325" data-og-code="oNYFMvtQ" aria-pressed="false" aria-label="Select GLOW, $325"><span class="nm">GLOW</span><span class="pr">$325</span></button>
+                <button type="button" class="glow-orb orb-klow" data-trio-orb data-og-product="KLOW" data-og-price="375" data-og-code="bXCJ6r1s" aria-pressed="false" aria-label="Select KLOW, $375"><span class="nm">KLOW</span><span class="pr">$375</span></button>
+                <button type="button" class="glow-orb orb-ghk" data-trio-orb data-og-product="GHK-Cu" data-og-price="285" data-og-code="nBxV33Sv" aria-pressed="false" aria-label="Select GHK-Cu, $285"><span class="nm">GHK-Cu</span><span class="pr">$285</span></button>
       </div>
             </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn pb-emerald" id="glowOrderBtn" data-buy-open aria-haspopup="dialog">Order</button>
+                    <button type="button" class="metal-btn pb-emerald trio-idle" id="glowOrderBtn">Order</button>
                     <a class="metal-btn pb-emerald" href="https://x-peps.com/X-Peps/glow_klow_guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
@@ -830,21 +817,7 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
 function toggleTheme(){document.documentElement.classList.toggle('dark');return false}
 </script>
 
-<script>
-(function(){
-  function init(){
-  var pop = document.getElementById('glowBuyPop');
-  if(!pop) return;
-  function open(){ pop.hidden = false; }
-  function close(){ pop.hidden = true; }
-  document.querySelectorAll('[data-buy-open]').forEach(function(el){ el.addEventListener('click', open); });
-  pop.querySelectorAll('[data-buy-close]').forEach(function(el){ el.addEventListener('click', close); });
-  pop.addEventListener('click', function(e){ if(e.target === pop) close(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();
-</script>
+
 
 <div id="tbdModal" style="display:none;position:fixed;inset:0;background:rgba(15,10,40,.55);z-index:999;align-items:center;justify-content:center;padding:20px;">
   <div style="background:#fff;border-radius:18px;max-width:400px;width:100%;padding:28px 26px 24px;text-align:center;box-shadow:0 18px 50px rgba(30,10,80,.35);border:2px solid #E4DEF5;">
@@ -947,15 +920,7 @@ html.dark .og-empty{color:#B6C2D4}
 </style>
 
 
-<div class="buy-pop" id="glowBuyPop" hidden role="dialog" aria-modal="true" aria-label="Choose your Glow Trio version">
-  <div class="buy-pop-card">
-    <button type="button" class="buy-pop-x" data-buy-close aria-label="Close">&times;</button>
-    <div class="buy-pop-title">Choose your version</div>
-    <button type="button" class="pop-btn pb-amber variant-opt" data-og-product="GLOW" data-og-price="325" data-og-code="oNYFMvtQ"><span>GLOW $325</span></button>
-    <button type="button" class="pop-btn pb-orange variant-opt" data-og-product="KLOW" data-og-price="375" data-og-code="bXCJ6r1s"><span>KLOW $375</span></button>
-    <button type="button" class="pop-btn pb-bio variant-opt" data-og-product="GHK-Cu" data-og-price="285" data-og-code="nBxV33Sv"><span>GHK-Cu $285</span></button>
-  </div>
-</div>
+<!-- H7 (Nov 9, 2026): the GLOW variant popup is REMOVED - the trio card selects in-card via its orbs (see #h7-restyle). -->
 
 <div id="cartModal" class="og-overlay" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
   <div class="og-card">
@@ -1037,14 +1002,54 @@ html.dark .og-empty{color:#B6C2D4}
       cart[key].qty++;render();openCart();
     });
   });
-  document.querySelectorAll('.variant-opt').forEach(function(b){
-    b.addEventListener('click',function(){
-      var pop=document.getElementById('glowBuyPop');if(pop)pop.hidden=true;
-      if(totals().count>=MAXITEMS){openCart();return;}
-      var key=b.getAttribute('data-og-code')+'|'+b.getAttribute('data-og-product');
-      if(!cart[key])cart[key]={product:b.getAttribute('data-og-product'),price:parseInt(b.getAttribute('data-og-price'),10),code:b.getAttribute('data-og-code'),key:key,qty:0};
-      cart[key].qty++;render();openCart();
+  /* H7 (David, Nov 9, 2026): TRIO IN-CARD SELECTION replaces the variant
+     popup. The three orbs are the selectors: tapping one lights it up and
+     grays/fades the other two, and the ORDER button lights up in that
+     orb's own colors reading ORDER $<price>; tapping the lit ORDER adds
+     that product (same code|product key scheme, same cap) and opens the
+     cart. Tapping the selected orb again deselects. With no selection the
+     ORDER button sits quiet and only pulses the orb row. Selection
+     persists after adding. */
+  var trioOrbs=Array.prototype.slice.call(document.querySelectorAll('[data-trio-orb]'));
+  var trioBtn=document.getElementById('glowOrderBtn');
+  var trioVenn=document.querySelector('.glow-venn');
+  var trioSel=null;
+  var TRIO_LIT={'orb-glow':'trio-lit-glow','orb-klow':'trio-lit-klow','orb-ghk':'trio-lit-ghk'};
+  function trioLitClass(orb){for(var c in TRIO_LIT){if(orb.classList.contains(c))return TRIO_LIT[c];}return '';}
+  function setTrio(orb){
+    trioSel=orb||null;
+    trioOrbs.forEach(function(o){
+      var on=(o===trioSel);
+      o.classList.toggle('sel',on);
+      o.setAttribute('aria-pressed',on?'true':'false');
     });
+    if(trioVenn)trioVenn.classList.toggle('has-sel',!!trioSel);
+    if(!trioBtn)return;
+    trioBtn.classList.remove('trio-idle','trio-lit-glow','trio-lit-klow','trio-lit-ghk');
+    if(trioSel){
+      trioBtn.classList.add(trioLitClass(trioSel));
+      trioBtn.textContent='ORDER $'+trioSel.getAttribute('data-og-price');
+    }else{
+      trioBtn.classList.add('trio-idle');
+      trioBtn.textContent='Order';
+    }
+  }
+  trioOrbs.forEach(function(o){
+    o.addEventListener('click',function(){setTrio(o===trioSel?null:o);});
+  });
+  if(trioBtn)trioBtn.addEventListener('click',function(){
+    if(!trioSel){
+      if(trioVenn){
+        trioVenn.classList.remove('trio-pulse');void trioVenn.offsetWidth;
+        trioVenn.classList.add('trio-pulse');
+        setTimeout(function(){trioVenn.classList.remove('trio-pulse');},1250);
+      }
+      return;
+    }
+    if(totals().count>=MAXITEMS){openCart();return;}
+    var key=trioSel.getAttribute('data-og-code')+'|'+trioSel.getAttribute('data-og-product');
+    if(!cart[key])cart[key]={product:trioSel.getAttribute('data-og-product'),price:parseInt(trioSel.getAttribute('data-og-price'),10),code:trioSel.getAttribute('data-og-code'),key:key,qty:0};
+    cart[key].qty++;render();openCart();
   });
   var modal=document.getElementById('cartModal'),form=document.getElementById('cartForm'),
       thanks=document.getElementById('cartThanks'),err=document.getElementById('cartError');
@@ -1171,7 +1176,7 @@ html.dark .og-cancel{color:#B6C2D4;border-color:#2A3B55}
    rendered height is the homepage's 36px (its line-height comes from body
    1.6); (d) -webkit-appearance/appearance:none so a real <button> computes
    exactly like the homepage's <span>. */
-.btn-row .metal-btn,.buy-pop .pop-btn{
+.btn-row .metal-btn{
   -webkit-appearance:none;appearance:none;box-sizing:border-box;
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
   width:136px;height:36px;min-height:36px;padding:6px 22px;
@@ -1181,8 +1186,8 @@ html.dark .og-cancel{color:#B6C2D4;border-color:#2A3B55}
   text-shadow:0 1px 2px rgba(0,0,0,.35);
   box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);
   transition:filter .3s;cursor:pointer;text-decoration:none;text-align:center}
-.btn-row .metal-btn:hover,.buy-pop .pop-btn:hover{filter:brightness(1.1)}
-.btn-row .metal-btn:active,.buy-pop .pop-btn:active{transform:translateY(2px);
+.btn-row .metal-btn:hover{filter:brightness(1.1)}
+.btn-row .metal-btn:active{transform:translateY(2px);
   box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
 /* Variant gradients = the homepage's own .b-* classes, verbatim stops */
 .pb-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)}
@@ -1196,8 +1201,6 @@ html.dark .og-cancel{color:#B6C2D4;border-color:#2A3B55}
 .btn-row.single .metal-btn{flex:none}
 /* Coming-soon: keep the homepage look, visibly parked */
 .btn-row .btn-tbd{opacity:.8;cursor:not-allowed;filter:saturate(.35)}
-/* Variant popup buttons stack full-width of the popup card (homepage width:100% role) */
-.buy-pop .pop-btn{width:100%}
 /* Header buttons: the same prototype in the logo theme (David, round 2/3:
    black bg, magenta border). CART / HOME / ORDERS share the uniform 136px;
    ALL labels at the full .85rem (the round-2 ORDERS .8rem shrink is gone). */
@@ -1274,19 +1277,15 @@ text[data-flab="w2"]{font-size:11px}
    viewBoxes were normalized to the measured content bbox, top-aligned).
    Flow: the graphic hugs the descriptor (4 + 4 = 8px total gap); all
    leftover card space collects BELOW the graphic, above the button row. */
-.btn-row .metal-btn,.buy-pop .pop-btn{
+.btn-row .metal-btn{
   width:122px;height:28px;min-height:28px;padding:4px 14px}
 .peptopia-nav .nav-btn{width:122px;height:28px;padding:4px 14px}
 .peptopia-nav .peptopia-theme-toggle.nav-btn{width:28px;height:28px;padding:0}
 .peptopia-nav .peptopia-theme-toggle.nav-btn svg{width:14px;height:14px}
 .btn-row{gap:8px;padding:6px 8px 0}
-/* GLOW popup: buttons take the GLOW card ORDER button's exact size, and
-   each variant button wears its own orb's exact gradient + text color */
-.buy-pop .pop-btn{margin-left:auto;margin-right:auto}
-.buy-pop .pop-btn.pb-amber{background:radial-gradient(circle at 32% 28%,#FFFFC8 0%,#F0F000 55%,#D8D800 100%);color:#3A3400}
-.buy-pop .pop-btn.pb-orange{background:radial-gradient(circle at 32% 28%,#FFB37A 0%,#F06000 55%,#C24E00 100%);color:#0F172A}
-.buy-pop .pop-btn.pb-bio{background:radial-gradient(circle at 32% 28%,#7AC0FF 0%,#0070D0 55%,#005AA8 100%);color:#0F172A}
-.buy-pop .pop-btn span{white-space:nowrap}
+/* H7 (Nov 9, 2026): the GLOW popup button rules are REMOVED with the
+   popup; the same three orb gradients now light the trio ORDER button
+   (see #h7-restyle, .trio-lit-*). */
 /* One graphic box for every card (Supplies size), hugging the descriptor */
 .card .viz-stage,.card .bpc-stage,.card .slu-stage{
   width:182px;max-width:182px;height:165.33px;margin:4px auto 0;flex:none}
@@ -1328,6 +1327,44 @@ html.dark .og-addr-head{color:#C4B5FD}
 .og-cartrow{padding:5px 0;font-size:14px}
 .og-carttotal{margin:8px 0 0;font-size:17px}
 .og-actions{margin-top:14px}
+</style>
+
+<style id="h7-restyle">
+/* ===== H7 (David, Nov 9, 2026) - round 5: TRIO IN-CARD SELECTION =====
+   The GLOW variant popup is RETIRED. On the GLOW | KLOW | GHK-Cu card the
+   three orbs are the selectors (David's design): tap an orb and it
+   literally glows brighter - its own colors intensified plus an outer
+   glow in that color, scaled 1.05 (transform only, layout untouched) -
+   while the other two gray out and fade to 0.25 opacity. The ORDER
+   button then lights up in the selected orb's own colors - the exact
+   radial gradients the retired popup buttons wore - and reads
+   ORDER $<price>, still exactly 122x28. Tap the lit ORDER to add to
+   cart (cart popup opens, round-4 no-auto-close behavior). Tap the
+   selected orb again to deselect. With no selection the ORDER button
+   keeps its emerald prototype look but sits quiet (opacity .75,
+   desaturated) and tapping it only pulses the orb row. */
+.glow-orb{transition:transform .15s ease,box-shadow .15s ease,opacity .25s ease,filter .25s ease}
+.glow-orb:focus-visible{outline:3px solid #0070D0;outline-offset:2px}
+.glow-venn.has-sel .glow-orb:not(.sel){opacity:.25;filter:grayscale(1)}
+.glow-orb.sel{transform:scale(1.05);z-index:2}
+.glow-orb.orb-glow.sel{filter:saturate(1.3) brightness(1.07);
+  box-shadow:inset 0 3px 6px rgba(255,255,255,.65),inset 0 -8px 14px rgba(0,0,0,.18),0 5px 10px rgba(15,23,42,.25),0 0 22px 7px rgba(240,240,0,.75)}
+.glow-orb.orb-klow.sel{filter:saturate(1.25) brightness(1.06);
+  box-shadow:inset 0 3px 6px rgba(255,255,255,.65),inset 0 -8px 14px rgba(0,0,0,.18),0 5px 10px rgba(15,23,42,.25),0 0 22px 7px rgba(240,96,0,.7)}
+.glow-orb.orb-ghk.sel{filter:saturate(1.25) brightness(1.06);
+  box-shadow:inset 0 3px 6px rgba(255,255,255,.65),inset 0 -8px 14px rgba(0,0,0,.18),0 5px 10px rgba(15,23,42,.25),0 0 22px 7px rgba(0,112,208,.7)}
+.glow-orb.sel:active{transform:scale(1.05) translateY(2px)}
+/* ORDER button: quiet when idle, lit in the selected orb's own colors */
+#glowOrderBtn.trio-idle{opacity:.75;filter:saturate(.55)}
+#glowOrderBtn.trio-lit-glow{background:radial-gradient(circle at 32% 28%,#FFFFC8 0%,#F0F000 55%,#D8D800 100%);color:#3A3400;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35),0 0 16px 4px rgba(240,240,0,.65)}
+#glowOrderBtn.trio-lit-klow{background:radial-gradient(circle at 32% 28%,#FFB37A 0%,#F06000 55%,#C24E00 100%);color:#0F172A;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35),0 0 16px 4px rgba(240,96,0,.6)}
+#glowOrderBtn.trio-lit-ghk{background:radial-gradient(circle at 32% 28%,#7AC0FF 0%,#0070D0 55%,#005AA8 100%);color:#0F172A;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35),0 0 16px 4px rgba(0,112,208,.6)}
+/* Nudge: tapping the quiet ORDER button pulses the orb row */
+@keyframes trioPulse{0%,100%{transform:scale(1)}30%{transform:scale(1.09)}60%{transform:scale(1.03)}}
+.glow-venn.trio-pulse .glow-orb{animation:trioPulse .55s ease-in-out 2}
 </style>
 </body>
 </html>

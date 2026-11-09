@@ -68,7 +68,7 @@
         .card:hover .ico{transform:scale(1.08)}
         .c-cyan::before{background:linear-gradient(90deg,var(--cyan),rgba(6,182,212,.3))}.c-cyan .ico{background:rgba(6,182,212,.1);color:#00C2F0}
         .c-orange::before{background:linear-gradient(90deg,var(--orange),rgba(249,115,22,.3))}.c-orange .ico{background:rgba(249,115,22,.1);color:#FF7A1A}
-        .c-purple::before{background:linear-gradient(90deg,var(--violet),rgba(168,85,247,.3))}.c-purple .ico{background:rgba(168,85,247,.1);color:#B45CFF}
+        .c-purple::before{background:linear-gradient(90deg,#9333EA,rgba(147,51,234,.3))}.c-purple .ico{background:rgba(147,51,234,.1);color:#9333EA}
         .c-emerald::before{background:linear-gradient(90deg,var(--emerald),rgba(16,185,129,.3))}.c-emerald .ico{background:rgba(16,185,129,.1);color:#00C853}
         .c-amber::before{background:linear-gradient(90deg,var(--amber),rgba(245,158,11,.3))}.c-amber .ico{background:rgba(245,158,11,.1);color:var(--amber)}
         .c-red::before{background:linear-gradient(90deg,var(--red),rgba(220,38,38,.3))}.c-red .ico{background:rgba(220,38,38,.1);color:var(--red)}
@@ -80,30 +80,30 @@
 .c-pink::before{background:linear-gradient(90deg,#DB2777,rgba(219,39,119,.3))}
 .c-pink .ico{background:rgba(219,39,119,.1);color:#FF2E8C}
 .b-pink{background:linear-gradient(135deg,#DB2777,#F472B6)}
-        .b-purple{background:linear-gradient(135deg,var(--purple),#B347FF)}
+        .b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)}
         .b-emerald{background:linear-gradient(135deg,#059669,var(--emerald))}
         .b-amber{background:linear-gradient(135deg,#D97706,var(--amber))}
         .b-red{background:linear-gradient(135deg,#B91C1C,var(--red))}
-        .c-bio::before{background:linear-gradient(90deg,var(--pal-purple),rgba(108,79,224,.3))}.c-bio .ico{background:rgba(108,79,224,.12);color:#7A5CFF}
-        .b-bio{background:linear-gradient(135deg,var(--pal-purple),var(--pal-purple-lt))}
+        .c-bio::before{background:linear-gradient(90deg,#1D6FF2,rgba(29,111,242,.3))}.c-bio .ico{background:rgba(29,111,242,.12);color:#1D6FF2}
+        .b-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF)}
         .card:hover .btn{filter:brightness(1.1)}
         /* Round 2: circular neon push-button card icons (black core, glowing ring, raised gloss) */
         .card .ico{width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#2A2F3A,#0B0D12 62%,#05070A);font-size:3.3rem;margin:0 0 10px;position:relative}
         .card .ico::after{content:'';position:absolute;top:7%;left:12%;width:55%;height:38%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);opacity:.5;pointer-events:none}
         .card .ico .glow-ico{position:relative;display:block;line-height:0}
-        .card .ico .glow-halo{position:absolute;left:0;top:0;filter:blur(6px);opacity:.8}
+        .card .ico .glow-halo{position:absolute;left:0;top:0;filter:blur(2.5px);opacity:.6}
         .card .ico .glow-core{position:relative;display:block;filter:none}
         .card:active .ico{transform:translateY(2px)}
         .c-emerald .ico{border:3px solid #34D399;color:#34D399;box-shadow:0 0 18px #34D399CC,0 0 44px #34D39955,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
         .c-emerald:active .ico{box-shadow:0 0 18px #34D399CC,0 0 44px #34D39955,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
         .c-cyan .ico{border:3px solid #22D3EE;color:#22D3EE;box-shadow:0 0 18px #22D3EECC,0 0 44px #22D3EE55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
         .c-cyan:active .ico{box-shadow:0 0 18px #22D3EECC,0 0 44px #22D3EE55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
-        .c-bio .ico{border:3px solid #8B6FF0;color:#8B6FF0;box-shadow:0 0 18px #8B6FF0CC,0 0 44px #8B6FF055,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
-        .c-bio:active .ico{box-shadow:0 0 18px #8B6FF0CC,0 0 44px #8B6FF055,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+        .c-bio .ico{border:3px solid #1D6FF2;color:#1D6FF2;box-shadow:0 0 18px #1D6FF2CC,0 0 44px #1D6FF255,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-bio:active .ico{box-shadow:0 0 18px #1D6FF2CC,0 0 44px #1D6FF255,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
         .c-pink .ico{border:3px solid #F472B6;box-shadow:0 0 18px #F472B6CC,0 0 44px #F472B655,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
         .c-pink:active .ico{box-shadow:0 0 18px #F472B6CC,0 0 44px #F472B655,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
-        .c-purple .ico{border:3px solid #B347FF;color:#B347FF;box-shadow:0 0 18px #B347FFCC,0 0 44px #B347FF55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
-        .c-purple:active .ico{box-shadow:0 0 18px #B347FFCC,0 0 44px #B347FF55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+        .c-purple .ico{border:3px solid #9333EA;color:#9333EA;box-shadow:0 0 18px #9333EACC,0 0 44px #9333EA55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+        .c-purple:active .ico{box-shadow:0 0 18px #9333EACC,0 0 44px #9333EA55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
         .c-orange .ico{border:3px solid #FB923C;color:#FB923C;box-shadow:0 0 18px #FB923CCC,0 0 44px #FB923C55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
         .c-orange:active .ico{box-shadow:0 0 18px #FB923CCC,0 0 44px #FB923C55,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
         @media (max-width: 768px) {
@@ -311,8 +311,10 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
    (4) Icon glyphs get a crisp contrast edge and brighter hues. */
 .card .ico{width:84px;height:84px}
 .card .ico .glow-ico svg{transform:scale(.75);transform-origin:center center}
-.card .ico .glow-core svg{filter:drop-shadow(0 0 .7px currentColor) saturate(1.35) brightness(1.1) contrast(1.06)}
-.card p.card-desc2{line-height:1.16;margin:0 0 14px}
+.card .ico .glow-core svg{filter:drop-shadow(0 0 .35px currentColor) saturate(1.35) brightness(1.1) contrast(1.1)}
+.card p.card-desc2{line-height:1.16;margin:0 0 14px;white-space:nowrap}
+.btn{white-space:nowrap}
+.card.c-pink .ico .glow-ico svg{transform:scale(1)}
 .btn{padding:6px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);
   box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);
   text-shadow:0 1px 2px rgba(0,0,0,.35)}
@@ -340,37 +342,37 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
         <a href="https://peptopia-health.github.io/X-Peps/orders/" class="card c-emerald">
             <div class="ico"><span class="glow-ico"><svg class="glow-halo" viewBox="0 0 576 512" width="77.2" height="68.6" aria-hidden="true"><path fill="currentColor" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg><svg class="glow-core" viewBox="0 0 576 512" width="77.2" height="68.6" aria-hidden="true"><path fill="currentColor" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg></span></div>
             <h2>Healthcare Shop</h2>
-            <p class="card-desc2">Premium Research:<br>Peptides • Nootropics • Herbal Remedies</p>
+            <p class="card-desc2">Peptides • Nootropics • Herbal Remedies</p>
             <span class="btn b-emerald"><i class="fa-solid fa-bag-shopping"></i> Go to Store</span>
         </a>
         <a href="https://peptopia-health.github.io/X-Peps/" class="card c-cyan">
             <div class="ico"><span class="glow-ico"><svg class="glow-halo" viewBox="0 0 576 512" width="77.2" height="68.6" aria-hidden="true"><path fill="currentColor" d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg><svg class="glow-core" viewBox="0 0 576 512" width="77.2" height="68.6" aria-hidden="true"><path fill="currentColor" d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z"/></svg></span></div>
             <h2>Education</h2>
-            <p class="card-desc2">Education<br>Guides • Calculators • Streams</p>
+            <p class="card-desc2">Guides • Calculators • Tools</p>
             <span class="btn b-cyan"><i class="fa-solid fa-file-lines"></i> Read the Guides</span>
         </a>
         <a href="https://x-peps.com/X-Peps/biohacking-news.html" class="card c-bio">
             <div class="ico"><span class="glow-ico"><svg class="glow-halo" viewBox="0 0 512 512" width="68.6" height="68.6" aria-hidden="true"><path fill="currentColor" d="M96 96c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128c0-17.7 14.3-32 32-32s32 14.3 32 32V400c0 8.8 7.2 16 16 16s16-7.2 16-16V96zm64 24v80c0 13.3 10.7 24 24 24H296c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z"/></svg><svg class="glow-core" viewBox="0 0 512 512" width="68.6" height="68.6" aria-hidden="true"><path fill="currentColor" d="M96 96c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128c0-17.7 14.3-32 32-32s32 14.3 32 32V400c0 8.8 7.2 16 16 16s16-7.2 16-16V96zm64 24v80c0 13.3 10.7 24 24 24H296c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z"/></svg></span></div>
             <h2>Biohacking News</h2>
-            <p class="card-desc2">Biohacking News<br>Research • Breakthroughs • Results</p>
+            <p class="card-desc2">Research • Breakthroughs • Results</p>
             <span class="btn b-bio"><i class="fa-solid fa-bolt"></i> Read the News</span>
         </a>
         <a href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" class="card c-pink">
-            <div class="ico"><span class="glow-ico"><svg class="glow-halo" viewBox="0 0 24 24" width="66" height="66" fill="#4CC94F" stroke="#F5E600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-6 16-16 16Z"/><path d="M4 20c3-6 8-11 13-13" fill="none"/></svg><svg class="glow-core" viewBox="0 0 24 24" width="66" height="66" fill="#4CC94F" stroke="#F5E600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-6 16-16 16Z"/><path d="M4 20c3-6 8-11 13-13" fill="none"/></svg></span></div>
+            <div class="ico"><span class="glow-ico"><svg class="glow-halo" viewBox="2.8 2.8 18.4 18.4" width="76" height="76" fill="#1E7A2E" stroke="#4CC94F" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-6 16-16 16Z"/><path d="M4 20c3-6 8-11 13-13" fill="none"/></svg><svg class="glow-core" viewBox="2.8 2.8 18.4 18.4" width="76" height="76" fill="#1E7A2E" stroke="#4CC94F" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C4 11 10 4 20 4c0 10-6 16-16 16Z"/><path d="M4 20c3-6 8-11 13-13" fill="none"/></svg></span></div>
             <h2>Kratom Reviews</h2>
-            <p class="card-desc2">Kratom Reviews<br>Real Reviews • Real Trust</p>
+            <p class="card-desc2">Transparency • Truth • Trust</p>
             <span class="btn b-pink"><i class="fa-solid fa-magnifying-glass"></i> Read Reviews</span>
         </a>
         <a href="https://peptopia.github.io/NCLEX/" class="card c-purple">
             <div class="ico"><span class="glow-ico"><svg class="glow-halo" viewBox="0 0 448 512" width="60.1" height="68.6" aria-hidden="true"><path fill="currentColor" d="M96 128V70.2c0-13.3 8.3-25.3 20.8-30l96-36c7.2-2.7 15.2-2.7 22.5 0l96 36c12.5 4.7 20.8 16.6 20.8 30V128h-.3c.2 2.6 .3 5.3 .3 8v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V136c0-2.7 .1-5.4 .3-8H96zm48 48c0 44.2 35.8 80 80 80s80-35.8 80-80V160H144v16zM111.9 327.7c10.5-3.4 21.8 .4 29.4 8.5l71 75.5c6.3 6.7 17 6.7 23.3 0l71-75.5c7.6-8.1 18.9-11.9 29.4-8.5C401 348.6 448 409.4 448 481.3c0 17-13.8 30.7-30.7 30.7H30.7C13.8 512 0 498.2 0 481.3c0-71.9 47-132.7 111.9-153.6zM208 48V64H192c-4.4 0-8 3.6-8 8V88c0 4.4 3.6 8 8 8h16v16c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8V96h16c4.4 0 8-3.6 8-8V72c0-4.4-3.6-8-8-8H240V48c0-4.4-3.6-8-8-8H216c-4.4 0-8 3.6-8 8z"/></svg><svg class="glow-core" viewBox="0 0 448 512" width="60.1" height="68.6" aria-hidden="true"><path fill="currentColor" d="M96 128V70.2c0-13.3 8.3-25.3 20.8-30l96-36c7.2-2.7 15.2-2.7 22.5 0l96 36c12.5 4.7 20.8 16.6 20.8 30V128h-.3c.2 2.6 .3 5.3 .3 8v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V136c0-2.7 .1-5.4 .3-8H96zm48 48c0 44.2 35.8 80 80 80s80-35.8 80-80V160H144v16zM111.9 327.7c10.5-3.4 21.8 .4 29.4 8.5l71 75.5c6.3 6.7 17 6.7 23.3 0l71-75.5c7.6-8.1 18.9-11.9 29.4-8.5C401 348.6 448 409.4 448 481.3c0 17-13.8 30.7-30.7 30.7H30.7C13.8 512 0 498.2 0 481.3c0-71.9 47-132.7 111.9-153.6zM208 48V64H192c-4.4 0-8 3.6-8 8V88c0 4.4 3.6 8 8 8h16v16c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8V96h16c4.4 0 8-3.6 8-8V72c0-4.4-3.6-8-8-8H240V48c0-4.4-3.6-8-8-8H216c-4.4 0-8 3.6-8 8z"/></svg></span></div>
             <h2>Nursing Education</h2>
-            <p class="card-desc2">Nursing Education<br>NCLEX Success • Nursing Excellence</p>
+            <p class="card-desc2">NCLEX Success • Nursing Excellence</p>
             <span class="btn b-purple"><i class="fa-solid fa-laptop-medical"></i> Courseware</span>
         </a>
         <a href="https://peptopia-health.github.io/Corrections/" class="card c-orange">
             <div class="ico"><span class="glow-ico"><svg class="glow-halo" viewBox="0 0 640 512" width="75.9" height="60.7" aria-hidden="true"><path fill="currentColor" d="M240 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM192 48a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32 80c17.7 0 32 14.3 32 32h8c13.3 0 24 10.7 24 24v16c0 1.7-.2 3.4-.5 5.1C280.3 229.6 320 286.2 320 352c0 88.4-71.6 160-160 160S0 440.4 0 352c0-65.8 39.7-122.4 96.5-146.9c-.4-1.6-.5-3.3-.5-5.1V184c0-13.3 10.7-24 24-24h8c0-17.7 14.3-32 32-32zm0 320a96 96 0 1 0 0-192 96 96 0 1 0 0 192zm192-96c0-25.9-5.1-50.5-14.4-73.1c16.9-32.9 44.8-59.1 78.9-73.9c-.4-1.6-.5-3.3-.5-5.1V184c0-13.3 10.7-24 24-24h8c0-17.7 14.3-32 32-32s32 14.3 32 32h8c13.3 0 24 10.7 24 24v16c0 1.7-.2 3.4-.5 5.1C600.3 229.6 640 286.2 640 352c0 88.4-71.6 160-160 160c-62 0-115.8-35.3-142.4-86.9c9.3-22.5 14.4-47.2 14.4-73.1zm224 0a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM368 0a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm80 48a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg><svg class="glow-core" viewBox="0 0 640 512" width="75.9" height="60.7" aria-hidden="true"><path fill="currentColor" d="M240 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM192 48a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32 80c17.7 0 32 14.3 32 32h8c13.3 0 24 10.7 24 24v16c0 1.7-.2 3.4-.5 5.1C280.3 229.6 320 286.2 320 352c0 88.4-71.6 160-160 160S0 440.4 0 352c0-65.8 39.7-122.4 96.5-146.9c-.4-1.6-.5-3.3-.5-5.1V184c0-13.3 10.7-24 24-24h8c0-17.7 14.3-32 32-32zm0 320a96 96 0 1 0 0-192 96 96 0 1 0 0 192zm192-96c0-25.9-5.1-50.5-14.4-73.1c16.9-32.9 44.8-59.1 78.9-73.9c-.4-1.6-.5-3.3-.5-5.1V184c0-13.3 10.7-24 24-24h8c0-17.7 14.3-32 32-32s32 14.3 32 32h8c13.3 0 24 10.7 24 24v16c0 1.7-.2 3.4-.5 5.1C600.3 229.6 640 286.2 640 352c0 88.4-71.6 160-160 160c-62 0-115.8-35.3-142.4-86.9c9.3-22.5 14.4-47.2 14.4-73.1zm224 0a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM368 0a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm80 48a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg></span></div>
             <h2>Corrections Nursing</h2>
-            <p class="card-desc2">Correctional Nursing<br>Care • Custody • Control</p>
+            <p class="card-desc2">Care • Custody • Control</p>
             <span class="btn b-orange"><i class="fa-solid fa-clipboard-list"></i> Access Portal</span>
         </a>
     </main>

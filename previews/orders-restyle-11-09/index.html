@@ -375,35 +375,24 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
 
         /* ─── RETATRUTIDE (§36) ─── */
         .card.reta .card-title, .card.reta .punch { color:#4C1D95; }
-        .metal-btn.metal-lav { background:linear-gradient(180deg,#EDE9FE 0%,#D8CCFF 32%,#B79CFA 68%,#9B78F5 100%); border-color:#4C1D95; color:#17102B;
-            box-shadow: inset 0 2px 2px rgba(255,255,255,.95), inset 0 -5px 8px rgba(76,29,149,.35), inset 2px 0 4px rgba(255,255,255,.3), inset -2px 0 4px rgba(76,29,149,.22), 0 8px 16px rgba(76,29,149,.35); }
-        .metal-btn.metal-lav:active { box-shadow: inset 0 3px 8px rgba(0,0,0,.5), 0 2px 4px rgba(76,29,149,.35); }
+        /* H5: legacy lavender metal gradient retired - homepage prototype gradient (see #h5-restyle .pb-purple). */
+        .metal-btn.metal-lav { }
         .mark-o { background:transparent; padding:0; border-radius:0; font-weight:800; color:#C75000; }
         .bpc-stage { width:100%; max-width:340px; margin:0 auto; }
         .bpc-stage svg { width:100%; height:auto; display:block; }
         .btn-col { display:flex; flex-direction:column; width:max-content; max-width:100%; margin:10px auto 0; gap:10px; }
-        .metal-btn { position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; text-decoration:none;
-            font-family:'Outfit',sans-serif; font-weight:800; font-size:1.15rem; color:#064E3B;
-            text-shadow:0 1px 0 rgba(255,255,255,.55);
-            background:linear-gradient(180deg,#EFFFF7 0%,#B9F6DC 26%,#4ADE9C 52%,#17B978 76%,#0A8F5D 100%);
-            border:2px solid #065F46; border-radius:9999px; padding:11px 26px;
-            box-shadow: inset 0 2px 2px rgba(255,255,255,.95), inset 0 -4px 7px rgba(0,0,0,.35),
-                        inset 3px 0 5px rgba(255,255,255,.35), inset -3px 0 5px rgba(0,0,0,.18),
-                        0 9px 18px rgba(15,23,42,.38), 0 2px 5px rgba(15,23,42,.28);
-            transition:transform .1s ease, box-shadow .1s ease; }
-        .metal-btn::after { content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
-            background:linear-gradient(112deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.16) 46%, rgba(255,255,255,.03) 60%, rgba(255,255,255,0) 78%); }
-        .metal-btn:active { transform:translateY(3px);
-            box-shadow: inset 0 2px 3px rgba(255,255,255,.7), inset 0 -2px 5px rgba(0,0,0,.3),
-                        inset 3px 0 5px rgba(255,255,255,.25), inset -3px 0 5px rgba(0,0,0,.15),
-                        0 3px 7px rgba(15,23,42,.35), 0 1px 3px rgba(15,23,42,.25); }
+        /* H5 (Nov 9, 2026): the legacy metal-button recipe (180deg metal
+           gradients, white top sheen ::after sweep, dark text) is RETIRED.
+           Every pill button on this page is the homepage .btn prototype,
+           defined once in #h5-restyle below (classes .pb-*). The rules that
+           remain here are structural hooks only. */
+        .metal-btn { text-decoration:none; }
+        button.glow-orb, button.metal-btn { cursor:pointer; }
 
         /* ─── GLOW POPUP + LABELED ICONS ─── */
         .glow-benefits-labeled .bic-unit { display:flex; flex-direction:column; align-items:center; gap:3px; }
         .glow-benefits-labeled .bic-lab { font-family:'Outfit',sans-serif; font-weight:800; font-size:10.5px; letter-spacing:.06em; color:#475569; }
         .glow-benefits-labeled .plus { margin-top:13px; }
-        .metal-btn-sm { font-size:1.02rem; padding:11px 18px; }
-        button.glow-orb, button.metal-btn { cursor:pointer; }
         .buy-pop { position:fixed; inset:0; background:rgba(15,23,42,.48); display:flex; align-items:center; justify-content:center; z-index:80; padding:18px; }
         .buy-pop[hidden] { display:none; }
         .buy-pop-card { background:#fff; border-radius:16px; border-top:4px solid var(--emerald); padding:24px 20px 20px; width:100%; max-width:330px; position:relative; box-shadow:0 24px 48px rgba(15,23,42,.35); }
@@ -413,16 +402,9 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
             font-family:'Outfit',sans-serif; font-weight:800; font-size:1.05rem; line-height:1; cursor:pointer;
             box-shadow: inset 0 2px 3px rgba(255,255,255,.8), inset 0 -3px 5px rgba(0,0,0,.2), 0 3px 6px rgba(15,23,42,.3); }
         .buy-pop-x:active { transform:translateY(2px); }
-        .pop-btn { position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; text-decoration:none;
-            font-family:'Outfit',sans-serif; font-weight:800; font-size:1.12rem; border-radius:9999px; padding:12px 22px; margin-top:10px;
-            border:2px solid rgba(0,0,0,.3);
-            box-shadow: inset 0 2px 2px rgba(255,255,255,.9), inset 0 -4px 7px rgba(0,0,0,.3), 0 7px 14px rgba(15,23,42,.3); }
-        .pop-btn::after { content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
-            background:linear-gradient(112deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.16) 46%, rgba(255,255,255,.03) 60%, rgba(255,255,255,0) 78%); }
-        .pop-btn:active { transform:translateY(2px); }
-        .pop-glow { background:linear-gradient(180deg,#FFFFD8 0%,#F5F52E 45%,#F0F000 70%,#CFCF00 100%); color:#3A3400; }
-        .pop-klow { background:linear-gradient(180deg,#FFE9D2 0%,#FFC79A 45%,#FFB066 70%,#FF9A3D 100%); color:#3B0764; text-shadow:0 1px 0 rgba(255,255,255,.4); }
-        .pop-ghk  { background:linear-gradient(180deg,#8FC6FF 0%,#2E8FFF 45%,#0070D0 70%,#005AA8 100%); color:#0F172A; }
+        /* H5: legacy pop-btn recipe retired - variant buttons are the
+           homepage prototype too (#h5-restyle .pb-*); layout in #h5-restyle. */
+        .pop-btn { margin-top:10px; }
 
         .slu-stage { width:100%; max-width:340px; margin:0 auto; }
         .slu-stage svg { width:100%; height:auto; display:block; }
@@ -430,14 +412,9 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
         .card.wm .card-title, .card.wm .punch { color:#4C1D95; }
         .card.wake .card-title, .card.wake .punch { color:#9A3412; }
         .card.sup .card-title, .card.sup .punch { color:#004E96; }
-        .metal-btn.metal-tang { background:linear-gradient(180deg,#FFF6DE 0%,#FFDCA6 32%,#FFC384 68%,#FFB066 100%); border-color:#9A3412; color:#3B0764;
-            text-shadow:0 1px 0 rgba(255,255,255,.4);
-            box-shadow: inset 0 2px 2px rgba(255,255,255,.9), inset 0 -5px 8px rgba(154,52,18,.4), inset 2px 0 4px rgba(255,255,255,.3), inset -2px 0 4px rgba(154,52,18,.25), 0 8px 16px rgba(154,52,18,.35); }
-        .metal-btn.metal-tang:active { box-shadow: inset 0 3px 8px rgba(0,0,0,.5), 0 2px 4px rgba(154,52,18,.35); }
-        .metal-btn.metal-cob { background:linear-gradient(180deg,#D8ECFF 0%,#7DB9F5 32%,#2E8FFF 68%,#0070D0 100%); border-color:#004E96; color:#FFFFFF;
-            text-shadow:0 1px 2px rgba(0,0,0,.3);
-            box-shadow: inset 0 2px 2px rgba(255,255,255,.9), inset 0 -5px 8px rgba(0,78,150,.4), inset 2px 0 4px rgba(255,255,255,.3), inset -2px 0 4px rgba(0,78,150,.25), 0 8px 16px rgba(0,78,150,.35); }
-        .metal-btn.metal-cob:active { box-shadow: inset 0 3px 8px rgba(0,0,0,.5), 0 2px 4px rgba(0,78,150,.35); }
+        /* H5: legacy tangerine/cobalt metal gradients retired - homepage
+           prototype gradients (see #h5-restyle .pb-orange / .pb-bio). */
+        .metal-btn.metal-tang, .metal-btn.metal-cob { }
         .viz-stage { width:100%; max-width:340px; margin:0 auto; }
         .viz-stage svg { width:100%; height:auto; display:block; }
 </style>
@@ -455,7 +432,7 @@ html.dark .cat-emerald .card.neo .card-title,html.dark .cat-emerald .card.neo .p
 html.dark .cat-orange .card.neo .card-title,html.dark .cat-orange .card.neo .punch{color:#FDBA74}
 html.dark .cat-slate .card.neo .card-title,html.dark .cat-slate .card.neo .punch{color:#CBD5E1}
 html.dark mark{color:#0F172A}
-html.dark text[fill="#475569"]{fill:#9FB0C9}
+html.dark text[fill="#475569"]{fill:#FFFFFF;stroke:none}
 html.dark .footer-banner{background:#131E30;border-color:#2A3B55}
 html.dark .buy-pop-card{background:#16233A;color:#F1F5F9}
 html.dark .hero p{color:var(--t2)}
@@ -472,15 +449,11 @@ html.dark .hero p{color:var(--t2)}
 /* H4 (Nov 9, 2026): the Nov 8 mobile zoom:0.81 is retired — mobile cards now go near-full-width at natural scale (h4-restyle block). */
 </style>
 <style id="h3-redesign">
-/* ===== H3 redesign (David, Nov 9, 2026): homepage button standard + tracer cart ===== */
+/* ===== H3 redesign (David, Nov 9, 2026): hero spacing + highlight rules =====
+   H5 (Nov 9, 2026): its button rules moved to #h5-restyle (homepage prototype). */
 .hero{padding:2px 24px 8px}
 .hero h1{margin-bottom:2px}
 .card{padding-bottom:10px}
-.btn-row{display:flex;gap:10px;align-items:stretch;justify-content:center;width:100%;margin-top:auto;padding-top:10px}
-.btn-row .metal-btn{flex:1 1 0;height:36px;min-height:36px;padding:0 12px;font-size:1rem;line-height:1;white-space:nowrap;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);text-shadow:0 1px 2px rgba(0,0,0,.35)}
-.btn-row .metal-btn:active{transform:translateY(2px);box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
-.btn-row.single .metal-btn{flex:0 0 calc(50% - 5px)}
-.btn-row .btn-tbd{opacity:.8;cursor:not-allowed;filter:saturate(.35)}
 mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .txt-o{color:#C75000;font-weight:800}
 .buy-pop .pop-btn{width:100%;box-sizing:border-box;cursor:pointer;font-family:'Outfit',sans-serif}
@@ -495,6 +468,7 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
 <span class="peptopia-wordmark">PEPTOPIA<span class="peptopia-tagline">HEALTH &amp; WELLNESS</span></span>
 </a>
 <nav class="peptopia-nav" aria-label="Site">
+<button type="button" class="nav-btn nav-cart" id="cartBtn">CART</button>
 <a class="nav-btn" href="https://x-peps.com/">HOME</a>
 <a class="nav-btn nav-orders" href="https://x-peps.com/X-Peps/orders/">ORDERS</a>
 <button type="button" class="peptopia-iconbtn peptopia-theme-toggle nav-btn" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme"><svg class="pp-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pp-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
@@ -514,11 +488,11 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-title">Tirzepatide (30mg)</div>
                 <div class="card-sub">Dual Agonist</div>
                 <p class="card-desc">Dual agonist hitting GIP and GLP-1.<br>Stronger than single-pathway.</p>
-                <div class="viz-stage" role="img" aria-label="Tirzepatide dual-agonist diagram: one core with two receptor satellites, GLP-1 and GIP"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="tirz2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="tirz2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient><radialGradient id="tirz2-gip" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#FFE9D2" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M138 108 L128 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M202 108 L212 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="105" cy="75" r="29" fill="url(#tirz2-glp)" stroke="#0F172A" stroke-width="3"/><text x="105" y="82" text-anchor="middle" font-family="Outfit, sans-serif" font-size="18" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="235" cy="75" r="29" fill="url(#tirz2-gip)" stroke="#0F172A" stroke-width="3"/><text x="235" y="83" text-anchor="middle" font-family="Outfit, sans-serif" font-size="19" font-weight="800" fill="#0F172A">GIP</text><circle cx="170" cy="140" r="46" fill="url(#tirz2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.45" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#3A3400">2×</text></svg>
+                <div class="viz-stage" role="img" aria-label="Tirzepatide dual-agonist diagram: one core with two receptor satellites, GLP-1 and GIP"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="tirz2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="tirz2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient><radialGradient id="tirz2-gip" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#FFE9D2" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M138 108 L128 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M202 108 L212 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="105" cy="75" r="29" fill="url(#tirz2-glp)" stroke="#0F172A" stroke-width="3"/><text x="105" y="82" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="235" cy="75" r="29" fill="url(#tirz2-gip)" stroke="#0F172A" stroke-width="3"/><text x="235" y="83" text-anchor="middle" font-family="Outfit, sans-serif" font-size="19" font-weight="800" fill="#0F172A">GIP</text><circle cx="170" cy="140" r="46" fill="url(#tirz2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.45" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#3A3400">2×</text></svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn metal-lav order-gate-btn" data-og-product="Tirzepatide (30mg)" data-og-price="395" data-og-code="ILRSrDW6" aria-haspopup="dialog">$395</button>
-                    <a class="metal-btn metal-lav" href="https://x-peps.com/X-Peps/tirzepatide_guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-purple order-gate-btn" data-og-product="Tirzepatide (30mg)" data-og-price="395" data-og-code="ILRSrDW6" aria-haspopup="dialog">$395</button>
+                    <a class="metal-btn pb-purple" href="https://x-peps.com/X-Peps/tirzepatide_guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             
@@ -526,11 +500,11 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-title">Semaglutide (10mg)</div>
                 <div class="card-sub">Gold Standard</div>
                 <p class="card-desc">AKA <a href="https://www.ozempic.com/ozempic-pen/what-is-ozempic-pen.html" target="_blank" rel="noopener">Ozempic</a> — deep appetite control and proven, lasting weight loss.</p>
-                <div class="viz-stage" role="img" aria-label="Semaglutide single-agonist diagram: one core with one receptor satellite, GLP-1"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="sema2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#D8CCFF"/><stop offset="0.55" stop-color="#7C3AED"/><stop offset="1" stop-color="#5B21B6"/></radialGradient><radialGradient id="sema2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#EFE9FD" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="33" fill="url(#sema2-glp)" stroke="#0F172A" stroke-width="3"/><text x="170" y="57" text-anchor="middle" font-family="Outfit, sans-serif" font-size="18" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="170" cy="140" r="46" fill="url(#sema2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.38" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#0F172A">1×</text></svg>
+                <div class="viz-stage" role="img" aria-label="Semaglutide single-agonist diagram: one core with one receptor satellite, GLP-1"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="sema2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#D8CCFF"/><stop offset="0.55" stop-color="#7C3AED"/><stop offset="1" stop-color="#5B21B6"/></radialGradient><radialGradient id="sema2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#EFE9FD" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="33" fill="url(#sema2-glp)" stroke="#0F172A" stroke-width="3"/><text x="170" y="57" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="170" cy="140" r="46" fill="url(#sema2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.38" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#0F172A">1×</text></svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn metal-lav order-gate-btn" data-og-product="Semaglutide (10mg)" data-og-price="285" data-og-code="nBxV33Sv" aria-haspopup="dialog">$285</button>
-                    <a class="metal-btn metal-lav" href="https://x-peps.com/X-Peps/semaglutide_guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-purple order-gate-btn" data-og-product="Semaglutide (10mg)" data-og-price="285" data-og-code="nBxV33Sv" aria-haspopup="dialog">$285</button>
+                    <a class="metal-btn pb-purple" href="https://x-peps.com/X-Peps/semaglutide_guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             
@@ -538,11 +512,11 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-title">Retatrutide (20mg)</div>
                 <div class="card-sub">Triple Threat</div>
                 <p class="card-desc">A <a class="hl-red" href="https://www.lilly.com/news/stories/what-to-know-about-retatrutide" target="_blank" rel="noopener">triple agonist</a> maximizing <mark>fat burn</mark>, accelerating <mark>metabolism</mark>, and <mark>weight loss</mark>.</p>
-                <div class="bpc-stage" role="img" aria-label="Retatrutide triple-agonist diagram: one core with three receptor satellites, GLP-1, GIP, and glucagon"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="reta2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#F5A3A3"/><stop offset="0.55" stop-color="#D92323"/><stop offset="1" stop-color="#A51212"/></radialGradient><radialGradient id="reta2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient><radialGradient id="reta2-gip" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="reta2-glu" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#F8C8C8"/><stop offset="0.55" stop-color="#E05252"/><stop offset="1" stop-color="#B91C1C"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#FDE7E7" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M138 172 L128 182" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M202 172 L212 182" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="29" fill="url(#reta2-glp)" stroke="#0F172A" stroke-width="3"/><text x="170" y="56" text-anchor="middle" font-family="Outfit, sans-serif" font-size="18" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="105" cy="205" r="29" fill="url(#reta2-gip)" stroke="#0F172A" stroke-width="3"/><text x="105" y="213" text-anchor="middle" font-family="Outfit, sans-serif" font-size="19" font-weight="800" fill="#0F172A">GIP</text><circle cx="235" cy="205" r="29" fill="url(#reta2-glu)" stroke="#0F172A" stroke-width="3"/><path d="M235 219 L235 195 M224 206 L235 192 L246 206" stroke="#0F172A" stroke-width="5.5"/><text x="226" y="250" text-anchor="middle" font-family="Outfit, sans-serif" font-size="15" font-weight="800" letter-spacing="0.02em" fill="#475569">GLUCAGON</text><circle cx="170" cy="140" r="46" fill="url(#reta2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.42" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#FFFFFF">3×</text></svg>
+                <div class="bpc-stage" role="img" aria-label="Retatrutide triple-agonist diagram: one core with three receptor satellites, GLP-1, GIP, and glucagon"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="reta2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#F5A3A3"/><stop offset="0.55" stop-color="#D92323"/><stop offset="1" stop-color="#A51212"/></radialGradient><radialGradient id="reta2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient><radialGradient id="reta2-gip" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="reta2-glu" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#F8C8C8"/><stop offset="0.55" stop-color="#E05252"/><stop offset="1" stop-color="#B91C1C"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#FDE7E7" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M138 172 L128 182" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M202 172 L212 182" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="29" fill="url(#reta2-glp)" stroke="#0F172A" stroke-width="3"/><text x="170" y="56" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="105" cy="205" r="29" fill="url(#reta2-gip)" stroke="#0F172A" stroke-width="3"/><text x="105" y="213" text-anchor="middle" font-family="Outfit, sans-serif" font-size="19" font-weight="800" fill="#0F172A">GIP</text><circle cx="235" cy="205" r="29" fill="url(#reta2-glu)" stroke="#0F172A" stroke-width="3"/><path d="M235 219 L235 195 M224 206 L235 192 L246 206" stroke="#0F172A" stroke-width="5.5"/><text x="226" y="250" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" font-weight="800" letter-spacing="0.02em" fill="#475569">GLUCAGON</text><circle cx="170" cy="140" r="46" fill="url(#reta2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.42" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#FFFFFF">3×</text></svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn metal-lav order-gate-btn" data-og-product="Retatrutide (20mg)" data-og-price="435" data-og-code="qxDOn9GB" aria-haspopup="dialog">$435</button>
-                    <a class="metal-btn metal-lav" href="https://x-peps.com/X-Peps/glps_and_aging.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-purple order-gate-btn" data-og-product="Retatrutide (20mg)" data-og-price="435" data-og-code="qxDOn9GB" aria-haspopup="dialog">$435</button>
+                    <a class="metal-btn pb-purple" href="https://x-peps.com/X-Peps/glps_and_aging.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             
@@ -551,35 +525,35 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-title">Cagrilintide (10mg)</div>
                 <div class="card-sub">Plateau Breaker</div>
                 <p class="card-desc">Long-acting — <span class="txt-o">kills appetite</span> and <span class="txt-o">food noise</span>.<br><mark>Breaks stalls</mark>.</p>
-                <div class="viz-stage" role="img" aria-label="Cagrilintide single-target diagram: one core with one receptor satellite, amylin"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="cag2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="cag2-amy" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#E9E2FF"/><stop offset="0.55" stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#FCFBC8" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="33" fill="url(#cag2-amy)" stroke="#0F172A" stroke-width="3"/><text x="170" y="56" text-anchor="middle" font-family="Outfit, sans-serif" font-size="16" font-weight="800" fill="#0F172A">AMYLIN</text><circle cx="170" cy="140" r="46" fill="url(#cag2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.45" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#3A3400">1×</text></svg>
+                <div class="viz-stage" role="img" aria-label="Cagrilintide single-target diagram: one core with one receptor satellite, amylin"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="cag2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="cag2-amy" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#E9E2FF"/><stop offset="0.55" stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#FCFBC8" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="33" fill="url(#cag2-amy)" stroke="#0F172A" stroke-width="3"/><text x="170" y="56" text-anchor="middle" font-family="Outfit, sans-serif" font-size="12" font-weight="800" fill="#0F172A">AMYLIN</text><circle cx="170" cy="140" r="46" fill="url(#cag2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.45" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#3A3400">1×</text></svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn metal-lav order-gate-btn" data-og-product="Cagrilintide (10mg)" data-og-price="295" data-og-code="Vk730Uf7" aria-haspopup="dialog">$295</button>
-                    <a class="metal-btn metal-lav" href="https://x-peps.com/X-Peps/cagrilintide-guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-purple order-gate-btn" data-og-product="Cagrilintide (10mg)" data-og-price="295" data-og-code="Vk730Uf7" aria-haspopup="dialog">$295</button>
+                    <a class="metal-btn pb-purple" href="https://x-peps.com/X-Peps/cagrilintide-guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             <div class="card accent-purple neo wm">
                 <div class="card-title">CagriSema</div>
                 <div class="card-sub">One-Two Punch</div>
                 <p class="card-desc">Two heavy hitters in one shot — <span class="mark-o">amylin plus GLP-1</span> — delivering <mark>weight loss</mark> neither one reaches alone.</p>
-                <div class="viz-stage" role="img" aria-label="CagriSema dual-target diagram: one core with two receptor satellites, GLP-1 and amylin"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="cs2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#D8CCFF"/><stop offset="0.55" stop-color="#7C3AED"/><stop offset="1" stop-color="#5B21B6"/></radialGradient><radialGradient id="cs2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient><radialGradient id="cs2-amy" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#E9E2FF"/><stop offset="0.55" stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#EFE9FD" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M138 108 L128 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M202 108 L212 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="105" cy="75" r="29" fill="url(#cs2-glp)" stroke="#0F172A" stroke-width="3"/><text x="105" y="82" text-anchor="middle" font-family="Outfit, sans-serif" font-size="18" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="235" cy="75" r="29" fill="url(#cs2-amy)" stroke="#0F172A" stroke-width="3"/><text x="235" y="83" text-anchor="middle" font-family="Outfit, sans-serif" font-size="16" font-weight="800" fill="#0F172A">AMYLIN</text><circle cx="170" cy="140" r="46" fill="url(#cs2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.38" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#0F172A">2×</text></svg>
+                <div class="viz-stage" role="img" aria-label="CagriSema dual-target diagram: one core with two receptor satellites, GLP-1 and amylin"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="cs2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#D8CCFF"/><stop offset="0.55" stop-color="#7C3AED"/><stop offset="1" stop-color="#5B21B6"/></radialGradient><radialGradient id="cs2-glp" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#ECFEFF"/><stop offset="0.55" stop-color="#67E8F9"/><stop offset="1" stop-color="#22BEDD"/></radialGradient><radialGradient id="cs2-amy" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#E9E2FF"/><stop offset="0.55" stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#EFE9FD" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M138 108 L128 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><path d="M202 108 L212 98" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="105" cy="75" r="29" fill="url(#cs2-glp)" stroke="#0F172A" stroke-width="3"/><text x="105" y="82" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" font-weight="800" fill="#0B2B36">GLP-1</text><circle cx="235" cy="75" r="29" fill="url(#cs2-amy)" stroke="#0F172A" stroke-width="3"/><text x="235" y="83" text-anchor="middle" font-family="Outfit, sans-serif" font-size="12" font-weight="800" fill="#0F172A">AMYLIN</text><circle cx="170" cy="140" r="46" fill="url(#cs2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.38" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#0F172A">2×</text></svg>
                 </div>
                 <div class="btn-row">
                     <!-- PRICE NEEDED FROM DAVID: no catalog price/code exists; enable when set -->
-                    <button type="button" class="metal-btn metal-lav btn-tbd" disabled>TBD</button>
-                    <a class="metal-btn metal-lav" href="https://x-peps.com/X-Peps/cagrisema-guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-purple btn-tbd" disabled>TBD</button>
+                    <a class="metal-btn pb-purple" href="https://x-peps.com/X-Peps/cagrisema-guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             <div class="card accent-purple neo wm">
                 <div class="card-title">Eloralintide</div>
                 <div class="card-sub">Next-Gen Amylin</div>
                 <p class="card-desc">A next-generation <span class="mark-o">amylin analog</span> dosed once a week — strong <mark>appetite control</mark> with a gentler side-effect profile.</p>
-                <div class="viz-stage" role="img" aria-label="Eloralintide single-target diagram: one core with one receptor satellite, amylin"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="elo2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#B9FBC9"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="elo2-amy" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#E9E2FF"/><stop offset="0.55" stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#E4FBE9" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="33" fill="url(#elo2-amy)" stroke="#0F172A" stroke-width="3"/><text x="170" y="56" text-anchor="middle" font-family="Outfit, sans-serif" font-size="16" font-weight="800" fill="#0F172A">AMYLIN</text><circle cx="170" cy="140" r="46" fill="url(#elo2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.38" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#0F172A">1×</text></svg>
+                <div class="viz-stage" role="img" aria-label="Eloralintide single-target diagram: one core with one receptor satellite, amylin"><svg viewBox="69 9 202 246" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="elo2-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#B9FBC9"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="elo2-amy" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#E9E2FF"/><stop offset="0.55" stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/></radialGradient></defs><circle cx="170" cy="140" r="92" fill="#E4FBE9" stroke="#C9BDF0" stroke-width="2" stroke-dasharray="3 7"/><path d="M170 94 L170 82" stroke="#7C3AED" stroke-width="3" stroke-dasharray="0.5 5"/><circle cx="170" cy="49" r="33" fill="url(#elo2-amy)" stroke="#0F172A" stroke-width="3"/><text x="170" y="56" text-anchor="middle" font-family="Outfit, sans-serif" font-size="12" font-weight="800" fill="#0F172A">AMYLIN</text><circle cx="170" cy="140" r="46" fill="url(#elo2-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="154" cy="118" rx="16" ry="9" fill="#FFFFFF" opacity="0.38" transform="rotate(-24 154 118)"/><text x="170" y="154" text-anchor="middle" font-family="Outfit, sans-serif" font-size="40" font-weight="800" fill="#0F172A">1×</text></svg>
                 </div>
                 <div class="btn-row">
                     <!-- PRICE NEEDED FROM DAVID: no catalog price/code exists; enable when set -->
-                    <button type="button" class="metal-btn metal-lav btn-tbd" disabled>TBD</button>
-                    <a class="metal-btn metal-lav" href="https://x-peps.com/X-Peps/eloralintide-guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-purple btn-tbd" disabled>TBD</button>
+                    <a class="metal-btn pb-purple" href="https://x-peps.com/X-Peps/eloralintide-guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
         </div>
@@ -594,7 +568,7 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Exercise Mimetic</div>
                 <p class="card-desc">A compound that switches on the muscle’s own exercise pathways — <mark>the benefits of training</mark>, without the physical stress.</p>
                 <div class="slu-stage" role="img" aria-label="SLU-PP-332 energy medallion with burn, muscle, and stamina satellites">
-                <svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <defs>
             <radialGradient id="coreg" cx="0.35" cy="0.3" r="0.95">
               <stop offset="0" stop-color="#8FC6FF"/><stop offset="0.55" stop-color="#0070D0"/><stop offset="1" stop-color="#005AA8"/>
@@ -619,22 +593,22 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
           <!-- satellite: burn (gold, flame) -->
           <circle cx="80" cy="46" r="27" fill="url(#satgold)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
           <path d="M80 30c4 7 10 11 10 18a10 10 0 1 1-20 0c0-4 2-7 4-10 1 2 2 3 3 4-1-5 0-9 3-12Z" fill="#F06000" stroke="#9A3412" stroke-width="1.8"/>
-          <text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">BURN</text>
+          <text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">BURN</text>
           <!-- satellite: muscle (green, fibers) -->
           <circle cx="260" cy="46" r="27" fill="url(#satgreen)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
           <path d="M248 36c4 3 8 4 12 4s8-1 12-4M248 46c4 3 8 4 12 4s8-1 12-4M248 56c4 3 8 4 12 4s8-1 12-4" stroke="#FFFFFF" stroke-width="3"/>
-          <text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">MUSCLE</text>
+          <text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">MUSCLE</text>
           <!-- satellite: stamina (tangerine, gauge) -->
           <circle cx="170" cy="208" r="23" fill="url(#satorange)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
           <path d="M157 214a14 14 0 1 1 26 0" stroke="#FFFFFF" stroke-width="3"/>
           <path d="M170 214 L179 203" stroke="#FFFFFF" stroke-width="3"/>
           <circle cx="170" cy="214" r="2.6" fill="#FFFFFF"/>
-          <text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">STAMINA</text>
+          <text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">STAMINA</text>
         </svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn order-gate-btn" data-og-product="SLU-PP-332 (20mg)" data-og-price="95" data-og-code="R1X4VS9q" aria-haspopup="dialog">$95</button>
-                    <a class="metal-btn" href="https://x-peps.com/X-Peps/slu_pp_332_guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-emerald order-gate-btn" data-og-product="SLU-PP-332 (20mg)" data-og-price="95" data-og-code="R1X4VS9q" aria-haspopup="dialog">$95</button>
+                    <a class="metal-btn pb-emerald" href="https://x-peps.com/X-Peps/slu_pp_332_guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             
@@ -643,7 +617,7 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Body Shield</div>
                 <p class="card-desc">A repair peptide that speeds healing of <mark>tissue, tendons, gut, and muscle</mark> while calming inflammation.</p>
                 <div class="bpc-stage" role="img" aria-label="BPC-157 repair shield with joint, gut, and muscle satellites">
-                <svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <defs>
             <linearGradient id="shieldg" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#3B9BFF"/><stop offset="1" stop-color="#005AA8"/>
@@ -673,22 +647,22 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
           <!-- satellite: joints & tendons (gold) -->
           <circle cx="86" cy="50" r="27" fill="url(#satgold)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
           <path d="M78 36 l16 7 -16 7 16 7 -16 7" stroke="#3A3400" stroke-width="3.4" fill="none"/>
-          <text x="86" y="92" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">JOINTS</text>
+          <text x="86" y="94" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">JOINTS</text>
 
           <!-- satellite: gut (green) -->
           <circle cx="254" cy="50" r="27" fill="url(#satgreen)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
           <path d="M254 38a12 12 0 1 1-12 12 9.5 9.5 0 1 0 9.5-9.5 7 7 0 1 1-7 7" stroke="#FFFFFF" stroke-width="3.2" fill="none"/>
-          <text x="254" y="92" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">GUT</text>
+          <text x="254" y="94" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">GUT</text>
 
           <!-- satellite: muscle (tangerine) -->
           <circle cx="170" cy="208" r="23" fill="url(#satorange)" stroke="rgba(0,0,0,.28)" stroke-width="3"/>
           <path d="M158 198c4 3 8 4 12 4s8-1 12-4M158 208c4 3 8 4 12 4s8-1 12-4M158 218c4 3 8 4 12 4s8-1 12-4" stroke="#FFFFFF" stroke-width="3"/>
-          <text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">MUSCLE</text>
+          <text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">MUSCLE</text>
         </svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn order-gate-btn" data-og-product="BPC-157" data-og-price="265" data-og-code="gRT22jih" aria-haspopup="dialog">$265</button>
-                    <a class="metal-btn" href="https://x-peps.com/X-Peps/bpc_157_kpv_guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-emerald order-gate-btn" data-og-product="BPC-157" data-og-price="265" data-og-code="gRT22jih" aria-haspopup="dialog">$265</button>
+                    <a class="metal-btn pb-emerald" href="https://x-peps.com/X-Peps/bpc_157_kpv_guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             
@@ -740,8 +714,8 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
       </div>
                 
                 <div class="btn-row">
-                    <button type="button" class="metal-btn" id="glowOrderBtn" data-buy-open aria-haspopup="dialog">Order</button>
-                    <a class="metal-btn" href="https://x-peps.com/X-Peps/glow_klow_guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-emerald" id="glowOrderBtn" data-buy-open aria-haspopup="dialog">Order</button>
+                    <a class="metal-btn pb-emerald" href="https://x-peps.com/X-Peps/glow_klow_guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             </div>
@@ -758,11 +732,11 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Clean Focus</div>
                 <p class="card-desc">A <span class="mark-o">wakefulness agent</span> that sharpens alertness without amphetamine jitters — clean, <mark>steady focus</mark> all shift long.</p>
                 <div class="viz-stage" role="img" aria-label="Modafinil alertness medallion with alert, steady, and duration satellites">
-<svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="mod-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="mod-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="mod-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="mod-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#mod-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.35)"><path d="M-38 0 C-26 -15 -13 -21 0 -21 C13 -21 26 -15 38 0 C26 15 13 21 0 21 C-13 21 -26 15 -38 0 Z" fill="none" stroke="#FFFFFF" stroke-width="4"/><circle r="10" fill="none" stroke="#FFFFFF" stroke-width="4"/><circle r="4" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#mod-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="5.5" fill="none" stroke="#3A3400" stroke-width="3"/><path d="M0 -13 v4 M0 9 v4 M-13 0 h4 M9 0 h4 M-9.5 -9.5 l3 3 M6.5 -6.5 l3 -3 M9.5 9.5 l-3 -3 M-6.5 6.5 l-3 3" stroke="#3A3400" stroke-width="3"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">ALERT</text><circle cx="260" cy="46" r="27" fill="url(#mod-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M-14 0 h28" stroke="#FFFFFF" stroke-width="3.5"/><circle r="2.4" fill="#FFFFFF"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">STEADY</text><circle cx="170" cy="208" r="23" fill="url(#mod-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><circle r="11" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">DURATION</text></svg>
+<svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="mod-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="mod-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="mod-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="mod-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#mod-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.35)"><path d="M-38 0 C-26 -15 -13 -21 0 -21 C13 -21 26 -15 38 0 C26 15 13 21 0 21 C-13 21 -26 15 -38 0 Z" fill="none" stroke="#FFFFFF" stroke-width="4"/><circle r="10" fill="none" stroke="#FFFFFF" stroke-width="4"/><circle r="4" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#mod-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="5.5" fill="none" stroke="#3A3400" stroke-width="3"/><path d="M0 -13 v4 M0 9 v4 M-13 0 h4 M9 0 h4 M-9.5 -9.5 l3 3 M6.5 -6.5 l3 -3 M9.5 9.5 l-3 -3 M-6.5 6.5 l-3 3" stroke="#3A3400" stroke-width="3"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">ALERT</text><circle cx="260" cy="46" r="27" fill="url(#mod-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M-14 0 h28" stroke="#FFFFFF" stroke-width="3.5"/><circle r="2.4" fill="#FFFFFF"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">STEADY</text><circle cx="170" cy="208" r="23" fill="url(#mod-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><circle r="11" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">DURATION</text></svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn metal-tang order-gate-btn" data-og-product="Modafinil (200mg)" data-og-price="280" data-og-code="FpWU3zTM" aria-haspopup="dialog">$280</button>
-                    <a class="metal-btn metal-tang" href="https://x-peps.com/X-Peps/modafinil_guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-orange order-gate-btn" data-og-product="Modafinil (200mg)" data-og-price="280" data-og-code="FpWU3zTM" aria-haspopup="dialog">$280</button>
+                    <a class="metal-btn pb-orange" href="https://x-peps.com/X-Peps/modafinil_guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             
@@ -771,11 +745,11 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Long Shift</div>
                 <p class="card-desc">The <span class="mark-o">long-acting R-form</span> of Modafinil — <mark>sustained focus</mark> that holds late into the day and through extended shifts.</p>
                 <div class="viz-stage" role="img" aria-label="Armodafinil long-duration medallion with duration, focus, and shifts satellites">
-<svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="arm-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="arm-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="arm-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="arm-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#arm-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(3.2)"><circle r="11" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><circle cx="80" cy="46" r="27" fill="url(#arm-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="11" fill="none" stroke="#3A3400" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#3A3400" stroke-width="3" fill="none"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">DURATION</text><circle cx="260" cy="46" r="27" fill="url(#arm-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle r="10" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle r="4.5" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">FOCUS</text><circle cx="170" cy="208" r="23" fill="url(#arm-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M11 -12 A14.5 14.5 0 1 0 11 12 A17.5 17.5 0 1 1 11 -12 Z" fill="#FFFFFF"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">SHIFTS</text></svg>
+<svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="arm-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="arm-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="arm-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="arm-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#arm-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(3.2)"><circle r="11" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><circle cx="80" cy="46" r="27" fill="url(#arm-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="11" fill="none" stroke="#3A3400" stroke-width="3"/><path d="M0 0 v-6 M0 0 h5" stroke="#3A3400" stroke-width="3" fill="none"/></g><text x="76" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="w1" font-weight="800" letter-spacing="0.02em" fill="#475569">DURATION</text><circle cx="260" cy="46" r="27" fill="url(#arm-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle r="10" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle r="4.5" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">FOCUS</text><circle cx="170" cy="208" r="23" fill="url(#arm-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M11 -12 A14.5 14.5 0 1 0 11 12 A17.5 17.5 0 1 1 11 -12 Z" fill="#FFFFFF"/></g><text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">SHIFTS</text></svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn metal-tang order-gate-btn" data-og-product="Armodafinil" data-og-price="280" data-og-code="FpWU3zTM" aria-haspopup="dialog">$280</button>
-                    <a class="metal-btn metal-tang" href="https://x-peps.com/X-Peps/armodafinil-guide.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-orange order-gate-btn" data-og-product="Armodafinil" data-og-price="280" data-og-code="FpWU3zTM" aria-haspopup="dialog">$280</button>
+                    <a class="metal-btn pb-orange" href="https://x-peps.com/X-Peps/armodafinil-guide.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
             
@@ -784,11 +758,11 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Cognitive Edge</div>
                 <p class="card-desc">A <span class="mark-o">triple reuptake inhibitor</span> — dopamine, noradrenaline, and serotonin at once — for sharp <mark>cognition</mark> and real <mark>metabolic</mark> drive.</p>
                 <div class="viz-stage" role="img" aria-label="Tesofensine multi-transmitter medallion with cognition, metabolism, and multi-pathway satellites">
-<svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="tes-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="tes-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="tes-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="tes-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#tes-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(2.2)"><path d="M-16 10 L0 -14 M0 -14 L16 10 M-16 10 L16 10" stroke="#FFFFFF" stroke-width="3"/><circle cx="-16" cy="10" r="5.5" fill="#FFFFFF"/><circle cx="16" cy="10" r="5.5" fill="#FFFFFF"/><circle cy="-14" r="5.5" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#tes-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M3 -13 L-9 3 h6 L-4 13 L10 -4 H3 Z" fill="#9A3412"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">COGNITION</text><circle cx="260" cy="46" r="27" fill="url(#tes-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M0 -16 c4 7 10 11 10 18 a10 10 0 1 1 -20 0 c0-4 2-7 4-10 1 2 2 3 3 4 -1-5 0-9 3-12 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8"/></g><text x="257" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">METABOLISM</text><circle cx="170" cy="208" r="23" fill="url(#tes-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><circle cx="-8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle cx="8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">MULTI</text></svg>
+<svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="tes-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient><radialGradient id="tes-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="tes-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="tes-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#EA580C" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#tes-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(2.2)"><path d="M-16 10 L0 -14 M0 -14 L16 10 M-16 10 L16 10" stroke="#FFFFFF" stroke-width="3"/><circle cx="-16" cy="10" r="5.5" fill="#FFFFFF"/><circle cx="16" cy="10" r="5.5" fill="#FFFFFF"/><circle cy="-14" r="5.5" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#tes-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M3 -13 L-9 3 h6 L-4 13 L10 -4 H3 Z" fill="#9A3412"/></g><text x="76" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="w1" font-weight="800" letter-spacing="0.02em" fill="#475569">COGNITION</text><circle cx="260" cy="46" r="27" fill="url(#tes-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M0 -16 c4 7 10 11 10 18 a10 10 0 1 1 -20 0 c0-4 2-7 4-10 1 2 2 3 3 4 -1-5 0-9 3-12 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8"/></g><text x="261" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="w2" font-weight="800" letter-spacing="0.02em" fill="#475569">METABOLISM</text><circle cx="170" cy="208" r="23" fill="url(#tes-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><circle cx="-8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/><circle cx="8" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">MULTI</text></svg>
                 </div>
                 <div class="btn-row">
-                    <button type="button" class="metal-btn metal-tang order-gate-btn" data-og-product="Tesofensine" data-og-price="260" data-og-code="DlXBBC4Z" aria-haspopup="dialog">$260</button>
-                    <a class="metal-btn metal-tang" href="https://x-peps.com/X-Peps/tesofensine.html" target="_blank" rel="noopener">Guide</a>
+                    <button type="button" class="metal-btn pb-orange order-gate-btn" data-og-product="Tesofensine" data-og-price="260" data-og-code="DlXBBC4Z" aria-haspopup="dialog">$260</button>
+                    <a class="metal-btn pb-orange" href="https://x-peps.com/X-Peps/tesofensine.html" target="_blank" rel="noopener">Guide</a>
                 </div>
             </div>
         </div>
@@ -803,10 +777,10 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Essential Diluent</div>
                 <p class="card-desc">This sterile diluent is absolutely essential for all injectable peptide and compound research — the mandatory component for the <mark>precise and safe reconstitution</mark> of your testing compounds.</p>
                 <div class="viz-stage" role="img" aria-label="Bacteriostatic water medallion with sterile, precise, and diluent satellites">
-<svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="bac-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#5EA9F5"/><stop offset="0.55" stop-color="#0057A8"/><stop offset="1" stop-color="#003E78"/></radialGradient><radialGradient id="bac-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="bac-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="bac-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#bac-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(3.1)"><path d="M0 -13 C7 -3 10 2 10 7 a10 10 0 1 1 -20 0 C-10 2 -7 -3 0 -13 Z" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#bac-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M-9 0 l6 7 L10 -8" stroke="#3A3400" stroke-width="4" fill="none"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">STERILE</text><circle cx="260" cy="46" r="27" fill="url(#bac-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle r="9" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 -14 v5 M0 9 v5 M-14 0 h5 M9 0 h5" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">PRECISE</text><circle cx="170" cy="208" r="23" fill="url(#bac-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-5 -12 h10 M-3 -12 v8 l-7 13 a2.5 2.5 0 0 0 2 3 h12 a2.5 2.5 0 0 0 2 -3 L3 -4 v-8" stroke="#FFFFFF" stroke-width="3" fill="none"/><path d="M-6 4 h12" stroke="#FFFFFF" stroke-width="3"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">DILUENT</text></svg>
+<svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="bac-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#5EA9F5"/><stop offset="0.55" stop-color="#0057A8"/><stop offset="1" stop-color="#003E78"/></radialGradient><radialGradient id="bac-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="bac-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="bac-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#bac-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(3.1)"><path d="M0 -13 C7 -3 10 2 10 7 a10 10 0 1 1 -20 0 C-10 2 -7 -3 0 -13 Z" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#bac-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M-9 0 l6 7 L10 -8" stroke="#3A3400" stroke-width="4" fill="none"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">STERILE</text><circle cx="260" cy="46" r="27" fill="url(#bac-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle r="9" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 -14 v5 M0 9 v5 M-14 0 h5 M9 0 h5" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">PRECISE</text><circle cx="170" cy="208" r="23" fill="url(#bac-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-5 -12 h10 M-3 -12 v8 l-7 13 a2.5 2.5 0 0 0 2 3 h12 a2.5 2.5 0 0 0 2 -3 L3 -4 v-8" stroke="#FFFFFF" stroke-width="3" fill="none"/><path d="M-6 4 h12" stroke="#FFFFFF" stroke-width="3"/></g><text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">DILUENT</text></svg>
                 </div>
                 <div class="btn-row single">
-                    <button type="button" class="metal-btn metal-cob order-gate-btn" data-og-product="Bacteriostatic Water" data-og-price="70" data-og-code="wLJEmJs9" aria-haspopup="dialog">$70</button>
+                    <button type="button" class="metal-btn pb-bio order-gate-btn" data-og-product="Bacteriostatic Water" data-og-price="70" data-og-code="wLJEmJs9" aria-haspopup="dialog">$70</button>
                 </div>
             </div>
             
@@ -815,10 +789,10 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Precision Dose</div>
                 <p class="card-desc">High-precision insulin syringes expertly designed for <mark>accurate and consistent clinical dosing</mark>. Every unit comes fully guaranteed with secure, sterile, individual packaging.</p>
                 <div class="viz-stage" role="img" aria-label="Syringes medallion with accurate, consistent, and sterile satellites">
-<svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="syr-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#5EA9F5"/><stop offset="0.55" stop-color="#0057A8"/><stop offset="1" stop-color="#003E78"/></radialGradient><radialGradient id="syr-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="syr-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="syr-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#syr-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.6)"><g transform="rotate(-45)"><rect x="-16" y="-5" width="24" height="10" rx="2" fill="none" stroke="#FFFFFF" stroke-width="3.5"/><path d="M8 0 h15 M-16 0 h-8 M-24 -7 v14 M-13 -8 v16" stroke="#FFFFFF" stroke-width="3.5"/><path d="M-8 -5 v5 M-2 -5 v5 M4 -5 v5" stroke="#FFFFFF" stroke-width="2.5"/></g></g><circle cx="80" cy="46" r="27" fill="url(#syr-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="10" fill="none" stroke="#3A3400" stroke-width="3"/><circle r="4.5" fill="none" stroke="#3A3400" stroke-width="3"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">ACCURATE</text><circle cx="260" cy="46" r="27" fill="url(#syr-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M-12 -10 c4 3 8 4 12 4 s8 -1 12 -4 M-12 0 c4 3 8 4 12 4 s8 -1 12 -4 M-12 10 c4 3 8 4 12 4 s8 -1 12 -4" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><text x="257" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">CONSISTENT</text><circle cx="170" cy="208" r="23" fill="url(#syr-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-9 0 l6 7 L10 -8" stroke="#FFFFFF" stroke-width="4" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">STERILE</text></svg>
+<svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="syr-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#5EA9F5"/><stop offset="0.55" stop-color="#0057A8"/><stop offset="1" stop-color="#003E78"/></radialGradient><radialGradient id="syr-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="syr-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="syr-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#syr-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(1.6)"><g transform="rotate(-45)"><rect x="-16" y="-5" width="24" height="10" rx="2" fill="none" stroke="#FFFFFF" stroke-width="3.5"/><path d="M8 0 h15 M-16 0 h-8 M-24 -7 v14 M-13 -8 v16" stroke="#FFFFFF" stroke-width="3.5"/><path d="M-8 -5 v5 M-2 -5 v5 M4 -5 v5" stroke="#FFFFFF" stroke-width="2.5"/></g></g><circle cx="80" cy="46" r="27" fill="url(#syr-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><circle r="10" fill="none" stroke="#3A3400" stroke-width="3"/><circle r="4.5" fill="none" stroke="#3A3400" stroke-width="3"/></g><text x="76" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="w1" font-weight="800" letter-spacing="0.02em" fill="#475569">ACCURATE</text><circle cx="260" cy="46" r="27" fill="url(#syr-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M-12 -10 c4 3 8 4 12 4 s8 -1 12 -4 M-12 0 c4 3 8 4 12 4 s8 -1 12 -4 M-12 10 c4 3 8 4 12 4 s8 -1 12 -4" stroke="#FFFFFF" stroke-width="3" fill="none"/></g><text x="261" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="w2" font-weight="800" letter-spacing="0.02em" fill="#475569">CONSISTENT</text><circle cx="170" cy="208" r="23" fill="url(#syr-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-9 0 l6 7 L10 -8" stroke="#FFFFFF" stroke-width="4" fill="none"/></g><text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">STERILE</text></svg>
                 </div>
                 <div class="btn-row single">
-                    <button type="button" class="metal-btn metal-cob order-gate-btn" data-og-product="Syringes" data-og-price="110" data-og-code="ytQ3dqvF" aria-haspopup="dialog">$110</button>
+                    <button type="button" class="metal-btn pb-bio order-gate-btn" data-og-product="Syringes" data-og-price="110" data-og-code="ytQ3dqvF" aria-haspopup="dialog">$110</button>
                 </div>
             </div>
             
@@ -827,10 +801,10 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
                 <div class="card-sub">Clean Start</div>
                 <p class="card-desc">Professional-grade alcohol prep pads for <mark>thorough and rapid site sterilization</mark>. Proper surface preparation is mandatory for maintaining the cleanest possible research protocols.</p>
                 <div class="viz-stage" role="img" aria-label="Alcohol pads medallion with rapid, clean, and sterile satellites">
-<svg viewBox="28 2 284 250" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="pad-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#5EA9F5"/><stop offset="0.55" stop-color="#0057A8"/><stop offset="1" stop-color="#003E78"/></radialGradient><radialGradient id="pad-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="pad-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="pad-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#pad-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(2.1)"><rect x="-17" y="-17" width="34" height="34" rx="7" fill="none" stroke="#FFFFFF" stroke-width="3.5"/><path d="M0 -11 L2.3 -2.7 L11 0 L2.3 2.7 L0 11 L-2.3 2.7 L-11 0 L-2.3 -2.7 Z" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#pad-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M3 -13 L-9 3 h6 L-4 13 L10 -4 H3 Z" fill="#9A3412"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">RAPID</text><circle cx="260" cy="46" r="27" fill="url(#pad-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M0 -11 L2.3 -2.7 L11 0 L2.3 2.7 L0 11 L-2.3 2.7 L-11 0 L-2.3 -2.7 Z" fill="#FFFFFF"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">CLEAN</text><circle cx="170" cy="208" r="23" fill="url(#pad-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-9 0 l6 7 L10 -8" stroke="#FFFFFF" stroke-width="4" fill="none"/></g><text x="170" y="246" text-anchor="middle" font-family="Outfit, sans-serif" font-size="17.5" font-weight="800" letter-spacing="0.02em" fill="#475569" stroke="#F1F5F9" stroke-width="3.5" paint-order="stroke">STERILE</text></svg>
+<svg viewBox="28 2 284 258" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="pad-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#5EA9F5"/><stop offset="0.55" stop-color="#0057A8"/><stop offset="1" stop-color="#003E78"/></radialGradient><radialGradient id="pad-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="pad-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="pad-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#pad-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(2.1)"><rect x="-17" y="-17" width="34" height="34" rx="7" fill="none" stroke="#FFFFFF" stroke-width="3.5"/><path d="M0 -11 L2.3 -2.7 L11 0 L2.3 2.7 L0 11 L-2.3 2.7 L-11 0 L-2.3 -2.7 Z" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#pad-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M3 -13 L-9 3 h6 L-4 13 L10 -4 H3 Z" fill="#9A3412"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">RAPID</text><circle cx="260" cy="46" r="27" fill="url(#pad-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><path d="M0 -11 L2.3 -2.7 L11 0 L2.3 2.7 L0 11 L-2.3 2.7 L-11 0 L-2.3 -2.7 Z" fill="#FFFFFF"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">CLEAN</text><circle cx="170" cy="208" r="23" fill="url(#pad-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-9 0 l6 7 L10 -8" stroke="#FFFFFF" stroke-width="4" fill="none"/></g><text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">STERILE</text></svg>
                 </div>
                 <div class="btn-row single">
-                    <button type="button" class="metal-btn metal-cob order-gate-btn" data-og-product="Alcohol Pads" data-og-price="25" data-og-code="gxlrmvzV" aria-haspopup="dialog">$25</button>
+                    <button type="button" class="metal-btn pb-bio order-gate-btn" data-og-product="Alcohol Pads" data-og-price="25" data-og-code="gxlrmvzV" aria-haspopup="dialog">$25</button>
                 </div>
             </div>
         </div>
@@ -932,17 +906,10 @@ html.dark .cat-slate .cat-title{color:#E2E8F0}
 .glow-orb .nm{font-size:min(7.6cqw,24px)}
 .glow-orb .pr{font-size:min(6.2cqw,19px)}
 .glow-orb .nm2{display:block;font-size:min(6.5cqw,20px);font-weight:800;line-height:.9;margin-top:-.35em}
-.btn-row{margin-top:0;padding-top:6px}
-.btn-row .metal-btn{font-size:.85rem;font-weight:700;text-transform:uppercase;padding:6px 22px}
-.buy-pop .pop-btn{font-size:.85rem;padding:6px 22px;min-height:36px}
-/* Header buttons: §45 pill in the logo theme — black bg, magenta border.
-   All three share ONE width: the word GUIDE at .85rem + one space each side. */
+/* H5 (Nov 9, 2026): the H4 button + header-button rules that stood here are
+   superseded by #h5-restyle (homepage .btn prototype transplant, uniform
+   136px width, circular theme button). */
 .peptopia-nav{gap:10px;align-items:center}
-.peptopia-nav>a.nav-btn,.peptopia-nav .peptopia-theme-toggle.nav-btn{display:inline-flex;align-items:center;justify-content:center;width:56px;height:36px;padding:6px 0;border-radius:999px;background:#0A0A0A;border:2px solid #EC4899;color:#fff;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0;text-shadow:0 1px 2px rgba(0,0,0,.35);box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);text-decoration:none;box-sizing:border-box;cursor:pointer}
-.peptopia-nav>a.nav-btn:active,.peptopia-nav .peptopia-theme-toggle.nav-btn:active{transform:translateY(2px);box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
-.peptopia-nav .nav-btn.nav-orders{font-size:.8rem}
-.peptopia-nav .peptopia-theme-toggle.nav-btn svg{width:17px;height:17px}
-html.dark .peptopia-nav>a.nav-btn,html.dark .peptopia-nav .peptopia-theme-toggle.nav-btn{background:#0A0A0A;border-color:#EC4899;color:#fff}
 /* Footer icons: colored brand marks, always linked */
 .peptopia-ftr .peptopia-ftr-icons a{color:#059669}
 .peptopia-ftr .peptopia-ftr-icons a[title="Discord"]{color:#5865F2}
@@ -963,13 +930,9 @@ html.dark .peptopia-ftr .ftr-logo img{filter:none;opacity:1}
 /* ===== Cart v2 (Nov 7, 2026) — staged, not yet published ===== */
 /* Cart-uniform (Nov 7, 2026): coming-soon disabled purchase buttons */
 .metal-btn.og-nosell[disabled]{opacity:.65;cursor:not-allowed;filter:saturate(.35)}
-#cartBar{position:fixed;left:50%;transform:translateX(-50%) translateY(140%);bottom:16px;z-index:990;background:#0F172A;color:#F8FAFC;border:2px solid #6C4FE0;border-radius:999px;padding:10px 12px 10px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 14px 40px rgba(15,10,40,.45);font-family:'DM Sans',sans-serif;transition:transform .25s ease;max-width:94vw}
-#cartBar.show{transform:translateX(-50%) translateY(0)}
-#cartBar .cb-count{font-weight:700;font-size:15px;white-space:nowrap}
-#cartBar .cb-total{font-family:Outfit,sans-serif;font-weight:800;font-size:17px;white-space:nowrap}
-#cartCheckout{font-family:Outfit,sans-serif;font-weight:800;font-size:15px;color:#3B0764;background:linear-gradient(180deg,#EDE9FE,#C4B5FD);border:2px solid #5B21B6;border-radius:999px;padding:9px 20px;cursor:pointer;box-shadow:0 3px 0 #5B21B6;white-space:nowrap}
-#cartCheckout:active{transform:translateY(2px);box-shadow:0 1px 0 #5B21B6}
-#cartView{font-family:Outfit,sans-serif;font-weight:700;font-size:14px;color:#F8FAFC;background:transparent;border:2px solid #64748B;border-radius:999px;padding:8px 16px;cursor:pointer;white-space:nowrap}
+/* H5 (Nov 9, 2026): the floating #cartBar and its buttons are REMOVED.
+   The cart lives behind the header CART button (#h5-restyle); the popup
+   (#cartModal) is unchanged. */
 .og-cartlist{margin:4px 0 6px;text-align:left}
 .og-cartrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #E2E8F0;font-size:14.5px}
 html.dark .og-cartrow{border-color:#2A3B55}
@@ -989,17 +952,10 @@ html.dark .og-empty{color:#B6C2D4}
   <div class="buy-pop-card">
     <button type="button" class="buy-pop-x" data-buy-close aria-label="Close">&times;</button>
     <div class="buy-pop-title">Choose your version</div>
-    <button type="button" class="pop-btn pop-glow variant-opt" data-og-product="GLOW" data-og-price="325" data-og-code="oNYFMvtQ"><span>GLOW</span><span>$325</span></button>
-    <button type="button" class="pop-btn pop-klow variant-opt" data-og-product="KLOW" data-og-price="375" data-og-code="bXCJ6r1s"><span>KLOW</span><span>$375</span></button>
-    <button type="button" class="pop-btn pop-ghk variant-opt" data-og-product="GHK-Cu" data-og-price="285" data-og-code="nBxV33Sv"><span>GHK-Cu</span><span>$285</span></button>
+    <button type="button" class="pop-btn pb-amber variant-opt" data-og-product="GLOW" data-og-price="325" data-og-code="oNYFMvtQ"><span>GLOW $325</span></button>
+    <button type="button" class="pop-btn pb-orange variant-opt" data-og-product="KLOW" data-og-price="375" data-og-code="bXCJ6r1s"><span>KLOW $375</span></button>
+    <button type="button" class="pop-btn pb-bio variant-opt" data-og-product="GHK-Cu" data-og-price="285" data-og-code="nBxV33Sv"><span>GHK-Cu $285</span></button>
   </div>
-</div>
-
-<div id="cartBar" aria-live="polite">
-  <span class="cb-count" id="cartCount">Cart: 0 items</span>
-  <span class="cb-total" id="cartTotal">$0</span>
-  <button type="button" id="cartView">View cart</button>
-  <button type="button" id="cartCheckout">Check out</button>
 </div>
 
 <div id="cartModal" class="og-overlay" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
@@ -1051,10 +1007,7 @@ html.dark .og-empty{color:#B6C2D4}
   function entries(){var a=[];for(var k in cart)a.push(cart[k]);return a;}
   function isCartSubmission(){var a=entries();return a.length>1||(a.length===1&&a[0].qty>1);}
   function render(){
-    var tt=totals(),bar=document.getElementById('cartBar');
-    document.getElementById('cartCount').textContent='Cart: '+tt.count+(tt.count===1?' item':' items');
-    document.getElementById('cartTotal').textContent=money(tt.total);
-    bar.classList.toggle('show',tt.count>0);
+    var tt=totals();
     var list=document.getElementById('cartList');list.innerHTML='';
     entries().forEach(function(it){
       var row=document.createElement('div');row.className='og-cartrow';
@@ -1075,7 +1028,7 @@ html.dark .og-empty{color:#B6C2D4}
     b.addEventListener('click',function(){
       var key=b.getAttribute('data-og-code')+'|'+b.getAttribute('data-og-product');
       if(!cart[key])cart[key]={product:b.getAttribute('data-og-product'),price:parseInt(b.getAttribute('data-og-price'),10),code:b.getAttribute('data-og-code'),key:key,qty:0};
-      cart[key].qty++;render();openCart();
+      cart[key].qty++;render();peekCart();
     });
   });
   document.querySelectorAll('.variant-opt').forEach(function(b){
@@ -1084,15 +1037,34 @@ html.dark .og-empty{color:#B6C2D4}
       if(!cart[key])cart[key]={product:b.getAttribute('data-og-product'),price:parseInt(b.getAttribute('data-og-price'),10),code:b.getAttribute('data-og-code'),key:key,qty:0};
       cart[key].qty++;render();
       var pop=document.getElementById('glowBuyPop');if(pop)pop.hidden=true;
-      openCart();
+      peekCart();
     });
   });
   var modal=document.getElementById('cartModal'),form=document.getElementById('cartForm'),
       thanks=document.getElementById('cartThanks'),err=document.getElementById('cartError');
-  function openCart(){render();form.style.display='block';thanks.style.display='none';err.style.display='none';modal.classList.add('open');setTimeout(function(){document.getElementById('cartName').focus();},50);}
-  function closeCart(){modal.classList.remove('open');}
-  document.getElementById('cartCheckout').addEventListener('click',openCart);
-  document.getElementById('cartView').addEventListener('click',openCart);
+  /* H5 cart behavior: adding an item PEEKS the popup for exactly 5 seconds,
+     then it closes itself and the header CART button blinks twice. Any
+     click or typing inside the popup cancels the auto-close (checkout
+     intent wins). Clicking CART opens the popup and it stays. */
+  var peekTimer=null,interacted=false,blinkTimer=null;
+  var cartBtn=document.getElementById('cartBtn');
+  function stopPeek(){if(peekTimer){clearTimeout(peekTimer);peekTimer=null;}}
+  function blinkCartBtn(){
+    if(!cartBtn)return;
+    cartBtn.classList.remove('cart-blink');void cartBtn.offsetWidth;
+    cartBtn.classList.add('cart-blink');
+    if(blinkTimer)clearTimeout(blinkTimer);
+    blinkTimer=setTimeout(function(){cartBtn.classList.remove('cart-blink');},2100);
+  }
+  function openCart(){stopPeek();render();form.style.display='block';thanks.style.display='none';err.style.display='none';modal.classList.add('open');setTimeout(function(){document.getElementById('cartName').focus();},50);}
+  function peekCart(){
+    stopPeek();interacted=false;openCart();
+    peekTimer=setTimeout(function(){peekTimer=null;if(!interacted&&modal.classList.contains('open')){closeCart();blinkCartBtn();}},5000);
+  }
+  function closeCart(){stopPeek();modal.classList.remove('open');}
+  modal.addEventListener('pointerdown',function(){interacted=true;stopPeek();});
+  modal.addEventListener('input',function(){interacted=true;stopPeek();});
+  if(cartBtn)cartBtn.addEventListener('click',openCart);
   document.getElementById('cartCancel').addEventListener('click',closeCart);
   document.getElementById('cartDone').addEventListener('click',closeCart);
   modal.addEventListener('click',function(e){if(e.target===modal)closeCart();});
@@ -1173,6 +1145,123 @@ html.dark .og-cancel{color:#B6C2D4;border-color:#2A3B55}
 .og-thanks{display:none;text-align:center}
 .og-thanks .og-check{font-size:38px;line-height:1}
 .og-thanks p{font-size:15.5px;margin:10px 0 18px}
+</style>
+
+<style id="h5-restyle">
+/* ===== H5 RESTYLE (David, Nov 9, 2026) - round 3 + BUTTON FIDELITY =====
+   BUTTON PROTOTYPE: the homepage .btn, copied verbatim from
+   homepage-mockup.html (base rule + Nov 8 gloss layer) and applied to EVERY
+   pill button on this page. The legacy .metal-btn / .pop-btn recipes were
+   removed from the base styles - nothing layers under or over this block.
+   Homepage source rules:
+     .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+       padding:10px 24px;border-radius:10px;font-family:'Outfit',sans-serif;
+       font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;
+       width:100%;transition:filter .3s}
+     .btn{white-space:nowrap}
+     .btn{padding:6px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);
+       box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),
+       0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);
+       text-shadow:0 1px 2px rgba(0,0,0,.35)}
+     press (homepage: .card:active .btn): translateY(2px) + collapsed shadow
+     hover (homepage: .card:hover .btn): filter:brightness(1.1)
+   Adaptations, and only these: (a) display:flex for the real <button>/<a>
+   elements; (b) width = the H5 uniform 136px (longest label "GHK-CU $285"
+   at .85rem Outfit 700 = 88.4px + 44px padding + 3px border, rounded up)
+   instead of the homepage's width:100%; (c) line-height:normal so the
+   rendered height is the homepage's 36px (its line-height comes from body
+   1.6); (d) -webkit-appearance/appearance:none so a real <button> computes
+   exactly like the homepage's <span>. */
+.btn-row .metal-btn,.buy-pop .pop-btn{
+  -webkit-appearance:none;appearance:none;box-sizing:border-box;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  width:136px;height:36px;min-height:36px;padding:6px 22px;
+  border-radius:999px;border:1.5px solid rgba(15,23,42,.28);
+  font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;
+  text-transform:uppercase;color:#fff;line-height:normal;white-space:nowrap;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);
+  transition:filter .3s;cursor:pointer;text-decoration:none;text-align:center}
+.btn-row .metal-btn:hover,.buy-pop .pop-btn:hover{filter:brightness(1.1)}
+.btn-row .metal-btn:active,.buy-pop .pop-btn:active{transform:translateY(2px);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
+/* Variant gradients = the homepage's own .b-* classes, verbatim stops */
+.pb-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)}
+.pb-emerald{background:linear-gradient(135deg,#059669,#10B981)}
+.pb-orange{background:linear-gradient(135deg,#EA580C,#F97316)}
+.pb-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF)}
+.pb-amber{background:linear-gradient(135deg,#D97706,#F59E0B)}
+/* Button rows: buttons keep their natural uniform width; the row centers them */
+.btn-row{display:flex;gap:10px;align-items:stretch;justify-content:center;width:100%;margin-top:auto;padding-top:6px}
+.btn-row .metal-btn{flex:none}
+.btn-row.single .metal-btn{flex:none}
+/* Coming-soon: keep the homepage look, visibly parked */
+.btn-row .btn-tbd{opacity:.8;cursor:not-allowed;filter:saturate(.35)}
+/* Variant popup buttons stack full-width of the popup card (homepage width:100% role) */
+.buy-pop .pop-btn{width:100%}
+/* Header buttons: the same prototype in the logo theme (David, round 2/3:
+   black bg, magenta border). CART / HOME / ORDERS share the uniform 136px;
+   ALL labels at the full .85rem (the round-2 ORDERS .8rem shrink is gone). */
+.peptopia-nav .nav-btn{
+  -webkit-appearance:none;appearance:none;box-sizing:border-box;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  width:136px;height:36px;padding:6px 22px;border-radius:999px;
+  background:#0A0A0A;border:2px solid #EC4899;color:#fff;
+  font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;
+  text-transform:uppercase;line-height:normal;white-space:nowrap;letter-spacing:0;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);
+  transition:filter .3s;cursor:pointer;text-decoration:none;text-align:center}
+.peptopia-nav .nav-btn:hover{filter:brightness(1.1)}
+.peptopia-nav .nav-btn:active{transform:translateY(2px);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
+html.dark .peptopia-nav .nav-btn{background:#0A0A0A;border-color:#EC4899;color:#fff}
+@media (max-width:640px){
+  /* Phone header: the uniform 136px pills cannot share one row with the
+     brand at 390px - the nav wraps to its own full row under the brand
+     (the chrome block's wrap rule), buttons keep the uniform width. */
+  .peptopia-nav{flex-wrap:wrap;justify-content:center}
+}
+/* Theme changer: the prototype recipe as a CIRCLE, 36px diameter */
+.peptopia-nav .peptopia-theme-toggle.nav-btn{width:36px;height:36px;border-radius:50%;padding:0;flex:none}
+.peptopia-nav .peptopia-theme-toggle.nav-btn svg{width:17px;height:17px}
+/* CART blink: after the 5-second peek closes, blink twice so it can be found */
+@keyframes cartBlink{0%,100%{filter:brightness(1)}50%{filter:brightness(1.9)}}
+.peptopia-nav .nav-btn.cart-blink{animation:cartBlink .5s ease-in-out 4}
+/* Cards: grid stretch already equalizes heights per row; internals anchor
+   the button row to the card bottom on a common baseline */
+.card{display:flex;flex-direction:column;height:100%}
+.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+/* Dark theme: ALL header/footer logo images show in full color (the dark
+   header used to show the near-white IMG_3346, effectively invisible, and
+   the footer copies were grayscale/inverted - all fixed here) */
+.peptopia-brand .peptopia-logo.logo-dark{display:block}
+.peptopia-brand .peptopia-logo.logo-light{display:none!important}
+html.dark .peptopia-brand .peptopia-logo.logo-dark{display:block}
+html.dark .peptopia-brand .peptopia-logo.logo-light{display:none!important}
+.peptopia-ftr .ftr-logo img{filter:none;opacity:1}
+.peptopia-ftr .ftr-logo .logo-dark{display:inline-block}
+.peptopia-ftr .ftr-logo .logo-light{display:none!important}
+html.dark .peptopia-ftr .ftr-logo img{filter:none;opacity:1}
+html.dark .peptopia-ftr .ftr-logo .logo-dark{display:inline-block}
+html.dark .peptopia-ftr .ftr-logo .logo-light{display:none!important}
+/* Dark theme graphic text: PLAIN WHITE, no outline / halo / stroke, ever */
+html.dark .viz-stage text,html.dark .bpc-stage text,html.dark .slu-stage text{fill:#FFFFFF;stroke:none;paint-order:normal;text-shadow:none;-webkit-text-stroke:0}
+/* Family-B under-circle labels carry data-flab (their stage classes are
+   shared with family A, so the tag is the discriminator): standard 13.5px,
+   the wide COGNITION/ACCURATE group 12px, the widest METABOLISM/CONSISTENT
+   11px - each sized and nudged so its bbox clears the center medallion disc
+   and its own satellite disc by 2+ units. */
+text[data-flab]{font-size:13.5px}
+text[data-flab="w1"]{font-size:12px}
+text[data-flab="w2"]{font-size:11px}
+/* GLOW orbs: text fits inside its circle at the shrunk venn size */
+.glow-venn{max-width:200px;container-type:inline-size}
+.glow-orb .nm{font-size:7.6cqw}
+.glow-orb .pr{font-size:7cqw}
+.glow-orb .nm2{font-size:7.5cqw}
+.orb-ghk .nm{font-size:7cqw}
 </style>
 
 </body>

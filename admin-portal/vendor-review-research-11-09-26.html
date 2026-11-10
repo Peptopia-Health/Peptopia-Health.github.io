@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>Vendor Review Research — DTE, WildCraft, Tree Leaf</title>
+<style>
+  :root{
+    --bg:#fdfaf3; --bg2:#f4efe2; --card:#ffffff; --ink:#1a1f1a; --muted:#5a665a; --line:#ddd6c2;
+    --forest:#1e4d3b; --forest-tint:#e3efe7; --amber:#8a5a12; --amber-tint:#fdf0d3; --leaf:#2f6b2f; --leaf-tint:#e6f2df;
+    --cobalt:#0070d0; --tangerine:#f06000; --gold:#b99700; --red:#b42318; --red-tint:#fdecea;
+    --confirmed:#166534; --confirmed-bg:#dcfce7; --single:#92400e; --single-bg:#fef3c7; --claim:#6d28d9; --claim-bg:#ede9fe; --missing:#991b1b; --missing-bg:#fee2e2;
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121511; --bg2:#1a1e19; --card:#1e241e; --ink:#eef2ea; --muted:#a8b3a3; --line:#343d33;
+      --forest-tint:#1e3329; --amber-tint:#3a2e12; --leaf-tint:#24381f; --red-tint:#3a1a17;
+      --confirmed-bg:#14351f; --single-bg:#3a2f0f; --claim-bg:#2e2148; --missing-bg:#3d1a1a;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif;line-height:1.55}
+  a{color:var(--cobalt);text-decoration-thickness:1px;text-underline-offset:2px;word-break:break-word}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px 56px}
+  /* header */
+  .top{padding:28px 0 8px}
+  .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--forest);font-weight:700}
+  @media(prefers-color-scheme:dark){.kicker{color:#8fd0a8}}
+  h1{font-family:Iowan Old Style,Palatino,Palatino Linotype,Georgia,serif;font-size:clamp(28px,5vw,44px);line-height:1.05;margin:10px 0 10px;letter-spacing:-.02em}
+  .lede{font-size:17px;color:var(--muted);max-width:68ch;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+  .pill{font-size:12.5px;font-weight:600;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 11px}
+  .pill strong{color:var(--ink)}
+  /* notice */
+  .notice{margin:20px 0 0;border:1px solid var(--line);border-left:5px solid var(--tangerine);background:var(--card);border-radius:10px;padding:14px 16px}
+  .notice h2{margin:0 0 4px;font-size:15px}
+  .notice p{margin:0;color:var(--muted);font-size:14.5px}
+  /* nav tabs */
+  .tabs{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px;display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+  .tab{appearance:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700;font-size:14px;padding:10px 14px;border-radius:999px;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+  .tab:active{transform:translateY(1px);box-shadow:none}
+  .tab[aria-selected="true"]{background:var(--forest);color:#fff;border-color:var(--forest)}
+  @media(prefers-color-scheme:dark){.tab[aria-selected="true"]{background:#2a6b52}}
+  .tab:focus-visible, button:focus-visible, summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+  h2.section{font-family:Iowan Old Style,Palatino,Georgia,serif;font-size:26px;margin:36px 0 6px;letter-spacing:-.01em}
+  h3{font-size:17px;margin:22px 0 8px}
+  p{margin:8px 0}
+  .sub{color:var(--muted);font-size:14.5px;max-width:72ch}
+  /* badges */
+  .badge{display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:3px 8px;vertical-align:middle;white-space:nowrap}
+  .b-conf{background:var(--confirmed-bg);color:var(--confirmed)}
+  .b-single{background:var(--single-bg);color:var(--single)}
+  .b-claim{background:var(--claim-bg);color:var(--claim)}
+  .b-miss{background:var(--missing-bg);color:var(--missing)}
+  @media(prefers-color-scheme:dark){.b-conf{color:#86efac}.b-single{color:#fcd34d}.b-claim{color:#c4b5fd}.b-miss{color:#fca5a5}}
+  .src{font-size:12.5px;color:var(--muted)}
+  /* compare table -> cards */
+  .compare{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+  @media(max-width:760px){.compare{grid-template-columns:1fr}}
+  .vcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+  .vcard.wc{border-top:5px solid var(--forest)} .vcard.dte{border-top:5px solid #c47a12} .vcard.tl{border-top:5px solid #4a9a3a}
+  .vcard h3{margin:0 0 2px;font-size:18px}
+  .vcard .base{font-size:13px;color:var(--muted);margin:0 0 12px}
+  .vcard dl{margin:0;display:grid;gap:9px}
+  .vcard dt{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .vcard dd{margin:1px 0 0;font-size:14.5px}
+  /* vendor panels */
+  .panel{display:none} .panel.active{display:block}
+  .panel-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-top:18px}
+  .panel-head h2{font-family:Iowan Old Style,Palatino,Georgia,serif;font-size:28px;margin:0;line-height:1.1}
+  .panel-head p{color:var(--muted);margin:4px 0 0;max-width:58ch;font-size:14.5px}
+  .score{ text-align:right;min-width:150px}
+  .score .big{font-size:28px;font-weight:800;line-height:1}
+  .score .lab{font-size:12px;color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-top:14px}
+  .box h3{margin-top:0}
+  .box ul{margin:8px 0 0 18px;padding:0} .box li{margin:6px 0;font-size:14.5px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+  th{text-align:left;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:8px 8px;border-bottom:2px solid var(--line)}
+  td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .num{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+  .callout{border-radius:10px;padding:13px 14px;margin-top:14px;font-size:14.5px}
+  .callout.warn{background:var(--amber-tint);border:1px solid #e6c87a}
+  .callout.bad{background:var(--red-tint);border:1px solid #e8a09a}
+  .callout.good{background:var(--forest-tint);border:1px solid #9ec7ae}
+  @media(prefers-color-scheme:dark){.callout.warn,.callout.bad,.callout.good{border-color:var(--line)}}
+  details{margin-top:12px} summary{cursor:pointer;font-weight:700;font-size:14.5px}
+  /* checklist */
+  .checklist{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+  .checklist li{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 12px 11px 36px;position:relative;font-size:14.5px}
+  .checklist li::before{content:"○";position:absolute;left:12px;top:10px;font-size:16px;color:var(--muted)}
+  /* change list */
+  .change{border:1px dashed var(--line);background:var(--card);border-radius:var(--radius);padding:16px;margin-top:14px}
+  .change ol{margin:8px 0 0 20px;padding:0} .change li{margin:10px 0;font-size:14.5px}
+  .tag{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:2px 7px}
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px}
+  footer ol{font-size:12.5px;color:var(--muted);margin:8px 0 0 18px;padding:0} footer li{margin:5px 0}
+  .small{font-size:13px;color:var(--muted)}
+  @media print{ .tabs{position:static} .panel{display:block !important} body{background:#fff} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Content update only — no design changes</div>
+    <h1>Vendor review research:<br>DTE, WildCraft &amp; Tree Leaf</h1>
+    <p class="lede">What changed at each vendor through <strong>November 9, 2026</strong> — newest drops, current prices, published lab numbers, community record, and what still can’t be verified — ready to fold into the three existing review guides.</p>
+    <div class="meta">
+      <span class="pill">Research read: <strong>Nov 9, 2026 (EST)</strong></span>
+      <span class="pill">WildCraft &amp; DTE sites: <strong>verified live Nov 9</strong></span>
+      <span class="pill">Tree Leaf: <strong>single-source — see flags</strong></span>
+      <span class="pill">Recalls found: <strong>none vendor-specific, for any of the three</strong></span>
+      <span class="pill">Your orders: <strong>9 orders included — 4 WildCraft · 4 DTE · 1 Tree Leaf</strong></span>
+    </div>
+    <div class="notice" role="note">
+      <h2>Your recent orders &amp; deliveries — now included</h2>
+      <p>Your orders are folded in below, exactly as recorded in your canonical order record (reconciled Nov 6, 2026) and your tracked shipment records — see the “Your orders &amp; deliveries” table in each vendor’s panel. Highlights: WildCraft <strong>WCHC-21254</strong> (Batch #1020, shipped Nov 6, in transit at research time) with your finalized #1020 testing — <strong>White 9.0 / Green 9.5 / Red 8.0</strong>; DTE’s <strong>Oct 30 order ($248.31)</strong> sitting at USPS “acceptance pending” in Colorado Springs since Nov 2, with Drew’s Nov 6 reply that it was packed and handed over; and Tree Leaf batch <strong>BID-B01</strong> (Oct 20, delivered).</p>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Vendors">
+    <button class="tab" data-tab="all" aria-selected="true">All three — compare</button>
+    <button class="tab" data-tab="wildcraft" aria-selected="false">WildCraft</button>
+    <button class="tab" data-tab="dte" aria-selected="false">DTE Botanicals</button>
+    <button class="tab" data-tab="treeleaf" aria-selected="false">Tree Leaf</button>
+    <button class="tab" data-tab="open" aria-selected="false">Open questions &amp; change list</button>
+  </nav>
+
+  <!-- COMPARE / ALL -->
+  <section id="panel-all" class="panel active" aria-label="Comparison">
+    <h2 class="section">At a glance</h2>
+    <p class="sub">All three are small-batch, drop-model U.S. vendors. The sharp split is lab transparency and maturity — not catalog size.</p>
+    <div class="compare">
+      <article class="vcard wc">
+        <h3>WildCraft Herb Co.</h3><p class="base">Epping, NH · Jenn &amp; Dylan</p>
+        <dl>
+          <div><dt>Newest batch</dt><dd><strong>Batch #1020</strong> — dropped Wed Nov 4, 2026, 5 PM ET <span class="badge b-conf">Confirmed</span></dd></div>
+          <div><dt>Catalog</dt><dd>29 strain listings / 65 total shop items; tight vein-color menu</dd></div>
+          <div><dt>Lab COAs public?</dt><dd><strong>Yes</strong> — full MBL + Cora Science PDFs; alkaloids + metals + microbial</dd></div>
+          <div><dt>Flagship price</dt><dd>$9–$35 for 25 / 80 / 250 g signature; Premium Select $7–$30</dd></div>
+          <div><dt>Independent rating</dt><dd>kratom.org <strong>4.3 / 5</strong>, ranked 28 / 211 <span class="src">(that site’s editorial synthesis)</span></dd></div>
+        </dl>
+      </article>
+      <article class="vcard dte">
+        <h3>DTE Botanicals</h3><p class="base">Colorado Springs, CO · Drew Marquez + Jake · est. 2022, turned 4 in Oct 2026</p>
+        <dl>
+          <div><dt>Newest drop</dt><dd><strong>Select Series A34</strong> — 4-Year / Halloween lineup, live late Oct 2026 <span class="badge b-conf">Confirmed</span></dd></div>
+          <div><dt>Catalog</dt><dd>~90 strains on Oct 2026 shelf (67 profiled in independent guide) <span class="badge b-single">Single-source</span></dd></div>
+          <div><dt>Lab COAs public?</dt><dd><strong>Yes</strong> — 100+ batch report images, Cora / Cambium / Anresco, since Dec 2024</dd></div>
+          <div><dt>Flagship price</dt><dd>$22–$24 / 125 g, $38–$41 / 250 g, <strong>shipping included</strong></dd></div>
+          <div><dt>Independent rating</dt><dd>kratom.org <strong>5 / 5</strong> <span class="src">(via guide citation)</span>; drugbuyersguide 10 / 10</dd></div>
+        </dl>
+      </article>
+      <article class="vcard tl">
+        <h3>Tree Leaf Naturalist</h3><p class="base">Long Island, NY · Founder DK Dice · launched ~Apr 2026</p>
+        <dl>
+          <div><dt>Newest drop</dt><dd><strong>Oct 17, 2026</strong> enhanced &amp; extract drop (after 02 Drop, Sep 7) <span class="badge b-single">Single-source</span></dd></div>
+          <div><dt>Catalog</dt><dd>52 strains documented (44 carded) <span class="badge b-single">Single-source</span></dd></div>
+          <div><dt>Lab COAs public?</dt><dd><strong>No</strong> — “Lab Tested” claimed, no public COA found anywhere as of Oct 2026</dd></div>
+          <div><dt>Flagship price</dt><dd>$21 / 100 g, $36 / 250 g, $89 / kilo 4-way split, + $6 shipping (free $59+)</dd></div>
+          <div><dt>Guide scorecard</dt><dd>Leaf &amp; Guidance 4.6 · Catalog 4.5 · Community 4.4 · Value 4.2 · <strong>Lab Transparency 1.5 / 5</strong></dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <div class="box">
+      <h3>How to read the flags in this briefing</h3>
+      <ul>
+        <li><span class="badge b-conf">Confirmed</span> Read live on the vendor’s own site Nov 9, 2026, or from a primary PDF / newsletter.</li>
+        <li><span class="badge b-single">Single-source</span> Rests on one synthesis or aggregator. Keep the hedge when you copy it into a guide — don’t upgrade it to fact.</li>
+        <li><span class="badge b-claim">Vendor claim</span> Stated by the vendor (often in a newsletter or menu) with no COA or independent document sighted.</li>
+        <li><span class="badge b-miss">Not located</span> Searched for and not found in this research. That is a bounded negative finding, not proof it doesn’t exist in unindexed channels.</li>
+      </ul>
+      <p class="small">Community sentiment for all three skews positive in the public record found. The main criticisms for DTE and WildCraft are operational — sell-outs, drop delays, price — not safety. No negative-review corpus was found for Tree Leaf.</p>
+    </div>
+
+    <div class="box">
+      <h3>What to update on each live guide — content only</h3>
+      <div class="grid2">
+        <div><h3 style="font-size:15px">WildCraft guide</h3><ul class="checklist"><li>Lead with Batch #1020 (Nov 4) and the returning OG Wild strains</li><li>Replace split-kilo price with live $120 signature / $105 Premium Select</li><li>Add PR Select 01, Golden, Red Ferment &amp; Cargo C-002 COA numbers (table below)</li><li>Note 1–3 day shipping delay banner after the drop</li><li>Your orders: WCHC-21254 (#1020, shipped Nov 6, in transit) + WCHC-21148, WCHC-20370 &amp; WCHC-20336 — in the WildCraft panel below</li></ul></div>
+        <div><h3 style="font-size:15px">DTE guide</h3><ul class="checklist"><li>Lead with Select Series A34 + D11 “last of it” restock</li><li>Replace $79 clearance kilo with live $69 Curated Clearance Line</li><li>Add 4YEARS (10%, one use) alongside DTE10</li><li>Add Sept Cash App remedy + Jake/Drew packing fix as service record</li><li>Your orders: Oct 30 ($248.31, acceptance pending since Nov 2) + Oct 24 Discord purchase, #90441 (resolved) &amp; #79517 — in the DTE panel below</li></ul></div>
+      </div>
+      <ul class="checklist"><li><strong>Tree Leaf guide:</strong> Add Oct 17 drop names (White Borneo, Green Bali, Green Ponti, Green Elephant, Red Borneo, Lucky 7 Relief Blend), DK’s Special preview Oct 10, and Green Hulu sold out Oct 29 — all flagged single-source — and keep the “no public COA” warning prominent</li><li><strong>Tree Leaf — your orders:</strong> Oct 20 batch BID-B01 ($200, 1,255 g, delivered) — in the Tree Leaf panel below</li></ul>
+    </div>
+  </section>
+
+  <!-- WILDCRAFT -->
+  <section id="panel-wildcraft" class="panel" aria-label="WildCraft">
+    <div class="panel-head"><div><h2>WildCraft Herb Company</h2><p>wildcraftherbcompany.com · Vein-color menu, signature-supplier batches, full public labs. Shop verified live Nov 9, 2026: 65 results, 29 in “Strain,” 30 in “Powdered Leaf.”</p></div><div class="score"><div class="big">4.3 / 5</div><div class="lab">kratom.org, ranked 28 / 211<br>On-site flagships 4.86–4.97 / 5</div></div></div>
+
+    <div class="callout good"><strong>Newest: Batch #1020 — dropped Wed Nov 4, 2026, 5 PM ET.</strong> Oct 30 newsletter: “really good batch… deep shades of green from mature leaves… THE OG’s make their return” (wild-harvested old-growth). Shop banner Nov 9: “Due to an influx of orders from the drop, please allow 1–3 days for orders to ship.” <span class="badge b-conf">Confirmed</span> <span class="src">Source: vendor shop + Mailchimp campaign archive</span></div>
+
+    <div class="box"><h3>Your orders &amp; deliveries — WildCraft</h3>
+      <p class="sub">From your canonical order record (reconciled Nov 6, 2026) and tracked shipment records, exactly as recorded.</p>
+      <table><thead><tr><th>Date</th><th>Order</th><th>Total</th><th>Contents &amp; delivery</th></tr></thead><tbody>
+        <tr><td class="num">Nov 4, 2026</td><td><strong>WCHC-21254</strong></td><td class="num">$101.87</td><td>Batch #1020 pure strains — one 80 g bag each: OG Wild Green, OG Wild Red, Pure Green, Pure White, Pure Red, Red Fermented (480 g total). <strong>Shipped Nov 6, 2026; in transit at research time.</strong><br>Your Batch #1020 testing is finalized: <strong>White 9.0 · Green 9.5 · Red 8.0</strong>. Reviews submitted to the vendor’s website (in moderation) and posted in the vendor’s Discord Nov 4, 2026.</td></tr>
+        <tr><td class="num">Oct 30, 2026</td><td><strong>WCHC-21148</strong></td><td class="num">$90.00</td><td>Premium Select Green Vein 250 g ×2 + Golden Powdered Leaf Premium Select 250 g (750 g total).</td></tr>
+        <tr><td class="num">Aug 10, 2026</td><td><strong>WCHC-20370</strong></td><td class="num">$105.75</td><td>Private Garden Green 250 g ×2 + Here Comes the Sun 250 g.</td></tr>
+        <tr><td class="num">Aug 7, 2026</td><td><strong>WCHC-20336</strong></td><td class="num">$94.75</td><td>Premium Select Green Vein 500 g + Premium Select White Vein 250 g.</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="grid2">
+      <div class="box"><h3>Catalog</h3><ul>
+        <li><strong>Pure veins:</strong> Pure Green Vein, Pure White Vein, Pure Red Vein</li>
+        <li><strong>OG Wild:</strong> OG Wild Green, OG Wild Red</li>
+        <li><strong>Also:</strong> Golden, Red Fermented, Full Spectrum Blend, Breakfast Blend, Here Comes the Sun Blend, Bodhisattva Blend, Deep Red</li>
+        <li><strong>Limited / rotating (Batch 1010 list):</strong> Grounded in Green, Hutan Village Green, Rooted in Red, Vintage Micro Green</li>
+        <li><strong>Premium Select (7 listings):</strong> Green / Red / White Vein, Golden, Bodhisattva Blend, plus split kilos</li>
+        <li><strong>Cargo Line (2):</strong> Cargo Line Pure Red, Cargo Line Pure White (lot C-002)</li>
+        <li><strong>Thai line:</strong> Burakorn Freeze Dried Tea, Thai Freeze Dried Travel Kit; 20 Year Green Thai GV2 ($8–$32) and Thai Bentuangie R1 ($8–$32) both shown Out of Stock in index</li>
+        <li><strong>Other:</strong> Pre-filled Capsules, crushed-leaf teas, Thai Kratom Salve ($15), herbal apothecary / hemp lines</li>
+      </ul><p class="src">Sources: wildcraftherbcompany.com/shop-2/ and /product-category/strain/ · kratom.org/vendors/wildcraft-herb-company/</p></div>
+      <div class="box"><h3>Recent news — Oct–Nov 2026</h3><ul>
+        <li><strong>Nov 4:</strong> #1020 dropped (above). No #1019 release was found in the archive — do not assume it was skipped or renamed; it simply does not appear. <span class="badge b-miss">Not located</span></li>
+        <li><strong>Oct 23:</strong> Premium Select Mini Restock — remaining PR Select 01 released 5 PM ET to bridge to #1020; PR Select 02 to follow “as soon as labs return.”</li>
+        <li><strong>Oct 14 / 17:</strong> “#1020 HAS ARRIVED!” announcements after September supplier-update delays — a delayed, long-awaited shipment.</li>
+        <li><strong>Just before Oct:</strong> Bodhisattva Premium Select launch (Sep 8) and Burakorn restock (Aug 29).</li>
+        <li>No shipping-carrier change, closure, or sale beyond LOYALTY111 was found for Oct–Nov.</li>
+      </ul></div>
+    </div>
+
+    <div class="box"><h3>Pricing — verified live Nov 9, 2026</h3>
+      <table><thead><tr><th>Product</th><th>Sizes</th><th>Price</th></tr></thead><tbody>
+        <tr><td>Pure Green / White / Red, Golden, Breakfast Blend, Here Comes the Sun, Full Spectrum, Bodhisattva</td><td>25 / 80 / 250 g</td><td class="num">$9.00–$35.00</td></tr>
+        <tr><td>OG Wild Green / Red</td><td>25 / 80 / 250 g</td><td class="num">$9.00–$35.00</td></tr>
+        <tr><td>Red Fermented</td><td>25 / 80 / 250 / 500 / 1000 g</td><td class="num">$9.00–$115.00</td></tr>
+        <tr><td>Premium Select Green / Red / White</td><td>25 / 80 / 250 g</td><td class="num">$7.00–$30.00</td></tr>
+        <tr><td>Premium Select Golden</td><td>25 / 80 / 250 g</td><td class="num">$9.00–$30.00</td></tr>
+        <tr><td>4-Way Split Kilo (signature) / Premium Select</td><td>1 kg</td><td class="num">$120.00 / $105.00</td></tr>
+        <tr><td>Half Kilo Split (signature) / Premium Select</td><td>500 g</td><td class="num">$64.00 / $55.00</td></tr>
+        <tr><td>Raw Unprocessed Kilo</td><td>1 kg</td><td class="num">$115.00</td></tr>
+        <tr><td>80 g Flights — Five Bag / Three Bag / Two Bag</td><td>bundles</td><td class="num">$64 / $40 / $28</td></tr>
+        <tr><td>Sample Pack · Capsules (60–500) · Burakorn Tea (50 / 250 g)</td><td>—</td><td class="num">$15 · $15–$65 · $15–$75</td></tr>
+      </tbody></table>
+      <p class="small">kratom.org’s older snapshot lists the split kilo at $115 — superseded by the live $120 above; raw kilo is $115 live. Discount code in Batch 1009 / 1010 newsletters: <strong>LOYALTY111, 10% off</strong> (excl. sample pack &amp; legacy line). Source: wildcraftherbcompany.com/shop-2/</p>
+    </div>
+
+    <div class="box"><h3>Lab testing — public COAs <span class="badge b-conf">Confirmed</span></h3>
+      <p class="sub">Dedicated “Lab Tests” page hosting full third-party PDFs from <strong>MBL (Murray Brown Labs, Northglenn, CO)</strong> and <strong>Cora Science, LLC (Austin, TX, ISO/IEC 17025)</strong> — alkaloids (HPLC), heavy metals (ICP-MS), microbial.</p>
+      <table><thead><tr><th>Lot / sample</th><th>Lab / date</th><th>Mitragynine</th><th>Total alkaloids</th><th>Notes</th></tr></thead><tbody>
+        <tr><td>Premium Select Green (PR Select 01)</td><td>MBL, 6/29/26</td><td class="num">1.70%</td><td class="num">2.60%</td><td>7-OH &lt;0.0196%</td></tr>
+        <tr><td>Premium Select Pure Red</td><td>MBL, 6/29/26</td><td class="num">1.53%</td><td class="num">2.28%</td><td>7-OH &lt;0.0196%</td></tr>
+        <tr><td>Premium Select White</td><td>MBL, 6/29/26</td><td class="num">1.53%</td><td class="num">2.31%</td><td>7-OH &lt;0.0189%</td></tr>
+        <tr><td>Golden Leaf</td><td>MBL, 9/16/26</td><td class="num">1.32%</td><td>—</td><td>7-OH &lt;0.0198%</td></tr>
+        <tr><td>Red Ferment</td><td>MBL, 9/16/26</td><td class="num">1.06%</td><td>—</td><td>7-OH &lt;0.0199%</td></tr>
+        <tr><td>Private Garden Green</td><td>MBL, 7/29/26</td><td class="num">1.46%</td><td class="num">2.23%</td><td>APC 21,000 CFU/g; Y&amp;M 3,600 CFU/g</td></tr>
+        <tr><td>Cargo Line Green, Lot C-002</td><td>Cora, 4/21/26</td><td class="num">1.66%</td><td class="num">2.66%</td><td>7-OH 0.00589%</td></tr>
+        <tr><td>Cargo Line White, Lot C-002</td><td>Cora, Apr 2026</td><td class="num">1.43%</td><td class="num">2.29%</td><td>7-OH 0.00425%</td></tr>
+        <tr><td>Cargo Line Red, Lot C-002</td><td>Cora, Apr 2026</td><td class="num">1.29%</td><td class="num">2.05%</td><td>7-OH 0.00374%</td></tr>
+        <tr><td>Pure Green 1017-D</td><td>Cora, 3/25/26</td><td class="num">1.63%</td><td>—</td><td>Lot 1017-D / 1018 file</td></tr>
+      </tbody></table>
+      <p class="small"><strong>Composite cleanliness (PR Select, MBL 2606E84-004):</strong> APC 1,900 CFU/g; Yeast &amp; Mold 700 CFU/g; Salmonella absent / 25 g, STEC absent / 25 g; As 0.469, Cd 0.0165, Pb 0.409, Hg 0.0258 mg/kg.</p>
+      <div class="callout warn"><strong>#1020 labs — vendor claim only.</strong> Oct 23 newsletter: alkaloid labs back at “1.6% average” across the batch, contaminant reports still pending, full reports promised before release. A #1020-specific COA PDF was <strong>not located</strong> in this research — treat 1.6% as a newsletter claim until the PDF is sighted. Hutan Village Green “1.69%” is likewise a Batch 1010 newsletter claim, not a COA read.</div>
+    </div>
+
+    <div class="grid2">
+      <div class="box"><h3>Community sentiment — 2026</h3><ul>
+        <li>kratom.org (~Apr 2026): “unusually fresh and potent,” “consistent across batches,” Full Spectrum “reliable and well-balanced,” service “very personal.” Shipping typically 48–72 h, no weekends, delays at drops. Prices mid-to-premium.</li>
+        <li>Reddit via GummySearch <span class="badge b-single">Single aggregator</span>: “Wildcraft is my #1 for regular kratom”; “Wildcraft OG red has been one of the most perfect reds I’ve ever had”; “Wildcraft and DTE are on another level to me.”</li>
+        <li>Complaints found: price premium and drop-period delays / sell-outs of limited OG strains. No 2026 potency-failure or service-failure thread was found.</li>
+      </ul></div>
+      <div class="box"><h3>Recalls &amp; warnings</h3><p><strong>None vendor-specific found</strong> for 2025–2026 in targeted searches. <span class="badge b-miss">Bounded negative</span></p><p class="small">Vendor’s Harm Reduction page (updated Nov 9, 2025, per page) states FDA has not approved kratom, DEA “Drug and Chemical of Concern,” CA Prop 65 warning, and no sales to AL, AR, IN, LA, RI, VT, WI.</p></div>
+    </div>
+  </section>
+
+  <!-- DTE -->
+  <section id="panel-dte" class="panel" aria-label="DTE Botanicals">
+    <div class="panel-head"><div><h2>DTE Botanicals — Down To Earth</h2><p>dtebotanicals.com · Drop model: letter = farmer / source line, number = harvest round (A31 = Farmer A’s 31st; K = Pak E, J = riverbank, C = Bali, D = String-Dried, SD = Sun-Dried). Sold-out strains leave the site. Homepage verified live Nov 9, 2026 (last updated Tue Oct 27; “update coming by Thu, Oct 29”).</p></div><div class="score"><div class="big">5 / 5</div><div class="lab">kratom.org (via guide)<br>drugbuyersguide 10 / 10</div></div></div>
+
+    <div class="callout good"><strong>New: Select Series A34 — 4-Year Anniversary / Halloween lineup, live late Oct 2026.</strong> Mothman Red 2.0 (Limited), Banshee White (Limited), 30-Year Wild Green Bakar (Limited, <strong>FINAL BATCH</strong> off old-growth trees), DTE’s 4-Year Anniversary Pure MD (Birthday Batch), 30-Year Pure White MD (A34). <span class="badge b-conf">Confirmed</span> <span class="src">Naming note: homepage coming-soon lane also says “20-Year Pure White MD (A34)” — the purchasable listing reads 30-Year; carry both wordings, don’t silently pick one.</span></div>
+
+    <div class="box"><h3>Your orders &amp; deliveries — DTE</h3>
+      <p class="sub">From your canonical order record (reconciled Nov 6, 2026) and tracked shipment records, exactly as recorded.</p>
+      <table><thead><tr><th>Date</th><th>Order</th><th>Total</th><th>Contents &amp; delivery</th></tr></thead><tbody>
+        <tr><td class="num">Oct 30, 2026</td><td>—</td><td class="num">$248.31</td><td>Tracking <strong>9305511043900014790342</strong>. Contents are not itemized in the order record — the itemized receipt sits under your second DTE account. <strong>Delivery: the shipment has sat at USPS “acceptance pending,” Colorado Springs, since Nov 2, 2026; Drew replied Nov 6 that it was packed and handed over.</strong> Your standing instruction: monitor tracking only. <span class="src">This matches the vendor’s own Shipping Policy explanation (see Operations below): “Accepted” means USPS scanned DTE’s bulk scan sheet and individual scans are often skipped.</span></td></tr>
+        <tr><td class="num">Oct 24, 2026</td><td>Private purchase — vendor’s Discord</td><td class="num">$150.00</td><td>1,250 g across 8 strains: OG Imperial Green Dragon String Dried D11 250 g, Old School Red Sumatra String Dried D11 250 g, Super Green Sukma S1 125 g, Wild White MD K18 125 g, Gold Dragon A22 125 g, North Hulu Kapuas (Green) J11 125 g, Wild White Yeti 125 g, Red JK Platinum K18 125 g. <strong>Delivered.</strong></td></tr>
+        <tr><td class="num">Sep 25, 2026</td><td><strong>#90441</strong></td><td class="num">$232.36</td><td>Long shown as not arrived; <strong>resolved by your own shelf check</strong> — the unique items were on your shelf, so it had shipped. Closed; no further vendor contact.</td></tr>
+        <tr><td class="num">Jun 18, 2026</td><td><strong>#79517</strong></td><td class="num">$158.10</td><td>1,500 g split: Super Red Bika A31, Super Yellow Indo A31, Wild White Jongkong A30, North Hulu Kapuas (Green) J11, Super Red Dragon A31 (250 g each) plus 30-Year Wild Red MD A31 250 g. <strong>Delivered.</strong> This is the only order on your first DTE account.</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="grid2">
+      <div class="box"><h3>Also live / back in stock</h3><ul>
+        <li><strong>String Dried D11 — LAST of it:</strong> Wild Green Saka D11, Old School Red Sumatra D11, Old School Red Hulu D11, OG Imperial Green Dragon D11</li>
+        <li><strong>Vintage — final pass:</strong> Bali G1, Bali R1, PRT3 (Plantation Red Thai)</li>
+        <li><strong>New Curated Clearance Line</strong> (see pricing)</li>
+        <li><strong>Coming at Oct 27 update:</strong> Leaf Hunters Reserve sampler, Premium Affordability Line, A34 flight sampler, “full announcement… on all 15 new strains” — whether that Oct 29 update actually posted by Nov 9 could not be verified; live homepage still carried the Oct 27 update on Nov 9. <span class="badge b-miss">Not verified</span></li>
+      </ul></div>
+      <div class="box"><h3>October shelf — independent guide <span class="badge b-single">Single-source</span></h3><p class="small">Availability checked Oct 24, 2026; ~90 strains, 67 profiled. Highlights only — full list is in the guide:</p><ul>
+        <li><strong>Reds:</strong> Super Red MD A30, Wild Red JK A28, Red Horned Dragon K20, Ancient Red Panda K20</li>
+        <li><strong>Greens:</strong> 30-Year Pure Green MD A33, Super Green MD A30, Super Green Kali K20, Green Summit MD K20, Super Green Dragon A31, Classic Green Maeng Da A31</li>
+        <li><strong>Whites:</strong> Super White Elephant A33, 20-Year Pure White MD A33, Ancient White Dragon SD1, Silver Moon Dragon A30</li>
+        <li><strong>Golds / blends / extras:</strong> Elder Tree Gold, Golden Moon Bear A30, Pink Panther 2.0, Silver Spirit, Moon Shots, Solar Flare extract, Cosmic Dust (A31)</li>
+      </ul><p class="src">Source: x-peps.com/X-Peps/DTE.html</p></div>
+    </div>
+
+    <div class="box"><h3>Pricing — verified live Nov 9, 2026 · all prices include shipping</h3>
+      <table><thead><tr><th>Product</th><th>125 g</th><th>250 g</th></tr></thead><tbody>
+        <tr><td>A34 Select: 4-Year Anniversary Pure MD, 30-Year Pure White MD, Banshee White, 30-Year Wild Green Bakar</td><td class="num">$22.00</td><td class="num">$38.00</td></tr>
+        <tr><td>String Dried D11: Wild Green Saka, Old School Red Sumatra, Old School Red Hulu</td><td class="num">$24.00</td><td class="num">$41.00</td></tr>
+        <tr><td>Standard catalog (guide + kratom.org)</td><td class="num">$22–$24</td><td class="num">$38–$41</td></tr>
+      </tbody></table>
+      <p class="small">Mothman Red 2.0’s own 125 g price was not in the page-foot product list; it sits in the same A34 tier per homepage copy — don’t state its price as verified. Splits: 250 g split $38; 500 g splits $65 (Thai-only $70). <strong>Clearance (live): $69 any kilo (5 colors), Trifecta (3 kilos) $186, Kitchen Sink / Whole Shelf (5 × 1 kg) $299.</strong> The guide’s October $79/kg clearance snapshot is treated as superseded by this newer line. Codes: <strong>4YEARS = 10% off, one use</strong> (4th birthday, live); <strong>DTE10 = 10% off new customers</strong> (banner: 3 uses).</p>
+    </div>
+
+    <div class="box"><h3>Lab testing — extensive <span class="badge b-conf">Confirmed program</span> <span class="badge b-single">Numbers single-source</span></h3>
+      <p class="sub">“COAs and Transparency!” page with 100+ batch report images by drop, Dec 2024–present, from <strong>Cora Science, Cambium Analytica, Anresco</strong>. Numbers below are from the independent guide’s COA reference (certificates hosted on DTE’s COA pages; numbers were not re-read from each PDF in this research). DTE itself notes powder alkaloid readings vary — &gt;0.6% mitragynine variance once seen on the same strain / kilo at the same lab.</p>
+      <table><thead><tr><th>Batch</th><th>Lab / date</th><th>Mitragynine</th><th>Total</th></tr></thead><tbody>
+        <tr><td>Bigfoot / Beetlejuice Green</td><td>Full-panel, Oct 2025</td><td class="num">1.79%</td><td class="num">2.71%</td></tr>
+        <tr><td>Premium White Bali G5</td><td>Cora, Mar 2026</td><td class="num">1.53%</td><td class="num">2.49%</td></tr>
+        <tr><td>Wild White JK A30</td><td>Cora, Mar 2026</td><td class="num">1.52%</td><td class="num">2.38%</td></tr>
+        <tr><td>Elder Tree Gold</td><td>Cora, Mar 2026</td><td class="num">1.49%</td><td class="num">2.34%</td></tr>
+        <tr><td>Pink Panther 2.0</td><td>Cora, Mar 2026</td><td class="num">1.48%</td><td class="num">2.44%</td></tr>
+        <tr><td>Bali R7 (Red Bali)</td><td>Cora, Mar 2026</td><td class="num">1.35%</td><td class="num">2.21%</td></tr>
+        <tr><td>Holidaze Gold / Yuletide Yellow</td><td>Cambium, Jan 2026</td><td class="num">1.5945%</td><td class="num">2.5099%</td></tr>
+        <tr><td>Super Green Kali K19</td><td>Cambium, Jan 2026</td><td class="num">1.4044%</td><td class="num">2.3461%</td></tr>
+        <tr><td>Green PMD 18</td><td>Cambium, Jan 2026</td><td class="num">1.2149%</td><td class="num">2.0963%</td></tr>
+        <tr><td>White Bone / Wild White MD K19</td><td>Cambium, Jan 2026</td><td class="num">0.9053%</td><td class="num">1.5471%</td></tr>
+        <tr><td>NHKGJE blend</td><td>Anresco, Aug 2025</td><td class="num">1.598%</td><td class="num">2.488%</td></tr>
+        <tr><td>Gold Dragon</td><td>Anresco, Aug 2025</td><td class="num">1.251%</td><td class="num">2.022%</td></tr>
+      </tbody></table>
+      <p class="small">Cora Mar 2026 lots all passed metals &amp; microbial; 7-OH 0.00169–0.00391%. Solar Flare extract: <strong>78.5% mitragynine / 97.6% total on retest</strong> (vendor-stated on extracts page; older promo batch was 72% / 95%). Release specs quoted in guide: Salmonella ND / 25 g, E. coli ND / 10 g, As ≤2.00, Cd ≤0.50, Pb ≤5.00, Hg ≤0.20 µg/g.</p>
+    </div>
+
+    <div class="box"><h3>Operations — Oct 2026 disclosures <span class="badge b-conf">Confirmed, vendor self-reported</span></h3><ul>
+      <li><strong>September Cash App glitch (~Sep 14–19/20):</strong> a plugin “quietly moved paid orders” to cancelled. Fix: <strong>shipped everyone whether they wanted a refund or not, most via UPS 2–3 Day, with extras and a $30 account credit.</strong></li>
+      <li><strong>Packing mistakes fix:</strong> packer moved to bagging; <strong>Jake or Drew now packs every order.</strong></li>
+      <li><strong>Website:</strong> owner says crashes are “not worth risking,” apologizing for “sporadic release delays and teased timelines”; trying to fund a fix.</li>
+      <li><strong>Shipping now:</strong> included in price, 2 business days max lead, Mon–Fri, closed weekends. Jake out Wed Oct 28 (short-staffed). Text only: 719-756-0545; email preferred: support@dtebotanicals.com.</li>
+      <li><strong>USPS quirk (Shipping Policy page):</strong> “Accepted” = USPS scanned DTE’s bulk scan sheet; individual scans are “often skipped,” next scan usually at Denver hub, packages can travel with zero updates until delivery. Ping DTE after 3 business days; DTE cannot act until 7 business days (except Priority Express), then contacts USPS and in extreme cases resends via UPS expedited / 2-Day. FAQ: &lt;$50 Ground Advantage (2–4 business days), &gt;$50 Priority (1–3 days), 2–3% may be delayed.</li>
+      <li><strong>Halloween:</strong> 48-hour 1-bag-per-size hold on Mothman / Banshee; every order Fri–Sat through Oct 31, 11:59 PM MT entered for five $100 store credits.</li>
+      <li>No Nov 1–9 announcement was found beyond the Oct 27 homepage update.</li>
+    </ul></div>
+
+    <div class="grid2">
+      <div class="box"><h3>Community sentiment — 2026</h3><ul>
+        <li>r/kratomreview100: Golden Moon Bear moderator review, May 4, 2026, <strong>10/10</strong> — “slept like a baby”; Sep 18, 2026 favorites thread — Elder Tree Gold “my favorite of all”; Wild Green Saka — “really nice upper mid… a good deal of energy.” <span class="badge b-single">Via guide</span></li>
+        <li>Discord product-reviews (via guide): “The quality and care of this vendor is unmatched”; “best strain I have ever had.”</li>
+        <li>Complaints: catalog turnover (favorites sell out and leave the site), gaps in the older lab record, plus the self-disclosed operational issues above. No 2026 thread alleging weak leaf as a pattern was found.</li>
+      </ul></div>
+      <div class="box"><h3>Recalls &amp; warnings</h3><p><strong>None vendor-specific found</strong> for 2025–2026. <span class="badge b-miss">Bounded negative</span></p><p class="small">The FDA recall that surfaced in search was Shaman Botanicals (unrelated, Feb 2026) — do not attach it to DTE. The Cash App glitch and packing errors are operational issues self-reported and remediated by the vendor, not regulatory actions.</p></div>
+    </div>
+  </section>
+
+  <!-- TREE LEAF -->
+  <section id="panel-treeleaf" class="panel" aria-label="Tree Leaf Naturalist">
+    <div class="panel-head"><div><h2>Tree Leaf Naturalist</h2><p>Long Island, NY · Founder DK Dice · No functioning shop — pre-release landing page; orders by text / email / social, run through Discord. Almost everything below rests on <strong>one independent guide</strong> (checked Oct 2026; Discord harvested Nov 2026). Keep the single-source flag on anything you republish from here.</p></div><div class="score"><div class="big">1.5 / 5</div><div class="lab">Lab Transparency score<br>(guide scorecard)</div></div></div>
+
+    <div class="callout bad"><strong>No public COAs — confirmed negative finding.</strong> Despite the “Lab Tested” tagline, “no certificates of analysis are posted on the site or in any menu as of October 2026.” The vendor “discusses COAs privately” and calls Red Clay’s COA “the cleanest he has seen” — <span class="badge b-claim">Vendor-asserted, not verified</span>. No alkaloid %, heavy-metal, or microbial number for any plain-leaf strain was found published anywhere. All potency numbers below (75% / 65% extracts, 2.1+% enhanced, 3.0% Velociraptor) are vendor-stated only.</div>
+
+    <div class="box"><h3>Your orders &amp; deliveries — Tree Leaf</h3>
+      <p class="sub">From your canonical order record (reconciled Nov 6, 2026), exactly as recorded.</p>
+      <table><thead><tr><th>Date</th><th>Batch</th><th>Total</th><th>Contents &amp; delivery</th></tr></thead><tbody>
+        <tr><td class="num">Oct 20, 2026</td><td><strong>BID-B01</strong></td><td class="num">$200.00</td><td>Anvil Red 100 g, DK Special Enhanced 125 g, Pink Fire 250 g, Green Giant 250 g, Deep River Red 250 g, D’Anjou Green 250 g, plus 10 g samplers of Lucky 7 Relief Wreck, Blood Moon Red, and 21K Gold Bali (1,255 g total). <strong>Delivered.</strong></td></tr>
+      </tbody></table>
+      <p class="small">Note how this order maps to the menu below: Anvil Red, DK’s Special, Pink Fire, Green Giant, D’Anjou Green, Blood Moon Red, and 21K Gold Bali are all confirmed menu strains in the catalog section — your delivered batch is a first-hand check on seven of them.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="box"><h3>Catalog structure <span class="badge b-single">Single-source</span></h3><ul>
+        <li><strong>52 strains documented, 44 with full cards.</strong> 01 Drop = core line; <strong>02 Drop = Special Reserves, launched Sep 7, 2026</strong> — five microbatches inside a 12-strain drop (Dark Hematoma, Blood Moon Red, Prism Shine, Green Hulu, White Catalyst); Founder’s Special Reserve (Red Honeycrisp, Silver Haze, D’Anjou Green); plus an Extract Drop (3rd release).</li>
+        <li><strong>Whites:</strong> White Java, White Ponti, White Dragon, White Catalyst, White Jack, Silver Haze</li>
+        <li><strong>Greens:</strong> Green Dragon, Green Forest, Green Malay, Green Melt, Green Bali Emerald, D’Anjou Green, Green Giant, Green Hulu, Green Sunda (unreleased base, by request)</li>
+        <li><strong>Reds:</strong> Red Vein (base), Deep Red (house blend), Red Honeycrisp, Deep River Red, Blood Moon Red, Dark Hematoma, Pink Fire, Bentuangie (announced Sep 2026, no spectrum marker yet)</li>
+        <li><strong>Yellows / Golds / Ferments:</strong> Yellow Lush, Yellow Dream, 21K Gold Bali, Red Clay, Chocolate Bentley</li>
+        <li><strong>Blends / Enhanced / Extracts:</strong> Lucky 7 Relief, Energy Wreck, Gold Matrix, Asian Pear Apple, Velvet Plush, Ivory Sunrise, Prism Shine; Shock Wave 2.1%, Anvil Red, DK’s Special, Gold Alchemist, Jade Junction, Velociraptor 3.0%; Thai Pathom Gold 75%, Margarita 65%</li>
+      </ul></div>
+      <div class="box"><h3>Mission-named strains — all confirmed on the menu</h3><ul>
+        <li><strong>Anvil Red</strong> — Enhanced 2.1+%, Mid-Low / Slow, “Total couch lock — heavy &amp; slow — Max Relief”</li>
+        <li><strong>Pink Fire</strong> — Red, Mid / Mid-Low, “very popular,” leans slow</li>
+        <li><strong>Green Giant</strong> — Base strain, 100% B-supplier, Mid-Low / Slow; blending component in Deep Red</li>
+        <li><strong>D’Anjou Green</strong> — Founder’s Special Reserve, Mid / Mid-Low, “great mood… long legs”</li>
+        <li><strong>Blood Moon Red</strong> — 02 Drop, Mid-Low / Slow, “definitely under mid”</li>
+        <li><strong>21K Gold Bali</strong> — Gold, Slow — slowest marker on regular menu (contested with Pink Fire)</li>
+        <li><strong>DK Special</strong> — listed as DK’s Special Enhanced 2.1+%, blend of Energy Wreck + Silver Haze + Green Dragon layered with 80% salt extract, “strong and energetic,” limited release</li>
+      </ul></div>
+    </div>
+
+    <div class="box"><h3>New since October 2026 <span class="badge b-single">Single-source — Discord #drops-and-sales</span></h3><ul>
+      <li><strong>Oct 17, 2026:</strong> enhanced &amp; extract drop naming, for the first time in the record: White Borneo, Green Bali (separate from Green Bali Emerald), Green Ponti, Green Elephant, Red Borneo, Lucky 7 Relief Blend</li>
+      <li><strong>Oct 10, 2026:</strong> DK’s Special previewed to customers ahead of menu debut</li>
+      <li><strong>Oct 29, 2026:</strong> Green Hulu marked sold out (vendor-marked in server and menu)</li>
+      <li><strong>October special:</strong> Yellow Dream kilo $72</li>
+      <li>Just before October: 02 Drop Sep 7; Bentuangie announced Sep 2026 via r/Vendorsofkratom2; founder at Holtsville, NY expo Sep 27, 2026 (Facebook, per guide bibliography)</li>
+      <li>No shipping / operations change, sale beyond the Yellow Dream kilo, or Nov 1–9 announcement was found. The guide’s Discord harvest is dated only “November 2026” — its posts cannot be dated to before / after Nov 9 individually.</li>
+    </ul></div>
+
+    <div class="box"><h3>Pricing — October 2026 menu snapshot <span class="badge b-single">Single-source</span></h3>
+      <table><thead><tr><th>Format</th><th>Price</th></tr></thead><tbody>
+        <tr><td>100 g single strain · 100 g 4/5-way sampler split</td><td class="num">$21 · $25</td></tr>
+        <tr><td>250 g single strain</td><td class="num">$36</td></tr>
+        <tr><td>500 g half kilo — 2-way / 5-way split</td><td class="num">$56 / $59</td></tr>
+        <tr><td>1000 g kilo — 4-way / 8-way split · October special: Yellow Dream kilo</td><td class="num">$89 / $99 · $72</td></tr>
+        <tr><td>Anvil Red / Gold Alchemist / Jade Junction (enhanced 2.1+%) — 28 / 50 / 100 / 250 g</td><td class="num">$14.50 / $23.30 / $44.02 / $97.10</td></tr>
+        <tr><td>Shock Wave 2.1% / DK’s Special 2.1+% — 28 / 50 / 100 / 250 g</td><td class="num">$16 / $26 / $48–$49 / $107</td></tr>
+        <tr><td>Velociraptor 3.0% — 28 / 50 / 100 / 250 g</td><td class="num">$22 / $36 / $68 / $150</td></tr>
+        <tr><td>Thai Pathom Gold 75% extract / Margarita 65% extract</td><td class="num">$21.99/g / $19.49/g</td></tr>
+      </tbody></table>
+      <p class="small">Shipping: flat $6, free on orders $59+; newsletter signup 8% first-order discount; 21+; no shipping to restricted areas; splits cover powder only. Capsules on request. Vendor-stated numbers only: Margarita 65% mitragynine / 83% total alkaloids; Velociraptor 3.0% ≈ 30 mg mitragynine/g per menu gloss; fermentation “roughly halves mitragynine” (vendor guidance for Red Clay / Yellow Lush).</p>
+    </div>
+
+    <div class="grid2">
+      <div class="box"><h3>Community sentiment — 2026</h3><ul>
+        <li><strong>Reddit (3 posts, Aug–Sep 2026, all positive):</strong> Green Bali Emerald — “a mid slow dream… mood boost from out of this world”; 5-sample set — “all very good,” Yellow Dream “very euphoric”; White Java — “pure mood boost… I absolutely loved it,” <strong>Green Malay rated A+</strong> — “classic feel but with the octane turned up a bit and really nice legs.”</li>
+        <li><strong>Discord #reviews (15 posts, uniformly positive — vendor’s own channel, selection bias applies):</strong> Pink Fire — “All around wonderful relaxing pain relieving strain”; 21K Gold Bali — “by far the best gold I have ever had”; Yellow Lush — “pain level has dropped from a 9 to a 5”; Red Honeycrisp — “This stuff is fire.”</li>
+        <li><strong>Complaints: none found</strong> — no negative Reddit, YouTube, forum, or aggregator review was found. Guide deductions are structural: Ordering Ease 3.0 / 5, Lab Transparency 1.5 / 5.</li>
+      </ul></div>
+      <div class="box"><h3>Recalls &amp; controversies</h3><p><strong>None found.</strong> No FDA recall, warning, or controversy naming Tree Leaf Naturalist / DK Dice in 2025–2026 (vendor launched ~Apr 2026). <span class="badge b-miss">Bounded negative</span></p><p class="small">The only substantive criticism in the public record is the transparency gap itself: marketing “Lab Tested” and vendor-stated potency with no public COA to verify any of it — a guide-raised concern, not a regulatory action.</p><p class="small"><strong>Guide scorecard:</strong> Leaf Quality &amp; Guidance 4.6 / 5 · Catalog Depth 4.5 / 5 · Community Record 4.4 / 5 · Value 4.2 / 5 · Ordering Ease 3.0 / 5 · Lab Transparency 1.5 / 5</p></div>
+    </div>
+  </section>
+
+  <!-- OPEN + CHANGE LIST -->
+  <section id="panel-open" class="panel" aria-label="Open questions and change list">
+    <h2 class="section">Could not verify — keep these as open questions</h2>
+    <div class="box"><ul>
+      <li><strong>WildCraft:</strong> #1020-specific COA PDF and per-strain #1020 mitragynine numbers (promised pre-release; not located Nov 9). Whether a Batch #1019 exists. Page-2/3 shop items beyond index listings (age-gate overlay interrupted pagination; index category pages were used instead).</li>
+      <li><strong>DTE:</strong> Whether the promised Oct 29 update / “all 15 new strains” announcement and Leaf Hunters Reserve sampler actually posted Oct 29–Nov 9. Mothman Red 2.0’s own 125 g price. Whether $79 → $69 clearance is a price cut vs. a separate new line (homepage wording: “NEW LINE!”).</li>
+      <li><strong>Tree Leaf:</strong> Any fact independent of the single guide — the vendor site is a pre-release landing page with no shop or menu to read live. Exact dates of the 15 Discord #reviews posts. Any lab document whatsoever.</li>
+      <li><strong>Recalls (all three):</strong> Searches returned no vendor-specific recall / warning — a bounded negative finding (search-index coverage), not proof none exists in unindexed channels such as private Discord / Facebook groups.</li>
+      <li><strong>Your orders — resolved:</strong> Your recent orders &amp; deliveries are now included in each vendor panel above, from your canonical order record (reconciled Nov 6, 2026) and tracked shipment records. Two statuses are time-stamped to the research date and will need a fresh check before a guide republishes: WCHC-21254 was in transit (shipped Nov 6), and the DTE Oct 30 shipment was at USPS “acceptance pending” since Nov 2 with Drew’s Nov 6 “packed and handed over” reply — monitor tracking only, per your standing instruction.</li>
+    </ul></div>
+
+    <h2 class="section">Template / build-script change list — queued, not applied</h2>
+    <p class="sub">You asked for no design changes in this round. These are recorded for the <strong>next</strong> round of updates, exactly as you flagged them — with a daily briefing reminder to add to the list if needed.</p>
+    <div class="change"><ol>
+      <li><strong>Pain cross outline</strong> <span class="tag">Nov 9 · Queued</span><br>The neon-green cross was a great step forward but hard to see because of its color. Fix that worked: a <strong>black border around the cross shape itself — not the container it sits on</strong> — and suddenly it’s much easier to see. Goes into the picker standard for every kratom guide.</li>
+      <li><strong>Search bar placeholder — shorten</strong> <span class="tag">Nov 9 · Queued</span><br>The search bar only needs to state <strong>“Search strains…”</strong> — don’t show the text after that (currently running on with “— spelling doesn’t have to be…”).</li>
+      <li><strong>Bottom search bar — same fix</strong> <span class="tag">Nov 9 · Queued</span><br>Apply the same to the search bar at the bottom of the guide: no text other than <strong>“Search strains…”</strong>.</li>
+      <li><strong>Dark mode — invisible black text</strong> <span class="tag">Nov 9 · Queued</span><br>Some black text appears in dark mode that cannot be seen (screenshot example: the “STRAINS ON THEIR MENU” label under a large count number renders near-black on the dark card). Audit guide text colors in dark mode so no label renders black-on-dark.</li>
+      <li><strong>Timeline circles — enlarge the icon inside</strong> <span class="tag">Nov 9 · Queued</span><br>Enlarge the icon / graphic shown inside the circle of the timeline so that it fills the space and almost touches the border — but do not allow it to overlap the border or exceed the circle size.</li>
+    </ol>
+    <p class="small">Also on record from the button work just before this round: the select mechanic applies to all three buttons, not just glow — whichever is selected glows and lights up with the order button while the two not selected dim. That round was being finalized separately; it is not re-applied here.</p>
+    </div>
+  </section>
+
+  <footer>
+    <h3 style="margin:0">Sources — read Nov 9, 2026 (EST)</h3>
+    <p class="small">“Verified live” = read in the research browser window; “index” = search-index / text fetch. Vendor age-gates were not agreed to, no birth dates entered, no forms submitted.</p>
+    <ol>
+      <li>WildCraft shop — verified live — <a href="https://www.wildcraftherbcompany.com/shop-2/">wildcraftherbcompany.com/shop-2/</a></li>
+      <li>WildCraft strain category — index — <a href="https://www.wildcraftherbcompany.com/product-category/strain/">wildcraftherbcompany.com/product-category/strain/</a></li>
+      <li>WildCraft powdered leaf category — index — <a href="https://www.wildcraftherbcompany.com/product-category/powder_leaf/">wildcraftherbcompany.com/product-category/powder_leaf/</a></li>
+      <li>WildCraft campaign archive — index — <a href="https://us21.campaign-archive.com/home/?u=aeaa26f1f73ca76715b8c5092&id=fc006f5f49">us21.campaign-archive.com (archive)</a></li>
+      <li>WildCraft Premium Select Mini Restock, Oct 23, 2026 — index — <a href="https://mailchi.mp/b30a121ce353/premium-select-restocked-12774552">mailchi.mp/b30a121ce353</a></li>
+      <li>WildCraft Batch 1010 newsletter — index — <a href="https://us21.campaign-archive.com/?u=aeaa26f1f73ca76715b8c5092&id=6fc9f7c0b3">us21.campaign-archive.com (Batch 1010)</a></li>
+      <li>WildCraft Batch 1009 newsletter — index — <a href="https://mailchi.mp/b07b7dc7a2ff/batch-1009-is-available">mailchi.mp/b07b7dc7a2ff</a></li>
+      <li>WildCraft PR Select COA (MBL 2606E84) — <a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/07/WCHC-LABS-PR.Select01.pdf">WCHC-LABS-PR.Select01.pdf</a></li>
+      <li>WildCraft Sept 2026 COA (MBL 2609725) — <a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/09/COA-and-Lab-Analysis-3.pdf">COA-and-Lab-Analysis-3.pdf (Sept)</a></li>
+      <li>WildCraft Private Garden COA (MBL 2607E68) — <a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/08/COA-and-Lab-Analysis.pdf">COA-and-Lab-Analysis.pdf (Private Garden)</a></li>
+      <li>WildCraft Cargo C-002 COA (Cora) — <a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/06/WCHC-LABS-C-002-.pdf">WCHC-LABS-C-002-.pdf</a></li>
+      <li>WildCraft 1017D/1018 COA (Cora) — <a href="https://www.wildcraftherbcompany.com/wp-content/uploads/2026/04/WCHC-LABS-1017D1018-2.pdf">WCHC-LABS-1017D1018-2.pdf</a></li>
+      <li>WildCraft Harm Reduction — <a href="https://www.wildcraftherbcompany.com/harm-reduction/">wildcraftherbcompany.com/harm-reduction/</a></li>
+      <li>kratom.org WildCraft review (4.3/5) — <a href="https://kratom.org/vendors/wildcraft-herb-company/">kratom.org/vendors/wildcraft-herb-company/</a></li>
+      <li>GummySearch Reddit excerpts — <a href="https://gummysearch.com/tools/best-products/vendor-recommendations/">gummysearch.com/tools/best-products/vendor-recommendations/</a></li>
+      <li>DTE homepage — verified live — <a href="https://dtebotanicals.com/">dtebotanicals.com</a></li>
+      <li>DTE Shipping Policy — <a href="https://dtebotanicals.com/shipping-policy/">dtebotanicals.com/shipping-policy/</a> · FAQ — <a href="https://dtebotanicals.com/faq-2/">dtebotanicals.com/faq-2/</a> · Extracts — <a href="https://dtebotanicals.com/extracts/">dtebotanicals.com/extracts/</a></li>
+      <li>DTE 250 g split product — <a href="https://dtebotanicals.com/product/250g-split-2x-125g/">dtebotanicals.com/product/250g-split-2x-125g/</a></li>
+      <li>kratom.org DTE review — <a href="https://kratom.org/vendors/dte-down-to-earth-botanicals/">kratom.org/vendors/dte-down-to-earth-botanicals/</a></li>
+      <li>DTE independent strain guide (checked Oct 24, 2026) — <a href="https://x-peps.com/X-Peps/DTE.html">x-peps.com/X-Peps/DTE.html</a></li>
+      <li>Tree Leaf independent strain guide (checked Oct 2026, Discord harvested Nov 2026) — <a href="https://x-peps.com/X-Peps/treeleaf-naturalist-strain-guide.html">x-peps.com/X-Peps/treeleaf-naturalist-strain-guide.html</a></li>
+      <li>Your orders &amp; deliveries — your canonical order record (reconciled Nov 6, 2026) and your tracked shipment records, as recorded; statuses stated as of the Nov 9, 2026 research date.</li>
+    </ol>
+    <p class="small">Research snapshot fixed at build time — Nov 9, 2026 findings. Prices, stock, and drops will have moved since; re-check the vendor sites before republishing a guide.</p>
+  </footer>
+</div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tab');
+  function show(id){
+    tabs.forEach(function(t){t.setAttribute('aria-selected', t.getAttribute('data-tab')===id?'true':'false');});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+    var el=document.getElementById('panel-'+id); if(el) el.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.getAttribute('data-tab'));});});
+})();
+</script>
+</body>
+</html>

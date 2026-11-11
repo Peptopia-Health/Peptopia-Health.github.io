@@ -320,6 +320,13 @@ a.jnav-btn.btn.active{color:#241533}
 .index-x{float:right;width:42px;height:42px;border-radius:50%;border:2px solid rgba(15,23,42,.25);background:transparent;color:var(--ink,#241533);font-size:1.15rem;cursor:pointer;line-height:1}
 @media print{#indexFab,#indexPop{display:none!important}}
 </style>
+<style>
+/* THREE-COLUMN NAV (David, Nov 10, 11:27 PM): left = content authoring (Briefings, Guides, Build); middle = Tuscarora, Top Sites, Boards & Admin; right = Career, VA & Work, Store & Shipping. Columns flex equally; buttons fill their column width (beats the uniform-width script's inline width). Mobile: columns stack. */
+nav.jumpnav.jcols{display:flex;gap:14px;flex-wrap:nowrap;overflow:visible}
+nav.jumpnav.jcols .jcol{display:flex;flex-direction:column;gap:8px;flex:1 1 0;min-width:0}
+nav.jumpnav.jcols .jcol a.jnav-btn{width:100%!important}
+@media (max-width:640px){nav.jumpnav.jcols{flex-direction:column;overflow:visible}}
+</style>
 </head>
 <body>
 <div id="gate">
@@ -352,16 +359,22 @@ a.jnav-btn.btn.active{color:#241533}
 <h1 class="ptitle">Peptopia Health — Admin Portal</h1>
   <p class="psub">Private working index · updated Oct 27, 2026</p>
 
-<nav class="jumpnav" aria-label="Portal categories">
-  <a class="jnav-btn btn b-purple" href="#cat-briefings">🎧 Briefings &amp; Audio</a>
-  <a class="jnav-btn btn b-red" href="#cat-build">🛠 Build Commands</a>
-  <a class="jnav-btn btn b-emerald" href="#cat-store">🛒 Store &amp; Shipping</a>
-  <a class="jnav-btn btn b-cyan" href="#cat-guides">📚 Guides &amp; Learning</a>
-  <a class="jnav-btn btn b-amber" href="#cat-arboretum">🌿 Tuscarora Arboretum</a>
-  <a class="jnav-btn btn b-bio" href="#cat-va">🏥 VA &amp; Work</a>
-  <a class="jnav-btn btn b-orange" href="#cat-career">💼 Career</a>
-  <a class="jnav-btn btn b-pink" href="#cat-topsites">🔗 Top Sites</a>
-  <a class="jnav-btn btn b-purple" href="#cat-admin">✅ Boards &amp; Admin</a>
+<nav class="jumpnav jcols" aria-label="Portal categories">
+  <div class="jcol">
+    <a class="jnav-btn btn b-purple" href="#cat-briefings">🎧 Briefings &amp; Audio</a>
+    <a class="jnav-btn btn b-cyan" href="#cat-guides">📚 Guides &amp; Learning</a>
+    <a class="jnav-btn btn b-red" href="#cat-build">🛠 Build Commands</a>
+  </div>
+  <div class="jcol">
+    <a class="jnav-btn btn b-amber" href="#cat-arboretum">🌿 Tuscarora Arboretum</a>
+    <a class="jnav-btn btn b-pink" href="#cat-topsites">🔗 Top Sites</a>
+    <a class="jnav-btn btn b-purple" href="#cat-admin">✅ Boards &amp; Admin</a>
+  </div>
+  <div class="jcol">
+    <a class="jnav-btn btn b-orange" href="#cat-career">💼 Career</a>
+    <a class="jnav-btn btn b-bio" href="#cat-va">🏥 VA &amp; Work</a>
+    <a class="jnav-btn btn b-emerald" href="#cat-store">🛒 Store &amp; Shipping</a>
+  </div>
 </nav>
 
 <section class="catsec" id="cat-briefings">

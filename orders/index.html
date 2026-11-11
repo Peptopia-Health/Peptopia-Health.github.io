@@ -1445,13 +1445,17 @@ html.dark .card-desc{color:#A8B3C7}
 .hero h1{font-size:2rem}
 }
 
-/* --- neon halo on card graphics, copied from the homepage .ico treatment (Nov 11) --- */
-.card [class$="-stage"]{border-radius:50%;background:radial-gradient(circle at 32% 28%,#2A2F3A,#0B0D12 62%,#05070A);border:3px solid #9333EA;box-shadow:0 0 18px rgba(147,51,234,.8),0 0 44px rgba(147,51,234,.33),inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.35),0 16px 26px rgba(15,23,42,.22)}
-.card.accent-emerald [class$="-stage"]{border-color:#34D399;box-shadow:0 0 18px rgba(52,211,153,.8),0 0 44px rgba(52,211,153,.33),inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.35),0 16px 26px rgba(15,23,42,.22)}
-.card.accent-orange [class$="-stage"]{border-color:#FB923C;box-shadow:0 0 18px rgba(251,146,60,.8),0 0 44px rgba(251,146,60,.33),inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.35),0 16px 26px rgba(15,23,42,.22)}
-.card.accent-slate [class$="-stage"]{border-color:#94A3B8;box-shadow:0 0 18px rgba(148,163,184,.8),0 0 44px rgba(148,163,184,.33),inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.35),0 16px 26px rgba(15,23,42,.22)}
-.card .glow-stage{border-radius:50%;background:radial-gradient(circle at 32% 28%,#2A2F3A,#0B0D12 62%,#05070A);border:3px solid #34D399;box-shadow:0 0 18px rgba(52,211,153,.8),0 0 44px rgba(52,211,153,.33),inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.35),0 16px 26px rgba(15,23,42,.22)}
-.card .glow-venn{filter:drop-shadow(0 0 12px rgba(52,211,153,.45))}
+/* --- soft neon glow on card graphics: radiates from the graphic's center and fades out on a transparent background (David, Nov 11) --- */
+.card [class$="-stage"]{border:none;border-radius:0;background:radial-gradient(circle at 50% 50%,rgba(147,51,234,.34) 0%,rgba(147,51,234,.15) 45%,rgba(147,51,234,0) 72%);box-shadow:none;overflow:visible}
+.card [class$="-stage"] svg{filter:drop-shadow(0 0 9px rgba(147,51,234,.55)) drop-shadow(0 0 24px rgba(147,51,234,.30))}
+.card.accent-emerald [class$="-stage"]{background:radial-gradient(circle at 50% 50%,rgba(52,211,153,.34) 0%,rgba(52,211,153,.15) 45%,rgba(52,211,153,0) 72%)}
+.card.accent-emerald [class$="-stage"] svg{filter:drop-shadow(0 0 9px rgba(52,211,153,.55)) drop-shadow(0 0 24px rgba(52,211,153,.30))}
+.card.accent-orange [class$="-stage"]{background:radial-gradient(circle at 50% 50%,rgba(251,146,60,.34) 0%,rgba(251,146,60,.15) 45%,rgba(251,146,60,0) 72%)}
+.card.accent-orange [class$="-stage"] svg{filter:drop-shadow(0 0 9px rgba(251,146,60,.55)) drop-shadow(0 0 24px rgba(251,146,60,.30))}
+.card.accent-slate [class$="-stage"]{background:radial-gradient(circle at 50% 50%,rgba(148,163,184,.34) 0%,rgba(148,163,184,.15) 45%,rgba(148,163,184,0) 72%)}
+.card.accent-slate [class$="-stage"] svg{filter:drop-shadow(0 0 9px rgba(148,163,184,.55)) drop-shadow(0 0 24px rgba(148,163,184,.30))}
+.card .glow-stage{border:none;border-radius:0;background:radial-gradient(circle at 50% 50%,rgba(52,211,153,.34) 0%,rgba(52,211,153,.15) 45%,rgba(52,211,153,0) 72%);box-shadow:none;overflow:visible}
+.card .glow-venn{filter:drop-shadow(0 0 9px rgba(52,211,153,.55)) drop-shadow(0 0 24px rgba(52,211,153,.30))}
 </style>
 </body>
 </html>

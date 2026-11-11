@@ -295,6 +295,18 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 window.addEventListener('load',function(){setTimeout(fit,60)});window.addEventListener('resize',fit);
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){setTimeout(fit,30)})}})();
 </script>
+<style>
+/* FINAL ENFORCEMENT (David, Nov 10, 11:00 PM - after the 10th flag): the portal's ORIGINAL .jnav-btn rule (line ~209) paints a pale blue-white gradient, and element+class specificity (0,1,1) beat the plain .b-* variant classes (0,1,0) — that is why buttons kept rendering pale or wrong despite repeated variant edits, and why earlier audits that assumed the variant gradient passed falsely. From here on, audits must MEASURE the computed background-image, never assume it. These nav-scoped rules (0,2,1) pin every jump button's REAL gradient + text color. */
+nav.jumpnav a.jnav-btn.b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+nav.jumpnav a.jnav-btn.b-red{background:linear-gradient(135deg,#B91C1C,#DC2626)!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+nav.jumpnav a.jnav-btn.b-emerald{background:linear-gradient(135deg,#059669,#10B981)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-amber{background:linear-gradient(135deg,#D97706,#F59E0B)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF)!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+nav.jumpnav a.jnav-btn.b-orange{background:linear-gradient(135deg,#F59E0B,#FBBF24)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-pink{background:linear-gradient(135deg,#DB2777,#F472B6)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+a.jnav-btn.btn.active{color:#241533}
+</style>
 <style id="btn-final-css-2">
 /* READABILITY GATE (David, Nov 10, 10:17 PM): every jump button audited at the gradient's lightest stop; any light gradient gets dark text. Do not ship a portal button change without re-running this audit. */
 /* Floating index (lower right): round push buttons stacked above the back-to-top button. */

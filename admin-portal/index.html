@@ -277,6 +277,21 @@ button.pushbtn,a.pushbtn{display:inline-flex;align-items:center;justify-content:
 button.pushbtn:hover,a.pushbtn:hover{filter:brightness(1.1)}
 button.pushbtn:active,a.pushbtn:active{transform:translateY(2px);box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
 html.dark button.pushbtn,html.dark a.pushbtn{color:#fff;background:linear-gradient(135deg,#1D6FF2,#4D94FF);border-color:rgba(15,23,42,.28)}
+/* SLIM + READABLE (David, Nov 10, 9:09 PM): buttons sit at the homepage template's own height — no 44px min-height — and light gradients get dark text so labels are always readable. */
+a.jnav-btn.btn{min-height:0;padding:6px 22px}
+.b-amber{background:linear-gradient(135deg,#D97706,#F59E0B)}
+.b-amber,a.jnav-btn.btn.b-amber{color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.b-pink{background:linear-gradient(135deg,#DB2777,#F472B6);color:#fff}
+/* Floating index (lower right): round push buttons stacked above the back-to-top button. */
+#indexFab{position:fixed;right:16px;bottom:80px;z-index:151;width:52px;height:52px;border-radius:50%;padding:0;font-size:1.25rem}
+#indexPop{position:fixed;inset:0;background:rgba(10,6,24,.72);display:none;align-items:center;justify-content:center;z-index:9998;padding:14px}
+#indexPop.open{display:flex}
+.index-card{background:var(--card,#fff);border-radius:20px;width:min(560px,96vw);max-height:90vh;overflow:auto;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.index-card h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.35rem;margin:0 0 14px;color:var(--ink,#241533)}
+.index-list{display:flex;flex-direction:column;gap:10px}
+.index-list .btn{width:100%;text-decoration:none}
+.index-x{float:right;width:42px;height:42px;border-radius:50%;border:2px solid rgba(15,23,42,.25);background:transparent;color:var(--ink,#241533);font-size:1.15rem;cursor:pointer;line-height:1}
+@media print{#indexFab,#indexPop{display:none!important}}
 </style>
 </head>
 <body>
@@ -1111,6 +1126,38 @@ function toggleTheme(){
     <p class="modal-note">Type it in chat exactly like that — the build starts with no follow-up questions.</p>
   </div>
 <button type="button" id="toTop" class="pushbtn" aria-label="Back to top">↑</button>
+<button type="button" id="indexFab" class="btn b-purple" aria-label="Open the index">☰</button>
+<div id="indexPop" role="dialog" aria-modal="true" aria-label="Admin Portal index">
+  <div class="index-card">
+    <button type="button" class="index-x" id="indexX" aria-label="Close">&#10005;</button>
+    <h3>Index — jump to a section</h3>
+    <div class="index-list">
+      <a class="btn b-purple" href="#cat-briefings">🎧 Briefings &amp; Audio</a>
+      <a class="btn b-red" href="#cat-build">🛠 Build Commands</a>
+      <a class="btn b-emerald" href="#cat-store">🛒 Store &amp; Shipping</a>
+      <a class="btn b-cyan" href="#cat-guides">📚 Guides &amp; Learning</a>
+      <a class="btn b-amber" href="#cat-arboretum">🌿 Tuscarora Arboretum</a>
+      <a class="btn b-bio" href="#cat-va">🏥 VA &amp; Work</a>
+      <a class="btn b-orange" href="#cat-career">💼 Career</a>
+      <a class="btn b-pink" href="#cat-topsites">🔗 Top Sites</a>
+      <a class="btn b-purple" href="#cat-admin">✅ Boards &amp; Admin</a>
+      <a class="btn b-cyan" href="#cat-palette">🎨 Palette</a>
+      <a class="btn b-emerald" href="#vetting">🛡️ Customer Vetting</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var fab=document.getElementById('indexFab'),pop=document.getElementById('indexPop'),x=document.getElementById('indexX');
+  if(!fab||!pop)return;
+  fab.addEventListener('click',function(){pop.classList.add('open');});
+  function close(){pop.classList.remove('open');}
+  if(x)x.addEventListener('click',close);
+  pop.addEventListener('click',function(e){if(e.target===pop)close();});
+  pop.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 
 <div class="gb-backdrop" id="gbBackdrop" hidden>
   <div class="gb-modal" role="dialog" aria-modal="true" aria-labelledby="gbTitle">

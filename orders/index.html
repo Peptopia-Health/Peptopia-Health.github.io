@@ -766,7 +766,7 @@ mark,.mark-o{font-weight:700;box-decoration-break:clone;-webkit-box-decoration-b
 <svg viewBox="46.6 15 248.1 240.1" preserveAspectRatio="xMidYMin meet" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="bac-core" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#5EA9F5"/><stop offset="0.55" stop-color="#0057A8"/><stop offset="1" stop-color="#003E78"/></radialGradient><radialGradient id="bac-tl" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFFFC8"/><stop offset="0.55" stop-color="#F0F000"/><stop offset="1" stop-color="#D8D800"/></radialGradient><radialGradient id="bac-tr" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#7CF29A"/><stop offset="0.55" stop-color="#10C000"/><stop offset="1" stop-color="#0B8A00"/></radialGradient><radialGradient id="bac-b" cx="0.35" cy="0.3" r="0.95"><stop offset="0" stop-color="#FFB37A"/><stop offset="0.55" stop-color="#F06000"/><stop offset="1" stop-color="#C24E00"/></radialGradient></defs><path d="M104 54 C 122 64, 132 74, 140 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M236 54 C 218 64, 208 74, 200 84" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 5.5"/><path d="M170 182 C 170 184, 170 185, 170 186" stroke="#0070D0" stroke-width="3" stroke-dasharray="0.5 3.5"/><circle cx="170" cy="117" r="58" fill="url(#bac-core)" stroke="#0F172A" stroke-width="3"/><ellipse cx="146" cy="82" rx="20" ry="11" fill="#FFFFFF" opacity="0.35" transform="rotate(-24 146 82)"/><g transform="translate(170 117) scale(3.1)"><path d="M0 -13 C7 -3 10 2 10 7 a10 10 0 1 1 -20 0 C-10 2 -7 -3 0 -13 Z" fill="#FFFFFF"/></g><circle cx="80" cy="46" r="27" fill="url(#bac-tl)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(80 46)"><path d="M-9 0 l6 7 L10 -8" stroke="#3A3400" stroke-width="4" fill="none"/></g><text x="80" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">STERILE</text><circle cx="260" cy="46" r="27" fill="url(#bac-tr)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(260 46)"><circle r="9" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M0 -14 v5 M0 9 v5 M-14 0 h5 M9 0 h5" stroke="#FFFFFF" stroke-width="3"/></g><text x="260" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">PRECISE</text><circle cx="170" cy="208" r="23" fill="url(#bac-b)" stroke="rgba(0,0,0,.28)" stroke-width="3"/><g transform="translate(170 208) scale(0.88)"><path d="M-5 -12 h10 M-3 -12 v8 l-7 13 a2.5 2.5 0 0 0 2 3 h12 a2.5 2.5 0 0 0 2 -3 L3 -4 v-8" stroke="#FFFFFF" stroke-width="3" fill="none"/><path d="M-6 4 h12" stroke="#FFFFFF" stroke-width="3"/></g><text x="170" y="248" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13.5" data-flab="s" font-weight="800" letter-spacing="0.02em" fill="#475569">DILUENT</text></svg>
                 </div>
                 <div class="btn-row single">
-                    <button type="button" class="metal-btn pb-bio order-gate-btn" data-og-product="Bacteriostatic Water" data-og-price="70" data-og-code="wLJEmJs9" aria-haspopup="dialog">$70</button>
+                    <button type="button" class="metal-btn pb-bio order-gate-btn og-nosell" data-og-product="Bacteriostatic Water" data-og-price="70" data-og-code="wLJEmJs9" aria-haspopup="dialog" onclick="oosPop('Bacteriostatic Water')">$70</button>
                 </div>
             </div>
             
@@ -831,6 +831,20 @@ function toggleTheme(){document.documentElement.classList.toggle('dark');return 
 function tbdPop(name){document.getElementById('tbdName').textContent=name;var m=document.getElementById('tbdModal');m.style.display='flex';}
 function tbdClose(){document.getElementById('tbdModal').style.display='none';}
 document.getElementById('tbdModal').addEventListener('click',function(e){if(e.target===this)tbdClose();});
+</script>
+
+<div id="oosModal" style="display:none;position:fixed;inset:0;background:rgba(15,10,40,.55);z-index:999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:18px;max-width:400px;width:100%;padding:28px 26px 24px;text-align:center;box-shadow:0 18px 50px rgba(30,10,80,.35);border:2px solid #E4DEF5;">
+    <div style="font-size:34px;line-height:1;">&#128230;</div>
+    <div style="font-family:Outfit,sans-serif;font-weight:800;font-size:22px;color:#6D28D9;margin:10px 0 6px;">Temporarily Out of Stock</div>
+    <p style="font-family:'DM Sans',sans-serif;font-size:15.5px;color:#3F3F46;margin:0 0 18px;"><b id="oosName">This product</b> is temporarily out of stock &mdash; orders are paused for now. Please check back soon.</p>
+    <button onclick="oosClose()" style="font-family:Outfit,sans-serif;font-weight:800;font-size:15px;color:#3B0764;background:linear-gradient(180deg,#EDE9FE,#C4B5FD);border:2px solid #5B21B6;border-radius:999px;padding:10px 30px;cursor:pointer;box-shadow:0 3px 0 #5B21B6;">Got it</button>
+  </div>
+</div>
+<script>
+function oosPop(name){document.getElementById('oosName').textContent=name;var m=document.getElementById('oosModal');m.style.display='flex';}
+function oosClose(){document.getElementById('oosModal').style.display='none';}
+document.getElementById('oosModal').addEventListener('click',function(e){if(e.target===this)oosClose();});
 </script>
 
 

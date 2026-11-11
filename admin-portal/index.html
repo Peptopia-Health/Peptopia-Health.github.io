@@ -182,6 +182,26 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
   .qp-take:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.25)}
   .qp-logged{font-size:14px;font-weight:700;color:#2E7D4F;margin-top:8px}
 </style>
+<style id="sales-btn-css">
+/* ===== Sales button — copied VERBATIM from the x-peps.com homepage .btn standard (template for admin-page buttons; David, Nov 10, 2026) ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 24px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:100%;transition:filter .3s}
+.btn{white-space:nowrap}
+.btn{padding:6px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);
+  text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.b-emerald{background:linear-gradient(135deg,#059669,#10B981)}
+.btn:hover{filter:brightness(1.1)}
+.sales-btn-wrap{display:block;text-decoration:none;cursor:pointer;margin:0 0 18px}
+.sales-btn-wrap:active .btn{transform:translateY(2px);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
+.sales-btn-wrap .btn{width:100%;min-height:64px;font-size:1.35rem;padding:16px 22px;letter-spacing:.06em}
+.sales-pop{position:fixed;inset:0;background:rgba(10,6,24,.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:14px}
+.sales-pop.open{display:flex}
+.sales-pop-card{background:#fff;border-radius:20px;width:min(1440px,97vw);max-height:94vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.sales-pop-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#4C1D95;color:#fff;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem}
+.sales-pop-x{width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.6);background:transparent;color:#fff;font-size:1.3rem;cursor:pointer;line-height:1}
+.sales-pop iframe{flex:1;width:100%;min-height:78vh;border:0;background:#F6F2FB}
+</style>
 <style id="portal-v2-css">
 /* ===== Admin Portal v2 preview — categories, command cards, mechanics ===== */
 html{scroll-behavior:smooth}
@@ -240,6 +260,24 @@ html.dark .ship-chip.warn b{color:#FDE68A}
 .ship-attn{margin:4px 0 12px;color:var(--t2);font-size:.93rem}
 .ship-open{text-decoration:none}
 </style>
+<style id="btn-final-css">
+/* ===== FINAL button standard (David, Nov 10, 2026): every admin-page button follows the x-peps.com homepage .btn template copied in #sales-btn-css above (.btn base + gloss override + color variant + hover brighten + press-down). Conversions below restyle the portal's own button classes TO that template. ===== */
+.b-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4)}
+.b-orange{background:linear-gradient(135deg,#EA580C,#F97316)}
+.b-pink{background:linear-gradient(135deg,#DB2777,#F472B6)}
+.b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)}
+.b-amber{background:linear-gradient(135deg,#D97706,#F59E0B)}
+.b-red{background:linear-gradient(135deg,#B91C1C,#DC2626)}
+.b-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF)}
+a.jnav-btn.btn{width:auto;text-decoration:none;color:#fff}
+a.jnav-btn.btn.active{color:#fff}
+html.dark a.jnav-btn.btn{color:#fff}
+a.jnav-btn.btn:active{transform:translateY(2px);box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
+button.pushbtn,a.pushbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:6px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);background:linear-gradient(135deg,#1D6FF2,#4D94FF);font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:auto;min-height:0;white-space:nowrap;box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);text-shadow:0 1px 2px rgba(0,0,0,.35);transition:filter .3s}
+button.pushbtn:hover,a.pushbtn:hover{filter:brightness(1.1)}
+button.pushbtn:active,a.pushbtn:active{transform:translateY(2px);box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
+html.dark button.pushbtn,html.dark a.pushbtn{color:#fff;background:linear-gradient(135deg,#1D6FF2,#4D94FF);border-color:rgba(15,23,42,.28)}
+</style>
 </head>
 <body>
 <div id="gate">
@@ -273,15 +311,15 @@ html.dark .ship-chip.warn b{color:#FDE68A}
   <p class="psub">Private working index · updated Oct 27, 2026</p>
 
 <nav class="jumpnav" aria-label="Portal categories">
-  <a class="jnav-btn" href="#cat-briefings">🎧 Briefings &amp; Audio</a>
-  <a class="jnav-btn" href="#cat-build">🛠 Build Commands</a>
-  <a class="jnav-btn" href="#cat-store">🛒 Store &amp; Shipping</a>
-  <a class="jnav-btn" href="#cat-guides">📚 Guides &amp; Learning</a>
-  <a class="jnav-btn" href="#cat-arboretum">🌿 Tuscarora Arboretum</a>
-  <a class="jnav-btn" href="#cat-va">🏥 VA &amp; Work</a>
-  <a class="jnav-btn" href="#cat-career">💼 Career</a>
-  <a class="jnav-btn" href="#cat-topsites">🔗 Top Sites</a>
-  <a class="jnav-btn" href="#cat-admin">✅ Boards &amp; Admin</a>
+  <a class="jnav-btn btn b-purple" href="#cat-briefings">🎧 Briefings &amp; Audio</a>
+  <a class="jnav-btn btn b-red" href="#cat-build">🛠 Build Commands</a>
+  <a class="jnav-btn btn b-emerald" href="#cat-store">🛒 Store &amp; Shipping</a>
+  <a class="jnav-btn btn b-cyan" href="#cat-guides">📚 Guides &amp; Learning</a>
+  <a class="jnav-btn btn b-amber" href="#cat-arboretum">🌿 Tuscarora Arboretum</a>
+  <a class="jnav-btn btn b-bio" href="#cat-va">🏥 VA &amp; Work</a>
+  <a class="jnav-btn btn b-orange" href="#cat-career">💼 Career</a>
+  <a class="jnav-btn btn b-pink" href="#cat-topsites">🔗 Top Sites</a>
+  <a class="jnav-btn btn b-purple" href="#cat-admin">✅ Boards &amp; Admin</a>
 </nav>
 
 <section class="catsec" id="cat-briefings">
@@ -294,7 +332,7 @@ html.dark .ship-chip.warn b{color:#FDE68A}
   <div class="cmd-grid">
     <div class="cmd-card"><span class="cmd-phrase">Morning &amp; evening briefings</span><p>Audio in chat, Smooth voice — morning about 6 AM, evening about 7:30 PM.</p></div>
     <div class="cmd-card"><span class="cmd-phrase">Shipment tracking</span><p>Swept morning and evening. <a href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">Open the tracking report</a>.</p></div>
-<div class="cmd-card"><span class="cmd-phrase">🟢 Sales Flow Log</span><p>Every sale, left to right: order, link, paid, label, tracking, finished. <a href="https://x-peps.com/admin-portal/sales-flow-log.html" target="_blank" rel="noopener">Open the sales flow log</a>.</p></div>
+
     <div class="cmd-card"><span class="cmd-phrase">Weekly GLP-1 update</span><p>Every Monday. Guides back up to Drive every 6 hours; web submissions are checked every 30 minutes.</p></div>
   </div>
   <div class="cmd-grid">
@@ -366,6 +404,7 @@ html.dark .ship-chip.warn b{color:#FDE68A}
 
 <section class="catsec" id="cat-store">
   <h2 class="cat-title">🛒 Store &amp; Shipping</h2>
+  <a class="sales-btn-wrap" id="salesBtn" href="https://x-peps.com/admin-portal/sales-flow-log.html"><span class="btn b-emerald">Sales</span></a>
   <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🛍️ Peptopia Orders</span><a class="open-ico" href="https://x-peps.com/orders/" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The store orders page.</p></div>
 <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">📦 Shipment Tracking</span><a class="open-ico" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Every tracked package, swept morning and evening.</p></div>
@@ -814,12 +853,16 @@ function toggleTheme(){
       input=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),
       err=document.getElementById('gateErr');
   function unlock(){gate.style.display='none';root.classList.add('unlocked');}
+  function cookieGet(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):null;}
+  function cookieSet(n,v,days){var exp=new Date(Date.now()+days*864e5).toUTCString();document.cookie=n+'='+encodeURIComponent(v)+'; expires='+exp+'; path=/; SameSite=Lax';}
   var unlocked=false;
   try{unlocked=sessionStorage.getItem('admin_portal_unlocked')==='1';}catch(e){}
+  if(cookieGet('peptopia_admin_week')==='1'){unlocked=true;}
   if(unlocked){unlock();}
   function tryGate(){
     if(input.value.trim()==='57'){
       try{sessionStorage.setItem('admin_portal_unlocked','1');}catch(e){}
+      cookieSet('peptopia_admin_week','1',7);
       unlock();
     }else{err.textContent='That number is not the author number. Try again.';input.value='';input.focus();}
   }
@@ -1221,5 +1264,22 @@ img,svg{max-width:100%}
   a{color:inherit;text-decoration:none}
 }
 </style>
+<div class="sales-pop" id="salesPop" role="dialog" aria-modal="true" aria-label="Sales Flow Log">
+  <div class="sales-pop-card">
+    <div class="sales-pop-head"><span>Sales Flow Log</span><button type="button" class="sales-pop-x" id="salesPopX" aria-label="Close">&#10005;</button></div>
+    <iframe id="salesPopFrame" title="Sales Flow Log" loading="lazy"></iframe>
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('salesBtn'),pop=document.getElementById('salesPop'),frame=document.getElementById('salesPopFrame'),x=document.getElementById('salesPopX');
+  if(!btn||!pop)return;
+  btn.addEventListener('click',function(e){e.preventDefault();if(!frame.getAttribute('src'))frame.setAttribute('src','https://x-peps.com/admin-portal/sales-flow-log.html');pop.classList.add('open');});
+  function close(){pop.classList.remove('open');}
+  if(x)x.addEventListener('click',close);
+  pop.addEventListener('click',function(e){if(e.target===pop)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 </body>
 </html>

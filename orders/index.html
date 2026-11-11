@@ -465,6 +465,7 @@ html.dark .peptopia-theme-toggle .pp-sun{display:block}
 html.dark .peptopia-theme-toggle .pp-moon{display:none}
 @media print{.peptopia-nav .peptopia-iconbtn{display:none!important}}
 </style>
+
 </head>
 <body>
 
@@ -1398,6 +1399,40 @@ html.dark .og-addr-head{color:#C4B5FD}
 /* Nudge: tapping the quiet ORDER button pulses the orb row */
 @keyframes trioPulse{0%,100%{transform:scale(1)}30%{transform:scale(1.09)}60%{transform:scale(1.03)}}
 .glow-venn.trio-pulse .glow-orb{animation:trioPulse .55s ease-in-out 2}
+</style>
+
+<style id="homepage-skin">
+/* ORDERS PAGE RESTYLED TO MATCH THE HOMEPAGE EXACTLY (David, Nov 11, 2026):
+   same hero heading effect, same card shell, same buttons, graphics shrunk to homepage card size. */
+.hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;margin-bottom:6px;background:linear-gradient(90deg,#0584B0 0%,#07876B 28%,#7C22CE 62%,#D9500E 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.grid{max-width:1200px;margin:0 auto;padding:0 24px 32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;justify-items:center}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.grid .card{background:#FFF;border:1px solid rgba(15,23,42,.07);border-radius:16px;padding:20px 18px 18px;box-shadow:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);width:100%;max-width:340px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform .3s,box-shadow .3s}
+.grid .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .3s}
+.grid .card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04)}
+.grid .card:hover::before{height:4px}
+.accent-purple::before{background:linear-gradient(90deg,#9333EA,rgba(147,51,234,.3))}
+.accent-emerald::before{background:linear-gradient(90deg,#10B981,rgba(16,185,129,.3))}
+.accent-orange::before{background:linear-gradient(90deg,#F97316,rgba(249,115,22,.3))}
+.accent-slate::before{background:linear-gradient(90deg,#64748B,rgba(100,116,139,.3))}
+.card-title{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:700;margin:0 0 6px}
+.card-desc{color:#475569;font-size:.9rem;line-height:1.38;margin:0 0 12px}
+.card [class$="-stage"]{width:112px!important;height:112px!important;max-width:112px;max-height:112px;margin:0 auto 10px;overflow:hidden}
+.card [class$="-stage"] svg{width:100%!important;height:100%!important}
+.glow-venn{max-width:112px}
+.glow-benefits .bic{max-height:30px}
+.glow-benefits .plus{max-height:18px}
+.card>img{max-height:112px;width:auto;margin:0 auto 10px}
+.btn-row{display:flex;gap:10px;width:100%;margin-top:auto;padding-top:6px}
+.card .btn-row .metal-btn{-webkit-appearance:none;appearance:none;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:6px;flex:1;width:auto;height:auto;min-height:0;padding:10px 24px;border-radius:10px;border:none;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.34),0 9px 18px rgba(15,23,42,.38),0 2px 4px rgba(15,23,42,.35);transition:filter .3s;cursor:pointer;text-decoration:none}
+.metal-btn:hover{filter:brightness(1.1)}
+.metal-btn:active{transform:translateY(2px)}
+.pb-purple{background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff}
+.pb-emerald{background:linear-gradient(135deg,#059669,#10B981);color:#fff}
+.pb-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF);color:#fff}
+.pb-orange{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#241533}
+html.dark .grid .card{background:#141B2E;border-color:rgba(148,163,184,.16);box-shadow:0 1px 3px rgba(0,0,0,.4)}
+html.dark .card-desc{color:#A8B3C7}
 </style>
 </body>
 </html>

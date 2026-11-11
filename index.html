@@ -331,12 +331,13 @@ a.hdrbtn:active{transform:translateY(2px)}
 a.hdrbtn.b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 a.hdrbtn.b-emerald{background:linear-gradient(135deg,#059669,#10B981);color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.45)}
 a.hdrbtn.b-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4);color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)}
-.peptopia-iconbtn{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(180deg,#3D3D49 0%,#101016 55%,#000000 100%);border:1px solid rgba(236,72,153,.4);box-shadow:inset 0 2px 3px rgba(255,255,255,.55),inset 0 -5px 8px rgba(0,0,0,.65),0 6px 12px rgba(15,23,42,.35),0 2px 3px rgba(15,23,42,.3);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-html.dark .peptopia-iconbtn{background:linear-gradient(180deg,#2A2A35 0%,#08080D 60%,#000000 100%)}
+.peptopia-iconbtn{width:38px;height:38px;flex:none;border-radius:50%;background:radial-gradient(ellipse 95% 60% at 30% 12%,rgba(255,255,255,.55),rgba(255,255,255,.10) 55%,rgba(255,255,255,0) 72%),linear-gradient(180deg,#4A4A58 0%,#14141D 55%,#000000 100%);border:1px solid rgba(236,72,153,.4);box-shadow:inset 0 2px 3px rgba(255,255,255,.8),inset 0 -6px 10px rgba(0,0,0,.7),inset 0 -2px 4px rgba(255,255,255,.22),0 12px 22px rgba(15,23,42,.5),0 3px 6px rgba(15,23,42,.45);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;position:relative;overflow:hidden}
+html.dark .peptopia-iconbtn{background:radial-gradient(ellipse 95% 60% at 30% 12%,rgba(255,255,255,.42),rgba(255,255,255,.06) 55%,rgba(255,255,255,0) 72%),linear-gradient(180deg,#33333F 0%,#0A0A11 60%,#000000 100%)}
 html.dark .hdr-print{border-color:rgba(236,72,153,.75);box-shadow:inset 0 2px 3px rgba(255,255,255,.5),inset 0 -5px 8px rgba(0,0,0,.65),0 0 12px rgba(194,24,184,.45),0 2px 3px rgba(0,0,0,.5)}
 html.dark .peptopia-theme-toggle{border-color:rgba(255,196,0,.7);box-shadow:inset 0 2px 3px rgba(255,255,255,.5),inset 0 -5px 8px rgba(0,0,0,.65),0 0 12px rgba(255,196,0,.35),0 2px 3px rgba(0,0,0,.5)}
+.peptopia-iconbtn::after{content:"";position:absolute;left:10%;right:10%;top:4%;height:46%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.03));pointer-events:none;z-index:2}
 .peptopia-iconbtn:active{transform:translateY(2px)}
-.peptopia-iconbtn svg{width:30px!important;height:30px!important}
+.peptopia-iconbtn svg{width:30px!important;height:30px!important;position:relative;z-index:1}
 .peptopia-brand .peptopia-logo.logo-light,.peptopia-logo.logo-light{display:none!important}
 .peptopia-brand .peptopia-logo.logo-dark,.peptopia-logo.logo-dark{display:block!important}
 html.dark .peptopia-brand .peptopia-logo.logo-light,html.dark .peptopia-logo.logo-light{display:block!important}

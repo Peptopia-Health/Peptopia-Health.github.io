@@ -284,6 +284,17 @@ a.jnav-btn.btn{min-height:0;padding:6px 22px}
 .b-pink{background:linear-gradient(135deg,#DB2777,#F472B6);color:#fff}
 .b-orange,a.jnav-btn.btn.b-orange{color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
 .b-cyan,a.jnav-btn.btn.b-cyan,.b-emerald,a.jnav-btn.btn.b-emerald,.b-pink,a.jnav-btn.btn.b-pink{color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+/* UNIFORM WIDTH + ORANGE FIX (David, Nov 10, 10:26 PM): every .btn/.pushbtn on this page is ONE width — the width of the longest button label (Tuscarora Arboretum) at the standard font — measured live at load and applied to all, so no button is wider or narrower than another; and the orange buttons (Career / Start Job Search, b-orange) get DARK text like the other light gradients: the base button rule sets white and was overriding the readability fix in cascade order.
+   ERROR CHECK (4th flag): after ANY button change, re-run the full computed-style audit — text color AND contrast at the gradient's lightest stop AND uniform width — on the pushed bytes before reporting done. */
+.b-orange,button.pushbtn.b-orange,a.pushbtn.b-orange,.btn.b-orange{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+</style>
+<script>
+(function(){function fit(){var els=[].slice.call(document.querySelectorAll('.btn,button.pushbtn,a.pushbtn'));if(!els.length)return;var keep=els.map(function(e){return e.style.width});els.forEach(function(e){e.style.width='auto'});var m=0;els.forEach(function(e){var w=e.getBoundingClientRect().width;if(w>m)m=w});var W=Math.ceil(m)+'px';els.forEach(function(e,i){e.style.width=(e.id==='toTop'||e.id==='indexFab')?keep[i]:W})}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fit)}else{fit()}
+window.addEventListener('load',function(){setTimeout(fit,60)});window.addEventListener('resize',fit);
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){setTimeout(fit,30)})}})();
+</script>
+<style id="btn-final-css-2">
 /* READABILITY GATE (David, Nov 10, 10:17 PM): every jump button audited at the gradient's lightest stop; any light gradient gets dark text. Do not ship a portal button change without re-running this audit. */
 /* Floating index (lower right): round push buttons stacked above the back-to-top button. */
 #indexFab{position:fixed;right:16px;bottom:80px;z-index:151;width:52px;height:52px;border-radius:50%;padding:0;font-size:1.25rem}

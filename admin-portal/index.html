@@ -208,9 +208,9 @@ html{scroll-behavior:smooth}
 .jumpnav{position:sticky;top:0;z-index:90;display:flex;gap:8px;flex-wrap:wrap;padding:10px 2px;background:var(--bg);border-bottom:1px solid var(--border)}
 .jnav-btn{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-head);font-weight:700;font-size:.86rem;color:var(--theme-dark);text-decoration:none;background:linear-gradient(180deg,#FFFFFF 0%,#E3ECFA 55%,#C7D9F6 100%);border:2px solid var(--theme);border-radius:999px;padding:8px 15px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 4px rgba(37,99,235,.22),0 3px 6px rgba(15,23,42,.16);transition:transform .05s ease,box-shadow .05s ease}
 .jnav-btn:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(15,23,42,.25)}
-.jnav-btn.active{border-color:var(--orange);color:#9A3412;background:linear-gradient(180deg,#FFF7ED 0%,#FFE7C7 55%,#FFD9A8 100%)}
+.jnav-btn.active{border-color:var(--orange);color:#A55A07;background:linear-gradient(180deg,#FFF7ED 0%,#FFE7C7 55%,#FFD9A8 100%)}
 html.dark .jnav-btn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#26344E 55%,#1B2740 100%);border-color:#60A5FA}
-html.dark .jnav-btn.active{border-color:var(--orange);color:#FED7AA;background:linear-gradient(180deg,#4A2E17 0%,#38220F 55%,#2A1A0D 100%)}
+html.dark .jnav-btn.active{border-color:var(--orange);color:#FBD6AD;background:linear-gradient(180deg,#4A2E17 0%,#38220F 55%,#2A1A0D 100%)}
 .catsec{scroll-margin-top:64px;padding-top:14px}
 .cat-title{font-family:var(--font-head);font-weight:800;font-size:1.55rem;color:var(--t1);border-bottom:3px solid var(--orange);padding-bottom:7px;margin:20px 0 6px}
 .catsec h2:not(.cat-title){font-size:1.18rem;margin-top:28px}
@@ -264,6 +264,7 @@ html.dark .ship-chip.warn b{color:#FDE68A}
 /* ===== FINAL button standard (David, Nov 10, 2026): every admin-page button follows the x-peps.com homepage .btn template copied in #sales-btn-css above (.btn base + gloss override + color variant + hover brighten + press-down). Conversions below restyle the portal's own button classes TO that template. ===== */
 .b-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4)}
 .b-orange{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+.b-corr{background:linear-gradient(135deg,#F6962C,#F7A040);color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
 /* ORANGE RULE (David, Nov 10, 10:29 PM — flagged 5 times): white text on orange is BANNED, everywhere, permanently. The Tuscarora (amber) button is the model: light warm gradient + dark text. Any orange-family button on any page gets a light gradient and dark text; the full computed audit (color + contrast at the lightest stop) must pass on the pushed bytes before any button change is reported done. */
 .b-pink{background:linear-gradient(135deg,#DB2777,#F472B6)}
 .b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)}
@@ -810,7 +811,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 <section class="catsec" id="cat-va">
   <h2 class="cat-title">🏥 VA &amp; Work</h2>
   <div class="cmd-grid">
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-bio" href="https://x-peps.com/Corrections/" target="_blank" rel="noopener">🏥 Corrections Nursing</a></div><p>The master portal for corrections nursing.</p></div>
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-corr" href="https://x-peps.com/Corrections/" target="_blank" rel="noopener">🏥 Corrections Nursing</a></div><p>The master portal for corrections nursing.</p></div>
 <div class="cmd-card"><span class="cmd-phrase">📧 Prior-service email watch</span><p>Daily — watches for VA HR word on the 9.2-year credit verification.</p></div>
 <div class="cmd-card"><span class="cmd-phrase">🧹 Job-lead inbox sweep</span><p>Every 3 hours — clears recruiter and job-lead mail from the inboxes.</p></div>
 <div class="cmd-card"><span class="cmd-phrase">📨 VA email command bridge</span><p>Watches for David’s emailed commands from his VA address and runs them.</p></div>
@@ -835,7 +836,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-amber" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">🏺 Arboretum</a></div><p>The Arboretum — bottles, plants and the author gate.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener">🌿 Kratom Reviews</a></div><p>Every vendor guide, scored and linked.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">📦 Shipping & Orders</a></div><p>The sales flow and every package — one page.</p></div>
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/Corrections/" target="_blank" rel="noopener">🏥 Corrections Nursing</a></div><p>The corrections nursing master portal.</p></div>
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-corr" href="https://x-peps.com/Corrections/" target="_blank" rel="noopener">🏥 Corrections Nursing</a></div><p>The corrections nursing master portal.</p></div>
   </div>
 </section>
 

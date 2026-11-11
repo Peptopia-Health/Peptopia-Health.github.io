@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrections Nursing — Peptopia Healthcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Base Reset & Typography */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-page: #F8FAFC; 
+            --bg-card: #FFFFFF; 
+            --border-card: #E2E8F0; 
+            --shadow-card: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-card-hover: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+            --text-primary: #0F172A; 
+            --text-secondary: #475569; 
+            --text-muted: #94A3B8;
+            --brand-purple: #9000F5; 
+            --pink: #FF85E1; 
+            --cyan: #06B6D4; 
+            --orange: #EC810A; 
+            --amber: #F7A040; 
+            --emerald: #10B981; 
+            --slate: #64748B;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-primary);
+            min-height: 100vh; line-height: 1.6; display: flex; flex-direction: column;
+        }
+
+        /* Header (Top Nav) */
+        .site-header {
+            padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
+            max-width: 1200px; margin: 0 auto; width: 100%;
+        }
+        .header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .brand-mark {
+            width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--brand-purple), var(--pink));
+            display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif;
+            font-weight: 800; font-size: 1.15rem; color: #fff; box-shadow: 0 0 20px rgba(144, 0, 245, 0.3);
+        }
+        .brand-text { display: flex; flex-direction: column; }
+        .brand-name {
+            font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text-primary);
+            letter-spacing: 2px; text-transform: uppercase; line-height: 1.1;
+        }
+        .brand-tagline { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+        .header-nav { display: flex; align-items: center; gap: 8px; }
+        .nav-link {
+            font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-secondary); text-decoration: none; padding: 8px 16px; border-radius: 8px;
+        }
+        .nav-link:hover { color: var(--text-primary); background: rgba(15, 23, 42, 0.03); }
+
+        /* Hero Section */
+        .hero {
+            text-align: center; padding: 32px 24px; max-width: 800px; margin: 0 auto;
+        }
+        .hero h1 {
+            font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 12px;
+        }
+        .hero h1 .gradient-text-orange {
+            background: linear-gradient(135deg, #A55A07 0%, var(--orange) 50%, var(--amber) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.05rem; color: var(--text-secondary); }
+
+        /* Section Layout */
+        .section-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px 48px; width: 100%;
+        }
+        .section-title {
+            font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-primary);
+            margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #E2E8F0;
+        }
+
+        /* Grid Container */
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px;
+            padding: 24px; display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+            box-shadow: var(--shadow-card); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; color: var(--text-primary);
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; transition: height 0.3s ease;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+        
+        .card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; width: 100%; }
+        .card-icon {
+            width: 48px; height: 48px; min-width: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; transition: transform 0.3s ease;
+        }
+        .card:hover .card-icon { transform: scale(1.05); }
+
+        /* Accent Colors */
+        .card.accent-orange::before { background: var(--orange); }
+        .card.accent-orange .card-icon { background: rgba(249, 115, 22, 0.12); color: var(--orange); }
+
+        .card.accent-amber::before { background: var(--amber); }
+        .card.accent-amber .card-icon { background: rgba(245, 158, 11, 0.12); color: var(--amber); }
+
+        .card.accent-emerald::before { background: var(--emerald); }
+        .card.accent-emerald .card-icon { background: rgba(16, 185, 129, 0.12); color: var(--emerald); }
+
+        .card.accent-cyan::before { background: var(--cyan); }
+        .card.accent-cyan .card-icon { background: rgba(6, 182, 212, 0.12); color: var(--cyan); }
+
+        .card.accent-slate::before { background: var(--slate); }
+        .card.accent-slate .card-icon { background: rgba(100, 116, 139, 0.12); color: var(--slate); }
+
+        .card h2 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
+        .card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin-bottom: 24px; flex-grow: 1; }
+
+        /* Visual Action Indicators */
+        .btn-action {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px;
+            border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; color: #fff; width: 100%; transition: all 0.3s ease;
+        }
+        .btn-orange { background: var(--orange); }
+        .btn-amber { background: var(--amber); }
+        .btn-emerald { background: var(--emerald); }
+        .btn-cyan { background: var(--cyan); }
+        .btn-slate { background: var(--slate); }
+        
+        .card:hover .btn-action { filter: brightness(1.1); }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <a href="https://peptopia-health.github.io/" class="header-brand">
+            <div class="brand-mark">P</div>
+            <div class="brand-text">
+                <span class="brand-name">Peptopia</span>
+                <span class="brand-tagline">Health & Wellness</span>
+            </div>
+        </a>
+        <nav class="header-nav">
+            <a href="https://peptopia-health.github.io/" class="nav-link">Home</a>
+            <a href="https://peptopia-health.github.io/X-Peps/orders/" class="nav-link">Orders</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1><span class="gradient-text-orange">Corrections Nursing Portal</span></h1>
+        <p>Access dedicated clinical procedures, screening protocols, and training materials optimized for the corrections environment.</p>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">Onboarding & Orientation</h2>
+        <div class="grid">
+            <a href="Nursing_Orientation_v2.html" class="card accent-orange">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+                    <h2>Nursing Orientation v2</h2>
+                </div>
+                <p>Comprehensive baseline orientation material for newly assigned clinical staff.</p>
+                <span class="btn-action btn-orange"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <a href="Onboarding_Corrections_Guide.html" class="card accent-orange">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <h2>Corrections Guide</h2>
+                </div>
+                <p>Specific guidelines and expectations for transitioning into a corrections facility.</p>
+                <span class="btn-action btn-orange"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <a href="Onboarding_Training.html" class="card accent-orange">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <h2>Training Modules</h2>
+                </div>
+                <p>Core curriculum and structured training programs for clinical readiness.</p>
+                <span class="btn-action btn-orange"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <a href="Onboarding.html" class="card accent-orange">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-door-open"></i></div>
+                    <h2>General Onboarding</h2>
+                </div>
+                <p>Facility requirements, HR documentation, and administrative processing.</p>
+                <span class="btn-action btn-orange"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">Clinical Practice</h2>
+        <div class="grid">
+            <a href="ERJ_Intake_Screening.html" class="card accent-cyan">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                    <h2>Intake Screening</h2>
+                </div>
+                <p>Corrections processing protocols, including standard 72-hour window compliance for PREA intake screenings.</p>
+                <span class="btn-action btn-cyan"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <a href="Clinical_Competency.html" class="card accent-cyan">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                    <h2>Clinical Competency</h2>
+                </div>
+                <p>Standards, skills checklists, and ongoing clinical evaluation matrices.</p>
+                <span class="btn-action btn-cyan"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <a href="Insulin_Code.html" class="card accent-cyan">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-syringe"></i></div>
+                    <h2>Insulin Code</h2>
+                </div>
+                <p>Protocols for diabetic management, sliding scales, and insulin administration.</p>
+                <span class="btn-action btn-cyan"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <!-- Detox Assessments -->
+            <a href="Detox_Assessments.html" class="card accent-cyan">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h2>Detox Assessments</h2>
+                </div>
+                <p>Clinical withdrawal scales and protocols including COWS and CIWA (Ar & B).</p>
+                <span class="btn-action btn-cyan"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <!-- Do Not Crush List -->
+            <a href="do_not_crush.html" class="card accent-cyan">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-pills"></i></div>
+                    <h2>Do Not Crush List</h2>
+                </div>
+                <p>Clinical reference guide for medications that should not be crushed or chewed.</p>
+                <span class="btn-action btn-cyan"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+            
+            <!-- Do Not Crush Assessor (NEW TILE) -->
+            <a href="dynamic_dnc_assessor.html" class="card accent-cyan">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-laptop-medical"></i></div>
+                    <h2>Do Not Crush Assessor</h2>
+                </div>
+                <p>Launch the dynamic assessment tool to upload MedPass reports and flag restricted prescriptions.</p>
+                <span class="btn-action btn-cyan"><i class="fa-solid fa-arrow-right"></i> LAUNCH ASSESSOR</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">Mental Health & Standards</h2>
+        <div class="grid">
+            <a href="Mental_Health_Triage.html" class="card accent-emerald">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h2>Mental Health Triage</h2>
+                </div>
+                <p>Acute assessment tools and triage pathways for behavioral health crises.</p>
+                <span class="btn-action btn-emerald"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <a href="Mental_Health.html" class="card accent-emerald">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                    <h2>Mental Health Guidelines</h2>
+                </div>
+                <p>General management, observation protocols, and continuous mental health care.</p>
+                <span class="btn-action btn-emerald"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+
+            <a href="Corrections_Excellence.html" class="card accent-slate">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-award"></i></div>
+                    <h2>Corrections Excellence</h2>
+                </div>
+                <p>Best practices, ethical standards, and operational excellence in correctional nursing.</p>
+                <span class="btn-action btn-slate"><i class="fa-solid fa-arrow-right"></i> OPEN FILE</span>
+            </a>
+        </div>
+    </section>
+
+</body>
+</html>

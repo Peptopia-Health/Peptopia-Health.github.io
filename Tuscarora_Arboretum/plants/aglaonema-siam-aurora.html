@@ -4,70 +4,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',sans-serif;background:#FBF4F2;color:#263238;padding:16px 12px 22px}
+body{font-family:'DM Sans',sans-serif;background:#f2fbf3;color:#263238;padding:16px 12px 22px}
 .page{max-width:880px;margin:0 auto}
 h1,h2,.tile b,.chip,.k{font-family:'Outfit',sans-serif}
 .toprow{display:flex;justify-content:flex-end;margin:8px 0 10px}
-.themebtn{font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;color:#fff;background:linear-gradient(180deg,#E85D8C,#B3123F 55%,#7F0E2E);border:2px solid #5C0A20;border-radius:999px;padding:7px 16px;cursor:pointer;box-shadow:0 4px 0 #5C0A20,0 7px 14px rgba(143,16,50,.35),inset 0 2px 3px rgba(255,255,255,.55)}
-.themebtn:active{transform:translateY(3px);box-shadow:0 1px 0 #5C0A20,0 3px 8px rgba(143,16,50,.35),inset 0 2px 3px rgba(255,255,255,.55)}
-.hero{display:flex;gap:16px;background:linear-gradient(120deg,#FDE8EC,#FDFBF4 55%,#FDEBD8);border:2px solid #B3123F;border-radius:18px;padding:14px;box-shadow:0 6px 18px rgba(127,14,46,.08)}
+.themebtn{font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;color:#fff;background:linear-gradient(180deg,#22c55e,#15803d 55%,#14532d);border:2px solid #052e16;border-radius:999px;padding:7px 16px;cursor:pointer;box-shadow:0 4px 0 #052e16,0 7px 14px rgba(21,128,61,.35),inset 0 2px 3px rgba(255,255,255,.55)}
+.themebtn:active{transform:translateY(3px);box-shadow:0 1px 0 #052e16,0 3px 8px rgba(21,128,61,.35),inset 0 2px 3px rgba(255,255,255,.55)}
+.hero{display:flex;gap:16px;background:linear-gradient(120deg,#dcfce7,#fbfef7 55%,#ecfccb);border:2px solid #15803d;border-radius:18px;padding:14px;box-shadow:0 6px 18px rgba(20,83,45,.08)}
 .hero .art{flex:0 0 212px}
-.hero .art img{width:212px;height:212px;object-fit:cover;border-radius:14px;border:3px solid #9E1239}
-.kicker{font-weight:800;letter-spacing:2px;color:#9E1239;font-size:.7rem;font-family:'Outfit',sans-serif}
-h1{font-size:1.66rem;font-weight:800;color:#EA580C;line-height:1.12}
-.sci{font-style:italic;color:#B3123F;font-weight:700;font-size:.98rem}
+.hero .art img{width:212px;height:212px;object-fit:cover;border-radius:14px;border:3px solid #16a34a}
+.kicker{font-weight:800;letter-spacing:2px;color:#16a34a;font-size:.7rem;font-family:'Outfit',sans-serif}
+h1{font-size:1.66rem;font-weight:800;color:#15803d;background:linear-gradient(92deg,#14532d 5%,#16a34a 55%,#65a30d 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.12}
+.sci{font-style:italic;color:#15803d;font-weight:700;font-size:.98rem}
 .sub{margin-top:5px;font-size:.92rem;line-height:1.45}
 .swatches{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
 .sw{flex:1;min-width:82px;border-radius:10px;padding:5px 6px;text-align:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:.66rem;border:1.5px solid rgba(0,0,0,.25);line-height:1.25;color:#263238}
 .taxo{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-.taxo span{background:#7F0E2E;color:#fff;border-radius:8px;padding:5px 9px;font-size:.74rem;font-weight:700;font-family:'Outfit',sans-serif}
-.taxo span.alt{background:#fff;color:#7F0E2E;border:2px solid #7F0E2E;padding:3px 9px}
+.taxo span{background:#14532d;color:#fff;border-radius:8px;padding:5px 9px;font-size:.74rem;font-weight:700;font-family:'Outfit',sans-serif}
+.taxo span.alt{background:#fff;color:#14532d;border:2px solid #14532d;padding:3px 9px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}
-.chip{background:#fff;border:2px solid #B3123F;color:#7F0E2E;border-radius:999px;padding:5px 11px;font-weight:700;font-size:.78rem;box-shadow:0 3px 0 #B3123F}
+.chip{background:#fff;border:2px solid #15803d;color:#14532d;border-radius:999px;padding:5px 11px;font-weight:700;font-size:.78rem;box-shadow:0 3px 0 #15803d}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#fff;border:2px solid #F2CFD9;border-radius:16px;padding:12px 14px;box-shadow:0 4px 12px rgba(127,14,46,.08)}
-.card h2{font-size:1rem;color:#B3123F;margin-bottom:7px}
+.card{background:#fff;border:2px solid #bbf7d0;border-radius:16px;padding:12px 14px;box-shadow:0 4px 12px rgba(20,83,45,.08)}
+.card h2{font-size:1rem;color:#15803d;margin-bottom:7px}
 .meter{margin:8px 0}
 .meter label{display:flex;justify-content:space-between;font-family:'Outfit',sans-serif;font-weight:700;font-size:.78rem;color:#374151}
-.bar{height:14px;border-radius:99px;background:#EFE9E4;border:1.5px solid #EFAFBF;overflow:hidden;margin-top:3px}
+.bar{height:14px;border-radius:99px;background:#e9efe4;border:1.5px solid #86efac;overflow:hidden;margin-top:3px}
 .fill{height:100%}
-table{width:100%;border-collapse:separate;border-spacing:0;border:2px solid #B3123F;border-radius:12px;overflow:hidden;font-size:.86rem}
-td{padding:6px 9px;border-bottom:1px solid #F9E0E7;line-height:1.35;vertical-align:top}
+table{width:100%;border-collapse:separate;border-spacing:0;border:2px solid #15803d;border-radius:12px;overflow:hidden;font-size:.86rem}
+td{padding:6px 9px;border-bottom:1px solid #dcfce7;line-height:1.35;vertical-align:top}
 tr:last-child td{border-bottom:none}
-td.k{font-weight:700;color:#B3123F;width:31%;background:#FDF0F3}
+td.k{font-weight:700;color:#15803d;width:31%;background:#f0fdf4}
 .leafrow{display:flex;gap:8px;justify-content:space-around;margin:4px 0}
-.leafcap{text-align:center;font-size:.68rem;font-family:'Outfit',sans-serif;font-weight:700;color:#7F0E2E}
-.tip{border-left:6px solid #B4552D;background:#FBF3EC;border-radius:10px;padding:8px 11px;font-size:.88rem;line-height:1.45;margin-top:9px}
-.warn{display:flex;gap:10px;align-items:center;background:#FEF2F2;border:2px solid #E01020;border-radius:14px;padding:9px 13px;margin-top:10px}
+.leafcap{text-align:center;font-size:.68rem;font-family:'Outfit',sans-serif;font-weight:700;color:#14532d}
+.tip{border-left:6px solid #B4552D;background:#f7fee7;border-radius:10px;padding:8px 11px;font-size:.88rem;line-height:1.45;margin-top:9px}
+.warn{display:flex;gap:10px;align-items:center;background:#f0fdf4;border:2px solid #E01020;border-radius:14px;padding:9px 13px;margin-top:10px}
 .safe{display:flex;gap:10px;align-items:center;background:#F0FAF3;border:2px solid #1B7A43;border-radius:14px;padding:9px 13px;margin-top:10px}
 ol.steps{margin:2px 0 0 18px;font-size:.88rem;line-height:1.5}
 .figs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
-.figs figure{background:#fff;border:2px solid #F2CFD9;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(127,14,46,.08)}
+.figs figure{background:#fff;border:2px solid #bbf7d0;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(20,83,45,.08)}
 .figs img{width:100%;height:250px;object-fit:cover;display:block}
 .figs figcaption{padding:9px 12px;font-size:.85rem;line-height:1.45}
-.figs figcaption b{font-family:'Outfit',sans-serif;color:#B3123F}
+.figs figcaption b{font-family:'Outfit',sans-serif;color:#15803d}
 .foot{text-align:center;color:#8A7D6B;font-size:.72rem;margin-top:12px;line-height:1.5}
-.foot a{color:#B3123F;font-weight:700}
+.foot a{color:#15803d;font-weight:700}
 b.hl{background:#FEF08A;color:#263238;padding:0 3px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-html.dark body{background:#1D0D12;color:#F7E8EC}
-html.dark .card,html.dark .figs figure{background:#2A1219;border-color:#4E2432}
-html.dark td{border-bottom-color:#3D1E29}
-html.dark td.k{background:#38141F}
-html.dark .meter label{color:#E3CBD2}
-html.dark .chip{background:#2A1219;color:#F5CBD6}
-html.dark .taxo span.alt{background:#2A1219;color:#F5CBD6}
+html.dark body{background:#060f09;color:#e7f8ec}
+html.dark .card,html.dark .figs figure{background:#0a1f12;border-color:#14351f}
+html.dark td{border-bottom-color:#0d2817}
+html.dark td.k{background:#0d2817}
+html.dark .meter label{color:#cfe3d4}
+html.dark .chip{background:#0a1f12;color:#bbf7d0}
+html.dark .taxo span.alt{background:#0a1f12;color:#bbf7d0}
 html.dark .tip{background:#2B211A}
 html.dark .warn{background:#2B1618}
 html.dark .safe{background:#16281B}
-html.dark .foot{color:#C4A6AE}
-html.dark .hero{background:linear-gradient(120deg,#230F16,#2C141C 55%,#2A211A);border-color:#4E2432}
-html.dark .sci{color:#F48FB1}
-html.dark .kicker{color:#E8935F}
-html.dark .card h2{color:#F48FB1}
-html.dark .figs figcaption b{color:#F48FB1}
-html.dark td.k{color:#F2A9BC}
-html.dark .leafcap{color:#F5CBD6}
-html.dark .foot a{color:#F2A9BC}
+html.dark .foot{color:#a7c4ae}
+html.dark .hero{background:linear-gradient(120deg,#07130b,#0c2413 55%,#2A211A);border-color:#14351f}
+html.dark .sci{color:#4ade80}
+html.dark .kicker{color:#4ade80}
+html.dark .card h2{color:#4ade80}
+html.dark .figs figcaption b{color:#4ade80}
+html.dark td.k{color:#6ee7a7}
+html.dark .leafcap{color:#bbf7d0}
+html.dark .foot a{color:#6ee7a7}
 @page{size:Letter;margin:10mm}
 @media print{
 html{font-size:9.5pt}
@@ -80,23 +80,24 @@ table,tr{break-inside:avoid}
 .hero .art img{height:auto !important;max-height:48mm !important}
 html.dark body{background:#fff !important;color:#263238 !important}
 html.dark .card,html.dark .figs figure{background:#fff !important}
-html.dark .hero{background:linear-gradient(120deg,#FDE8EC,#FDFBF4 55%,#FDEBD8) !important}
-html.dark td.k{background:#FDF0F3 !important;color:#B3123F !important}
-html.dark .chip{background:#fff !important;color:#7F0E2E !important}
-html.dark .taxo span.alt{background:#fff !important;color:#7F0E2E !important}
-html.dark .tip{background:#FBF3EC !important}
-html.dark .warn{background:#FEF2F2 !important}
+html.dark .hero{background:linear-gradient(120deg,#dcfce7,#fbfef7 55%,#ecfccb) !important}
+html.dark td.k{background:#f0fdf4 !important;color:#15803d !important}
+html.dark .chip{background:#fff !important;color:#14532d !important}
+html.dark .taxo span.alt{background:#fff !important;color:#14532d !important}
+html.dark .tip{background:#f7fee7 !important}
+html.dark .warn{background:#f0fdf4 !important}
 html.dark .safe{background:#F0FAF3 !important}
-html.dark .card h2,html.dark .sci,html.dark .figs figcaption b{color:#B3123F !important}
-html.dark .kicker{color:#9E1239 !important}
-html.dark .leafcap{color:#7F0E2E !important}
+html.dark .card h2,html.dark .sci,html.dark .figs figcaption b{color:#15803d !important}
+html.dark .kicker{color:#16a34a !important}
+html.dark .leafcap{color:#14532d !important}
 html.dark .meter label{color:#374151 !important}
 html.dark .foot{color:#8A7D6B !important}
-html.dark .foot a{color:#B3123F !important}
+html.dark .foot a{color:#15803d !important}
 }
 </style>
+<style id="green-dark-fix">html.dark h1{background:linear-gradient(92deg,#4ade80 5%,#22c55e 55%,#a3e635 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}</style>
 </head><body>
-<div style="background:#FFF7ED;border-bottom:1px solid #F1E3D3;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:7px 16px;text-align:left"><a href="../index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Tuscarora Arboretum</a> <span style="color:#A8A29E">/</span> <a href="../artifacts/index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Artifacts</a> <span style="color:#A8A29E">/</span> <a href="index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Plants</a> <span style="color:#A8A29E">/</span> <span style="color:#78716C">Aglaonema &lsquo;Siam Aurora&rsquo;</span></div>
+<div style="background:#f0fdf4;border-bottom:1px solid #F1E3D3;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:7px 16px;text-align:left"><a href="../index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Tuscarora Arboretum</a> <span style="color:#A8A29E">/</span> <a href="../artifacts/index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Artifacts</a> <span style="color:#A8A29E">/</span> <a href="index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Plants</a> <span style="color:#A8A29E">/</span> <span style="color:#6b7a6e">Aglaonema &lsquo;Siam Aurora&rsquo;</span></div>
 <div class="page">
 <div class="toprow"><button class="themebtn" id="themeBtn" type="button">🌙 Dark</button></div>
 
@@ -115,7 +116,7 @@ html.dark .foot a{color:#B3123F !important}
 <div class="leafrow">
 <div><svg width="80" height="98" viewBox="0 0 86 104"><path d="M43 4 C57 28 61 60 43 100 C25 60 29 28 43 4Z" fill="#E23A63" stroke="#5B7434" stroke-width="4"/><path d="M43 8 L43 96" stroke="#F6C6D3" stroke-width="3"/></svg><div class="leafcap">YOURS — red blade, thin<br>green rim, lance leaf</div></div>
 <div><svg width="80" height="98" viewBox="0 0 86 104"><path d="M43 4 C57 28 61 60 43 100 C25 60 29 28 43 4Z" fill="#6E9A4E" stroke="#C21847" stroke-width="4"/><path d="M43 8 L43 96" stroke="#C21847" stroke-width="3"/></svg><div class="leafcap">THE CLASSIC — green blade,<br>lipstick-red rim</div></div>
-<div><svg width="80" height="98" viewBox="0 0 86 104"><path d="M43 100 C20 78 10 60 10 40 C10 22 22 12 33 15 C38 17 41 22 43 28 C45 22 48 17 53 15 C64 12 76 22 76 40 C76 60 66 78 43 100Z" fill="#B3123F" stroke="#5B7434" stroke-width="3"/><path d="M43 16 L43 92 M43 40 L26 34 M43 40 L60 34 M43 62 L24 56 M43 62 L62 56" stroke="#7FA653" stroke-width="2" opacity=".55"/></svg><div class="leafcap">&lsquo;RED ANJAMANI&rsquo; — broader,<br>deeper red, greener veins</div></div>
+<div><svg width="80" height="98" viewBox="0 0 86 104"><path d="M43 100 C20 78 10 60 10 40 C10 22 22 12 33 15 C38 17 41 22 43 28 C45 22 48 17 53 15 C64 12 76 22 76 40 C76 60 66 78 43 100Z" fill="#15803d" stroke="#5B7434" stroke-width="3"/><path d="M43 16 L43 92 M43 40 L26 34 M43 40 L60 34 M43 62 L24 56 M43 62 L62 56" stroke="#7FA653" stroke-width="2" opacity=".55"/></svg><div class="leafcap">&lsquo;RED ANJAMANI&rsquo; — broader,<br>deeper red, greener veins</div></div>
 </div>
 <p style="font-size:.88rem;line-height:1.5">The genus is certain — the lance blade, the pale midrib, and the crown of leaves on green stems are pure Aglaonema. The cultivar took real work. Your plant matches <b>&lsquo;Siam Aurora&rsquo; in its red form</b>: the red covers almost the whole blade, but the <b class="hl">thin green margin survives</b>, and up close (see your photo card below) <b>olive-green speckles still push in at the edges</b> — the classic green pattern showing through the red. The nearest rival, &lsquo;Red Anjamani&rsquo;, runs broader and deeper red with green veins across the whole blade; &lsquo;Super Red&rsquo; types lose the green rim almost entirely. One honest note: <b>red aglaonema names get swapped freely in the trade</b>, so this name rests on the leaves themselves, not on any nursery tag.</p>
 <div class="tip">🌅 <b>The name story.</b> &ldquo;Siam&rdquo; is Thailand, where this cultivar was bred; &ldquo;Aurora&rdquo; is dawn — for the sunrise coloring. The red was bred in from <b>Aglaonema rotundum</b>, the one naturally red species, crossed into A. commutatum lines.</div>

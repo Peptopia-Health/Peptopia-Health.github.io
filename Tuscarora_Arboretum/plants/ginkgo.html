@@ -8,103 +8,103 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
- --gold:#F2B705; --gold-deep:#D97706; --amber:#B45309; --bark:#44403C; --bark-deep:#292524;
- --leaf:#3F6212; --leaf-deep:#1E4D3B; --sky:#1D4ED8; --cream:#FFFBEB; --paper:#FFFDF5;
- --ink:#1C1917; --ink2:#57534E; --card:#FFFFFF; --line:#FDE68A; --cypress:#C2410C;
+ --gold:#84cc16; --gold-deep:#15803d; --amber:#15803d; --bark:#2f3a2c; --bark-deep:#131a0e;
+ --leaf:#3F6212; --leaf-deep:#1E4D3B; --sky:#1D4ED8; --cream:#f0fdf4; --paper:#fbfef7;
+ --ink:#060f09; --ink2:#4d5c4a; --card:#FFFFFF; --line:#86efac; --cypress:#4d7c0f;
 }
 html.dark{
- --cream:#1C1917; --paper:#292524; --ink:#FAFaf9; --ink:#FAFAF9; --ink2:#D6D3D1;
- --card:#292524; --line:#78716C; --bark:#E7E5E4;
+ --cream:#060f09; --paper:#131a0e; --ink:#f7faf5; --ink:#f7faf5; --ink2:#ccd8c8;
+ --card:#131a0e; --line:#6b7a6e; --bark:#e3eae0;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:'DM Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.62}
 h1,h2,h3,.disp{font-family:'Outfit',sans-serif}
 img{max-width:100%}
-.banner{background:#FFF7ED;color:#7C2D12;font-family:'Outfit',sans-serif;font-weight:700;font-size:.86rem;
- padding:.45rem 1rem;text-align:center;border-bottom:2px solid #FDBA74}
-.banner a{color:#9A3412;text-decoration:none}
+.banner{background:#f0fdf4;color:#14532d;font-family:'Outfit',sans-serif;font-weight:700;font-size:.86rem;
+ padding:.45rem 1rem;text-align:center;border-bottom:2px solid #86efac}
+.banner a{color:#166534;text-decoration:none}
 .banner a:hover{text-decoration:underline}
 header.site{display:flex;align-items:center;justify-content:space-between;gap:1rem;
- padding:.7rem 1.1rem;background:var(--leaf-deep);color:#FEF3C7}
+ padding:.7rem 1.1rem;background:var(--leaf-deep);color:#dcfce7}
 header.site .brand{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.02em}
-header.site nav a{color:#FEF3C7;text-decoration:none;font-weight:700;margin-left:1rem;font-size:.92rem}
-.tgl{cursor:pointer;border:2px solid #FDE68A;background:linear-gradient(180deg,#FDE68A,#F59E0B);
- color:#451A03;border-radius:999px;padding:.32rem .9rem;font-family:'Outfit',sans-serif;font-weight:800;
- box-shadow:0 3px 0 #92400E, inset 0 1px 0 #FFFBEB}
-.tgl:active{transform:translateY(2px);box-shadow:0 1px 0 #92400E}
+header.site nav a{color:#dcfce7;text-decoration:none;font-weight:700;margin-left:1rem;font-size:.92rem}
+.tgl{cursor:pointer;border:2px solid #86efac;background:linear-gradient(180deg,#86efac,#16a34a);
+ color:#052e16;border-radius:999px;padding:.32rem .9rem;font-family:'Outfit',sans-serif;font-weight:800;
+ box-shadow:0 3px 0 #166534, inset 0 1px 0 #f0fdf4}
+.tgl:active{transform:translateY(2px);box-shadow:0 1px 0 #166534}
 .wrap{max-width:1060px;margin:0 auto;padding:0 1rem 3rem}
 .titleband{width:fit-content;max-width:100%;margin:1.4rem auto .4rem;text-align:center;
- background:linear-gradient(160deg,#FEF3C7,#FDE68A 55%,#FCD34D);border:3px solid var(--amber);
- border-radius:22px;padding:1.1rem 2rem .9rem;box-shadow:0 6px 0 rgba(146,64,14,.35)}
-.titleband h1{margin:0;font-size:2.9rem;font-weight:800;color:#B45309;letter-spacing:.04em;line-height:1}
-.titleband .sub{max-width:34ch;margin:.45rem auto 0;font-weight:700;color:#78350F;font-size:1.02rem}
+ background:linear-gradient(160deg,#dcfce7,#86efac 55%,#4ade80);border:3px solid var(--amber);
+ border-radius:22px;padding:1.1rem 2rem .9rem;box-shadow:0 6px 0 rgba(21,128,61,.35)}
+.titleband h1{margin:0;font-size:2.9rem;font-weight:800;color:#15803d;background:linear-gradient(92deg,#14532d 5%,#16a34a 55%,#65a30d 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.04em;line-height:1}
+.titleband .sub{max-width:34ch;margin:.45rem auto 0;font-weight:700;color:#14532d;font-size:1.02rem}
 .hero{margin:1rem auto 0;border-radius:20px;overflow:hidden;border:3px solid var(--amber);
- box-shadow:0 10px 30px rgba(120,53,15,.25)}
+ box-shadow:0 10px 30px rgba(20,83,45,.25)}
 .hero img{display:block;width:100%;height:auto}
 .figcap{font-size:.86rem;color:var(--ink2);text-align:center;padding:.45rem .8rem;background:var(--card)}
 section{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:1.2rem 1.3rem;margin:1.4rem 0;
- box-shadow:0 3px 10px rgba(120,53,15,.07)}
-section h2{margin:.1rem 0 .7rem;font-size:1.55rem;font-weight:800;color:#B45309}
+ box-shadow:0 3px 10px rgba(20,83,45,.07)}
+section h2{margin:.1rem 0 .7rem;font-size:1.55rem;font-weight:800;color:#15803d}
 section h3{color:var(--leaf-deep);margin:1rem 0 .35rem}
-html.dark section h3{color:#FCD34D}
+html.dark section h3{color:#4ade80}
 .lead{font-size:1.06rem}
-mark{background:#FEF08A;color:#1C1917;padding:0 .18em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:700}
-.mark-o{background:#FFE0C2;color:#1C1917;padding:0 .18em;border-radius:3px;font-weight:700;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+mark{background:#FEF08A;color:#060f09;padding:0 .18em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:700}
+.mark-o{background:#dcfce7;color:#060f09;padding:0 .18em;border-radius:3px;font-weight:700;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .grid{display:grid;gap:1rem}
 .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
-.idcard{background:linear-gradient(165deg,#FFFBEB,#FEF3C7);border:2px solid var(--gold-deep);border-radius:14px;padding:1rem 1.1rem}
-html.dark .idcard{background:linear-gradient(165deg,#292524,#44403C)}
+.idcard{background:linear-gradient(165deg,#f0fdf4,#dcfce7);border:2px solid var(--gold-deep);border-radius:14px;padding:1rem 1.1rem}
+html.dark .idcard{background:linear-gradient(165deg,#131a0e,#2f3a2c)}
 .idcard table{width:100%;border-collapse:collapse;font-size:.97rem}
-.idcard td{padding:.28rem .4rem;border-bottom:1px dashed #D6D3D1;vertical-align:top}
-.idcard td.k{font-family:'Outfit',sans-serif;font-weight:700;color:#92400E;white-space:nowrap;width:38%}
-html.dark .idcard td.k{color:#FCD34D}
-.stat{background:linear-gradient(160deg,#FEF3C7,#FDE68A);border:2px solid var(--gold-deep);border-radius:14px;
- padding:.8rem;text-align:center;color:#451A03}
-.stat .n{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.7rem;color:#B45309;line-height:1.05}
-.stat .l{font-size:.82rem;font-weight:700;color:#78350F}
+.idcard td{padding:.28rem .4rem;border-bottom:1px dashed #ccd8c8;vertical-align:top}
+.idcard td.k{font-family:'Outfit',sans-serif;font-weight:700;color:#166534;white-space:nowrap;width:38%}
+html.dark .idcard td.k{color:#4ade80}
+.stat{background:linear-gradient(160deg,#dcfce7,#86efac);border:2px solid var(--gold-deep);border-radius:14px;
+ padding:.8rem;text-align:center;color:#052e16}
+.stat .n{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.7rem;color:#15803d;line-height:1.05}
+.stat .l{font-size:.82rem;font-weight:700;color:#14532d}
 .photo{border-radius:14px;overflow:hidden;border:2px solid var(--line)}
 .photo img{display:block;width:100%}
-.clip{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;background:#FFFBEB;border:2px solid var(--gold);
+.clip{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;background:#f0fdf4;border:2px solid var(--gold);
  border-radius:999px;padding:.4rem .8rem;margin:.6rem 0}
-html.dark .clip{background:#292524}
-.clip-label{font-family:'Outfit',sans-serif;font-weight:800;color:#92400E;font-size:.9rem}
-html.dark .clip-label{color:#FCD34D}
+html.dark .clip{background:#131a0e}
+.clip-label{font-family:'Outfit',sans-serif;font-weight:800;color:#166534;font-size:.9rem}
+html.dark .clip-label{color:#4ade80}
 .clip audio{height:34px;flex:1;min-width:200px}
-.bigplay{background:linear-gradient(165deg,#1E4D3B,#14532D);color:#FEF3C7;border-radius:16px;padding:1.1rem 1.2rem}
-.bigplay h3{color:#FCD34D;margin:.1rem 0 .4rem}
+.bigplay{background:linear-gradient(165deg,#1E4D3B,#14532D);color:#dcfce7;border-radius:16px;padding:1.1rem 1.2rem}
+.bigplay h3{color:#4ade80;margin:.1rem 0 .4rem}
 .bigplay audio{width:100%;height:40px}
-.bigplay .mins{font-weight:700;color:#FDE68A}
+.bigplay .mins{font-weight:700;color:#86efac}
 .tl{position:relative;margin:1rem 0 .4rem;padding-left:0}
 .tl-row{display:grid;grid-template-columns:118px 26px 1fr;gap:.4rem;align-items:start;padding:.32rem 0}
-.tl-when{font-family:'Outfit',sans-serif;font-weight:800;color:#B45309;text-align:right;font-size:.92rem}
-.tl-dot{width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FDE68A,#F59E0B 60%,#B45309);
- border:2px solid #92400E;margin:3px auto 0;box-shadow:0 2px 0 rgba(146,64,14,.5)}
+.tl-when{font-family:'Outfit',sans-serif;font-weight:800;color:#15803d;text-align:right;font-size:.92rem}
+.tl-dot{width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#86efac,#16a34a 60%,#15803d);
+ border:2px solid #166534;margin:3px auto 0;box-shadow:0 2px 0 rgba(21,128,61,.5)}
 .tl-what{font-size:.97rem}
 table.data{width:100%;border-collapse:collapse;font-size:.95rem;margin:.5rem 0}
-table.data th{font-family:'Outfit',sans-serif;background:var(--leaf-deep);color:#FEF3C7;padding:.45rem .6rem;text-align:left}
+table.data th{font-family:'Outfit',sans-serif;background:var(--leaf-deep);color:#dcfce7;padding:.45rem .6rem;text-align:left}
 table.data td{padding:.4rem .6rem;border-bottom:1px solid var(--line)}
-.note{border-left:5px solid var(--gold-deep);background:#FFFBEB;padding:.7rem 1rem;border-radius:0 12px 12px 0}
-html.dark .note{background:#292524}
+.note{border-left:5px solid var(--gold-deep);background:#f0fdf4;padding:.7rem 1rem;border-radius:0 12px 12px 0}
+html.dark .note{background:#131a0e}
 .show{position:relative;border-radius:16px;overflow:hidden;border:3px solid var(--amber)}
 .show img{width:100%;display:block}
-.narrate{display:inline-block;margin:.55rem auto 0;padding:.5rem 1.15rem;border-radius:999px;border:2px solid var(--amber);background:linear-gradient(180deg,#FDE68A,#F59E0B);color:#451A03;font-family:Outfit,sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:0 2px 0 #B45309}
+.narrate{display:inline-block;margin:.55rem auto 0;padding:.5rem 1.15rem;border-radius:999px;border:2px solid var(--amber);background:linear-gradient(180deg,#86efac,#16a34a);color:#052e16;font-family:Outfit,sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:0 2px 0 #15803d}
 .narrate:active{transform:translateY(2px);box-shadow:none}
-.show .cap{position:absolute;left:0;right:0;bottom:0;background:rgba(41,37,36,.82);color:#FEF3C7;
+.show .cap{position:absolute;left:0;right:0;bottom:0;background:rgba(19,26,14,.82);color:#dcfce7;
  font-family:'Outfit',sans-serif;font-weight:700;padding:.5rem .9rem;font-size:.95rem}
-.show .nav{position:absolute;top:50%;transform:translateY(-50%);background:linear-gradient(180deg,#FDE68A,#F59E0B);
- border:2px solid #92400E;color:#451A03;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;
- box-shadow:0 3px 0 #92400E;font-family:'Outfit',sans-serif;font-weight:800}
+.show .nav{position:absolute;top:50%;transform:translateY(-50%);background:linear-gradient(180deg,#86efac,#16a34a);
+ border:2px solid #166534;color:#052e16;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;
+ box-shadow:0 3px 0 #166534;font-family:'Outfit',sans-serif;font-weight:800}
 .srcs{font-size:.93rem}
 .srcs li{margin:.3rem 0}
 footer{margin:2rem 0 0;text-align:center;color:var(--ink2);font-size:.9rem}
-footer a{color:#9A3412;font-weight:700;text-decoration:none}
-.pill{display:inline-block;background:linear-gradient(180deg,#FDE68A,#FBBF24);border:2px solid #92400E;color:#451A03;
+footer a{color:#166534;font-weight:700;text-decoration:none}
+.pill{display:inline-block;background:linear-gradient(180deg,#86efac,#22c55e);border:2px solid #166534;color:#052e16;
  border-radius:999px;padding:.14rem .7rem;font-family:'Outfit',sans-serif;font-weight:800;font-size:.83rem;
- box-shadow:0 2px 0 #92400E;margin:.15rem .2rem}
+ box-shadow:0 2px 0 #166534;margin:.15rem .2rem}
 @media print{
  .banner,header.site .tgl,.clip,.bigplay audio{display:none}
- section{break-inside:avoid;border-color:#D6D3D1;box-shadow:none}
+ section{break-inside:avoid;border-color:#ccd8c8;box-shadow:none}
  p{orphans:3;widows:3}
  body{background:#FFF}
 }
@@ -116,31 +116,31 @@ footer a{color:#9A3412;font-weight:700;text-decoration:none}
 .person .prole{font-size:.86rem;font-weight:700;color:var(--gold-deep);text-transform:uppercase;letter-spacing:.05em;margin:0 0 .3rem}
 .person p{margin:.15rem 0;font-size:.97rem}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:.7rem 0}
-.chip{background:linear-gradient(180deg,#FEF3C7,#FDE68A);border:1.5px solid var(--gold-deep);color:#451A03;border-radius:999px;padding:.32rem .8rem;font-family:Outfit,sans-serif;font-weight:700;font-size:.9rem}
+.chip{background:linear-gradient(180deg,#dcfce7,#86efac);border:1.5px solid var(--gold-deep);color:#052e16;border-radius:999px;padding:.32rem .8rem;font-family:Outfit,sans-serif;font-weight:700;font-size:.9rem}
 .chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:.8rem 0}
 .chain .cnode{flex:1 1 120px;background:var(--card,#fff);border:1.5px solid var(--amber);border-radius:12px;padding:.55rem .6rem;text-align:center}
 .chain .cnode .ci{font-size:1.35rem;display:block}
 .chain .cnode b{font-family:Outfit,sans-serif;font-size:.92rem}
 .chain .cnode small{display:block;color:var(--slate,#64748B);font-size:.8rem;margin-top:.15rem}
 .chain .carw{align-self:center;font-size:1.2rem;color:var(--gold-deep);font-weight:800}
-.qa{margin:.55rem 0;padding:.6rem .85rem;border-left:4px solid var(--gold);background:rgba(242,183,5,.08);border-radius:0 10px 10px 0}
+.qa{margin:.55rem 0;padding:.6rem .85rem;border-left:4px solid var(--gold);background:rgba(132,204,22,.08);border-radius:0 10px 10px 0}
 .qa .q{font-family:Outfit,sans-serif;font-weight:800;margin:0 0 .2rem}
 .qa .a{margin:0}
-.callout{border:2px solid var(--gold-deep);background:linear-gradient(180deg,rgba(254,243,199,.65),rgba(254,243,199,.25));border-radius:14px;padding:.8rem 1rem;margin:.8rem 0}
-html.dark .callout{background:rgba(120,53,15,.25)}
-.lb{position:fixed;inset:0;background:rgba(15,10,4,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;padding:16px}
+.callout{border:2px solid var(--gold-deep);background:linear-gradient(180deg,rgba(220,252,231,.65),rgba(220,252,231,.25));border-radius:14px;padding:.8rem 1rem;margin:.8rem 0}
+html.dark .callout{background:rgba(20,83,45,.25)}
+.lb{position:fixed;inset:0;background:rgba(6,15,9,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;padding:16px}
 .lb[hidden]{display:none}
 .lb img{max-width:94vw;max-height:82vh;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.5)}
-.lb .lbcap{color:#FEF3C7;font-family:Outfit,sans-serif;font-weight:700;margin-top:.7rem;text-align:center;max-width:90vw}
-.lb .lbx{position:absolute;top:14px;right:18px;background:linear-gradient(180deg,#FDE68A,#F59E0B);border:2px solid #B45309;color:#451A03;border-radius:999px;font-family:Outfit,sans-serif;font-weight:800;padding:.45rem 1rem;cursor:pointer}
-.mappop{position:fixed;inset:0;background:rgba(15,10,4,.85);display:flex;align-items:center;justify-content:center;z-index:1000;padding:12px}
+.lb .lbcap{color:#dcfce7;font-family:Outfit,sans-serif;font-weight:700;margin-top:.7rem;text-align:center;max-width:90vw}
+.lb .lbx{position:absolute;top:14px;right:18px;background:linear-gradient(180deg,#86efac,#16a34a);border:2px solid #15803d;color:#052e16;border-radius:999px;font-family:Outfit,sans-serif;font-weight:800;padding:.45rem 1rem;cursor:pointer}
+.mappop{position:fixed;inset:0;background:rgba(6,15,9,.85);display:flex;align-items:center;justify-content:center;z-index:1000;padding:12px}
 .mappop[hidden]{display:none}
 .mappop .mapbox{background:var(--card,#fff);border-radius:14px;max-width:96vw;width:900px;max-height:92vh;display:flex;flex-direction:column;padding:12px}
 .mappop .mapscroll{overflow:auto;border:1.5px solid var(--amber);border-radius:10px}
 .mappop .mapscroll img{width:1100px;max-width:none;display:block}
 .mappop .mapbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;margin-bottom:8px}
-.pushbtn{display:inline-block;padding:.6rem 1.15rem;border-radius:999px;border:2px solid #B45309;background:linear-gradient(180deg,#FDE68A,#F59E0B);color:#451A03;font-family:Outfit,sans-serif;font-weight:800;cursor:pointer;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #B45309;text-decoration:none;font-size:.98rem}
-.pushbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 1px 0 #B45309}
+.pushbtn{display:inline-block;padding:.6rem 1.15rem;border-radius:999px;border:2px solid #15803d;background:linear-gradient(180deg,#86efac,#16a34a);color:#052e16;font-family:Outfit,sans-serif;font-weight:800;cursor:pointer;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #15803d;text-decoration:none;font-size:.98rem}
+.pushbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 1px 0 #15803d}
 .cycwrap{text-align:center;margin:.6rem 0}
 .cycwrap svg{max-width:430px;width:100%;height:auto;cursor:zoom-in}
 .cycnode text{font-family:Outfit,sans-serif;font-weight:800;fill:#fff;pointer-events:none}
@@ -157,13 +157,13 @@ html.dark .callout{background:rgba(120,53,15,.25)}
 .iconlist li{margin:.5rem 0;padding-left:2.1rem;position:relative;line-height:1.45}
 .iconlist .ii{position:absolute;left:0;top:-.05rem;font-size:1.25rem}
 .ki{margin-right:.35rem}
-.fignote{font-size:.88rem;color:#78716C}
+.fignote{font-size:.88rem;color:#6b7a6e}
 .jumpnav{position:fixed;right:14px;bottom:14px;z-index:900;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-.jumpnav .pushbtn{box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #B45309,0 8px 20px rgba(0,0,0,.25)}
+.jumpnav .pushbtn{box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #15803d,0 8px 20px rgba(0,0,0,.25)}
 .secmenu{position:fixed;right:14px;bottom:120px;z-index:901;background:var(--card,#fff);border:2px solid var(--gold-deep);border-radius:14px;padding:10px 12px;max-width:250px;box-shadow:0 14px 40px rgba(0,0,0,.3)}
 .secmenu[hidden]{display:none}
 .secmenu a{display:block;padding:.32rem .4rem;color:var(--ink);text-decoration:none;font-family:Outfit,sans-serif;font-weight:700;font-size:.95rem;border-radius:8px}
-.secmenu a:hover{background:rgba(242,183,5,.18)}
+.secmenu a:hover{background:rgba(132,204,22,.18)}
 @media print{.jumpnav,.secmenu{display:none!important}}
 </style>
 <style id="ginkgo-responsive-print-standard">
@@ -173,20 +173,20 @@ html,body{overflow-x:clip}
   table{font-size:.84rem}
   .idcard td.k{white-space:normal}
 }
-html:not(.dark) .person .prole{color:#9A3412}
-html.dark section a{color:#FBBF24}
-html.dark footer a{color:#FBBF24}
-html.dark section a:visited{color:#F59E0B}
-html.dark .tl-when{color:#FBBF24}
-html.dark .chain .cnode small{color:#CBD5E1}
-html.dark p[style*="color:#78716C"]{color:#D6D3D1!important}
-html.dark #sec-meet svg text{fill:#FCD34D}
-html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
+html:not(.dark) .person .prole{color:#166534}
+html.dark section a{color:#22c55e}
+html.dark footer a{color:#22c55e}
+html.dark section a:visited{color:#16a34a}
+html.dark .tl-when{color:#22c55e}
+html.dark .chain .cnode small{color:#cfe0d2}
+html.dark p[style*="color:#6b7a6e"]{color:#ccd8c8!important}
+html.dark #sec-meet svg text{fill:#4ade80}
+html.dark #famTree text[fill="#166534"]{fill:#4ade80}
 @media print{
   @page{size:Letter;margin:.5in}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   html{font-size:10pt}
-  html.dark{--cream:#FFFBEB;--paper:#FFFDF5;--ink:#1C1917;--ink2:#57534E;--card:#FFFFFF;--line:#FDE68A;--bark:#44403C}
+  html.dark{--cream:#f0fdf4;--paper:#fbfef7;--ink:#060f09;--ink2:#4d5c4a;--card:#FFFFFF;--line:#86efac;--bark:#2f3a2c}
   body{background:#fff}
   section{break-inside:auto}
   .person,.callout,.qa,.photo,.stat,table,.tl-row,.chain,.bigplay,figure{break-inside:avoid}
@@ -198,6 +198,7 @@ html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
   .jumpnav,.tgl,.clip,.narrate,.secmenu,#mappop,#lightbox,audio,button{display:none!important}
 }
 </style>
+<style id="green-dark-fix">html.dark h1{background:linear-gradient(92deg,#4ade80 5%,#22c55e 55%,#a3e635 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}</style>
 </head>
 <body>
 <div class="banner"><a href="https://x-peps.com/Tuscarora_Arboretum/">Tuscarora Arboretum</a> / <a href="https://x-peps.com/Tuscarora_Arboretum/artifacts/">Artifacts</a> / <a href="https://x-peps.com/Tuscarora_Arboretum/plants/">Plants</a> / Ginkgo</div>
@@ -247,26 +248,26 @@ html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
 <svg viewBox="0 0 340 250" class="leafsvg" role="img" aria-label="Ginkgo leaf anatomy diagram">
  <defs>
   <radialGradient id="ggold" cx="0.38" cy="0.3" r="0.95">
-   <stop offset="0" stop-color="#FDE68A"/><stop offset="0.55" stop-color="#F2B705"/><stop offset="1" stop-color="#D97706"/>
+   <stop offset="0" stop-color="#86efac"/><stop offset="0.55" stop-color="#84cc16"/><stop offset="1" stop-color="#15803d"/>
   </radialGradient>
   <radialGradient id="ggrn" cx="0.38" cy="0.3" r="0.95">
    <stop offset="0" stop-color="#BBF7D0"/><stop offset="0.55" stop-color="#22C55E"/><stop offset="1" stop-color="#15803D"/>
   </radialGradient>
  </defs>
- <path d="M170 226 L170 168" stroke="#92400E" stroke-width="5" stroke-linecap="round"/>
- <path d="M170 170 C120 120 84 108 62 62 C54 44 66 30 84 34 C118 41 152 84 170 128 C188 84 222 41 256 34 C274 30 286 44 278 62 C256 108 220 120 170 170 Z" fill="url(#ggold)" stroke="#92400E" stroke-width="2.5"/>
- <g stroke="#B45309" stroke-width="1.3" opacity="0.75">
+ <path d="M170 226 L170 168" stroke="#166534" stroke-width="5" stroke-linecap="round"/>
+ <path d="M170 170 C120 120 84 108 62 62 C54 44 66 30 84 34 C118 41 152 84 170 128 C188 84 222 41 256 34 C274 30 286 44 278 62 C256 108 220 120 170 170 Z" fill="url(#ggold)" stroke="#166534" stroke-width="2.5"/>
+ <g stroke="#15803d" stroke-width="1.3" opacity="0.75">
   <path d="M170 168 C150 120 128 84 104 52"/><path d="M170 168 C162 116 156 76 150 44"/>
   <path d="M170 168 C178 116 184 76 190 44"/><path d="M170 168 C190 120 212 84 236 52"/>
   <path d="M170 168 C138 128 108 104 78 84"/><path d="M170 168 C202 128 232 104 262 84"/>
  </g>
- <path d="M170 170 C170 150 170 138 170 126" stroke="#92400E" stroke-width="2"/>
- <path d="M66 226 L66 190" stroke="#92400E" stroke-width="4" stroke-linecap="round"/>
+ <path d="M170 170 C170 150 170 138 170 126" stroke="#166534" stroke-width="2"/>
+ <path d="M66 226 L66 190" stroke="#166534" stroke-width="4" stroke-linecap="round"/>
  <path d="M66 192 C40 160 30 148 26 122 C23 104 36 94 52 98 C76 104 92 140 66 192 Z" fill="url(#ggrn)" stroke="#14532D" stroke-width="2"/>
- <circle cx="262" cy="196" r="17" fill="url(#ggold)" stroke="#92400E" stroke-width="2"/>
- <circle cx="292" cy="182" r="13" fill="url(#ggold)" stroke="#92400E" stroke-width="2"/>
- <path d="M252 160 C254 172 256 182 258 190 M286 148 C286 158 288 168 290 176" stroke="#92400E" stroke-width="2.5" fill="none"/>
- <g font-family="Outfit, sans-serif" font-size="11" font-weight="700" fill="#78350F">
+ <circle cx="262" cy="196" r="17" fill="url(#ggold)" stroke="#166534" stroke-width="2"/>
+ <circle cx="292" cy="182" r="13" fill="url(#ggold)" stroke="#166534" stroke-width="2"/>
+ <path d="M252 160 C254 172 256 182 258 190 M286 148 C286 158 288 168 290 176" stroke="#166534" stroke-width="2.5" fill="none"/>
+ <g font-family="Outfit, sans-serif" font-size="11" font-weight="700" fill="#14532d">
   <text x="170" y="18" text-anchor="middle">TWO-LOBED FAN LEAF</text>
   <text x="66" y="244" text-anchor="middle">ENTIRE SPUR LEAF</text>
   <text x="278" y="228" text-anchor="middle">SEEDS (FEMALE)</text>
@@ -353,24 +354,24 @@ html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
 <circle cx="95" cy="46" r="44" style="fill:var(--gold-deep)"/>
 <text x="95" y="43" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#fff">THE MOTHER</text>
 <text x="95" y="58" text-anchor="middle" font-size="8.5" fill="#fff">one ♀ · UVA</text>
-<circle cx="265" cy="46" r="44" fill="#A8A29E"/>
+<circle cx="265" cy="46" r="44" fill="#97a894"/>
 <text x="265" y="43" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#fff">THE FATHERS</text>
 <text x="265" y="58" text-anchor="middle" font-size="8.5" fill="#fff">UVA ♂ · Pratt?</text>
-<path d="M95,90 L95,104 M265,90 L265,104 M95,104 L265,104" stroke="#B45309" stroke-width="2.5" fill="none"/>
-<path d="M181,104 L181,118" stroke="#B45309" stroke-width="2.5"/>
-<text x="180" y="132" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#92400E">GENERATION 1 — 638 CHILDREN PLANTED AT BLANDY</text>
+<path d="M95,90 L95,104 M265,90 L265,104 M95,104 L265,104" stroke="#15803d" stroke-width="2.5" fill="none"/>
+<path d="M181,104 L181,118" stroke="#15803d" stroke-width="2.5"/>
+<text x="180" y="132" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#166534">GENERATION 1 — 638 CHILDREN PLANTED AT BLANDY</text>
 <g font-family="Outfit,sans-serif" font-weight="700" font-size="10.5" fill="#fff">
 <rect x="12" y="140" width="63" height="40" rx="8" style="fill:var(--amber)"/><text x="43" y="157" text-anchor="middle">1929</text><text x="43" y="171" text-anchor="middle">40</text>
 <rect x="81" y="140" width="63" height="40" rx="8" style="fill:var(--amber)"/><text x="112" y="157" text-anchor="middle">1933</text><text x="112" y="171" text-anchor="middle">220</text>
 <rect x="150" y="140" width="63" height="40" rx="8" style="fill:var(--amber)"/><text x="181" y="157" text-anchor="middle">1935</text><text x="181" y="171" text-anchor="middle">156</text>
 <rect x="219" y="140" width="63" height="40" rx="8" style="fill:var(--amber)"/><text x="250" y="157" text-anchor="middle">1938–39</text><text x="250" y="171" text-anchor="middle">108</text>
-<rect x="288" y="140" width="63" height="40" rx="8" fill="#78716C"/><text x="319" y="157" text-anchor="middle">1947</text><text x="319" y="171" text-anchor="middle">114 replants</text>
+<rect x="288" y="140" width="63" height="40" rx="8" fill="#6b7a6e"/><text x="319" y="157" text-anchor="middle">1947</text><text x="319" y="171" text-anchor="middle">114 replants</text>
 </g>
-<path d="M181,180 L181,196" stroke="#B45309" stroke-width="2.5"/>
+<path d="M181,180 L181,196" stroke="#15803d" stroke-width="2.5"/>
 <rect x="30" y="198" width="300" height="42" rx="9" style="fill:var(--leaf-deep)"/>
 <text x="180" y="215" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#fff">THE SURVIVORS — 359 ALIVE IN 1982</text>
 <text x="180" y="230" text-anchor="middle" font-size="9.5" fill="#fff">~300 stand today · final tally 157 ♀ / 144 ♂</text>
-<path d="M181,240 L181,256" stroke="#B45309" stroke-width="2.5"/>
+<path d="M181,240 L181,256" stroke="#15803d" stroke-width="2.5"/>
 <rect x="30" y="258" width="300" height="52" rx="9" style="fill:var(--gold-deep)"/>
 <text x="180" y="275" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#fff">GENERATION 2 — THE GRANDCHILDREN</text>
 <text x="180" y="290" text-anchor="middle" font-size="9.5" fill="#fff">seeds of grove trees — each carries ~¼ of the mother's</text>
@@ -458,24 +459,24 @@ html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
 <h3>The grove on paper — why one side died</h3>
 <p>One drawing teaches the whole section. The grove is one field with <mark>two kinds of ground</mark> — and the dead trees are not scattered. They are <i>clustered</i>, exactly where the ground stays wet:</p>
 <div class="cycwrap"><svg id="groveMap" viewBox="0 0 360 300" role="img" aria-label="Schematic map of the Ginkgo Grove: dry elevated ground, low wet ground, the cluster of dead trees, and the new cypress row">
-<rect x="10" y="10" width="340" height="238" rx="10" fill="#FFF7E0" stroke="#78350F" stroke-width="2"/>
-<polygon points="10,10 208,10 188,248 10,248" fill="#FDE68A" opacity="0.55"/>
+<rect x="10" y="10" width="340" height="238" rx="10" fill="#f7fee7" stroke="#14532d" stroke-width="2"/>
+<polygon points="10,10 208,10 188,248 10,248" fill="#86efac" opacity="0.55"/>
 <polygon points="208,10 350,10 350,248 188,248" fill="#99D5CC" opacity="0.55"/>
 <path d="M208,10 C196,70 200,140 188,248" fill="none" stroke="#0F766E" stroke-width="2.5"/>
 <ellipse cx="312" cy="226" rx="34" ry="13" fill="#5FA8A0"/>
-<text x="24" y="38" font-family="Outfit,sans-serif" font-weight="800" font-size="13" fill="#92400E">HIGHER &amp; DRIER</text>
-<text x="24" y="54" font-size="10.5" fill="#78350F">ginkgoes thrive here</text>
+<text x="24" y="38" font-family="Outfit,sans-serif" font-weight="800" font-size="13" fill="#166534">HIGHER &amp; DRIER</text>
+<text x="24" y="54" font-size="10.5" fill="#14532d">ginkgoes thrive here</text>
 <text x="230" y="38" font-family="Outfit,sans-serif" font-weight="800" font-size="13" fill="#134E4A">LOW &amp; WET</text>
 <text x="230" y="54" font-size="10.5" fill="#134E4A">roots suffocate here</text>
 <text x="312" y="229.5" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">seasonal pond</text>
-<g fill="#D97706"><circle cx="50" cy="90" r="5"/><circle cx="95" cy="75" r="5"/><circle cx="140" cy="100" r="5"/><circle cx="70" cy="140" r="5"/><circle cx="120" cy="160" r="5"/><circle cx="45" cy="195" r="5"/><circle cx="150" cy="205" r="5"/><circle cx="105" cy="225" r="5"/><circle cx="165" cy="60" r="5"/><circle cx="225" cy="80" r="5"/></g>
-<g font-family="Outfit,sans-serif" font-weight="800" font-size="16" fill="#57534E"><text x="245" y="105">✕</text><text x="275" y="92">✕</text><text x="305" y="112">✕</text><text x="262" y="138">✕</text><text x="322" y="140">✕</text><text x="288" y="160">✕</text><text x="240" y="168">✕</text><text x="318" y="185">✕</text><text x="268" y="196">✕</text></g>
-<g fill="#B45309"><polygon points="224,206 231,188 238,206"/><polygon points="250,206 257,188 264,206"/><polygon points="276,206 283,188 290,206"/></g>
-<text x="224" y="220" font-size="9" fill="#7C2D12">new cypress row →</text>
-<rect x="10" y="258" width="340" height="12" fill="#E7DCC8"/>
+<g fill="#15803d"><circle cx="50" cy="90" r="5"/><circle cx="95" cy="75" r="5"/><circle cx="140" cy="100" r="5"/><circle cx="70" cy="140" r="5"/><circle cx="120" cy="160" r="5"/><circle cx="45" cy="195" r="5"/><circle cx="150" cy="205" r="5"/><circle cx="105" cy="225" r="5"/><circle cx="165" cy="60" r="5"/><circle cx="225" cy="80" r="5"/></g>
+<g font-family="Outfit,sans-serif" font-weight="800" font-size="16" fill="#4d5c4a"><text x="245" y="105">✕</text><text x="275" y="92">✕</text><text x="305" y="112">✕</text><text x="262" y="138">✕</text><text x="322" y="140">✕</text><text x="288" y="160">✕</text><text x="240" y="168">✕</text><text x="318" y="185">✕</text><text x="268" y="196">✕</text></g>
+<g fill="#15803d"><polygon points="224,206 231,188 238,206"/><polygon points="250,206 257,188 264,206"/><polygon points="276,206 283,188 290,206"/></g>
+<text x="224" y="220" font-size="9" fill="#14532d">new cypress row →</text>
+<rect x="10" y="258" width="340" height="12" fill="#d9e8d2"/>
 <g fill="#1E4D3B"><polygon points="30,258 36,244 42,258"/><polygon points="66,258 72,244 78,258"/><polygon points="102,258 108,244 114,258"/><polygon points="138,258 144,244 150,258"/></g>
-<text x="160" y="268" font-size="9.5" fill="#57534E">visitor path — Cedar of Lebanon allée</text>
-<circle cx="330" cy="30" r="11" fill="#FFFFFF" stroke="#78350F" stroke-width="1.5"/><text x="330" y="35" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#78350F">N</text>
+<text x="160" y="268" font-size="9.5" fill="#4d5c4a">visitor path — Cedar of Lebanon allée</text>
+<circle cx="330" cy="30" r="11" fill="#FFFFFF" stroke="#14532d" stroke-width="1.5"/><text x="330" y="35" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="11" fill="#14532d">N</text>
 </svg></div>
 <p style="text-align:center"><button type="button" class="pushbtn" onclick="openZoomSvg('groveMap')">🔍 Enlarge the grove map</button></p>
 <div class="chips"><span class="chip">🟡 healthy ginkgo</span><span class="chip">✕ dead ginkgo</span><span class="chip">🔺 new bald cypress</span><span class="chip">💧 seasonal ponding</span></div>
@@ -483,8 +484,8 @@ html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
 <h3>The replacement strategy, as the grove itself is executing it</h3>
 <p style="text-align:center">Five steps, run as a wheel — each one feeds the next, and the wheel never stops. <b>Tap a word in the wheel</b> to jump to its step.</p>
 <div class="cycwrap"><svg id="cycSvg" viewBox="0 0 360 360" role="img" aria-label="The replacement wheel: Read, Zone, Match, Guard, Record">
-<defs><marker id="cycArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#B45309"/></marker></defs>
-<g fill="none" stroke="#B45309" stroke-width="3">
+<defs><marker id="cycArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#15803d"/></marker></defs>
+<g fill="none" stroke="#15803d" stroke-width="3">
 <path d="M228.8,70.4 A120,120 0 0 1 269.2,99.7" marker-end="url(#cycArrow)"/>
 <path d="M299.3,192.5 A120,120 0 0 1 283.9,240" marker-end="url(#cycArrow)"/>
 <path d="M205,297.4 A120,120 0 0 1 155,297.4" marker-end="url(#cycArrow)"/>
@@ -621,7 +622,7 @@ html.dark #famTree text[fill="#92400E"]{fill:#FCD34D}
 <button class="nav" style="right:.6rem" onclick="slideMove(1)" aria-label="Next photo">›</button>
 </div>
 <p style="text-align:center"><button type="button" class="narrate" id="narrBtn" onclick="narrateSlide()">🔊 Hear this photo</button> <button type="button" class="narrate" id="pauseBtn" onclick="toggleShowPause()">⏸ Pause the show</button></p>
-<p style="text-align:center;color:#78716C">📷 All photographs: November 4, 2026, Blandy Experimental Farm. Every photo carries a short narration — after your first tap anywhere on this page, each new photo speaks on its own. Pause the show any time; the voice finishes its thought.</p>
+<p style="text-align:center;color:#6b7a6e">📷 All photographs: November 4, 2026, Blandy Experimental Farm. Every photo carries a short narration — after your first tap anywhere on this page, each new photo speaks on its own. Pause the show any time; the voice finishes its thought.</p>
 </section>
 
 <section id="sec-sources">

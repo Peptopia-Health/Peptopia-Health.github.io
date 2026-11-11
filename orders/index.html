@@ -1457,6 +1457,11 @@ html.dark .card-desc{color:#A8B3C7}
 .card .glow-stage{border:none;border-radius:0;background:radial-gradient(circle at 50% 50%,rgba(52,211,153,.34) 0%,rgba(52,211,153,.15) 45%,rgba(52,211,153,0) 72%);box-shadow:none;overflow:visible}
 .card .glow-venn{filter:drop-shadow(0 0 9px rgba(52,211,153,.55)) drop-shadow(0 0 24px rgba(52,211,153,.30))}
 
+
+/* --- title gap tightened (David, Nov 11): the blank under "Place Your Order" was h1 margin-bottom 6px + hero padding-bottom 8px + section padding-top 12px, plus the h1 inheriting the body's 1.6 line-height (a ~51px line box for 32px text). Now: slim line box, 2 + 2 + 8 = 12px under the title. --- */
+section.hero{padding-bottom:2px}
+.hero>h1{margin-bottom:2px;line-height:1.12}
+div.cat-wrap{padding-top:8px}
 </style>
 </style>
 <style id="orders-header-final">

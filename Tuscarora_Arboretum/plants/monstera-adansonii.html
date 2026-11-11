@@ -12,9 +12,9 @@ h1,h2,.tile b,.chip,.k{font-family:'Outfit',sans-serif}
 .themebtn:active{transform:translateY(3px);box-shadow:0 1px 0 #14401C,0 3px 8px rgba(30,107,46,.35),inset 0 2px 3px rgba(255,255,255,.55)}
 .hero{display:flex;gap:16px;background:linear-gradient(120deg,#E0F3DC,#FDFBF4 55%,#EAF3DC);border:2px solid #2F9E44;border-radius:18px;padding:14px;box-shadow:0 6px 18px rgba(30,107,46,.08)}
 .hero .art{flex:0 0 212px}
-.hero .art img{width:212px;height:212px;object-fit:cover;border-radius:14px;border:3px solid #B4552D}
-.kicker{font-weight:800;letter-spacing:2px;color:#B4552D;font-size:.7rem;font-family:'Outfit',sans-serif}
-h1{font-size:1.66rem;font-weight:800;color:#EA580C;line-height:1.12}
+.hero .art img{width:212px;height:212px;object-fit:cover;border-radius:14px;border:3px solid #65a30d}
+.kicker{font-weight:800;letter-spacing:2px;color:#65a30d;font-size:.7rem;font-family:'Outfit',sans-serif}
+h1{font-size:1.66rem;font-weight:800;color:#15803d;background:linear-gradient(92deg,#14532d 5%,#16a34a 55%,#65a30d 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.12}
 .sci{font-style:italic;color:#2F9E44;font-weight:700;font-size:.98rem}
 .sub{margin-top:5px;font-size:.92rem;line-height:1.45}
 .swatches{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
@@ -37,7 +37,7 @@ tr:last-child td{border-bottom:none}
 td.k{font-weight:700;color:#2F9E44;width:31%;background:#EFF9F0}
 .leafrow{display:flex;gap:8px;justify-content:space-around;margin:4px 0}
 .leafcap{text-align:center;font-size:.68rem;font-family:'Outfit',sans-serif;font-weight:700;color:#1E6B2E}
-.tip{border-left:6px solid #B4552D;background:#FBF3EC;border-radius:10px;padding:8px 11px;font-size:.88rem;line-height:1.45;margin-top:9px}
+.tip{border-left:6px solid #65a30d;background:#FBF3EC;border-radius:10px;padding:8px 11px;font-size:.88rem;line-height:1.45;margin-top:9px}
 .warn{display:flex;gap:10px;align-items:center;background:#FEF2F2;border:2px solid #E01020;border-radius:14px;padding:9px 13px;margin-top:10px}
 .safe{display:flex;gap:10px;align-items:center;background:#F0FAF3;border:2px solid #1B7A43;border-radius:14px;padding:9px 13px;margin-top:10px}
 ol.steps{margin:2px 0 0 18px;font-size:.88rem;line-height:1.5}
@@ -46,7 +46,7 @@ ol.steps{margin:2px 0 0 18px;font-size:.88rem;line-height:1.5}
 .figs img{width:100%;height:250px;object-fit:cover;display:block}
 .figs figcaption{padding:9px 12px;font-size:.85rem;line-height:1.45}
 .figs figcaption b{font-family:'Outfit',sans-serif;color:#2F9E44}
-.foot{text-align:center;color:#8A7D6B;font-size:.72rem;margin-top:12px;line-height:1.5}
+.foot{text-align:center;color:#66785c;font-size:.72rem;margin-top:12px;line-height:1.5}
 .foot a{color:#2F9E44;font-weight:700}
 b.hl{background:#FEF08A;color:#263238;padding:0 3px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 html.dark body{background:#0C1710;color:#E6F2E6}
@@ -56,13 +56,13 @@ html.dark td.k{background:#1B2F20}
 html.dark .meter label{color:#CBDFCE}
 html.dark .chip{background:#14231A;color:#C4E8C9}
 html.dark .taxo span.alt{background:#14231A;color:#C4E8C9}
-html.dark .tip{background:#2B211A}
-html.dark .warn{background:#2B1618}
+html.dark .tip{background:#131a0e}
+html.dark .warn{background:#08170d}
 html.dark .safe{background:#16281B}
 html.dark .foot{color:#9DB4A4}
-html.dark .hero{background:linear-gradient(120deg,#122016,#172A1B 55%,#2A211A);border-color:#2E4D33}
+html.dark .hero{background:linear-gradient(120deg,#122016,#172A1B 55%,#12240e);border-color:#2E4D33}
 html.dark .sci{color:#84D196}
-html.dark .kicker{color:#E8935F}
+html.dark .kicker{color:#4ade80}
 html.dark .card h2{color:#84D196}
 html.dark .figs figcaption b{color:#84D196}
 html.dark td.k{color:#A9DDB0}
@@ -88,15 +88,16 @@ html.dark .tip{background:#FBF3EC !important}
 html.dark .warn{background:#FEF2F2 !important}
 html.dark .safe{background:#F0FAF3 !important}
 html.dark .card h2,html.dark .sci,html.dark .figs figcaption b{color:#2F9E44 !important}
-html.dark .kicker{color:#B4552D !important}
+html.dark .kicker{color:#65a30d !important}
 html.dark .leafcap{color:#1E6B2E !important}
 html.dark .meter label{color:#374151 !important}
-html.dark .foot{color:#8A7D6B !important}
+html.dark .foot{color:#66785c !important}
 html.dark .foot a{color:#2F9E44 !important}
 }
 </style>
+<style id="green-dark-fix">html.dark h1{background:linear-gradient(92deg,#4ade80 5%,#22c55e 55%,#a3e635 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}</style>
 </head><body>
-<div style="background:#FFF7ED;border-bottom:1px solid #F1E3D3;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:7px 16px;text-align:left"><a href="../index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Tuscarora Arboretum</a> <span style="color:#A8A29E">/</span> <a href="../artifacts/index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Artifacts</a> <span style="color:#A8A29E">/</span> <a href="index.html" style="color:#C2410C;font-weight:600;text-decoration:none">Plants</a> <span style="color:#A8A29E">/</span> <span style="color:#78716C">Monstera adansonii</span></div>
+<div style="background:#FFF7ED;border-bottom:1px solid #d9e8d2;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:7px 16px;text-align:left"><a href="../index.html" style="color:#4d7c0f;font-weight:600;text-decoration:none">Tuscarora Arboretum</a> <span style="color:#A8A29E">/</span> <a href="../artifacts/index.html" style="color:#4d7c0f;font-weight:600;text-decoration:none">Artifacts</a> <span style="color:#A8A29E">/</span> <a href="index.html" style="color:#4d7c0f;font-weight:600;text-decoration:none">Plants</a> <span style="color:#A8A29E">/</span> <span style="color:#78716C">Monstera adansonii</span></div>
 <div class="page">
 <div class="toprow"><button class="themebtn" id="themeBtn" type="button">🌙 Dark</button></div>
 
@@ -105,7 +106,7 @@ html.dark .foot a{color:#2F9E44 !important}
 <h1>Monstera adansonii</h1>
 <div class="sci">Monstera adansonii Schott — the Swiss cheese vine</div>
 <p class="sub">A young vine already wearing its windows: oval leaves punched with <b class="hl">neat elliptical holes that stay inside the blade</b>, growing in clay pebbles in a pot painted like a festival. The leaves are pale lime because they are young and the light is strong — give this one something to climb and the green deepens as the leaves size up.</p>
-<div class="swatches"><div class="sw" style="background:#BFE34C">CHARTREUSE<br>new leaves</div><div class="sw" style="background:#7CC24A">SPRING GREEN<br>young blade</div><div class="sw" style="background:#2F6B2F;color:#fff">DEEP GREEN<br>mature leaves</div><div class="sw" style="background:#B4552D;color:#fff">LECA CLAY<br>its pebble bed</div></div>
+<div class="swatches"><div class="sw" style="background:#BFE34C">CHARTREUSE<br>new leaves</div><div class="sw" style="background:#7CC24A">SPRING GREEN<br>young blade</div><div class="sw" style="background:#2F6B2F;color:#fff">DEEP GREEN<br>mature leaves</div><div class="sw" style="background:#65a30d;color:#fff">LECA CLAY<br>its pebble bed</div></div>
 </div></div>
 <div class="taxo"><span>ACCEPTED NAME · Monstera adansonii Schott (1830)</span><span class="alt">FAMILY · Araceae</span><span class="alt">NATIVE · Central &amp; South America</span><span class="alt">FORM · climbing vine (hemiepiphyte)</span></div>
 <div class="chips"><span class="chip">📏 Leaves 4–12 in now · to 2 ft climbing</span><span class="chip">🌡️ 65–85°F · keep above 55°F</span><span class="chip">☀️ Bright indirect — climb for bigger leaves</span><span class="chip">🐈 Toxic to cats — keep from animals</span></div>
@@ -122,7 +123,7 @@ html.dark .foot a{color:#2F9E44 !important}
 </section>
 
 <section class="card"><h2>🌤️ Conditions — Born to Climb</h2>
-<div class="meter"><label><span>☀️ LIGHT — bright indirect</span><span>10,000–20,000 lux</span></label><div class="bar"><div class="fill" style="width:75%;background:#F2B01E"></div></div></div>
+<div class="meter"><label><span>☀️ LIGHT — bright indirect</span><span>10,000–20,000 lux</span></label><div class="bar"><div class="fill" style="width:75%;background:#84cc16"></div></div></div>
 <div class="meter"><label><span>💧 WATER — LECA reservoir at ⅓</span><span>STEADY</span></label><div class="bar"><div class="fill" style="width:50%;background:#3E9BD6"></div></div></div>
 <div class="meter"><label><span>🌫️ HUMIDITY — 50–60% best</span><span>50–60%</span></label><div class="bar"><div class="fill" style="width:58%;background:#2BB3A3"></div></div></div>
 <div class="meter"><label><span>🌡️ TEMPERATURE — never below 55°F</span><span>65–85°F</span></label><div class="bar"><div class="fill" style="width:70%;background:#E2574C"></div></div></div>

@@ -327,15 +327,18 @@ html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
 .peptopia-nav>a.hdrbtn{width:104px;flex:none}
 a.hdrbtn{font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:7px 0;text-decoration:none}
 a.hdrbtn.b-purple{color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)}
-a.hdrbtn.b-emerald{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)}
-.peptopia-iconbtn{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(180deg,#FFFFFF,#E8EEF9);border:1px solid rgba(15,23,42,.16);box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.18),0 6px 12px rgba(15,23,42,.28),0 2px 3px rgba(15,23,42,.3)}
-html.dark .peptopia-iconbtn{background:linear-gradient(180deg,#3B4B6B,#1B2740);border-color:rgba(255,255,255,.22)}
+a.hdrbtn.b-emerald{color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.peptopia-iconbtn{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(180deg,#3D3D49 0%,#101016 55%,#000000 100%);border:1px solid rgba(236,72,153,.4);box-shadow:inset 0 2px 3px rgba(255,255,255,.55),inset 0 -5px 8px rgba(0,0,0,.65),0 6px 12px rgba(15,23,42,.35),0 2px 3px rgba(15,23,42,.3)}
+html.dark .peptopia-iconbtn{background:linear-gradient(180deg,#2A2A35 0%,#08080D 60%,#000000 100%)}
+html.dark .hdr-print{border-color:rgba(236,72,153,.75);box-shadow:inset 0 2px 3px rgba(255,255,255,.5),inset 0 -5px 8px rgba(0,0,0,.65),0 0 12px rgba(194,24,184,.45),0 2px 3px rgba(0,0,0,.5)}
+html.dark .peptopia-theme-toggle{border-color:rgba(255,196,0,.7);box-shadow:inset 0 2px 3px rgba(255,255,255,.5),inset 0 -5px 8px rgba(0,0,0,.65),0 0 12px rgba(255,196,0,.35),0 2px 3px rgba(0,0,0,.5)}
 .peptopia-iconbtn:active{transform:translateY(2px)}
 .peptopia-logo.logo-light{display:none!important}
 .peptopia-logo.logo-dark{display:block!important}
 html.dark .peptopia-logo.logo-light{display:block!important}
 html.dark .peptopia-logo.logo-dark{display:none!important}
 @media print{.peptopia-nav .peptopia-iconbtn{display:none!important}}
+.peptopia-iconbtn svg{width:30px!important;height:30px!important}
 </style>
 </head>
 <body>
@@ -348,8 +351,8 @@ html.dark .peptopia-logo.logo-dark{display:none!important}
 <nav class="peptopia-nav" aria-label="Site">
 <a class="btn hdrbtn b-purple" href="https://x-peps.com/">HOME</a>
 <a class="btn hdrbtn b-emerald" href="https://x-peps.com/orders/">ORDERS</a>
-<button type="button" class="peptopia-iconbtn hdr-print" onclick="window.print()" title="Print this page" aria-label="Print this page"><svg viewBox="0 0 24 24" width="19" height="19" fill="#C218B8" aria-hidden="true"><path d="M19 8h-1V3H6v5H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3zM8 5h8v3H8V5zm8 14H8v-5h8v5zm3-7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg></button>
-<button type="button" class="peptopia-iconbtn peptopia-theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme"><svg class="pp-moon" viewBox="0 0 24 24" width="19" height="19" fill="#FFC400" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pp-sun" viewBox="0 0 24 24" width="19" height="19" fill="#FFC400" aria-hidden="true"><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15 1.2 2.6h-2.4L12 2zM12 22l-1.2-2.6h2.4L12 22zM2 12l2.6-1.2v2.4L2 12zM22 12l-2.6 1.2V10.8L22 12zM4.2 4.2l2.7.7-1.9 1.9-.8-2.6zM19.8 19.8l-2.7-.7 1.9-1.9.8 2.6zM19.8 4.2l-.8 2.6-1.9-1.9 2.7-.7zM4.2 19.8l.8-2.6 1.9 1.9-2.7.7z"/></svg></button>
+<button type="button" class="peptopia-iconbtn hdr-print" onclick="window.print()" title="Print this page" aria-label="Print this page"><svg viewBox="0 0 24 24" width="30" height="30" fill="#C218B8" aria-hidden="true"><path d="M19 8h-1V3H6v5H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3zM8 5h8v3H8V5zm8 14H8v-5h8v5zm3-7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg></button>
+<button type="button" class="peptopia-iconbtn peptopia-theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme"><svg class="pp-moon" viewBox="0 0 24 24" width="30" height="30" fill="#FFC400" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pp-sun" viewBox="0 0 24 24" width="30" height="30" fill="#FFC400" aria-hidden="true"><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15 1.2 2.6h-2.4L12 2zM12 22l-1.2-2.6h2.4L12 22zM2 12l2.6-1.2v2.4L2 12zM22 12l-2.6 1.2V10.8L22 12zM4.2 4.2l2.7.7-1.9 1.9-.8-2.6zM19.8 19.8l-2.7-.7 1.9-1.9.8 2.6zM19.8 4.2l-.8 2.6-1.9-1.9 2.7-.7zM4.2 19.8l.8-2.6 1.9 1.9-2.7.7z"/></svg></button>
 </nav>
 </header>
     <section class="hero">

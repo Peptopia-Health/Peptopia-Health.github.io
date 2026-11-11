@@ -404,7 +404,7 @@ html.dark button.pushbtn,html.dark a.pushbtn{color:#fff;background:linear-gradie
 
 <section class="catsec" id="cat-store">
   <h2 class="cat-title">🛒 Store &amp; Shipping</h2>
-  <a class="sales-btn-wrap" id="salesBtn" href="https://x-peps.com/admin-portal/sales-flow-log.html"><span class="btn b-emerald">Sales</span></a>
+  <a class="sales-btn-wrap" id="salesBtn" href="https://x-peps.com/X-Peps/aftership-shipments-report.html"><span class="btn b-emerald">Sales</span></a>
   <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">🛍️ Peptopia Orders</span><a class="open-ico" href="https://x-peps.com/orders/" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>The store orders page.</p></div>
 <div class="cmd-card"><div class="pc-top"><span class="cmd-phrase">📦 Shipment Tracking</span><a class="open-ico" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener" aria-label="Open">↗</a></div><p>Every tracked package, swept morning and evening.</p></div>
@@ -1264,9 +1264,9 @@ img,svg{max-width:100%}
   a{color:inherit;text-decoration:none}
 }
 </style>
-<div class="sales-pop" id="salesPop" role="dialog" aria-modal="true" aria-label="Sales Flow Log">
+<div class="sales-pop" id="salesPop" role="dialog" aria-modal="true" aria-label="Shipping and Orders">
   <div class="sales-pop-card">
-    <div class="sales-pop-head"><span>Sales Flow Log</span><button type="button" class="sales-pop-x" id="salesPopX" aria-label="Close">&#10005;</button></div>
+    <div class="sales-pop-head"><span>Shipping &amp; Orders</span><button type="button" class="sales-pop-x" id="salesPopX" aria-label="Close">&#10005;</button></div>
     <iframe id="salesPopFrame" title="Sales Flow Log" loading="lazy"></iframe>
   </div>
 </div>
@@ -1274,7 +1274,7 @@ img,svg{max-width:100%}
 (function(){
   var btn=document.getElementById('salesBtn'),pop=document.getElementById('salesPop'),frame=document.getElementById('salesPopFrame'),x=document.getElementById('salesPopX');
   if(!btn||!pop)return;
-  btn.addEventListener('click',function(e){e.preventDefault();if(!frame.getAttribute('src'))frame.setAttribute('src','https://x-peps.com/admin-portal/sales-flow-log.html');pop.classList.add('open');});
+  btn.addEventListener('click',function(e){e.preventDefault();if(!frame.getAttribute('src'))frame.setAttribute('src','https://x-peps.com/X-Peps/aftership-shipments-report.html#sales-flow');pop.classList.add('open');});
   function close(){pop.classList.remove('open');}
   if(x)x.addEventListener('click',close);
   pop.addEventListener('click',function(e){if(e.target===pop)close();});

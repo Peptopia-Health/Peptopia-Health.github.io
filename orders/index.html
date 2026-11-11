@@ -1457,8 +1457,18 @@ html.dark .card-desc{color:#A8B3C7}
 .card .glow-stage{border:none;border-radius:0;background:radial-gradient(circle at 50% 50%,rgba(52,211,153,.34) 0%,rgba(52,211,153,.15) 45%,rgba(52,211,153,0) 72%);box-shadow:none;overflow:visible}
 .card .glow-venn{filter:drop-shadow(0 0 9px rgba(52,211,153,.55)) drop-shadow(0 0 24px rgba(52,211,153,.30))}
 
-/* --- banner geometry copied from the homepage: the whole cluster grouped close together, centered (David, Nov 11) --- */
+/* --- banner layout copied from the homepage at every width (David, Nov 11): on desktop the cluster groups in the middle exactly like the homepage; on phones the same single row scales to fit the screen --- */
 .peptopia-hdr{max-width:579px;justify-content:flex-start;gap:16px}
-</style>
+@media(max-width:640px){
+.peptopia-hdr{max-width:100%;flex-wrap:nowrap;padding:10px 3vw;gap:1.5vw}
+.peptopia-brand{gap:1.5vw;min-width:0}
+.peptopia-logo{width:9vw;height:9vw}
+.peptopia-wordmark{font-size:4.1vw;letter-spacing:.07em;white-space:nowrap}
+.peptopia-tagline{font-size:1.9vw;letter-spacing:.16em;white-space:nowrap}
+.peptopia-nav{gap:1.5vw;flex-wrap:nowrap;margin-left:0}
+.peptopia-nav>a.hdrbtn{width:18.5vw;padding:1.6vw 0;font-size:3.3vw}
+.peptopia-iconbtn img{width:8vw;height:8vw}
+}
+</style></style>
 </body>
 </html>

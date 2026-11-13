@@ -3,112 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pill Identifier — Peptopia Health</title>
+<title>Med ID</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000;
-    --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0;
+    --pal-purple:#6C4FE0; --pal-cobalt:#0070D0; --pal-mood:#10C000;
     --bg:#F4F6FA; --card:#FFFFFF; --card-sub:#F8FAFC; --border:rgba(15,23,42,.10);
-    --t1:#0F172A; --t2:#475569; --sh:0 2px 10px rgba(15,23,42,.07); --sh-h:0 10px 28px rgba(15,23,42,.13);
+    --t1:#0F172A; --t2:#475569; --sh:0 2px 10px rgba(15,23,42,.07);
+    --warn-bg:#FDECEC; --warn-bd:#E01020; --warn-tx:#7A0C14;
     --font-head:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
   }
   html.dark{
     --bg:#020617; --card:#0F172A; --card-sub:#1E293B; --border:rgba(148,163,184,.20);
-    --t1:#F1F5F9; --t2:#94A3B8; --sh:0 2px 10px rgba(0,0,0,.4); --sh-h:0 10px 28px rgba(0,0,0,.55);
+    --t1:#F1F5F9; --t2:#94A3B8; --sh:0 2px 10px rgba(0,0,0,.4);
+    --warn-bg:#3B0A0A; --warn-bd:#FF5A5A; --warn-tx:#FFD7D7;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--t1);font-family:var(--font-body);
-       min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:28px 16px 40px}
-  .wrap{max-width:820px;width:100%}
-  .backrow{display:flex;align-items:center;justify-content:space-between;margin:0 2px 14px}
-  .back{font-family:var(--font-head);font-weight:700;font-size:.9rem;color:var(--pal-purple);text-decoration:none}
-  html.dark .back{color:#B7A6FF}
-  .themebtn{width:40px;height:40px;border-radius:50%;border:2px solid var(--pal-purple);cursor:pointer;
-    background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);color:#fff;font-size:1.05rem;line-height:1;
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.55),inset 0 -3px 5px rgba(0,0,0,.25),0 3px 7px rgba(0,0,0,.25);
-    transition:transform .07s ease,box-shadow .07s ease}
-  .themebtn:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),inset 0 -2px 4px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.25)}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--sh);padding:26px 26px 22px}
-  .kicker{font-family:var(--font-head);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pal-purple);margin:0 0 6px}
-  html.dark .kicker{color:#B7A6FF}
-  h1{font-family:var(--font-head);font-weight:800;font-size:1.55rem;line-height:1.15;margin:0 0 8px;color:#C75000}
+    min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:10px 12px 18px}
+  .wrap{max-width:760px;width:100%}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh);padding:16px 18px 14px}
+  .headrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px}
+  h1{font-family:var(--font-head);font-weight:800;font-size:1.5rem;line-height:1.1;margin:0;color:#C75000}
   html.dark h1{color:#FF9A3D}
-  .sub{color:var(--t2);font-size:.95rem;margin:0 0 20px}
-  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 18px}
-  .modebtn{font-family:var(--font-head);font-weight:700;font-size:1.02rem;padding:16px 10px;border-radius:14px;cursor:pointer;
-    border:2px solid var(--border);background:var(--card-sub);color:var(--t2);
+  .iconrow{display:flex;gap:8px;align-items:center}
+  .iconbtn{position:relative;width:38px;height:38px;border-radius:50%;border:2px solid #4C1D95;cursor:pointer;flex:none;
+    background:radial-gradient(circle at 32% 28%,#CDBFFF,var(--pal-purple) 58%,#4C1D95);color:#fff;font-size:1rem;line-height:1;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -3px 5px rgba(0,0,0,.28),0 3px 7px rgba(0,0,0,.25);
+    transition:transform .07s ease,box-shadow .07s ease}
+  .iconbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),inset 0 -2px 4px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.25)}
+  .iconbtn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
+  .intro{color:var(--t2);font-size:.93rem;margin:2px 0 12px}
+  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+  .modebtn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px 7px;border-radius:14px;cursor:pointer;
+    border:2px solid var(--border);background:var(--card-sub);color:var(--t2);font-family:var(--font-head);
     box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10);
     transition:transform .07s ease,box-shadow .07s ease}
   .modebtn:active{transform:translateY(2px)}
-  .modebtn.on{border-color:var(--pal-purple);color:#fff;background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);
+  .modebtn .tic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+    background:radial-gradient(circle at 32% 28%,#E4DEFF,#B7A6FF 55%,#7C5CD6);border:2px solid #4C1D95;
+    box-shadow:inset 0 2px 4px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.22),0 2px 5px rgba(76,29,149,.35)}
+  .modebtn .tlab{font-weight:800;font-size:1rem;white-space:nowrap}
+  .modebtn.on{border-color:#4C1D95;color:#fff;background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);
     box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
-  .modebtn small{display:block;font-family:var(--font-body);font-weight:500;font-size:.78rem;margin-top:4px;opacity:.85}
-  .photobtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:20px 12px;border-radius:14px;cursor:pointer;
-    font-family:var(--font-head);font-weight:700;font-size:1.08rem;color:#fff;text-align:center;
+  .photobtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:11px 10px;border-radius:12px;cursor:pointer;
+    font-family:var(--font-head);font-weight:700;font-size:1rem;color:#fff;text-align:center;
     background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);border:2px solid #4C1D95;
     box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35);
-    transition:transform .07s ease,box-shadow .07s ease}
-  .photobtn:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.25)}
-  #preview{display:none;width:100%;max-height:380px;object-fit:contain;border-radius:14px;border:1px solid var(--border);margin:14px 0 0;background:var(--card-sub)}
-  label.flabel{display:block;font-family:var(--font-head);font-weight:700;font-size:.9rem;margin:18px 0 6px}
-  #notes{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card-sub);
-    color:var(--t1);font-family:var(--font-body);font-size:.95rem}
-  .sendbtn{display:block;width:100%;margin:20px 0 0;padding:17px 12px;border-radius:14px;cursor:pointer;border:2px solid #4C1D95;
-    font-family:var(--font-head);font-weight:800;font-size:1.12rem;color:#fff;
-    background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35);
-    transition:transform .07s ease,box-shadow .07s ease}
-  .sendbtn:active{transform:translateY(2px)}
-  .sendbtn:disabled{opacity:.55;cursor:default}
-  .status{min-height:1.4em;margin:12px 2px 0;font-size:.92rem;color:var(--t2);text-align:center}
-  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0 0}
-  .step{background:var(--card-sub);border:1px solid var(--border);border-radius:12px;padding:12px 10px;text-align:center}
-  .step b{display:block;font-family:var(--font-head);font-size:.92rem;margin-bottom:3px}
-  .step span{font-size:.8rem;color:var(--t2)}
-  .safety{margin:18px 0 0;padding:12px 16px;border-radius:12px;background:var(--card-sub);border:1px solid var(--border);
-    font-size:.92rem;color:var(--t2)}
-  .safety b{color:var(--t1);font-family:var(--font-head)}
-  .foot{margin:16px 2px 0;color:var(--t2);font-size:.82rem;text-align:center}
-  @media (max-width:560px){ .steps{grid-template-columns:1fr} }
+    transition:transform .07s ease}
+  .photobtn:active{transform:translateY(2px)}
+  #preview{display:none;width:100%;max-height:190px;object-fit:contain;border-radius:12px;border:1px solid var(--border);margin:10px 0 0;background:var(--card-sub)}
+  label.flabel{display:block;font-family:var(--font-head);font-weight:700;font-size:.86rem;margin:12px 0 4px}
+  #notes{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card-sub);
+    color:var(--t1);font-family:var(--font-body);font-size:.93rem}
+  .btnrow{display:grid;grid-template-columns:1fr auto;gap:10px;margin:14px 0 0}
+  .identifybtn{padding:12px 10px;border-radius:12px;cursor:pointer;border:2px solid #0B6E0B;
+    font-family:var(--font-head);font-weight:800;font-size:1.08rem;color:#fff;
+    background:linear-gradient(145deg,#4ADE80,#16A34A 55%,#0B6E0B);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(11,110,11,.35);
+    transition:transform .07s ease}
+  .identifybtn:active{transform:translateY(2px)}
+  .identifybtn:disabled{opacity:.55;cursor:default}
+  .resetbtn{padding:12px 18px;border-radius:12px;cursor:pointer;border:2px solid var(--border);
+    font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--t1);background:var(--card-sub);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),inset 0 -3px 5px rgba(0,0,0,.12),0 3px 7px rgba(15,23,42,.12);
+    transition:transform .07s ease}
+  .resetbtn:active{transform:translateY(2px)}
+  .status{min-height:1.25em;margin:9px 2px 0;font-size:.9rem;color:var(--t2);text-align:center}
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0 0}
+  .step{border:1px solid var(--border);border-radius:11px;padding:8px 8px;text-align:center}
+  .step b{display:block;font-family:var(--font-head);font-size:.88rem;margin-bottom:2px}
+  .step span{font-size:.76rem;color:var(--t2)}
+  .step.s1{background:#EFEAFE}.step.s2{background:#E3F0FF}.step.s3{background:#E4F9E4}
+  html.dark .step.s1{background:#241B4D} html.dark .step.s2{background:#0E2A4A} html.dark .step.s3{background:#0C3316}
+  html.dark .step span{color:#B9C4D6}
+  .warnbox{margin:12px 0 0;padding:10px 14px;border-radius:12px;background:var(--warn-bg);border:2px solid var(--warn-bd);color:var(--warn-tx)}
+  .warnbox p{margin:0 0 6px;font-size:.92rem}
+  .warnbox p:last-child{margin:0}
+  .modal{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;padding:14px;z-index:50}
+  .modal.open{display:flex}
+  .sheet{background:var(--card);color:var(--t1);border-radius:16px;border:1px solid var(--border);max-width:560px;width:100%;
+    max-height:92vh;overflow:auto;padding:18px 18px 14px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+  .sheet h2{font-family:var(--font-head);font-weight:800;font-size:1.25rem;margin:0 40px 4px 0;color:#C75000}
+  html.dark .sheet h2{color:#FF9A3D}
+  .sheet .brandline{font-size:1rem;margin:0 0 8px}
+  .sheet .kv{font-size:.92rem;color:var(--t2);margin:0 0 6px}
+  .sheet .kv b{color:var(--t1);font-family:var(--font-head)}
+  .sheet a{color:var(--pal-cobalt);font-weight:700}
+  html.dark .sheet a{color:#7CC4FF}
+  .xbtn{position:sticky;top:0;float:right;width:36px;height:36px;border-radius:50%;border:2px solid #4C1D95;cursor:pointer;
+    background:radial-gradient(circle at 32% 28%,#CDBFFF,var(--pal-purple) 58%,#4C1D95);color:#fff;font-size:1rem;
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -3px 5px rgba(0,0,0,.28),0 3px 7px rgba(0,0,0,.25)}
+  .logitem{border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin:0 0 8px;background:var(--card-sub)}
+  .logitem b{font-family:var(--font-head)}
+  .logitem span{display:block;font-size:.8rem;color:var(--t2)}
+  .clearbtn{margin:4px 0 0;padding:9px 14px;border-radius:10px;cursor:pointer;border:2px solid var(--border);
+    font-family:var(--font-head);font-weight:700;background:var(--card-sub);color:var(--t1)}
+  @media print{ .iconrow,.modegrid,.photobtn,.btnrow,.steps,.modal{display:none !important} body{padding:0} }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="backrow">
-      <a class="back" href="https://x-peps.com/admin-portal/">← Admin Portal</a>
-      <button class="themebtn" id="themeBtn" type="button" aria-label="Toggle dark theme">🌙</button>
-    </div>
     <div class="card">
-      <p class="kicker">Nursing Tool</p>
-      <h1>💊 Pill Identifier</h1>
-      <p class="sub">Snap the holding packet or the pill itself. Muse reads the photo, names the drug and strength, and sends back a reference photo of what the tablet should look like — in your chat.</p>
-
-      <div class="modegrid" role="group" aria-label="What are you photographing?">
-        <button type="button" class="modebtn on" id="modePacket">📦 Holding packet<small>The printed label — drug, strength, NDC</small></button>
-        <button type="button" class="modebtn" id="modePill">💊 The pill itself<small>Imprint, color and shape do the talking</small></button>
+      <div class="headrow">
+        <h1>💊 Med ID</h1>
+        <div class="iconrow">
+          <button class="iconbtn" id="logBtn" type="button" aria-label="Show the Med ID log" title="Med ID log"><span>📋</span></button>
+          <button class="iconbtn" id="printBtn" type="button" aria-label="Print" title="Print"><span>🖨️</span><img src="https://x-peps.com/X-Peps/btn-print.png" alt="" onerror="this.remove()"></button>
+          <button class="iconbtn" id="themeBtn" type="button" aria-label="Toggle dark theme" title="Theme"><span>🌙</span><img id="themeImg" src="https://x-peps.com/X-Peps/btn-moon.png" alt="" onerror="this.remove()"></button>
+        </div>
       </div>
 
-      <label class="photobtn" for="photoInput">📷 Take or choose a photo</label>
+      <p class="intro">Locate the box, packet, bottle or other container and select the "Container" label below. If only the med is available, and no container, then select "Medication" tab below.</p>
+
+      <div class="modegrid" role="group" aria-label="What are you photographing?">
+        <button type="button" class="modebtn on" id="modePacket"><span class="tic">📦</span><span class="tlab">Container</span></button>
+        <button type="button" class="modebtn" id="modePill"><span class="tic">💊</span><span class="tlab">Medication</span></button>
+      </div>
+
+      <label class="photobtn" for="photoInput">📷 Snap a pic — upload photo</label>
       <input id="photoInput" type="file" accept="image/*" hidden>
       <img id="preview" alt="Your photo preview">
 
-      <label class="flabel" for="notes">Anything you can read on it (optional)</label>
-      <input id="notes" type="text" placeholder="e.g. imprint M on one side, S3 on the other" autocomplete="off">
+      <label class="flabel" for="notes">Notes — any identifying information: letters, numbers, dose amount, etc.</label>
+      <input id="notes" type="text" placeholder="e.g. sacubitril valsartan 97/103 — or imprint M / S3, pink oval" autocomplete="off">
 
-      <button type="button" class="sendbtn" id="sendBtn">🔍 Send — identify this</button>
+      <div class="btnrow">
+        <button type="button" class="identifybtn" id="identifyBtn">🔍 Identify</button>
+        <button type="button" class="resetbtn" id="resetBtn">↺ Reset</button>
+      </div>
       <p class="status" id="status"></p>
 
       <div class="steps">
-        <div class="step"><b>1 · Snap it</b><span>Packet label or the pill, close and in focus</span></div>
-        <div class="step"><b>2 · Send it</b><span>One tap — the photo goes straight to Muse</span></div>
-        <div class="step"><b>3 · Answer in chat</b><span>Drug, strength, and the reference photo</span></div>
+        <div class="step s1"><b>1 · Snap it</b><span>Packet or med, close and in focus</span></div>
+        <div class="step s2"><b>2 · Note it</b><span>Letters, numbers, dose — anything printed</span></div>
+        <div class="step s3"><b>3 · Identify</b><span>Tap Identify — the result pops up here</span></div>
       </div>
 
-      <p class="safety"><b>Packet photos:</b> frame the drug packet only — leave any patient label out of the shot. <b>Always:</b> the identification backs up your own check; it never replaces the MAR and the scan.</p>
+      <div class="warnbox">
+        <p>⚠️ <b>Warning: NEVER INCLUDE PATIENT INFO when uploading photos — no names, or any portion of the label that may be associated with a patient.</b></p>
+        <p>🛡️ <b>Remember:</b> Med ID only supports your own check as a nurse; it does not replace the MAR or other approved systems for identification.</p>
+      </div>
     </div>
-    <p class="foot">Peptopia Health — nursing reference tool. Answers usually land within about 15 minutes; for an answer right now, send the photo in chat.</p>
+  </div>
+
+  <div class="modal" id="resultModal" role="dialog" aria-modal="true">
+    <div class="sheet">
+      <button class="xbtn" id="resultX" type="button" aria-label="Close">✕</button>
+      <h2 id="rTitle">Result</h2>
+      <p class="brandline" id="rBrand"></p>
+      <p class="kv" id="rMfr"></p>
+      <p class="kv" id="rAppear"></p>
+      <p class="kv" id="rBasis"></p>
+      <p class="kv" id="rLink"></p>
+      <p class="kv" id="rNote"></p>
+    </div>
+  </div>
+
+  <div class="modal" id="logModal" role="dialog" aria-modal="true">
+    <div class="sheet">
+      <button class="xbtn" id="logX" type="button" aria-label="Close">✕</button>
+      <h2>📋 Med ID Log</h2>
+      <p class="kv">Identifications made on this device. The master log is kept with your nursing files.</p>
+      <div id="logList"></div>
+      <button class="clearbtn" id="logClear" type="button">Clear this device's log</button>
+    </div>
   </div>
 
   <script>
@@ -116,6 +177,12 @@
     var pillFile = null;
     var modePacket = document.getElementById('modePacket');
     var modePill = document.getElementById('modePill');
+    var photoInput = document.getElementById('photoInput');
+    var preview = document.getElementById('preview');
+    var notesEl = document.getElementById('notes');
+    var statusEl = document.getElementById('status');
+    var identifyBtn = document.getElementById('identifyBtn');
+
     function setMode(m){
       pillMode = m;
       modePacket.classList.toggle('on', m === 'packet');
@@ -124,20 +191,26 @@
     modePacket.addEventListener('click', function(){ setMode('packet'); });
     modePill.addEventListener('click', function(){ setMode('pill'); });
 
-    var photoInput = document.getElementById('photoInput');
-    var preview = document.getElementById('preview');
-    var statusEl = document.getElementById('status');
     photoInput.addEventListener('change', function(){
       var f = (this.files || [])[0];
       pillFile = f || null;
       if (f) {
         preview.src = URL.createObjectURL(f);
         preview.style.display = 'block';
-        statusEl.textContent = 'Photo ready — tap Send when you are.';
+        statusEl.textContent = 'Photo ready — tap Identify.';
       } else {
         preview.style.display = 'none';
         statusEl.textContent = '';
       }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function(){
+      pillFile = null;
+      photoInput.value = '';
+      preview.style.display = 'none';
+      notesEl.value = '';
+      statusEl.textContent = '';
+      setMode('packet');
     });
 
     function readPhoto(file){
@@ -159,25 +232,18 @@
       });
     }
 
-    document.getElementById('sendBtn').addEventListener('click', function(){
-      var btn = this;
-      if (!pillFile) {
-        statusEl.textContent = '⚠️ Take or choose a photo first.';
-        return;
-      }
-      btn.disabled = true;
-      statusEl.textContent = 'Sending…';
-      readPhoto(pillFile).then(function(data){
-        if (!data) throw new Error('photo read failed');
+    function submitPhoto(){
+      if (!pillFile) return Promise.resolve(false);
+      return readPhoto(pillFile).then(function(data){
+        if (!data) return false;
         var payload = {
           access_key: 'c3378175-a412-4313-bf5b-12fae9f925f3',
           subject: 'Pill ID Request — ' + (pillMode === 'packet' ? 'holding packet photo' : 'pill photo'),
-          name: 'David (Admin Portal)',
-          replyto: 'davidbcarroll@gmail.com',
+          name: 'Med ID',
           portal_key: 'potions-57',
-          source: 'admin-portal-pill-id',
+          source: 'med-id',
           photo_type: pillMode,
-          notes: document.getElementById('notes').value.trim() || '(none)',
+          notes: notesEl.value.trim() || '(none)',
           file_manifest: pillFile.name || 'photo.jpg',
           file_1_name: pillFile.name || 'photo.jpg',
           file_1_b64: data.split(',')[1]
@@ -186,22 +252,147 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(payload)
-        });
-      }).then(function(r){
-        if (!r.ok) throw new Error('send failed');
-        return r.json();
-      }).then(function(){
-        statusEl.textContent = '✅ Sent! Muse is identifying it — the answer comes to you in chat.';
-        btn.disabled = false;
-      }).catch(function(){
-        statusEl.textContent = '⚠️ Couldn’t send — check your connection and tap Send again. Nothing was queued.';
-        btn.disabled = false;
+        }).then(function(r){ return r.ok; }).catch(function(){ return false; });
+      });
+    }
+
+    function logLocal(entry){
+      try {
+        var key = 'medid-log';
+        var arr = JSON.parse(localStorage.getItem(key) || '[]');
+        arr.unshift(entry);
+        if (arr.length > 60) arr = arr.slice(0, 60);
+        localStorage.setItem(key, JSON.stringify(arr));
+      } catch(e){}
+    }
+
+    function showResult(o){
+      document.getElementById('rTitle').textContent = o.title || 'Result';
+      document.getElementById('rBrand').innerHTML = o.brand || '';
+      document.getElementById('rMfr').innerHTML = o.mfr || '';
+      document.getElementById('rAppear').innerHTML = o.appear || '';
+      document.getElementById('rBasis').innerHTML = o.basis || '';
+      document.getElementById('rLink').innerHTML = o.link || '';
+      document.getElementById('rNote').innerHTML = o.note || '';
+      document.getElementById('resultModal').classList.add('open');
+    }
+
+    function fdaSearch(q){
+      return fetch('https://api.fda.gov/drug/label.json?limit=1&search=' + encodeURIComponent(q))
+        .then(function(r){ if (!r.ok) throw new Error('no match'); return r.json(); })
+        .then(function(d){ return (d.results || [])[0] || null; });
+    }
+
+    function lookup(notes){
+      var ndc = (notes.match(/\b\d{4,5}-\d{3,4}(-\d{2})?\b/) || [])[0];
+      var tries = [];
+      if (ndc) tries.push('openfda.product_ndc:"' + ndc + '"');
+      var words = notes.replace(/[^a-zA-Z ]/g, ' ').split(/\s+/).filter(function(w){ return w.length > 2; }).slice(0, 3).join(' ');
+      if (words) {
+        tries.push('openfda.generic_name:"' + words + '"');
+        tries.push('openfda.brand_name:"' + words + '"');
+        tries.push('openfda.substance_name:"' + words.split(' ')[0] + '"');
+      }
+      var chain = Promise.reject();
+      tries.forEach(function(q){
+        chain = chain.catch(function(){ return fdaSearch(q).then(function(r){ if (!r) throw new Error('empty'); return r; }); });
+      });
+      return chain.catch(function(){ return null; });
+    }
+
+    function appearanceFrom(label){
+      var secs = ['dosage_forms_and_strengths', 'description', 'how_supplied'];
+      for (var i = 0; i < secs.length; i++) {
+        var t = (label[secs[i]] || [])[0] || '';
+        var m = t.match(/[^.]*(deboss|imprint|oval|round|tablet)[^.]*\./i);
+        if (m && m[0].length > 25) return m[0].trim();
+      }
+      return '';
+    }
+
+    identifyBtn.addEventListener('click', function(){
+      var notes = notesEl.value.trim();
+      if (!pillFile && !notes) {
+        statusEl.textContent = '⚠️ Add a photo, or type what is printed on the packet or pill, then tap Identify.';
+        return;
+      }
+      identifyBtn.disabled = true;
+      statusEl.textContent = 'Identifying…';
+      var photoP = submitPhoto();
+      var lookP = notes ? lookup(notes) : Promise.resolve(null);
+      Promise.all([photoP, lookP]).then(function(res){
+        var photoSent = res[0], label = res[1];
+        identifyBtn.disabled = false;
+        var today = new Date();
+        var stamp = (today.getMonth() + 1) + '-' + today.getDate() + '-' + String(today.getFullYear()).slice(2);
+        if (label) {
+          var o = label.openfda || {};
+          var chem = (o.generic_name || ['Unknown'])[0];
+          var brand = (o.brand_name || [''])[0];
+          var mfr = (o.manufacturer_name || [''])[0];
+          var setid = (o.spl_id || [''])[0];
+          var appear = appearanceFrom(label);
+          logLocal({ d: stamp, med: chem, brand: brand, basis: 'Label match (FDA)' });
+          showResult({
+            title: '💊 ' + titleCase(chem),
+            brand: brand ? 'Best known as <b>' + titleCase(brand) + '</b>' : '',
+            mfr: mfr ? '<b>Manufacturer:</b> ' + mfr : '',
+            appear: appear ? '<b>From the label:</b> ' + appear : '',
+            basis: '<b>Match:</b> FDA label record for the name/number you entered.',
+            link: setid ? '<a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=' + setid + '" target="_blank" rel="noopener">📖 Full label &amp; photos — manufacturer listing (DailyMed)</a>' : '',
+            note: photoSent ? 'Your photo was also sent for a visual identification — the verified answer, with a reference photo, comes to you in chat and is filed in the Med ID log.' : ''
+          });
+          statusEl.textContent = '✅ Identified — see the result above.';
+        } else if (photoSent) {
+          logLocal({ d: stamp, med: 'Photo submitted', brand: '', basis: 'Awaiting visual identification' });
+          showResult({
+            title: '📨 Photo sent for identification',
+            brand: 'The photo is on its way. A visual identification — drug, strength, and a reference photo of what the tablet should look like — comes to you in chat and is filed in the Med ID log.',
+            basis: notes ? '<b>Note:</b> the words/numbers you typed did not match an FDA label record, so the photo read decides it.' : ''
+          });
+          statusEl.textContent = '✅ Photo sent — the identification comes to you in chat.';
+        } else {
+          statusEl.textContent = '⚠️ Nothing matched and no photo could be sent — check the name or numbers and try again.';
+        }
       });
     });
 
+    function titleCase(s){
+      return s.toLowerCase().replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+    }
+
+    function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+    document.getElementById('resultX').addEventListener('click', function(){ closeModal('resultModal'); });
+    document.getElementById('logX').addEventListener('click', function(){ closeModal('logModal'); });
+    document.getElementById('resultModal').addEventListener('click', function(e){ if (e.target === this) closeModal('resultModal'); });
+    document.getElementById('logModal').addEventListener('click', function(e){ if (e.target === this) closeModal('logModal'); });
+
+    document.getElementById('logBtn').addEventListener('click', function(){
+      var arr = [];
+      try { arr = JSON.parse(localStorage.getItem('medid-log') || '[]'); } catch(e){}
+      var list = document.getElementById('logList');
+      if (!arr.length) {
+        list.innerHTML = '<p class="kv">No identifications on this device yet.</p>';
+      } else {
+        list.innerHTML = arr.map(function(x){
+          return '<div class="logitem"><b>Med ID ' + x.d + ' — ' + x.med + '</b>' +
+            (x.brand ? '<span>Brand: ' + x.brand + '</span>' : '') +
+            '<span>' + (x.basis || '') + '</span></div>';
+        }).join('');
+      }
+      document.getElementById('logModal').classList.add('open');
+    });
+    document.getElementById('logClear').addEventListener('click', function(){
+      try { localStorage.removeItem('medid-log'); } catch(e){}
+      document.getElementById('logList').innerHTML = '<p class="kv">No identifications on this device yet.</p>';
+    });
+
+    document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
     document.getElementById('themeBtn').addEventListener('click', function(){
       var dark = document.documentElement.classList.toggle('dark');
-      this.textContent = dark ? '☀️' : '🌙';
+      var img = document.getElementById('themeImg');
+      if (img) img.src = dark ? 'https://x-peps.com/X-Peps/btn-sun.png' : 'https://x-peps.com/X-Peps/btn-moon.png';
+      this.querySelector('span').textContent = dark ? '☀️' : '🌙';
     });
   </script>
 </body>

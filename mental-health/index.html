@@ -363,6 +363,10 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 .sec-band.sb2{background:linear-gradient(135deg,#6D28D9,#7C3AED)}
 .sec-band.sb3{background:linear-gradient(135deg,#5B3EDB,#6C4FE0)}
 .card .ico{display:flex;align-items:center;justify-content:center}
+.grid.oc3>.card:last-child{grid-column:auto}
+@media (min-width:1025px){.grid.oc3>.card:last-child{grid-column:2/3}}
+@media (min-width:641px) and (max-width:1024px){.grid.oc2>.card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:100%}}
+
 </style>
 </head>
 <body>
@@ -383,7 +387,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
         
     </section>
     <h2 class="sec-band sb1">Medication &amp; Withdrawal</h2>
-    <main class="grid">
+    <main class="grid oc3 oc2">
         <a href="https://x-peps.com/mental-health/medication-administration.html" class="card c-purple">
             <div class="ico"><i class="fa-solid fa-pills"></i></div>
             <h2>Medication Administration</h2>
@@ -410,7 +414,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
         </a>
     </main>
     <h2 class="sec-band sb2">Assessment &amp; Care</h2>
-    <main class="grid">
+    <main class="grid oc2">
         <a href="https://x-peps.com/Corrections/Mental_Health_Triage.html" class="card c-violet">
             <div class="ico"><i class="fa-solid fa-clipboard-check"></i></div>
             <h2>Mental Health Triage</h2>
@@ -431,7 +435,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
         </a>
     </main>
     <h2 class="sec-band sb3">Disorders &amp; the Mind</h2>
-    <main class="grid">
+    <main class="grid oc2">
         <a href="https://x-peps.com/X-Peps/tsh-mental-health-nursing-guide.html" class="card c-pal">
             <div class="ico"><i class="fa-solid fa-vial"></i></div>
             <h2>TSH &amp; Mental Health</h2>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pill Identifier</title>
+<style>
+  :root{
+    --bg:#F4F6FA; --card:#FFFFFF; --card-sub:#F8FAFC; --border:rgba(15,23,42,.12);
+    --t1:#0F172A; --t2:#475569; --accent:#6C4FE0; --accent-dark:#4C1D95;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#020617; --card:#0F172A; --card-sub:#1E293B; --border:rgba(148,163,184,.22);
+      --t1:#F1F5F9; --t2:#94A3B8; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--t1);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:22px 14px 36px}
+  .wrap{max-width:640px;width:100%}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;
+    box-shadow:0 2px 10px rgba(15,23,42,.08);padding:22px 20px}
+  h1{font-size:1.45rem;line-height:1.15;margin:0 0 6px;color:#C75000}
+  @media (prefers-color-scheme: dark){ h1{color:#FF9A3D} }
+  .sub{color:var(--t2);font-size:.93rem;margin:0 0 18px}
+  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 16px}
+  .modebtn{font-weight:700;font-size:1rem;padding:14px 8px;border-radius:12px;cursor:pointer;
+    border:2px solid var(--border);background:var(--card-sub);color:var(--t2);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10)}
+  .modebtn:active{transform:translateY(2px)}
+  .modebtn.on{border-color:var(--accent-dark);color:#fff;
+    background:linear-gradient(145deg,#9D8BFF,var(--accent) 55%,var(--accent-dark));
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
+  .modebtn small{display:block;font-weight:500;font-size:.75rem;margin-top:3px;opacity:.85}
+  .photobtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:19px 12px;border-radius:12px;cursor:pointer;
+    font-weight:700;font-size:1.05rem;color:#fff;text-align:center;border:2px solid var(--accent-dark);
+    background:linear-gradient(145deg,#9D8BFF,var(--accent) 55%,var(--accent-dark));
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
+  .photobtn:active{transform:translateY(2px)}
+  #preview{display:none;width:100%;max-height:360px;object-fit:contain;border-radius:12px;border:1px solid var(--border);margin:12px 0 0;background:var(--card-sub)}
+  label.flabel{display:block;font-weight:700;font-size:.88rem;margin:16px 0 5px}
+  input[type=text],select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--border);
+    background:var(--card-sub);color:var(--t1);font-size:.95rem;font-family:inherit}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .bigbtn{display:block;width:100%;margin:18px 0 0;padding:16px 12px;border-radius:12px;cursor:pointer;
+    border:2px solid var(--accent-dark);font-weight:800;font-size:1.05rem;color:#fff;
+    background:linear-gradient(145deg,#9D8BFF,var(--accent) 55%,var(--accent-dark));
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
+  .bigbtn:active{transform:translateY(2px)}
+  .linkrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 0}
+  .lookbtn{display:block;padding:13px 8px;border-radius:12px;text-align:center;text-decoration:none;cursor:pointer;
+    font-weight:700;font-size:.92rem;color:var(--t1);background:var(--card-sub);border:2px solid var(--border);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10)}
+  .lookbtn:active{transform:translateY(2px)}
+  .status{min-height:1.4em;margin:12px 2px 0;font-size:.9rem;color:var(--t2);text-align:center}
+  .safety{margin:16px 0 0;padding:11px 14px;border-radius:10px;background:var(--card-sub);border:1px solid var(--border);
+    font-size:.88rem;color:var(--t2)}
+  .safety b{color:var(--t1)}
+  .foot{margin:14px 2px 0;color:var(--t2);font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>💊 Pill Identifier</h1>
+      <p class="sub">Photograph a medication holding packet or the pill itself, then share the photo for identification or look the imprint up on the spot.</p>
+
+      <div class="modegrid" role="group" aria-label="What are you photographing?">
+        <button type="button" class="modebtn on" id="modePacket">📦 Holding packet<small>The printed label — drug, strength, NDC</small></button>
+        <button type="button" class="modebtn" id="modePill">💊 The pill itself<small>Imprint, color and shape</small></button>
+      </div>
+
+      <label class="photobtn" for="photoInput">📷 Take or choose a photo</label>
+      <input id="photoInput" type="file" accept="image/*" hidden>
+      <img id="preview" alt="Your photo preview">
+
+      <label class="flabel" for="imprint">Imprint — what is stamped on the pill (optional)</label>
+      <input id="imprint" type="text" placeholder="e.g. M on one side, S3 on the other" autocomplete="off">
+
+      <div class="row2">
+        <div>
+          <label class="flabel" for="color">Color</label>
+          <select id="color">
+            <option value="">—</option><option>White</option><option>Off-white</option><option>Pink</option>
+            <option>Red</option><option>Orange</option><option>Yellow</option><option>Green</option>
+            <option>Blue</option><option>Purple</option><option>Brown</option><option>Gray</option><option>Black</option>
+          </select>
+        </div>
+        <div>
+          <label class="flabel" for="shape">Shape</label>
+          <select id="shape">
+            <option value="">—</option><option>Round</option><option>Oval</option><option>Oblong / capsule-shaped</option>
+            <option>Capsule</option><option>Square</option><option>Rectangle</option><option>Triangle</option><option>Diamond</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" class="bigbtn" id="shareBtn">📤 Share photo for identification</button>
+
+      <div class="linkrow">
+        <a class="lookbtn" id="webSearch" href="#" target="_blank" rel="noopener">🔍 Web-search the imprint</a>
+        <a class="lookbtn" href="https://www.drugs.com/pill_identification.html" target="_blank" rel="noopener">📖 Pill identifier database</a>
+      </div>
+
+      <p class="status" id="status"></p>
+
+      <p class="safety"><b>Packet photos:</b> frame the drug packet only — leave any patient label out of the shot. <b>Always:</b> an identification supports your own check; it never replaces the MAR and the scan.</p>
+    </div>
+    <p class="foot">One self-contained file — works offline, nothing is uploaded anywhere by this page.</p>
+  </div>
+
+  <script>
+    var pillMode = 'packet';
+    var pillFile = null;
+    var modePacket = document.getElementById('modePacket');
+    var modePill = document.getElementById('modePill');
+    function setMode(m){
+      pillMode = m;
+      modePacket.classList.toggle('on', m === 'packet');
+      modePill.classList.toggle('on', m === 'pill');
+    }
+    modePacket.addEventListener('click', function(){ setMode('packet'); });
+    modePill.addEventListener('click', function(){ setMode('pill'); });
+
+    var photoInput = document.getElementById('photoInput');
+    var preview = document.getElementById('preview');
+    var statusEl = document.getElementById('status');
+    photoInput.addEventListener('change', function(){
+      var f = (this.files || [])[0];
+      pillFile = f || null;
+      if (f) {
+        preview.src = URL.createObjectURL(f);
+        preview.style.display = 'block';
+        statusEl.textContent = 'Photo ready — share it, or look the imprint up below.';
+      } else {
+        preview.style.display = 'none';
+        statusEl.textContent = '';
+      }
+    });
+
+    function summaryText(){
+      var parts = [];
+      parts.push(pillMode === 'packet'
+        ? 'Please identify the medication in this holding-packet photo: drug name, strength, and what the tablet should look like.'
+        : 'Please identify the pill in this photo: drug name and strength.');
+      var imp = document.getElementById('imprint').value.trim();
+      var col = document.getElementById('color').value;
+      var shp = document.getElementById('shape').value;
+      if (imp) parts.push('Imprint: ' + imp + '.');
+      if (col) parts.push('Color: ' + col + '.');
+      if (shp) parts.push('Shape: ' + shp + '.');
+      return parts.join(' ');
+    }
+
+    document.getElementById('webSearch').addEventListener('click', function(e){
+      var imp = document.getElementById('imprint').value.trim();
+      if (!imp) {
+        e.preventDefault();
+        statusEl.textContent = 'Type the imprint first — that is what the search matches on.';
+        return;
+      }
+      var q = imp + ' ' + document.getElementById('color').value + ' ' + document.getElementById('shape').value + ' pill imprint';
+      this.href = 'https://www.google.com/search?q=' + encodeURIComponent(q.replace(/\s+/g, ' '));
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', function(){
+      var text = summaryText();
+      if (pillFile && navigator.canShare) {
+        var files = [pillFile];
+        if (navigator.canShare({ files: files })) {
+          navigator.share({ files: files, text: text }).then(function(){
+            statusEl.textContent = 'Shared. The identification comes back wherever you sent it.';
+          }).catch(function(){ /* user closed the share sheet */ });
+          return;
+        }
+      }
+      if (navigator.share) {
+        navigator.share({ text: text }).then(function(){
+          statusEl.textContent = 'Details shared — attach the photo in the app you sent them to.';
+        }).catch(function(){});
+        return;
+      }
+      statusEl.textContent = 'Sharing is not available here — save the photo from your preview and send it with the details you typed.';
+    });
+  </script>
+</body>
+</html>

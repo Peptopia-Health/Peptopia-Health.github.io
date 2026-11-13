@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pill Identifier — Peptopia Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000;
+    --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0;
+    --bg:#F4F6FA; --card:#FFFFFF; --card-sub:#F8FAFC; --border:rgba(15,23,42,.10);
+    --t1:#0F172A; --t2:#475569; --sh:0 2px 10px rgba(15,23,42,.07); --sh-h:0 10px 28px rgba(15,23,42,.13);
+    --font-head:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
+  }
+  html.dark{
+    --bg:#020617; --card:#0F172A; --card-sub:#1E293B; --border:rgba(148,163,184,.20);
+    --t1:#F1F5F9; --t2:#94A3B8; --sh:0 2px 10px rgba(0,0,0,.4); --sh-h:0 10px 28px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--t1);font-family:var(--font-body);
+       min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:28px 16px 40px}
+  .wrap{max-width:820px;width:100%}
+  .backrow{display:flex;align-items:center;justify-content:space-between;margin:0 2px 14px}
+  .back{font-family:var(--font-head);font-weight:700;font-size:.9rem;color:var(--pal-purple);text-decoration:none}
+  html.dark .back{color:#B7A6FF}
+  .themebtn{width:40px;height:40px;border-radius:50%;border:2px solid var(--pal-purple);cursor:pointer;
+    background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);color:#fff;font-size:1.05rem;line-height:1;
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.55),inset 0 -3px 5px rgba(0,0,0,.25),0 3px 7px rgba(0,0,0,.25);
+    transition:transform .07s ease,box-shadow .07s ease}
+  .themebtn:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),inset 0 -2px 4px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.25)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--sh);padding:26px 26px 22px}
+  .kicker{font-family:var(--font-head);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pal-purple);margin:0 0 6px}
+  html.dark .kicker{color:#B7A6FF}
+  h1{font-family:var(--font-head);font-weight:800;font-size:1.55rem;line-height:1.15;margin:0 0 8px;color:#C75000}
+  html.dark h1{color:#FF9A3D}
+  .sub{color:var(--t2);font-size:.95rem;margin:0 0 20px}
+  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 18px}
+  .modebtn{font-family:var(--font-head);font-weight:700;font-size:1.02rem;padding:16px 10px;border-radius:14px;cursor:pointer;
+    border:2px solid var(--border);background:var(--card-sub);color:var(--t2);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10);
+    transition:transform .07s ease,box-shadow .07s ease}
+  .modebtn:active{transform:translateY(2px)}
+  .modebtn.on{border-color:var(--pal-purple);color:#fff;background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
+  .modebtn small{display:block;font-family:var(--font-body);font-weight:500;font-size:.78rem;margin-top:4px;opacity:.85}
+  .photobtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:20px 12px;border-radius:14px;cursor:pointer;
+    font-family:var(--font-head);font-weight:700;font-size:1.08rem;color:#fff;text-align:center;
+    background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);border:2px solid #4C1D95;
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35);
+    transition:transform .07s ease,box-shadow .07s ease}
+  .photobtn:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.25)}
+  #preview{display:none;width:100%;max-height:380px;object-fit:contain;border-radius:14px;border:1px solid var(--border);margin:14px 0 0;background:var(--card-sub)}
+  label.flabel{display:block;font-family:var(--font-head);font-weight:700;font-size:.9rem;margin:18px 0 6px}
+  #notes{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card-sub);
+    color:var(--t1);font-family:var(--font-body);font-size:.95rem}
+  .sendbtn{display:block;width:100%;margin:20px 0 0;padding:17px 12px;border-radius:14px;cursor:pointer;border:2px solid #4C1D95;
+    font-family:var(--font-head);font-weight:800;font-size:1.12rem;color:#fff;
+    background:linear-gradient(145deg,#9D8BFF,var(--pal-purple) 55%,#4C1D95);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35);
+    transition:transform .07s ease,box-shadow .07s ease}
+  .sendbtn:active{transform:translateY(2px)}
+  .sendbtn:disabled{opacity:.55;cursor:default}
+  .status{min-height:1.4em;margin:12px 2px 0;font-size:.92rem;color:var(--t2);text-align:center}
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0 0}
+  .step{background:var(--card-sub);border:1px solid var(--border);border-radius:12px;padding:12px 10px;text-align:center}
+  .step b{display:block;font-family:var(--font-head);font-size:.92rem;margin-bottom:3px}
+  .step span{font-size:.8rem;color:var(--t2)}
+  .safety{margin:18px 0 0;padding:12px 16px;border-radius:12px;background:var(--card-sub);border:1px solid var(--border);
+    font-size:.92rem;color:var(--t2)}
+  .safety b{color:var(--t1);font-family:var(--font-head)}
+  .foot{margin:16px 2px 0;color:var(--t2);font-size:.82rem;text-align:center}
+  @media (max-width:560px){ .steps{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="backrow">
+      <a class="back" href="https://x-peps.com/admin-portal/">← Admin Portal</a>
+      <button class="themebtn" id="themeBtn" type="button" aria-label="Toggle dark theme">🌙</button>
+    </div>
+    <div class="card">
+      <p class="kicker">Nursing Tool</p>
+      <h1>💊 Pill Identifier</h1>
+      <p class="sub">Snap the holding packet or the pill itself. Muse reads the photo, names the drug and strength, and sends back a reference photo of what the tablet should look like — in your chat.</p>
+
+      <div class="modegrid" role="group" aria-label="What are you photographing?">
+        <button type="button" class="modebtn on" id="modePacket">📦 Holding packet<small>The printed label — drug, strength, NDC</small></button>
+        <button type="button" class="modebtn" id="modePill">💊 The pill itself<small>Imprint, color and shape do the talking</small></button>
+      </div>
+
+      <label class="photobtn" for="photoInput">📷 Take or choose a photo</label>
+      <input id="photoInput" type="file" accept="image/*" hidden>
+      <img id="preview" alt="Your photo preview">
+
+      <label class="flabel" for="notes">Anything you can read on it (optional)</label>
+      <input id="notes" type="text" placeholder="e.g. imprint M on one side, S3 on the other" autocomplete="off">
+
+      <button type="button" class="sendbtn" id="sendBtn">🔍 Send — identify this</button>
+      <p class="status" id="status"></p>
+
+      <div class="steps">
+        <div class="step"><b>1 · Snap it</b><span>Packet label or the pill, close and in focus</span></div>
+        <div class="step"><b>2 · Send it</b><span>One tap — the photo goes straight to Muse</span></div>
+        <div class="step"><b>3 · Answer in chat</b><span>Drug, strength, and the reference photo</span></div>
+      </div>
+
+      <p class="safety"><b>Packet photos:</b> frame the drug packet only — leave any patient label out of the shot. <b>Always:</b> the identification backs up your own check; it never replaces the MAR and the scan.</p>
+    </div>
+    <p class="foot">Peptopia Health — nursing reference tool. Answers usually land within about 15 minutes; for an answer right now, send the photo in chat.</p>
+  </div>
+
+  <script>
+    var pillMode = 'packet';
+    var pillFile = null;
+    var modePacket = document.getElementById('modePacket');
+    var modePill = document.getElementById('modePill');
+    function setMode(m){
+      pillMode = m;
+      modePacket.classList.toggle('on', m === 'packet');
+      modePill.classList.toggle('on', m === 'pill');
+    }
+    modePacket.addEventListener('click', function(){ setMode('packet'); });
+    modePill.addEventListener('click', function(){ setMode('pill'); });
+
+    var photoInput = document.getElementById('photoInput');
+    var preview = document.getElementById('preview');
+    var statusEl = document.getElementById('status');
+    photoInput.addEventListener('change', function(){
+      var f = (this.files || [])[0];
+      pillFile = f || null;
+      if (f) {
+        preview.src = URL.createObjectURL(f);
+        preview.style.display = 'block';
+        statusEl.textContent = 'Photo ready — tap Send when you are.';
+      } else {
+        preview.style.display = 'none';
+        statusEl.textContent = '';
+      }
+    });
+
+    function readPhoto(file){
+      return new Promise(function(res){
+        var url = URL.createObjectURL(file);
+        var img = new Image();
+        img.onload = function(){
+          var max = 1600, w = img.naturalWidth || max, h = img.naturalHeight || max;
+          var sc = Math.min(1, max / Math.max(w, h));
+          var c = document.createElement('canvas');
+          c.width = Math.max(1, Math.round(w * sc));
+          c.height = Math.max(1, Math.round(h * sc));
+          try { c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', 0.85)); }
+          catch(e){ res(null); }
+          URL.revokeObjectURL(url);
+        };
+        img.onerror = function(){ URL.revokeObjectURL(url); res(null); };
+        img.src = url;
+      });
+    }
+
+    document.getElementById('sendBtn').addEventListener('click', function(){
+      var btn = this;
+      if (!pillFile) {
+        statusEl.textContent = '⚠️ Take or choose a photo first.';
+        return;
+      }
+      btn.disabled = true;
+      statusEl.textContent = 'Sending…';
+      readPhoto(pillFile).then(function(data){
+        if (!data) throw new Error('photo read failed');
+        var payload = {
+          access_key: 'c3378175-a412-4313-bf5b-12fae9f925f3',
+          subject: 'Pill ID Request — ' + (pillMode === 'packet' ? 'holding packet photo' : 'pill photo'),
+          name: 'David (Admin Portal)',
+          replyto: 'davidbcarroll@gmail.com',
+          portal_key: 'potions-57',
+          source: 'admin-portal-pill-id',
+          photo_type: pillMode,
+          notes: document.getElementById('notes').value.trim() || '(none)',
+          file_manifest: pillFile.name || 'photo.jpg',
+          file_1_name: pillFile.name || 'photo.jpg',
+          file_1_b64: data.split(',')[1]
+        };
+        return fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }).then(function(r){
+        if (!r.ok) throw new Error('send failed');
+        return r.json();
+      }).then(function(){
+        statusEl.textContent = '✅ Sent! Muse is identifying it — the answer comes to you in chat.';
+        btn.disabled = false;
+      }).catch(function(){
+        statusEl.textContent = '⚠️ Couldn’t send — check your connection and tap Send again. Nothing was queued.';
+        btn.disabled = false;
+      });
+    });
+
+    document.getElementById('themeBtn').addEventListener('click', function(){
+      var dark = document.documentElement.classList.toggle('dark');
+      this.textContent = dark ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>

@@ -21,9 +21,10 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--t1);font-family:var(--font-body);
-    min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:10px 12px 18px}
-  .wrap{max-width:760px;width:100%}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh);padding:16px 18px 14px}
+    min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:16px 16px 28px}
+  .wrap{max-width:680px;width:100%}
+  .apphead{padding:2px 4px 0;margin:0 0 14px}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--sh);padding:16px;margin:0 0 14px}
   .headrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px}
   h1{font-family:var(--font-head);font-weight:800;font-size:1.5rem;line-height:1.1;margin:0;color:#C75000}
   html.dark h1{color:#FF9A3D}
@@ -35,21 +36,18 @@
     transition:transform .07s ease,box-shadow .07s ease}
   .iconbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),inset 0 -2px 4px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.25)}
   .iconbtn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
-  .intro{color:var(--t2);font-size:.93rem;margin:2px 0 12px}
-  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
-  .modebtn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px 7px;border-radius:14px;cursor:pointer;
-    border:2px solid var(--border);background:var(--card-sub);color:var(--t2);font-family:var(--font-head);
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10);
+  .intro{color:var(--t2);font-size:.93rem;margin:6px 0 0}
+  .seg{display:flex;gap:4px;max-width:420px;margin:0 auto 14px;background:#E8E3F7;border:1px solid var(--border);border-radius:999px;padding:4px}
+  html.dark .seg{background:#1E293B}
+  .segbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 8px;border:none;border-radius:999px;cursor:pointer;
+    background:transparent;color:var(--t2);font-family:var(--font-head);font-weight:700;font-size:.98rem;
     transition:transform .07s ease,box-shadow .07s ease}
-  .modebtn:active{transform:translateY(2px)}
-  .modebtn .tic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;
-    background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),rgba(221,211,255,.55) 55%,rgba(157,139,255,.50));border:2px solid #7C5CD6;
-    box-shadow:inset 0 2px 4px rgba(255,255,255,.85),inset 0 -3px 5px rgba(76,29,149,.18),0 2px 5px rgba(76,29,149,.28)}
-  .modebtn .tlab{font-weight:800;font-size:1rem;white-space:nowrap}
-  .modebtn.on{border-color:#7C5CD6;color:#241533;background:linear-gradient(145deg,#EFEAFE,#DDD3FF 60%,#C9B8FF);
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(76,29,149,.15),0 4px 9px rgba(76,29,149,.25)}
-  html.dark .modebtn.on{background:linear-gradient(145deg,#4A3A8A,#3B2A72 60%,#2C1E5C);color:#EDE9FF}
-  .photobtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:11px 10px;border-radius:12px;cursor:pointer;
+  .segbtn:active{transform:translateY(1px)}
+  .segbtn .sic{font-size:1.05rem;line-height:1}
+  .segbtn.on{color:#241533;background:linear-gradient(145deg,#EFEAFE,#DDD3FF 60%,#C9B8FF);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(76,29,149,.15),0 3px 7px rgba(76,29,149,.25)}
+  html.dark .segbtn.on{background:linear-gradient(145deg,#4A3A8A,#3B2A72 60%,#2C1E5C);color:#EDE9FF}
+  .photobtn{display:flex;align-items:center;justify-content:center;gap:9px;width:fit-content;max-width:288px;margin:0 auto;padding:11px 24px;border-radius:999px;cursor:pointer;
     font-family:var(--font-head);font-weight:700;font-size:1rem;color:#241533;text-align:center;
     background:linear-gradient(145deg,#EFEAFE,#DDD3FF 60%,#C9B8FF);border:2px solid #7C5CD6;
     box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(76,29,149,.15),0 4px 9px rgba(76,29,149,.25);
@@ -58,10 +56,11 @@
   .photobtn:active{transform:translateY(2px)}
   #preview{display:none;width:100%;max-height:190px;object-fit:contain;border-radius:12px;border:1px solid var(--border);margin:10px 0 0;background:var(--card-sub)}
   label.flabel{display:block;font-family:var(--font-head);font-weight:700;font-size:.86rem;margin:12px 0 4px}
+  .sec .flabel:first-child{margin-top:0}
   #notes{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card-sub);
     color:var(--t1);font-family:var(--font-body);font-size:.93rem}
-  .btnrow{display:grid;grid-template-columns:1fr auto;gap:10px;margin:14px 0 0}
-  .identifybtn{padding:12px 10px;border-radius:12px;cursor:pointer;border:2px solid #16A34A;
+  .btnrow{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:2px 0 14px}
+  .identifybtn{padding:13px 36px;border-radius:999px;cursor:pointer;border:2px solid #16A34A;width:auto;max-width:280px;
     font-family:var(--font-head);font-weight:800;font-size:1.08rem;color:#0B3D12;
     background:linear-gradient(145deg,#E4F9E4,#B9F0C0 60%,#8FE3A0);
     box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(11,110,11,.15),0 4px 9px rgba(11,110,11,.25);
@@ -69,13 +68,14 @@
   html.dark .identifybtn{background:linear-gradient(145deg,#14532D,#166534 60%,#14532D);color:#DCFCE7;border-color:#22C55E}
   .identifybtn:active{transform:translateY(2px)}
   .identifybtn:disabled{opacity:.55;cursor:default}
-  .resetbtn{padding:12px 18px;border-radius:12px;cursor:pointer;border:2px solid var(--border);
+  .resetbtn{padding:11px 20px;border-radius:999px;cursor:pointer;border:2px solid var(--border);
     font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--t1);background:linear-gradient(145deg,#FFFFFF,#EDF1F7);
     box-shadow:inset 0 2px 3px rgba(255,255,255,.5),inset 0 -3px 5px rgba(0,0,0,.12),0 3px 7px rgba(15,23,42,.12);
     transition:transform .07s ease}
   .resetbtn:active{transform:translateY(2px)}
+  html.dark .resetbtn{background:linear-gradient(145deg,#1E293B,#0F172A);color:#F1F5F9}
   .status{min-height:1.25em;margin:9px 2px 0;font-size:.9rem;color:var(--t2);text-align:center}
-  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0 0}
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0}
   .step{border:1px solid var(--border);border-radius:11px;padding:8px 8px;text-align:center}
   .step b{display:block;font-family:var(--font-head);font-size:.88rem;margin-bottom:2px}
   .step span{font-size:.76rem;color:var(--t2)}
@@ -87,7 +87,7 @@
   .warnbox p:last-child{margin:0}
   .modal{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;padding:14px;z-index:50}
   .modal.open{display:flex}
-  .sheet{background:var(--card);color:var(--t1);border-radius:16px;border:1px solid var(--border);max-width:560px;width:100%;
+  .sheet{background:var(--card);color:var(--t1);border-radius:20px;border:1px solid var(--border);max-width:560px;width:100%;
     max-height:92vh;overflow:auto;padding:18px 18px 14px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
   .sheet h2{font-family:var(--font-head);font-weight:800;font-size:1.25rem;margin:0 40px 4px 0;color:#C75000}
   html.dark .sheet h2{color:#FF9A3D}
@@ -99,10 +99,28 @@
   .xbtn{position:sticky;top:0;float:right;width:36px;height:36px;border-radius:50%;border:2px solid #7C5CD6;cursor:pointer;
     background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.92),rgba(221,211,255,.55) 55%,rgba(124,92,214,.55));color:#4C1D95;font-size:1rem;
     box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(76,29,149,.2),0 3px 7px rgba(0,0,0,.22)}
+  .medcard{position:relative;border-radius:16px;padding:16px 16px 12px;margin:2px 0 6px;overflow:hidden;
+    background:linear-gradient(150deg,rgba(255,230,205,.88),rgba(255,205,170,.66) 55%,rgba(255,186,143,.60));
+    border:1px solid rgba(199,94,24,.38);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -10px 18px rgba(230,126,34,.12),0 6px 18px rgba(199,80,0,.14)}
+  .medcard::before{content:'';position:absolute;top:0;left:0;right:0;height:46%;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,0))}
+  .medcard>*{position:relative}
+  .medcard h2{color:#9A3B00}
+  .medcard .kv{color:#3F4C5C}
+  .medcard .kv b{color:#0F172A}
+  .medcard a{color:#00579F}
+  html.dark .medcard{background:linear-gradient(150deg,rgba(150,66,16,.58),rgba(122,52,14,.52) 55%,rgba(96,41,10,.58));
+    border-color:rgba(255,171,112,.38);
+    box-shadow:inset 0 1px 0 rgba(255,214,178,.35),inset 0 -10px 18px rgba(0,0,0,.25),0 6px 18px rgba(0,0,0,.35)}
+  html.dark .medcard h2{color:#FFC79A}
+  html.dark .medcard .kv{color:#E9D9C6}
+  html.dark .medcard .kv b{color:#FFF6EC}
+  html.dark .medcard a{color:#9CD3FF}
   .logitem{border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin:0 0 8px;background:var(--card-sub)}
   .logitem b{font-family:var(--font-head)}
   .logitem span{display:block;font-size:.8rem;color:var(--t2)}
-  .clearbtn{margin:4px 0 0;padding:9px 14px;border-radius:10px;cursor:pointer;border:2px solid var(--border);
+  .clearbtn{margin:4px 0 0;padding:9px 18px;border-radius:999px;cursor:pointer;border:2px solid var(--border);
     font-family:var(--font-head);font-weight:700;background:var(--card-sub);color:var(--t1)}
 
   .framewrap{position:relative;display:none;margin:10px 0 0}
@@ -118,31 +136,33 @@
   .blurnote{display:none;margin:8px 0 0;padding:8px 12px;border-radius:10px;background:#FFF7CC;border:2px solid #E3B505;color:#5C4300;font-size:.88rem}
   html.dark .blurnote{background:#3A2E05;color:#FFE98A;border-color:#A97F06}
   .blurnote.show{display:block}
-  .scanbox{display:none;margin:12px 0 0;border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:var(--card-sub)}
-  .scanbox.show{display:block}
-  .scanbtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:11px 10px;border-radius:12px;cursor:pointer;
+  .scanwrap{display:none;margin:14px 0 0;text-align:center}
+  .scanwrap.show{display:block}
+  .ndcwrap{display:none;margin:14px 0 0}
+  .ndcwrap.show{display:block}
+  .scanbtn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:fit-content;max-width:288px;padding:11px 22px;border-radius:999px;cursor:pointer;
     font-family:var(--font-head);font-weight:700;font-size:1rem;color:#0B2C4D;
     background:linear-gradient(145deg,#EAF3FF,#CDE4FF 60%,#A9CFFF);border:2px solid #2B6CB0;
     box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(11,44,77,.15),0 4px 9px rgba(11,44,77,.20);transition:transform .07s ease}
   html.dark .scanbtn{background:linear-gradient(145deg,#173A5E,#14304F 60%,#0E2A4A);color:#DCEBFF;border-color:#3E7CB1}
   .scanbtn:active{transform:translateY(2px)}
   #scanVideo{display:none;width:100%;max-height:240px;border-radius:10px;margin:10px 0 0;background:#000}
-  .ndcrow{display:grid;grid-template-columns:1fr auto;gap:8px;margin:10px 0 0}
+  .ndcrow{display:grid;grid-template-columns:1fr auto;gap:8px;margin:0}
   #ndcInput{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--t1);font-family:var(--font-body);font-size:.95rem}
-  .ndcbtn{padding:9px 14px;border-radius:10px;cursor:pointer;border:2px solid #2B6CB0;font-family:var(--font-head);font-weight:700;font-size:.95rem;color:#0B2C4D;background:linear-gradient(145deg,#EAF3FF,#CDE4FF 60%,#A9CFFF)}
+  .ndcbtn{padding:9px 18px;border-radius:999px;cursor:pointer;border:2px solid #2B6CB0;font-family:var(--font-head);font-weight:700;font-size:.95rem;color:#0B2C4D;background:linear-gradient(145deg,#EAF3FF,#CDE4FF 60%,#A9CFFF)}
   html.dark .ndcbtn{background:linear-gradient(145deg,#173A5E,#14304F);color:#DCEBFF}
   .scanmsg{min-height:1.2em;margin:7px 2px 0;font-size:.87rem;color:var(--t2);text-align:center}
-  .listenbtn{margin:10px 0 2px;padding:10px 16px;border-radius:11px;cursor:pointer;border:2px solid #7C5CD6;
+  .listenbtn{display:block;margin:10px auto 2px;padding:10px 22px;border-radius:999px;cursor:pointer;border:2px solid #7C5CD6;
     font-family:var(--font-head);font-weight:700;font-size:.98rem;color:#241533;
     background:linear-gradient(145deg,#EFEAFE,#DDD3FF 60%,#C9B8FF);box-shadow:inset 0 2px 3px rgba(255,255,255,.7),0 3px 7px rgba(76,29,149,.22)}
   html.dark .listenbtn{background:linear-gradient(145deg,#4A3A8A,#3B2A72);color:#EDE9FF}
   .listenbtn:active{transform:translateY(2px)}
-  @media print{ .iconrow,.modegrid,.photobtn,.btnrow,.steps,.modal{display:none !important} body{padding:0} }
+  @media print{ .iconrow,.seg,.photobtn,.btnrow,.stepssec,.modal{display:none !important} body{padding:0} }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="card">
+    <header class="apphead">
       <div class="headrow">
         <h1>💊 Med ID</h1>
         <div class="iconrow">
@@ -154,11 +174,22 @@
 
       <p class="intro">Locate the box, packet, bottle or other container and select the "Container" label below. If only the med is available, and no container, then select "Medication" tab below.</p>
 
-      <div class="modegrid" role="group" aria-label="What are you photographing?">
-        <button type="button" class="modebtn on" id="modePacket"><span class="tic">📦</span><span class="tlab">Container</span></button>
-        <button type="button" class="modebtn" id="modePill"><span class="tic">💊</span><span class="tlab">Medication</span></button>
-      </div>
+    </header>
 
+    <section class="sec stepssec">
+      <div class="steps">
+        <div class="step s1"><b>1 · Snap it</b><span>Packet or med, close and in focus</span></div>
+        <div class="step s2"><b>2 · Note it</b><span>Letters, numbers, dose — anything printed</span></div>
+        <div class="step s3"><b>3 · Identify</b><span>Tap Identify — the result pops up here</span></div>
+      </div>
+    </section>
+
+    <div class="seg" role="group" aria-label="What are you photographing?">
+      <button type="button" class="segbtn on" id="modePacket"><span class="sic">📦</span>Container</button>
+      <button type="button" class="segbtn" id="modePill"><span class="sic">💊</span>Medication</button>
+    </div>
+
+    <section class="sec">
       <label class="photobtn" for="photoInput">📷 Snap a pic — upload photo</label>
       <input id="photoInput" type="file" accept="image/*" hidden>
       <div class="framewrap" id="frameWrap">
@@ -168,48 +199,48 @@
       <p class="frametips" id="frameTips">Fill the frame · Plain background · Tap to focus on the imprint or label</p>
       <p class="blurnote" id="blurNote">⚠️ This photo looks blurry — a sharper retake identifies faster.</p>
 
-      <div class="scanbox show" id="scanBox">
+      <div class="scanwrap show" id="scanBox">
         <button type="button" class="scanbtn" id="scanBtn">📷 Scan barcode</button>
         <video id="scanVideo" playsinline muted></video>
+      </div>
+    </section>
+
+    <section class="sec">
+      <label class="flabel" for="notes">Notes — any identifying information: letters, numbers, dose amount, etc.</label>
+      <input id="notes" type="text" placeholder="e.g. sacubitril valsartan 97/103 — or imprint M / S3, pink oval" autocomplete="off">
+      <div class="ndcwrap show" id="ndcBox">
         <div class="ndcrow">
           <input id="ndcInput" type="text" inputmode="numeric" placeholder="NDC number" autocomplete="off" aria-label="NDC number">
           <button type="button" class="ndcbtn" id="ndcBtn">Look up NDC</button>
         </div>
         <p class="scanmsg" id="scanMsg"></p>
       </div>
+    </section>
 
-      <label class="flabel" for="notes">Notes — any identifying information: letters, numbers, dose amount, etc.</label>
-      <input id="notes" type="text" placeholder="e.g. sacubitril valsartan 97/103 — or imprint M / S3, pink oval" autocomplete="off">
+    <div class="btnrow">
+      <button type="button" class="identifybtn" id="identifyBtn">🔍 Identify</button>
+      <button type="button" class="resetbtn" id="resetBtn">↺ Reset</button>
+    </div>
+    <p class="status" id="status"></p>
 
-      <div class="btnrow">
-        <button type="button" class="identifybtn" id="identifyBtn">🔍 Identify</button>
-        <button type="button" class="resetbtn" id="resetBtn">↺ Reset</button>
-      </div>
-      <p class="status" id="status"></p>
-
-      <div class="steps">
-        <div class="step s1"><b>1 · Snap it</b><span>Packet or med, close and in focus</span></div>
-        <div class="step s2"><b>2 · Note it</b><span>Letters, numbers, dose — anything printed</span></div>
-        <div class="step s3"><b>3 · Identify</b><span>Tap Identify — the result pops up here</span></div>
-      </div>
-
-      <div class="warnbox">
+    <div class="warnbox">
         <p>⚠️ <b>Warning: NEVER INCLUDE PATIENT INFO when uploading photos — no names, or any portion of the label that may be associated with a patient.</b></p>
         <p>🛡️ <b>Remember:</b> Med ID only supports your own check as a nurse; it does not replace the MAR or other approved systems for identification.</p>
-      </div>
     </div>
   </div>
 
   <div class="modal" id="resultModal" role="dialog" aria-modal="true">
     <div class="sheet">
       <button class="xbtn" id="resultX" type="button" aria-label="Close">✕</button>
-      <h2 id="rTitle">Result</h2>
-      <p class="brandline" id="rBrand"></p>
-      <p class="kv" id="rMfr"></p>
-      <p class="kv" id="rAppear"></p>
-      <p class="kv" id="rBasis"></p>
-      <p class="kv" id="rLink"></p>
-      <p class="kv" id="rNote"></p>
+      <div class="medcard">
+        <h2 id="rTitle">Result</h2>
+        <p class="brandline" id="rBrand"></p>
+        <p class="kv" id="rMfr"></p>
+        <p class="kv" id="rAppear"></p>
+        <p class="kv" id="rBasis"></p>
+        <p class="kv" id="rLink"></p>
+        <p class="kv" id="rNote"></p>
+      </div>
       <button class="listenbtn" id="listenBtn" type="button">🔊 Listen</button>
     </div>
   </div>
@@ -243,6 +274,7 @@
       modePacket.classList.toggle('on', m === 'packet');
       modePill.classList.toggle('on', m === 'pill');
       document.getElementById('scanBox').classList.toggle('show', m === 'packet');
+      document.getElementById('ndcBox').classList.toggle('show', m === 'packet');
       if (m !== 'packet' && typeof stopScan === 'function') stopScan();
     }
     modePacket.addEventListener('click', function(){ setMode('packet'); });

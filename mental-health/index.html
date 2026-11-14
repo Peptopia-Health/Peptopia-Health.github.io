@@ -364,6 +364,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 .card .ico{display:flex;align-items:center;justify-content:center}
 .grid.oc3>.card:last-child{grid-column:auto}
 @media (min-width:1025px){.grid.oc3>.card:last-child{grid-column:2/3}}
+@media (min-width:1025px){.grid.oc5{grid-template-columns:repeat(6,1fr)}.grid.oc5>.card{grid-column:span 2}.grid.oc5>.card:nth-child(4){grid-column:2/4}.grid.oc5>.card:nth-child(5){grid-column:4/6}}
 @media (min-width:641px) and (max-width:1024px){.grid.oc2>.card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:100%}}
 
 </style>
@@ -386,7 +387,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
         
     </section>
     <h2 class="sec-band sb1">Medication &amp; Withdrawal</h2>
-    <main class="grid oc3 oc2">
+    <main class="grid oc5 oc2">
         <a href="https://x-peps.com/mental-health/medication-administration.html" class="card c-purple">
             <div class="ico"><i class="fa-solid fa-pills"></i></div>
             <h2>Medication Administration</h2>
@@ -410,6 +411,12 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
             <h2>Detox Assessments</h2>
             <p class="card-desc2">Corrections • COWS • CIWA</p>
             <span class="btn b-purple"><i class="fa-solid fa-arrow-right"></i> Open Hub</span>
+        </a>
+        <a href="https://x-peps.com/admin-portal/pill-identifier.html" class="card c-purple">
+            <div class="ico"><i class="fa-solid fa-camera"></i></div>
+            <h2>Med ID</h2>
+            <p class="card-desc2">Photo • Packet • Positive ID</p>
+            <span class="btn b-purple"><i class="fa-solid fa-arrow-right"></i> Open Med ID</span>
         </a>
     </main>
     <h2 class="sec-band sb2">Assessment &amp; Care</h2>

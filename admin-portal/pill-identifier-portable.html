@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pill Identifier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#F4F6FA; --card:#FFFFFF; --card-sub:#F8FAFC; --border:rgba(15,23,42,.12);
@@ -15,40 +17,42 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--t1);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:22px 14px 36px}
-  .wrap{max-width:640px;width:100%}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;
-    box-shadow:0 2px 10px rgba(15,23,42,.08);padding:22px 20px}
-  h1{font-size:1.45rem;line-height:1.15;margin:0 0 6px;color:#C75000}
+    font-family:'DM Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:16px 16px 28px}
+  .wrap{max-width:680px;width:100%}
+  .apphead{padding:2px 4px 0;margin:0 0 14px}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:20px;
+    box-shadow:0 2px 10px rgba(15,23,42,.08);padding:16px;margin:0 0 14px}
+  h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.45rem;line-height:1.15;margin:0 0 6px;color:#C75000}
   @media (prefers-color-scheme: dark){ h1{color:#FF9A3D} }
-  .sub{color:var(--t2);font-size:.93rem;margin:0 0 18px}
-  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 16px}
-  .modebtn{font-weight:700;font-size:1rem;padding:14px 8px;border-radius:12px;cursor:pointer;
-    border:2px solid var(--border);background:var(--card-sub);color:var(--t2);
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10)}
-  .modebtn:active{transform:translateY(2px)}
-  .modebtn.on{border-color:var(--accent-dark);color:#fff;
-    background:linear-gradient(145deg,#9D8BFF,var(--accent) 55%,var(--accent-dark));
+  .sub{color:var(--t2);font-size:.93rem;margin:6px 0 0}
+  .seg{display:flex;gap:4px;max-width:420px;margin:0 auto 14px;background:#E8E3F7;border:1px solid var(--border);border-radius:20px;padding:4px}
+  @media (prefers-color-scheme: dark){ .seg{background:#1E293B} }
+  .segbtn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:9px 6px;border:none;border-radius:16px;cursor:pointer;
+    background:transparent;color:var(--t2);font-family:'Outfit',sans-serif;font-weight:700;font-size:.98rem;
+    transition:transform .07s ease,box-shadow .07s ease}
+  .segbtn small{font-family:'DM Sans',sans-serif;font-weight:500;font-size:.7rem;opacity:.85;text-align:center}
+  .segbtn:active{transform:translateY(1px)}
+  .segbtn.on{color:#fff;background:linear-gradient(145deg,#9D8BFF,var(--accent) 55%,var(--accent-dark));
     box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
-  .modebtn small{display:block;font-weight:500;font-size:.75rem;margin-top:3px;opacity:.85}
-  .photobtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:19px 12px;border-radius:12px;cursor:pointer;
+  .photobtn{display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;max-width:288px;margin:0 auto;padding:13px 24px;border-radius:999px;cursor:pointer;
     font-weight:700;font-size:1.05rem;color:#fff;text-align:center;border:2px solid var(--accent-dark);
     background:linear-gradient(145deg,#9D8BFF,var(--accent) 55%,var(--accent-dark));
     box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
   .photobtn:active{transform:translateY(2px)}
   #preview{display:none;width:100%;max-height:360px;object-fit:contain;border-radius:12px;border:1px solid var(--border);margin:12px 0 0;background:var(--card-sub)}
-  label.flabel{display:block;font-weight:700;font-size:.88rem;margin:16px 0 5px}
+  label.flabel{display:block;font-family:'Outfit',sans-serif;font-weight:700;font-size:.88rem;margin:16px 0 5px}
+  .sec .flabel:first-child{margin-top:0}
   input[type=text],select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--border);
     background:var(--card-sub);color:var(--t1);font-size:.95rem;font-family:inherit}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .bigbtn{display:block;width:100%;margin:18px 0 0;padding:16px 12px;border-radius:12px;cursor:pointer;
+  .bigbtn{display:block;width:fit-content;max-width:296px;margin:4px auto 0;padding:14px 28px;border-radius:999px;cursor:pointer;
     border:2px solid var(--accent-dark);font-weight:800;font-size:1.05rem;color:#fff;
     background:linear-gradient(145deg,#9D8BFF,var(--accent) 55%,var(--accent-dark));
     box-shadow:inset 0 2px 3px rgba(255,255,255,.45),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 9px rgba(76,29,149,.35)}
   .bigbtn:active{transform:translateY(2px)}
-  .linkrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 0}
-  .lookbtn{display:block;padding:13px 8px;border-radius:12px;text-align:center;text-decoration:none;cursor:pointer;
+  .linkrow{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:12px 0 0}
+  .lookbtn{display:block;padding:11px 18px;border-radius:999px;text-align:center;text-decoration:none;cursor:pointer;
     font-weight:700;font-size:.92rem;color:var(--t1);background:var(--card-sub);border:2px solid var(--border);
     box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10)}
   .lookbtn:active{transform:translateY(2px)}
@@ -71,41 +75,57 @@
   .blurnote{display:none;margin:8px 0 0;padding:8px 12px;border-radius:10px;background:#FFF7CC;border:2px solid #E3B505;color:#5C4300;font-size:.88rem}
   @media (prefers-color-scheme: dark){ .blurnote{background:#3A2E05;color:#FFE98A;border-color:#A97F06} }
   .blurnote.show{display:block}
-  .searchbtn{display:block;width:100%;margin:10px 0 0;padding:13px 12px;border-radius:12px;cursor:pointer;
+  .searchbtn{display:block;width:fit-content;max-width:296px;margin:12px auto 0;padding:12px 24px;border-radius:999px;cursor:pointer;
     border:2px solid var(--accent);font-weight:700;font-size:.98rem;color:var(--t1);background:var(--card-sub);
     box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10)}
   .searchbtn:active{transform:translateY(2px)}
   .modal{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;padding:14px;z-index:50}
   .modal.open{display:flex}
-  .sheet{background:var(--card);color:var(--t1);border-radius:16px;border:1px solid var(--border);max-width:560px;width:100%;
+  .sheet{background:var(--card);color:var(--t1);border-radius:20px;border:1px solid var(--border);max-width:560px;width:100%;
     max-height:92vh;overflow:auto;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
-  .sheet h2{font-size:1.25rem;margin:0 40px 4px 0;color:#C75000}
+  .sheet h2{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.25rem;margin:0 40px 4px 0;color:#C75000}
   @media (prefers-color-scheme: dark){ .sheet h2{color:#FF9A3D} }
   .sheet .brandline{font-size:1rem;margin:0 0 8px}
   .sheet .kv{font-size:.92rem;color:var(--t2);margin:0 0 6px}
   .sheet .kv b{color:var(--t1)}
   .xbtn{position:sticky;top:0;float:right;width:36px;height:36px;border-radius:50%;border:2px solid var(--accent);cursor:pointer;
     background:var(--card-sub);color:var(--t1);font-size:1rem}
-  .dbitem{border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin:0 0 10px;background:var(--card-sub)}
-  .dbitem h3{margin:0 0 4px;font-size:1.05rem}
+    .dbitem{position:relative;border:1px solid rgba(199,94,24,.38);border-radius:16px;padding:14px 14px 12px;margin:0 0 10px;overflow:hidden;
+    background:linear-gradient(150deg,rgba(255,230,205,.88),rgba(255,205,170,.66) 55%,rgba(255,186,143,.60));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -10px 18px rgba(230,126,34,.12),0 6px 18px rgba(199,80,0,.14)}
+  .dbitem::before{content:'';position:absolute;top:0;left:0;right:0;height:46%;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,0))}
+  .dbitem>*{position:relative}
+  .dbitem h3{margin:0 0 4px;font-size:1.05rem;font-family:'Outfit',sans-serif;font-weight:800;color:#9A3B00}
+  .dbitem .kv{color:#3F4C5C}
+  .dbitem .kv b{color:#0F172A}
+  @media (prefers-color-scheme: dark){
+    .dbitem{background:linear-gradient(150deg,rgba(150,66,16,.58),rgba(122,52,14,.52) 55%,rgba(96,41,10,.58));border-color:rgba(255,171,112,.38);
+      box-shadow:inset 0 1px 0 rgba(255,214,178,.35),inset 0 -10px 18px rgba(0,0,0,.25),0 6px 18px rgba(0,0,0,.35)}
+    .dbitem h3{color:#FFC79A}
+    .dbitem .kv{color:#E9D9C6}
+    .dbitem .kv b{color:#FFF6EC}
+  }
   .dbwarn{font-weight:700;color:#B3261E}
   @media (prefers-color-scheme: dark){ .dbwarn{color:#FF8A80} }
-  .listenbtn{margin:2px 0 2px;padding:9px 14px;border-radius:10px;cursor:pointer;border:2px solid var(--accent);
+  .listenbtn{margin:2px 0 2px;padding:9px 18px;border-radius:999px;cursor:pointer;border:2px solid var(--accent);
     font-weight:700;background:var(--card);color:var(--t1)}
   .listenbtn:active{transform:translateY(2px)}
 </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="card">
+    <header class="apphead">
       <h1>💊 Pill Identifier</h1>
       <p class="sub">Photograph a medication holding packet or the pill itself, then share the photo for identification or look the imprint up on the spot.</p>
+    </header>
 
-      <div class="modegrid" role="group" aria-label="What are you photographing?">
-        <button type="button" class="modebtn on" id="modePacket">📦 Holding packet<small>The printed label — drug, strength, NDC</small></button>
-        <button type="button" class="modebtn" id="modePill">💊 The pill itself<small>Imprint, color and shape</small></button>
-      </div>
+    <div class="seg" role="group" aria-label="What are you photographing?">
+      <button type="button" class="segbtn on" id="modePacket">📦 Holding packet<small>The printed label — drug, strength, NDC</small></button>
+      <button type="button" class="segbtn" id="modePill">💊 The pill itself<small>Imprint, color and shape</small></button>
+    </div>
 
+    <section class="sec">
       <label class="photobtn" for="photoInput">📷 Take or choose a photo</label>
       <input id="photoInput" type="file" accept="image/*" hidden>
       <div class="framewrap" id="frameWrap">
@@ -114,7 +134,9 @@
       </div>
       <p class="frametips" id="frameTips">Fill the frame · Plain background · Tap to focus on the imprint or label</p>
       <p class="blurnote" id="blurNote">⚠️ This photo looks blurry — a sharper retake identifies faster.</p>
+    </section>
 
+    <section class="sec">
       <label class="flabel" for="imprint">Imprint — what is stamped on the pill (optional)</label>
       <input id="imprint" type="text" placeholder="e.g. M on one side, S3 on the other" autocomplete="off">
 
@@ -135,22 +157,24 @@
           </select>
         </div>
       </div>
+    </section>
 
-      <button type="button" class="bigbtn" id="shareBtn">📤 Share photo for identification</button>
+    <button type="button" class="bigbtn" id="shareBtn">📤 Share photo for identification</button>
 
       <div class="linkrow">
         <a class="lookbtn" id="webSearch" href="#" target="_blank" rel="noopener">🔍 Web-search the imprint</a>
         <a class="lookbtn" href="https://www.drugs.com/pill_identification.html" target="_blank" rel="noopener">📖 Pill identifier database</a>
       </div>
 
+    <section class="sec">
       <label class="flabel" for="dbSearch">Offline quick search — med name, brand, or imprint</label>
       <input id="dbSearch" type="text" placeholder="e.g. seroquel, olanzapine, L32" autocomplete="off">
       <button type="button" class="searchbtn" id="dbBtn">📚 Search the offline list</button>
+    </section>
 
-      <p class="status" id="status"></p>
+    <p class="status" id="status"></p>
 
-      <p class="safety"><b>Packet photos:</b> frame the drug packet only — leave any patient label out of the shot. <b>Always:</b> an identification supports your own check; it never replaces the MAR and the scan.</p>
-    </div>
+    <p class="safety"><b>Packet photos:</b> frame the drug packet only — leave any patient label out of the shot. <b>Always:</b> an identification supports your own check; it never replaces the MAR and the scan.</p>
     <p class="foot">One self-contained file — works offline, nothing is uploaded anywhere by this page.</p>
 
   <div class="modal" id="dbModal" role="dialog" aria-modal="true">

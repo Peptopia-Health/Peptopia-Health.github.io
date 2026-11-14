@@ -57,6 +57,42 @@
     font-size:.88rem;color:var(--t2)}
   .safety b{color:var(--t1)}
   .foot{margin:14px 2px 0;color:var(--t2);font-size:.8rem;text-align:center}
+
+  .framewrap{position:relative;display:none;margin:12px 0 0}
+  .framewrap.show{display:block}
+  .framewrap #preview{display:block;margin:0}
+  .fc{position:absolute;width:26px;height:26px;border:3px solid #C75000;pointer-events:none;z-index:2}
+  .fc.tl{top:6px;left:6px;border-right:none;border-bottom:none;border-radius:10px 0 0 0}
+  .fc.tr{top:6px;right:6px;border-left:none;border-bottom:none;border-radius:0 10px 0 0}
+  .fc.bl{bottom:6px;left:6px;border-right:none;border-top:none;border-radius:0 0 0 10px}
+  .fc.br{bottom:6px;right:6px;border-left:none;border-top:none;border-radius:0 0 10px 0}
+  .frametips{display:none;margin:6px 2px 0;font-size:.82rem;color:var(--t2);text-align:center}
+  .frametips.show{display:block}
+  .blurnote{display:none;margin:8px 0 0;padding:8px 12px;border-radius:10px;background:#FFF7CC;border:2px solid #E3B505;color:#5C4300;font-size:.88rem}
+  @media (prefers-color-scheme: dark){ .blurnote{background:#3A2E05;color:#FFE98A;border-color:#A97F06} }
+  .blurnote.show{display:block}
+  .searchbtn{display:block;width:100%;margin:10px 0 0;padding:13px 12px;border-radius:12px;cursor:pointer;
+    border:2px solid var(--accent);font-weight:700;font-size:.98rem;color:var(--t1);background:var(--card-sub);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10)}
+  .searchbtn:active{transform:translateY(2px)}
+  .modal{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;padding:14px;z-index:50}
+  .modal.open{display:flex}
+  .sheet{background:var(--card);color:var(--t1);border-radius:16px;border:1px solid var(--border);max-width:560px;width:100%;
+    max-height:92vh;overflow:auto;padding:18px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+  .sheet h2{font-size:1.25rem;margin:0 40px 4px 0;color:#C75000}
+  @media (prefers-color-scheme: dark){ .sheet h2{color:#FF9A3D} }
+  .sheet .brandline{font-size:1rem;margin:0 0 8px}
+  .sheet .kv{font-size:.92rem;color:var(--t2);margin:0 0 6px}
+  .sheet .kv b{color:var(--t1)}
+  .xbtn{position:sticky;top:0;float:right;width:36px;height:36px;border-radius:50%;border:2px solid var(--accent);cursor:pointer;
+    background:var(--card-sub);color:var(--t1);font-size:1rem}
+  .dbitem{border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin:0 0 10px;background:var(--card-sub)}
+  .dbitem h3{margin:0 0 4px;font-size:1.05rem}
+  .dbwarn{font-weight:700;color:#B3261E}
+  @media (prefers-color-scheme: dark){ .dbwarn{color:#FF8A80} }
+  .listenbtn{margin:2px 0 2px;padding:9px 14px;border-radius:10px;cursor:pointer;border:2px solid var(--accent);
+    font-weight:700;background:var(--card);color:var(--t1)}
+  .listenbtn:active{transform:translateY(2px)}
 </style>
 </head>
 <body>
@@ -72,7 +108,12 @@
 
       <label class="photobtn" for="photoInput">📷 Take or choose a photo</label>
       <input id="photoInput" type="file" accept="image/*" hidden>
-      <img id="preview" alt="Your photo preview">
+      <div class="framewrap" id="frameWrap">
+        <img id="preview" alt="Your photo preview">
+        <span class="fc tl"></span><span class="fc tr"></span><span class="fc bl"></span><span class="fc br"></span>
+      </div>
+      <p class="frametips" id="frameTips">Fill the frame · Plain background · Tap to focus on the imprint or label</p>
+      <p class="blurnote" id="blurNote">⚠️ This photo looks blurry — a sharper retake identifies faster.</p>
 
       <label class="flabel" for="imprint">Imprint — what is stamped on the pill (optional)</label>
       <input id="imprint" type="text" placeholder="e.g. M on one side, S3 on the other" autocomplete="off">
@@ -102,11 +143,24 @@
         <a class="lookbtn" href="https://www.drugs.com/pill_identification.html" target="_blank" rel="noopener">📖 Pill identifier database</a>
       </div>
 
+      <label class="flabel" for="dbSearch">Offline quick search — med name, brand, or imprint</label>
+      <input id="dbSearch" type="text" placeholder="e.g. seroquel, olanzapine, L32" autocomplete="off">
+      <button type="button" class="searchbtn" id="dbBtn">📚 Search the offline list</button>
+
       <p class="status" id="status"></p>
 
       <p class="safety"><b>Packet photos:</b> frame the drug packet only — leave any patient label out of the shot. <b>Always:</b> an identification supports your own check; it never replaces the MAR and the scan.</p>
     </div>
     <p class="foot">One self-contained file — works offline, nothing is uploaded anywhere by this page.</p>
+
+  <div class="modal" id="dbModal" role="dialog" aria-modal="true">
+    <div class="sheet">
+      <button class="xbtn" id="dbX" type="button" aria-label="Close">✕</button>
+      <h2>📚 Offline quick match</h2>
+      <div id="dbResults"></div>
+      <p class="kv dbwarn">Offline quick match — verify against the label or MAR.</p>
+    </div>
+  </div>
   </div>
 
   <script>
@@ -125,18 +179,49 @@
     var photoInput = document.getElementById('photoInput');
     var preview = document.getElementById('preview');
     var statusEl = document.getElementById('status');
+    var frameWrap = document.getElementById('frameWrap');
+    var frameTips = document.getElementById('frameTips');
+    var blurNote = document.getElementById('blurNote');
     photoInput.addEventListener('change', function(){
       var f = (this.files || [])[0];
       pillFile = f || null;
       if (f) {
         preview.src = URL.createObjectURL(f);
         preview.style.display = 'block';
+        frameWrap.classList.add('show');
+        frameTips.classList.add('show');
+        blurNote.classList.remove('show');
         statusEl.textContent = 'Photo ready — share it, or look the imprint up below.';
       } else {
         preview.style.display = 'none';
+        frameWrap.classList.remove('show');
+        frameTips.classList.remove('show');
+        blurNote.classList.remove('show');
         statusEl.textContent = '';
       }
     });
+    preview.addEventListener('load', function(){ if (pillFile) checkSharpness(preview); });
+
+    function checkSharpness(img){
+      try {
+        if (!img.naturalWidth) return;
+        var w = 240, h = Math.max(2, Math.round(w * img.naturalHeight / img.naturalWidth));
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        var ctx = c.getContext('2d'); ctx.drawImage(img, 0, 0, w, h);
+        var d = ctx.getImageData(0, 0, w, h).data;
+        var gray = new Float32Array(w * h);
+        for (var i = 0; i < w * h; i++) gray[i] = 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2];
+        var sum = 0, sumSq = 0, n = 0;
+        for (var y = 1; y < h - 1; y++) for (var x = 1; x < w - 1; x++) {
+          var idx = y * w + x;
+          var lap = 4 * gray[idx] - gray[idx - 1] - gray[idx + 1] - gray[idx - w] - gray[idx + w];
+          sum += lap; sumSq += lap * lap; n++;
+        }
+        if (!n) return;
+        var mean = sum / n, variance = sumSq / n - mean * mean;
+        blurNote.classList.toggle('show', variance < 250);
+      } catch(e){}
+    }
 
     function summaryText(){
       var parts = [];
@@ -182,6 +267,51 @@
       }
       statusEl.textContent = 'Sharing is not available here — save the photo from your preview and send it with the details you typed.';
     });
+
+    /* ===== Offline mini-database (FDA label data, built in) ===== */
+    var MINI_DB = [{"g":"Olanzapine","b":"Zyprexa","s":"Olanzapine orally disintegrating tablets, USP 5 mg are yellow or almost-yellow round tablets, debossed with “L32” on one side and blank on the other side. Olanzapine oral","a":"Olanzapine orally disintegrating tablets, USP are yellow or almost-yellow round tablets supplied as follows: 5 mg tablets: (debossed with “L32” on one side and blank on the other side)"},{"g":"Risperidone","b":"Risperdal","s":"Risperidone tablets, USP are available in the following strengths and colors: 1 mg (white) and are circular shaped. Risperidone tablets, USP are engraved with “RI3” on on","a":"Risperidone Tablets, USP 1 mg are white to off white, circular, biconvex, film-coated tablets, engraved with 'RI3' on one side and plain on other and are supplied as follows"},{"g":"Paliperidone","b":"Invega","s":"Paliperidone extended-release tablets are available in the following strengths and colors: 1.5 mg: brown, round, biconvex tablets, debossed “AN” over “80” on one side and","a":"Paliperidone extended-release tablets, 1.5 mg , are supplied as brown, round, biconvex tablets, debossed “AN” over “80” on one side and plain on the other side."},{"g":"Quetiapine","b":"Seroquel","s":"Quetiapine Tablets, USP 25 mg are Peach coloured, film coated, round shape, biconvex tablets, debossed with \"262\" on one side and plain on other side Quetiapine Tablets,","a":"Quetiapine tablets, USP 100 mg Yellow coloured, film coated, round shape, biconvex tablets, debossed with \"261\" on one side and plain on other side."},{"g":"Aripiprazole","b":"Abilify","s":"Aripiprazole Tablets, USP are available as described in Table 3. Table 3: Aripiprazole Tablet, USP Presentations Tablet Strength Tablet Color/Shape Tablet Markings 2 mg O"},{"g":"Ziprasidone","b":"Geodon","s":"Ziprasidone capsules, USP 20 mg (ziprasidone), are light pink to brown granular powder filled in size “4” hard gelatin capsules having Lavender opaque cap and Flesh opaqu","a":"The capsule shells are imprinted with black ink."},{"g":"Lurasidone","b":"Latuda","s":"Lurasidone hydrochloride tablets are available in the following shape and color (Table 1) with respective one-sided debossing. Table 1: Lurasidone Hydrochloride Tablets P","a":"Lurasidone Hydrochloride Tablets 20 mg: White to off white, round, biconvex tablets, debossed with \"L\" on one side and \"1\" on the other side."},{"g":"Clozapine","b":"Clozaril","s":"Clozapine Orally Disintegrating Tablets are available containing 25 mg, 100 mg, 150 mg or 200 mg of clozapine, USP. The 25 mg tablets are peach, round, unscored tablets d","a":"The 100 mg tablets are peach, round, unscored tablets debossed with C over 100 on one side of the tablet and blank on the other side."},{"g":"Haloperidol","b":"Haldol","a":"The 0.5 mg tablets are white to off-white color, round, functionally scored tablets with notch, debossed with \"LS\" and \"1\" separated by score line on one side and score line on the other side."},{"g":"Fluphenazine","b":"Prolixin"},{"g":"Chlorpromazine","b":"Thorazine"},{"g":"Lorazepam","b":"Ativan","a":"Lorazepam Tablets, USP are available in the following dosage strengths: 1 mg, white to off-white, round, flat-faced beveled edge tablets debossed with ‘U33’ on one side and bisect on the other side.","s":"Each lorazepam tablet, USP to be taken orally, contains 0.5 mg, 1 mg, or 2 mg of lorazepam, USP."},{"g":"Diazepam","b":"Valium"},{"g":"Chlordiazepoxide","b":"Librium"},{"g":"Clonazepam","b":"Klonopin","a":"Clonazepam tablets USP 0.5 mg are orange, round, flat faced, beveled edge, scored, debossed with “1” and “2” on one side and plain on other.","s":"Clonazepam tablets USP, a benzodiazepine, is available as scored tablets debossed with “1” and “2” containing 0.5 mg of clonazepam and unscored tablets debossed with “C 1"},{"g":"Hydroxyzine","b":"Vistaril / Atarax","s":"Each capsule, for oral administration, contains hydroxyzine pamoate equivalent to hydroxyzine hydrochloride 25 mg or 50 mg.","a":"Hydroxyzine Pamoate Capsules, USP, for oral administration, are available as 25 mg (equivalent to 25 mg hydroxyzine hydrochloride) are light green/dark green capsules imprinted “E 613” and supplied as"},{"g":"Trazodone","b":"Desyrel","s":"Scored tablets of 50 mg, 100 mg, 150 mg and 300 mg ( 3 ). Trazodone hydrochloride tablets, USP are available in the following strengths: Trazodone hydrochloride tablets U"},{"g":"Mirtazapine","b":"Remeron","s":"Mirtazapine tablets USP are supplied as: • 7.5 mg tablets: White, biconvex, capsule shaped film coated tablets with “11” debossed on one side and “A” debossed on the othe","a":"Mirtazapine tablets, USP are supplied as: 15 mg Tablets – Yellow, biconvex, capsule shaped film coated tablets with a score line in between “0” and “8” on one side and “A” debossed on the other side."},{"g":"Lithium","b":"Lithobid","s":"Each 150 mg capsule for oral administration contains: lithium carbonate, USP 150 mg and is a white/white size '4' hard gelatin capsules, imprinted with '97' on body and '"},{"g":"Benztropine","b":"Cogentin","s":"Each benztropine mesylate tablet, USP for oral administration contains benztropine mesylate 0.5 mg, 1 mg or 2 mg.","a":"As 1 mg: White color, oval, bisected, compressed tablets, debossed \"EP\" on the left side and \"137\" on the right side of the bisect, on one side and plain on the other side, in"},{"g":"Trihexyphenidyl","b":"Artane"},{"g":"Diphenhydramine","b":"Benadryl"},{"g":"Amantadine","b":"Symmetrel","a":"Amantadine hydrochloride capsules, USP 100 mg are soft gelatin capsule, opaque yellow oblong shape, which is imprinted with “P19” in Black ink."},{"g":"Clonidine","b":"Catapres","a":"Clonidine hydrochloride tablets, USP are supplied as follows: 0.1 mg — Each orange, round tablet imprinted with R and 127 on one side and bisect on the other side contains 0.1 mg of clonidine hydrochloride, USP"},{"g":"Propranolol","b":"Inderal","a":"Propranolol Hydrochloride Tablets, USP 10 mg – Orange, round, convex, debossed tablets on one side with PLIVA 467 and scored on the other side.","s":"Propranolol Hydrochloride Tablets, USP are available as tablets for oral administration containing either 10 mg, 20 mg, 40 mg, 60 mg, or 80 mg of propranolol hydrochlorid"},{"g":"Buprenorphine","b":"Subutex / Suboxone","s":"Buprenorphine sublingual tablet is supplied as an uncoated round, biconvex, white to off-white tablets in two dosage strengths: buprenorphine 2 mg, and buprenorphine 8 mg","a":"Buprenorphine sublingual tablet is uncoated, round, biconvex, white to off-white tablet."},{"g":"Methadone","b":"Dolophine"},{"g":"Naloxone","b":"Narcan"},{"g":"Ondansetron","b":"Zofran","s":"Ondansetron tablets USP, 4 mg (ondansetron hydrochloride USP, equivalent to 4 mg of ondansetron) are white, round, biconvex, film coated tablets debossed “R” on one side","a":"Ondansetron tablets USP, 16 mg (ondansetron hydrochloride USP, equivalent to 16 mg of ondansetron) are white, round, biconvex, film coated tablets debossed “R” on one side and “155” on other side."},{"g":"Loperamide","b":"Imodium"},{"g":"Insulin Lispro","b":"Humalog","s":"Injection: 100 units/mL (U-100) is a clear and colorless solution available as: 10 mL multiple-dose vials 3 mL multiple-dose vials 3 mL single-patient-use SoloStar prefil"},{"g":"Insulin Glargine","b":"Lantus","s":"Injection: 100 units/mL (U-100) clear and colorless solution available as: 3 mL single-patient-use BASAGLAR KwikPen 3 mL single-patient-use BASAGLAR Tempo Pen Injection:"},{"g":"Dextrose 50%","b":"D50"},{"g":"Glucagon","b":"GlucaGen","s":"Glucagon for Injection, USP is a white to off white lyophilized powder or plug supplied as follows: • Single-dose vial containing 1 mg Glucagon for Injection, USP with a"},{"g":"Cyproheptadine","b":"Periactin","a":"Each tablet contains 4 mg of cyproheptadine hydrochloride, are white to off-white, round, flat faced, beveled edge tablets debossed with “CE 73” on one side and a score on other side."},{"g":"Dantrolene","b":"Dantrium","a":"Dantrolene sodium is available in: 25-mg opaque, orange and tan capsules imprinted with DANTRIUM 25 mg on the cap and 0149 0030 with a single bar on the body."},{"g":"Bromocriptine","b":"Parlodel","a":"The 2.5 mg tablets are white to off-white, round, bevel edged snap tablets, debossed with \"PAD\" over \"0106\" on one side and scored on the other side."},{"g":"Thiamine","b":"Vitamin B1"},{"g":"Sertraline","b":"Zoloft","s":"Sertraline tablets, USP are supplied for oral administration as scored tablets containing sertraline hydrochloride equivalent to 25 mg, 50 mg and 100 mg of sertraline and","a":"Sertraline 25 mg Tablets: Light Green film coated Modified oval biconvex tablets debossed with I on the left Side of bisect and G on the right Side of bisect on one Side and \"212\" on other"},{"g":"Fluoxetine","b":"Prozac","s":"• Fluoxetine capsules, USP 10 mg** are white to off white powder filled in size “4” hard gelatin capsules with opaque light blue colored cap and opaque light orange color"},{"g":"Escitalopram","b":"Lexapro","s":"Oral Solution Escitalopram Oral Solution, USP contains escitalopram oxalate equivalent to 1 mg/mL escitalopram base. Oral solution: 1 mg per mL ( 3 )"},{"g":"Venlafaxine","b":"Effexor","s":"Each venlafaxine tablet, USP intended for oral administration contains venlafaxine hydrochloride equivalent to 25 mg or 37.5 mg or 50 mg or 75 mg or 100 mg of venlafaxine","a":"Venlafaxine Tablets, USP equivalent to 37.5 mg of venlafaxine are peach-colored, round, flat, beveled-edged tablets with bisect on one side; one side of bisect is debossed with logo of \"ZC\" and other side is de"},{"g":"Duloxetine","b":"Cymbalta","s":"Duloxetine delayed-release capsules, USP are available as: 20 mg opaque ochre capsules imprinted with \"B\" on the cap and \"746\" on the body 30 mg opaque green (cap) /opaqu","a":"Duloxetine delayed-release capsules, USP are available in the following strengths, colors, imprints, and presentations: Features Strengths 20 mg equivalent to duloxetine base 30 mg 40 mg 60 mg Body"},{"g":"Bupropion","b":"Wellbutrin","s":"Bupropion hydrochloride extended-release tablets (XL), 150 mg of bupropion hydrochloride, are white to off-white round tablets printed with “YM02” on one side and blank o"},{"g":"Buspirone","b":"Buspar","s":"Each tablet, for oral administration, contains 5 mg, 7.5 mg, 10 mg, 15 mg or 30 mg of buspirone hydrochloride, USP (equivalent to 4.6 mg, 6.9 mg, 9.1 mg, 13.7 mg and 27.4","a":"Buspirone Hydrochloride Tablets USP, 5 mg are available as white to off-white, round, beveled-edge tablets, scored on one side and debossed \"Є\" above \"82\"on the other side, and packaged in"},{"g":"Gabapentin","b":"Neurontin","s":"Capsules: 100 mg: Hard gelatin capsules with white opaque body with white opaque cap, imprinted with “AHD” on cap and “100” on body in black ink and filled with white to","a":"Gabapentin Capsules USP 300 mg capsules: Hard gelatin capsules with yellow opaque body with caramel opaque cap, imprinted with “AHD” on cap and “300” on body in black ink and filled with white to off-white powd"},{"g":"Divalproex","b":"Depakote","s":"Divalproex Sodium Extended-Release Tablets, USP are available containing divalproex sodium, USP equivalent to 250 mg or 500 mg of valproic acid. • The 250 mg tablets are","a":"The 250 mg tablets are white, film-coated, round, unscored tablets debossed with M over 177 on one side of the tablet and blank on the other side."},{"g":"Carbamazepine","b":"Tegretol"},{"g":"Lamotrigine","b":"Lamictal","s":"Orally disintegrating tablets: 25 mg, 50 mg, 100 mg, and 200 mg. ( 3.3 , 16 ) 3.3 Orally Disintegrating Tablets 25-mg, White colored, round shaped, flat-faced, bevel-edge","a":"Lamotrigine Orally Disintegrating Tablets 25-mg, white colored, round shaped, flat-faced, bevel-edged tablets debossed with “NT” on one side and “123” on the other side."},{"g":"Prazosin","b":"Minipress","a":"Prazosin Hydrochloride Capsules USP, 1 mg are yellow opaque cap and yellow opaque body, hard gelatin capsule shell imprinted “PRA” on cap and “1” on the body filled with white to off white granules."},{"g":"Naltrexone","b":"ReVia"},{"g":"Acamprosate","b":"Campral","s":"Acamprosate calcium delayed-release tablets, 333 mg are white to off-white, round, biconvex, enteric coated tablets, imprinted with “C” on one side with black ink and pla","a":"Acamprosate calcium delayed-release tablets, 333 mg are white to off white, round, biconvex enteric coated tablets, imprinted with “C” on one side with black ink and plain on other side, free from physical defe"}];
+    function speakMed(g, b, s){
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var txt = g + (b ? '. Brand name ' + b : '') + (s ? '. ' + s : '');
+      window.speechSynthesis.speak(new SpeechSynthesisUtterance(txt));
+    }
+    function closeDbModal(){
+      if ('speechSynthesis' in window) { try { window.speechSynthesis.cancel(); } catch(e){} }
+      document.getElementById('dbModal').classList.remove('open');
+    }
+    function dbSearchNow(){
+      var q = document.getElementById('dbSearch').value.trim().toLowerCase();
+      var box = document.getElementById('dbResults');
+      if (!q) { statusEl.textContent = 'Type a med name, brand, or imprint to search the offline list.'; return; }
+      var terms = q.split(/\s+/);
+      var hits = MINI_DB.filter(function(e){
+        var hay = (e.g + ' ' + e.b + ' ' + (e.s || '') + ' ' + (e.a || '')).toLowerCase();
+        return terms.every(function(t){ return hay.indexOf(t) !== -1; });
+      }).slice(0, 6);
+      if (!hits.length) {
+        box.innerHTML = '<p class="kv">No offline match for &ldquo;' + q.replace(/</g, '&lt;') + '&rdquo;. Try the generic or brand name.</p>';
+      } else {
+        box.innerHTML = hits.map(function(e, i){
+          return '<div class="dbitem"><h3>💊 ' + e.g + '</h3>' +
+            (e.b ? '<p class="brandline">Best known as <b>' + e.b + '</b></p>' : '') +
+            (e.s ? '<p class="kv"><b>Forms &amp; strengths (FDA label):</b> ' + e.s + '</p>' : '') +
+            (e.a ? '<p class="kv"><b>One labeled version:</b> ' + e.a + '</p>' : '') +
+            '<button type="button" class="listenbtn" data-listen="' + i + '">🔊 Listen</button></div>';
+        }).join('');
+        box.querySelectorAll('[data-listen]').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var e = hits[Number(btn.getAttribute('data-listen'))];
+            speakMed(e.g, e.b, e.s);
+          });
+        });
+      }
+      document.getElementById('dbModal').classList.add('open');
+    }
+    document.getElementById('dbBtn').addEventListener('click', dbSearchNow);
+    document.getElementById('dbSearch').addEventListener('keydown', function(e){ if (e.key === 'Enter') dbSearchNow(); });
+    document.getElementById('dbX').addEventListener('click', closeDbModal);
+    document.getElementById('dbModal').addEventListener('click', function(e){ if (e.target === this) closeDbModal(); });
   </script>
 </body>
 </html>

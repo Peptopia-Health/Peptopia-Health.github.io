@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+<title>DTE Botanicals — Kratom Strain Guide</title>
+<style>
+
+
+
+
+
+
+
+
+:root{
+  --paper:#faf7ef; --paper2:#f3eee1; --ink:#2e2a24; --muted:#6f675a;
+  --red:#b03a2e; --red-dk:#7e241a; --red-soft:#f7e8e4;
+  --green:#398555; --green-dk:#054A1F; --green-soft:#e6f2ea;
+  --white:#5c8a2f; --white-dk:#3c5f1d; --white-soft:#eef4e2;
+  --gold:#b8860b; --gold-dk:#7d5f06; --gold-soft:#faf3dd;
+  --blend:#6a4c93; --blend-dk:#4a3369; --blend-soft:#efe9f7;
+  --accent:#08672B; --line:#ddd3bd;
+  /* Effect palette (David, Nov 1 round 2): defined ONCE here; every effect use routes through these. */
+  --fx-energy:#FFFFFF; --fx-focus:#F06000; --fx-mood:#10C000; --fx-sleep:#0A0A0A;
+  --fx-calm:#F0F000; --fx-analgesia:#E01020; --fx-default:#0070D0;
+  --fx-energy-dk:#8A8A8A; --fx-focus-dk:#A63E00; --fx-mood-dk:#0A7300; --fx-sleep-dk:#5A5A5A;
+  --fx-calm-dk:#8F8F00; --fx-analgesia-dk:#9E0C18; --fx-default-dk:#004E96;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;line-height:1.65}
+h1,h2,h3,.serif{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;letter-spacing:-.01em}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+/* ---------- title page ---------- */
+.titlepage{min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
+  text-align:center;padding:26px 24px 12px;position:relative;overflow:hidden;
+  background:radial-gradient(1200px 600px at 50% -10%,#e9f3e4 0%,var(--paper) 60%);}
+
+
+.kicker{letter-spacing:4px;text-transform:uppercase;font-size:13px;color:var(--accent);margin-bottom:14px}
+.titlepage h1{font-size:clamp(38px,6vw,64px);margin:0 0 10px;color:#08672B;line-height:1.12}
+.titlepage .sub{font-size:clamp(17px,2.4vw,22px);color:var(--muted);max-width:640px;margin:0 0 26px}
+.titlepage .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:30px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:13px;background:#fff;color:var(--muted)}
+.titlepage .date{font-size:14px;color:var(--muted)}
+
+/* ---------- index ---------- */
+.index{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 30px;margin:34px 0;
+  box-shadow:0 4px 18px rgba(60,50,30,.06)}
+.index h2{margin-top:0;color:#08672B}
+.index ol{columns:2;column-gap:34px;margin:0;padding-left:22px}
+.index li{margin:7px 0;break-inside:avoid}
+.index a{color:var(--accent);text-decoration:none}
+.index a:hover{text-decoration:underline}
+@media(max-width:640px){.index ol{columns:1}}
+/* ---------- section headers ---------- */
+.colorband{border-radius:14px;padding:26px 28px;margin:44px 0 20px;color:#fff;position:relative;overflow:hidden}
+.colorband h2{margin:0 0 6px;font-size:30px}
+.colorband p{margin:0;opacity:.94;max-width:700px}
+.colorband .bigicon{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:64px;opacity:.12}
+.band-red{background:linear-gradient(120deg,var(--red-dk),var(--red))}
+.band-green{background:linear-gradient(120deg,var(--green-dk),var(--green))}
+.band-white{background:linear-gradient(120deg,var(--white-dk),var(--white))}
+.band-gold{background:linear-gradient(120deg,var(--gold-dk),#cf9a1b)}
+.band-blend{background:linear-gradient(120deg,var(--blend-dk),var(--blend))}
+.band-neutral{background:linear-gradient(120deg,#08672B,#1f6f5c)}
+.catintro{background:#fff;border:1px solid var(--line);border-left:6px solid var(--accent);
+  border-radius:10px;padding:18px 22px;margin:0 0 22px;font-size:16px}
+/* ---------- strain cards ---------- */
+.strain{background:#fff;border:1px solid var(--line);border-radius:12px;margin:0 0 22px;overflow:hidden;
+  box-shadow:0 3px 12px rgba(60,50,30,.05)}
+.strain-head{display:flex;align-items:center;gap:12px;padding:16px 20px;color:#fff;flex-wrap:wrap}
+.strain-head h3{margin:0;font-size:21px;flex:1;min-width:200px}
+.strain.red .strain-head{background:linear-gradient(100deg,var(--red-dk),var(--red))}
+.strain.green .strain-head{background:linear-gradient(100deg,var(--green-dk),var(--green))}
+.strain.white .strain-head{background:linear-gradient(100deg,var(--white-dk),var(--white))}
+.strain.gold .strain-head{background:linear-gradient(100deg,var(--gold-dk),#cf9a1b)}
+.strain.blend .strain-head{background:linear-gradient(100deg,var(--blend-dk),var(--blend))}
+.batch{font-size:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);
+  padding:3px 12px;border-radius:999px;white-space:nowrap}
+.strain-body{padding:18px 22px}
+.iconrow{display:flex;gap:16px;flex-wrap:wrap;margin:0 0 12px;font-size:14px}
+.iconrow span{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:5px 12px}
+.strain h4{margin:16px 0 6px;color:#08672B;font-size:16px}
+.strain p{margin:8px 0}
+.strain ul{margin:8px 0;padding-left:22px}
+.strain li{margin:4px 0}
+.score{display:inline-block;min-width:44px;text-align:center;font-weight:700;border-radius:8px;
+  padding:2px 8px;color:#fff;font-size:14px}
+.s5{background:#398555}.s4{background:#5c8a2f}.s3{background:#b8860b}.s2{background:#c96a1b}.s1{background:#b03a2e}
+.quote{border-left:4px solid var(--line);margin:10px 0;padding:8px 14px;background:var(--paper2);
+  border-radius:0 8px 8px 0;font-style:italic;color:#4a4438;font-size:14.5px}
+.quote cite{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:4px}
+/* ---------- pop-up boxes ---------- */
+.popbox{border-radius:12px;padding:16px 20px;margin:16px 0;border:1px solid}
+.popbox.tip{background:#eef7f0;border-color:#bfe0c9}
+.popbox.tip::before{content:"🌿 Field note — ";font-weight:700;color:var(--green-dk)}
+.popbox.deep{background:#f4efe4;border-color:#e0d3ae}
+.popbox.deep::before{content:"🔬 Sourcing deep-dive — ";font-weight:700;color:var(--gold-dk)}
+.popbox.star{background:#fdf6ec;border-color:#f0d9a8}
+.popbox.star::before{content:"⭐ Community standout — ";font-weight:700;color:#8a6d1a}
+/* ---------- tables ---------- */
+table.grid{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;background:#fff}
+table.grid th{background:#08672B;color:#fff;padding:10px 12px;text-align:left;font-size:13px}
+table.grid td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.grid tr:nth-child(even) td{background:#fbf9f3}
+.coa-note{font-size:13px;color:var(--muted)}
+/* ---------- comparison panels ---------- */
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}
+@media(max-width:680px){.panels{grid-template-columns:1fr}}
+.panel{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.panel .phead{text-align:center;padding:10px;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;font-size:22px;color:#fff}
+.panel .pbody{display:flex;gap:14px;padding:16px;align-items:center}
+.panel .pleft,.panel .pright{flex:1;font-size:13px;font-weight:700;line-height:1.4}
+.panel .pfoot{padding:0 16px 16px;font-size:13.5px;color:#4a4438}
+.panel a.golink{display:block;text-align:center;padding:9px;background:rgba(0,0,0,.06);
+  color:#08672B;font-weight:700;text-decoration:none;font-size:14px}
+.p-white .phead{background:#7cb342}.p-green .phead{background:#398555}
+.p-yellow .phead{background:#F0F000}.p-red .phead{background:#E01020}
+.legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:14px 0;font-size:13px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:5px;vertical-align:-2px}
+/* ---------- misc ---------- */
+.disclaimer{margin:50px 0 30px;padding:22px 26px;border:1px dashed #b9ac8d;border-radius:12px;
+  background:#fbf8ee;font-size:13.5px;color:var(--muted)}
+.biblio{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 28px;margin:30px 0}
+.biblio li{margin:6px 0;font-size:14px}
+.biblio a{color:var(--accent);word-break:break-all}
+footer.site{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 40px}
+.toc-top{position:fixed;bottom:18px;right:18px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),#a7d3b4 46%,#7fb069);border:2px solid #08672B;color:#08672B;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),0 4px 14px rgba(0,0,0,.35);z-index:50}
+@media print{.toc-top,.print-btn{display:none}.strain,.panel{break-inside:avoid}}
+.print-btn{position:fixed;top:18px;right:18px;background:#08672B;color:#fff;border:0;border-radius:999px;
+  padding:12px 20px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:50}
+.print-btn:hover{background:#398555}
+
+.mr1 td{background:#fcecea}.mr2 td{background:#f9dcd6}
+.mg1 td{background:#e9f5ec}.mg2 td{background:#dcebdd}
+.mw1 td{background:#f2f8e6}.mw2 td{background:#e7f0d4}
+.my1 td{background:#fff8e1}.my2 td{background:#fdecC4}
+.mb1 td{background:#f4effa}.mb2 td{background:#eae1f5}
+.iconrow span{display:inline-block;min-width:88px}
+.meter{height:5px;background:#e7dfc9;border-radius:3px;margin-top:5px;overflow:hidden}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,#8bc34a,#398555);border-radius:3px}
+.index ol ol{list-style-type:lower-alpha;margin-top:6px}
+.index ol ol li{margin:4px 0}
+.subtitle{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:600;font-size:clamp(20px,3vw,30px);color:#1f6f5c;letter-spacing:2px;text-transform:uppercase;margin:0 0 20px}
+.affil{display:inline-block;margin-top:18px;font-size:13.5px;color:var(--muted);border:1px dashed #c9bd9d;border-radius:999px;padding:7px 18px;background:#fff}
+.leafdiv{text-align:center;color:#b9ac8d;font-size:20px;letter-spacing:14px;margin:30px 0 10px}
+
+/* ===== Peptopia site chrome: logo / nav / print / theme toggle / footer ===== */
+.peptopia-hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1200px;margin:0 auto;padding:14px 24px;position:relative;z-index:50}
+
+.peptopia-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+
+.peptopia-logo{width:46px;height:46px;border-radius:50%;flex:none;box-shadow:0 0 10px 2px rgba(236,72,153,.55),0 0 26px 8px rgba(236,72,153,.18)}
+
+.peptopia-wordmark{display:flex;flex-direction:column;font:800 1.02rem/1.15 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.14em;color:#1e1b4b}
+
+html.dark .peptopia-wordmark{color:#f1f5f9}
+
+.peptopia-tagline{font-size:.6rem;font-weight:600;letter-spacing:.3em;color:#64748b}
+
+html.dark .peptopia-tagline{color:#94a3b8}
+
+.peptopia-nav{display:flex;align-items:center;gap:1.25rem}
+
+.peptopia-nav>a{font:700 .8rem/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.12em;color:#334155;text-decoration:none}
+
+html.dark .peptopia-nav>a{color:#cbd5e1}
+
+.peptopia-nav>a:hover{color:#be185d}
+
+.peptopia-iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,23,42,.12);background:#fff;color:#475569;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+
+html.dark .peptopia-iconbtn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#cbd5e1}
+
+.peptopia-iconbtn:hover{border-color:#ec4899;color:#be185d}
+
+.peptopia-iconbtn svg{width:17px;height:17px}
+.peptopia-hdr .peptopia-nav,.peptopia-ftr .peptopia-ftr-icons{display:none!important}
+
+
+/* ===== Peptopia site chrome: logo / nav / print / theme toggle / footer ===== */
+.peptopia-hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1200px;margin:0 auto;padding:14px 24px;position:relative;z-index:50}
+
+.peptopia-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+
+.peptopia-logo{width:46px;height:46px;border-radius:50%;flex:none;box-shadow:0 0 10px 2px rgba(236,72,153,.55),0 0 26px 8px rgba(236,72,153,.18)}
+
+/* Dark logo (dark circle) shows on LIGHT theme; light logo (light circle) shows on DARK theme */
+.peptopia-logo.logo-light,.ftr-logo .logo-light{display:none}
+
+html.dark .peptopia-logo.logo-light,html.dark .ftr-logo .logo-light{display:block}
+
+html.dark .peptopia-logo.logo-dark,html.dark .ftr-logo .logo-dark{display:none}
+
+.peptopia-wordmark{display:flex;flex-direction:column;font:800 1.02rem/1.15 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.14em;color:#1e1b4b}
+
+html.dark .peptopia-wordmark{color:#f1f5f9}
+
+.peptopia-tagline{font-size:.6rem;font-weight:600;letter-spacing:.3em;color:#64748b}
+
+html.dark .peptopia-tagline{color:#94a3b8}
+
+.peptopia-nav{display:flex;align-items:center;gap:1.25rem}
+.peptopia-hdr{padding:10px 12px;gap:8px}
+.peptopia-brand{gap:8px}
+.peptopia-logo{width:38px;height:38px}
+.peptopia-wordmark{font-size:.85rem}
+.peptopia-nav{gap:.6rem}
+.peptopia-nav>a{font-size:.7rem;letter-spacing:.08em}
+.peptopia-iconbtn{width:34px;height:34px;flex:none}
+
+.peptopia-nav>a{font:700 .8rem/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.12em;color:#334155;text-decoration:none}
+
+html.dark .peptopia-nav>a{color:#cbd5e1}
+
+.peptopia-nav>a:hover{color:#be185d}
+
+.peptopia-iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,23,42,.12);background:#fff;color:#475569;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+
+html.dark .peptopia-iconbtn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#cbd5e1}
+
+.peptopia-iconbtn:hover{border-color:#ec4899;color:#be185d}
+
+.peptopia-iconbtn svg{width:17px;height:17px}
+.peptopia-nav .peptopia-iconbtn,.peptopia-ftr-icons{display:none!important}
+/* injected standard header CSS */
+/* ===== Emphatic highlights (David 2026-10-24) ===== */
+.hlr,.hlg,.hlw,.hly,.hlb{box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 2px;border-radius:2px}
+.hlr{background:#fbe3de}.hlg{background:#e0f1e4}.hlw{background:#eef4dc}.hly{background:#fdf0cd}.hlb{background:#e9e2f7}
+/* ===== Raised circular icon buttons (David 2026-10-24) ===== */
+.icobtn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),var(--bb) 46%,var(--bm));border:2px solid var(--bd);color:var(--bd);box-shadow:inset 0 1px 2px rgba(255,255,255,.9),0 2px 4px rgba(0,0,0,.35);font-size:19px;line-height:1}
+
+/* ---------- flagship additions (wc-) ---------- */
+/* wc-toolbar-fix: keep header theme/print controls visible */
+.peptopia-hdr .peptopia-nav{display:flex!important}
+.peptopia-nav .peptopia-iconbtn{display:inline-flex!important}
+@page{size:Letter;margin:13mm}
+@media print{*{print-color-adjust:exact;-webkit-print-color-adjust:exact}.peptopia-hdr,#donut-modal,.wc-datepill{display:none!important}.strain,.wc-card,.wc-stat,.panel,.quote,.popbox,.wc-ev,table,tr{break-inside:avoid!important;page-break-inside:avoid!important}h1,h2,h3,h4{break-after:avoid!important;page-break-after:avoid!important}p,li{orphans:3;widows:3}body{background:#fff!important}a{color:inherit;text-decoration:none}}
+.colorband .bigicon{opacity:1;font-size:42px;background:#F7F4EC;border:2px solid rgba(13,27,20,.45);border-radius:50%;width:78px;height:78px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.titlepage .sub{white-space:nowrap;font-size:clamp(.68rem,3.2vw,1.05rem);max-width:none;font-weight:600;color:#08672B}
+html.dark .titlepage .sub{color:#9CC7A8}
+.wc-datepill{position:fixed;top:18px;right:186px;z-index:9998;background:#08672B;color:#F7F4EC;border-radius:999px;padding:11px 18px;font:700 .85rem/1 'Outfit',system-ui,sans-serif;letter-spacing:.04em;box-shadow:0 4px 14px rgba(20,40,30,.35)}
+@media(max-width:560px){.wc-datepill{right:auto;left:14px;top:66px;padding:8px 14px;font-size:.78rem}}
+.badges a.pill{text-decoration:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.badges a.pill:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(30,77,59,.35)}
+.wc-card[id],.colorband[id],.strain[id]{scroll-margin-top:96px}
+.wc-lablink{display:inline-block;margin-top:6px;font-weight:700;color:#08672B;text-decoration:underline;text-underline-offset:3px}
+.index{min-height:96px;box-sizing:border-box}
+.index ol{display:none}
+.index.open ol{display:block}
+.index .idx-hint{font-size:.78rem;color:#5c6b62;font-weight:600}
+.index.open .idx-hint{display:none}
+.index h2 .icobtn{cursor:pointer}
+.panel .pbody{justify-content:center}
+.peffects{white-space:nowrap;text-align:center;font-weight:700;font-size:clamp(.64rem,1.8vw,.8rem);color:#263238;padding:2px 0 7px}
+.peffects b{color:#08672B}
+.vw-r{color:#E01020;font-weight:800}.vw-w{color:#607D8B;font-weight:800}.vw-g{color:#398555;font-weight:800}.vw-y{color:#B8860B;font-weight:800}
+@media print{.index ol{display:block!important}.index .idx-hint{display:none!important}}
+
+.wc-stats{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.wc-stat{flex:1;min-width:140px;background:#fff;border:1px solid var(--line);border-top:5px solid #08672B;border-radius:12px;padding:14px 16px;text-align:center}
+.wc-stat b{display:block;font-size:26px;color:#08672B;line-height:1.1}
+.wc-stat span{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.wc-bars{margin:12px 0}
+.wc-bar{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:14px}
+.wc-bar .wc-bl{flex:0 0 210px;text-align:right;color:var(--ink)}
+.wc-bar .wc-bt{flex:1;background:var(--paper2);border:1px solid var(--line);border-radius:8px;height:20px;overflow:hidden}
+.wc-bar .wc-bf{display:block;height:100%;border-radius:7px;min-width:2%}
+.wc-bar .wc-bv{flex:0 0 92px;font-weight:700;color:#08672B}
+.wc-tl{position:relative;margin:20px 0 8px;padding-left:26px}
+.wc-tl:before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:3px;background:#7A9E8D;border-radius:2px}
+.wc-ev{position:relative;margin:0 0 16px}
+.wc-ev:before{content:"";position:absolute;left:-25px;top:5px;width:13px;height:13px;border-radius:50%;background:#08672B;border:3px solid #e6f2ea}
+.wc-ev b{color:#08672B}
+.wc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:14px 0}
+.wc-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.wc-card h4{margin:0 0 8px;color:#08672B;font-size:16px}
+.wc-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;background:#fff}
+.wc-table th{background:#08672B;color:#fff;text-align:left;padding:9px 12px}
+.wc-table td{border-bottom:1px solid var(--line);padding:8px 12px}
+.wc-table tr:nth-child(even) td{background:var(--paper2)}
+.stars{color:#b8860b;font-weight:700}
+.oos{display:inline-block;background:#f7e8e4;color:#7e241a;border:1px solid #e3b7ae;border-radius:999px;font-size:11.5px;padding:2px 9px;margin-left:8px;vertical-align:2px}
+.avail{display:inline-block;background:#e6f2ea;color:#08672B;border:1px solid #bfe0c9;border-radius:999px;font-size:11.5px;padding:2px 9px;margin-left:8px;vertical-align:2px}
+@media print{.wc-stat,.wc-card{break-inside:avoid}}
+/* ================= v2 overhaul (David, Oct 30) ================= */
+.colorband{padding-right:124px}
+.colorband p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;font-size:clamp(.7rem,2.5vw,.97rem)}
+.colorband .bigicon{opacity:1;font-size:39px;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);border:2px solid #04331A;border-radius:50%;width:76px;height:76px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.18),0 5px 10px rgba(0,0,0,.35);cursor:pointer;padding:0;font-family:inherit;transition:transform .07s ease,box-shadow .07s ease}
+.colorband .bigicon:active{transform:translateY(calc(-50% + 3px)) scale(.96);box-shadow:inset 0 2px 6px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.3)}
+@media print{.wcsec{display:block!important}.colorband .bigicon{display:none!important}html.dark body{color:#2e2a24}}
+.idx-btn{cursor:pointer;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.18),0 5px 10px rgba(0,0,0,.3);transition:transform .07s ease,box-shadow .07s ease}
+.idx-btn:active{transform:translateY(2px) scale(.96);box-shadow:inset 0 2px 6px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.3)}
+.wc-toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-bottom:8px}
+.wc-toprow .kicker{margin:0;text-align:left}
+.wc-topbtns{display:flex;gap:8px;align-items:center;flex:none}
+.wc-tbtn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 13px;border-radius:999px;border:2px solid #08672B;background:#F7F4EC;color:#08672B;font:700 .78rem/1 'Outfit',system-ui,sans-serif;letter-spacing:.03em;box-shadow:0 2px 5px rgba(30,77,59,.25);cursor:pointer;white-space:nowrap}
+button.wc-tbtn:active{transform:translateY(1px);box-shadow:0 1px 2px rgba(30,77,59,.3)}
+.wc-tbtn.static{cursor:default}
+.panel .phead{padding:5px 10px;font-size:20px}
+.panel .pbody{padding:10px 12px 0}
+.pfoot{padding:0 14px 9px}
+.panel a.golink{color:#fff;padding:10px}
+.p-white a.golink{background:#7cb342}.p-green a.golink{background:#398555}.p-yellow a.golink{background:#F0F000}.p-red a.golink{background:#E01020}
+.batch{font-size:12px;font-weight:700;color:#08672B;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 50%,#bcd8c4);border:2px solid #08672B;padding:4px 13px;border-radius:999px;white-space:nowrap;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),0 2px 4px rgba(0,0,0,.22);text-decoration:none;display:inline-block}
+a.batch:active{transform:translateY(1px)}
+.wc-batchbtn{display:inline-block;font:700 .86em/1.4 'Outfit',system-ui,sans-serif;color:#08672B;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 50%,#bcd8c4);border:2px solid #08672B;border-radius:999px;padding:0 10px;margin:0 1px;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),0 2px 4px rgba(0,0,0,.2);text-decoration:none;white-space:nowrap}
+.wc-batchbtn:active{transform:translateY(1px)}
+.wc-ref{font-weight:800;color:#08672B}
+.qinline{font-style:italic;background:#EFEBFA;padding:0 4px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.quote{background:#EFEBFA}
+.wc-howlist{margin:8px 0 4px;padding-left:20px;text-align:left}
+.wc-howlist li{margin:7px 0}
+.wc-howlist b{color:#08672B}
+.wc-vhead{display:flex;align-items:center;gap:10px;margin:20px 0 4px;font:800 1.05rem 'Outfit',sans-serif;color:#08672B}
+.wc-vhead i{width:16px;height:16px;border-radius:50%;display:inline-block;border:2px solid rgba(0,0,0,.25);flex:none}
+.wc-idxbrand{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);text-align:center}
+.wc-idxbrand img.logo{width:118px;height:118px;border-radius:50%}
+.wc-socials{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.wc-socials a{width:36px;height:36px;border-radius:8px;background:#111;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.3)}
+.wc-socials svg{width:19px;height:19px;fill:#fff}
+/* Kratom Picker wheel (ported from the Admin Portal) */
+.wcqp{--card:#ffffff;--mut:#6f675a;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 14px 10px;box-shadow:0 4px 18px rgba(60,50,30,.08);margin:10px auto 4px;max-width:640px;width:100%}
+.wcqp h2{margin:0 0 2px;font-size:1.3rem;color:#EA580C;text-align:left}
+.wcqp .sub2{margin:0 0 4px;color:var(--mut);font-size:.92rem;text-align:left}
+.qp-wheel{position:relative;width:min(390px,94vw);aspect-ratio:1/1;margin:6px auto 2px}
+.qp-spoke{position:absolute;left:50%;top:50%;width:37.5%;height:2px;background:var(--line);transform-origin:0 50%;border-radius:2px}
+.qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:color-mix(in srgb,#398555 13%,var(--card));border:3px solid #054A1F;display:flex;align-items:center;justify-content:center;font-size:58px;z-index:2;cursor:pointer;padding:0;box-shadow:inset 0 3px 4px rgba(255,255,255,.6),inset 0 -4px 7px rgba(0,0,0,.15),0 5px 9px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease}
+.qp-hub:active{transform:translate(-50%,-50%) translateY(3px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.25)}
+.qp-node{position:absolute;transform:translate(-50%,-50%);width:106px;height:106px;border-radius:50%;background:color-mix(in srgb,var(--nc) 13%,var(--card));border:3px solid var(--nb,var(--nc));color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;z-index:3;padding:0;font-family:Outfit,sans-serif;box-shadow:inset 0 3px 4px rgba(255,255,255,.6),inset 0 -4px 7px rgba(0,0,0,.15),0 5px 9px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease,background .15s ease}
+.qp-node .qp-emo{font-size:29px;line-height:1}
+.qp-node small{font-size:24px;font-weight:700;letter-spacing:.03em}
+.qp-node.on{background:var(--nc);color:#fff}
+.qp-node:active{transform:translate(-50%,-50%) translateY(3px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.25)}
+.qp-name{font-family:Outfit,sans-serif;font-weight:800;font-size:24px;color:#EA580C;line-height:1.15}
+.qp-meta{color:var(--mut);font-size:14px;margin:2px 0 6px}
+.qp-why{font-size:15px;margin:0 0 6px}
+.qp-bars{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}
+.qp-bar{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--mut)}
+.qp-dots{display:flex;gap:3px;margin-top:3px}
+.qp-dots i{width:14px;height:8px;border-radius:3px;display:block}
+.qp-runner{font-size:14px;color:var(--mut);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+.qp-runner b{color:var(--ink)}
+.qp-note{font-size:12px;color:var(--mut);margin:10px 0 4px}
+.qp-dual{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;text-align:left}
+@media (max-width:560px){.qp-dual{grid-template-columns:1fr}.qp-node{width:92px;height:92px}.qp-node small{font-size:20px}}
+.qp-pick{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--card)}
+.qp-tag{font-family:Outfit,sans-serif;font-weight:800;font-size:12px;letter-spacing:.06em;color:#EA580C;text-transform:uppercase;margin-bottom:4px}
+.qp-tag.rot{color:#398555}
+.qp-pick .qp-name{font-size:21px}
+.qp-rotwhy{font-size:13px;color:var(--mut);margin:4px 0 0}
+.qp-take{margin-top:8px;font-family:Outfit,sans-serif;font-weight:700;font-size:14px;padding:9px 14px;border-radius:999px;border:2px solid var(--ink);background:color-mix(in srgb,#F59E0B 16%,var(--card));color:var(--ink);cursor:pointer;box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -3px 5px rgba(0,0,0,.12),0 3px 6px rgba(0,0,0,.2);transition:transform .07s ease,box-shadow .07s ease}
+.qp-take.rot{background:color-mix(in srgb,#398555 16%,var(--card))}
+.qp-take:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.25)}
+.qp-logged{font-size:14px;font-weight:700;color:#398555;margin-top:8px}
+.wc-spec{position:relative;border:1px solid var(--line);border-radius:12px;padding:12px 14px 8px;background:linear-gradient(90deg,rgba(176,58,58,.10),rgba(232,135,58,.10),rgba(245,158,11,.10),rgba(46,125,79,.10));margin:14px 0 4px}
+.wc-shead{display:flex;justify-content:space-between;font:700 .78rem 'Outfit',sans-serif;color:var(--muted);margin-bottom:6px}
+.wc-lane{position:relative;height:28px;border-top:1px solid var(--line)}
+.wc-lane>span{position:absolute;left:0;top:50%;transform:translateY(-50%);font:700 .72rem 'Outfit',sans-serif;letter-spacing:.04em}
+.wc-track{position:absolute;left:70px;right:4px;top:0;bottom:0}
+.wc-dot{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);border:2.5px solid;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);z-index:1}
+.wc-dot:hover{z-index:3;transform:translate(-50%,-50%) scale(1.25)}
+.wc-specnote{font-size:.8rem;color:var(--muted);margin:6px 0 2px}
+html.dark .wc-dot{background:#1C211C}
+/* dark theme */
+html.dark{--paper:#131711;--paper2:#1D231C;--ink:#EDEAE0;--muted:#ABA291;--line:#3C463A;--accent:#7FB069}
+html.dark body{background:var(--paper);color:var(--ink)}
+html.dark .index,html.dark .panel,html.dark .wc-card,html.dark .wc-stat,html.dark .wc-table,html.dark .strain,html.dark table{background:#1C211C;color:var(--ink)}
+html.dark .wc-table td{border-color:var(--line)}
+html.dark .titlepage{background:radial-gradient(1200px 600px at 50% -10%,#1E3325 0%,var(--paper) 72%)}
+html.dark .titlepage h1{color:#E9F3E4}
+html.dark .peffects{color:#EDEAE0}
+html.dark .pfoot{color:#CFC9B8}
+html.dark .quote{background:#2A2440;color:#D8D2F0;border-left-color:#6A4C93}
+html.dark .qinline{background:#2A2440;color:#D8D2F0}
+html.dark .wc-tbtn{background:#1C211C;color:#E9F3E4;border-color:#7FB069}
+html.dark .wc-card h4,html.dark .wc-howlist b{color:#9CC7A8}
+html.dark .wc-vhead{color:#9CC7A8}
+html.dark .wc-ref{color:#9CC7A8}
+html.dark .wcqp{--card:#1C211C;--mut:#ABA291}
+html.dark .strain-head h3{color:#EDEAE0}
+
+</style>
+<style id="picker-pain-standard">.qp-emo{font-size:2.4rem}.qp-node small{font-size:1.2rem}</style></head>
+<body id="top">
+<style>
+.qp-wheel{width:min(328px,94vw)}
+.qp-hub{width:73px;height:73px;font-size:38px}
+.qp-node{width:90px;height:90px}
+.qp-node .qp-emo{font-size:1.6rem;line-height:1.05}
+.qp-node small{font-size:.78rem}
+.wc-return{text-align:right;margin:2px 0 10px}
+.wc-return a{font:700 .8rem 'Outfit',sans-serif;color:#08672B;text-decoration:none;border:1.5px solid #08672B;border-radius:999px;padding:3px 10px;background:#fff}
+.wc-gate-lock{border:2px solid #08672B;border-radius:12px;padding:18px;text-align:center}
+.wc-labmodal{position:fixed;inset:0;background:rgba(10,20,14,.66);z-index:10000;display:flex;align-items:center;justify-content:center}
+.wc-labmodal[hidden]{display:none}
+.wc-labbox{background:#fff;width:min(860px,94vw);height:min(86vh,900px);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.wc-labbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:#08672B;color:#F7F4EC;font:700 .9rem 'Outfit',sans-serif}
+.wc-labbar a{color:#F7F4EC;margin-right:12px}
+.wc-labbar button{background:#F7F4EC;border:none;border-radius:8px;width:32px;height:32px;font-size:1rem;cursor:pointer}
+.wc-labbox iframe{flex:1;border:none;width:100%}
+table.wc-sortable th.sortable{cursor:pointer;user-select:none}
+table.wc-sortable th.sortable::after{content:' ⇅';opacity:.55;font-size:.85em}
+table.wc-sortable th.sortable[data-dir="desc"]::after{content:' ▼';opacity:1}
+table.wc-sortable th.sortable[data-dir="asc"]::after{content:' ▲';opacity:1}
+.batchgrp{margin:0 0 22px}
+.batchgrp h3{font-family:Outfit,sans-serif;color:#08672B;margin:14px 0 6px}
+.colorband{cursor:pointer}
+@media print{.wc-gate-body{display:block!important}.wc-gate-lock{display:none!important}.wc-labmodal{display:none!important}.wc-return{display:none!important}}
+</style>
+<style>
+/* V4 (Oct 31, David): slim section bands - minimum height, standardized */
+.colorband{padding:9px 14px;padding-right:70px;margin:22px 0 12px;border-radius:12px}
+.colorband h2{font-size:24px;line-height:1.1;margin:0 0 2px}
+.colorband p{line-height:1.25}
+.colorband .icobtn{width:28px;height:28px;font-size:16px}
+.bigicon{width:44px;height:44px;font-size:23px;right:12px}
+</style>
+<style>
+/* V5 (Oct 31, David): centered slim bands, gloss push-button, width cap, log viewer */
+.wcqp{position:relative}
+.wc-logbtn{position:absolute;top:10px;right:10px;font:700 .82rem 'Outfit',sans-serif;color:#08672B;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);border:2px solid #08672B;border-radius:999px;padding:5px 12px;cursor:pointer;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.18),0 4px 8px rgba(0,0,0,.25);z-index:3}
+.wc-logbtn:active{transform:translateY(2px);box-shadow:inset 0 3px 6px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.25)}
+.colorband{text-align:center;padding-left:70px}
+.colorband h2,.colorband p{text-align:center}
+.colorband .bigicon{width:42px;height:42px;font-size:22px;right:12px;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);border:2px solid #04331A;box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -5px 8px rgba(0,0,0,.22),0 6px 12px rgba(0,0,0,.4)}
+.colorband .bigicon:active{transform:translateY(calc(-50% + 3px)) scale(.95);box-shadow:inset 0 3px 7px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3)}
+.wc-logmodal{position:fixed;inset:0;background:rgba(10,20,14,.66);z-index:10001;display:flex;align-items:center;justify-content:center}
+.wc-logmodal[hidden]{display:none}
+.wc-logbox{background:#fff;width:min(560px,94vw);max-height:86vh;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.wc-logbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:#08672B;color:#F7F4EC;font:700 .95rem 'Outfit',sans-serif}
+.wc-logbar button{background:#F7F4EC;border:none;border-radius:8px;width:32px;height:32px;font-size:1rem;cursor:pointer}
+.wc-loglist{overflow-y:auto;padding:10px 14px}
+.wc-logrow{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:8px 4px;border-bottom:1px solid #e7e2d6}
+.wc-logrow small{color:#6f675a}
+.wc-logdel{background:#fdf1f1;border:1.5px solid #E01020;color:#E01020;border-radius:8px;width:28px;height:28px;cursor:pointer;flex:none}
+.wc-logempty{color:#6f675a;text-align:center;padding:16px 6px}
+.wc-logfoot{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid #e7e2d6}
+@media print{.colorband{width:auto!important}.wc-logbtn{display:none!important}.wc-logmodal{display:none!important}}
+</style>
+<style>
+/* V6 (Oct 31, David): each band hugs its own content (fit-content), centered in the column.
+   No band can exceed the widest band's width, and none is stretched to the full column.
+   Left padding returns to 16px (the old symmetric 70px was pure width inflation);
+   the right keeps 70px for the push-button. Print keeps full-width bands. */
+.colorband{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;padding-left:16px}
+@media print{.colorband{width:auto!important;margin-left:0;margin-right:0}}
+</style>
+<style id="dte-clone-pass">
+.strain-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 16px;font:600 .8rem 'DM Sans',sans-serif;border-radius:0 0 14px 14px}
+.strain.white .strain-foot{background:linear-gradient(100deg,#C6C6C6,#E7E7E7);color:#141414}
+.strain.green .strain-foot{background:linear-gradient(100deg,#0A7300,#10C000);color:#fff}
+.strain.red .strain-foot{background:linear-gradient(100deg,#9E0C18,#E01020);color:#fff}
+.strain.gold .strain-foot{background:linear-gradient(100deg,#D8D800,#F0F000);color:#141414}
+.strain.blend .strain-foot{background:linear-gradient(100deg,#4A3369,#6A4C93);color:#fff}
+html.dark .titlepage h1{color:#FF8A1E}
+</style>
+<div id="labModal" class="wc-labmodal" hidden><div class="wc-labbox"><div class="wc-labbar"><span id="labTitle">Lab report</span><span><a id="labOpen" href="#" target="_blank" rel="noopener">Open in a new tab ↗</a><button type="button" id="labClose" aria-label="Close lab report">✕</button></span></div><iframe id="labFrame" title="Lab report"></iframe></div></div>
+<div id="logModal" class="wc-logmodal" hidden><div class="wc-logbox"><div class="wc-logbar"><span>📓 Your Kratom Picker Log</span><button type="button" id="logClose" aria-label="Close log">✕</button></div><div class="wc-loglist" id="logList"></div><div class="wc-logfoot"><button type="button" class="wc-tbtn" id="logClear">Clear all</button><button type="button" class="wc-tbtn" id="logDone">Close</button></div></div></div>
+<div id="factModal" class="wc-labmodal" hidden><div class="wc-factbox"><div class="wc-labbar"><span id="factTitle">✓ Fact check</span><span><a id="factOpen" href="#" target="_blank" rel="noopener">Open the source ↗</a><button type="button" id="factClose" aria-label="Close fact check">✕</button></span></div><div class="wc-factbody"><blockquote id="factQuote"></blockquote><p class="wc-factsrc" id="factSrc"></p></div></div></div>
+<button type="button" class="toc-back" id="wcBackBtn" title="Back to where you were reading" hidden><svg viewBox="0 0 48 48" width="38" height="38" aria-hidden="true"><defs><marker id="wcRetArr" viewBox="0 0 16 16" refX="12" refY="8" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1L15 8L1 15z" fill="#08672B"/></marker></defs><path d="M29.1 9.9 A15 15 0 1 1 13.4 13.4" fill="none" stroke="#08672B" stroke-width="6.5" stroke-linecap="round" marker-end="url(#wcRetArr)"/></svg></button>
+<a class="toc-top" href="#top" title="Back to top"><svg viewBox="0 0 48 48" width="36" height="36" aria-hidden="true"><path d="M24 43 V15" stroke="#08672B" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M24 3 L11 20 H37 Z" fill="#08672B"/></svg></a>
+<div class="wrap">
+
+<!-- ================= TITLE PAGE ================= -->
+<div class="titlepage" id="top">
+  <div class="wc-toprow">
+    <div class="kicker">Independent Customer Research</div>
+    <div class="wc-topbtns">
+      <button type="button" class="wc-tbtn" id="wcSearchBtn" title="Search strains">🔍</button>
+      <button type="button" class="wc-tbtn" title="November 2026">📅 11/26</button>
+      <button type="button" class="wc-tbtn" id="wcThemeBtn" title="Switch light / dark theme">🌙</button>
+      <button type="button" class="wc-tbtn" onclick="window.print()" title="Print or save as PDF">🖨 Print / PDF</button>
+    </div>
+  </div>
+  <div class="wc-search" id="wcSearch" hidden><input id="wcSearchInput" type="text" placeholder="Search strains — spelling doesn't have to be perfect" autocomplete="off" aria-label="Search strains"><div class="wc-sresults" id="wcSearchResults"></div></div>
+  <h1>DTE Botanicals</h1>
+  <div class="sub">Farmer-coded batches, tester-panel drops — every harvest on the record.</div>
+  
+<div class="wcqp">
+  <button type="button" class="wc-logbtn" id="wcLogBtn" title="See your Kratom Picker log">📓 Log</button>
+  <h2>🌿 Kratom Picker <span class="qp-tagline">| Tap the Effect — Show the Leaf</span></h2>
+  <div class="qp-wheel" id="qpWheel">
+    <span class="qp-spoke" style="transform:rotate(-90deg)"></span><span class="qp-spoke" style="transform:rotate(-30deg)"></span><span class="qp-spoke" style="transform:rotate(30deg)"></span><span class="qp-spoke" style="transform:rotate(90deg)"></span><span class="qp-spoke" style="transform:rotate(150deg)"></span><span class="qp-spoke" style="transform:rotate(210deg)"></span>
+    <button class="qp-hub" id="qpHub" type="button" title="Reset the wheel"><svg viewBox="0 0 48 48" width="80" height="80" aria-hidden="true"><path d="M24 45 C24 32 24 20 24 9" stroke="#004E96" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M24 23 C29 11 38 5.5 45 5 C45.5 15 39.5 23.5 29.5 25.5 C26.8 26 24 24.8 24 23Z" fill="#0070D0" stroke="#004E96" stroke-width="1.8"/><path d="M24 29 C19.5 19 12 14.5 5.5 14 C5 22 9.5 28.5 17 30.5 C20 31.2 24 30.6 24 29Z" fill="#0070D0" stroke="#004E96" stroke-width="1.8"/><path d="M25.5 21.5 C29 16 33.5 12 38.5 9.5M22.5 27 C19 22.5 14.5 19 10 17" stroke="#F0F000" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg></button>
+    <button type="button" class="qp-node" data-sit="energy" style="left:50%;top:12.5%;--nc:var(--fx-energy);--nb:var(--fx-energy-dk)"><span class="qp-emo">⚡</span><small>Energy</small></button>
+    <button type="button" class="qp-node" data-sit="focus" style="left:82.5%;top:31.3%;--nc:var(--fx-focus);--nb:var(--fx-focus-dk)"><span class="qp-emo"><svg viewBox="0 0 48 48" width="42" height="42" aria-hidden="true" style="display:block;filter:drop-shadow(0 0 4px rgba(240,96,0,.8))"><circle cx="24" cy="24" r="17" fill="#F06000"/><circle cx="24" cy="24" r="12" fill="#FFFFFF"/><circle cx="24" cy="24" r="7.5" fill="#F06000"/><circle cx="24" cy="24" r="3.2" fill="#FFFFFF"/></svg></span><small>Focus</small></button>
+    <button type="button" class="qp-node" data-sit="mood" style="left:82.5%;top:68.7%;--nc:var(--fx-mood);--nb:var(--fx-mood-dk)"><span class="qp-emo">🧡</span><small>Mood</small></button>
+    <button type="button" class="qp-node" data-sit="sleep" style="left:50%;top:87.5%;--nc:var(--fx-sleep);--nb:var(--fx-sleep-dk)"><span class="qp-emo">😴</span><small>Sleep</small></button>
+    <button type="button" class="qp-node" data-sit="relief" style="left:17.5%;top:68.7%;--nc:var(--fx-analgesia);--nb:var(--fx-analgesia-dk)"><span class="qp-emo"><svg viewBox="0 0 48 48" width="42" height="42" aria-hidden="true" style="display:block;filter:drop-shadow(0 0 3.5px rgba(43,255,92,.85))"><path d="M24 7v34M7 24h34" stroke="#2BFF5C" stroke-width="11" stroke-linecap="round" fill="none"/></svg></span><small>Pain</small></button>
+    <button type="button" class="qp-node" data-sit="calm" style="left:17.5%;top:31.3%;--nc:var(--fx-calm);--nb:var(--fx-calm-dk)"><span class="qp-emo">😌</span><small>Calm</small></button>
+  </div>
+  <div id="qpResult"></div>
+</div>
+
+  <div class="badges">
+    <span class="pill">🟢 Green Vein</span><span class="pill">🔴 Red Vein</span>
+    <span class="pill">🟣 Blends</span><span class="pill">🟡 Gold &amp; Yellow</span>
+    <span class="pill">⚪ White Vein</span><span class="pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px"><path d="M4 4.8A2.8 2.8 0 0 1 6.8 2H20v17.2H6.8A2.8 2.8 0 0 0 4 22Z"/><path d="M4 19.2V4.8"/><path d="M9 7h7M9 10.6h7M9 14.2h4.6"/></svg> Catalog</span>
+  </div>
+</div>
+
+<!-- ================= INDEX ================= -->
+<div class="index">
+  <h2><button type="button" class="icobtn idx-btn" style="--bb:#e6f2ea;--bm:#9cc7a8;--bd:#08672B" title="Open the index">📖</button> Index <span class="idx-hint">— tap the book to open</span></h2>
+  <ol>
+    <li><a href="#extractcalc">Extract Calculator</a></li>
+    <li><a href="#verdict">Final Verdict</a></li>
+  </ol>
+</div>
+</div>
+
+<!-- ================= EXTRACT CALCULATOR (MOCKUP SECTION) ================= -->
+<div class="colorband band-neutral" id="extractcalc">
+  <h2>🧮 Extract Calculator</h2>
+  <p>Leaf dose in, extract equivalent out — and back again.</p>
+  <button type="button" class="bigicon wc-tgl" aria-expanded="false" title="Open this section">🧮</button>
+</div>
+<div class="catintro">
+  <p>Extracts concentrate the leaf's mitragynine, so a fraction of a gram of extract can carry what several grams of powder carry. The whole conversion is one piece of arithmetic: <span class="hlg">dose × strength going in = dose × strength coming out</span>. Plain leaf powder averages about <b>1.5%</b> mitragynine, so the leaf field starts at 1.5 — where a lab panel gives a batch's measured number, that number belongs in the field instead.</p>
+</div>
+<div class="xc-card">
+  <div class="xc-seg" role="group" aria-label="Conversion direction">
+    <button type="button" class="xc-segbtn on" id="xcDirLeaf" aria-pressed="true">Leaf → Extract</button>
+    <button type="button" class="xc-segbtn" id="xcDirExt" aria-pressed="false">Extract → Leaf</button>
+  </div>
+  <div class="xc-grid">
+    <label class="xc-field"><span class="xc-lab" id="xcDoseLab">Dose — leaf powder (grams)</span>
+      <input type="number" id="xcDose" value="3" min="0" step="any" inputmode="decimal"></label>
+    <label class="xc-field"><span class="xc-lab">Leaf mitragynine %</span>
+      <input type="number" id="xcLeaf" value="1.5" min="0" step="any" inputmode="decimal"></label>
+    <label class="xc-field"><span class="xc-lab">Extract mitragynine %</span>
+      <input type="number" id="xcExt" value="7" min="0" step="any" inputmode="decimal"></label>
+  </div>
+  <div class="xc-presets">
+    <span class="xc-presets-lab">Extract presets:</span>
+    <button type="button" class="xc-preset" data-pct="7">WestKoast 7% Extract</button>
+    <button type="button" class="xc-preset" data-pct="72">DTE Astral Amber · 72%</button>
+    <button type="button" class="xc-preset" data-pct="78.4">DTE Solar Flare · 78.4%</button>
+  </div>
+  <div class="xc-result" aria-live="polite">
+    <div class="xc-eq" id="xcEq">0.643 g of extract</div>
+    <div class="xc-mg" id="xcMg">carrying ≈ 45 mg mitragynine</div>
+  </div>
+  <div class="xc-chartbox"><canvas id="xcChart" role="img" aria-label="Bar chart comparing the entered dose with its equivalent dose"></canvas></div>
+  <p class="xc-formula"><b>How it works:</b> <span id="xcFormula">extract grams = leaf grams × leaf % ÷ extract %</span>.</p>
+</div>
+<div class="popbox"><b>🧪 Worked example — Solar Flare at 78.4%</b><p>One gram of average leaf at <b>1.5%</b> carries about <b>15 mg</b> of mitragynine. At <b>78.4%</b>, the same 15 mg sits in 1 × 1.5 ÷ 78.4 ≈ <b>0.019 g</b> of extract — roughly a fiftieth of a gram. A 3 g leaf dose converts to <b>0.057 g</b>. At numbers that small, the dose is weighed, never spooned.</p></div>
+<div class="popbox"><b>⚖️ Measure like it matters</b><p>An extract's printed strength is the maker's claim until a lab panel confirms it, and real potency varies by batch and by vendor. At extract doses measured in hundredths of a gram, a small measuring error is a large share of the dose — a milligram scale is the right tool for this end of the shelf.</p></div>
+<div class="colorband band-green" id="verdict">
+  <h2>🏆 Final Verdict</h2>
+  <p>4.5 out of 5 overall</p>
+  <button type="button" class="bigicon wc-tgl" aria-expanded="false" title="Open this section">🏆</button>
+</div>
+<div class="wc-bars">
+<div class="wc-bar"><span class="wc-bl">Community Reputation</span><span class="wc-bt"><span class="wc-bf" style="width:96%;background:#10C000"></span></span><span class="wc-bv">4.8 / 5</span></div><div class="wc-bar"><span class="wc-bl">Batch Transparency</span><span class="wc-bt"><span class="wc-bf" style="width:92%;background:#10C000"></span></span><span class="wc-bv">4.6 / 5</span></div><div class="wc-bar"><span class="wc-bl">Lab Testing</span><span class="wc-bt"><span class="wc-bf" style="width:84%;background:#0070D0"></span></span><span class="wc-bv">4.2 / 5</span></div><div class="wc-bar"><span class="wc-bl">Catalog Depth</span><span class="wc-bt"><span class="wc-bf" style="width:94%;background:#7A4C93"></span></span><span class="wc-bv">4.7 / 5</span></div><div class="wc-bar"><span class="wc-bl">Value</span><span class="wc-bt"><span class="wc-bf" style="width:88%;background:#F0F000"></span></span><span class="wc-bv">4.4 / 5</span></div>
+</div>
+<div class="popbox"><b>⭐ How These Scores Were Earned</b><p>These scores grade DTE against the record assembled in this guide — 27 sources, three outside labs, the A31 tester panel's published spec list, and the community threads quoted above. <b>Community Reputation</b> reflects the kratom.org 5/5 and drugbuyersguide 10/10 verdicts and years of r/kratomreview100 threads. <b>Batch Transparency</b> reflects the farmer code printed on every card and the drop newsletters' full spec lists. <b>Lab Testing</b> reflects the Cora Science panel and the Cambium and Anresco reports — and the gaps the COA section flags in the older reporting. <b>Catalog Depth</b> counts roughly ninety strains on the October 2026 shelf against the 100 carded here. <b>Value</b> reflects shipping included in every price and the $69 clearance-kilo line.</p></div>
+<div class="wc-search2" id="wcSearch2">
+  <h4>🔍 Search Strains</h4>
+  <input id="wcSearchInput2" type="text" placeholder="Search strains — spelling doesn't have to be perfect" autocomplete="off" aria-label="Search strains">
+  <div class="wc-sresults" id="wcSearchResults2"></div>
+</div>
+<footer class="site">Kratom Strain Guide for DTE Botanicals · November 2026</footer>
+</div><!-- /wrap -->
+<script>
+document.querySelectorAll('.iconrow span').forEach(function(sp){
+  var b=sp.querySelector('b'); if(!b) return;
+  var v=parseFloat(b.textContent); if(isNaN(v)) return;
+  var m=document.createElement('div'); m.className='meter';
+  var i=document.createElement('i'); i.style.width=Math.round(v/5*100)+'%';
+  m.appendChild(i); sp.appendChild(m);
+});
+</script>
+<!-- Donut chart popup (STRICT REQUIREMENT: all strain-comparison guides) -->
+<div id="donut-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;cursor:pointer;">
+<div id="donut-modal-box" style="background:#FFFEF9;border-radius:16px;padding:24px;width:50vw;max-width:640px;max-height:90vh;overflow:auto;box-shadow:0 8px 32px rgba(0,0,0,.4);"></div>
+<style>
+@media(max-width:768px){
+  #donut-modal-box{width:94vw!important;padding:16px!important;}
+}
+
+/* ==== Oct 31 review pass: uniform width + open-by-default model (David) ==== */
+:root{--uw:100%}
+.colorband{width:var(--uw,fit-content);margin-left:auto;margin-right:auto}
+.colorband.open{box-shadow:0 0 0 3px rgba(234,88,12,.55)}
+.wcsec{width:var(--uw,auto);margin-left:auto;margin-right:auto}
+.strain{width:100%}
+.index,.wcqp{width:var(--uw);max-width:100%}
+a.batch{display:inline-block;padding:3px 12px;border-radius:999px;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 55%,#bcd8c4);border:1.5px solid #08672B;color:#08672B;font-weight:800;font-size:12.5px;text-decoration:none;white-space:nowrap;box-shadow:0 2px 0 #08672B;cursor:pointer}
+.strain-head{cursor:pointer}
+.strain-body[hidden]{display:none}
+.wk-chev{flex:none;margin-left:10px;font-weight:800;font-size:13px;opacity:.85}
+.wk-open{width:var(--uw,auto);margin-left:auto;margin-right:auto}
+@media print{.strain-body[hidden]{display:block!important}:root{--uw:100%!important}}
+</style>
+</div>
+<script>
+(function(){
+  var COLORS = (function(){var fb={energy:'#FFFFFF',mood:'#10C000',focus:'#F06000',calm:'#F0F000',relief:'#E01020',sleep:'#0A0A0A'};
+    try{var cs=getComputedStyle(document.documentElement);
+      ['energy','mood','focus','calm'].forEach(function(k){var v=cs.getPropertyValue('--fx-'+k).trim();if(v)fb[k]=v;});
+      var a=cs.getPropertyValue('--fx-analgesia').trim();if(a)fb.relief=a;
+    }catch(e){} return fb;})();
+  var LABELS = {energy:'Energy', mood:'Mood', focus:'Focus', calm:'Calm', relief:'Analgesia', sleep:'Sleep'};
+  var VEIN = {green:['#B5C49A','#2F3A24','#7A8F6A'], red:['#D98C8C','#4A1414','#E01020'], white:['#EDEDED','#333333','#BDBDBD'], gold:['#F2C94C','#4A3A10','#F2C94C'], yellow:['#F2C94C','#4A3A10','#F2C94C']};
+  var modal = document.getElementById('donut-modal');
+  var box = document.getElementById('donut-modal-box');
+  function fxSummary(data){
+    var L={energy:'energy',mood:'mood',focus:'focus',calm:'calm',relief:'analgesia',sleep:'sleep'};
+    var es=data.effects.slice().sort(function(a,b){return b[1]-a[1];});
+    if(es.length>=3)return L[es[0][0]]+' and '+L[es[1][0]]+' in front, '+L[es[2][0]]+' in a supporting role';
+    if(es.length===2)return L[es[0][0]]+' and '+L[es[1][0]]+' in front';
+    return L[es[0][0]]+' in front';
+  }
+  function pieSVG(data){
+    var cx=100,cy=100,R=96,start=-90,paths='';
+    data.effects.forEach(function(e){
+      var sweep=e[1]/100*360,a0=start*Math.PI/180,a1=(start+sweep)*Math.PI/180;
+      var x0=cx+R*Math.cos(a0),y0=cy+R*Math.sin(a0),x1=cx+R*Math.cos(a1),y1=cy+R*Math.sin(a1);
+      var large=sweep>180?1:0;
+      paths+='<path d="M'+cx+','+cy+' L'+x0.toFixed(1)+','+y0.toFixed(1)+' A'+R+','+R+' 0 '+large+' 1 '+x1.toFixed(1)+','+y1.toFixed(1)+' Z" fill="'+COLORS[e[0]]+'" stroke="'+(e[0]==='energy'?'#8A8A8A':'rgba(0,0,0,.22)')+'" stroke-width="1.6"/>';
+      start+=sweep;
+    });
+    return '<svg viewBox="0 0 200 200" style="width:100%;height:100%;display:block" aria-hidden="true">'+paths+'</svg>';
+  }
+  function renderDonut(name, data){
+    var v = VEIN[data.vein] || VEIN.green;
+    var chips = data.effects.map(function(e){return '<span style="display:inline-flex;align-items:center;gap:6px;margin:2px 5px;font:600 13.5px \'DM Sans\',sans-serif;color:#2e2a24"><i style="width:13px;height:13px;border-radius:3px;background:'+COLORS[e[0]]+';border:1.5px solid '+(e[0]==='energy'?'#9a9a9a':'rgba(0,0,0,.25)')+';display:inline-block"></i>'+LABELS[e[0]]+' '+e[1]+'%</span>';}).join('');
+    return '<div style="background:'+v[0]+';border-radius:12px;padding:12px 16px;margin-bottom:14px">'
+      + '<div style="font:700 20px Outfit,sans-serif;color:'+v[1]+'">'+name+': <span style="font-weight:600;font-size:16.5px">'+fxSummary(data)+'</span></div></div>'
+      + '<div style="width:min(300px,72vw);margin:0 auto">'+pieSVG(data)+'</div>'
+      + '<div style="text-align:center;margin-top:10px">'+chips+'</div>'
+      + '<p style="text-align:center;font:italic 400 14.5px \'DM Sans\',sans-serif;color:#555;margin:12px 0 0">'+data.caption+'</p>';
+  }
+  window.__wcShowChart=function(name,data){box.innerHTML=renderDonut(name,data);modal.style.display='flex';};
+  document.querySelectorAll('.donut-trigger').forEach(function(el){
+    try{
+      var d0 = JSON.parse(el.getAttribute('data-strain').replace(/&quot;/g, '"'));
+      var v0 = VEIN[d0.vein] || VEIN.green;
+      el.innerHTML = pieSVG(d0);
+      el.style.width='48px';el.style.height='48px';el.style.border='3px solid #0070D0';
+      el.setAttribute('role','button');
+    }catch(err){}
+    el.addEventListener('click', function(e){
+      e.stopPropagation();
+      var data = JSON.parse(el.getAttribute('data-strain').replace(/&quot;/g, '"'));
+      var h3 = el.closest('h3');
+      var name = h3 ? h3.textContent.trim() : 'Effect chart';
+      box.innerHTML = renderDonut(name, data);
+      modal.style.display = 'flex';
+    });
+  });
+  modal.addEventListener('click', function(){ modal.style.display = 'none'; });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') modal.style.display='none'; });
+})();
+</script>
+<script>
+/* ---- theme (light/dark, persisted) ---- */
+(function(){/* Light theme is ALWAYS the default (David, Oct 31): page loads light; dark lasts only for the current visit and is never persisted. */
+function upd(){var b=document.getElementById('wcThemeBtn');if(b){b.textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙';}}
+document.addEventListener('DOMContentLoaded',function(){upd();var b=document.getElementById('wcThemeBtn');if(b){b.addEventListener('click',function(){document.documentElement.classList.toggle('dark');upd();});}});
+})();
+/* ---- index collapse ---- */
+/* index popup binding lives in the round-2 script (fix 12) */
+/* ---- prose enhancer: batch buttons, bold-green refs, bold lab numbers ---- */
+(function(){
+var SKIP={A:1,BUTTON:1,SCRIPT:1,STYLE:1,TEXTAREA:1};
+function walk(node){
+  if(node.nodeType===3){
+    var par=node.parentNode; if(!par||!par.closest||par.closest('svg'))return;
+    var t=node.nodeValue;
+    if(!/(Lot #03162026|#03162026|SD\d|[AKJCDESG]\d{1,2}|\d+\.\d+%|Rated \d\.\d\d)/.test(t))return;
+    var frag=document.createDocumentFragment(),last=0,m;
+    var re=/(Rated \d\.\d\d|Lot #03162026|#03162026|(?<![A-Za-z0-9])SD\d(?![\dA-Za-z])|(?<![A-Za-z0-9])[AKJCDESG]\d{1,2}(?![\dA-Za-z])|\d+\.\d+%)/g;
+    while((m=re.exec(t))){
+      frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+      var tok=m[0],el;
+      if(tok.indexOf('Rated ')===0){el=document.createElement('span');el.innerHTML='Rated <b>'+tok.slice(6)+'</b>';}
+      else if(tok.indexOf('%')>-1){el=document.createElement('b');el.textContent=tok;}
+      else if(false){el=document.createElement('span');el.className='wc-ref';el.textContent=tok;}
+      else{var gid=tok.indexOf('03162026')>-1?'batch-03162026':(/^SD\d$/.test(tok)?'batch-sd':('batch-'+tok.charAt(0).toLowerCase()));el=document.createElement('a');el.className='wc-batchbtn';el.href=document.getElementById(gid)?('#'+gid):'#coa';el.textContent=tok;}
+      frag.appendChild(el);last=m.index+tok.length;
+    }
+    frag.appendChild(document.createTextNode(t.slice(last)));
+    par.replaceChild(frag,node);
+  }else if(node.nodeType===1){
+    if(SKIP[node.tagName]||node.tagName==='svg')return;
+    if(node.classList&&(node.classList.contains('batch')||node.classList.contains('wc-batchbtn')||node.classList.contains('wc-batchhd')))return;
+    Array.prototype.slice.call(node.childNodes).forEach(walk);
+  }
+}
+document.addEventListener('DOMContentLoaded',function(){var w=document.querySelector('.wrap');if(w)walk(w);});
+})();
+/* ---- section collapse: sections start OPEN; the band button collapses/opens. Only strain cards start collapsed. Vein Colors (data-notoggle) never collapses. ---- */
+document.addEventListener('DOMContentLoaded',function(){
+  var bands=Array.prototype.slice.call(document.querySelectorAll('.colorband'));
+  bands.forEach(function(band){
+    if(band.hasAttribute('data-notoggle'))return;
+    var wrap=document.createElement('div');wrap.className='wcsec';
+    band.parentNode.insertBefore(wrap,band.nextSibling);
+    while(wrap.nextSibling){
+      var nx=wrap.nextSibling;
+      if(nx.nodeType===1&&(nx.classList.contains('colorband')||nx.tagName==='FOOTER'))break;
+      wrap.appendChild(nx);
+    }
+    band._wcWrap=wrap;wrap._wcBand=band;
+    var btn=band.querySelector('.wc-tgl');
+    band.classList.add('open');
+    band._wcSet=function(open){wrap.hidden=!open;band.classList.toggle('open',!!open);if(btn){btn.setAttribute('aria-expanded',open?'true':'false');btn.title=open?'Close this section':'Open this section';}};
+    if(btn){btn.setAttribute('aria-expanded','true');btn.title='Close this section';btn.addEventListener('click',function(){band._wcSet(wrap.hidden);});}
+    band.addEventListener('click',function(e){if(e.target.closest('a,button'))return;band._wcSet(wrap.hidden);});
+  });
+  document.querySelectorAll('.colorband[data-notoggle]').forEach(function(band){
+    var box=document.createElement('div');box.className='wk-open';
+    band.parentNode.insertBefore(box,band.nextSibling);
+    while(box.nextSibling){
+      var nx=box.nextSibling;
+      if(nx.nodeType===1&&(nx.classList.contains('colorband')||nx.tagName==='FOOTER'))break;
+      box.appendChild(nx);
+    }
+  });
+  function openTarget(){
+    var id=location.hash?location.hash.slice(1):'';if(!id)return;
+    var el=document.getElementById(id);if(!el)return;
+    if(el.classList.contains('colorband')){el._wcSet&&el._wcSet(true);return;}
+    var sec=el.closest?el.closest('.wcsec'):null;
+    if(sec&&sec._wcBand)sec._wcBand._wcSet(true);
+    if(el.classList.contains('strain')&&window.__wcOpenCard)window.__wcOpenCard(el);
+  }
+  window.addEventListener('hashchange',openTarget);
+  openTarget();
+});
+/* ---- Kratom Picker wheel ---- */
+(function(){
+var S=[{"n": "North Hulu Kapuas Red", "v": "red", "b": "J10 · Farmer J Riverbank", "e": 2, "m": 4, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Slower, contemplative riverbank red: softens situational", "x": "strain-north-hulu-kapuas-red"}, {"n": "Secret Red Sunda", "v": "red", "b": "Slow Vintage", "e": 1, "m": 5, "c": 3, "ca": 5, "r": 5, "col": 3, "sp": "Slow", "w": "DTE's benchmark heavy hitter", "x": "strain-secret-red-sunda"}, {"n": "Old School Red Sumatra", "v": "red", "b": "D11 · String-Dried", "e": 3, "m": 5, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Fast", "w": "Clean indoor-cured wild Sumatra harvest from Farmer D's", "x": "strain-old-school-red-sumatra"}, {"n": "Super Red MD", "v": "red", "b": "A24 / A30 · Green-Cured", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 3, "col": 4, "sp": "Fast", "w": "Unfermented daytime red from Farmer A", "x": "strain-super-red-md"}, {"n": "Wild Red Dragon", "v": "red", "b": "A27 · Green-Cured Wild", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 3, "col": 4, "sp": "Fast", "w": "Unfermented, green-cured wild red from Farmer A", "x": "strain-wild-red-dragon"}, {"n": "Red Bali — R7 / Premium C5 / Super K19", "v": "red", "b": "Fermented · Batches R7 · C5 · K19 · G5", "e": 1, "m": 4, "c": 3, "ca": 5, "r": 5, "col": 3, "sp": "Slow", "w": "Traditional lightly-to-moderately fermented reds", "x": "strain-red-bali-r7-premium-c5-super-k19"}, {"n": "Wild Red JK", "v": "red", "b": "A28 · Wild Old-Growth", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Wild Jongkong harvest", "x": "strain-wild-red-jk"}, {"n": "OG Super Red", "v": "red", "b": "K18 · Light Ferment", "e": 2, "m": 4, "c": 4, "ca": 5, "r": 5, "col": 4, "sp": "Mid-Slow", "w": "Lightly fermented hybrid red", "x": "strain-og-super-red"}, {"n": "Red JK Platinum", "v": "red", "b": "K18 · Farmer K", "e": 3, "m": 5, "c": 4, "ca": 5, "r": 3, "col": 4, "sp": "Mid-Fast", "w": "K18 panel: euphoric warmth, social lift, gooey calm", "x": "strain-red-jk-platinum"}, {"n": "OG Wild Red MD", "v": "red", "b": "A29 · Unfermented Wild", "e": 3, "m": 5, "c": 4, "ca": 4, "r": 4, "col": 4, "sp": "Mid-Fast", "w": "Mature forest wild harvest, cured green: expansive", "x": "strain-og-wild-red-md"}, {"n": "Wild Red Malay", "v": "red", "b": "K19 · Wild Malay", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Wild jungle-stand Malay", "x": "strain-wild-red-malay"}, {"n": "PRMD 18 — Premium Red Maeng Da", "v": "red", "b": "C5 · Green-Cured", "e": 3, "m": 5, "c": 4, "ca": 5, "r": 3, "col": 4, "sp": "Mid-Fast", "w": "Green-cured Premium Red Maeng Da from Farmer C", "x": "strain-prmd-18-premium-red-maeng-da"}, {"n": "Ancient Red Dragon", "v": "red", "b": "SD1 · Sun-Dried · Select Series", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Line-cured indoors (SD1) to prevent oxidation", "x": "strain-ancient-red-dragon"}, {"n": "Super Red Bika · Red Bika", "v": "red", "b": "A30 / A31 · Green-Cure", "e": 3, "m": 4, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Mid-Fast", "w": "Unfermented, soothing daytime reds: uplifting mood", "x": "strain-super-red-bika-red-bika"}, {"n": "30-Year Wild Red MD", "v": "red", "b": "Old-Growth Wild", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 5, "col": 4, "sp": "Mid-Slow", "w": "Ancient wild harvest delivering penetrating muscular", "x": "strain-30-year-wild-red-md"}, {"n": "Ancient Red Panda", "v": "red", "b": "K20 · Farmer A", "e": 2, "m": 4, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Unfermented and soothing: stress decompression and", "x": "strain-ancient-red-panda"}, {"n": "Premium Red Elephant", "v": "red", "b": "Broad-Leaf · Indoor-Cured", "e": 3, "m": 5, "c": 4, "ca": 4, "r": 4, "col": 4, "sp": "Mid-Fast", "w": "Broad-leaf wild harvest cured indoors: sunny, buoyant", "x": "strain-premium-red-elephant"}, {"n": "Red Horned Dragon", "v": "red", "b": "K20 · Horned Leaf", "e": 2, "m": 4, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Heavy evening staple: eases muscular stiffness and", "x": "strain-red-horned-dragon"}, {"n": "Super Green Dragon", "v": "green", "b": "A31 · Current Catalog", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "DTE's A31 tester panel calls it the flexible", "x": "strain-super-green-dragon"}, {"n": "North Hulu Kapuas Green", "v": "green", "b": "J8 / J9 / J11 / J12 · Farmer J Riverbank", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Fast", "w": "Wild riverbank leaf, the most consistently documented", "x": "strain-north-hulu-kapuas-green"}, {"n": "Green Jongkong Elite", "v": "green", "b": "A28 · Farmer A", "e": 3, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Mid-Fast", "w": "A premier balanced green: steady, lingering euphoria", "x": "strain-green-jongkong-elite"}, {"n": "Imperial Green Dragon", "v": "green", "b": "SD D10 / D11 · String-Dried", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Fast", "w": "Sourced from Farmer D and string-dried indoors", "x": "strain-imperial-green-dragon"}, {"n": "Classic Green Maeng Da", "v": "green", "b": "A31 · Current Catalog", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "DTE's A31 panel: a clean, no-nonsense daily-driver green", "x": "strain-classic-green-maeng-da"}, {"n": "OG Green Embaloh", "v": "green", "b": "E10 · Old-Growth Wild", "e": 3, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Mid-Fast", "w": "DTE's A31 panel: an old-growth, wild-harvested green", "x": "strain-og-green-embaloh"}, {"n": "Green Horned Dragon", "v": "green", "b": "K19 · Horned Leaf", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "Jagged horned-leaf morphology under Farmer K's curation", "x": "strain-green-horned-dragon"}, {"n": "Beetlejuice Green", "v": "green", "b": "2.0 · Signature", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Fast", "w": "DTE's signature \"bliss enhancer\"", "x": "strain-beetlejuice-green"}, {"n": "Super Green MD", "v": "green", "b": "A24 / A30 · Select Series", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "Vibrant emerald micro-mill from Farmer A: crisp, soaring", "x": "strain-super-green-md"}, {"n": "Premium Green Bali", "v": "green", "b": "C4 / G5 · Bali Series", "e": 3, "m": 4, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Mid-Fast", "w": "The classic, highly consistent green: clean mood", "x": "strain-premium-green-bali"}, {"n": "Wild Green Dragon", "v": "green", "b": "A27 · Wild Old-Growth", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "Electric yet smooth wave of mood lift, heightened", "x": "strain-wild-green-dragon"}, {"n": "Super Green Sukma", "v": "green", "b": "S1 · Original Harvest", "e": 3, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Mid-Fast", "w": "Tester panel: motivating calm, clear focus, big happy lift", "x": "strain-super-green-sukma"}, {"n": "Green PMD 18", "v": "green", "b": "C4 · Old-Growth · Flagship", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 1, "col": 4, "sp": "Fast", "w": "DTE's flagship green benchmark", "x": "strain-green-pmd-18"}, {"n": "Northwind Green · Greenman Winter", "v": "green", "b": "Seasonal · Holiday/K19", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 2, "col": 4, "sp": "Fast", "w": "Northwind Green: crisp, brisk sensory alertness", "x": "strain-northwind-green-greenman-winter"}, {"n": "30-Year Pure Green MD", "v": "green", "b": "A33 · Select Series · Old-Growth", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 2, "col": 4, "sp": "Fast", "w": "Select-Series old-growth harvest from ancient wild trees", "x": "strain-30-year-pure-green-md"}, {"n": "Wild Green Saka", "v": "green", "b": "D11 · String-Dried", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Fast", "w": "Artisanal whole-leaf string-dried harvest from Farmer D", "x": "strain-wild-green-saka"}, {"n": "Deep Jungle Green Nanga", "v": "green", "b": "K16 · Old-Growth Canopy", "e": 3, "m": 5, "c": 4, "ca": 5, "r": 3, "col": 4, "sp": "Mid-Fast", "w": "Old-growth virgin canopy harvest from the Nanga River", "x": "strain-deep-jungle-green-nanga"}, {"n": "Super Green Kali", "v": "green", "b": "K19 · Kalimantan Riverbank", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "Mature Kalimantan riverbank stands: rapidly delivers", "x": "strain-super-green-kali"}, {"n": "Wild White Jongkong", "v": "white", "b": "A28 / A30 · Wild Old-Growth", "e": 5, "m": 5, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Old-growth wild Jongkong leaf: pristine euphoric clarity", "x": "strain-wild-white-jongkong"}, {"n": "Werewolf White", "v": "white", "b": "2.0 · Seasonal · 20-Year Trees", "e": 5, "m": 5, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Seasonal high-octane white from 20-year trees.", "x": "strain-werewolf-white"}, {"n": "Premium White Bali", "v": "white", "b": "G5 · Select Series", "e": 4, "m": 4, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "DTE's A24-batch notes: energy and mood lift are where", "x": "strain-premium-white-bali"}, {"n": "Super White Elephant", "v": "white", "b": "A33 · Select Series · Broad-Leaf Wild", "e": 5, "m": 5, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Sourced by Farmer A from mature broad-leaf (\"elephant\")", "x": "strain-super-white-elephant"}, {"n": "Wild White Bali", "v": "white", "b": "K17 · Wild Harvest", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Fast", "w": "Old-growth wild Bali harvest that defies white-vein", "x": "strain-wild-white-bali"}, {"n": "Super White Indo", "v": "white", "b": "K18 / K20 · Farmer K", "e": 5, "m": 4, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Alert, swift morning wake-up leaf: rapid, cheerful lift", "x": "strain-super-white-indo"}, {"n": "Wild White MD", "v": "white", "b": "K18 · Farmer K", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "Optimistic euphoria, clean drive, clear headspace", "x": "strain-wild-white-md"}, {"n": "20-Year Pure White MD", "v": "white", "b": "A33 · Select Series · Old-Growth", "e": 5, "m": 5, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Fast, invigorating daytime primary from 20-year-old", "x": "strain-20-year-pure-white-md"}, {"n": "Wild White Yeti", "v": "white", "b": "Halloween · Limited Release", "e": 5, "m": 5, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Zoomy clarity, big happy, cozy when seated", "x": "strain-wild-white-yeti"}, {"n": "White Bone", "v": "white", "b": "K19 · Bone Grind", "e": 5, "m": 5, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Incorporates high-alkaloid leaf veins and midribs", "x": "strain-white-bone"}, {"n": "Blizzard Bali", "v": "white", "b": "Seasonal White", "e": 4, "m": 4, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Fast", "w": "A mellow, collected white: peaceful, cheerful optimism", "x": "strain-blizzard-bali"}, {"n": "Wild White Sekadau", "v": "white", "b": "A31 · Current Catalog", "e": 3, "m": 4, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Mid-Fast", "w": "The rule-breaker: DTE's A31 panel rates it a mid to", "x": "strain-wild-white-sekadau"}, {"n": "North Hulu Kapuas White", "v": "white", "b": "J11 · Farmer J Riverbank", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "Revered not just for drive but for standout mood", "x": "strain-north-hulu-kapuas-white"}, {"n": "20-Year Wild White Jongkong", "v": "white", "b": "A31 · Current Catalog", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "DTE's A31 tester panel rates it a mid-upper white: sharp", "x": "strain-20-year-wild-white-jongkong"}, {"n": "White JK Platinum", "v": "white", "b": "K16 / K20 · Farmer K", "e": 5, "m": 5, "c": 4, "ca": 2, "r": 1, "col": 4, "sp": "Fast", "w": "Razor-sharp euphoric clarity: an upbeat, optimistic", "x": "strain-white-jk-platinum"}, {"n": "Super Gold MD", "v": "gold", "b": "K19 / K20 · A31 Select Series", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 3, "col": 4, "sp": "Mid-Slow", "w": "DTE's tester panels describe a polished", "x": "strain-super-gold-md"}, {"n": "Gold Dragon", "v": "gold", "b": "A22 · Farmer A", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 3, "col": 4, "sp": "Mid-Slow", "w": "The strain's A18 debut record: warm and very relaxing", "x": "strain-gold-dragon"}, {"n": "Wild Gold Dragon", "v": "gold", "b": "K17 · Farmer K Wild", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 3, "col": 4, "sp": "Mid-Slow", "w": "Mature wild stands under Farmer K: rich, glowing somatic", "x": "strain-wild-gold-dragon"}, {"n": "Yuletide Yellow", "v": "gold", "b": "Seasonal Holiday Release", "e": 3, "m": 5, "c": 4, "ca": 5, "r": 3, "col": 4, "sp": "Mid-Fast", "w": "A limited holiday release embodying the \"mellow yellow\"", "x": "strain-yuletide-yellow"}, {"n": "Elder Tree Gold", "v": "gold", "b": "30-Yr Wild · Select Series", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Harvested from wild trees up to 30 years old", "x": "strain-elder-tree-gold"}, {"n": "Golden Moon Bear", "v": "gold", "b": "A30 · Select Series", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "The evening gold.", "x": "strain-golden-moon-bear"}, {"n": "Ancient Gold Dragon", "v": "gold", "b": "A30 vs K20 · Two Harvests", "e": 3, "m": 5, "c": 4, "ca": 4, "r": 3, "col": 4, "sp": "Mid-Fast", "w": "Two distinct harvests, two personalities.", "x": "strain-ancient-gold-dragon"}, {"n": "Mellow Yellow Indo", "v": "gold", "b": "K20 · Current Catalog", "e": 2, "m": 4, "c": 4, "ca": 5, "r": 2, "col": 4, "sp": "Mid-Slow", "w": "The benchmark daytime anxiolytic in DTE's yellow line", "x": "strain-mellow-yellow-indo"}, {"n": "Pink Panther", "v": "blends", "b": "A26 / 2.0 · White + Red Blend · House Signature", "e": 4, "m": 5, "c": 4, "ca": 4, "r": 2, "col": 4, "sp": "Fast", "w": "DTE's signature house blend: premium white leaf", "x": "strain-pink-panther"}, {"n": "Silver Spirit", "v": "blends", "b": "White + Green · Flow-State Blend", "e": 4, "m": 5, "c": 4, "ca": 3, "r": 1, "col": 4, "sp": "Fast", "w": "Elite daytime white/green synergy: upper-velocity energy", "x": "strain-silver-spirit"}, {"n": "Midnight Sleigh Ride", "v": "blends", "b": "Holiday Slow Blend", "e": 1, "m": 5, "c": 3, "ca": 5, "r": 5, "col": 3, "sp": "Slow", "w": "Heavy, warm holiday blend engineered for deep", "x": "strain-midnight-sleigh-ride"}, {"n": "Rudolph Red", "v": "blends", "b": "Holiday Red", "e": 2, "m": 5, "c": 4, "ca": 5, "r": 4, "col": 4, "sp": "Mid-Slow", "w": "Specialty holiday red: warm, cozy, heart-opening", "x": "strain-rudolph-red"}];
+var W={calm:{e:-3,m:1,c:0,ca:3,r:0},energy:{e:3,m:1,c:1,ca:-1,r:0},focus:{e:1,m:0,c:3,ca:1,r:0},mood:{e:1,m:3,c:0,ca:1,r:0},relief:{e:0,m:0,c:0,ca:1,r:3},sleep:{e:-3,m:0,c:0,ca:3,r:2}};
+var DIMS=[['e','Energy','var(--fx-energy)'],['c','Focus','var(--fx-focus)'],['m','Mood','var(--fx-mood)'],['s','Sleep','var(--fx-sleep)'],['ca','Calm','var(--fx-calm)'],['r','Analgesia','var(--fx-analgesia)']];
+var SITN={energy:'Energy',focus:'Focus',mood:'Mood',sleep:'Sleep',relief:'Analgesia',calm:'Calm'};
+var COLN={white:'White',green:'Green',gold:'Gold / Yellow',red:'Red',blend:'Blend'};
+function score(s,w){return s.e*w.e+s.m*w.m+s.c*w.c+s.ca*w.ca+s.r*w.r;}
+function rankedFor(sit){var w=W[sit];return S.map(function(s,i){return{s:s,i:i,sc:score(s,w)};}).sort(function(a,b){return b.sc-a.sc||a.i-b.i;}).map(function(x){return x.s;});}
+function hist(){try{return JSON.parse(localStorage.getItem('wcQpHistory')||'[]');}catch(e){return[];}}
+function logPick(sit,s){var h=hist();h.push({sit:sit,n:s.n,v:s.v,col:s.col,x:!!s.x,d:Date.now()});while(h.length>60)h.shift();try{localStorage.setItem('wcQpHistory',JSON.stringify(h));}catch(e){}}
+function lastFor(h,sit){for(var i=h.length-1;i>=0;i--){if(h[i].sit===sit)return h[i];}return null;}
+function fmtD(ts){return new Date(ts).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});}
+function bars(s){return '<div class="qp-bars">'+DIMS.map(function(d){var v=(d[0]==='s')?Math.max(1,Math.min(5,Math.round((s.ca+s.r)/2))):s[d[0]],dots='';for(var i=1;i<=5;i++){dots+='<i style="background:'+(i<=v?d[2]:'var(--line)')+((d[0]==='e'||d[0]==='s')?';border:1px solid #9a9a9a;box-sizing:border-box':'')+'"></i>';}return '<div class="qp-bar">'+d[1]+'<div class="qp-dots">'+dots+'</div></div>';}).join('')+'</div>';}
+var curSit=null,curWin=null,curRot=null;
+function pickCard(s,tag,rot,rotwhy){
+  var h='<div class="qp-pick"><div class="qp-tag'+(rot?' rot':'')+'">'+tag+'</div><div class="qp-name">'+s.n+'</div>'
+    +'<div class="qp-meta">'+s.v+' · '+s.b+' · '+s.sp+' speed</div>'
+    +'<p class="qp-why">'+s.w+'</p>'+bars(s);
+  if(rot&&rotwhy)h+='<p class="qp-rotwhy">'+rotwhy+'</p>';
+  h+='<div><button type="button" class="qp-take'+(rot?' rot':'')+'" data-n="'+s.n.replace(/"/g,'&quot;')+'">Take this one</button></div><div class="qp-logged" style="display:none"></div></div>';
+  return h;
+}
+function showPick(sit){
+  curSit=sit;var rk=rankedFor(sit);curWin=rk[0];
+  var h=hist(),lastSit=lastFor(h,sit),lastAny=h.length?h[h.length-1]:null;
+  var rot=null,why=[];
+  for(var i=0;i<rk.length;i++){var c=rk[i];
+    if(c===curWin)continue;
+    if(lastSit&&(c.n===lastSit.n||c.v===lastSit.v))continue;
+    if(lastAny&&COLN[c.col]===COLN[lastAny.col])continue;
+    if(lastAny&&lastAny.x&&c.x)continue;
+    rot=c;break;}
+  if(rot){
+    if(lastSit){why.push('Rests <b>'+lastSit.n+'</b> (took it '+fmtD(lastSit.d)+')');if(rot.v!==lastSit.v)why.push('different line');}
+    if(lastAny&&COLN[rot.col]!==COLN[lastAny.col])why.push('different color than your last pick');
+    if(!h.length)why.push('First logged pick starts your rotation history');
+  }else{
+    for(var j=0;j<rk.length;j++){if(rk[j]!==curWin&&(!lastSit||rk[j].n!==lastSit.n)){rot=rk[j];break;}}
+    if(rot)why.push('Rotation rules relaxed — the catalog runs thin here');
+  }
+  curRot=rot;
+  var out='';
+  var lastLine='';
+  if(lastSit)lastLine='<div class="qp-runner">Last time for <b>'+SITN[sit]+'</b>: <b>'+lastSit.n+'</b> · '+fmtD(lastSit.d)+'</div>';
+  if(curWin&&lastSit&&curWin.n===lastSit.n)out+='<p class="qp-note">Won again — you last took it '+fmtD(lastSit.d)+'.</p>';
+  out+='<div class="qp-dual">'+pickCard(curWin,'★ The Winner',false,'')
+    +(rot?pickCard(rot,'↻ The Rotation Pick',true,why.join(' · ')):'<div class="qp-pick"><div class="qp-tag rot">↻ The Rotation Pick</div><p class="qp-why">No second strain clears the rotation rules for this feeling yet.</p></div>')
+    +'</div>'+lastLine;
+  document.getElementById('qpResult').innerHTML=out;
+  Array.prototype.forEach.call(document.querySelectorAll('.qp-take'),function(b){
+    b.addEventListener('click',function(){
+      var s=(b.getAttribute('data-n')===curWin.n)?curWin:curRot;if(!s)return;
+      logPick(curSit,s);
+      try{var _fd=new FormData();_fd.append('_subject','DTE Kratom Picker: '+SITN[curSit]+' \u2014 '+s.n);_fd.append('Feeling',SITN[curSit]);_fd.append('Strain',s.n);_fd.append('Line',s.v);_fd.append('When',new Date().toLocaleString());_fd.append('_captcha','false');_fd.append('_template','table');fetch('https://formsubmit.co/ajax/peptopia@x-peps.com',{method:'POST',headers:{'Accept':'application/json'},body:_fd}).catch(function(){});}catch(_e){}
+      var lg=b.parentElement.parentElement.querySelector('.qp-logged');
+      b.style.display='none';lg.style.display='block';lg.textContent='✓ Logged — '+s.n+' for '+SITN[curSit]+'.';
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){
+  Array.prototype.forEach.call(document.querySelectorAll('.qp-node'),function(n){
+    n.addEventListener('click',function(){
+      Array.prototype.forEach.call(document.querySelectorAll('.qp-node'),function(x){x.classList.remove('on');});
+      n.classList.add('on');showPick(n.getAttribute('data-sit'));
+    });
+  });
+  var hub=document.getElementById('qpHub');
+  if(hub){hub.addEventListener('click',function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.qp-node'),function(x){x.classList.remove('on');});
+    curSit=null;
+    document.getElementById('qpResult').innerHTML='';
+  });}
+});
+})();
+</script>
+<script>
+/* ---- v3: whole band toggles its section; return links; reliable in-page jumps ---- */
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.colorband').forEach(function(band){band.addEventListener('click',function(e){if(e.target.closest('a,button'))return;var w=band.nextElementSibling;if(w&&band._wcSet)band._wcSet(w.hidden);});});
+  document.querySelectorAll('.colorband').forEach(function(band){var a=document.createElement('a');a.className='wc-qpbtn';a.href='#top';a.textContent='Quick Pick';a.title='Back to the Kratom Picker';band.appendChild(a);});
+});
+document.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a[href^="#"]'):null;if(!a)return;var id=a.getAttribute('href').slice(1);if(!id)return;var el=document.getElementById(id);if(!el)return;e.preventDefault();if(el.classList.contains('colorband')&&el._wcSet)el._wcSet(true);var sec=el.closest?el.closest('.wcsec'):null;if(sec){var prev=sec.previousElementSibling;if(prev&&prev._wcSet)prev._wcSet(true);}if(el.classList&&el.classList.contains('strain')&&window.__wcOpenCard)window.__wcOpenCard(el);try{history.replaceState(null,'','#'+id);}catch(err){}setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},60);});
+/* ---- v3: sortable comparison tables (whole rows move together) ---- */
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('table.wc-sortable').forEach(function(tbl){var ths=Array.prototype.slice.call(tbl.querySelectorAll('th.sortable'));ths.forEach(function(th){th.addEventListener('click',function(){var k=+th.getAttribute('data-k');var dir=th.getAttribute('data-dir')==='desc'?'asc':'desc';ths.forEach(function(x){x.removeAttribute('data-dir');});th.setAttribute('data-dir',dir);var tbody=tbl.tBodies[0];if(!tbody)return;var rows=Array.prototype.slice.call(tbody.rows).filter(function(r){return !r.querySelector('th');});rows.sort(function(a,b){var x=a.cells[k]?a.cells[k].textContent.trim():'',y=b.cells[k]?b.cells[k].textContent.trim():'';var nx=parseFloat(x.replace(/^[^0-9.\-]+/,'')),ny=parseFloat(y.replace(/^[^0-9.\-]+/,''));var c=(isNaN(nx)||isNaN(ny))?(x<y?-1:(x>y?1:0)):(nx-ny);return dir==='desc'?-c:c;});rows.forEach(function(r){tbody.appendChild(r);});});});});});
+/* ---- v3: lab reports open in a popup overlay ---- */
+document.addEventListener('DOMContentLoaded',function(){var modal=document.getElementById('labModal');if(!modal)return;var frame=document.getElementById('labFrame'),title=document.getElementById('labTitle'),openA=document.getElementById('labOpen'),closeB=document.getElementById('labClose');function show(url,label){frame.src=url;title.textContent=label||'Lab report';openA.href=url;modal.hidden=false;}function hide(){modal.hidden=true;frame.src='about:blank';}document.querySelectorAll('a[href*="wp-content/uploads"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();show(a.href,a.textContent.trim());});});closeB.addEventListener('click',hide);modal.addEventListener('click',function(e){if(e.target===modal)hide();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)hide();});});
+</script>
+<script>
+(function(){
+function hist(){try{return JSON.parse(localStorage.getItem('wcQpHistory')||'[]');}catch(e){return[];}}
+function save(h){try{localStorage.setItem('wcQpHistory',JSON.stringify(h));}catch(e){}}
+var SITN={energy:'Energy',focus:'Focus',mood:'Mood',sleep:'Sleep',relief:'Analgesia',calm:'Calm'};
+var COLN={white:'White',green:'Green',gold:'Gold / Yellow',red:'Red',blend:'Blend'};
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function render(){var H=hist();var el=document.getElementById('logList');if(!el)return;
+ if(!H.length){el.innerHTML='<p class="wc-logempty">No picks logged yet. Tap a feeling on the wheel, then \u201cTake this one.\u201d</p>';return;}
+ var rev=H.slice().reverse();
+ el.innerHTML=rev.map(function(e,i){var oi=H.length-1-i;var d=new Date(e.d);return '<div class="wc-logrow"><div><b>'+esc(e.n)+'</b><br><small>'+(SITN[e.sit]||e.sit)+' \u00b7 '+esc(e.v)+' \u00b7 '+(COLN[e.col]||'')+' \u2014 '+d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})+' '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'})+'</small></div><button type="button" class="wc-logdel" data-i="'+oi+'" title="Remove this entry">\u2715</button></div>';}).join('');
+ Array.prototype.forEach.call(el.querySelectorAll('.wc-logdel'),function(b){b.addEventListener('click',function(){var h=hist();h.splice(parseInt(b.getAttribute('data-i'),10),1);save(h);render();});});}
+function open(){var m=document.getElementById('logModal');if(!m)return;render();m.hidden=false;}
+function close(){var m=document.getElementById('logModal');if(m)m.hidden=true;}
+document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('wcLogBtn');if(b)b.addEventListener('click',open);var c=document.getElementById('logClose');if(c)c.addEventListener('click',close);var dn=document.getElementById('logDone');if(dn)dn.addEventListener('click',close);var cl=document.getElementById('logClear');if(cl)cl.addEventListener('click',function(){if(window.confirm('Clear your whole Kratom Picker log on this device?')){save([]);render();}});var m=document.getElementById('logModal');if(m)m.addEventListener('click',function(e){if(e.target===m)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});});
+/* V6: band width is pure CSS now (fit-content in V6_STYLE) — the old fitBands JS forced every band to the column width on phones and is removed. */
+})();
+</script>
+<script>
+/* ---- strain cards: auto-collapsed; header click opens the card (David, Oct 31) ---- */
+document.addEventListener('DOMContentLoaded',function(){
+  window.__wcOpenCard=function(card){var b=card.querySelector('.strain-body');if(b)b.hidden=false;var f=card.querySelector('.strain-foot');if(f)f.hidden=false;var c=card.querySelector('.wk-chev');if(c){c.textContent='\u276F';c.classList.add('open');}};
+  document.querySelectorAll('.strain').forEach(function(card){
+    var head=card.querySelector('.strain-head'),body=card.querySelector('.strain-body');
+    if(!head||!body)return;
+    body.hidden=true;var foot=card.querySelector('.strain-foot');if(foot)foot.hidden=true;
+    var chev=document.createElement('span');chev.className='wk-chev';chev.textContent='\u276F';head.appendChild(chev);
+    head.addEventListener('click',function(e){if(e.target.closest('a,button'))return;body.hidden=!body.hidden;if(foot)foot.hidden=body.hidden;chev.classList.toggle('open',!body.hidden);});
+  });
+  /* batch chips: pill buttons reading Batch #<id>, all bold */
+  document.querySelectorAll('a.batch').forEach(function(a){
+    var t=a.textContent.trim(); if(!t||t.indexOf('Batch')===0)return;
+    var parts=t.split(' \u00B7 ');
+    a.innerHTML='<b>Batch</b> <b>#'+parts[0]+'</b>'+(parts.length>1?' \u00B7 '+parts.slice(1).join(' \u00B7 '):'');
+  });
+});
+/* ---- uniform width: the widest title band sets --uw for every body container ---- */
+(function(){
+  function measure(){
+    var wrap=document.querySelector('.wrap');
+    if(!wrap)return;
+    document.documentElement.style.setProperty('--uw',wrap.clientWidth+'px');
+  }
+  function go(){requestAnimationFrame(measure);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(measure,30);});
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(measure,180);});
+})();
+</script>
+<style id="wc-rev-202611">
+/* ===== Nov 1, 2026 revision — David's 24-point pass ===== */
+.qp-tagline{color:var(--mut);font-size:.92rem;font-weight:500;font-family:'DM Sans',sans-serif;letter-spacing:0;white-space:nowrap}
+.wcqp{width:100%;max-width:640px;margin-left:auto;margin-right:auto}
+.titlepage .badges{width:100%;max-width:640px;margin-left:auto;margin-right:auto;justify-content:center}
+.qp-hub{background:color-mix(in srgb,#0047AB 13%,var(--card));border:3px solid #002E6E}
+.qp-node[data-sit="energy"].on{color:#22252a}
+html.dark .qp-node[data-sit="sleep"]{border-color:#6b6b6b}
+#wcThemeBtn{font-size:1.28rem;padding:0 10px;line-height:1}
+.wc-tbtn{box-shadow:inset 0 2px 3px rgba(255,255,255,.85),inset 0 -4px 7px rgba(0,0,0,.16),0 5px 10px rgba(0,0,0,.28)}
+.pill{box-shadow:inset 0 2px 3px rgba(255,255,255,.85),inset 0 -3px 6px rgba(0,0,0,.12),0 3px 7px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease}
+.pill:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(0,0,0,.25),0 1px 2px rgba(0,0,0,.25)}
+.colorband{padding-top:6px;padding-bottom:6px}
+.colorband h2{margin:0 0 1px}
+.quote{font-weight:700}
+.quote cite{font-weight:400}
+.qinline{font-weight:700}
+.wc-fact{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:2px solid #04331A;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);color:#054A1F;font-size:13px;font-weight:800;line-height:1;cursor:pointer;padding:0;vertical-align:2px;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),inset 0 -3px 5px rgba(0,0,0,.18),0 2px 5px rgba(0,0,0,.3);transition:transform .07s ease,box-shadow .07s ease}
+.wc-fact:active{transform:translateY(2px) scale(.94);box-shadow:inset 0 2px 5px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.25)}
+.wc-factbox{background:#fff;color:#2e2a24;width:min(620px,94vw);max-height:86vh;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.wc-factbody{padding:18px 20px;overflow-y:auto}
+.wc-factbody blockquote{margin:0;font-style:italic;font-weight:700;background:#EFEBFA;border-left:4px solid #6A4C93;border-radius:0 8px 8px 0;padding:12px 16px;color:#33302e}
+.wc-factsrc{font-size:.85rem;color:#6f675a;margin:12px 0 0}
+html.dark .wc-factbody blockquote{background:#2A2440;color:#D8D2F0}
+.biblio h3{font-family:'Outfit',sans-serif;color:#08672B;margin:16px 0 8px;font-size:1.05rem}
+.biblio h3:first-child{margin-top:0}
+.biblio li{margin:7px 0}
+.wc-srcname{font-weight:700;color:#08672B}
+html.dark .wc-srcname{color:#9CC7A8}
+html.dark .biblio h3{color:#9CC7A8}
+.wc-strain{color:#08672B;font-weight:700;text-decoration:none;border-bottom:1.5px dotted rgba(8,103,43,.55)}
+html.dark .wc-strain{color:#9CC7A8;border-bottom-color:rgba(156,199,168,.55)}
+.wc-pass{display:inline-block;background:#e6f2ea;color:#054A1F;border:1px solid #bfe0c9;border-radius:999px;font-size:12px;font-weight:700;padding:2px 10px}
+html.dark .wc-pass{background:#23402A;color:#CDEBD4;border-color:#33513B}
+.wc-trio{margin:6px 0 2px;text-align:center}
+.wc-badges2{display:flex;flex-direction:column;gap:10px;margin:2px 0 12px}
+.wc-badge{display:flex;gap:10px;align-items:flex-start;background:var(--paper2);border:1px solid var(--line);border-left:6px solid #08672B;border-radius:10px;padding:12px 14px;color:var(--ink);text-decoration:none;box-shadow:inset 0 2px 3px rgba(255,255,255,.6),0 3px 7px rgba(0,0,0,.15)}
+.wc-badge:active{transform:translateY(1px)}
+.wc-badge-ic{font-size:20px;line-height:1.2}
+.wc-tl2{display:flex;gap:2px;margin:20px 0 8px;position:relative}
+.wc-tl2:before{content:"";position:absolute;top:26px;left:5%;right:5%;height:4px;border-radius:2px;background:linear-gradient(90deg,#7A9E8D,#08672B)}
+.wc-tn{flex:1 1 0;text-align:center;text-decoration:none;color:var(--ink);padding:0 4px;position:relative;z-index:1}
+.wc-tm{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);border:2.5px solid #08672B;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 7px;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.18),0 5px 10px rgba(0,0,0,.3)}
+.wc-tn b{display:block;font-size:.8rem;line-height:1.25;color:#08672B;font-family:'Outfit',sans-serif}
+.wc-tn small{display:block;font-size:.71rem;line-height:1.4;color:var(--muted);margin-top:3px}
+@media(max-width:640px){.wc-tl2{flex-wrap:wrap}.wc-tl2:before{display:none}.wc-tn{flex:0 0 33.33%;margin-bottom:16px}}
+html.dark .wc-tn b{color:#9CC7A8}
+.wc-shipcard{grid-column:1/-1}
+.wc-shipline{font-size:15px}
+.wc-card-socials{justify-content:flex-start;margin:2px 0 10px}
+.wc-mapwrap{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+.wc-mapwrap h4{margin:0 0 12px;color:#08672B;font-size:16px}
+.wc-mapgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px}
+.wc-st{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font:700 .66rem 'Outfit',sans-serif;border-radius:5px;color:#fff}
+.st-ok{background:#398555}.st-ban{background:#E01020}.st-local{background:#C77D0A}
+.wc-maplegend{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0 4px;font-size:13px}
+.wc-maplegend .wc-lg{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px}
+.wc-mapnote{font-size:12.5px;color:var(--muted);margin:8px 0 12px}
+.wc-mapbox{background:#fff;color:#2e2a24;width:min(880px,96vw);max-height:92vh;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.wc-mapbox .wc-labbar button{background:#F7F4EC;border:none;border-radius:8px;width:32px;height:32px;font-size:1rem;cursor:pointer;margin-left:6px}
+.wc-mapview{overflow:hidden;flex:1;min-height:320px;position:relative;touch-action:none;background:#faf7ef;cursor:grab}
+.wc-mapstage{position:absolute;top:0;left:0;padding:18px;transform-origin:0 0}
+.wc-mapstage .wc-mapgrid{width:660px}
+.wc-mapstage .wc-st{font-size:.82rem;border-radius:7px}
+.wc-mapbox .wc-mapnote{padding:0 14px 12px;margin:4px 0 0}
+.toc-back{position:fixed;bottom:18px;right:74px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),#a7d3b4 46%,#7fb069);border:2px solid #08672B;color:#08672B;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),0 4px 14px rgba(0,0,0,.35);z-index:50;padding:0}
+.toc-back:active{transform:translateY(2px)}
+@media print{.toc-back,#factModal{display:none!important}}
+.wc-logbox,.wc-labbox{color:#2e2a24}
+html.dark .catintro,html.dark .biblio,html.dark .wc-mapwrap{background:#1C211C;color:var(--ink)}
+html.dark .hlr{background:#4A2622}html.dark .hlg{background:#23402A}html.dark .hlw{background:#33401F}html.dark .hly{background:#4D3D10}html.dark .hlb{background:#33284F}
+html.dark .popbox.tip{background:#1E2B21;border-color:#33513B}
+html.dark .popbox.deep{background:#2A2517;border-color:#55491F}
+html.dark .popbox.star{background:#2B2113;border-color:#5C4718}
+html.dark .popbox.tip::before{color:#9CC7A8}html.dark .popbox.deep::before{color:#E3C878}html.dark .popbox.star::before{color:#E3C878}
+html.dark table.grid tr:nth-child(even) td{background:#232823}
+html.dark .my1 td{background:#3A3418}html.dark .my2 td{background:#4A3F16}
+html.dark .pill{background:#1C211C}
+html.dark .affil{background:#1C211C}
+html.dark .wc-stat b,html.dark .wc-bv,html.dark .wc-ev b,html.dark .peffects b{color:#9CC7A8}
+html.dark .wc-return a{background:#1C211C;color:#9CC7A8;border-color:#9CC7A8}
+html.dark .index .idx-hint{color:#9CC7A8}
+html.dark .wc-mapwrap h4{color:#9CC7A8}
+</style>
+<script>var WC_FACTS=[{"q": "\"10/10 across the board — fresh, great prices, fast shipping.\"", "src": "drugbuyersguide.info — DTE vendor thread — Ket Carson", "url": "https://drugbuyersguide.info/threads/down-to-earth-botanicals.10703/"}, {"q": "\"Yesterday evening was a lovely hit and I slept like a baby!\"", "src": "r/kratomreview100 — moderator review of Golden Moon Bear, May 2026 (rated 10/10)", "url": "https://www.reddit.com/r/kratomreview100/"}, {"q": "\"My favorite of all? Elder Tree Gold.\"", "src": "r/kratomreview100 — community favorites thread, Sep 2026, on Elder Tree Gold", "url": "https://www.reddit.com/r/kratomreview100/"}, {"q": "\"Nice glow… decently warm and euphoric.\"", "src": "r/kratomreview100 — user review of Old School Red Sumatra (2024 batch)", "url": "https://www.reddit.com/r/kratomreview100/"}, {"q": "\"A really nice upper mid strain… a good deal of energy… really driving… heady.\"", "src": "r/kratomreview100 — moderator review of Wild Green Saka", "url": "https://www.reddit.com/r/kratomreview100/"}];
+document.addEventListener('DOMContentLoaded',function(){var modal=document.getElementById('factModal');if(!modal)return;var q=document.getElementById('factQuote'),s=document.getElementById('factSrc'),o=document.getElementById('factOpen'),t=document.getElementById('factTitle'),c=document.getElementById('factClose');function hide(){modal.hidden=true;}document.querySelectorAll('.wc-fact').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var f=WC_FACTS[+b.getAttribute('data-fq')];if(!f)return;q.textContent=f.q;s.textContent='Source: '+f.src;o.href=f.url;t.textContent='\u2713 Fact check';modal.hidden=false;});});c.addEventListener('click',hide);modal.addEventListener('click',function(e){if(e.target===modal)hide();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)hide();});});
+</script>
+<script>
+/* Nov 1, 2026 revision: return-to-previous-position button */
+(function(){
+var stack=[];
+document.addEventListener('click',function(e){
+  var a=e.target.closest?e.target.closest('a[href^="#"]'):null;
+  if(!a)return;
+  var id=a.getAttribute('href');
+  if(id==='#top'||id==='#')return;
+  stack.push(window.scrollY);
+  var b=document.getElementById('wcBackBtn'); if(b)b.hidden=false;
+},true);
+document.addEventListener('DOMContentLoaded',function(){
+  var b=document.getElementById('wcBackBtn');
+  if(b){b.addEventListener('click',function(){
+    var y=stack.pop();
+    if(y==null){b.hidden=true;return;}
+    window.scrollTo({top:y,behavior:'smooth'});
+    if(!stack.length)b.hidden=true;
+  });}
+
+});
+})();
+</script>
+<div id="tlModal" class="wc-labmodal" hidden><div class="wc-tlbox"><div class="wc-labbar"><span>🛣️ The DTE Harvest Rounds</span><span><button type="button" id="tlClose" aria-label="Close timeline">✕</button></span></div><div class="wc-tlbig" id="tlStage"></div></div></div>
+<style id="wc-rev2-202611">
+/* ===== Nov 1, 2026 revision ROUND 2 — David's 32-point pass ===== */
+/* fixes 6+7: picker circles are true push buttons; hub matches the node size; icons fill their circles */
+.wcqp .qp-node{box-shadow:inset 0 3px 5px rgba(255,255,255,.75),inset 0 -6px 9px rgba(0,0,0,.22),0 7px 13px rgba(0,0,0,.32)}
+.wcqp .qp-node:active{transform:translate(-50%,-50%) translateY(3px);box-shadow:inset 0 2px 6px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3)}
+.wcqp .qp-node .qp-emo{font-size:2.35rem}
+.wcqp .qp-node small{font-size:.8rem;font-weight:700}
+.wcqp .qp-hub{width:90px;height:90px;background:color-mix(in srgb,var(--fx-default) 13%,var(--card));border:3px solid var(--fx-default-dk);box-shadow:inset 0 3px 5px rgba(255,255,255,.75),inset 0 -6px 9px rgba(0,0,0,.22),0 7px 13px rgba(0,0,0,.32)}
+.wcqp .qp-hub:active{transform:translate(-50%,-50%) translateY(3px);box-shadow:inset 0 2px 6px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3)}
+.wcqp .qp-hub svg{width:80px;height:80px}
+@media(max-width:640px){.wcqp .qp-hub{width:84px;height:84px}.wcqp .qp-hub svg{width:74px;height:74px}.wcqp .qp-node .qp-emo{font-size:2rem}}
+.qp-node[data-sit="relief"].on .qp-cross path{fill:#FFFFFF;stroke:#FFFFFF}
+.qp-node[data-sit="calm"].on{color:#2e2a24}
+.qp-node[data-sit="mood"].on{color:#052E05}
+.qp-node[data-sit="focus"].on{color:#2B1500}
+/* fix 10: icon row exactly the Index width, one line, tight gap to the Index */
+.titlepage .badges{width:var(--uw);max-width:100%;flex-wrap:nowrap;margin:4px auto 0;gap:8px}
+@media(max-width:640px){.titlepage .badges{flex-wrap:wrap}}
+/* fix 11: slim Index bar; tight title cells */
+.index{padding:10px 18px;min-height:0;margin:6px 0 20px}
+.index h2{margin:0;font-size:1.3rem}
+.strain-head{padding-top:5px;padding-bottom:5px}
+.wc-batchhd{padding-top:6px;padding-bottom:6px;margin:10px 0 6px}
+/* fix 13: "Quick Pick" pill rides on every band, immediately left of the band icon */
+.colorband{position:relative;padding-right:168px}
+.wc-qpbtn{position:absolute;right:62px;top:50%;transform:translateY(-50%);font:700 .78rem 'Outfit',sans-serif;color:#08672B;text-decoration:none;border:2px solid #08672B;border-radius:999px;padding:4px 12px;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 55%,#bcd8c4);box-shadow:inset 0 1px 2px rgba(255,255,255,.9),inset 0 -3px 5px rgba(0,0,0,.15),0 3px 6px rgba(0,0,0,.28);white-space:nowrap;z-index:3}
+.wc-qpbtn:active{transform:translateY(-50%) translateY(2px);box-shadow:inset 0 2px 5px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.25)}
+html.dark .wc-qpbtn{background:#1C211C;color:#9CC7A8;border-color:#9CC7A8}
+@media(max-width:640px){.colorband{padding-right:148px}.wc-qpbtn{right:58px;font-size:.7rem;padding:3px 9px}}
+/* fix 8: TH badge — circular push button, letters nearly as large as the button */
+.wc-th{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;border-radius:50%;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);border:2px solid #08672B;color:#054A1F;font:800 .78em 'Outfit',sans-serif;vertical-align:-.35em;margin-right:.3em;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),inset 0 -2px 4px rgba(0,0,0,.18),0 2px 4px rgba(0,0,0,.25)}
+.wc-th-lg{font:800 20px 'Outfit',sans-serif;letter-spacing:.01em;line-height:1}
+/* fix 12: index popup — left-pinned, single column, green-arrow-style close button */
+.wc-idxback{position:fixed;inset:0;background:rgba(20,24,20,.45);z-index:1190}
+.wc-idxpanel{position:fixed;left:14px;top:50%;transform:translateY(-50%);width:min(350px,88vw);max-height:94vh;overflow:auto;background:var(--card,#fff);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:18px 20px 14px 30px;z-index:1200;box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.wc-idxpanel ol{margin:0;padding-left:22px;columns:1}
+.wc-idxpanel li{margin:7px 0}
+.wc-idxpanel ol ol{list-style-type:lower-alpha;margin-top:5px}
+.wc-idxpanel a{color:var(--accent);text-decoration:none;font-weight:600}
+html.dark .wc-idxpanel a{color:#9CC7A8}
+.wc-idxclose{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),#a7d3b4 46%,#7fb069);border:2px solid #08672B;color:#08672B;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),0 4px 12px rgba(0,0,0,.3);padding:0}
+.wc-idxclose:active{transform:translateY(2px)}
+/* fix 24: search panel */
+.wc-search{margin:10px auto 2px;max-width:640px;text-align:left}
+.wc-search input{width:100%;box-sizing:border-box;padding:11px 14px;border:2px solid #08672B;border-radius:12px;font:500 .95rem 'DM Sans',sans-serif;background:var(--card,#fff);color:var(--ink)}
+.wc-sresults{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.wc-sresults a,.wc-sresults .wc-sres{display:block;width:100%;box-sizing:border-box;text-align:left;padding:9px 13px;border:1px solid var(--line);border-radius:10px;background:var(--card,#fff);color:var(--ink);text-decoration:none;font-weight:600;font-family:inherit;font-size:inherit;cursor:pointer}
+.wc-sresults a:hover{border-color:#08672B}
+.wc-sresults .wc-snone{padding:9px 13px;color:var(--muted);font-size:.9rem}
+/* fix 18: catalog one-line columns */
+.wc-catalog td:first-child{white-space:nowrap;width:1%}
+.wc-catalog td:nth-child(3){white-space:nowrap}
+@media(max-width:640px){.wc-catalog td:first-child,.wc-catalog td:nth-child(3){white-space:normal}}
+/* fix 28: heritage cards hug their text */
+.wc-grid.tight{align-items:start}
+/* fix 21: rating numbers bold in the matrix + batch tables */
+.wc-matrix td:nth-child(7),.batchgrp td:nth-child(7){font-weight:700}
+/* fix 31: COA bullet list */
+.wc-coalist{margin:4px 0 8px;padding-left:22px}
+.wc-coalist li{margin:3px 0}
+.wc-coalist ul{margin:2px 0 6px;padding-left:20px}
+/* fix 20: per-strain wheel buttons */
+.donut-trigger{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;flex:none;vertical-align:middle;box-shadow:inset 0 2px 3px rgba(255,255,255,.55),inset 0 -3px 5px rgba(0,0,0,.25),0 3px 6px rgba(0,0,0,.3)}
+#donut-modal-box{width:50vw!important;max-width:640px!important}
+@media(max-width:768px){#donut-modal-box{width:94vw!important}}
+/* spectrum lane labels — readable text colors in both themes (fix 19) */
+.wc-lane-white{color:#6E6E6E}.wc-lane-green{color:#398555}.wc-lane-gold{color:#8F8F00}.wc-lane-red{color:var(--fx-analgesia)}.wc-lane-blend{color:#7A4C93}
+html.dark .wc-lane-white{color:#B0BEC5}html.dark .wc-lane-green{color:#9CC7A8}html.dark .wc-lane-gold{color:#E3E36A}html.dark .wc-lane-red{color:#FF8A80}html.dark .wc-lane-blend{color:#C9A8E0}
+/* fix 19: readability audit — light/dark contrast fixes */
+.panel.p-white .phead{background:#527A28}
+html.dark .index h2{color:#9CC7A8}
+html.dark .strain h4{color:#9CC7A8}
+html.dark .wc-batchhd{color:#9CC7A8}
+html.dark .subtitle{color:#9CC7A8}
+html.dark .kicker{color:#9CC7A8}
+html.dark .titlepage{background:radial-gradient(1200px 600px at 50% -10%,#243322 0%,var(--paper) 60%)}
+html.dark .stars{color:#E3C878}
+html.dark .vw-r{color:#FF9D94}html.dark .vw-w{color:#C9D4DC}html.dark .vw-g{color:#9CC7A8}html.dark .vw-y{color:#E3C878}
+html.dark .wc-trio text{fill:#EDE6D6}
+/* fix 25: print — no graphic cut in half across pages */
+@media print{
+  .wcqp,.qp-wheel,.wc-mapwrap,.wc-trio,.wc-tl2,.wc-spec,.wc-bars,.legend,.wc-card,.wc-stat,.wc-tn,.qp-pick,.wc-badge{break-inside:avoid!important;page-break-inside:avoid!important}
+  .wc-qpbtn,.wc-search,.wc-idxpanel,.wc-idxback{display:none!important}
+}
+</style>
+<script>
+/* ===== Round 2 (Nov 1, 2026): index popup (12), fuzzy search (24) ===== */
+document.addEventListener('DOMContentLoaded',function(){
+  /* ---- fix 12: the index book opens a left-pinned, single-column popup ---- */
+  var idx=document.querySelector('.index');
+  if(idx){
+    var btn=idx.querySelector('h2 .icobtn');
+    var list=idx.querySelector('ol');
+    if(btn&&list){
+      var back=document.createElement('div');back.className='wc-idxback';back.hidden=true;
+      var panel=document.createElement('div');panel.className='wc-idxpanel';panel.hidden=true;
+      panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Guide index');
+      var close=document.createElement('button');close.type='button';close.className='wc-idxclose';close.setAttribute('aria-label','Close the index');close.textContent='\u2715';
+      panel.appendChild(close);panel.appendChild(list.cloneNode(true));
+      document.body.appendChild(back);document.body.appendChild(panel);
+      function openP(){back.hidden=false;panel.hidden=false;btn.title='Close the index';}
+      function closeP(){back.hidden=true;panel.hidden=true;btn.title='Open the index';}
+      btn.addEventListener('click',function(){if(panel.hidden)openP();else closeP();});
+      close.addEventListener('click',closeP);
+      back.addEventListener('click',closeP);
+      panel.addEventListener('click',function(e){if(e.target.closest('a'))closeP();});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden)closeP();});
+    }
+  }
+  /* ---- fix 24: fuzzy strain search ---- */
+  var sBtn=document.getElementById('wcSearchBtn'),sBox=document.getElementById('wcSearch'),
+      sIn=document.getElementById('wcSearchInput'),sRes=document.getElementById('wcSearchResults');
+  if(sBtn&&sBox&&sIn&&sRes){
+    var strains=Array.prototype.map.call(document.querySelectorAll('.strain[id]'),function(c){
+      var h=c.querySelector('h3');return {id:c.id,name:h?h.textContent.replace(/\s+/g,' ').trim():c.id};
+    });
+    function norm(t){return t.toLowerCase().replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();}
+    function lev(a,b){var m=[],i,j;for(i=0;i<=b.length;i++)m[i]=[i];for(j=0;j<=a.length;j++)m[0][j]=j;
+      for(i=1;i<=b.length;i++)for(j=1;j<=a.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(b.charAt(i-1)===a.charAt(j-1)?0:1));
+      return m[b.length][a.length];}
+    function score(q,name){
+      var nq=norm(q),nn=norm(name);if(!nq)return -1;
+      if(nn.indexOf(nq)>-1)return 1000-nn.length;
+      var qt=nq.split(' '),nt=nn.split(' '),tot=0;
+      for(var i=0;i<qt.length;i++){var best=1e9;
+        for(var j=0;j<nt.length;j++){var d=(nt[j].indexOf(qt[i])===0)?0:lev(qt[i],nt[j]);if(d<best)best=d;}
+        var tol=qt[i].length<=4?1:2;if(best>tol)return -1;tot+=best;}
+      return 500-tot*40-nn.length;
+    }
+    function render(){
+      var q=sIn.value;if(norm(q).length<2){sRes.innerHTML='';return;}
+      var hits=strains.map(function(st){return {st:st,sc:score(q,st.name)};}).filter(function(h){return h.sc>=0;})
+        .sort(function(a,b){return b.sc-a.sc;}).slice(0,8);
+      sRes.innerHTML=hits.length?hits.map(function(h){return '<button type="button" class="wc-sres" data-t="'+h.st.id+'">'+h.st.name+'</button>';}).join('')
+        :'<div class="wc-snone">No strain matches that \u2014 try part of the name.</div>';
+    }
+    sBtn.addEventListener('click',function(){sBox.hidden=!sBox.hidden;if(!sBox.hidden)sIn.focus();});
+    sIn.addEventListener('input',render);
+    sIn.addEventListener('keydown',function(e){if(e.key==='Enter'){var f=sRes.querySelector('[data-t]');if(f)f.click();}});
+    sRes.addEventListener('click',function(e){var b=e.target.closest?e.target.closest('[data-t]'):null;if(!b)return;var el=document.getElementById(b.getAttribute('data-t'));if(!el)return;sBox.hidden=true;var sec=el.closest?el.closest('.wcsec'):null;if(sec&&sec._wcBand)sec._wcBand._wcSet(true);if(el.classList.contains('strain')&&window.__wcOpenCard)window.__wcOpenCard(el);try{history.replaceState(null,'','#'+el.id);}catch(err){}setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},60);});
+  }
+});
+</script>
+<style id="wc-rev3-202611">
+/* ===== Nov 1, 2026 revision ROUND 3 — David's 29-point pass ===== */
+/* R3-4 PUSH-BUTTON STANDARD: raised gloss on every button — bright highlight
+   top-left, shading bottom/right, visible border, true press-down on :active.
+   Modeled on David's magenta reference. Color/identity of each button unchanged. */
+.wc-tbtn,.pill,a.batch,.wc-batchbtn,.wc-qpbtn,.wc-logbtn,.qp-take{
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -6px 10px rgba(0,0,0,.24),inset 3px 0 6px rgba(255,255,255,.35),inset -3px 0 6px rgba(0,0,0,.10),0 7px 14px rgba(0,0,0,.32);
+  transition:transform .07s ease,box-shadow .07s ease}
+.wc-tbtn:active,.pill:active,a.batch:active,.wc-batchbtn:active,.wc-logbtn:active,.qp-take:active{
+  transform:translateY(2px);box-shadow:inset 0 3px 7px rgba(0,0,0,.35),inset 0 -1px 2px rgba(255,255,255,.4),0 1px 2px rgba(0,0,0,.3)}
+.wc-qpbtn:active{transform:translateY(-50%) translateY(2px)}
+.colorband .bigicon,.icobtn,.idx-btn{box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -7px 11px rgba(0,0,0,.28),inset 3px 0 6px rgba(255,255,255,.35),0 8px 15px rgba(0,0,0,.4)}
+.wc-th{box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -5px 8px rgba(0,0,0,.26),inset 2px 0 4px rgba(255,255,255,.35),0 4px 8px rgba(0,0,0,.32)}
+.wc-fact{box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -5px 8px rgba(0,0,0,.26),0 4px 8px rgba(0,0,0,.32)}
+.wcqp .qp-node,.wcqp .qp-hub{box-shadow:inset 0 3px 5px rgba(255,255,255,.85),inset 0 -9px 14px rgba(0,0,0,.30),inset 4px 0 8px rgba(255,255,255,.30),0 10px 18px rgba(0,0,0,.38)}
+.toc-top,.toc-back,.wc-idxclose{box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -7px 11px rgba(0,0,0,.26),inset 3px 0 6px rgba(255,255,255,.35),0 8px 16px rgba(0,0,0,.4)}
+.toc-top:active,.toc-back:active{transform:translateY(2px);box-shadow:inset 0 3px 7px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3)}
+.wc-tm{box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -6px 10px rgba(0,0,0,.24),inset 3px 0 6px rgba(255,255,255,.3),0 7px 13px rgba(0,0,0,.34)}
+.wc-labbar button,.wc-logdel{box-shadow:inset 0 1px 2px rgba(255,255,255,.9),inset 0 -3px 5px rgba(0,0,0,.2),0 3px 6px rgba(0,0,0,.3)}
+.wc-socials a{box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -4px 7px rgba(0,0,0,.45),0 4px 8px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25)}
+.panel a.golink{box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -5px 8px rgba(0,0,0,.22)}
+/* R3-14 per-strain wheels: gloss + press (the COBALT border itself is set by the donut script) */
+.donut-trigger{box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -4px 6px rgba(0,0,0,.3),0 5px 10px rgba(0,0,0,.35);transition:transform .07s ease,box-shadow .07s ease}
+.donut-trigger:active{transform:translateY(2px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3)}
+/* R3-5 Thai pill icon alignment with the other line pills */
+.titlepage .badges{align-items:center}
+.badges .pill{display:inline-flex;align-items:center;gap:5px}
+.badges .pill .wc-th{vertical-align:0;margin-right:1px}
+/* R3-7 legend: circles with the push-button gloss, not squares */
+.legend i{border-radius:50%;width:15px;height:15px;border:1.5px solid rgba(0,0,0,.30);box-shadow:inset 0 1px 2px rgba(255,255,255,.8),inset 0 -3px 4px rgba(0,0,0,.25),0 2px 4px rgba(0,0,0,.28);vertical-align:-3px}
+/* R3-8b spectrum SLEEP lane */
+.wc-lane-sleep{color:#0A0A0A}
+html.dark .wc-lane-sleep{color:#B0BEC5}
+.wc-dot{box-shadow:inset 0 1px 1px rgba(255,255,255,.7),0 2px 4px rgba(0,0,0,.35)}
+/* R3-15/19 tables: rounded corners + a border in the section color; header + table one unit */
+.wc-table{border:2.5px solid #08672B;border-radius:12px;border-collapse:separate;border-spacing:0;overflow:hidden}
+.batchgrp{border:2.5px solid #08672B;border-radius:14px;overflow:hidden;background:#fff;margin:0 0 22px}
+.batchgrp h3.wc-batchhd{margin:0;padding:10px 14px 8px;background:#E6F2EA;border-bottom:2px solid #08672B}
+.batchgrp .wc-table{border:none;border-radius:0;margin:0}
+html.dark .batchgrp{background:#1C211C}
+html.dark .batchgrp h3.wc-batchhd{background:#23402A}
+/* R3-17/18 MIT bars: only the filled portion renders; pastel row washes */
+.wc-mitbars .wc-bar{border-radius:10px;padding:5px 10px;margin:5px 0}
+.wc-mitbars .wc-bt{background:transparent;border:none;border-radius:0;overflow:visible;height:20px}
+.wc-mitbars .wc-bf{box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -3px 5px rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.20)}
+tr.mit-g td,.wc-bar.mit-g{background:#E4F2E7}
+tr.mit-r td,.wc-bar.mit-r{background:#FBE7E9}
+tr.mit-w td,.wc-bar.mit-w{background:#F7F2E4}
+tr.mit-y td,.wc-bar.mit-y{background:#FBF9D8}
+tr.mit-c td,.wc-bar.mit-c{background:#E1EEFA}
+html.dark tr.mit-g td,html.dark .wc-bar.mit-g{background:rgba(16,192,0,.13)}
+html.dark tr.mit-r td,html.dark .wc-bar.mit-r{background:rgba(224,16,32,.14)}
+html.dark tr.mit-w td,html.dark .wc-bar.mit-w{background:rgba(240,240,0,.08)}
+html.dark tr.mit-y td,html.dark .wc-bar.mit-y{background:rgba(240,240,0,.14)}
+html.dark tr.mit-c td,html.dark .wc-bar.mit-c{background:rgba(0,112,208,.18)}
+/* R3-16 lab panel: aligned right column — chemical symbols + microbe icons */
+.wc-coalist{list-style:none;padding-left:2px}
+.wc-coalist>li{margin:8px 0}
+.wc-coalist ul{list-style:none;margin:4px 0 10px;padding-left:14px}
+.wc-coalist ul li{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:6px 0;border-bottom:1px dotted var(--line)}
+.wc-sym{font:700 1.05rem 'Outfit',sans-serif;color:#08672B;min-width:52px;text-align:right;padding-right:8px}
+html.dark .wc-sym{color:#9CC7A8}
+.wc-mic{flex:none;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center}
+/* R3-20 Venn pair */
+.wc-venns{display:flex;gap:20px;align-items:stretch;margin:10px 0 4px}
+.wc-venn{flex:1 1 0;min-width:0;text-align:center}
+.wc-venn h5{font:800 1.02rem 'Outfit',sans-serif;color:#08672B;margin:0 0 4px}
+html.dark .wc-venn h5{color:#9CC7A8}
+.wc-venn svg{width:100%;height:auto;display:block;margin:0 auto}
+html.dark .wc-venn2 text{fill:#EDE6D6}
+@media(max-width:640px){.wc-venns{flex-direction:column}}
+.pchart-hint{text-align:center;font-size:.74rem;color:var(--muted);padding:0 10px 2px}
+/* R3-2/28 map modal: fills the viewport */
+.wc-mapbox{width:min(1400px,96vw);height:94vh;max-height:94vh}
+.wc-mapview{min-height:0}
+/* R3-12 timeline enlarged view */
+.wc-tlbox{background:#fff;color:#2e2a24;width:min(1240px,96vw);max-height:92vh;border-radius:14px;overflow:auto;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.wc-tlbox .wc-labbar{position:sticky;top:0;z-index:2}
+.wc-tlbig{padding:22px 26px 10px}
+.wc-tlbig .wc-tl2{flex-wrap:wrap;cursor:default}
+.wc-tlbig .wc-tl2:before{display:none}
+.wc-tlbig .wc-tn{flex:0 0 33.33%;margin-bottom:22px}
+.wc-tlbig .wc-tm{width:74px;height:74px;font-size:33px}
+.wc-tlbig .wc-tn b{font-size:1.02rem}
+.wc-tlbig .wc-tn small{font-size:.9rem;line-height:1.55}
+html.dark .wc-tlbox{background:#1C211C;color:var(--ink)}
+.wc-tl2{cursor:zoom-in}
+/* R3-10 company home-state map */
+.wc-mapicon{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:2px solid #08672B;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);font-size:15px;cursor:pointer;vertical-align:-8px;margin-right:6px;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),inset 0 -3px 5px rgba(0,0,0,.2),0 3px 6px rgba(0,0,0,.3);padding:0}
+.wc-mapicon:active{transform:translateY(2px)}
+/* R3-24/25/1/23 ordering layout */
+.wc-shipbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+html.dark .wc-shipbox{background:#1C211C}
+.wc-shipbox p{margin:9px 0}
+.wc-contactlist{margin:4px 0 0;padding-left:20px}
+.wc-contactlist li{margin:5px 0}
+.wc-contactlist ul{margin:3px 0 6px;padding-left:20px}
+.wc-contactlist ul li{margin:3px 0}
+.wc-disc{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.wc-disc h5{margin:0 0 5px;color:#08672B;font-size:15px}
+html.dark .wc-disc h5{color:#9CC7A8}
+.wc-disc p{margin:0}
+.wc-shoplink{margin:8px 0 0}
+.wc-shoplink a{color:#08672B}
+html.dark .wc-shoplink a{color:#9CC7A8}
+/* R3-27 map footnote: statement + swatch bullets */
+.wc-maplist{list-style:none;margin:2px 0 10px;padding-left:2px;font-size:12.5px;color:var(--muted)}
+.wc-maplist li{margin:4px 0}
+.wc-sw{display:inline-block;width:1.05em;height:1.05em;border-radius:4px;vertical-align:-.16em;margin-right:.45em;border:1px solid rgba(0,0,0,.25)}
+.st-vendor{background:#0070D0}
+#tlModal{z-index:10004}
+
+@media print{#tlModal{display:none!important}.wc-venns{break-inside:avoid}.batchgrp,.wc-shipbox{break-inside:avoid}}
+</style>
+
+<style id="wc-final-pass">
+/* ===== FINAL TEMPLATE PASS — David's 26 changes (mockup) ===== */
+/* items 4/6/16: palette-true vein colors. White = pale gray (the Energy satellite's border gray family), never green. */
+:root{--white:#E7E7E7;--white-dk:#C6C6C6;--white-soft:#F1F1F1;--red:#E01020;--red-dk:#9E0C18;--green:#10C000;--green-dk:#0A7300;--gold:#F0F000;--gold-dk:#D8D800}
+/* item 3: tight title bars — no dead space above/below the text */
+.colorband{padding-top:7px;padding-bottom:7px;margin-top:20px}
+.colorband h2{margin:0;line-height:1.08}
+.colorband p{margin:0;line-height:1.2}
+/* items 4/6: pale-gray and palette-yellow fills always take black text */
+.band-white,.band-gold{color:#141414}
+.band-white h2,.band-gold h2{color:#141414}
+.band-gold{background:linear-gradient(120deg,#D8D800,#F0F000)}
+.strain.white .strain-head,.strain.gold .strain-head{color:#141414}
+.strain.white .strain-head h3,.strain.gold .strain-head h3{color:#141414}
+html.dark .strain.white .strain-head h3,html.dark .strain.gold .strain-head h3{color:#141414}
+.strain.gold .strain-head{background:linear-gradient(100deg,#D8D800,#F0F000)}
+/* vein words routed to the palette family */
+.vw-w{color:#6E6E6E}.vw-y{color:#8F8F00}.vw-g{color:#0A7300}.vw-r{color:#E01020}
+/* items 4/5: the vein color panels — White is gray top AND bottom, black font; Focus slice already palette orange */
+.panel.p-white .phead{background:linear-gradient(120deg,#C6C6C6,#E7E7E7);color:#141414}
+.panel.p-white a.golink{background:#DCDCDC;color:#141414}
+.panel.p-green .phead{background:#10C000}
+.panel.p-green a.golink{background:#10C000;color:#141414}
+.panel.p-yellow .phead{color:#141414}
+.panel.p-yellow a.golink{background:#F0F000;color:#141414}
+/* item 1: search box + results — black font in BOTH themes */
+.wc-search input,.wc-search2 input{color:#111!important;background:#fff!important}
+.wc-search input::placeholder,.wc-search2 input::placeholder{color:#555!important}
+.wc-sresults a,.wc-sresults .wc-sres{color:#111!important;background:#fff!important}
+.wc-sresults .wc-snone{color:#333!important}
+html.dark .wc-search input,html.dark .wc-search2 input{color:#111!important;background:#fff!important}
+html.dark .wc-sresults a,html.dark .wc-sresults .wc-sres{color:#111!important;background:#fff!important}
+/* item 23: scorecard row titles bold */
+.wc-bar .wc-bl{font-weight:700}
+/* item 22: WestKoast map design — pastel tiles, dark text, rounded, breathing room */
+.wc-mapgrid{gap:4px;max-width:640px;width:auto;margin:0 auto}
+.wc-st{height:34px;aspect-ratio:auto;border-radius:7px;border:1.5px solid;font:700 12px 'DM Sans',sans-serif}
+.st-ok{background:#E4F0E6;border-color:#7FA98A;color:#23402F}
+.st-ban{background:#F6D9D9;border-color:#C4453C;color:#7C1F1F}
+.st-local{background:#FBF0CD;border-color:#D4A017;color:#6B5410}
+.wc-mapstage .wc-mapgrid{max-width:760px;width:auto}
+.wc-mapstage .wc-st{height:44px;font-size:14px}
+/* item 11: the strain-count container becomes an announcement */
+.wc-stat.announce{background:linear-gradient(135deg,#FFF6C8,#F0F000);border:2.5px solid #0070D0;color:#141414;box-shadow:0 6px 16px rgba(0,112,208,.35);transform:scale(1.04)}
+.wc-stat.announce b{color:#141414;font-size:32px}
+.wc-stat.announce span{color:#141414;font-weight:800}
+/* item 2: picker labels enlarged to fill their circles */
+.wcqp .qp-node small{font-size:1.05rem}
+/* items 13/14: effect chips + legs line */
+.fxrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px}
+.fxchip{display:inline-flex;flex-direction:column;background:var(--paper2);border:1px solid var(--line);border-radius:10px;padding:5px 10px 6px;min-width:86px;box-sizing:border-box}
+.fxchip .fx-top{display:flex;align-items:center;gap:5px;font-size:14px;white-space:nowrap}
+.fxchip .fx-meter{height:5px;border-radius:3px;background:rgba(120,120,120,.35);margin-top:5px;overflow:hidden}
+.fxchip .fx-meter i{display:block;height:100%;border-radius:3px}
+.legsrow{display:flex;align-items:flex-start;gap:10px;margin:2px 0 12px;font:600 11px 'DM Sans',sans-serif;color:var(--muted)}
+.legsrow .legs-lab{flex:0 0 auto;white-space:nowrap;padding-top:1px}
+.legs-main{flex:1;min-width:120px}
+.legs-track{position:relative;height:8px;border-radius:5px;background:linear-gradient(90deg,#5c6bc0,#26a69a 30%,#7cb342 55%,#FFD800 78%,#ef6c00)}
+.legs-dot{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:#141414;border:2.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.45);transform:translate(-50%,-50%)}
+.legs-ticks{display:flex;justify-content:space-between;font-size:9.5px;margin-top:2px;padding:0 1px}
+.legs-hrs{flex:0 0 auto;white-space:nowrap;padding-top:1px}
+/* item 9: WestKoast Spectrum Map design */
+.wk-spectitle{font-family:Outfit,sans-serif;font-size:17px;margin:18px 0 4px}
+.wk-spec{border:1.5px solid #d8cfb8;border-radius:14px;background:#FFF9EC;padding:12px 14px 8px;margin:12px 0 4px;box-shadow:0 2px 8px rgba(30,50,35,.08)}
+.wk-shead{display:flex;justify-content:space-between;font:600 11px 'DM Sans',sans-serif;color:#6d6455;margin-bottom:6px}
+.wk-lane{position:relative;height:30px;border-top:1px solid #e7dfc9}
+.wk-lane>span{position:absolute;left:0;top:50%;transform:translateY(-50%);font:700 10px Outfit,sans-serif;letter-spacing:.4px;width:58px}
+.wk-track{position:absolute;left:64px;right:8px;top:50%;height:3px;transform:translateY(-50%);background:linear-gradient(90deg,#5c6bc0,#26a69a 30%,#7cb342 55%,#FFD800 78%,#ef6c00);opacity:.45;border-radius:2px}
+.wk-rail{position:absolute;left:64px;right:8px;top:0;bottom:0}
+.wk-rail .wk-track{left:0;right:0}
+.wk-dot{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);background:#fffdf6;border:3px solid;box-shadow:0 1px 3px rgba(0,0,0,.3);z-index:2}
+.wk-dot:hover{z-index:4;transform:translate(-50%,-50%) scale(1.25)}
+.wk-dot.sleepdot{background:#0A0A0A;border-color:#5A5A5A}
+html.dark .wk-spec{background:#232A22;border-color:#3C463A}
+html.dark .wk-lane{border-top-color:#3C463A}
+html.dark .wk-lane-sleep{color:#B0BEC5!important}
+/* item 26: bottom Search Strains (WestKoast block) */
+.wc-search2{margin:22px 0 6px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.wc-search2 h4{font-family:Outfit,sans-serif;margin:0 0 8px;font-size:17px}
+.wc-search2 input{width:100%;box-sizing:border-box;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:15.5px}
+html.dark .wc-search2{background:#1C211C}
+/* item 7: batch story subsections */
+.bstory{padding:16px 0 6px;border-top:1px solid var(--line)}
+.bstory:first-of-type{border-top:none}
+
+/* ===== 7-fix pass (Nov 6) ===== */
+/* Fix 1 \u2014 color panels: flex column; slack absorbed by .pbody so every footer sits flush at the same bottom */
+.panel{display:flex;flex-direction:column}
+.panel .pbody{flex:1 1 auto}
+/* Fix 2 \u2014 batch-stories intro tightened to standard intro density */
+.bs-intro{padding:10px 16px;margin:0 0 10px}
+.bs-intro p{margin:0;line-height:1.45}
+/* Fix 4a \u2014 enlarged map: stage grid + tiles use the SAME metrics as the inline map; the modal zoom scales uniformly */
+.wc-mapstage.wc-mapgrid,.wc-mapstage .wc-mapgrid{width:640px;max-width:none}
+.wc-mapstage .wc-st{height:34px;font-size:12px}
+/* Fix 6 \u2014 dark-theme links: light readable blue on the guide's dark surfaces */
+html.dark a{color:#7CC4FF}
+
+/* Fix 6b \u2014 .wc-strain links + shop links take the same light blue in dark theme (were pale green #9CC7A8) */
+html.dark a.wc-strain{color:#7CC4FF;border-bottom-color:rgba(124,196,255,.55)}
+html.dark .wc-shoplink a{color:#7CC4FF}
+
+/* Fix 6c \u2014 bibliography source-name links take the same light blue in dark theme */
+html.dark a.wc-srcname{color:#7CC4FF}
+
+/* Fix 6d \u2014 index panel is a light card surface in both themes; its links keep the light-theme dark green in dark theme (pale green on white was 1.88:1) */
+html.dark .wc-idxpanel a{color:#08672B}
+</style>
+<style id="dte-27-pass">
+/* ==== DTE guide — David's 27-item pass (Nov 6, 2026) ==== */
+/* item 4: the vein/batch foot hides with the body when a card is closed; print shows all */
+.strain-foot[hidden]{display:none!important}
+@media print{.strain-foot[hidden]{display:flex!important}}
+/* item 10: open/close chevron = circular push badge at batch-pill height, rotates when open */
+.wk-chev{flex:none;margin-left:10px;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#08672B;background:radial-gradient(circle at 32% 28%,#ffffff,#dff0e2 55%,#a9c8b0);border:2px solid #08672B;box-shadow:inset 0 1px 2px rgba(255,255,255,.9),inset 0 -2px 3px rgba(8,103,43,.35),0 2px 4px rgba(30,77,59,.35);transition:transform .18s ease;opacity:1}
+.wk-chev.open{transform:rotate(90deg)}
+/* items 2+24: timeline lightbox sized to content; rounds in ONE row, arrows left to right */
+.wc-tlbox{width:fit-content;max-width:97vw}
+.wc-tlbig{overflow-x:auto;overflow-y:hidden}
+.wc-tlbig .wc-tl2{flex-wrap:nowrap}
+.wc-tlbig .wc-tn{flex:0 0 auto;width:148px;margin-bottom:2px}
+.wc-tlbig .wc-tn:not(:last-child)::after{content:"\279C";position:absolute;right:-13px;top:17px;font-size:17px;color:#08672B;z-index:3}
+html.dark .wc-tlbig .wc-tn:not(:last-child)::after{color:#7FB069}
+/* item 8: highlighting is a BACKGROUND highlight (house standard) */
+.popbox.deep::before{content:"🔬 Sourcing deep-dive — ";font-weight:700;color:#141414;background:#FEF08A;padding:0 5px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+/* items 15+17: standout medallion rows */
+.standrow{margin:14px 0 6px}
+.standhead{font-weight:700;color:#8a6d1a;margin-bottom:8px}
+.standmeds{display:flex;gap:14px;flex-wrap:wrap}
+.standmed{flex:1 1 170px;max-width:250px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 10px 10px;box-shadow:0 1px 3px rgba(30,77,59,.10)}
+.standcirc{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:50%;font-size:32px;background:radial-gradient(circle at 32% 28%,#fffbe8,#F0F000 58%,#D8B91E);border:2.5px solid #B98A1D;box-shadow:inset 0 2px 3px rgba(255,255,255,.85),inset 0 -3px 5px rgba(120,90,10,.35),0 3px 6px rgba(30,77,59,.28)}
+.standlab{margin:8px 0 2px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.standname{margin:0 0 2px;font-weight:800;font-size:15.5px}
+.standname a{color:#08672B;text-decoration:none;border-bottom:1px dotted currentColor}
+html.dark .standname a{color:#7CC4FF}
+.standdet{margin:0;font-size:13px;color:var(--muted)}
+.catintro-goldtail{display:none}
+/* item 18: Community Standout = gold-on-dark-green push bubble */
+.popbox.star{background:linear-gradient(160deg,#2C5240,#1E4D3B 60%,#173D2E);border:2px solid #D9A91F;border-radius:16px;color:#FFD23E;font-weight:600;box-shadow:inset 0 2px 3px rgba(255,255,255,.28),inset 0 -4px 7px rgba(0,0,0,.38),0 3px 7px rgba(30,77,59,.30)}
+.popbox.star::before{content:"⭐ Community Standout — ";color:#FFD23E;font-weight:800}
+/* item 19: one-line lab notes; the no-COA words in red */
+.labline{font-size:13.5px;color:var(--muted);margin:8px 0 2px}
+.nocoa{color:#C01020;font-weight:700}
+html.dark .nocoa{color:#FF6B74}
+/* item 6: lab-note links to the COA record */
+.wc-labref{color:inherit;text-decoration:none;border-bottom:1.5px dotted #08672B}
+html.dark .wc-labref{border-bottom-color:#7CC4FF}
+/* item 13: community prose carries quote spacing */
+.quote.commrep{margin:6px 0 10px}
+/* items 11+16: "Also in the family" title bars + explanations */
+.fam-bar{display:flex;align-items:center;gap:10px;margin-top:26px;padding:9px 14px;border-radius:10px;font-weight:800;font-size:16px;color:#fff;box-shadow:inset 0 1px 2px rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.22)}
+.fam-bar.fam-green{background:linear-gradient(100deg,#0A7300,#10C000)}
+.fam-bar.fam-red{background:linear-gradient(100deg,#9E0C18,#E01020)}
+.fam-bar.fam-gold{background:linear-gradient(100deg,#D8D800,#F0F000);color:#141414}
+.fam-bar.fam-white{background:linear-gradient(100deg,#C6C6C6,#E7E7E7);color:#141414}
+.fam-count{margin-left:auto;font-size:12.5px;font-weight:800;background:rgba(255,255,255,.85);color:#14301F;padding:2px 10px;border-radius:999px;border:1.5px solid rgba(20,48,31,.35)}
+.fam-note{font-size:14px;color:var(--muted);margin:8px 0 4px}
+/* item 22: Releases Compared rows */
+.relwrap{margin:6px 0 10px}
+.relrow{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line)}
+.relrk{flex:none;width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:#141414;background:radial-gradient(circle at 32% 28%,#fffbe8,#F0F000 58%,#D8B91E);border:2px solid #B98A1D;box-shadow:inset 0 1px 2px rgba(255,255,255,.85),inset 0 -2px 4px rgba(120,90,10,.35),0 2px 4px rgba(30,77,59,.28)}
+.relmain{flex:1;min-width:0}
+.relname{font-weight:800;font-size:15.5px}
+.relname a{color:#08672B;text-decoration:none}
+html.dark .relname a{color:#7CC4FF}
+.relavg{color:#08672B;font-weight:800;margin-left:6px}
+html.dark .relavg{color:#7FB069}
+.relbar{height:14px;background:var(--paper2);border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:5px 0 3px}
+.relbar i{display:block;height:100%;background:linear-gradient(90deg,#2C7A4B,#398555);border-radius:999px}
+.relsub{font-size:13px;color:var(--muted)}
+.relsub a{color:inherit;border-bottom:1px dotted currentColor;text-decoration:none}
+/* item 12: raised glossy PUSH BUTTONS (template bigicon family) with a real press */
+a.batch,.pill{background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);border:2px solid #08672B;color:#08672B;font-weight:800;box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -3px 5px rgba(8,103,43,.30),0 4px 8px rgba(30,77,59,.28)}
+a.batch:active,.pill:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(8,103,43,.35),0 1px 2px rgba(30,77,59,.25)}
+.pill{font-weight:700}
+.wc-tbtn{background:radial-gradient(circle at 32% 28%,#ffffff,#f3efe2 48%,#ddd5ba);border:2px solid #08672B;color:#14301F;box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -3px 5px rgba(90,80,40,.30),0 4px 8px rgba(30,77,59,.28)}
+.wc-tbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(90,80,40,.35),0 1px 2px rgba(30,77,59,.25)}
+html.dark .wc-tbtn{background:radial-gradient(circle at 32% 28%,#46543f,#2A332A 55%,#171c12);color:#E9F3E4;border-color:#7FB069;box-shadow:inset 0 2px 3px rgba(255,255,255,.22),inset 0 -3px 5px rgba(0,0,0,.5),0 4px 8px rgba(0,0,0,.45)}
+.qp-take:active{transform:translateY(2px);box-shadow:inset 0 2px 6px rgba(0,0,0,.35),0 1px 2px rgba(30,77,59,.3)}
+/* item 25: curing cards — one row of four, distinct pastels, leaf icons sized up */
+.curegrid{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.curegrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.curegrid{grid-template-columns:1fr}}
+.curegrid .wc-card h4{white-space:nowrap;font-size:15.5px}
+.curegrid .wc-card:nth-child(1){background:#F2F7E4}
+.curegrid .wc-card:nth-child(2){background:#F9ECE7}
+.curegrid .wc-card:nth-child(3){background:#EAF6EC}
+.curegrid .wc-card:nth-child(4){background:#FDF6E0}
+html.dark .curegrid .wc-card:nth-child(1){background:#2C331F}
+html.dark .curegrid .wc-card:nth-child(2){background:#3A2620}
+html.dark .curegrid .wc-card:nth-child(3){background:#22331F}
+html.dark .curegrid .wc-card:nth-child(4){background:#3A3319}
+/* item 27: bottom search — 40% width, centered */
+.wc-search2{width:40%;margin:22px auto 6px}
+@media(max-width:760px){.wc-search2{width:94%}}
+</style>
+<style id="extract-calc-style">
+/* ===== Extract Calculator section (mockup) ===== */
+.xc-card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 18px rgba(60,50,30,.08);padding:20px 20px 16px;margin:6px 0 18px}
+html.dark .xc-card{background:#1C211C}
+.xc-seg{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 16px}
+.xc-segbtn,.xc-preset{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;font-size:.92rem;color:#14301F;border:2px solid #08672B;border-radius:999px;padding:9px 18px;min-height:44px;cursor:pointer;background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -4px 7px rgba(8,103,43,.28),0 4px 8px rgba(30,77,59,.28);transition:transform .07s ease,box-shadow .07s ease}
+.xc-segbtn:active,.xc-preset:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(8,103,43,.35),0 1px 2px rgba(30,77,59,.25)}
+.xc-segbtn.on{background:radial-gradient(circle at 32% 28%,#ffffff,#dcecfb 48%,#a9cdf2);border-color:#004E96;color:#0B2E59;box-shadow:inset 0 3px 7px rgba(0,78,150,.35),inset 0 -1px 2px rgba(255,255,255,.5),0 1px 2px rgba(30,77,59,.25)}
+html.dark .xc-segbtn,html.dark .xc-preset{background:radial-gradient(circle at 32% 28%,#46543f,#2A332A 55%,#171c12);color:#E9F3E4;border-color:#7FB069}
+html.dark .xc-segbtn.on{background:radial-gradient(circle at 32% 28%,#3d5a7d,#274b73 55%,#17334f);color:#EAF4FF;border-color:#7CC4FF;box-shadow:inset 0 3px 7px rgba(0,0,0,.45),0 1px 2px rgba(0,0,0,.4)}
+.xc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 14px}
+.xc-field{display:block}
+.xc-lab{display:block;font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;font-size:.85rem;margin:0 0 6px;color:var(--ink)}
+.xc-field input{width:100%;box-sizing:border-box;padding:11px 13px;border:2px solid #08672B;border-radius:12px;font:500 1rem 'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#111;background:#fff}
+html.dark .xc-field input{color:#111;background:#fff;border-color:#7FB069}
+.xc-presets{display:flex;gap:9px;flex-wrap:wrap;align-items:center;justify-content:center;margin:0 0 16px}
+.xc-presets-lab{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;font-size:.85rem;color:var(--muted)}
+.xc-preset{font-size:.85rem;min-height:40px;padding:7px 15px}
+.xc-result{text-align:center;border:1.5px solid var(--line);border-radius:14px;padding:14px 12px 12px;margin:0 0 14px;background:linear-gradient(160deg,rgba(255,255,255,.88),rgba(230,242,234,.72))}
+html.dark .xc-result{background:linear-gradient(160deg,rgba(60,70,58,.55),rgba(29,35,28,.85))}
+.xc-eq{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:800;font-size:1.65rem;line-height:1.15;color:#C75000}
+html.dark .xc-eq{color:#FF9A3D}
+.xc-mg{font-size:.98rem;color:var(--muted);margin-top:3px}
+.xc-chartbox{position:relative;width:100%;height:250px;background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:10px;box-sizing:border-box}
+.xc-formula{margin:12px 0 2px;font-size:.92rem;color:var(--muted)}
+.xc-formula b{color:var(--ink);font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+@media(max-width:640px){.xc-grid{grid-template-columns:1fr}.xc-eq{font-size:1.4rem}.xc-chartbox{height:220px}}
+@media print{.xc-card{break-inside:avoid}.xc-chartbox{break-inside:avoid}}
+</style>
+<style id="wc-responsive-print-standard">
+/* ===== STANDING STANDARD: responsive (mobile + desktop) + print — always last, always wins ===== */
+html,body{overflow-x:clip}
+img,svg{max-width:100%}
+.panel .pbody{flex-wrap:wrap}
+.panel .pleft,.panel .pright{min-width:0}
+@media (max-width:640px){
+  .panels{grid-template-columns:1fr}
+  .panel .pbody{gap:10px;padding:12px;justify-content:center}
+  .panel .pleft,.panel .pright{font-size:12px}
+  .panel .pie{width:96px;height:96px}
+  .peffects{white-space:normal}
+  .wcsec{overflow-x:auto}
+  table{font-size:12px}
+  th,td{padding:5px 6px}
+  /* 390px fixes (Nov 1): Log button must not cover the Kratom Picker title; top control cluster must not clip */
+  .wc-logbtn{position:static;float:right;margin:0 0 4px 10px}
+  .wcqp h2{min-height:34px}
+  .qp-tagline{white-space:normal}
+  .wc-toprow{flex-wrap:wrap}
+  .wc-toprow .kicker{letter-spacing:2px;font-size:12px}
+  .wc-topbtns{flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
+  .wc-tbtn{padding:0 9px;font-size:.74rem}
+  /* Kratom Picker wheel fit (Nov 1): wheel capped by the card's content box and nodes
+     shrunk so every circle (Focus/Mood at 82.5%) sits fully inside the card border */
+  .wcqp{padding-left:10px;padding-right:10px}
+  .qp-wheel{width:min(312px,100%)}
+  .qp-node{width:84px;height:84px}
+  .qp-node .qp-emo{font-size:1.45rem}
+  .qp-node small{font-size:.72rem}
+}
+@media print{
+  .panels{grid-template-columns:1fr 1fr}
+  .panel .pbody{padding:10px;gap:10px}
+}
+</style>
+<script>
+/* ===== Round 3 (Nov 1, 2026): panel pies, timeline enlarge ===== */
+document.addEventListener('DOMContentLoaded',function(){
+  var CMAP={'#FFFFFF':'energy','#F06000':'focus','#10C000':'mood','#F0F000':'calm','#E01020':'relief','#0A0A0A':'sleep'};
+  document.querySelectorAll('.panel').forEach(function(panel){
+    var svg=panel.querySelector('svg.pie'); if(!svg)return;
+    var head=panel.querySelector('.phead'); var veinName=head?head.textContent.trim():'Vein';
+    var veinKey=panel.classList.contains('p-white')?'white':panel.classList.contains('p-green')?'green':panel.classList.contains('p-yellow')?'gold':'red';
+    var foot=panel.querySelector('.pfoot'); var cap=foot?foot.textContent.trim():'';
+    var effects=svg.getAttribute('data-slices').split(',').map(function(s){var p=s.split(':');return [CMAP[p[0].toUpperCase()]||'mood',+p[1]];}).filter(function(e){return e[1]>0;});
+    svg.style.cursor='pointer'; svg.setAttribute('role','button'); svg.setAttribute('aria-label','Show the '+veinName+' vein effect mix');
+    svg.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();if(window.__wcShowChart)window.__wcShowChart(veinName+' Vein \u2014 the typical mix',{vein:veinKey,effects:effects,caption:cap});});
+  });
+  var tlModal=document.getElementById('tlModal'),tlStage=document.getElementById('tlStage');
+  function openTl(){var tl=document.querySelector('.wc-tl2');if(!tl||!tlStage)return;tlStage.innerHTML='';tlStage.appendChild(tl.cloneNode(true));tlModal.hidden=false;}
+  function closeTl(){if(tlModal)tlModal.hidden=true;}
+  var tb=document.getElementById('tlEnlarge'); if(tb)tb.addEventListener('click',openTl);
+  var tlEl=document.querySelector('.wc-tl2'); if(tlEl)tlEl.addEventListener('click',function(e){if(e.target.closest('a'))return;openTl();});
+  var tc=document.getElementById('tlClose'); if(tc)tc.addEventListener('click',closeTl);
+  if(tlModal)tlModal.addEventListener('click',function(e){if(e.target===tlModal)closeTl();});
+  if(tlStage)tlStage.addEventListener('click',function(e){if(e.target.closest('a'))closeTl();});
+  document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;
+    if(tlModal&&!tlModal.hidden)closeTl();});
+});
+</script>
+
+<script>
+/* FINAL PASS: batch-story Enlarge reuses the company timeline lightbox */
+document.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('[data-open-tl]'):null;
+  if(!b)return;
+  var t=document.getElementById('tlEnlarge');
+  if(t)t.click();
+});
+/* FINAL PASS: bottom Search Strains (item 26) — same engine as the top search */
+document.addEventListener('DOMContentLoaded',function(){
+  var sIn=document.getElementById('wcSearchInput2'), sRes=document.getElementById('wcSearchResults2');
+  if(!sIn||!sRes)return;
+  var strains=Array.prototype.map.call(document.querySelectorAll('.strain[id]'),function(c){
+    var hh=c.querySelector('h3');return {id:c.id,name:hh?hh.textContent.replace(/\s+/g,' ').trim():c.id};});
+  function norm(t){return t.toLowerCase().replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();}
+  function lev(a,b){var m=[],i,j;for(i=0;i<=b.length;i++)m[i]=[i];for(j=0;j<=a.length;j++)m[0][j]=j;
+    for(i=1;i<=b.length;i++)for(j=1;j<=a.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(b.charAt(i-1)===a.charAt(j-1)?0:1));
+    return m[b.length][a.length];}
+  function score(q,name){
+    var nq=norm(q),nn=norm(name);if(!nq)return -1;
+    if(nn.indexOf(nq)>-1)return 1000-nn.length;
+    var qt=nq.split(' '),nt=nn.split(' '),tot=0;
+    for(var i=0;i<qt.length;i++){var best=1e9;
+      for(var j=0;j<nt.length;j++){var d=(nt[j].indexOf(qt[i])===0)?0:lev(qt[i],nt[j]);if(d<best)best=d;}
+      var tol=qt[i].length<=4?1:2;if(best>tol)return -1;tot+=best;}
+    return 500-tot*40-nn.length;}
+  function render(){
+    var q=sIn.value;if(norm(q).length<2){sRes.innerHTML='';return;}
+    var hits=strains.map(function(st){return {st:st,sc:score(q,st.name)};}).filter(function(x){return x.sc>=0;})
+      .sort(function(a,b){return b.sc-a.sc;}).slice(0,8);
+    sRes.innerHTML=hits.length?hits.map(function(x){return '<button type="button" class="wc-sres" data-t="'+x.st.id+'">'+x.st.name+'</button>';}).join('')
+      :'<div class="wc-snone">No strain matches that — try part of the name.</div>';}
+  sIn.addEventListener('input',render);
+  sIn.addEventListener('keydown',function(e){if(e.key==='Enter'){var f=sRes.querySelector('[data-t]');if(f)f.click();}});
+  sRes.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('[data-t]'):null;if(!b)return;
+    var el=document.getElementById(b.getAttribute('data-t'));if(!el)return;
+    var sec=el.closest?el.closest('.wcsec'):null;
+    if(sec&&sec._wcBand)sec._wcBand._wcSet(true);
+    if(el.classList.contains('strain')&&window.__wcOpenCard)window.__wcOpenCard(el);
+    try{history.replaceState(null,'','#'+el.id);}catch(err){}
+    setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},60);});
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function(){
+  var dir='leaf';
+  var dose=document.getElementById('xcDose'), leaf=document.getElementById('xcLeaf'), ext=document.getElementById('xcExt');
+  var eq=document.getElementById('xcEq'), mg=document.getElementById('xcMg'), doseLab=document.getElementById('xcDoseLab'), formula=document.getElementById('xcFormula');
+  var bLeaf=document.getElementById('xcDirLeaf'), bExt=document.getElementById('xcDirExt');
+  if(!dose||!leaf||!ext||!eq)return;
+  var chart=null, lastD=0, lastO=0;
+  function num(el){var v=parseFloat(el.value);return (isNaN(v)||v<0)?0:v;}
+  function fmt(v){if(v<=0)return '0';if(v<1)return v.toFixed(3);if(v<10)return v.toFixed(2);return String(Math.round(v*10)/10);}
+  function fmtMg(v){return v>=10?String(Math.round(v)):String(Math.round(v*10)/10);}
+  function darkOn(){return document.documentElement.classList.contains('dark');}
+  function draw(dv,ev){
+    if(!window.Chart)return;
+    var canvas=document.getElementById('xcChart'); if(!canvas)return;
+    var dk=darkOn();
+    var tick=dk?'#CBD5E1':'#6f675a', grid=dk?'rgba(171,162,145,.25)':'rgba(60,50,30,.10)';
+    var labels=dir==='leaf'?['Leaf dose (g)','Extract equivalent (g)']:['Extract dose (g)','Leaf equivalent (g)'];
+    if(chart){
+      chart.data.labels=labels; chart.data.datasets[0].data=[dv,ev];
+      chart.options.scales.x.ticks.color=tick; chart.options.scales.y.ticks.color=tick; chart.options.scales.y.grid.color=grid;
+      chart.update(); return;
+    }
+    chart=new Chart(canvas.getContext('2d'),{type:'bar',
+      data:{labels:labels,datasets:[{label:'Grams',data:[dv,ev],backgroundColor:['rgba(0,112,208,.85)','#10C000'],borderColor:['#004E96','#0A7300'],borderWidth:1.5,borderRadius:6}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:function(x){return ' '+x.parsed.y+' g';}}}},
+        scales:{x:{ticks:{color:tick,font:{family:"'DM Sans',sans-serif",weight:'600'}},grid:{display:false}},
+                y:{beginAtZero:true,ticks:{color:tick},grid:{color:grid}}}}});
+  }
+  function calc(){
+    var d=num(dose), l=num(leaf), e=num(ext), out=0, mgv=0;
+    if(dir==='leaf'){ out=e>0?d*l/e:0; mgv=d*l*10; }
+    else{ out=l>0?d*e/l:0; mgv=d*e*10; }
+    eq.textContent=fmt(out)+(dir==='leaf'?' g of extract':' g of leaf powder');
+    mg.textContent='carrying \u2248 '+fmtMg(mgv)+' mg mitragynine';
+    lastD=d; lastO=out;
+    draw(d,out);
+  }
+  function setDir(nw){
+    dir=nw;
+    bLeaf.classList.toggle('on',dir==='leaf'); bExt.classList.toggle('on',dir==='ext');
+    bLeaf.setAttribute('aria-pressed',dir==='leaf'?'true':'false');
+    bExt.setAttribute('aria-pressed',dir==='ext'?'true':'false');
+    doseLab.textContent=dir==='leaf'?'Dose \u2014 leaf powder (grams)':'Dose \u2014 extract (grams)';
+    formula.textContent=dir==='leaf'?'extract grams = leaf grams \u00d7 leaf % \u00f7 extract %':'leaf grams = extract grams \u00d7 extract % \u00f7 leaf %';
+    calc();
+  }
+  bLeaf.addEventListener('click',function(){setDir('leaf');});
+  bExt.addEventListener('click',function(){setDir('ext');});
+  [dose,leaf,ext].forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});
+  document.querySelectorAll('.xc-preset').forEach(function(b){b.addEventListener('click',function(){ext.value=b.getAttribute('data-pct');calc();});});
+  if(window.MutationObserver){new MutationObserver(function(){draw(lastD,lastO);}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});}
+  calc();
+})();
+</script>
+</body>
+</html>

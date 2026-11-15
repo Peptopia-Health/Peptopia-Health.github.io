@@ -524,37 +524,10 @@ html.dark .titlepage h1{color:#FF8A1E}
   <button type="button" class="bigicon wc-tgl" aria-expanded="false" title="Open this section">🧮</button>
 </div>
 <div class="xc-head">
-  <h3 class="xc-headline">2 grams of powder — matched by a pinch of extract</h3>
-  <p class="xc-headsub">The dose most people know is <b>2 grams of leaf powder</b> — about <b>30 mg of mitragynine</b> at the standard 1.5% leaf strength. The extract that matches it is far smaller than most people expect. Each pair of bars below is drawn to the same scale:</p>
-  <div class="xc-hrow">
-    <div class="xc-hname">WestKoast 7% extract</div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill leaf" style="width:100%"></span></span><span class="xc-hval">2 g leaf powder</span></div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill w1" style="width:21.43%"></span></span><span class="xc-hval"><b>0.43 g</b> extract</span></div>
-  </div>
-  <div class="xc-hrow">
-    <div class="xc-hname">DTE Astral Amber · 72%</div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill leaf" style="width:100%"></span></span><span class="xc-hval">2 g leaf powder</span></div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill w2" style="width:2.08%"></span></span><span class="xc-hval"><b>0.042 g</b> extract</span></div>
-  </div>
-  <div class="xc-hrow">
-    <div class="xc-hname">DTE Solar Flare · 78.4%</div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill leaf" style="width:100%"></span></span><span class="xc-hval">2 g leaf powder</span></div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill w3" style="width:1.91%"></span></span><span class="xc-hval"><b>0.038 g</b> extract</span></div>
-  </div>
-  <p class="xc-fliphead">Flip it — 2 grams of extract holds as much mitragynine as:</p>
-  <div class="xc-hrow">
-    <div class="xc-hname">2 g WestKoast 7% extract</div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill leaf" style="width:8.86%"></span></span><span class="xc-hval"><b>9.3 g</b> leaf powder</span></div>
-  </div>
-  <div class="xc-hrow">
-    <div class="xc-hname">2 g DTE Astral Amber · 72%</div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill leaf" style="width:91.43%"></span></span><span class="xc-hval"><b>96 g</b> leaf powder</span></div>
-  </div>
-  <div class="xc-hrow">
-    <div class="xc-hname">2 g DTE Solar Flare · 78.4%</div>
-    <div class="xc-hbar"><span class="xc-htrack"><span class="xc-hfill leaf" style="width:99.56%"></span></span><span class="xc-hval"><b>105 g</b> leaf powder</span></div>
-  </div>
-  <p class="xc-headnote">Small measuring errors with extracts are not small — that is the point of the picture.</p>
+  <h3 class="xc-headline">2 grams of powder = this much extract</h3>
+  <p class="xc-eqline">WestKoast 7% extract — <b>0.43 g</b></p>
+  <p class="xc-eqline">DTE Astral Amber · 72% — <b>0.042 g</b></p>
+  <p class="xc-eqline">DTE Solar Flare · 78.4% — <b>0.038 g</b></p>
 </div>
 <div class="catintro">
   <p>Extracts concentrate the leaf's mitragynine, so a fraction of a gram of extract can carry what several grams of powder carry. The whole conversion is one piece of arithmetic: <span class="hlg">dose × strength going in = dose × strength coming out</span>. Plain leaf powder averages about <b>1.5%</b> mitragynine, so the leaf field starts at 1.5 — where a lab panel gives a batch's measured number, that number belongs in the field instead.</p>
@@ -1505,28 +1478,12 @@ html.dark .xc-eq{color:#FF9A3D}
 /* ===== Extract Calculator headline block (mockup) ===== */
 .xc-head{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(230,242,234,.78));border:1.5px solid var(--line);border-radius:16px;box-shadow:0 4px 18px rgba(60,50,30,.08);padding:20px 20px 16px;margin:6px 0 18px}
 html.dark .xc-head{background:linear-gradient(160deg,rgba(60,70,58,.55),rgba(29,35,28,.9))}
-.xc-headline{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:800;font-size:1.5rem;line-height:1.2;color:#C75000;margin:0 0 8px}
+.xc-headline{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:800;font-size:1.5rem;line-height:1.2;color:#C75000;margin:0 0 12px}
 html.dark .xc-headline{color:#FF9A3D}
-.xc-headsub{margin:0 0 16px;font-size:1rem}
-.xc-hrow{margin:0 0 13px}
-.xc-hname{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;font-size:.92rem;color:var(--ink);margin:0 0 4px}
-.xc-hbar{display:flex;align-items:center;gap:10px;margin:3px 0}
-.xc-htrack{flex:1 1 auto;height:16px;background:var(--paper2);border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.xc-hfill{display:block;height:100%;min-width:5px;border-radius:999px}
-.xc-hfill.leaf{background:linear-gradient(90deg,#DFF2E4,#A9DDBB);box-shadow:inset 0 0 0 1.5px #08672B}
-.xc-hfill.w1{background:linear-gradient(90deg,#FEF3C7,#FCD34D);box-shadow:inset 0 0 0 1.5px #92600A}
-.xc-hfill.w2{background:linear-gradient(90deg,#FFEDD5,#FB923C);box-shadow:inset 0 0 0 1.5px var(--fx-focus-dk)}
-.xc-hfill.w3{background:linear-gradient(90deg,#FDBA74,#F97316);box-shadow:inset 0 0 0 1.5px #7C2D12}
-html.dark .xc-hfill.leaf{background:linear-gradient(90deg,#2F4A33,#3E6B45);box-shadow:inset 0 0 0 1.5px #7FB069}
-html.dark .xc-hfill.w1{background:linear-gradient(90deg,#8A6D1F,#B08D27);box-shadow:inset 0 0 0 1.5px #E7C65A}
-html.dark .xc-hfill.w2{background:linear-gradient(90deg,#9A5514,#C26E1A);box-shadow:inset 0 0 0 1.5px #FB923C}
-html.dark .xc-hfill.w3{background:linear-gradient(90deg,#8A3E10,#B45309);box-shadow:inset 0 0 0 1.5px #FDBA74}
-.xc-hval{flex:0 0 118px;font-size:.86rem;color:var(--ink)}
-.xc-hval b{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
-.xc-fliphead{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:800;font-size:1.08rem;color:#C75000;margin:18px 0 10px}
-html.dark .xc-fliphead{color:#FF9A3D}
-.xc-headnote{margin:14px 0 2px;font-size:.95rem;color:var(--ink)}
-@media(max-width:640px){.xc-headline{font-size:1.28rem}.xc-hval{flex-basis:102px;font-size:.8rem}.xc-htrack{height:14px}}
+.xc-eqline{margin:0 0 8px;font-size:1.3rem;line-height:1.35;color:var(--ink)}
+.xc-eqline:last-child{margin-bottom:2px}
+.xc-eqline b{font-family:'Outfit','DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:800}
+@media(max-width:640px){.xc-headline{font-size:1.28rem}.xc-eqline{font-size:1.12rem}}
 @media print{.xc-head{break-inside:avoid}}
 </style>
 <style id="wc-responsive-print-standard">

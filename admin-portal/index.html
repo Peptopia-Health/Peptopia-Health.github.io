@@ -329,7 +329,7 @@ nav.jumpnav.jcols .jcol a.jnav-btn{width:100%!important}
 @media (max-width:640px){nav.jumpnav.jcols{flex-direction:column;overflow:visible}}
 </style>
 <style>
-/* CARD TITLE BUTTONS + HEADER BUTTONS (David, Nov 10, 11:38 PM): every card's title IS the button — no circle arrows anywhere. Card buttons take their category color from the top nav (Guides cyan, VA & Work blue, Store emerald, Briefings/Admin purple, Top Sites pink, Arboretum amber, Build red) and never wrap — one line, shortened titles. Header HOME / ORDERS / QUICK PICK / theme match the same raised pill style. */
+/* CARD TITLE BUTTONS + HEADER BUTTONS (David, Nov 10, 11:38 PM): every card's title IS the button — no circle arrows anywhere. Card buttons take their category color from the top nav (Guides cyan, VA & Work blue, Store emerald, Briefings/Admin purple, Top Sites pink, Arboretum amber, Build red) and never wrap — one line, shortened titles. Header HOME / PHARMA / QUICK PICK / theme match the same raised pill style. */
 .pc-top{display:block}
 .cardbtn{display:inline-flex;align-items:center;gap:6px;width:fit-content;max-width:100%;white-space:nowrap;font-size:.84rem;padding:6px 14px;margin-bottom:8px;text-decoration:none}
 .hdrbtn{font-size:.72rem!important;letter-spacing:.06em;padding:5px 13px;text-decoration:none}
@@ -345,7 +345,7 @@ a.cardbtn.b-amber,a.hdrbtn.b-amber{color:#241533!important;text-shadow:0 1px 0 r
 </style>
 
 <style id="banner-standard-css">
-/* ===== PEPTOPIA BANNER STANDARD v2 (approved by David, Nov 11, 2026): this exact header goes on every page that carries the banner. Logo pair IMG_3345 (dark circle) on LIGHT theme / IMG_3346 (light circle) on DARK theme, both always in the markup. HOME + ORDERS are raised pill buttons, one shared width (the ORDERS pill). Print circle sits LEFT of the theme circle; printer icon magenta, moon + sun icons yellow, icons fill their circles. Both circles are shiny black like the logo disc, lit the SAME way as the logo: the light falls from the UPPER LEFT as a soft diagonal window reflection with two faint pane streaks - never a bright centered dome on top; in dark theme the print circle takes a magenta ring and the theme circle a yellow ring. */
+/* ===== PEPTOPIA BANNER STANDARD v2 (approved by David, Nov 11, 2026): this exact header goes on every page that carries the banner. Logo pair IMG_3345 (dark circle) on LIGHT theme / IMG_3346 (light circle) on DARK theme, both always in the markup. HOME + PHARMA are raised pill buttons, one shared width (the PHARMA pill). Print circle sits LEFT of the theme circle; printer icon magenta, moon + sun icons yellow, icons fill their circles. Both circles are shiny black like the logo disc, lit the SAME way as the logo: the light falls from the UPPER LEFT as a soft diagonal window reflection with two faint pane streaks - never a bright centered dome on top; in dark theme the print circle takes a magenta ring and the theme circle a yellow ring. */
 .peptopia-nav{gap:.55rem}
 .peptopia-nav>a.hdrbtn{width:80px;flex:none}
 a.hdrbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:999px;font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:7px 0;text-decoration:none;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.34),0 9px 18px rgba(15,23,42,.38),0 2px 4px rgba(15,23,42,.35);transition:filter .2s,transform .05s}
@@ -388,7 +388,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 </a>
 <nav class="peptopia-nav" aria-label="Site">
 <a class="btn hdrbtn b-purple" href="https://x-peps.com/">HOME</a>
-<a class="btn hdrbtn b-emerald" href="https://x-peps.com/orders/">ORDERS</a>
+<a class="btn hdrbtn b-emerald" href="https://x-peps.com/orders/">PHARMA</a>
 <a class="btn hdrbtn b-cyan" href="#quickpick">QUICK PICK</a>
 <button type="button" class="peptopia-iconbtn hdr-print" onclick="window.print()" title="Print this page" aria-label="Print this page"><img src="https://x-peps.com/X-Peps/btn-print.png" alt="Print"></button>
 <button type="button" class="peptopia-iconbtn peptopia-theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme"><img class="pp-moon" src="https://x-peps.com/X-Peps/btn-moon.png" alt="Dark theme"><img class="pp-sun" src="https://x-peps.com/X-Peps/btn-sun.png" alt="Light theme"></button>
@@ -493,7 +493,6 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
   </div>
   <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-red" href="https://x-peps.com/bewitched" target="_blank" rel="noopener">🧪 Potions Portal</a></div><p>The creator portal with the six flasks:<br>📖 Guides<br>⭐ Reviews<br>📰 Articles<br>🎙️ Podcasts<br>🔄 Updates<br>📦 Inventory<br>Cast a spell to start a build.</p></div>
-<div class="cmd-card"><div class="pc-top"><a class="btn b-red" href="https://x-peps.com/admin-portal/toolbox.html" target="_blank" rel="noopener">🧰 Toolbox</a></div><p>The build shelf — the Legality palette, palette tokens, card theme colors, icon masters, and the build references. Things we like, kept where we can see them — and grow from them.</p></div>
   </div>
 </section>
 
@@ -501,7 +500,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
   <h2 class="cat-title">🛒 Store &amp; Shipping</h2>
   <a class="sales-btn-wrap" id="salesBtn" href="https://x-peps.com/X-Peps/aftership-shipments-report.html"><span class="btn b-emerald">Sales</span></a>
   <div class="cmd-grid">
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="https://x-peps.com/orders/" target="_blank" rel="noopener">🛍️ Peptopia Orders</a></div><p>The store orders page.</p></div>
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="https://x-peps.com/orders/" target="_blank" rel="noopener">🛍️ Peptopia Pharma</a></div><p>The store orders page.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">📦 Shipment Tracking</a></div><p>Every tracked package, swept morning and evening.</p></div>
 <div class="cmd-card"><span class="cmd-phrase">🛒 Order-history watcher</span><p>Every 3 hours — appends new purchases to the canonical shop-order-history.csv.</p></div>
 <div class="cmd-card"><span class="cmd-phrase">📦 Shipment sweeps</span><p>5:30 AM and 7 PM — refreshes the self-hosted tracking report from Gmail and carrier pages.</p></div>
@@ -837,11 +836,11 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
   <h2 class="cat-title">🔗 Top Sites</h2>
   <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com" target="_blank" rel="noopener">💜 Peptopia Home</a></div><p>The storefront — homepage, shop and Quick Pick.</p></div>
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/orders/" target="_blank" rel="noopener">🛍️ Orders</a></div><p>The gated orders page your customers use.</p></div>
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/orders/" target="_blank" rel="noopener">🛍️ Pharma</a></div><p>The gated orders page your customers use.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/bewitched" target="_blank" rel="noopener">🧪 Potions Portal</a></div><p>The creator admin — the spells that build guides, reviews and articles.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-amber" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">🏺 Arboretum</a></div><p>The Arboretum — bottles, plants and the author gate.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener">🌿 Kratom Reviews</a></div><p>Every vendor guide, scored and linked.</p></div>
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">📦 Shipping & Orders</a></div><p>The sales flow and every package — one page.</p></div>
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-pink" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">📦 Shipping & Pharma</a></div><p>The sales flow and every package — one page.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-corr" href="https://x-peps.com/Corrections/" target="_blank" rel="noopener">🏥 Corrections Nursing</a></div><p>The corrections nursing master portal.</p></div>
   </div>
 </section>
@@ -1397,9 +1396,9 @@ img,svg{max-width:100%}
   a{color:inherit;text-decoration:none}
 }
 </style>
-<div class="sales-pop" id="salesPop" role="dialog" aria-modal="true" aria-label="Shipping and Orders">
+<div class="sales-pop" id="salesPop" role="dialog" aria-modal="true" aria-label="Shipping and Pharma">
   <div class="sales-pop-card">
-    <div class="sales-pop-head"><span>Shipping &amp; Orders</span><button type="button" class="sales-pop-x" id="salesPopX" aria-label="Close">&#10005;</button></div>
+    <div class="sales-pop-head"><span>Shipping &amp; Pharma</span><button type="button" class="sales-pop-x" id="salesPopX" aria-label="Close">&#10005;</button></div>
     <iframe id="salesPopFrame" title="Sales Flow Log" loading="lazy"></iframe>
   </div>
 </div>

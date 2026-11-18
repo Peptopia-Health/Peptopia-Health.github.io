@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Step 2 — Order Process — Copy &amp; Paste</title>
+<title>Customer Process — Copy &amp; Paste</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -13,13 +13,23 @@
   .card { background: #FFFFFF; border: 2px solid #FDBA74; border-radius: 14px; padding: 16px; max-width: 640px; margin: 0 auto; }
   pre { font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.45; white-space: pre-wrap; word-wrap: break-word; }
   button { display: block; width: 100%; max-width: 640px; margin: 12px auto 0 auto; height: 26px; padding: 2px 10px; border: none; border-radius: 13px; background: linear-gradient(180deg, #FBBF24, #F59E0B); color: #241533; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; line-height: 22px; cursor: pointer; }
-  #msg { text-align: center; font-size: 14px; color: #15803D; height: 20px; margin-top: 6px; font-weight: 700; }
+  .msg { text-align: center; font-size: 14px; color: #15803D; height: 20px; margin-top: 6px; font-weight: 700; }
+  .gap { height: 22px; }
 </style>
 </head>
 <body>
 <div class="card">
+<h1>Step 1 — What Changed</h1>
+<pre id="txt1">Our website and order methods changed:
+
+Payment processors cracked down on peptide companies and closed our accounts—CashApp, credit cards, etc. the new process is unfortunately 1990 all over again—money orders or personal checks. If you are local, we can accept cash.</pre>
+</div>
+<button id="copyBtn1" type="button">Copy Step 1</button>
+<div class="msg" id="msg1"></div>
+<div class="gap"></div>
+<div class="card">
 <h1>Step 2 — Order Process</h1>
-<pre id="txt">Order process:
+<pre id="txt2">Order process:
 List products you need, I respond with pricing.
 If accepted, payment options include MoneyGram, money orders, or a check.
 
@@ -33,24 +43,28 @@ Martinsburg, WV 25401
 
 Once purchased, send me a pic of the receipt, mail it, then I ship same day — same service as always, with tracking.</pre>
 </div>
-<button id="copyBtn" type="button">Copy text</button>
-<div id="msg"></div>
+<button id="copyBtn2" type="button">Copy Step 2</button>
+<div class="msg" id="msg2"></div>
 <script>
-document.getElementById('copyBtn').addEventListener('click', function () {
-  var t = document.getElementById('txt').innerText;
-  var done = function () { document.getElementById('msg').textContent = 'Copied — ready to paste'; };
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(t).then(done, function () { fallback(); });
-  } else { fallback(); }
-  function fallback() {
-    var ta = document.createElement('textarea');
-    ta.value = t;
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); done(); } catch (e) {}
-    document.body.removeChild(ta);
-  }
-});
+function wire(btnId, txtId, msgId) {
+  document.getElementById(btnId).addEventListener('click', function () {
+    var t = document.getElementById(txtId).innerText;
+    var done = function () { document.getElementById(msgId).textContent = 'Copied — ready to paste'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = t;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  });
+}
+wire('copyBtn1', 'txt1', 'msg1');
+wire('copyBtn2', 'txt2', 'msg2');
 </script>
 </body>
 </html>

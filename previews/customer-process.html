@@ -17,6 +17,11 @@
 </style>
 </head>
 <body>
+<div class="card" style="margin-bottom:12px;">
+<pre id="txt0">Our website and order methods changed:
+
+Payment processors cracked down on peptide companies and closed our accounts—CashApp, credit cards, etc. the new process is unfortunately 1990 all over again—money orders or personal checks. If you are local, we can accept cash.</pre>
+</div>
 <div class="card">
 <h1>Customer Process</h1>
 <pre id="txt">Order process:
@@ -37,17 +42,18 @@ Once purchased, send me a pic of the receipt, mail it, then I ship same day — 
 <div id="msg"></div>
 <script>
 document.getElementById('copyBtn').addEventListener('click', function () {
-  var t = document.getElementById('txt').innerText;
+  var t = document.getElementById('txt0').innerText + '\n\n' + document.getElementById('txt').innerText;
   var done = function () { document.getElementById('msg').textContent = 'Copied — ready to paste'; };
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(t).then(done, function () { fallback(); });
   } else { fallback(); }
   function fallback() {
-    var r = document.createRange();
-    r.selectNodeContents(document.getElementById('txt'));
-    var s = window.getSelection();
-    s.removeAllRanges(); s.addRange(r);
+    var ta = document.createElement('textarea');
+    ta.value = t;
+    document.body.appendChild(ta);
+    ta.select();
     try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
   }
 });
 </script>

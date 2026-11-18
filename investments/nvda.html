@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVDA Daily Poster — Wednesday, November 18, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000;
+  --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0;
+  --pal-leaf:#2BFF5C; --ink:#1D2433; --ink-soft:#4A5468; --paper:#F6F8FC; --card:#FFFFFF;
+  --line:#DCE4F0; --glass:rgba(255,255,255,.66); --shadow:0 8px 24px rgba(29,36,51,.10);
+}
+html[data-theme="dark"]{
+  --ink:#EDF1F8; --ink-soft:#A9B4C8; --paper:#101623; --card:#1A2233;
+  --line:#2C3850; --glass:rgba(26,34,51,.72); --shadow:0 8px 24px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;padding:14px 10px 22px}
+h1,h2,h3,.disp{font-family:'Outfit',sans-serif}
+.poster{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+a{color:var(--pal-cobalt);text-decoration:none;font-weight:600}
+a:hover{text-decoration:underline}
+/* glossy glass chip / button standard */
+.chip{display:inline-flex;align-items:center;gap:5px;height:24px;max-height:26px;padding:2px 10px;
+  border-radius:999px;font-size:12px;font-weight:700;line-height:1;white-space:nowrap;
+  color:var(--ink);border:1px solid rgba(255,255,255,.65);
+  background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.35) 45%,rgba(255,255,255,.55));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -6px 10px rgba(255,255,255,.25),0 2px 6px rgba(29,36,51,.14)}
+html[data-theme="dark"] .chip{background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.06) 45%,rgba(255,255,255,.14));border-color:rgba(255,255,255,.25);color:var(--ink)}
+.chip.tint-green{background-color:#DFF7E2}.chip.tint-red{background-color:#FDE3E5}
+.chip.tint-blue{background-color:#DDEBFB}.chip.tint-gold{background-color:#FBF3C4}
+.chip.tint-lilac{background-color:#E7E1FB}.chip.tint-mint{background-color:#D8F3EE}
+button.chip{cursor:pointer;font-family:'DM Sans',sans-serif}
+/* hero band */
+.hero{border-radius:20px;padding:16px 18px 14px;color:#12240F;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#B9FBC0 0%,#7DE08A 34%,#2BFF5C 62%,#19C37D 100%);
+  box-shadow:var(--shadow)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 42%);pointer-events:none}
+.hero .row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;position:relative;z-index:1}
+.hero h1{font-size:clamp(28px,6vw,44px);font-weight:800;letter-spacing:.5px;line-height:1.02;color:#0B2E12}
+.hero .sub{font-weight:700;font-size:13px;color:#14532D}
+.hero .price{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(34px,7vw,52px);line-height:1;color:#0B2E12}
+.hero .chg{font-weight:800;font-size:17px;color:#8F1010}
+.hero .meta{font-size:12px;font-weight:600;color:#1C4630}
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow)}
+.card h2{font-size:17px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.card p,.card li{font-size:14px;line-height:1.42;color:var(--ink)}
+.card ul{padding-left:17px;display:flex;flex-direction:column;gap:3px}
+.mut{color:var(--ink-soft);font-size:12.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}}
+.stat{text-align:center;padding:10px 6px}
+.stat .v{font-family:'Outfit',sans-serif;font-weight:800;font-size:23px;line-height:1.05}
+.stat .k{font-size:11.5px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.4px}
+.pos{color:#0E8A2E}.neg{color:#C20F1E}
+.hero-card{border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.hero-card h3{font-size:16.5px;font-weight:800;line-height:1.2;margin:5px 0 4px}
+.hero-card p{font-size:13.5px;line-height:1.4}
+.hc-pos{background:linear-gradient(160deg,#EAFBEE,#CFF5DA)}
+.hc-neg{background:linear-gradient(160deg,#FDECEC,#FBD9DC)}
+html[data-theme="dark"] .hc-pos{background:linear-gradient(160deg,#17351F,#122A18)}
+html[data-theme="dark"] .hc-neg{background:linear-gradient(160deg,#3A1B1E,#2A1215)}
+.tag{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+.tag.g{color:#0E8A2E}.tag.r{color:#C20F1E}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:4px 2px;border-bottom:1px solid var(--line);text-align:left}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+.bar-wrap{margin-top:8px}
+.bar{position:relative;height:14px;border-radius:999px;background:linear-gradient(90deg,#F3B8BC,#FBEFC4,#B9FBC0);border:1px solid var(--line)}
+.bar .mark{position:absolute;top:-4px;width:4px;height:22px;border-radius:2px;background:var(--pal-cobalt);box-shadow:0 0 0 2px #fff}
+.bar-lab{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--ink-soft);margin-top:3px}
+.coach{border-radius:16px;padding:14px 16px;color:#241533;box-shadow:var(--shadow);
+  background:linear-gradient(140deg,#FFE9A8,#FBD38D 55%,#F6AD55)}
+.coach h2{font-size:17px;font-weight:800;margin-bottom:5px}
+.coach p{font-size:15.5px;line-height:1.5;font-weight:500}
+.srcs{font-size:12.5px;line-height:1.7}
+.foot{text-align:center;font-size:11.5px;color:var(--ink-soft)}
+@media print{body{padding:0}.poster{max-width:100%}button.chip{display:none}}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="row" style="justify-content:space-between">
+      <span class="chip tint-mint">📈 NVDA DAILY POSTER</span>
+      <span style="display:inline-flex;gap:6px">
+        <span class="chip">Wed · Nov 18, 2026</span>
+        <button class="chip" id="themeBtn" type="button">🌙 Dark</button>
+      </span>
+    </div>
+    <div class="row" style="margin-top:8px;gap:14px">
+      <div>
+        <h1>NVIDIA · NVDA</h1>
+        <div class="sub">The earnings engine is roaring — the corner office is empty. Day 1 after the Q3 beat.</div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:8px;gap:12px">
+      <span class="price">$153.10</span>
+      <span class="chg">▼ $2.36 · −1.5% today</span>
+      <span class="meta">Intraday ~12:33 PM ET · Prev close $155.46 · Mkt cap ≈ $3.7T · Beta 2.36 · <a href="https://finnhub.io/?q=%22NVDA%22">Finnhub quote</a></span>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar"><div class="mark" style="left:4.6%"></div></div>
+      <div class="bar-lab"><span>52-wk low $148.80</span><span>◉ You are here: $153.10</span><span>52-wk high $243.37</span></div>
+    </div>
+  </header>
+
+  <!-- HERO STATEMENTS -->
+  <div class="grid2">
+    <article class="hero-card hc-pos">
+      <span class="tag g">▲ Hero · Positive</span>
+      <h3>“Earnings are still rocketing higher” — Q3 revenue $115.8B, up 103%, and Q4 guided to $130B</h3>
+      <p>Nvidia crushed estimates (EPS $2.68 vs $2.47 expected) and raised its FY28 growth outlook to ~75%. Most of the Street kept Buy ratings — Rosenblatt $300, Wedbush $293, Goldman $220. <a href="https://www.fool.com/investing/2026/11/18/nvidia-is-in-turmoil-but-earnings-are-still-rocketing-higher-is-the-stock-a-buy/">Motley Fool</a> · <a href="https://www.tipranks.com/news/nvidia-just-crushed-q3-estimates-why-are-analysts-still-split-on-the-stock">TipRanks</a></p>
+    </article>
+    <article class="hero-card hc-neg">
+      <span class="tag r">▼ Hero · Negative</span>
+      <h3>“How much was Jensen Huang worth? $6.7 trillion” — Evercore slashes its target $465 → $186</h3>
+      <p>A week after Huang's Nov 12 resignation, nearly a dozen firms cut targets; Summit Insights downgraded to Hold over roadmap risk past Vera Rubin, and the stock is on a five-session slide. <a href="https://www.fool.com/investing/2026/11/18/how-much-jensen-huang-worth-to-nvidia-more-than-6-trillion-wall-street-analyst/">Motley Fool</a> · <a href="https://www.tipranks.com/news/nvidia-stock-price-forecast-analysts-cut-targets-despite-strong-q3">TipRanks</a></p>
+    </article>
+  </div>
+
+  <!-- SENTIMENT -->
+  <section class="card">
+    <h2>🧭 Sentiment &amp; Direction</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px">
+      <span class="chip tint-green">Analysts: Moderate Buy</span>
+      <span class="chip tint-blue">Avg target ≈ $230 (+48%)</span>
+      <span class="chip tint-gold">Community tone: cautious</span>
+      <span class="chip tint-red">Trend: down · −29% in 1 month</span>
+      <span class="chip tint-lilac">Model signal: HOLD</span>
+    </div>
+    <p><strong>Read (sentiment, not fact):</strong> the pros are split down the middle — targets were cut almost everywhere, yet almost nobody went to Sell, and the average target still sits ~48% above the price. Retail/community tone is wary after five straight down days; automated sentiment models sit at neutral/HOLD. Direction near-term is down until the stock reclaims the low $160s. <a href="https://finbold.com/wall-street-analysts-update-nvidia-stock-target-after-earnings/">Finbold analyst roundup</a> · <a href="https://www.tradingview.com/news/stocktwits:e4c62d059094b:0-nvda-premarket-nvidia-leadership-decision-remains-in-limbo-says-barclays-but-earnings-draw-wall-street-praise/">Stocktwits/Barclays</a></p>
+  </section>
+
+  <!-- SECTION 1 -->
+  <section class="card">
+    <h2>1 · Market Overview &amp; Key Moves</h2>
+    <div class="grid3">
+      <div class="stat"><div class="v">$159.19</div><div class="k">Open</div></div>
+      <div class="stat"><div class="v">$150.85–$159.70</div><div class="k">Day range</div></div>
+      <div class="stat"><div class="v">~191M</div><div class="k">Volume vs ~372M avg</div></div>
+    </div>
+    <ul>
+      <li><strong>Open &amp; first moves:</strong> popped +3.1% premarket on the earnings beat, opened at $159.19 — then faded red by mid-morning. A lower close today would be the <strong>fifth straight down day</strong>: a classic “sell the news” tape. <a href="https://firstfeednews.com/2026/11/18/market-watch-10am-update-nvidia-pop-fizzles-dow-slips-239-tjx-jumps/">First Feed</a></li>
+      <li><strong>Levels:</strong> support = today's low <strong>$150.85</strong>, then the 52-week low <strong>$148.80</strong> (Nov 12). Resistance = <strong>$159.70</strong> (today's high), then <strong>$163.20</strong> (Nov 16 high).</li>
+      <li><strong>Trend:</strong> firmly down short-term — about −29% in a month, −35% from the Oct 6 high — but the price now hugs the 52-week low, where buyers have stepped in twice.</li>
+      <li><strong>Volume:</strong> ~191M shares by midday vs a ~372M daily average — heavy, but not capitulation. <a href="https://robinhood.com/us/en/stocks/NVDA/">Robinhood quote</a></li>
+    </ul>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="card">
+    <h2>2 · Your Position</h2>
+    <div class="grid3">
+      <div class="stat"><div class="v">$25,458</div><div class="k">Value · 166.281 sh</div></div>
+      <div class="stat"><div class="v pos">+$1,372 · +5.7%</div><div class="k">Unrealized vs $144.85 avg</div></div>
+      <div class="stat"><div class="v neg">−$392 today</div><div class="k">Day change</div></div>
+    </div>
+    <table>
+      <tr><th>Account</th><th class="n">Shares</th><th class="n">Value</th></tr>
+      <tr><td>Rollover IRA</td><td class="n">116.281</td><td class="n">$17,803</td></tr>
+      <tr><td>Roth IRA</td><td class="n">50.000</td><td class="n">$7,655</td></tr>
+      <tr><td><strong>Total · cost ≈ $24,086</strong></td><td class="n"><strong>166.281</strong></td><td class="n"><strong>$25,458</strong></td></tr>
+    </table>
+    <p class="mut">Priced at $153.10 intraday, Nov 18. Dividend: $0.25/share, record date Dec 2 — ≈ $42 coming Dec 23 on today's shares.</p>
+  </section>
+
+  <!-- SECTION 3 + 4 -->
+  <div class="grid2">
+    <section class="card">
+      <h2>3 · Risk Notes</h2>
+      <ul>
+        <li><strong>Leadership vacuum:</strong> Huang resigned Nov 12 amid the Megaspeed chip-diversion scandal (DOJ/Commerce probing; SEC civil probe reported). Colette Kress is interim CEO; the board will not reinstate Huang, and no permanent pick is set — Barclays calls the decision “in limbo.”</li>
+        <li><strong>Target collapse:</strong> the consensus mean target has fallen from ~$328 in late October to ≈ $230 — valuation risk is being repriced weekly.</li>
+        <li><strong>Beta 2.36:</strong> expect swings roughly 2.4× the market's; the 2021–22 drawdown was −66%.</li>
+        <li><strong>Sizing:</strong> NVDA is ≈ $25.5K of a ≈ $1.2M portfolio (~2%) — room to add exists, but every add raises single-name risk into an unresolved scandal.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>4 · Technical &amp; Market Context</h2>
+      <ul>
+        <li><strong>Pattern:</strong> lower highs since October; today a gap-up open that failed at $159.70 and reversed — bears still control the tape until $163 breaks.</li>
+        <li><strong>Key line:</strong> $148.80 is the must-hold level. A close below it opens air underneath; a reclaim of $163.20 flips the short-term trend.</li>
+        <li><strong>Correlations:</strong> the whole AI/semi complex is being sold despite the beat — the Dow slipped at the open and the post-earnings pop fizzled market-wide, so today's red is sector mood, not an Nvidia-only verdict.</li>
+        <li><strong>Value check:</strong> ~16× forward earnings for a company guiding +75% growth — Morningstar keeps a $250 fair-value estimate while flagging “Very High Uncertainty.” <a href="https://fihandbook.com/stocks/nvda/">FI Handbook</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- COACH -->
+  <section class="coach">
+    <h2>🎯 Today's Move — The Bottom Line</h2>
+    <p>Hold your 166 shares — the earnings engine is intact, but the leadership overhang says don't chase a falling stock. If you add, stage it with a day limit at or below $158 only on a stabilizing tape, sized as planned (~$10K), and treat $148.80 as the line: a close below it means wait, not buy. Revisit once the CEO picture clears or the stock reclaims $163.</p>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="card">
+    <h2>🔗 Sources</h2>
+    <p class="srcs">
+      <a href="https://www.fool.com/investing/2026/11/18/nvidia-is-in-turmoil-but-earnings-are-still-rocketing-higher-is-the-stock-a-buy/">Motley Fool — turmoil vs rocketing earnings</a> ·
+      <a href="https://www.fool.com/investing/2026/11/18/how-much-jensen-huang-worth-to-nvidia-more-than-6-trillion-wall-street-analyst/">Motley Fool — Huang's $6.7T question</a> ·
+      <a href="https://www.fool.com/investing/2026/11/18/2-reasons-nvidia-is-a-buy-after-its-latest-earnings-report/">Motley Fool — 2 reasons to buy</a> ·
+      <a href="https://www.tipranks.com/news/nvidia-just-crushed-q3-estimates-why-are-analysts-still-split-on-the-stock">TipRanks — crushed Q3, analysts split</a> ·
+      <a href="https://www.tipranks.com/news/nvidia-stock-price-forecast-analysts-cut-targets-despite-strong-q3">TipRanks — targets cut despite Q3</a> ·
+      <a href="https://finbold.com/wall-street-analysts-update-nvidia-stock-target-after-earnings/">Finbold — analyst updates</a> ·
+      <a href="https://www.tradingview.com/news/tradingview:6f2cb77c7098e:0-td-cowen-maintains-nvidia-at-buy-keeps-price-target-at-200/">TradingView — TD Cowen holds Buy $200</a> ·
+      <a href="https://firstfeednews.com/2026/11/18/market-watch-10am-update-nvidia-pop-fizzles-dow-slips-239-tjx-jumps/">First Feed — midday market watch</a> ·
+      <a href="https://finnhub.io/?q=%22NVDA%22">Finnhub — quote &amp; financials</a>
+    </p>
+    <p class="mut" style="margin-top:5px">Prices intraday Nov 18, 2026 (~12:33 PM ET) and can move after publication. Research summary for David's own portfolio — not financial advice.</p>
+  </section>
+
+  <div class="foot">NVDA Daily Poster · Peptopia Health investments desk · Refreshed daily</div>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('themeBtn'),h=document.documentElement;
+  b.addEventListener('click',function(){
+    var d=h.getAttribute('data-theme')!=='dark';
+    h.setAttribute('data-theme',d?'dark':'light');
+    b.textContent=d?'☀️ Light':'🌙 Dark';
+  });
+})();
+</script>
+</body>
+</html>

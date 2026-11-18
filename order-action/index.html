@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Peptopia Health — Order Action</title>
+<title>Peptopia Health — Email Action</title>
 <!--
   Peptopia order-action page (NOT YET DEPLOYED — staged in
   ~/workspace/order-pipeline/; publish target: x-peps.com/order-action/,
@@ -40,7 +40,7 @@
 <div class="wrap">
   <div class="card">
     <h1>Peptopia Health</h1>
-    <p class="sub">Order action</p>
+    <p class="sub">Email action</p>
     <div id="state-working">
       <div class="spin">⏳</div>
       <div class="big">Sending your decision to Muse…</div>
@@ -54,9 +54,9 @@
     <div id="state-error" style="display:none">
       <div class="spin">⚠️</div>
       <div class="big bad">This link isn't complete</div>
-      <p class="sub" id="error-detail">The order action link is missing information, so nothing was sent. Please use the buttons in the Peptopia order email.</p>
+      <p class="sub" id="error-detail">The email action link is missing information, so nothing was sent. Please use the buttons in the Peptopia email.</p>
     </div>
-    <p class="fine">Peptopia Health · internal order tool</p>
+    <p class="fine">Peptopia Health · internal email tool</p>
   </div>
 </div>
 <script>
@@ -94,16 +94,16 @@
     .then(function (j) { if (j && j.success === false) throw new Error('send failed'); })
     .then(function () {
       document.getElementById('done-line').textContent =
-        'Sent to Muse — order ' + id + (act === 'create' ? ' will be created' : ' will be declined');
+        'Sent to Muse — request ' + id + (act === 'create' ? ' will be created' : ' will be declined');
       document.getElementById('done-detail').textContent =
         act === 'create'
-          ? 'Muse will send the customer their order email, and you will get a confirmation copy here at Peptopia.'
+          ? 'Muse will send the customer their email, and you will get a confirmation copy here at Peptopia.'
           : 'Muse will send the customer a polite decline, and you will get a confirmation copy here at Peptopia.';
       show('state-done');
     })
     .catch(function () {
       document.getElementById('error-detail').textContent =
-        'The message could not be sent — check your connection and tap the button in the order email again. Nothing was recorded.';
+        'The message could not be sent — check your connection and tap the button in the email again. Nothing was recorded.';
       show('state-error');
     });
 })();

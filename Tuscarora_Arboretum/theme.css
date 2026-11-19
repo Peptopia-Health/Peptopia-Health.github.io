@@ -87,7 +87,7 @@ html.dark .hdr-nav .pp-moon{display:none}
 .marble-shot{position:relative;display:block;line-height:0}
 .marble-shot::after{content:'';position:absolute;inset:0;border-radius:12px;background:radial-gradient(circle at 50% 44%,rgba(255,255,255,.12) 0%,rgba(255,255,255,0) 42%,rgba(0,0,0,.10) 78%,rgba(0,0,0,.24) 100%);pointer-events:none}
 .guide-cue{color:var(--t2,#475569);margin-top:14px}
-.guide-cue a{color:var(--orange,#EA580C);font-weight:700;text-decoration:none}
+.guide-cue a{color:#00A651;font-weight:800;text-decoration:none}
 .peptopia-ftr{text-align:center}
 .peptopia-ftr .ftr-email-line{text-align:center}
 .peptopia-ftr .peptopia-ftr-icons{display:flex;justify-content:center}

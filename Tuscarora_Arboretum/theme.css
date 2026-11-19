@@ -108,3 +108,5 @@ html.dark .authbox{background:#111C33}
 .peptopia-logo.logo-light{display:none}
 html.dark .peptopia-logo.logo-light{display:block}
 html.dark .peptopia-logo.logo-dark{display:none}
+/* Tight stacking above the guide author block (David, Nov 19, 2026) */
+.author-cta{margin-top:10px}

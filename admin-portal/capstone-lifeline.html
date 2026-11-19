@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RNTTP Capstone — Project Lifeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#241533; --ink-soft:#5b5470; --bg:#fdfbff; --card:#ffffff;
+  --line:#e7ddf5; --accent:#6C4FE0; --accent-soft:#efeaff;
+  --green:#10C000; --gold:#F0F000; --cobalt:#0070D0; --focus:#F06000;
+  --chip-bg:rgba(255,255,255,.55);
+}
+html[data-theme="dark"]{
+  --ink:#f2edff; --ink-soft:#bdb2d9; --bg:#17102b; --card:#221842;
+  --line:#3d2f6b; --accent:#a68fff; --accent-soft:#2c1f5c;
+  --chip-bg:rgba(255,255,255,.10);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink); padding:18px 14px 26px;}
+.wrap{max-width:860px; margin:0 auto;}
+h1,h2{font-family:'Outfit',sans-serif;}
+.hero{background:linear-gradient(135deg,#6C4FE0,#9d7bff); border-radius:18px; padding:20px 22px; color:#fff; position:relative; overflow:hidden;}
+.hero h1{font-size:clamp(24px,4.5vw,36px); font-weight:800; line-height:1.12;}
+.hero .sub{margin-top:6px; font-size:15px; opacity:.94;}
+.hero .who{margin-top:8px; font-size:13px; opacity:.85;}
+.themebtn{position:absolute; top:14px; right:14px; height:26px; padding:2px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.6); background:rgba(255,255,255,.22); color:#fff; font-family:'DM Sans',sans-serif; font-size:12.5px; font-weight:700; cursor:pointer; backdrop-filter:blur(4px); box-shadow:inset 0 1px 2px rgba(255,255,255,.65), inset 0 -2px 3px rgba(0,0,0,.18), 0 2px 5px rgba(0,0,0,.18);}
+.themebtn:active{transform:translateY(1px); box-shadow:inset 0 1px 3px rgba(0,0,0,.25);}
+.thesis{margin-top:12px; background:var(--accent-soft); border:1px solid var(--line); border-left:6px solid var(--accent); border-radius:12px; padding:12px 16px; font-size:15.5px; line-height:1.45;}
+h2{font-size:19px; font-weight:800; margin:18px 0 8px; color:var(--accent);}
+.timeline{display:flex; flex-direction:column; gap:8px;}
+.phase{display:flex; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 14px; align-items:flex-start;}
+.pnum{flex:0 0 auto; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; color:#fff; font-size:15px;}
+.p1{background:#6C4FE0;} .p2{background:#0070D0;} .p3{background:#F06000;} .p4{background:#10C000;} .p5{background:#d4a017;}
+.phase h3{font-family:'Outfit',sans-serif; font-size:15.5px; font-weight:700;}
+.phase .when{font-size:12.5px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em;}
+.phase p{font-size:14px; line-height:1.4; margin-top:2px;}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px;}
+.card{background:var(--card); border:1px solid var(--line); border-top:5px solid var(--accent); border-radius:12px; padding:10px 12px;}
+.card h3{font-family:'Outfit',sans-serif; font-size:14.5px; font-weight:700; line-height:1.25;}
+.card p{font-size:13px; line-height:1.4; margin-top:3px; color:var(--ink-soft);}
+.c1{border-top-color:#6C4FE0;} .c2{border-top-color:#E01020;} .c3{border-top-color:#0070D0;} .c4{border-top-color:#F06000;} .c5{border-top-color:#10C000;}
+.guard{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
+.chip{display:inline-flex; align-items:center; height:26px; padding:2px 12px; border-radius:999px; background:var(--chip-bg); border:1px solid var(--line); font-size:13px; font-weight:700; backdrop-filter:blur(4px);}
+.steps{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 16px;}
+.steps li{font-size:14.5px; line-height:1.45; margin-left:18px; margin-top:4px;}
+.steps li:first-child{margin-top:0;}
+.foot{margin-top:16px; text-align:center;}
+.listen{display:inline-flex; align-items:center; height:26px; padding:2px 14px; border-radius:999px; background:linear-gradient(135deg,#c9b8ff,#efeaff); color:#241533; font-weight:700; font-size:13.5px; text-decoration:none; border:1px solid #b7a3f5; box-shadow:inset 0 1px 2px rgba(255,255,255,.8), inset 0 -2px 3px rgba(80,50,180,.18), 0 2px 5px rgba(80,50,180,.18);}
+.listen:active{transform:translateY(1px); box-shadow:inset 0 1px 3px rgba(80,50,180,.3);}
+.foot .note{margin-top:8px; font-size:12.5px; color:var(--ink-soft);}
+</style>
+<style id="capstone-responsive-print-standard">
+html,body{overflow-x:clip}
+img,svg{max-width:100%}
+.phase>div{min-width:0}
+.cards>*{min-width:0}
+@media (max-width:640px){
+  .cards{grid-template-columns:1fr}
+  .hero{padding:16px}
+  .phase{padding:9px 11px}
+  body{padding:12px 10px 20px}
+}
+@page{size:Letter; margin:0.5in}
+@media print{
+  *{print-color-adjust:exact; -webkit-print-color-adjust:exact}
+  .themebtn{display:none!important}
+  .phase,.card,.steps,.thesis,.hero{break-inside:avoid; page-break-inside:avoid}
+  h2{break-after:avoid; page-break-after:avoid}
+  p,li{orphans:3; widows:3}
+  body{background:#fff!important; padding:0}
+  a{color:inherit; text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <button class="themebtn" id="themeBtn" type="button">Dark</button>
+    <h1>🎓 RNTTP Capstone — Project Lifeline</h1>
+    <div class="sub">Artificial Intelligence and the Future of Veteran Care</div>
+    <div class="who">David Carroll, RN · RN Transition to Practice Program · Martinsburg VA Medical Center</div>
+  </div>
+
+  <div class="thesis"><strong>The thesis:</strong> AI will transform health care within five years. The VA — the largest integrated health system in America — can lead that change or be dragged by it. This capstone proposes five concrete improvements, the guardrails that make them safe, and the steps to be ready before the future arrives.</div>
+
+  <h2>The Lifeline — Five Phases</h2>
+  <div class="timeline">
+    <div class="phase"><div class="pnum p1">1</div><div><div class="when">Now – Dec 2026 · Foundation</div><h3>Build the base</h3><p>Kickoff briefing and this lifeline guide published. Research file opens: AI in documentation, medication safety, navigation, staffing, and training — one topic at a time, with sources.</p></div></div>
+    <div class="phase"><div class="pnum p2">2</div><div><div class="when">Jan – Mar 2027 · Evidence</div><h3>Gather the proof</h3><p>A personal friction log: every workflow that wastes nursing time or risks safety, in general terms, never with patient information. Three entries a week. RNTTP coordinator confirms the capstone format early, so the build targets the real thing.</p></div></div>
+    <div class="phase"><div class="pnum p3">3</div><div><div class="when">Apr – May 2027 · Proposal</div><h3>Sharpen the five improvements</h3><p>Each proposal gets the same four parts: what it is, why it matters to veterans, the first concrete step, and how we will know it worked. Guardrails written in full.</p></div></div>
+    <div class="phase"><div class="pnum p4">4</div><div><div class="when">Jun – Aug 2027 · Build</div><h3>Make the presentation</h3><p>Slides, illustrations, and audio built and rehearsed until it runs like a story, not a lecture. Muse is the build partner throughout — research, drafts, visuals, practice runs.</p></div></div>
+    <div class="phase"><div class="pnum p5">5</div><div><div class="when">Sep 2027 · Delivery</div><h3>Present the capstone</h3><p>The case to the RNTTP class and VA leadership: the future is coming within five years, here is what it can do for our veterans, and here is how we start now.</p></div></div>
+  </div>
+
+  <h2>The Five Proposals</h2>
+  <div class="cards">
+    <div class="card c1"><h3>Documentation Partner</h3><p>Ambient AI drafts the note from the real conversation, so the chart stops competing with the patient.</p></div>
+    <div class="card c2"><h3>Medication Safety Co-Pilot</h3><p>An intelligent second check at the point of administration — med-pass as a verified system, not a memory test.</p></div>
+    <div class="card c3"><h3>Veteran Navigation Agent</h3><p>One trusted guide for appointments, refills, and benefits, in plain language, at any hour.</p></div>
+    <div class="card c4"><h3>Predictive Staffing &amp; Flow</h3><p>Systems that see the surge coming, so nurse managers plan instead of scramble.</p></div>
+    <div class="card c5"><h3>AI Literacy for Every Nurse</h3><p>A curriculum piloted through RNTTP itself — a workforce that understands the tools and leads them.</p></div>
+  </div>
+
+  <h2>The Guardrails</h2>
+  <div class="guard">
+    <span class="chip">Human in the loop</span>
+    <span class="chip">Privacy first</span>
+    <span class="chip">Checked for bias</span>
+    <span class="chip">Never automate the relationship</span>
+    <span class="chip">Nurses at the design table</span>
+  </div>
+
+  <h2>First Steps This Month</h2>
+  <div class="steps"><ul>
+    <li>Start the friction log this week — three entries a week is plenty.</li>
+    <li>Tell the RNTTP coordinator the topic early; ask what format the capstone takes.</li>
+    <li>Save every AI tool spotted in training or reading to the project file.</li>
+    <li>Listen for the daily capstone segment in the morning and evening briefings.</li>
+  </ul></div>
+
+  <div class="foot">
+    <a class="listen" href="https://x-peps.com/briefings/capstone-briefing-11-19-26.html">▶ Listen to the kickoff briefing</a>
+    <div class="note">Project home: Admin Portal · Capstone section. Lifeline v1 — November 19, 2026. This guide grows as the project does.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('themeBtn');
+  b.addEventListener('click',function(){
+    var h=document.documentElement;
+    var dark=h.getAttribute('data-theme')!=='dark';
+    h.setAttribute('data-theme',dark?'dark':'light');
+    b.textContent=dark?'Light':'Dark';
+  });
+})();
+</script>
+</body>
+</html>

@@ -35,7 +35,7 @@ h1{font-family:'Outfit',sans-serif;}
     <div class="meta">RNTTP Capstone Project · November 19, 2026 · About nine minutes</div>
   </div>
   <div class="player">
-    <audio controls preload="metadata" src="capstone-briefing-11-19-26.mp3"></audio>
+    <audio id="capAudio" controls preload="metadata"></audio>
   </div>
   <div class="about">Your project foundation, in full: the honest diagnosis of the VA today, what AI already does in health care, the VA's hidden advantages, the five-year Singularity planning horizon, the five proposals at the heart of the capstone, the guardrails, the year-long lifeline, and your first steps as a nurse this month.</div>
   <div class="links">
@@ -43,6 +43,24 @@ h1{font-family:'Outfit',sans-serif;}
     <div class="note">Project home: Admin Portal · Capstone section.</div>
   </div>
 </div>
+<script src="capstone-audio-1.js"></script>
+<script src="capstone-audio-2.js"></script>
+<script src="capstone-audio-3.js"></script>
+<script src="capstone-audio-4.js"></script>
+<script src="capstone-audio-5.js"></script>
+<script src="capstone-audio-6.js"></script>
+<script src="capstone-audio-7.js"></script>
+<script>
+(function(){
+  try{
+    var b64=window.__CAPA||'';
+    var bin=atob(b64); var len=bin.length; var bytes=new Uint8Array(len);
+    for(var i=0;i<len;i++){ bytes[i]=bin.charCodeAt(i); }
+    var blob=new Blob([bytes],{type:'audio/mpeg'});
+    document.getElementById('capAudio').src=URL.createObjectURL(blob);
+  }catch(e){}
+})();
+</script>
 <script>
 (function(){
   var b=document.getElementById('themeBtn');

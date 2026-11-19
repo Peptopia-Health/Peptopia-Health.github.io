@@ -82,3 +82,19 @@ html.dark .podcast-page .pod-bar{background:#211B18!important;border-bottom-colo
 .hdr-nav .pp-sun{display:none}
 html.dark .hdr-nav .pp-sun{display:block}
 html.dark .hdr-nav .pp-moon{display:none}
+
+/* Marble perimeter lighting + guide-cue (David, Nov 19, 2026 — ARTIFACT_BUILD_SCRIPT §I.33+) */
+.marble-shot{position:relative;display:block;line-height:0}
+.marble-shot::after{content:'';position:absolute;inset:0;border-radius:12px;background:radial-gradient(circle at 50% 44%,rgba(255,255,255,.12) 0%,rgba(255,255,255,0) 42%,rgba(0,0,0,.10) 78%,rgba(0,0,0,.24) 100%);pointer-events:none}
+.guide-cue{color:var(--t2,#475569);margin-top:14px}
+.guide-cue a{color:var(--orange,#EA580C);font-weight:700;text-decoration:none}
+.peptopia-ftr{text-align:center}
+.peptopia-ftr .ftr-email-line{text-align:center}
+.peptopia-ftr .peptopia-ftr-icons{display:flex;justify-content:center}
+.ftr-logo img{width:128px;height:128px;border-radius:50%}
+.ta-close-btn{margin-left:10px}
+/* Author modal base (was missing on guide pages — gate rendered in page flow; David, Nov 19, 2026) */
+.authmodal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(15,23,42,.66);align-items:flex-start;justify-content:center;padding:max(26px,calc(env(safe-area-inset-top,0px) + 18px)) 16px 16px;overflow-y:auto}
+.authmodal.open{display:flex}
+.authbox{background:#fff;border-radius:16px;max-width:620px;width:100%;max-height:calc(100dvh - 60px);overflow-y:auto;box-shadow:0 18px 50px rgba(0,0,0,.45);border:1px solid var(--border);display:flex;flex-direction:column}
+html.dark .authbox{background:#111C33}

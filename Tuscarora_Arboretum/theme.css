@@ -1,0 +1,84 @@
+/* ============================================================================
+   TUSCARORA ARBORETUM — SHARED THEME (the single source)
+   Global Design System (David, Nov 19, 2026): GUIDE_BUILD_SCRIPT §50 + §51,
+   ARTIFACT_BUILD_SCRIPT §I, ~/workspace/guide-build/GLOBAL_DESIGN_SYSTEM.md.
+   Every Arboretum page links this file as the LAST element of its head.
+   Change the palette HERE and it changes on every page at next load.
+   Pages must not carry local copies of these rules or off-palette literals
+   for themed elements.
+   ============================================================================ */
+:root{
+  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000;
+  --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0;
+  --pal-purple-lt:#7759ED; --pal-neon:#2BFF5C; --pal-highlight:#FEF08A;
+  --pal-focus-lt:#FF8A3D; --pal-focus-deep:#7C2D12;
+  --pal-mood-lt:#4BE03A; --pal-mood-deep:#0B4D00;
+  --pal-purple-deep:#2A1A6E;
+  --pal-turq:#06B6D4; --pal-turq-dk:#0891B2; --pal-turq-deep:#0B3B4D;
+  --font-display:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
+}
+
+/* ---- §50.1 action buttons: the Bottles AUTHOR construction, cap 38px ---- */
+.btn,.author-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:2px solid transparent;line-height:1.1;width:auto;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+.btn:active,.author-btn:active{transform:translateY(2px)}
+.b-amber,.b-guide{background:linear-gradient(180deg,var(--pal-focus-lt),var(--pal-focus));border-color:var(--pal-focus-deep);color:#fff!important;box-shadow:0 3px 0 var(--pal-focus-deep),0 8px 16px rgba(240,96,0,.30),inset 0 1px 0 rgba(255,255,255,.6);text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.b-cyan,.b-podcast{background:linear-gradient(180deg,#3ADBF5,var(--pal-turq));border-color:var(--pal-turq-deep);color:#241533!important;box-shadow:0 3px 0 var(--pal-turq-deep),0 8px 16px rgba(6,182,212,.30),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.b-emerald,.b-patent{background:linear-gradient(180deg,var(--pal-mood-lt),var(--pal-mood));border-color:var(--pal-mood-deep);color:#241533!important;box-shadow:0 3px 0 var(--pal-mood-deep),0 8px 16px rgba(16,192,0,.28),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.b-purple,.b-author,.author-btn{background:linear-gradient(180deg,var(--pal-purple-lt),var(--pal-purple));border-color:var(--pal-purple-deep);color:#fff!important;box-shadow:0 3px 0 var(--pal-purple-deep),0 8px 16px rgba(108,79,224,.32),inset 0 1px 0 rgba(255,255,255,.6);text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.b-amber:active,.b-guide:active{box-shadow:0 1px 0 var(--pal-focus-deep),0 4px 8px rgba(240,96,0,.30),inset 0 1px 0 rgba(255,255,255,.5)}
+.b-cyan:active,.b-podcast:active{box-shadow:0 1px 0 var(--pal-turq-deep),0 4px 8px rgba(6,182,212,.30),inset 0 1px 0 rgba(255,255,255,.5)}
+.b-emerald:active,.b-patent:active{box-shadow:0 1px 0 var(--pal-mood-deep),0 4px 8px rgba(16,192,0,.28),inset 0 1px 0 rgba(255,255,255,.5)}
+.b-purple:active,.b-author:active,.author-btn:active{box-shadow:0 1px 0 var(--pal-purple-deep),0 4px 8px rgba(108,79,224,.32),inset 0 1px 0 rgba(255,255,255,.5)}
+.hdrbtn{width:auto;flex:none}
+.btn-soon{background:linear-gradient(180deg,#3A3A3A,var(--pal-sleep));border-color:#000;color:#E7E5E4!important;box-shadow:0 3px 0 #000,0 8px 16px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.35);text-shadow:none;pointer-events:none}
+
+/* ---- §I.28 bottom action rows (artifact cards carry no buttons) ---- */
+.action-row{max-width:1200px;margin:40px auto 0;padding:18px 24px 4px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;position:relative;z-index:1}
+.action-label{font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);margin-right:2px}
+
+/* ---- category accent: each category page sets one property, --cat ---- */
+.artifact-entry::before{background:var(--cat,#F06000)}
+
+/* ---- artifacts index: category card accents from the palette ---- */
+.ac-amber::before{background:var(--pal-focus)}
+.ac-amber .card-ico{background:rgba(240,96,0,.12);color:var(--pal-focus)}
+.ac-cyan::before{background:var(--pal-turq)}
+.ac-cyan .card-ico{background:rgba(6,182,212,.12);color:var(--pal-turq)}
+.ac-emerald::before{background:var(--pal-purple)}
+.ac-emerald .card-ico{background:rgba(108,79,224,.12);color:var(--pal-purple)}
+.ac-slate::before{background:var(--pal-sleep)}
+.ac-slate .card-ico{background:rgba(10,10,10,.10);color:var(--pal-sleep)}
+.card.ac-emerald .btn{background:linear-gradient(180deg,var(--pal-purple-lt),var(--pal-purple));border-color:var(--pal-purple-deep);color:#fff!important;box-shadow:0 3px 0 var(--pal-purple-deep),0 8px 16px rgba(108,79,224,.32),inset 0 1px 0 rgba(255,255,255,.6)}
+.card.ac-emerald .btn:active{box-shadow:0 1px 0 var(--pal-purple-deep),0 4px 8px rgba(108,79,224,.32),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* ---- §50.2 circular buttons: glass logo masters only ---- */
+.peptopia-iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,23,42,.12);background:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;flex:none}
+.peptopia-iconbtn img{width:38px;height:38px;display:block;border-radius:50%}
+.gd-tools button.peptopia-iconbtn{background:#fff;border:1px solid rgba(15,23,42,.12);font-size:0;padding:0}
+.gd-tools .pp-sun,.pod-tools .pp-sun{display:none}
+html.dark .gd-tools .pp-sun,html.dark .pod-tools .pp-sun{display:block}
+html.dark .gd-tools .pp-moon,html.dark .pod-tools .pp-moon{display:none}
+
+/* ---- guide pages: the patent button is the PATENT action button ---- */
+.patbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:2px solid var(--pal-mood-deep);line-height:1.1;cursor:pointer;background:linear-gradient(180deg,var(--pal-mood-lt),var(--pal-mood));color:#241533;box-shadow:0 3px 0 var(--pal-mood-deep),0 8px 16px rgba(16,192,0,.28),inset 0 1px 0 rgba(255,255,255,.65);text-shadow:0 1px 0 rgba(255,255,255,.45);transition:transform .15s ease,box-shadow .15s ease}
+.patbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--pal-mood-deep),0 4px 8px rgba(16,192,0,.28),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* ---- podcast pages: toolbar + dark theme ---- */
+.pod-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pod-tools{display:inline-flex;gap:8px;margin-left:auto}
+html.dark body.podcast-page{background:#161210;color:#F3EBE2}
+html.dark .podcast-page .card{background:#211B18;border-color:#3B2F29;box-shadow:none}
+html.dark .podcast-page .sub{color:#CBB9A6}
+html.dark .podcast-page #status{color:#CBB9A6}
+html.dark .podcast-page .meta{color:#8D7E6E}
+html.dark .podcast-page h1{color:var(--pal-focus-lt)}
+html.dark .podcast-page a{color:var(--pal-focus-lt)}
+html.dark .podcast-page .pod-bar{background:#211B18!important;border-bottom-color:#3B2F29!important}
+
+/* ---- plants page: header nav pills take the §50 construction ---- */
+.hdr-nav a,.hdr-nav button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:2px solid transparent;line-height:1.1;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .15s ease,box-shadow .15s ease}
+.hdr-nav a:active,.hdr-nav button:active{transform:translateY(2px)}
+.hdr-nav .peptopia-iconbtn{padding:0;border:1px solid rgba(15,23,42,.12)}
+.hdr-nav .pp-sun{display:none}
+html.dark .hdr-nav .pp-sun{display:block}
+html.dark .hdr-nav .pp-moon{display:none}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capstone Portal — AI &amp; the Future of Veteran Care · RNTTP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F2FB; --card:#FFFFFF; --ink:#241533; --muted:#5C5470; --line:#E4DCF2;
+  --purple:#7E22CE; --purple2:#9333EA; --shadow:0 6px 22px rgba(90,40,160,.10);
+  --pal-focus:#F06000; --pal-mood:#10C000; --pal-cobalt:#0070D0; --pal-gold:#B8860B; --pal-purple:#6C4FE0;
+}
+html.dark{
+  --bg:#14101F; --card:#1E1830; --ink:#F1EAFB; --muted:#B9AED6; --line:#372C52;
+  --shadow:0 6px 22px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 16px 34px}
+header.top{text-align:center;padding:20px 10px 4px}
+h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.12;margin:0 0 8px;color:#EA580C}
+.sub{max-width:62ch;margin:0 auto;color:var(--muted);font-size:1.02rem}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0 4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 22px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;text-decoration:none;border:2px solid rgba(0,0,0,.18);box-shadow:0 4px 0 rgba(36,21,51,.35),0 8px 18px rgba(90,40,160,.18),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .08s, box-shadow .08s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(36,21,51,.35),0 4px 10px rgba(90,40,160,.18),inset 0 1px 0 rgba(255,255,255,.45)}
+.b-purple{background:linear-gradient(180deg,#9333EA,#7E22CE)}
+.b-orange{background:linear-gradient(180deg,#FB923C,#EA580C);color:#241533}
+.b-teal{background:linear-gradient(180deg,#2DD4BF,#0D9488)}
+h2{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.28rem;margin:26px 0 10px;color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.card p{margin:0}
+.grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.grid .card{flex:1 1 300px;max-width:340px}
+.grid .card h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.02rem;margin:0 0 6px}
+.grid .card p{color:var(--muted);font-size:.95rem}
+.phase{flex:1 1 180px;max-width:196px;text-align:left}
+.phase .when{font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--purple)}
+html.dark .phase .when{color:#C084FC}
+.phase h3{margin:4px 0 6px}
+.chip{display:inline-block;margin-top:10px;padding:2px 10px;border-radius:999px;font-size:.72rem;font-weight:700;font-family:'Outfit',sans-serif;text-transform:uppercase;letter-spacing:.05em;max-height:26px}
+.chip.now{background:#DCFCE7;color:#166534;border:1px solid #86EFAC}
+.chip.next{background:#F1F5F9;color:#64748B;border:1px solid #CBD5E1}
+html.dark .chip.next{background:#2A2140;color:#B9AED6;border-color:#4A3D6E}
+.num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;color:#fff;font-family:'Outfit',sans-serif;font-weight:800;font-size:.95rem;margin-bottom:8px}
+.guard{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.guard span{padding:3px 12px;border-radius:999px;background:#F3E8FF;border:1px solid #D8B4FE;color:#6B21A8;font-weight:700;font-size:.85rem;max-height:26px}
+html.dark .guard span{background:#2A2140;border-color:#6D28D9;color:#DDD6FE}
+.steps p{margin:0 0 8px}
+.steps p:last-child{margin-bottom:0}
+footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:28px}
+footer a{color:var(--purple);font-weight:700;text-decoration:none}
+.themebtn{position:fixed;right:14px;bottom:14px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);font-size:1.1rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <h1>🎓 RNTTP Capstone Portal</h1>
+  <p class="sub"><strong>AI and the Future of Veteran Care</strong> — how artificial intelligence can transform the care the VA provides veterans, and how the VA should prepare now for the Singularity, expected within five years. A one-year project, November 2026 to September 2027.</p>
+  <div class="btnrow">
+    <a class="btn b-purple" href="https://x-peps.com/admin-portal/capstone-lifeline.html">📄 Lifeline Guide</a>
+    <a class="btn b-purple" href="https://x-peps.com/briefings/capstone-briefing-11-19-26.html">🎧 Kickoff Briefing</a>
+    <a class="btn b-orange" href="https://x-peps.com/admin-portal/">Admin Portal</a>
+  </div>
+</header>
+
+<h2>The Argument</h2>
+<div class="card">
+  <p>The VA is an antiquated, inefficient bureaucracy — and it cares for the veterans who carried this country. Artificial intelligence can greatly improve that care <em>today</em>: shorter notes, safer med passes, easier navigation, smarter staffing. And because the Singularity is coming within five years, the time to prepare is now — with nurses at the design table, not watching from the hallway.</p>
+</div>
+
+<h2>The Lifeline — Five Phases</h2>
+<div class="grid">
+  <div class="card phase"><div class="when">Nov – Dec 2026</div><h3>1 · Foundation</h3><p>Topic set, lifeline published, kickoff briefing delivered. Friction log and AI sightings begin.</p><span class="chip now">In progress</span></div>
+  <div class="card phase"><div class="when">Jan – Mar 2027</div><h3>2 · Evidence</h3><p>Gather the research: what AI already does in health care, VA pilots, outcomes, risks.</p><span class="chip next">Ahead</span></div>
+  <div class="card phase"><div class="when">Apr – May 2027</div><h3>3 · Proposal</h3><p>Shape the five proposals into the formal capstone proposal for the program.</p><span class="chip next">Ahead</span></div>
+  <div class="card phase"><div class="when">Jun – Aug 2027</div><h3>4 · Build</h3><p>Build the presentation, illustrations, and audio. Rehearse, refine, pressure-test.</p><span class="chip next">Ahead</span></div>
+  <div class="card phase"><div class="when">Sep 2027</div><h3>5 · Delivery</h3><p>Present the capstone. Then the material becomes the book.</p><span class="chip next">Ahead</span></div>
+</div>
+
+<h2>The Five Proposals</h2>
+<div class="grid">
+  <div class="card"><span class="num" style="background:var(--pal-focus)">1</span><h3>Documentation Partner</h3><p>AI drafts the note while the nurse cares for the patient. The nurse reviews, edits, and signs — time returns to the bedside.</p></div>
+  <div class="card"><span class="num" style="background:var(--pal-cobalt)">2</span><h3>Medication Safety Co-Pilot</h3><p>A second set of eyes on every med pass — scans, rights, interactions — flagging trouble before a medication is given.</p></div>
+  <div class="card"><span class="num" style="background:var(--pal-mood)">3</span><h3>Veteran Navigation Agent</h3><p>One guide through the maze: benefits, appointments, records, and answers a veteran can actually reach.</p></div>
+  <div class="card"><span class="num" style="background:var(--pal-purple)">4</span><h3>Predictive Staffing &amp; Flow</h3><p>Forecast census and acuity so units are staffed before the surge — not scrambling after it.</p></div>
+  <div class="card"><span class="num" style="background:var(--pal-gold)">5</span><h3>AI Literacy for Every Nurse</h3><p>Every nurse trained to use, question, and oversee AI — piloted right here in RNTTP.</p></div>
+</div>
+
+<h2>The Guardrails</h2>
+<div class="card">
+  <p style="text-align:center;color:var(--muted);margin-bottom:10px">Every proposal is held to the same five rails:</p>
+  <div class="guard"><span>Human in the loop</span><span>Privacy first</span><span>Bias-checked</span><span>Never automate the nurse–patient relationship</span><span>Nurses at the design table</span></div>
+</div>
+
+<h2>The Endgame — A Book</h2>
+<div class="card">
+  <p>This portal is also the book's workshop. The year of material gathered here — the evidence, the friction log, the AI sightings, the briefing segments, the five proposals as they mature — becomes a published book on AI and the future of veteran care. Chapters grow out of each proposal and each phase of the lifeline. Collection has already begun: everything filed for the capstone is written to be book material from day one.</p>
+</div>
+
+<h2>Next Steps — Foundation Phase</h2>
+<div class="card steps">
+  <p>📓 <strong>Friction log</strong> — three entries a week, in general terms only, never patient details: where the work fought you, and where AI could have helped.</p>
+  <p>🗣️ <strong>Tell the RNTTP coordinator</strong> the topic, and ask the capstone format early — audience, length, and how proposals are judged.</p>
+  <p>🔭 <strong>Save AI sightings</strong> — every AI tool, pilot, or headline you meet goes into the project research files for the Evidence phase.</p>
+  <p>🎧 <strong>Daily capstone segment</strong> — one idea and one step at a time, riding the morning and evening briefings.</p>
+</div>
+
+<footer>Peptopia Health · RNTTP Capstone — AI &amp; the Future of Veteran Care<br><a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a></footer>
+</div>
+<button class="themebtn" id="themeBtn" title="Toggle dark theme">🌙</button>
+<script>
+document.getElementById('themeBtn').addEventListener('click', function(){
+  var dark = document.documentElement.classList.toggle('dark');
+  this.textContent = dark ? '☀️' : '🌙';
+});
+</script>
+</body>
+</html>

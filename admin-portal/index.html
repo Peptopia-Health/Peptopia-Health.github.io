@@ -205,6 +205,12 @@ html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
 <style id="portal-v2-css">
 /* ===== Admin Portal v2 preview — categories, command cards, mechanics ===== */
 html{scroll-behavior:smooth}
+
+/* Category nav collapse (David, Nov 20 2026): after a category is chosen the
+   button collection hides; one slim button reopens it. */
+.cat-reopen{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:center;width:100%;margin:0 0 4px;padding:0 18px;height:34px;border:1px solid #7c5cd6;border-radius:999px;background:linear-gradient(180deg,#E9E4FF,#CFC2FF);color:#241533;font:600 14px 'DM Sans',sans-serif;cursor:pointer;box-shadow:0 3px 0 #7c5cd6,0 8px 16px rgba(36,21,51,.18)}
+.cat-reopen:active{transform:translateY(2px);box-shadow:0 1px 0 #7c5cd6,0 4px 8px rgba(36,21,51,.16)}
+.cat-reopen[hidden]{display:none}
 .jumpnav{position:sticky;top:0;z-index:90;display:flex;gap:8px;flex-wrap:wrap;padding:10px 2px;background:var(--bg);border-bottom:1px solid var(--border)}
 .jnav-btn{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-head);font-weight:700;font-size:.86rem;color:var(--theme-dark);text-decoration:none;background:linear-gradient(180deg,#FFFFFF 0%,#E3ECFA 55%,#C7D9F6 100%);border:2px solid var(--theme);border-radius:999px;padding:8px 15px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 4px rgba(37,99,235,.22),0 3px 6px rgba(15,23,42,.16);transition:transform .05s ease,box-shadow .05s ease}
 .jnav-btn:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(15,23,42,.25)}
@@ -436,6 +442,7 @@ html.dark .peptopia-theme-toggle .pp-moon,html[data-theme="dark"] .peptopia-them
     <a class="jnav-btn btn b-emerald" href="#cat-store">🛒 Store &amp; Shipping</a>
   </div>
 </nav>
+<button id="catReopen" class="cat-reopen" type="button" hidden>&#9776;&nbsp; Categories</button>
 
 <section class="catsec" id="cat-capstone">
   <h2 class="cat-title">🎓 RNTTP Capstone — AI &amp; the Future of Veteran Care</h2>
@@ -1451,7 +1458,22 @@ img,svg{max-width:100%}
 })();
 </script>
 <script id="peptopia-banner-js">
-(function(){var b=document.querySelector('.peptopia-theme-toggle');if(!b||b.dataset.ppBound)return;b.dataset.ppBound='1';b.addEventListener('click',function(){var h=document.documentElement;var dark=!(h.classList.contains('dark')||h.getAttribute('data-theme')==='dark');h.classList.toggle('dark',dark);h.setAttribute('data-theme',dark?'dark':'light');});})();
+(function(){if(window.__ppThemeBound)return;window.__ppThemeBound=1;document.addEventListener('click',function(e){var b=e.target.closest('.peptopia-theme-toggle');if(!b)return;var h=document.documentElement;var dark=!(h.classList.contains('dark')||h.getAttribute('data-theme')==='dark');h.classList.toggle('dark',dark);h.setAttribute('data-theme',dark?'dark':'light');});})();
 </script>
+
+<script id="catnav-collapse-js">
+(function(){
+  var nav=document.querySelector('.jumpnav'),btn=document.getElementById('catReopen');
+  if(!nav||!btn)return;
+  function collapse(){nav.style.display='none';btn.hidden=false;}
+  function expand(){nav.style.display='';btn.hidden=true;}
+  nav.addEventListener('click',function(e){if(e.target.closest('a'))collapse();});
+  btn.addEventListener('click',expand);
+  if(/^#cat-/.test(location.hash))collapse();
+})();
+</script>
+<style id="hdr-width-clamp">
+body .peptopia-hdr{max-width:860px;padding-left:14px;padding-right:14px}
+</style>
 </body>
 </html>

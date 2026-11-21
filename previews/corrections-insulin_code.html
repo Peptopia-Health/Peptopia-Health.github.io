@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedPass: B-Pod Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html { font-size: 13px; } @media (min-width: 768px) { html { font-size: 14px; } }
+        .glucose-input { width: 90px; border: 2px solid #3b82f6; padding: 8px; text-align: center; font-weight: 800; border-radius: 6px; font-size: 1.1rem; }
+        .insulin-unit-badge { padding: 8px 16px; border-radius: 6px; font-weight: 900; background: #e0f2fe; color: #0369a1; min-width: 120px; display: inline-block; text-align: center; border: 2px solid #bae6fd; font-size: 1.1rem; }
+        .protocol-box { border-left: 4px solid #f97316; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style id="corr-refresh-1126">
+body{font-family:'DM Sans',sans-serif}
+h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+@media (prefers-color-scheme: dark){
+ body{background-color:#0f172a!important;color:#e2e8f0!important}
+ .bg-white{background-color:#1e293b!important}
+ .bg-gray-50,.bg-slate-50{background-color:#0f172a!important}
+ .bg-gray-100,.bg-slate-100{background-color:#273449!important}
+ .text-gray-900,.text-gray-800,.text-slate-900,.text-slate-800,.text-gray-700,.text-slate-700,.text-black{color:#e2e8f0!important}
+ .text-gray-600,.text-gray-500,.text-slate-600,.text-slate-500{color:#94a3b8!important}
+ .border-gray-100,.border-gray-200,.border-slate-100,.border-slate-200{border-color:#334155!important}
+ input,select,textarea{background-color:#1e293b!important;color:#e2e8f0!important;border-color:#475569!important}
+}
+    </style>
+</head>
+<body class="p-6 bg-gray-50">
+    <div class="max-w-3xl mx-auto space-y-6">
+        
+        <!-- Sliding Scale Block -->
+        <section class="bg-white border-2 border-orange-200 rounded-xl p-6 shadow-sm">
+            <h3 class="text-lg font-black uppercase text-orange-700 mb-2">Novolin R Sliding Scale</h3>
+            <p class="text-xs text-gray-500 mb-6 italic">Use this section ONLY for Novolin R sliding scale dosing. Verify set doses for others below.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 text-sm font-bold text-gray-700">
+                    <div class="flex justify-between"><span>150-199</span> <span>2 Units</span></div>
+                    <div class="flex justify-between"><span>200-249</span> <span>4 Units</span></div>
+                    <div class="flex justify-between"><span>250-299</span> <span>6 Units</span></div>
+                    <div class="flex justify-between"><span>300-349</span> <span>8 Units</span></div>
+                    <div class="flex justify-between text-red-600"><span>350+</span> <span>Call Provider</span></div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase">BG Reading</label>
+                        <input type="number" id="glucose-val" class="glucose-input" placeholder="Enter BG" oninput="calculateInsulin()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase">Dose to Administer</label>
+                        <span id="insulin-result" class="insulin-unit-badge">0 Units</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Set Dose Protocols -->
+        <section class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <h3 class="text-sm font-black uppercase text-gray-700 mb-4">Set Dose Insulin Protocols</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="protocol-box bg-orange-50 p-4 rounded">
+                    <h4 class="font-bold text-orange-800">Humalog (Lispro)</h4>
+                    <p class="text-xs text-orange-700">Administer as specific physician-specified set dose. Do not use sliding scale.</p>
+                </div>
+                <div class="protocol-box bg-orange-50 p-4 rounded">
+                    <h4 class="font-bold text-orange-800">Novolin N (NPH)</h4>
+                    <p class="text-xs text-orange-700">Administer as specific physician-specified set dose. Do not use sliding scale.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function calculateInsulin() {
+            const bg = parseInt(document.getElementById('glucose-val').value);
+            const res = document.getElementById('insulin-result');
+            
+            if (isNaN(bg)) {
+                res.innerText = "0 Units";
+                res.classList.replace('bg-green-100', 'bg-sky-100');
+            } else if (bg >= 350) {
+                res.innerText = "Call Provider";
+            } else if (bg >= 300) {
+                res.innerText = "8 Units";
+            } else if (bg >= 250) {
+                res.innerText = "6 Units";
+            } else if (bg >= 200) {
+                res.innerText = "4 Units";
+            } else if (bg >= 150) {
+                res.innerText = "2 Units";
+            } else {
+                res.innerText = "0 Units";
+            }
+        }
+    </script>
+</body>
+</html>

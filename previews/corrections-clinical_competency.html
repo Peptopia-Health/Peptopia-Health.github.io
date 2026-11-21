@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wexford Training - Clinical Competency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-dark: #1e293b;
+            --accent-emerald: #10b981;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --accent-blue: #3b82f6;
+            --danger: #ef4444;
+            --bg: var(--bg-light); 
+            --surface: var(--white);
+            --surface-alt: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --header-bg: #0f172a;
+        }
+
+        body { background-color: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--text); }
+        .content-card { max-width: 1000px; margin: 2rem auto; background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); padding: 2rem; }
+        .section-header { border-left: 4px solid var(--accent-emerald); padding-left: 1rem; margin-bottom: 1.5rem; }
+        .must-know-box { border: 2px solid var(--accent-emerald); background: #ecfdf5; border-radius: 0.75rem; padding: 1.5rem; }
+        
+        .lethal-badge { background-color: #000; color: #ff0000; border: 1px solid #ff0000; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+        .safety-badge { background-color: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+        .admin-badge { background-color: #6366f1; color: white; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+
+        /* Quiz UI */
+        .hidden { display: none !important; }
+        .quiz-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 2000; overflow-y: auto; display: flex; flex-direction: column; }
+        .quiz-header { padding: 1rem; background: var(--header-bg); color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+        .q-card { background: white; border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin: 1rem auto; max-width: 800px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+        
+        .choice-row { padding: 1rem; border: 1px solid var(--border); border-radius: 0.5rem; margin-bottom: 0.5rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem; }
+        .choice-row:hover:not(.disabled) { background: var(--surface-alt); border-color: var(--accent-blue); }
+        .choice-row.selected { border-color: var(--accent-blue); background: #eff6ff; }
+        .choice-row.correct { background: #d1fae5 !important; border-color: #10b981 !important; color: #065f46 !important; font-weight: bold; }
+        .choice-row.incorrect { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; font-weight: bold; }
+        .choice-row.disabled { pointer-events: none; }
+        
+        .checkbox-mock { width: 20px; height: 20px; border: 2px solid #cbd5e1; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .selected .checkbox-mock { background: var(--accent-blue); border-color: var(--accent-blue); }
+        .selected .checkbox-mock::after { content: '✓'; color: white; font-size: 14px; font-weight: 900; }
+
+        .sata-submit-btn { background: var(--accent-blue); color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; font-weight: bold; margin-top: 1rem; width: 100%; transition: opacity 0.2s; }
+        .sata-submit-btn:hover { opacity: 0.9; }
+
+        .rationale { margin-top: 1rem; padding: 1rem; background: #f8fafc; border-left: 4px solid var(--accent-blue); border-radius: 0.25rem; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style id="corr-refresh-1126">
+h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+@media (prefers-color-scheme: dark){
+ :root{--bg:#0f172a;--bg-light:#0f172a;--surface:#1e293b;--white:#1e293b;--surface-alt:#273449;--border:#334155;--text:#e2e8f0;--header-bg:#020617}
+ .content-card{background:#1e293b;color:#e2e8f0}
+}
+@media (prefers-color-scheme: dark){
+ body{background-color:#0f172a!important;color:#e2e8f0!important}
+ .bg-white{background-color:#1e293b!important}
+ .bg-gray-50,.bg-slate-50{background-color:#0f172a!important}
+ .bg-gray-100,.bg-slate-100{background-color:#273449!important}
+ .text-gray-900,.text-gray-800,.text-slate-900,.text-slate-800,.text-gray-700,.text-slate-700,.text-black{color:#e2e8f0!important}
+ .text-gray-600,.text-gray-500,.text-slate-600,.text-slate-500{color:#94a3b8!important}
+ .border-gray-100,.border-gray-200,.border-slate-100,.border-slate-200{border-color:#334155!important}
+ input,select,textarea{background-color:#1e293b!important;color:#e2e8f0!important;border-color:#475569!important}
+}
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div id="view-study">
+        <div class="max-w-5xl mx-auto flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-4xl font-bold text-slate-800">🧠 Wexford Clinical Competency</h1>
+                <p class="text-slate-500 font-medium text-lg">Running Training & Assessment Database</p>
+            </div>
+            <button onclick="startQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all">
+                📝 Practice Quiz (<span id="q-count-badge">0</span> Qs)
+            </button>
+        </div>
+
+        <div class="content-card space-y-12">
+            
+            <!-- SECTION I: EMERGENCY RESPONSE & TRAUMA -->
+            <section>
+                <div class="section-header">
+                    <h2 class="text-3xl font-bold text-slate-800">Section I: Emergency Response & Trauma</h2>
+                </div>
+                <div class="space-y-6 text-sm">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <ul class="list-disc pl-10 space-y-1">
+                            <li><strong>Safety Rule:</strong> Personal safety is the absolute first priority in any response.</li>
+                            <li><strong>Hanging:</strong> Mandatory aggressive resuscitation for 100% of victims.</li>
+                            <li><strong>Emergency Position:</strong> Side-lying for unresponsive patients with pulse and breathing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION II: MEDICATION ADMINISTRATION -->
+            <section id="med-admin-section">
+                <div class="section-header">
+                    <h2 class="text-3xl font-bold text-slate-800">Section II: Medication Administration</h2>
+                </div>
+                
+                <div class="space-y-8 text-lg text-slate-700">
+                    <!-- Preparation & Safety -->
+                    <div class="p-6 bg-blue-50 rounded-2xl border border-blue-200 shadow-sm text-sm">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center gap-2">
+                            <span>🛡️</span> Med Pass Security & Safety
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-4 rounded-lg border border-blue-100">
+                                <p class="font-bold text-blue-900 mb-2 underline">Standard Operations</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Handwashing:</strong> Mandatory <strong>just prior</strong> to starting med pass.</li>
+                                    <li><strong>Safest Method:</strong> <strong>Punch and Pass</strong>.</li>
+                                    <li><strong>Med Cart Security:</strong> Must be <strong>locked at all times</strong> when unattended.</li>
+                                    <li><strong>Approach Protocol:</strong> Only <strong>1 patient</strong> approaches the cart at a time.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-blue-100">
+                                <p class="font-bold text-blue-900 mb-2 underline">Pre-Pouring Restrictions</p>
+                                <p><strong>Allowed ONLY in:</strong> Lockdowns, inaccessible tiers, or with Board permission.</p>
+                                <ul class="list-disc pl-5 space-y-1 mt-1 text-xs">
+                                    <li>Administer within <strong>60 minutes</strong>.</li>
+                                    <li>Same nurse pours, transports, and administers.</li>
+                                    <li><strong>PROHIBITED:</strong> Never pre-pour controlled substances.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Observation & Prevention -->
+                    <div class="p-6 bg-orange-50 border border-orange-200 rounded-2xl shadow-sm text-sm">
+                        <h3 class="text-xl font-bold text-orange-800 mb-4 flex items-center gap-2">
+                            <span>🚫</span> Diversion Prevention
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <p><strong>Responsibility:</strong> Joint effort between <strong>Medical AND Security</strong>.</p>
+                                <p><strong>Mouth Checks:</strong> Drink of water <strong>before</strong> meds; inspection <strong>after</strong> meds.</p>
+                                <p><strong>Hand Checks:</strong> Spread fingers, palms up.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-orange-100">
+                                <p class="font-bold text-red-700 underline mb-2">DOT (Direct Observation)</p>
+                                <p class="text-xs font-semibold text-red-800">ALWAYS DOT:</p>
+                                <p class="text-xs italic">Controlled substances, Psychotropic meds, HIV meds, and TB meds.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MUST KNOW Section -->
+            <section class="must-know-box">
+                <h2 class="text-2xl font-bold text-emerald-800 mb-4 flex items-center gap-2">
+                    <span>⭐</span> Must-Know Knowledge Points
+                </h2>
+                <ul id="must-know-list" class="list-disc pl-5 space-y-2 text-emerald-900 font-medium text-lg">
+                    <li><span class="admin-badge">APPROACH</span> Only <strong>ONE (1)</strong> patient should approach the med cart at a time.</li>
+                    <li><span class="admin-badge">CART</span> Med carts must be <strong>locked</strong> whenever unattended; never leave unlocked in med room.</li>
+                    <li><span class="admin-badge">PRE-POUR</span> Limit: <strong>60 minutes</strong>; <strong>Never</strong> pre-pour Controlled Substances.</li>
+                    <li><span class="admin-badge">HYGIENE</span> Handwashing is mandatory <strong>just prior</strong> to starting med pass.</li>
+                    <li><span class="admin-badge">DOT</span> Controlled, Psychotropic, HIV, and TB meds are <strong>ALWAYS</strong> DOT.</li>
+                    <li><span class="admin-badge">DIVERSION</span> Requires both <strong>Mouth Checks</strong> and <strong>Hand Checks</strong> (spread fingers).</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <!-- QUIZ OVERLAY -->
+    <div id="view-quiz" class="quiz-overlay hidden">
+        <header class="quiz-header">
+            <button onclick="exitQuiz()" class="bg-red-500 px-4 py-2 rounded font-bold">❌ Exit</button>
+            <div id="q-progress" class="font-bold text-xl">Question 0 / 0</div>
+            <div id="q-score" class="bg-white text-slate-900 px-3 py-1 rounded-full font-bold">Score: 0%</div>
+        </header>
+        <div class="p-4">
+            <div id="q-container"></div>
+            <div id="nav-controls" class="hidden text-center mt-6">
+                <button onclick="nextQuestion()" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold shadow-lg">Continue ➡️</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let QUESTIONS = [
+            {
+                id: 1,
+                topic: 'Med Pass Protocol',
+                text: "It is recommended that no more than 3 patients approach the med cart at a time.",
+                type: 'TF',
+                options: ["False", "True"],
+                answer: 0,
+                rationale: "False. Per the presentation, only 1 patient should approach the med cart at a time to ensure security and prevent errors."
+            },
+            {
+                id: 2,
+                topic: 'Cart Security',
+                text: "Per the presentation, a med cart can be left unlocked and unattended in a med room.",
+                type: 'TF',
+                options: ["False", "True"],
+                answer: 0,
+                rationale: "False. The medication cart must be locked at all times during transport or whenever it is not attended by the nurse."
+            },
+            {
+                id: 3,
+                topic: 'Med Cart Management',
+                text: "Medications should be kept in a drawer with medication for only 1 patient at a time being out on top of the cart at all times during med pass.",
+                type: 'TF',
+                options: ["False", "True"],
+                answer: 1,
+                rationale: "True. Wexford policy requires that only one patient's medication be on top of the cart at a time."
+            },
+            {
+                id: 4,
+                topic: 'Diversion Prevention',
+                text: "Which of the following are recommended ways to prevent diversion of medications? (mark all that apply)",
+                type: 'SATA',
+                options: [
+                    "Mouth checks",
+                    "Supply medications in liquid form only",
+                    "Always float medications",
+                    "Hand checks"
+                ],
+                answer: [0, 3],
+                rationale: "Mouth checks and Hand checks (fingers spread, palms up) are the primary methods for ensuring meds aren't diverted."
+            },
+            {
+                id: 5,
+                topic: 'Pre-Pouring Labels',
+                text: "Which pieces of information are required on a pre-poured medication envelope? (Select All That Apply)",
+                type: 'SATA',
+                options: [
+                    "Date and time of administration",
+                    "Special instructions",
+                    "Name of medication",
+                    "Patient name and ID number",
+                    "Dose of medication"
+                ],
+                answer: [0, 1, 2, 3, 4],
+                rationale: "All five items must be on the envelope: Patient Name/ID, Med Name/Dose, Admin Date/Time, and Special Instructions."
+            },
+            {
+                id: 6,
+                topic: 'Pre-Pouring Protocol',
+                text: "According to the presentation, pre-pouring is permitted only when: (Select All That Apply)",
+                type: 'SATA',
+                options: [
+                    "The same nurse pre-pours, transports, and administers the medication",
+                    "The nurse is unable to get the med cart to different housing levels",
+                    "There are no restrictions on pre-pouring",
+                    "State Board of Pharmacy and Board of Nursing provide permission to pre-pour",
+                    "The facility is in lockdown"
+                ],
+                answer: [0, 1, 3, 4],
+                rationale: "Pre-pouring is strictly regulated and only allowed under specific conditions (lockdown, inaccessible levels, Board permission) and requires the same nurse for the process."
+            },
+            {
+                id: 7,
+                topic: 'Controlled Substances',
+                text: "Which type of medication is not to be pre-poured?",
+                type: 'MC',
+                options: ["Psychotropic medication", "A medication that is to be floated", "Antibiotic", "Controlled substance"],
+                answer: 3,
+                rationale: "Controlled substances are never permitted to be pre-poured under any circumstances."
+            },
+            {
+                id: 8,
+                topic: 'Pre-Pouring Timeline',
+                text: "If a medication is pre-poured, it is to be administered within ___ minutes of being pre-poured.",
+                type: 'MC',
+                options: ["90", "60", "120", "30"],
+                answer: 1,
+                rationale: "Pre-poured meds must be administered within a strict 60-minute window."
+            },
+            {
+                id: 9,
+                topic: 'DOT Protocol',
+                text: "Which meds are ALWAYS DOT? (Select All That Apply)",
+                type: 'SATA',
+                options: ["Controlled substances", "Psychiatric medications", "HIV meds", "TB meds", "Daily Vitamins"],
+                answer: [0, 1, 2, 3],
+                rationale: "Controlled, Psychiatric, HIV, and TB meds are mandatory DOT per policy."
+            },
+            {
+                id: 10,
+                topic: 'Safety Protocols',
+                text: "Your first priority in an emergency response is:",
+                type: 'MC',
+                options: ["Speed", "Personal safety", "The patient", "Documentation"],
+                answer: 1,
+                rationale: "Personal safety is always the first thought to avoid creating more victims."
+            }
+        ];
+
+        let state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set() };
+        document.getElementById('q-count-badge').innerText = QUESTIONS.length;
+
+        function startQuiz() {
+            state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set() };
+            document.getElementById('view-study').classList.add('hidden');
+            document.getElementById('view-quiz').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function exitQuiz() {
+            document.getElementById('view-quiz').classList.add('hidden');
+            document.getElementById('view-study').classList.remove('hidden');
+        }
+
+        function renderQuestion() {
+            state.isGraded = false;
+            state.selections = new Set();
+            const q = QUESTIONS[state.currentIdx];
+            document.getElementById('q-progress').innerText = `Question ${state.currentIdx + 1} / ${QUESTIONS.length}`;
+            document.getElementById('nav-controls').classList.add('hidden');
+            
+            let html = `
+                <div class="q-card">
+                    <p class="text-xs font-bold text-blue-500 uppercase tracking-widest mb-2">${q.topic}</p>
+                    <h3 class="text-2xl font-bold mb-6">${q.text}</h3>
+                    <div class="space-y-3">
+                        ${q.options.map((opt, i) => `
+                            <div class="choice-row" id="choice-${i}" onclick="handleSelection(${i})">
+                                ${q.type === 'SATA' ? '<div class="checkbox-mock"></div>' : ''}
+                                <span>${opt}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${q.type === 'SATA' ? `<button class="sata-submit-btn" id="submit-btn" onclick="gradeSATA()">Submit Selection</button>` : ''}
+                    <div id="rationale-box" class="hidden"></div>
+                </div>
+            `;
+            document.getElementById('q-container').innerHTML = html;
+        }
+
+        function handleSelection(idx) {
+            const q = QUESTIONS[state.currentIdx];
+            if (state.isGraded) return;
+            if (q.type === 'SATA') {
+                const el = document.getElementById(`choice-${idx}`);
+                if (state.selections.has(idx)) {
+                    state.selections.delete(idx);
+                    el.classList.remove('selected');
+                } else {
+                    state.selections.add(idx);
+                    el.classList.add('selected');
+                }
+            } else {
+                gradeSingle(idx);
+            }
+        }
+
+        function gradeSingle(idx) {
+            state.isGraded = true;
+            state.answered++;
+            const q = QUESTIONS[state.currentIdx];
+            const isCorrect = idx === q.answer;
+            if (isCorrect) state.score++;
+            
+            document.querySelectorAll('.choice-row').forEach((c, i) => {
+                c.classList.add('disabled');
+                if (i === q.answer) c.classList.add('correct');
+                else if (i === idx) c.classList.add('incorrect');
+            });
+            showRationale(isCorrect);
+        }
+
+        function gradeSATA() {
+            state.isGraded = true;
+            state.answered++;
+            const q = QUESTIONS[state.currentIdx];
+            const correctSet = new Set(q.answer);
+            const isCorrect = (state.selections.size === correctSet.size) && [...state.selections].every(x => correctSet.has(x));
+            if (isCorrect) state.score++;
+
+            document.querySelectorAll('.choice-row').forEach((c, i) => {
+                c.classList.add('disabled');
+                if (correctSet.has(i)) c.classList.add('correct');
+                else if (state.selections.has(i)) c.classList.add('incorrect');
+            });
+
+            document.getElementById('submit-btn').classList.add('hidden');
+            showRationale(isCorrect);
+        }
+
+        function showRationale(isCorrect) {
+            const ratBox = document.getElementById('rationale-box');
+            ratBox.innerHTML = `<div class="rationale"><p class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-red-700'}">${isCorrect ? '✔️ Correct' : '❌ Incorrect'}</p><p class="text-slate-700 mt-1">${QUESTIONS[state.currentIdx].rationale}</p></div>`;
+            ratBox.classList.remove('hidden');
+            updateScore();
+            document.getElementById('nav-controls').classList.remove('hidden');
+        }
+
+        function updateScore() {
+            const pct = Math.round((state.score / state.answered) * 100);
+            document.getElementById('q-score').innerText = `Score: ${pct}%`;
+        }
+
+        function nextQuestion() {
+            if (state.currentIdx < QUESTIONS.length - 1) {
+                state.currentIdx++;
+                renderQuestion();
+            } else {
+                alert(`Assessment Finished! Final Score: ${Math.round((state.score / QUESTIONS.length) * 100)}%`);
+                exitQuiz();
+            }
+        }
+    </script>
+</body>
+</html>

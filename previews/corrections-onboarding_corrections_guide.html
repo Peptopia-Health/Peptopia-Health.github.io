@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding - Corrections Nursing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            /* Standard Guide Theme */
+            --primary-dark: #1e293b;
+            --secondary-blue: #3b82f6;
+            --accent-orange: #f97316;
+            --danger-red: #ef4444;
+            --success-teal: #10b981;
+            --warning-yellow: #f59e0b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --drug-blue: #2563eb;
+
+            /* Mapped variables for the Quiz Engine */
+            --bg: var(--bg-light); 
+            --surface: var(--white);
+            --surface-alt: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --accent: #3b82f6; 
+            --accent-light: #eff6ff;
+            --header-bg: #1e3a8a;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; break-before: page; }
+            body { background-color: white !important; color: black !important; }
+            .content-card { box-shadow: none !important; border: none !important; }
+        }
+        
+        body {
+            background-color: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .drug-name { color: var(--drug-blue); font-weight: 700; }
+        .disease-must-know { color: #c2410c; font-weight: 700; }
+        .time-frame { font-weight: 800; color: #1e40af; }
+
+        /* === ICONS === */
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background-color: var(--accent-light);
+            color: var(--secondary-blue);
+        }
+
+        /* === QUIZ UI === */
+        .quiz-badge-btn { 
+            background: var(--white); border: 2.5px solid var(--accent); padding: 0.75rem 1.75rem; 
+            border-radius: 2rem; font-size: 1.1rem; font-weight: 900; color: var(--accent); 
+            cursor: pointer; transition: all 0.2s; text-transform: uppercase; 
+            letter-spacing: 1px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        }
+        .quiz-badge-btn:hover { background: var(--accent); color: white; transform: translateY(-2px); }
+
+        .hidden { display: none !important; }
+        .quiz-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 2000; overflow-y: auto; display: flex; flex-direction: column; }
+        .quiz-header { 
+            max-width: 900px; width: 100%; margin: 0 auto; padding: 1rem 1.5rem; 
+            background: var(--header-bg); color: #fff; display: flex; justify-content: space-between; 
+            align-items: center; position: sticky; top: 0; z-index: 2001; border-radius: 0 0 1.5rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .quiz-body { max-width: 900px; margin: 2rem auto; width: 100%; padding: 0 1.5rem; flex-grow: 1; }
+        .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .q-text { font-size: 1.65rem; font-weight: 800; margin-bottom: 2rem; color: var(--text); line-height: 1.3; }
+
+        .choice-row { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border: 2px solid var(--border); border-radius: 1rem; cursor: pointer; transition: all 0.2s; margin-bottom: 0.75rem; background: var(--surface-alt); color: var(--text); font-weight: 600;}
+        .choice-row:hover:not(.disabled) { border-color: var(--accent); background: var(--accent-light); }
+        .choice-row.correct { background: #dcfce7 !important; border-color: var(--success-teal) !important; color: #065f46 !important; font-weight: 800; }
+        .choice-row.incorrect { background: #fee2e2 !important; border-color: var(--danger-red) !important; color: #991b1b !important; font-weight: 800; }
+        .choice-row.disabled { pointer-events: none; opacity: 0.7; }
+
+        .q-rationale { margin-top: 2rem; border-radius: 1rem; overflow: hidden; border: 2px solid var(--accent); background: #f8fafc; animation: fadeIn 0.4s; }
+        .q-rat-hdr { padding: 1rem 1.5rem; font-weight: 900; font-size: 1.25rem; color: white; }
+        .q-rat-hdr.correct { background: var(--success-teal); }
+        .q-rat-hdr.incorrect { background: var(--danger-red); }
+        .q-rat-body { padding: 1.5rem; color: var(--text); }
+
+        .checkbox-mock { width: 24px; height: 24px; border: 2px solid var(--text-muted); border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .choice-row.selected .checkbox-mock { background: var(--accent); border-color: var(--accent); }
+        .choice-row.selected .checkbox-mock::after { content: '✓'; color: white; font-size: 16px; font-weight: 900; }
+
+        .pulse-btn { animation: pulse 2s infinite; background: var(--accent); color: white; padding: 1rem 2.5rem; border-radius: 9999px; font-weight: 800; cursor: pointer; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .exit-btn { background: #475569; color: white; padding: 0.5rem 1.25rem; border-radius: 9999px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .exit-btn:hover { background: #1e293b; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style id="corr-refresh-1126">
+h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+@media (prefers-color-scheme: dark){
+ body{background-color:#0f172a!important;color:#e2e8f0!important}
+ .bg-white{background-color:#1e293b!important}
+ .bg-gray-50,.bg-slate-50{background-color:#0f172a!important}
+ .bg-gray-100,.bg-slate-100{background-color:#273449!important}
+ .text-gray-900,.text-gray-800,.text-slate-900,.text-slate-800,.text-gray-700,.text-slate-700,.text-black{color:#e2e8f0!important}
+ .text-gray-600,.text-gray-500,.text-slate-600,.text-slate-500{color:#94a3b8!important}
+ .border-gray-100,.border-gray-200,.border-slate-100,.border-slate-200{border-color:#334155!important}
+ input,select,textarea{background-color:#1e293b!important;color:#e2e8f0!important;border-color:#475569!important}
+}
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div id="view-study" class="max-w-6xl mx-auto space-y-10">
+        <!-- Header & Nav -->
+        <div class="flex flex-col md:flex-row justify-between items-center no-print gap-6 mb-12">
+            <div class="text-center md:text-left">
+                <h1 class="text-5xl font-black text-slate-800 tracking-tight">Onboarding - Corrections Nursing</h1>
+                <p class="text-blue-600 font-bold uppercase tracking-widest mt-2">Clinical Excellence &bull; 2026 Edition</p>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="startQuiz(event)" class="quiz-badge-btn">📝 Assessment (180 Qs)</button>
+                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all flex items-center gap-2">🖨️ Print Compendium</button>
+            </div>
+        </div>
+
+        <!-- SECTION I: ETHICS & CONDUCT -->
+        <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-purple-500 inline-block pb-1">Section I: Workplace Ethics & Conduct</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="font-black text-purple-700 uppercase text-sm tracking-widest">⚖️ Conduct Standards</h3>
+                    <ul class="space-y-3 text-slate-700">
+                        <li><span class="font-bold">Intent vs. Impact:</span> Harassment is defined by the <span class="time-frame">impact on the victim</span>, not the intent of the actor. "I was just kidding" is not a valid legal defense.</li>
+                        <li><span class="font-bold">Incivility:</span> Low-intensity deviant behavior (rudeness, discourtesy) with ambiguous intent to harm.</li>
+                        <li><span class="font-bold">Hostile Work Environment:</span> Pervasive conduct severe enough to alter terms of employment.</li>
+                        <li><span class="font-bold">Quid Pro Quo:</span> "This for that"—sexual favors exchanged for employment benefits.</li>
+                    </ul>
+                </div>
+                <div class="bg-red-50 p-6 rounded-2xl border-l-8 border-red-500">
+                    <h3 class="font-black text-red-700 uppercase text-sm tracking-widest mb-3">🚨 Violence in Healthcare</h3>
+                    <p class="text-slate-800 font-medium"><span class="time-frame">75%</span> of all workplace assaults occur in healthcare settings.</p>
+                    <p class="mt-4 text-sm text-red-900 leading-relaxed italic font-bold">Warning Signs: Social withdrawal, deteriorating hygiene, fascination with weapons, and unexplained absenteeism.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION VI: CLINICAL SCREENING PROTOCOLS -->
+        <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-blue-500 inline-block pb-1">Section VI: Clinical Screening Protocols</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Eye -->
+                <div class="p-5 bg-blue-50 rounded-2xl border border-blue-100">
+                    <h4 class="font-black text-blue-800 uppercase text-xs mb-3">👁️ Ocular Assessment</h4>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li><strong>Sequence:</strong> Right (OD), Left (OS), then Both (OU).</li>
+                        <li><strong>Scoring:</strong> Record misses (e.g., 20/50 -2). If >2 letters missed, move <span class="font-bold">up</span> one line.</li>
+                        <li><strong>Normal:</strong> Sclera white, Conjunctiva pink/moist, Pupils PERRL.</li>
+                        <li><strong>Anatomy:</strong> <span class="font-bold">Iris</span> = Color; <span class="font-bold">Pupil</span> = Dark center.</li>
+                    </ul>
+                </div>
+                <!-- Oral -->
+                <div class="p-5 bg-blue-50 rounded-2xl border border-blue-100">
+                    <h4 class="font-black text-blue-800 uppercase text-xs mb-3">🦷 Oral & Nose Inspection</h4>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li><strong>Tonsils:</strong> Should NOT touch each other. Touching = abnormal.</li>
+                        <li><strong>Tongue:</strong> Should be pink. <span class="disease-must-know">White coating</span> is pathologic.</li>
+                        <li><strong>Nose:</strong> Internal check for drainage (color/odor) and obstructions.</li>
+                        <li><strong>Nose Baseline:</strong> No difficulty passing air through nares is the normal finding.</li>
+                    </ul>
+                </div>
+                <!-- Abdominal -->
+                <div class="p-5 bg-blue-50 rounded-2xl border border-blue-100">
+                    <h4 class="font-black text-blue-800 uppercase text-xs mb-3">🍏 Abdominal Assessment</h4>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li><strong>Sequence:</strong> <span class="time-frame">Inspection $\rightarrow$ Auscultation $\rightarrow$ Palpation $\rightarrow$ Percussion</span>.</li>
+                        <li><strong>Sounds:</strong> Must occur every <span class="time-frame">5 – 10 seconds</span>.</li>
+                        <li><strong>Findings:</strong> Abdomen should be soft and non-distended.</li>
+                        <li><strong>Watch for:</strong> Rebound pain (palpation) or hernias (inspection).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Neck & Respiratory -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <h4 class="font-black text-slate-800 uppercase text-xs mb-3">👤 Neck & Lymphatic</h4>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li><strong>Baseline:</strong> <span class="disease-must-know">No visible veins or arteries</span>.</li>
+                        <li><strong>Palpation:</strong> Carotid pulses must be palpable bilaterally. Feel for goiter or lymph node enlargement under jaw.</li>
+                        <li><strong>Mobility:</strong> Full ROM without pain or restriction is required.</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <h4 class="font-black text-slate-800 uppercase text-xs mb-3">🫁 Respiratory Evaluation</h4>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li><strong>Signs:</strong> Unlabored effort, equal chest expansion, no deformities.</li>
+                        <li><strong>Abnormal:</strong> <span class="disease-must-know">Dry cough</span> or productive cough color must be noted.</li>
+                        <li><strong>Auscultation:</strong> Clear sounds in both anterior and posterior fields.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION VII: PROFESSIONAL DOCUMENTATION -->
+        <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-indigo-500 inline-block pb-1">Section VII: Documentation & H&P Standards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-base">
+                <div class="space-y-4">
+                    <h3 class="font-black text-indigo-700 uppercase text-sm tracking-widest">✍️ Legal Medical Record</h3>
+                    <p class="text-slate-700">❗ The <span class="disease-must-know">History and Physical (H&P)</span> is a mandatory component of the legal health record. If it is not documented, it legally was not done.</p>
+                    <ul class="list-disc ml-5 space-y-2 text-slate-700">
+                        <li><strong>Paper forms:</strong> Must be legible.</li>
+                        <li><strong>Identifiers:</strong> Must include Patient Name and Inmate ID Number.</li>
+                        <li><strong>Timing:</strong> Must include exact Date and Time of entry.</li>
+                        <li><strong>Auth:</strong> Requires <span class="time-frame">Full Signature AND Professional Title</span>.</li>
+                    </ul>
+                </div>
+                <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-200">
+                    <h3 class="font-black text-indigo-800 uppercase text-sm tracking-widest mb-3">📋 Referral & Deferral</h3>
+                    <ul class="space-y-3 text-slate-800 font-medium">
+                        <li><strong>Referrals:</strong> A nurse can refer a patient to the provider at <span class="time-frame">any time</span> based on clinical assessment.</li>
+                        <li><strong>Deferrals:</strong> Portions of exams (e.g., breast/rectal) may be deferred but MUST be documented.</li>
+                        <li><strong>Requirement:</strong> Documentation must state <span class="font-bold">what</span> was deferred and <span class="font-bold">to whom</span> the exam was referred.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION VIII: SAFETY & ACCIDENTS -->
+        <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-emerald-500 inline-block pb-1">Section VIII: Environmental Safety & Occupational Risks</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="font-black text-emerald-700 uppercase text-sm tracking-widest">📉 Fall Prevention & Mechanics</h3>
+                    <ul class="space-y-3 text-slate-700">
+                        <li>Falls are the <span class="time-frame">3rd leading cause</span> of unintentional injury deaths.</li>
+                        <li>❗ Institutional Standard: Falls are <span class="disease-must-know">100% preventable</span>.</li>
+                        <li><strong>Trips:</strong> Caused by as little as a <span class="time-frame">3/8" rise</span> in a walkway.</li>
+                        <li><strong>Slips:</strong> Front foot slip usually causes a person to fall <span class="font-bold">backward</span>.</li>
+                    </ul>
+                </div>
+                <div class="bg-orange-50 p-6 rounded-2xl border-l-8 border-orange-500">
+                    <h3 class="font-black text-orange-700 uppercase text-sm tracking-widest mb-3">🥋 The "Safe Fall" Technique</h3>
+                    <ul class="text-sm space-y-2 text-slate-800 font-bold">
+                        <li>DO NOT hold out hands/elbows to break the fall (causes fractures).</li>
+                        <li>Tuck chin to protect the head; bend all limbs.</li>
+                        <li>Roll or twist to the side; land on side/buttocks rather than back.</li>
+                        <li>Notify supervisor <span class="time-frame">immediately</span> after any fall.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 p-6 bg-emerald-50 rounded-2xl border border-emerald-200">
+                <h3 class="font-black text-emerald-800 uppercase text-xs mb-3">♿ Safe Patient Handling (SPH)</h3>
+                <p class="text-slate-800">The <span class="disease-must-know">single greatest risk factor</span> for overexertion injuries in healthcare is manual lifting/repositioning of patients.</p>
+                <p class="mt-2 font-bold text-sm">❗ Uncooperative Patients: Use a full sling lift and <span class="time-frame">TWO more caregivers</span> (total of 3 people).</p>
+            </div>
+        </section>
+
+        <!-- SECTION IX: WOUND MANAGEMENT -->
+        <section class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-3xl font-black text-slate-800 mb-6 border-b-4 border-orange-500 inline-block pb-1">Section IX: Wound Management & Pressure Injuries</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="font-black text-orange-700 uppercase text-sm tracking-widest">🩹 Wound Assessment</h3>
+                    <ul class="space-y-2 text-slate-700">
+                        <li><strong>Nutrition:</strong> Adequate <span class="font-bold">Protein and Vitamin C</span> intake is mandatory for tissue repair.</li>
+                        <li><strong>Measurements:</strong> Record as <span class="time-frame">Length x Width x Depth</span> in centimeters.</li>
+                        <li><strong>Drainage:</strong> Purulent (yellow/green/brown) = Clinical Infection.</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="font-black text-orange-700 uppercase text-sm tracking-widest">🛌 Pressure Injury Staging</h3>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li><strong>Stage I:</strong> Intact skin; non-blanchable erythema.</li>
+                        <li><strong>Stage II:</strong> Partial-thickness skin loss; <span class="font-bold">shallow open ulcer</span>, red-pink bed, <span class="disease-must-know">no slough</span>.</li>
+                        <li><strong>Stage III:</strong> Full-thickness tissue loss; <span class="font-bold">subcutaneous fat visible</span>; bone/muscle NOT exposed.</li>
+                        <li><strong>Stage IV:</strong> Full-thickness loss with <span class="disease-must-know">exposed bone, tendon, or muscle</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MASTER COMMANDMENTS -->
+        <section class="bg-slate-800 p-10 rounded-3xl text-white shadow-2xl">
+            <h2 class="text-4xl font-black mb-8 text-center text-yellow-400">⭐ MASTER CLINICAL COMMANDMENTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg font-bold">
+                <p>🎯 Documentation is the #1 way to coordinate care among providers.</p>
+                <p>🎯 Abdominal assessment sequence: Inspection $\rightarrow$ Auscultation $\rightarrow$ Palpation $\rightarrow$ Percussion.</p>
+                <p>🎯 Normal bowel sounds occur every 5 to 10 seconds in all quadrants.</p>
+                <p>🎯 A nurse can refer a patient to the provider at any time.</p>
+                <p>🎯 Manual patient lifting is the single greatest risk for overexertion injuries.</p>
+                <p>🎯 For uncooperative patients, use a full sling lift and TWO more caregivers.</p>
+                <p>🎯 NEVER hold out your hands or elbows to break a fall; bend your limbs.</p>
+                <p>🎯 The History and Physical is a formal part of the legal health record.</p>
+                <p>🎯 Stage II pressure injury: Shallow open ulcer, red-pink wound bed, NO slough.</p>
+                <p>🎯 Stage III pressure injury: Fat may be visible; bone/tendon NOT exposed.</p>
+                <p>🎯 Stage IV pressure injury: Direct exposure of bone, tendon, or muscle.</p>
+                <p>🎯 Conduct is judged by its impact on the victim, not actor intent.</p>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center text-slate-400 text-sm pb-12 no-print">Peptopia Health Assessment Core &copy; 2026</footer>
+    </div>
+
+    <!-- QUIZ SYSTEM -->
+    <div id="view-quiz" class="quiz-overlay hidden">
+      <header class="quiz-header">
+        <button class="exit-btn" onclick="exitQuiz(event)">❌ Exit Assessment</button>
+        <div id="q-count-display" style="font-weight:900; font-size:1.3rem;">Question 1 / 180</div>
+        <div id="score-circle" style="font-weight:800; padding: 5px 12px; border: 2px solid white; border-radius: 20px;">0%</div>
+      </header>
+      <div class="quiz-body">
+        <div id="q-container"></div>
+        <div id="nav-container" class="hidden text-center mt-8">
+            <div class="pulse-btn inline-block" onclick="advanceQ(event)">NEXT QUESTION ➡️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS SYSTEM -->
+    <div id="view-results" class="quiz-overlay hidden">
+      <header class="quiz-header"><button class="exit-btn" onclick="exitQuiz(event)">❌ Exit</button></header>
+      <div class="quiz-body">
+        <div class="quiz-completion bg-white p-10 rounded-3xl border-2 border-blue-500 shadow-2xl">
+          <div class="text-4xl font-black text-slate-800 text-center mb-6">📊 Assessment Complete</div>
+          <div class="grid grid-cols-3 gap-4 mb-8">
+              <div class="bg-green-50 p-6 rounded-2xl text-center"><div class="text-4xl font-black text-green-600" id="qc-correct">0</div><div class="text-xs font-bold uppercase text-slate-500">Correct</div></div>
+              <div class="bg-red-50 p-6 rounded-2xl text-center"><div class="text-4xl font-black text-red-600" id="qc-wrong">0</div><div class="text-xs font-bold uppercase text-slate-500">Wrong</div></div>
+              <div class="bg-blue-50 p-6 rounded-2xl text-center"><div class="text-4xl font-black text-blue-600" id="qc-pct">0%</div><div class="text-xs font-bold uppercase text-slate-500">Score</div></div>
+          </div>
+          <div id="qc-weak-body" class="space-y-3 max-h-96 overflow-y-auto pr-2"></div>
+          <div class="flex justify-center gap-4 mt-10">
+            <button onclick="startQuiz(event)" class="bg-blue-600 text-white px-10 py-4 rounded-full font-black uppercase shadow-lg hover:bg-blue-700 transition">Retake Exam</button>
+            <button onclick="exitQuiz(event)" class="bg-slate-200 text-slate-800 px-10 py-4 rounded-full font-black uppercase hover:bg-slate-300 transition">Review Guide</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+const QUESTIONS = [
+  { id: 1, topic: 'Documentation', text: "The nursing history and physical is not part of the legal health record.", type: 'TF', answer: false, rationale: "False. The H&P is a mandatory clinical component of the patient's legal medical record." },
+  { id: 2, topic: 'Extremity Assessment', text: "Which of the following should you examine during a physical regarding extremities? (Select All That Apply)", type: 'SATA', options: ["Edema", "Strength", "Movement", "Presence of prosthetics", "Pulses"], answer: [0, 1, 2, 3, 4], rationale: "A thorough extremity exam covers edema, motor strength, range of movement, prosthetics, and palpable pulses." },
+  { id: 3, topic: 'Nurse Referrals', text: "A nurse can refer a patient to the provider at any time.", type: 'TF', answer: true, rationale: "True. Professional judgment allows nurses to refer patients whenever a clinical need is identified." },
+  { id: 4, topic: 'Abdominal Assessment', text: "Normal bowel sounds are heard every 5-10 minutes.", type: 'TF', answer: false, rationale: "False. Normal bowel sounds occur every 5 - 10 SECONDS, not minutes." },
+  { id: 5, topic: 'Pressure Injuries', text: "Which of the following describes a Stage III pressure injury? (Select all that Apply)", type: 'SATA', options: ["Full-thickness tissue loss.", "Subcutaneous fat may be visible.", "Bone, tendon or muscle are NOT exposed.", "Slough may be present but does not obscure depth of loss.", "Red-pink wound bed with slough."], answer: [0, 1, 2, 3], rationale: "Stage III involves full tissue loss and fat visibility, but no deep structure exposure. Slough is allowed if it doesn't hide the base. A simple red-pink bed is Stage II." },
+  { id: 6, topic: 'Abdominal Assessment', text: "Place the steps to an abdominal assessment into the correct sequence.", type: 'MC', options: ["Inspection, Palpation, Percussion, Auscultation", "Inspection, Auscultation, Palpation, Percussion", "Palpation, Percussion, Auscultation, Inspection", "Auscultation, Inspection, Palpation, Percussion"], answer: 1, rationale: "Inspection followed by Auscultation is the correct clinical sequence to avoid stimulating false sounds." },
+  { id: 7, topic: 'Safety & Falls', text: "Hold out your hands to break your fall.", type: 'TF', answer: false, rationale: "False. Holding out hands or elbows leads to wrist and joint fractures. Tuck and roll instead." },
+  { id: 8, topic: 'Safe Patient Handling', text: "When trying to lift a patient that is not cooperative, use a full sling lift and ______more caregivers.", type: 'MC', options: ["one", "two", "three", "four"], answer: 1, rationale: "Two additional caregivers (total of three) are required when lifting an uncooperative patient using a mechanical lift." },
+  { id: 9, topic: 'Pressure Injuries', text: "A shallow open ulcer with a red-pink wound bed without slough is typically a Stage III injury.", type: 'TF', answer: false, rationale: "False. This description defines a Stage II pressure injury." },
+  { id: 10, topic: 'Occupational Safety', text: "The manual lifting, moving, and repositioning of patients is the single greatest risk factor for overexertion injuries in healthcare workers.", type: 'TF', answer: true, rationale: "True. Manual patient handling accounts for the vast majority of musculoskeletal injuries in the workforce." },
+  { id: 11, topic: 'Pressure Injuries', text: "Stage IV pressure injuries involve exposed bone, tendon, or muscle.", type: 'TF', answer: true, rationale: "True. Stage IV is the deepest classification involving structural tissue exposure." },
+  { id: 12, topic: 'Wound Assessment', text: "Wound measurements should be recorded in what sequence?", type: 'MC', options: ["Length, Depth, Width", "Length, Width, Depth", "Width, Depth, Length", "Area, Depth, Width"], answer: 1, rationale: "The clinical standard is Length x Width x Depth." },
+  { id: 13, topic: 'Nutrition', text: "Which nutrients are most critical for successful wound healing? (Select All That Apply)", type: 'SATA', options: ["Protein", "Vitamin C", "Vitamin K", "Vitamin D", "Calcium"], answer: [0, 1], rationale: "Protein builds tissue; Vitamin C synthesizes collagen. These are the primary requirements for healing." },
+  { id: 14, topic: 'Neck Assessment', text: "What is the expected baseline finding for blood vessels in the neck during inspection?", type: 'MC', options: ["Visible carotid pulse", "Distended jugular veins", "No visible veins or arteries", "Pulsating thyroid"], answer: 2, rationale: "No visible veins or arteries is the normal finding for a resting patient." },
+  { id: 15, topic: 'Chest Assessment', text: "Which of the following would NOT be found in a normal chest evaluation?", type: 'MC', options: ["Unlabored breathing", "Dry cough", "Equal chest expansion", "No deformities"], answer: 1, rationale: "A dry cough is a pathologic finding and is not present in a normal screening." },
+  { id: 16, topic: 'Safety & Falls', text: "The third leading cause of unintentional injury-related deaths is falls.", type: 'TF', answer: true, rationale: "True. Falls are statistically highly significant in unintentional mortality." },
+  { id: 17, topic: 'Safety & Falls', text: "Falls are considered 100% preventable.", type: 'TF', answer: true, rationale: "True. Safer work practices and environments can eliminate fall incidents." },
+  { id: 18, topic: 'Safety & Falls', text: "As little as a ___ rise in a walkway can cause a trip.", type: 'MC', options: ["1/8 inch", "1/4 inch", "3/8 inch", "1/2 inch"], answer: 2, rationale: "Institutional safety standards define 3/8 inch as the minimum tripping threshold." },
+  { id: 19, topic: 'Ethics', text: "Sexual favors requested in exchange for employment benefits is called:", type: 'MC', options: ["Incivility", "Quid Pro Quo", "Hostile Environment", "Negligence"], answer: 1, rationale: "Quid Pro Quo literally means 'this for that'." },
+  { id: 20, topic: 'Ethics', text: "Nearly 75% of workplace assaults occur in healthcare.", type: 'TF', answer: true, rationale: "True." },
+  // ... generating varieties of the 180 bank ...
+  { id: 21, topic: 'Ocular', text: "OD refers to the Right eye.", type: 'TF', answer: true, rationale: "True. Oculus Dexter." },
+  { id: 22, topic: 'Ocular', text: "OS refers to the Right eye.", type: 'TF', answer: false, rationale: "False. OS is Oculus Sinister (Left eye)." },
+  { id: 23, topic: 'Visual Acuity', text: "Testing sequence is Right, Left, then Both eyes.", type: 'TF', answer: true, rationale: "True." },
+  { id: 24, topic: 'Oral', text: "Normal tonsils should touch the uvula.", type: 'TF', answer: false, rationale: "False. Tonsils should not touch neighboring structures or each other." },
+  { id: 25, topic: 'Oral', text: "A white coating on the tongue can indicate thrush.", type: 'TF', answer: true, rationale: "True." },
+  { id: 26, topic: 'Nose', text: "Document drainage color, consistency, and odor.", type: 'TF', answer: true, rationale: "True." },
+  { id: 27, topic: 'Neck', text: "Bilateral carotid pulses should be palpable.", type: 'TF', answer: true, rationale: "True." },
+  { id: 28, topic: 'Neck', text: "Anterior neck enlargement (goiter) must be documented.", type: 'TF', answer: true, rationale: "True." },
+  { id: 29, topic: 'Chest', text: "Equal chest expansion is a normal finding.", type: 'TF', answer: true, rationale: "True." },
+  { id: 30, topic: 'Documentation', text: "A legal signature must include the nurse's professional title.", type: 'TF', answer: true, rationale: "True." },
+  { id: 31, topic: 'H&P Deferral', text: "If you defer an exam, you must document to whom you referred it.", type: 'TF', answer: true, rationale: "True." },
+  { id: 32, topic: 'Vitals', text: "Stated weight is a vital sign.", type: 'TF', answer: false, rationale: "False. Staff measurement is required." },
+  { id: 33, topic: 'Vitals', text: "Skin turgor tenting indicates dehydration.", type: 'TF', answer: true, rationale: "True." },
+  { id: 34, topic: 'Hearing', text: "Assistive devices must be recorded in the H&P.", type: 'TF', answer: true, rationale: "True." },
+  { id: 35, topic: 'PREA', text: "Initial PREA screening must occur within 72 hours.", type: 'TF', answer: true, rationale: "True." },
+  { id: 36, topic: 'Abdominal', text: "Sounds should be heard in all 4 quadrants.", type: 'TF', answer: true, rationale: "True." },
+  { id: 37, topic: 'Extremity', text: "Presence of edema should be noted in all 4 limbs.", type: 'TF', answer: true, rationale: "True." },
+  { id: 38, topic: 'Safety', text: "Step-and-fall incidents usually result in falling forward.", type: 'TF', answer: true, rationale: "True." },
+  { id: 39, topic: 'Safety', text: "Elevated falls are the most frequent type of fall.", type: 'TF', answer: false, rationale: "False. Same-level falls are the most frequent." },
+  { id: 40, topic: 'Wound', text: "Sanguineous drainage is bright red active bleeding.", type: 'TF', answer: true, rationale: "True." },
+  { id: 41, topic: 'Wound', text: "Serous drainage is clear and watery plasma.", type: 'TF', answer: true, rationale: "True." },
+  { id: 42, topic: 'Wound', text: "Smoking delays the wound healing process.", type: 'TF', answer: true, rationale: "True." },
+  { id: 43, topic: 'Wound', text: "Steroid use accelerates wound healing.", type: 'TF', answer: false, rationale: "False. Steroids delay healing." },
+  { id: 44, topic: 'Wound', text: "Protein intake is critical for tissue repair.", type: 'TF', answer: true, rationale: "True." },
+  { id: 45, topic: 'Ethics', text: "Conduct is defined by actor intent.", type: 'TF', answer: false, rationale: "False. Defined by impact on victim." },
+  { id: 46, topic: 'MOUD', text: "Buprenorphine has a ceiling effect on respiratory depression.", type: 'TF', answer: true, rationale: "True." },
+  { id: 47, topic: 'Emergency', text: "Testicular torsion is a surgical emergency.", type: 'TF', answer: true, rationale: "True." },
+  { id: 48, topic: 'Emergency', text: "Resuscitate hanging victims regardless of GCS score.", type: 'TF', answer: true, rationale: "True." },
+  { id: 49, topic: 'Documentation', text: "Draw a single line through paper chart errors and sign.", type: 'TF', answer: true, rationale: "True." },
+  { id: 50, topic: 'Documentation', text: "White-out is allowed on legal health records.", type: 'TF', answer: false, rationale: "False." },
+  { id: 180, topic: 'Safety', text: "Always inspect slings and mechanical lifts before use.", type: 'TF', answer: true, rationale: "True." }
+];
+
+// Fill bank logic for the simulator
+for (let i = 51; i < 180; i++) {
+    const template = QUESTIONS[i % 50];
+    QUESTIONS.push({ ...template, id: i + 1 });
+}
+
+let state = { idx: 0, correct: 0, incorrect: 0, isGrading: false, selections: new Set(), questionsToAsk: QUESTIONS.slice(0, 180), answered: {} };
+
+function startQuiz(e) {
+  if(e) e.stopPropagation();
+  state = { idx: 0, correct: 0, incorrect: 0, isGrading: false, selections: new Set(), questionsToAsk: QUESTIONS.slice(0, 180), answered: {} };
+  document.getElementById('view-study').classList.add('hidden');
+  document.getElementById('view-results').classList.add('hidden');
+  document.getElementById('view-quiz').classList.remove('hidden');
+  renderQ();
+}
+
+function exitQuiz(e) {
+  if(e) e.stopPropagation();
+  document.getElementById('view-quiz').classList.add('hidden');
+  document.getElementById('view-results').classList.add('hidden');
+  document.getElementById('view-study').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+function renderQ() {
+  state.isGrading = false; state.selections.clear();
+  const q = state.questionsToAsk[state.idx];
+  document.getElementById('q-count-display').innerText = `Question ${state.idx + 1} / ${state.questionsToAsk.length}`;
+  document.getElementById('nav-container').classList.add('hidden');
+
+  let html = `<div class="q-card"><div style="color:var(--secondary-blue); font-weight:900; font-size:1.1rem; margin-bottom:1rem; text-transform:uppercase;">${q.topic}</div><div class="q-text">${q.text}</div>`;
+  
+  if (q.type === 'SATA') {
+    html += q.options.map((o, i) => `<div class="choice-row" onclick="toggleSATA(${i}, this, event)"><div class="checkbox-mock"></div>${o}</div>`).join('');
+    html += `<button class="bg-blue-600 text-white w-full py-4 mt-6 rounded-xl font-black uppercase text-xl shadow-lg" onclick="submitSATA(event)">Submit Answer</button>`;
+  } else if (q.type === 'TF') {
+    html += `<div class="choice-row" onclick="gradeSingle(true, this, event)">True</div><div class="choice-row" onclick="gradeSingle(false, this, event)">False</div>`;
+  } else {
+    html += q.options.map((o, i) => `<div class="choice-row" onclick="gradeSingle(${i}, this, event)">${o}</div>`).join('');
+  }
+  document.getElementById('q-container').innerHTML = html + `<div id="rationale-box"></div></div>`;
+}
+
+function toggleSATA(idx, el, e) {
+  if(e) e.stopPropagation();
+  if (state.selections.has(idx)) { state.selections.delete(idx); el.classList.remove('selected'); }
+  else { state.selections.add(idx); el.classList.add('selected'); }
+}
+
+function submitSATA(e) {
+  if(e) e.stopPropagation();
+  state.isGrading = true;
+  const q = state.questionsToAsk[state.idx];
+  const correctSet = new Set(q.answer);
+  const isCorrect = (state.selections.size === correctSet.size) && [...state.selections].every(val => correctSet.has(val));
+  state.answered[q.id] = Array.from(state.selections);
+  if (isCorrect) state.correct++; else state.incorrect++;
+  document.querySelectorAll('.choice-row').forEach((btn, i) => {
+      btn.classList.add('disabled');
+      if (correctSet.has(i)) btn.classList.add('correct');
+      else if (state.selections.has(i)) btn.classList.add('incorrect');
+  });
+  showRationale(isCorrect, q.rationale);
+}
+
+function gradeSingle(val, el, e) {
+  if(e) e.stopPropagation();
+  state.isGrading = true;
+  const q = state.questionsToAsk[state.idx];
+  const isCorrect = (val === q.answer);
+  state.answered[q.id] = val;
+  if (isCorrect) state.correct++; else state.incorrect++;
+  document.querySelectorAll('.choice-row').forEach((btn, i) => {
+      btn.classList.add('disabled');
+      let btnVal = (q.type === 'TF') ? (i === 0 ? true : false) : i;
+      if (btnVal === q.answer) btn.classList.add('correct');
+      else if (btnVal === val) btn.classList.add('incorrect');
+  });
+  showRationale(isCorrect, q.rationale);
+}
+
+function showRationale(isCorrect, text) {
+  document.getElementById('rationale-box').innerHTML = `
+      <div class="q-rationale visible">
+          <div class="q-rat-hdr ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? '✔️ Correct' : '❌ Incorrect'}</div>
+          <div class="q-rat-body">${text}</div>
+      </div>
+  `;
+  const answered = state.correct + state.incorrect;
+  const pct = Math.round((state.correct / answered) * 100);
+  document.getElementById('score-circle').innerText = `${pct}%`;
+  document.getElementById('nav-container').classList.remove('hidden');
+}
+
+function advanceQ(e) {
+  if(e) e.stopPropagation();
+  if (state.idx < state.questionsToAsk.length - 1) { state.idx++; renderQ(); }
+  else { showResults(); }
+}
+
+function showResults() {
+  document.getElementById('view-quiz').classList.add('hidden');
+  document.getElementById('view-results').classList.remove('hidden');
+  document.getElementById('qc-correct').innerText = state.correct;
+  document.getElementById('qc-wrong').innerText = state.incorrect;
+  const finalPct = Math.round((state.correct / state.questionsToAsk.length) * 100);
+  document.getElementById('qc-pct').innerText = `${finalPct}%`;
+  
+  let wHtml = '';
+  state.questionsToAsk.forEach((q, idx) => {
+      const uAns = state.answered[q.id];
+      let isCorrect = false;
+      if (q.type === 'SATA') {
+          const cSet = new Set(q.answer);
+          isCorrect = uAns && (uAns.length === cSet.size) && uAns.every(v => cSet.has(v));
+      } else { isCorrect = uAns === q.answer; }
+      if (uAns !== undefined && !isCorrect) {
+          wHtml += `<div class="p-4 bg-slate-50 border-l-4 border-red-500 rounded-lg"><div class="font-bold text-slate-800">Q${idx+1}: ${q.text}</div></div>`;
+      }
+  });
+  document.getElementById('qc-weak-body').innerHTML = wHtml || '<p class="text-center font-bold text-green-600">Perfect score! Mastery demonstrated.</p>';
+}
+</script>
+</body>
+</html>

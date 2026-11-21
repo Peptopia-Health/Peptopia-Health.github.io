@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERJ: Intake Screening</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'DM Sans', sans-serif; background-color: white; color: black; line-height: 1.2; }
+        @media print {
+            .no-print { display: none !important; }
+            .print-bw { color: black !important; border: 1.2pt solid black !important; background: white !important; font-weight: 900 !important; }
+            .content-card { border: 2pt solid black !important; border-radius: 0 !important; margin-bottom: 8px !important; page-break-inside: auto !important; break-inside: auto !important; }
+            tr { page-break-inside: avoid !important; break-inside: avoid !important; }
+            .section-header { background: black !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .pod-bar { background: #e2e8f0 !important; color: black !important; -webkit-print-color-adjust: exact; border: 1pt solid black; }
+            td, th { border: 0.5pt solid black !important; }
+            input[type="text"], input[type="number"], textarea, select { border: none !important; border-bottom: 1px solid black !important; border-radius: 0 !important; -webkit-appearance: none; }
+        }
+        .pod-bar { border-top: 2px solid black; border-bottom: 2px solid black; }
+        
+        .col-q { width: 45%; } 
+        .col-input { width: 40%; }
+        .col-flags { width: 15%; text-align: left; }
+
+        .form-input {
+            width: 100%;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            background-color: #f8fafc;
+            transition: all 0.2s;
+        }
+        .form-input:focus { outline: none; border-color: #2563eb; background-color: #fff; box-shadow: 0 0 0 2px rgba(37,99,235,0.2); }
+        
+        .radio-label { display: inline-flex; align-items: center; gap: 4px; font-weight: 900; font-size: 12px; cursor: pointer; margin-right: 10px;}
+        .radio-custom { width: 16px; height: 16px; border: 2px solid black; cursor: pointer; accent-color: #000; }
+        
+        .check-label { display: inline-flex; align-items: flex-start; gap: 6px; font-weight: 700; font-size: 11px; cursor: pointer; margin-bottom: 4px; }
+        .check-custom { width: 14px; height: 14px; border: 2px solid black; cursor: pointer; accent-color: #000; margin-top: 2px; flex-shrink: 0; }
+
+        .flag-red { display: inline-block; padding: 2px 4px; border: 1px solid #dc2626; border-radius: 4px; background-color: #fee2e2; color: #991b1b; font-size: 9px; font-weight: 900; text-transform: uppercase; line-height: 1; }
+        .flag-neon { display: inline-block; padding: 2px 4px; border: 1px solid #ff1493; border-radius: 4px; background-color: #ff1493; color: white; font-size: 9px; font-weight: 900; text-transform: uppercase; box-shadow: 0 0 4px #ff1493; line-height: 1;}
+
+        .matrix-table th, .matrix-table td { border: 1px solid #d1d5db; padding: 4px; text-align: center; font-size: 11px; font-weight: 700; }
+        .matrix-table th { background-color: #f3f4f6; font-weight: 900; }
+
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    </style>
+    <style id="corr-refresh-1126">
+h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+@media (prefers-color-scheme: dark){
+ body{background-color:#0f172a!important;color:#e2e8f0!important}
+ .bg-white{background-color:#1e293b!important}
+ .bg-gray-50,.bg-slate-50{background-color:#0f172a!important}
+ .bg-gray-100,.bg-slate-100{background-color:#273449!important}
+ .text-gray-900,.text-gray-800,.text-slate-900,.text-slate-800,.text-gray-700,.text-slate-700,.text-black{color:#e2e8f0!important}
+ .text-gray-600,.text-gray-500,.text-slate-600,.text-slate-500{color:#94a3b8!important}
+ .border-gray-100,.border-gray-200,.border-slate-100,.border-slate-200{border-color:#334155!important}
+ input,select,textarea{background-color:#1e293b!important;color:#e2e8f0!important;border-color:#475569!important}
+}
+    </style>
+</head>
+<body class="p-1 md:p-4 scroll-smooth">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- HEADER -->
+        <header class="flex flex-row justify-between items-end border-b-4 border-black pb-1 mb-2">
+            <div>
+                <h1 class="text-3xl font-black uppercase tracking-tighter italic leading-none">Intake Screening</h1>
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-600 italic">CorEMR Alignment | Eastern Regional Jail</p>
+                <p id="current-date" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1 leading-none"></p>
+            </div>
+            <div class="flex gap-2 no-print pb-1">
+                <button onclick="window.print()" class="bg-black text-white px-4 py-1.5 rounded-full font-black text-[11px] uppercase hover:bg-gray-800 shadow-md">Print Form</button>
+                <button onclick="document.getElementById('intake-form').reset(); updateDashboard();" class="bg-gray-100 text-black px-4 py-1.5 rounded-full font-black text-[11px] uppercase border-2 border-black hover:bg-gray-200 shadow-md">Reset</button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <div class="flex flex-row gap-2 mb-4 flex-nowrap h-16 w-full justify-between no-print">
+            <div class="flex-2 border-2 border-black p-1 px-3 rounded-lg bg-white flex flex-col justify-center shadow-sm min-w-0 text-left w-1/3">
+                <div class="text-[9px] font-black uppercase tracking-wider text-gray-500 leading-tight mb-1">Patient Details</div>
+                <input type="text" placeholder="LAST NAME, FIRST NAME | OID #" class="w-full font-black text-sm uppercase outline-none border-b border-dashed border-gray-400 focus:border-black">
+            </div>
+
+            <div class="flex-1 border-2 border-black border-dashed p-1 rounded-lg bg-white flex flex-col justify-center shadow-sm min-w-0 text-center">
+                <div class="text-[9px] sm:text-[11px] font-black uppercase tracking-wider text-gray-700 leading-tight text-center mb-1">Critical Alerts</div>
+                <div class="text-xl font-black text-red-600 leading-none mt-1"><span id="dash-alerts">0</span></div>
+            </div>
+
+            <div class="flex-1 bg-black text-white p-1 rounded-lg flex flex-col justify-center shadow-lg min-w-0 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-blue-600 opacity-20" id="dash-progress-bar" style="width: 0%; transition: width 0.3s;"></div>
+                <div class="relative z-10 text-[9px] sm:text-[11px] font-black uppercase tracking-wider opacity-80 leading-tight mb-1">Completion</div>
+                <div class="relative z-10 flex justify-center items-baseline leading-none mt-1">
+                    <div><span id="dash-percent" class="text-2xl font-black text-green-400">0%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <form id="intake-form" onchange="updateDashboard()">
+            
+            <!-- SECTION 1: DEMOGRAPHICS & CONSENTS -->
+            <div class="mt-2 mb-1 pod-bar p-1 text-center font-black text-sm uppercase tracking-[0.3em] bg-blue-100">1. Demographics & Administration</div>
+            <section class="content-card border-2 border-black rounded-lg overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse table-fixed">
+                    <tbody>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200">Patient Demographics</td>
+                            <td class="col-input px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div><label class="text-[9px] font-black uppercase text-gray-500">DOB</label><input type="date" class="form-input"></div>
+                                    <div><label class="text-[9px] font-black uppercase text-gray-500">SSN</label><input type="text" class="form-input" placeholder="XXX-XX-XXXX"></div>
+                                    <div><label class="text-[9px] font-black uppercase text-gray-500">Birthplace</label><input type="text" class="form-input" placeholder="City, State"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div>
+                                        <label class="text-[9px] font-black uppercase text-gray-500 block mb-1">Race</label>
+                                        <select class="form-input"><option></option><option>Black or African American</option><option>White</option><option>Asian</option><option>Native American</option><option>Other</option></select>
+                                    </div>
+                                    <div>
+                                        <label class="text-[9px] font-black uppercase text-gray-500 block mb-1">Ethnicity</label>
+                                        <select class="form-input"><option></option><option>Hispanic</option><option>Non-Hispanic</option></select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">Gender & Identification</td>
+                            <td class="px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="flex items-center gap-4 mb-1">
+                                    <span class="text-[10px] font-bold w-24">Assigned at birth:</span>
+                                    <label class="radio-label"><input type="radio" name="gender_birth" class="radio-custom"> Male</label>
+                                    <label class="radio-label"><input type="radio" name="gender_birth" class="radio-custom"> Female</label>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="text-[10px] font-bold w-24">Identify With:</span>
+                                    <label class="radio-label"><input type="radio" name="gender_id" class="radio-custom"> Male</label>
+                                    <label class="radio-label"><input type="radio" name="gender_id" class="radio-custom"> Female</label>
+                                    <label class="radio-label"><input type="radio" name="gender_id" class="radio-custom"> Non-binary</label>
+                                    <input type="text" class="form-input w-32" placeholder="Pronouns">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">Social Status</td>
+                            <td class="px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <span class="text-[10px] font-bold block mb-1">Highest Education:</span>
+                                        <select class="form-input"><option></option><option>&lt; High School</option><option>HS/GED</option><option>Some College</option><option>Degree</option></select>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] font-bold block mb-1">Marital Status:</span>
+                                        <select class="form-input"><option></option><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option><option>Separated</option></select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">Legal & Admin Screenings</td>
+                            <td class="px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-2 gap-y-2">
+                                    <div><span class="text-[10px] font-bold w-20 inline-block">US Citizen?</span> <label class="radio-label"><input type="radio" name="citizen" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="citizen" class="radio-custom"> N</label></div>
+                                    <div><span class="text-[10px] font-bold w-20 inline-block">US Veteran?</span> <label class="radio-label"><input type="radio" name="veteran" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="veteran" class="radio-custom"> N</label></div>
+                                    <div><span class="text-[10px] font-bold w-20 inline-block">Interpreter?</span> <label class="radio-label"><input type="radio" name="interpreter" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="interpreter" class="radio-custom"> N</label></div>
+                                    <div><span class="text-[10px] font-bold w-20 inline-block">Read/Write?</span> <label class="radio-label"><input type="radio" name="readwrite" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="readwrite" class="radio-custom"> N</label></div>
+                                    <div><span class="text-[10px] font-bold w-20 inline-block">Here Before?</span> <label class="radio-label"><input type="radio" name="herebefore" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="herebefore" class="radio-custom"> N</label></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-300">Required Consents (Sign via Pad)</td>
+                            <td class="px-2 py-2 border-r border-gray-300" colspan="2">
+                                <div class="flex gap-4">
+                                    <label class="check-label font-black text-blue-800"><input type="checkbox" class="check-custom"> Access to Care Reviewed</label>
+                                    <label class="check-label font-black text-blue-800"><input type="checkbox" class="check-custom"> Consent for Treatment Signed</label>
+                                    <label class="check-label font-black text-blue-800"><input type="checkbox" class="check-custom"> TB Testing Consent Signed</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SECTION 2: VITALS, VISION, DENTAL -->
+            <div class="mt-4 mb-1 pod-bar p-1 text-center font-black text-sm uppercase tracking-[0.3em] bg-green-100">2. Vitals, Vision & Dental Screenings</div>
+            <section class="content-card border-2 border-black rounded-lg overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse table-fixed">
+                    <tbody>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200">Vitals & Measurements</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-5 gap-2">
+                                    <div><label class="text-[9px] font-black uppercase">BP (Sys/Dia)</label><input type="text" class="form-input" placeholder="120/80"></div>
+                                    <div><label class="text-[9px] font-black uppercase">Pulse</label><input type="text" class="form-input" placeholder="bpm"></div>
+                                    <div><label class="text-[9px] font-black uppercase">Resp</label><input type="text" class="form-input" placeholder="bpm"></div>
+                                    <div><label class="text-[9px] font-black uppercase">Temp</label><input type="text" class="form-input" placeholder="°F"></div>
+                                    <div><label class="text-[9px] font-black uppercase">SPO2 %</label><input type="text" class="form-input" placeholder="%"></div>
+                                    <div><label class="text-[9px] font-black uppercase">Height</label><input type="text" class="form-input" placeholder="ft in"></div>
+                                    <div><label class="text-[9px] font-black uppercase">Weight</label><input type="text" class="form-input" placeholder="lbs"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Vision Screening (Snellen)</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="flex gap-4 mb-2">
+                                    <label class="radio-label"><input type="radio" name="vision_conducted" class="radio-custom"> Conducted</label>
+                                    <label class="radio-label text-red-600"><input type="radio" name="vision_conducted" class="radio-custom"> Refused</label>
+                                </div>
+                                <table class="w-full matrix-table mb-2">
+                                    <tr>
+                                        <th>Right Eye</th><th>Left Eye</th><th>Both Eyes</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="w-full text-center outline-none" placeholder="20/..."></td>
+                                        <td><input type="text" class="w-full text-center outline-none" placeholder="20/..."></td>
+                                        <td><input type="text" class="w-full text-center outline-none" placeholder="20/..."></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3" class="bg-gray-50">With Glasses / Contacts</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="w-full text-center outline-none" placeholder="20/..."></td>
+                                        <td><input type="text" class="w-full text-center outline-none" placeholder="20/..."></td>
+                                        <td><input type="text" class="w-full text-center outline-none" placeholder="20/..."></td>
+                                    </tr>
+                                </table>
+                                <label class="radio-label"><input type="radio" name="wears_glasses" class="radio-custom"> Wears Glasses/Contacts</label>
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Dental Screening</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="text-[10px] font-bold block mb-1">Number of teeth missing:</label>
+                                        <input type="number" class="form-input w-24">
+                                    </div>
+                                    <div>
+                                        <label class="text-[10px] font-bold block mb-1">Condition of gums:</label>
+                                        <select class="form-input"><option></option><option>Good</option><option>Fair</option><option>Poor</option></select>
+                                    </div>
+                                    <div>
+                                        <label class="text-[10px] font-bold block mb-1">Dental prosthesis:</label>
+                                        <div class="flex flex-col gap-1">
+                                            <label class="check-label"><input type="checkbox" class="check-custom"> Upper dentures</label>
+                                            <label class="check-label"><input type="checkbox" class="check-custom"> Lower dentures</label>
+                                            <label class="check-label"><input type="checkbox" class="check-custom"> Upper partial</label>
+                                            <label class="check-label"><input type="checkbox" class="check-custom"> Lower partial</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="text-[10px] font-bold block mb-1">Condition of teeth:</label>
+                                        <select class="form-input"><option></option><option>Good</option><option>Fair</option><option>Poor</option></select>
+                                    </div>
+                                </div>
+                                <div class="mt-3 border-t pt-2">
+                                    <label class="check-label font-bold"><input type="checkbox" class="check-custom"> Oral Hygiene Instructions Given</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SECTION 3: MEDICAL HISTORY & CURRENT CONDITIONS -->
+            <div class="mt-4 mb-1 pod-bar p-1 text-center font-black text-sm uppercase tracking-[0.3em] bg-purple-100">3. Medical History & Current Conditions</div>
+            <section class="content-card border-2 border-black rounded-lg overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse table-fixed">
+                    <tbody>
+                        <tr class="border-b border-black/10 bg-[#fff5f5]">
+                            <td class="col-q px-2 py-2 font-black text-red-600 text-[13px] border-r border-gray-200">ALLERGIES</td>
+                            <td class="col-input px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="flex gap-4 mb-1">
+                                    <label class="radio-label"><input type="radio" name="allergies" class="radio-custom alert-trigger"> Yes</label>
+                                    <label class="radio-label"><input type="radio" name="allergies" class="radio-custom"> NKMA</label>
+                                </div>
+                                <input type="text" class="form-input text-red-700 placeholder-red-300" placeholder="List allergies...">
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">Medical problem/injury requiring IMMEDIATE attention?</td>
+                            <td class="px-2 py-1 border-r border-gray-200">
+                                <label class="radio-label text-red-600"><input type="radio" name="immediate_med" class="radio-custom alert-trigger"> Yes</label>
+                                <label class="radio-label"><input type="radio" name="immediate_med" class="radio-custom"> No</label>
+                            </td>
+                            <td class="px-2 py-1 text-[9px] font-bold text-red-600 uppercase">Route to infirmary</td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">Fainted or head injury in past 6 months?</td>
+                            <td class="px-2 py-1 border-r border-gray-200"><label class="radio-label"><input type="radio" name="faint" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="faint" class="radio-custom"> N</label></td>
+                            <td class="px-2 py-1"></td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">Has a doctor seen you in the past 6 months?</td>
+                            <td class="px-2 py-1 border-r border-gray-200"><label class="radio-label"><input type="radio" name="seen_dr" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="seen_dr" class="radio-custom"> N</label></td>
+                            <td class="px-2 py-1"></td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Impairments & Aids</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-2 gap-1 mb-2">
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Deaf/difficulty hearing</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Blind/difficulty seeing</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Difficulty walking/stairs</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Difficulty dressing/bathing</label>
+                                </div>
+                                <div class="border-t pt-1">
+                                    <span class="text-[11px] font-bold mr-2">Do you have a prosthesis, splint, crutches, cast, or medical device?</span>
+                                    <label class="radio-label"><input type="radio" name="prosthesis" class="radio-custom"> Yes</label>
+                                    <label class="radio-label"><input type="radio" name="prosthesis" class="radio-custom"> No</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-gray-50">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Current Conditions (Observe & Check)</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-3 gap-1">
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Unconscious</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Disoriented</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Intoxicated</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Restricted mobility</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Obvious pain</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Bruises</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Fever</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Nausea</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Tobacco use</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Skin infection</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Skin rash</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Skin lesions</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Jaundice</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Needle marks</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Swollen Glands</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Active cough</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Ectoparasites</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Vaginal/Penile lesions</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Dental problems</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Tattoos/piercings</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Medical History (Check all that apply)</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-3 gap-1">
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Arthritis</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Asthma</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Blood products &lt;1992</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Cancer</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Chest pain</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Diabetes</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Dialysis</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Emphysema</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Frequent diarrhea</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Genital sores</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Heart condition</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Hepatitis</label>
+                                    <label class="check-label w-full text-red-600"><input type="checkbox" class="check-custom"> HIV+</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Hypertension</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Jaundice</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Persistent sore throat</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Seizure disorder</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> STD/STI</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Sickle cell anemia</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Special diet</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Stomach ulcer</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Surgeries</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Tuberculosis</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SECTION 4: MENTAL HEALTH (CorEMR Nurse Assessment Matrix) -->
+            <div class="mt-4 mb-1 pod-bar p-1 text-center font-black text-sm uppercase tracking-[0.3em] bg-red-100">4. Mental Health Screening & Assessment (NURSE)</div>
+            <section class="content-card border-2 border-black rounded-lg overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse table-fixed">
+                    <tbody>
+                        <!-- SUICIDE POTENTIAL CHECKLIST -->
+                        <tr class="bg-gray-100 border-b border-black">
+                            <td colspan="3" class="px-2 py-1 font-black text-[11px] uppercase tracking-widest text-center">Suicide Potential Checklist (If >8 YES, Alert Shift Cmdr)</td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-[#fff5f5]">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200" colspan="3">
+                                <div class="grid grid-cols-2 gap-x-6 gap-y-1">
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">1. Arresting officer believes suicide risk.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp1" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp1" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">2. Lacks close family/friends.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp2" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp2" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">3. Significant loss past 6 mos.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp3" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp3" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">4. Worried about major non-legal problems.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp4" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp4" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">5. Family member suicide/attempt.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp5" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp5" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">6. Psychiatric history.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp6" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp6" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">7. Position of respect/shocking crime/shame.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp7" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp7" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px] text-red-700 font-black">8. Expresses thoughts about killing self.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp8" class="radio-custom alert-count alert-trigger"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp8" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px] text-red-700 font-black">9. Has suicide plan/instrument.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp9" class="radio-custom alert-count alert-trigger"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp9" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px] text-red-700 font-black">10. Has previous suicide attempt.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp10" class="radio-custom alert-count alert-trigger"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp10" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">11. Nothing to look forward to.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp11" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp11" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">12. Shows signs of depression.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp12" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp12" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">13. Appears overly anxious, afraid, angry.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp13" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp13" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">14. Unusually embarrassed/ashamed.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp14" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp14" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">15. Acting/talking strange.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp15" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp15" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between border-b border-gray-200 pb-1"><span class="text-[11px]">16. Under influence of alcohol/drugs.</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp16" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp16" class="radio-custom"> N</label></div></div>
+                                    <div class="flex justify-between pb-1"><span class="text-[11px]">17. If YES to 16, incoherent/withdrawal signs?</span> <div class="flex-shrink-0"><label class="radio-label text-[10px]"><input type="radio" name="sp17" class="radio-custom alert-count"> Y</label> <label class="radio-label text-[10px]"><input type="radio" name="sp17" class="radio-custom"> N</label></div></div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- PSYCHIATRIC SCREENING -->
+                        <tr class="bg-gray-100 border-b border-black border-t">
+                            <td colspan="3" class="px-2 py-1 font-black text-[11px] uppercase tracking-widest text-center">Psychiatric Screening & PREA</td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200">Psychiatric History</td>
+                            <td class="col-input px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="flex gap-4 mb-1">
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> History of Psych Meds</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> History of Psych Hospitalizations</label>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Transferred from State Psych Hospital</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Diagnosed with Schizophrenia, Schizoaffective, or Bipolar?</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> History of outpatient MH treatment</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200">PREA & Behavior</td>
+                            <td class="col-input px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="flex flex-col gap-1">
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> History of sexual offenses</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> History of sexual victimization (Institutional / Community)</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> History of violent behavior, sexually abusing/assaulting</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> History of cerebral trauma or seizure</label>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- OBSERVATION -->
+                        <tr class="bg-gray-100 border-b border-black border-t">
+                            <td colspan="3" class="px-2 py-1 font-black text-[11px] uppercase tracking-widest text-center">Current Mental Health Status (Observation)</td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td colspan="3" class="px-2 py-2 border-r border-gray-200">
+                                <div class="grid grid-cols-4 gap-2 text-[11px]">
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1">Cognitive Functioning</span> <label class="radio-label block"><input type="radio" name="cog" class="radio-custom"> High</label> <label class="radio-label block"><input type="radio" name="cog" class="radio-custom"> Average</label> <label class="radio-label block"><input type="radio" name="cog" class="radio-custom"> Borderline</label> <label class="radio-label block"><input type="radio" name="cog" class="radio-custom"> Limited</label></div>
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1">Orientation</span> <label class="radio-label block"><input type="radio" name="ori" class="radio-custom"> Alert</label> <label class="radio-label block"><input type="radio" name="ori" class="radio-custom"> Disoriented</label></div>
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1">Appearance</span> <label class="radio-label block"><input type="radio" name="app" class="radio-custom"> Neat & Clean</label> <label class="radio-label block"><input type="radio" name="app" class="radio-custom"> Dirty</label> <label class="radio-label block"><input type="radio" name="app" class="radio-custom"> Disheveled</label></div>
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1">Affect</span> <label class="radio-label block"><input type="radio" name="aff" class="radio-custom"> Appropriate</label> <label class="radio-label block"><input type="radio" name="aff" class="radio-custom"> Flat</label> <label class="radio-label block"><input type="radio" name="aff" class="radio-custom"> Inappropriate</label></div>
+                                    
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1 mt-2">Mood</span> <label class="radio-label block"><input type="radio" name="mood" class="radio-custom"> Appropriate</label> <label class="radio-label block"><input type="radio" name="mood" class="radio-custom"> Depressed</label> <label class="radio-label block"><input type="radio" name="mood" class="radio-custom"> Elated</label> <label class="radio-label block"><input type="radio" name="mood" class="radio-custom"> Terrified/Crying</label></div>
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1 mt-2">Activity</span> <label class="radio-label block"><input type="radio" name="act" class="radio-custom"> Appropriate</label> <label class="radio-label block"><input type="radio" name="act" class="radio-custom"> Unable to sit still</label> <label class="radio-label block"><input type="radio" name="act" class="radio-custom"> Slow</label> <label class="radio-label block"><input type="radio" name="act" class="radio-custom"> No Eye contact</label></div>
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1 mt-2">Speech</span> <label class="radio-label block"><input type="radio" name="speech" class="radio-custom"> Appropriate</label> <label class="radio-label block"><input type="radio" name="speech" class="radio-custom"> Slurred</label> <label class="radio-label block"><input type="radio" name="speech" class="radio-custom"> Pressured</label></div>
+                                    <div><span class="font-bold border-b border-gray-300 block mb-1 mt-2">Hallucinations/Delusions</span> <label class="check-label block"><input type="checkbox" class="check-custom"> Visual / Audio</label> <label class="check-label block"><input type="checkbox" class="check-custom"> Tactile / Olfactory</label> <label class="check-label block"><input type="checkbox" class="check-custom"> Paranoia / Grandeur</label> <label class="check-label block"><input type="checkbox" class="check-custom"> Pt Denies / N/A</label></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SECTION 5: SUBSTANCE ABUSE & UDS -->
+            <div class="mt-4 mb-1 pod-bar p-1 text-center font-black text-sm uppercase tracking-[0.3em] bg-orange-100">5. Substance Abuse & Toxicology</div>
+            <section class="content-card border-2 border-black rounded-lg overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse table-fixed">
+                    <tbody>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200">Alcohol and Drug Habits</td>
+                            <td class="col-input px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="flex gap-4 mb-1">
+                                    <span class="text-[10px] font-bold w-16">Smoker?</span> <label class="radio-label"><input type="radio" name="smoke" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="smoke" class="radio-custom"> N</label>
+                                </div>
+                                <div class="flex gap-4 mb-1">
+                                    <span class="text-[10px] font-bold w-16">Alcohol?</span> <label class="radio-label"><input type="radio" name="alcohol" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="alcohol" class="radio-custom"> N</label>
+                                    <input type="text" class="form-input text-[10px] w-auto" placeholder="Freq / Amt / Last drink">
+                                </div>
+                                <div class="flex gap-4 mb-1">
+                                    <span class="text-[10px] font-bold w-16">Drugs?</span> <label class="radio-label"><input type="radio" name="drugs" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="drugs" class="radio-custom"> N</label>
+                                    <input type="text" class="form-input text-[10px] w-auto" placeholder="Type / Route / Last use">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-yellow-50">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Currently withdrawing/detoxing or history of detox problems/seizures?</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="flex gap-4 mb-2">
+                                    <label class="radio-label text-red-600"><input type="radio" name="current_detox" class="radio-custom alert-trigger"> Yes</label>
+                                    <label class="radio-label"><input type="radio" name="current_detox" class="radio-custom"> No</label>
+                                    <span class="text-[10px] font-black text-orange-600 uppercase ml-4">Creates CIWA/COWS Tasks</span>
+                                </div>
+                                <div class="grid grid-cols-4 gap-1">
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Alcohol</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Benzodiazepine</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Heroin/Opiates</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Stimulants</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Kratom</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> 7-OH</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Medetomidine</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Xylazine</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Tianeptine</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> K2/Spice</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Loperamide</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Nitazene</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">Other Substance Info</td>
+                            <td class="px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="flex gap-4 mb-1">
+                                    <span class="text-[10px] font-bold">Meth in past 14 days?</span> <label class="radio-label"><input type="radio" name="meth14" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="meth14" class="radio-custom"> N</label>
+                                </div>
+                                <div class="flex gap-4 mb-1 items-center">
+                                    <span class="text-[10px] font-bold">Currently on MAT?</span> <label class="radio-label"><input type="radio" name="mat" class="radio-custom"> Y</label> <label class="radio-label"><input type="radio" name="mat" class="radio-custom"> N</label>
+                                    <input type="text" class="form-input text-[10px] w-auto ml-2" placeholder="Which meds?">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Urine Drug Screen (UDS)</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="mb-2">
+                                    <label class="radio-label"><input type="radio" name="uds_done" class="radio-custom"> Conducted</label>
+                                    <label class="radio-label text-red-600"><input type="radio" name="uds_done" class="radio-custom"> Refused</label>
+                                </div>
+                                <div class="grid grid-cols-4 gap-x-2 gap-y-1 text-[9px] font-bold">
+                                    <div class="flex justify-between border-b"><span>Cocaine</span> <span><input type="radio" name="uds_coc"> + <input type="radio" name="uds_coc"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>THC</span> <span><input type="radio" name="uds_thc"> + <input type="radio" name="uds_thc"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>Opiates</span> <span><input type="radio" name="uds_opi"> + <input type="radio" name="uds_opi"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>Amphet</span> <span><input type="radio" name="uds_amp"> + <input type="radio" name="uds_amp"> -</span></div>
+                                    
+                                    <div class="flex justify-between border-b"><span>Benzos</span> <span><input type="radio" name="uds_bzo"> + <input type="radio" name="uds_bzo"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>MTD</span> <span><input type="radio" name="uds_mtd"> + <input type="radio" name="uds_mtd"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>BUP</span> <span><input type="radio" name="uds_bup"> + <input type="radio" name="uds_bup"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>MET</span> <span><input type="radio" name="uds_met"> + <input type="radio" name="uds_met"> -</span></div>
+                                    
+                                    <div class="flex justify-between border-b"><span>MDMA</span> <span><input type="radio" name="uds_mdma"> + <input type="radio" name="uds_mdma"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>OXY</span> <span><input type="radio" name="uds_oxy"> + <input type="radio" name="uds_oxy"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>K2</span> <span><input type="radio" name="uds_k2"> + <input type="radio" name="uds_k2"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>EtG</span> <span><input type="radio" name="uds_etg"> + <input type="radio" name="uds_etg"> -</span></div>
+                                    
+                                    <div class="flex justify-between border-b"><span>FTY</span> <span><input type="radio" name="uds_fty"> + <input type="radio" name="uds_fty"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>TRA</span> <span><input type="radio" name="uds_tra"> + <input type="radio" name="uds_tra"> -</span></div>
+                                    <div class="flex justify-between border-b"><span>MOP</span> <span><input type="radio" name="uds_mop"> + <input type="radio" name="uds_mop"> -</span></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SECTION 6: INFECTIOUS DISEASE, WOMEN'S HEALTH, PLACEMENT -->
+            <div class="mt-4 mb-1 pod-bar p-1 text-center font-black text-sm uppercase tracking-[0.3em] bg-teal-100">6. Infectious Disease, Specifics, & Placement</div>
+            <section class="content-card border-2 border-black rounded-lg overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse table-fixed">
+                    <tbody>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="col-q px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Tuberculosis (TB) History</td>
+                            <td class="col-input px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-2 gap-1 mb-2">
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Treated with TB Drugs</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Ever had a TST</label>
+                                    <label class="check-label w-full text-red-600"><input type="checkbox" class="check-custom"> POSITIVE TST History</label>
+                                    <label class="check-label w-full"><input type="checkbox" class="check-custom"> Chronic Cough / Sweats</label>
+                                </div>
+                                <span class="text-[9px] font-black text-red-600 uppercase block mb-1">If Positive TST: Provide details</span>
+                                <input type="text" class="form-input text-[10px]" placeholder="Where / When was it done?">
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-white">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200">COVID-19 & Measles</td>
+                            <td class="px-2 py-1 border-r border-gray-200" colspan="2">
+                                <div class="flex items-center gap-4 mb-2">
+                                    <span class="text-[10px] font-bold">COVID Vax?</span>
+                                    <label class="radio-label"><input type="radio" name="covid" class="radio-custom"> Y</label>
+                                    <label class="radio-label"><input type="radio" name="covid" class="radio-custom"> N</label>
+                                    <select class="form-input w-auto"><option></option><option>Johnson & Johnson</option><option>Moderna</option><option>Pfizer</option></select>
+                                </div>
+                                <div class="flex gap-4">
+                                    <span class="text-[10px] font-bold w-24">Measles Risk:</span>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Home-schooled</label>
+                                    <label class="check-label"><input type="checkbox" class="check-custom"> Immigrant/Visa</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-black/10 bg-pink-50">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Women's Health</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="flex gap-4 mb-1">
+                                    <label class="radio-label text-pink-700"><input type="radio" name="pregnant" class="radio-custom alert-trigger"> Pregnant</label>
+                                    <label class="radio-label"><input type="radio" name="pregnant" class="radio-custom"> Not Pregnant</label>
+                                    <label class="radio-label"><input type="radio" name="pregnant" class="radio-custom"> N/A (Male)</label>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div class="flex items-center justify-between"><span class="text-[10px] font-bold">Urine Preg Test:</span> <span class="text-[9px]"><input type="radio" name="preg_test"> + <input type="radio" name="preg_test"> -</span></div>
+                                    <div><input type="text" class="form-input text-[10px]" placeholder="LMP Date"></div>
+                                    <div><label class="check-label"><input type="checkbox" class="check-custom"> Birth Control</label></div>
+                                    <div><label class="check-label"><input type="checkbox" class="check-custom"> Breastfeeding</label></div>
+                                    <div class="col-span-2"><label class="check-label"><input type="checkbox" class="check-custom"> Recent baby, miscarriage or abortion?</label></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <td class="px-2 py-2 font-bold text-[12px] border-r border-gray-200 align-top">Referrals & Placement</td>
+                            <td class="px-2 py-2 border-r border-gray-200" colspan="2">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <span class="text-[10px] font-bold border-b border-gray-300 block mb-1">Referral Route</span>
+                                        <label class="radio-label block"><input type="radio" name="ref" class="radio-custom"> Emergency Room</label>
+                                        <label class="radio-label block"><input type="radio" name="ref" class="radio-custom"> Urgent Nurse Sick Call</label>
+                                        <label class="radio-label block"><input type="radio" name="ref" class="radio-custom"> Routine Nurse Sick Call</label>
+                                        <label class="radio-label block"><input type="radio" name="ref" class="radio-custom"> Not Indicated</label>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] font-bold border-b border-gray-300 block mb-1">Placement</span>
+                                        <label class="radio-label block"><input type="radio" name="place" class="radio-custom"> General Population</label>
+                                        <label class="radio-label block"><input type="radio" name="place" class="radio-custom"> Detoxification Setting</label>
+                                        <label class="radio-label block"><input type="radio" name="place" class="radio-custom"> Infirmary</label>
+                                        <label class="radio-label block"><input type="radio" name="place" class="radio-custom"> Segregation</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </form>
+
+        <footer class="text-center text-gray-400 text-[10px] mt-4 mb-2 uppercase font-bold tracking-[0.4em] no-print">
+            ERJ CorEMR Master Alignment &bull; Unified Selection &bull; Version 2.0
+        </footer>
+    </div>
+
+    <script>
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerHTML = new Date().toLocaleDateString('en-US', options) + " &bull; INTAKE SCREENING";
+
+        function updateDashboard() {
+            const form = document.getElementById('intake-form');
+            
+            const textInputs = [...form.querySelectorAll('input[type="text"], input[type="date"], input[type="number"], select, textarea')];
+            const radioGroups = new Set([...form.querySelectorAll('input[type="radio"]')].map(r => r.name));
+            
+            let totalFields = textInputs.length + radioGroups.size;
+            let completedFields = 0;
+
+            textInputs.forEach(input => {
+                if(input.value.trim() !== '') completedFields++;
+            });
+
+            radioGroups.forEach(name => {
+                if(form.querySelector(`input[name="${name}"]:checked`)) completedFields++;
+            });
+
+            const percent = totalFields === 0 ? 0 : Math.round((completedFields / totalFields) * 100);
+            
+            document.getElementById('dash-percent').innerText = percent + '%';
+            document.getElementById('dash-progress-bar').style.width = percent + '%';
+
+            // Calculate Alerts (any alert-trigger radio checked as 'yes' or specific alert counts from Mental Health)
+            let alertCount = form.querySelectorAll('.alert-trigger:checked').length;
+            
+            // Add Mental Health "Suicide Potential" logic (if > 8 'Yes', add 1 big alert)
+            const spYesCount = form.querySelectorAll('input[name^="sp"].alert-count:checked').length;
+            if(spYesCount > 8) alertCount += 1;
+
+            document.getElementById('dash-alerts').innerText = alertCount;
+            
+            if(alertCount > 0) {
+                document.getElementById('dash-alerts').parentElement.classList.add('animate-pulse');
+            } else {
+                document.getElementById('dash-alerts').parentElement.classList.remove('animate-pulse');
+            }
+        }
+    </script>
+</body>
+</html>

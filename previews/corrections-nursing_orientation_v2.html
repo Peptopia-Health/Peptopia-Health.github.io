@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harrassment, Incivility & Violence</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script>
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.classList.add('dark');
+  }
+</script>
+<style>
+/* === CSS VARIABLES & THEMING === */
+:root {
+  --bg: #f3f1f8; 
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --border: #cbd5e1;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --accent: #2563eb;
+  --accent-light: #eff6ff;
+  --correct: #10b981;
+  --incorrect: #ef4444;
+  --header-bg: #1e3a8a;
+}
+
+.dark {
+  --bg: #0a0a1a;
+  --surface: #0f172a;
+  --surface-alt: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-light: rgba(59, 130, 246, 0.1);
+  --header-bg: #0c2461;
+}
+
+/* === CORE STYLES === */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.75;
+  padding:0;
+  font-size:1.05rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(37,99,235,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 90%, rgba(99,102,241,0.06) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.guide-container { max-width: 1050px; margin: 0 auto; padding: 1.5rem 1.4rem 5rem; }
+.hidden { display: none !important; }
+
+/* === HERO HEADER === */
+.hero {
+  position:relative;
+  background:linear-gradient(135deg, #0c2461 0%, #1e3a8a 40%, #2563eb 100%);
+  border-radius: 1.25rem;
+  padding: 2rem 2.5rem;
+  margin-bottom: 2.5rem;
+  border: 2px solid var(--accent);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(37,99,235,0.15);
+}
+.hero h1 { font-size:2.2rem; font-weight:900; letter-spacing:-0.01em; margin-bottom: 0.25rem; text-shadow:0 2px 12px rgba(0,0,0,0.4); }
+.hero .subtitle { font-size:1.15rem; color:#bfdbfe; line-height:1.4; font-weight:500; max-width: 80%; }
+
+.header-controls { position: absolute; top: 1.25rem; right: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+
+.badge-row { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem; }
+.badge {
+  display:inline-flex; align-items:center; gap:0.3rem;
+  padding:0.35rem 0.85rem; border-radius:2rem; font-size:0.8rem; font-weight:800;
+  text-transform:uppercase; backdrop-filter:blur(4px); cursor:pointer; transition:all 0.2s; text-decoration:none;
+  letter-spacing: 0.5px;
+}
+.bdg-1 { background:rgba(34,211,238,0.2); color:#67e8f9; border:1px solid rgba(34,211,238,0.4); }
+.bdg-2 { background:rgba(251,146,60,0.2); color:#fdba74; border:1px solid rgba(251,146,60,0.4); }
+.bdg-3 { background:rgba(167,139,250,0.2); color:#c4b5fd; border:1px solid rgba(167,139,250,0.4); }
+.bdg-4 { background:rgba(248,113,113,0.2); color:#fca5a5; border:1px solid rgba(248,113,113,0.4); }
+.bdg-5 { background:rgba(20,184,166,0.2); color:#5eead4; border:1px solid rgba(20,184,166,0.4); }
+
+.quiz-badge-btn { background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.4); padding: 0.4rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 800; color: white; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.quiz-badge-btn:hover { background: white; color: var(--header-bg); transform: translateY(-2px); }
+.theme-toggle-btn { background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.4); border-radius:0.75rem; padding:0.35rem 0.6rem; cursor:pointer; font-size:1.2rem; transition: all 0.2s;}
+.theme-toggle-btn:hover { background: white; color: var(--header-bg); }
+
+/* === ENHANCED UI ARCHITECTURE === */
+.section-hdr { position:relative; margin:3rem 0 0; padding:1.25rem 1.75rem; border-radius:1rem 1rem 0 0; font-size:1.6rem; font-weight:900; display:flex; align-items:center; overflow:hidden; border:2px solid; letter-spacing: -0.01em; }
+.sec-num { display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:50%; font-size:1.1rem; font-weight:900; margin-right:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.25); flex-shrink:0; }
+
+.top-btn { 
+    display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:50%; 
+    background:#10b981; border:2.5px solid #064e3b; color:white; font-size:1.4rem; 
+    margin-left:auto; text-decoration:none; cursor:pointer; transition: transform 0.2s; box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.top-btn:hover { transform: scale(1.1) rotate(-10deg); }
+
+.compare-table { width:100%; border-collapse:separate; border-spacing:0; margin:0 0 2rem; font-size:1.05rem; border:2.5px solid; border-top: none; border-radius: 0 0 1rem 1rem; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.08); }
+
+/* --- SECTION SCHEMES --- */
+.sh-cyan{ border-color: #06b6d4; background:linear-gradient(135deg,#083344,#0e7490); color:#a5f3fc; }
+.sh-cyan + .compare-table { border-color: #06b6d4; }
+.sh-cyan + .compare-table td { background: rgba(6, 182, 212, 0.05); }
+.sh-cyan .sec-num{ background:#06b6d4; color:#083344; }
+
+.sh-orange{ border-color: #f97316; background:linear-gradient(135deg,#431407,#9a3412); color:#fed7aa; }
+.sh-orange + .compare-table { border-color: #f97316; }
+.sh-orange + .compare-table td { background: rgba(249, 115, 22, 0.05); }
+.sh-orange .sec-num{ background:#f97316; color:#431407; }
+
+.sh-purple{ border-color: #8b5cf6; background:linear-gradient(135deg,#2e1065,#5b21b6); color:#ddd6fe; }
+.sh-purple + .compare-table { border-color: #8b5cf6; }
+.sh-purple + .compare-table td { background: rgba(139, 92, 246, 0.05); }
+.sh-purple .sec-num{ background:#8b5cf6; color:#2e1065; }
+
+.sh-red{ border-color: #ef4444; background:linear-gradient(135deg,#450a0a,#991b1b); color:#fecaca; }
+.sh-red + .compare-table { border-color: #ef4444; }
+.sh-red + .compare-table td { background: rgba(239, 68, 68, 0.05); }
+.sh-red .sec-num{ background:#ef4444; color:#450a0a; }
+
+.sh-teal{ border-color: #14b8a6; background:linear-gradient(135deg,#042f2e,#0d9488); color:#ccfbf1; }
+.sh-teal + .compare-table { border-color: #14b8a6; }
+.sh-teal + .compare-table td { background: rgba(20, 184, 166, 0.05); }
+.sh-teal .sec-num{ background:#14b8a6; color:#042f2e; }
+
+.sh-indigo{ border-color: #6366f1; background:linear-gradient(135deg,#1e1b4b,#3730a3); color:#e0e7ff; }
+.sh-indigo + .compare-table { border-color: #6366f1; }
+.sh-indigo + .compare-table td { background: rgba(99, 102, 241, 0.05); }
+.sh-indigo .sec-num{ background:#6366f1; color:#1e1b4b; }
+
+.sh-rose{ border-color: #f43f5e; background:linear-gradient(135deg,#4c0519,#9f1239); color:#ffe4e6; }
+.sh-rose + .compare-table { border-color: #f43f5e; }
+.sh-rose + .compare-table td { background: rgba(244, 63, 94, 0.05); }
+.sh-rose .sec-num{ background:#f43f5e; color:#4c0519; }
+
+.compare-table th{ background: rgba(0,0,0,0.05); color: inherit; font-weight: 800; padding:1.25rem; text-align:left; border-bottom: 2px solid rgba(0,0,0,0.1); font-size:0.95rem; text-transform:uppercase; letter-spacing: 0.5px;}
+html.dark .compare-table th { background: rgba(0,0,0,0.2); border-bottom: 2px solid rgba(255,255,255,0.05); }
+.compare-table td{ color:var(--text); padding:1.25rem; border-bottom:1px solid rgba(0,0,0,0.05); vertical-align:top; line-height: 1.6;}
+html.dark .compare-table td { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.cat-label{ font-weight:900; color:var(--accent); min-width:200px; border-right: 2px solid rgba(0,0,0,0.05); font-size: 1.1rem;}
+html.dark .cat-label { border-right: 2px solid rgba(255,255,255,0.05); }
+
+/* === NEW LEARNING AIDS & VISUAL CONTAINERS === */
+.scenario-box { background: linear-gradient(135deg, var(--surface-alt), var(--surface)); border-left: 8px solid var(--accent); padding: 1.75rem; border-radius: 0.75rem; margin: 2rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+.scenario-title { font-weight: 900; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.scenario-content { font-weight: 500; color: var(--text); line-height: 1.6; }
+
+.callout-box { padding: 1.5rem; border-radius: 1rem; margin: 2rem 0; border: 2px solid; display: flex; flex-direction: column; gap: 0.5rem; box-shadow: 0 8px 25px rgba(0,0,0,0.08); background: var(--surface); }
+.co-critical { border-left: 12px solid #ef4444; border-color: #ef4444; }
+.co-critical .callout-title { color: #ef4444; }
+.callout-title { font-weight: 900; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.callout-content { color: var(--text); font-weight: 500; line-height: 1.6; font-size: 1.05rem; }
+
+/* === QUIZ OVERLAY === */
+.quiz-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 2000; overflow-y: auto; display: flex; flex-direction: column; cursor: pointer; }
+.quiz-header { 
+  max-width: 720px; width: 100%; margin: 0 auto;
+  padding: 0.75rem 1.5rem; background: var(--header-bg); color: #fff; 
+  display: flex; justify-content: space-between; align-items: center; 
+  position: sticky; top: 0; z-index: 2001; border: 2.5px solid var(--accent); border-radius: 0 0 1.25rem 1.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.quiz-body { max-width: 720px; margin: 1.5rem auto; width: 100%; padding: 0 1.5rem; flex-grow: 1; cursor: default; }
+
+.q-card { background: var(--surface); border: 2px solid var(--border); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 15px 40px rgba(0,0,0,0.15); transition: border-color 0.3s; }
+.q-text { font-size: 1.45rem; font-weight: 800; margin-bottom: 2rem; color: var(--text); line-height: 1.4; }
+
+.choice-row { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.25rem; border: 2px solid var(--border); border-radius: 1rem; cursor: pointer; transition: all 0.2s; margin-bottom: 0.75rem; background: var(--surface-alt); color: var(--text); font-weight: 600;}
+.choice-row:hover:not(.disabled) { border-color: var(--accent); transform: translateX(5px); background: var(--accent-light); }
+.choice-row.correct { background: rgba(16,185,129,0.15) !important; border-color: #10b981 !important; color: #10b981 !important; font-weight: 800; opacity: 1 !important; transform: scale(1.02); }
+.choice-row.incorrect { background: rgba(239,68,68,0.15) !important; border-color: #ef4444 !important; color: #ef4444 !important; font-weight: 800; opacity: 1 !important; }
+.choice-row.disabled { pointer-events: none; opacity: 0.6; }
+
+.q-ans-icon { margin-left: auto; font-weight: 900; font-size: 1.4rem; }
+
+.q-rationale { display: none; margin-top: 2rem; border-radius: 1rem; overflow: hidden; border: 2px solid var(--accent); background: var(--surface-alt); animation: fadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.q-rationale.visible { display: block; }
+.q-rat-hdr { padding: 1rem 1.25rem; font-weight: 900; font-size: 1.1rem; color: white; display: flex; align-items: center; gap: 0.5rem;}
+.q-rat-hdr.correct { background: linear-gradient(135deg, #10b981, #059669); }
+.q-rat-hdr.incorrect { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+.q-rat-body { padding: 1.25rem; color: var(--text); line-height: 1.6; }
+.q-rat-label { font-weight: 900; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+
+/* === SATA STYLES === */
+.choice-row.sata-mode { justify-content: flex-start; }
+.choice-row.selected { border-color: var(--accent); background: var(--accent-light); transform: translateX(5px); }
+.checkbox-mock { width: 22px; height: 22px; border: 2px solid var(--text-muted); border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.5rem; transition: all 0.2s; flex-shrink: 0; }
+.choice-row.selected .checkbox-mock { background: var(--accent); border-color: var(--accent); }
+.choice-row.selected .checkbox-mock::after { content: '✓'; color: white; font-size: 14px; font-weight: 900; }
+.sata-submit-btn { margin-top: 1.5rem; width: 100%; padding: 1.1rem; background: var(--accent); color: white; border: none; border-radius: 1rem; font-weight: 900; font-size: 1.1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(37,99,235,0.3); transition: all 0.2s; }
+.sata-submit-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.exit-btn { background: #ef4444; color: white; border-radius: 2rem; padding: 0.5rem 1.25rem; border: 2px solid #991b1b; font-weight: 900; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px;}
+.exit-btn:hover { background: #dc2626; transform: scale(1.05); }
+
+/* === ROBUST RESULTS OVERLAY === */
+.quiz-completion { background: linear-gradient(135deg, var(--surface-alt), var(--surface)); border-radius: 1.5rem; border: 2px solid var(--accent); padding: 2.5rem 2rem; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+.qc-title { font-size: 2.2rem; font-weight: 900; color: var(--header-bg); text-align: center; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+html.dark .qc-title { color: #bfdbfe; }
+
+.qc-unanswered { background: #fffbeb; border: 2px solid #fbbf24; border-radius: 1rem; padding: 1rem 1.25rem; margin-bottom: 2rem; text-align: center; color: #b45309; font-weight: 800; font-size: 1rem; box-shadow: 0 4px 12px rgba(251,191,36,0.15); }
+html.dark .qc-unanswered { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); color: #fde68a; }
+
+.qc-perf { background: var(--surface); border-radius: 1.25rem; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.qc-perf-hdr, .qc-weak-hdr, .qc-retest-hdr { font-size: 1.2rem; font-weight: 900; color: var(--accent); margin-bottom: 1rem; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+
+.qc-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+@media (max-width: 600px) { .qc-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.qc-stat { background: var(--surface-alt); border: 2px solid var(--border); border-radius: 1rem; padding: 1.25rem 0.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; transition: transform 0.2s; }
+.qc-stat:hover { transform: translateY(-4px); }
+.qc-stat-total { border-color: rgba(99,102,241,0.4); } 
+.qc-stat-correct { border-color: rgba(16,185,129,0.4); } 
+.qc-stat-wrong { border-color: rgba(239,68,68,0.4); } 
+.qc-stat-score { border-color: rgba(245,158,11,0.4); } 
+
+.qc-stat-icon { font-size: 2rem; margin-bottom: 0.5rem; line-height: 1; }
+.qc-stat-val { font-size: 2.2rem; font-weight: 900; color: var(--text); line-height: 1; }
+.qc-stat-correct .qc-stat-val { color: #10b981; } 
+.qc-stat-wrong .qc-stat-val { color: #ef4444; } 
+.qc-stat-score .qc-stat-val { color: #f59e0b; } 
+.qc-stat-lbl { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.5rem; font-weight: 800; }
+
+.qc-weak { background: var(--surface); border-radius: 1.25rem; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border); }
+.qc-weak-item { background: rgba(239,68,68,0.08); border-left: 6px solid #ef4444; border-radius: 0.75rem; padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+.qc-weak-q { font-weight: 800; color: #b91c1c; font-size: 1rem; line-height: 1.4; }
+html.dark .qc-weak-q { color: #fca5a5; }
+.qc-weak-a { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.4rem; font-weight: 600;}
+
+.qc-no-weak { text-align: center; color: #10b981; font-size: 1.2rem; padding: 1.5rem; font-weight: 900; background: rgba(16,185,129,0.1); border-radius: 1rem; border: 2px dashed #10b981;}
+.qc-divider { height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 2rem 0; opacity: 0.5;}
+.qc-retest-desc { color: var(--text-muted); font-size: 1rem; text-align: center; margin-bottom: 1.5rem; line-height: 1.5; font-weight: 500;}
+
+.qc-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--border); }
+.qc-btn { padding: 0.85rem 1.75rem; border: none; border-radius: 2rem; font-size: 1rem; font-weight: 800; cursor: pointer; transition: all 0.2s; color: white; display: inline-flex; align-items: center; gap: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.qc-btn:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.qc-btn-retest { background: linear-gradient(135deg, #8b5cf6, #6366f1); }
+.qc-btn-reset { background: linear-gradient(135deg, #B8739E, #A5648C); }
+.qc-btn-home { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+
+#nav-container { padding: 1.5rem; text-align: center; animation: fadeIn 0.5s ease; margin-top: 1rem;}
+.click-continue-pulse { display: inline-block; font-weight: 800; font-size: 1.1rem; color: white; background: var(--accent); padding: 0.75rem 2rem; border-radius: 2rem; box-shadow: 0 0 15px var(--accent); animation: pulseBtn 2s infinite; cursor: pointer;}
+@keyframes pulseBtn { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,99,235, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37,99,235, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,99,235, 0); } }
+</style>
+</head>
+<body onclick="handleGlobalClick(event)">
+
+<div class="guide-container" id="view-study">
+  <header class="hero">
+    <div class="header-controls">
+      <button class="quiz-badge-btn" onclick="startQuiz(event)">🌙 Quiz</button>
+      <button class="theme-toggle-btn" onclick="toggleTheme(event)">☀️</button>
+    </div>
+    <h1>Harrassment, Incivility & Violence</h1>
+    <p class="subtitle">Prevention, Identification, and Response.</p>
+    <div class="badge-row">
+      <a href="#sec-1" class="badge bdg-1">Objectives</a>
+      <a href="#sec-2" class="badge bdg-2">Definitions</a>
+      <a href="#sec-4" class="badge bdg-3">Offensive Conduct</a>
+      <a href="#sec-6" class="badge bdg-4">Indicators</a>
+      <a href="#sec-7" class="badge bdg-5">Sexual Harassment</a>
+      <a href="#sec-12" class="badge bdg-1">Incivility</a>
+      <a href="#sec-15" class="badge bdg-2">Violence</a>
+      <a href="#sec-17" class="badge bdg-3">Warning Signs</a>
+      <a href="#sec-18" class="badge bdg-4">Risk Factors</a>
+      <a href="#sec-19" class="badge bdg-5">Reporting</a>
+      <a href="#sec-20" class="badge bdg-1">EAP</a>
+      <a href="#sec-21" class="badge bdg-2">PREA</a>
+      <a href="#sec-30" class="badge bdg-3">Mental Health</a>
+      <a href="#sec-31" class="badge bdg-4">Consent</a>
+      <a href="#sec-33" class="badge bdg-5">Evidence</a>
+      <a href="#sec-34" class="badge bdg-1">Nurse Role</a>
+      <a href="#sec-35" class="badge bdg-2">Psych Indicators</a>
+      <a href="#sec-36" class="badge bdg-3">Abuse Responses</a>
+      <a href="#sec-37" class="badge bdg-4">Adolescent Signs</a>
+      <a href="#sec-38" class="badge bdg-5">Medical Exams</a>
+    </div>
+  </header>
+
+  <!-- SECTION 1 -->
+  <div id="sec-1" class="section-hdr sh-cyan"><span class="sec-num">1</span> <span>Learning Objectives</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Goal Area</th><th>Presentation Outcome</th></tr>
+    <tr><td class="cat-label">📍 Definitions</td><td>Define harassment, incivility, and workplace violence clearly.</td></tr>
+    <tr><td class="cat-label">📍 Sexual Harassment</td><td>Learn the two forms of sexual harassment.</td></tr>
+    <tr><td class="cat-label">📍 Environment</td><td>Understand the definition of a hostile work environment.</td></tr>
+    <tr><td class="cat-label">📍 Warning Signs</td><td>Learn the warning signs of potential workplace violence.</td></tr>
+    <tr><td class="cat-label">📍 Policy</td><td>Understand Wexford Health's policies on harassment, bullying, and violence.</td></tr>
+    <tr><td class="cat-label">📍 Action Plans</td><td>Learn the correct actions to take if you are a victim or a witness.</td></tr>
+  </table>
+
+  <!-- SECTION 2 -->
+  <div id="sec-2" class="section-hdr sh-orange"><span class="sec-num">2</span> <span>Definition of Harassment</span><a href="#" class="top-btn">↑</a></div>
+  
+  <div class="callout-box co-critical">
+    <div class="callout-title">🚨 Base Definition</div>
+    <div class="callout-content">Harassment is unwelcome conduct that is based on race, color, religion, sex (including sexual orientation, gender identity, or pregnancy), national origin, older age (beginning at age 40), disability, or genetic information (including family medical history).</div>
+  </div>
+
+  <table class="compare-table">
+    <tr><th>Trigger</th><th>When Harassment Becomes Unlawful</th></tr>
+    <tr><td class="cat-label">⚠️ Quid Pro Quo</td><td>Enduring the offensive conduct becomes a condition of continued employment.</td></tr>
+    <tr><td class="cat-label">⚠️ Hostile Environment</td><td>The conduct is severe or pervasive enough to create a work environment that a reasonable person would consider intimidating, hostile, or abusive.</td></tr>
+  </table>
+
+  <!-- SECTION 3 -->
+  <div id="sec-3" class="section-hdr sh-purple"><span class="sec-num">3</span> <span>Retaliation & Legal Thresholds</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Legal Standard</th><th>Policy Mandate</th></tr>
+    <tr><td class="cat-label">🛡️ Retaliation</td><td>Anti-discrimination laws prohibit harassment against individuals in retaliation for filing a charge, testifying, or participating in an investigation/lawsuit, or for opposing discriminatory employment practices.</td></tr>
+    <tr><td class="cat-label">📏 Thresholds</td><td>Petty slights, annoyances, and isolated incidents <strong>(unless extremely serious)</strong> will not rise to the level of illegality.</td></tr>
+  </table>
+
+  <!-- SECTION 4 -->
+  <div id="sec-4" class="section-hdr sh-red"><span class="sec-num">4</span> <span>Offensive Conduct & Circumstances</span><a href="#" class="top-btn">↑</a></div>
+  
+  <div class="scenario-box">
+    <div class="scenario-title">💡 The Scope of Harassment</div>
+    <div class="scenario-content">
+      Unlawful harassment may occur without economic injury to, or discharge of, the victim. Furthermore, the victim does not have to be the person directly harassed—it can be <strong>anyone affected</strong> by the offensive conduct.
+    </div>
+  </div>
+
+  <table class="compare-table">
+    <tr><th>Category</th><th>Examples & Details</th></tr>
+    <tr><td class="cat-label">🗣️ Conduct Types</td><td>Includes offensive jokes, slurs, epithets, name calling, physical assaults or threats, intimidation, ridicule, mockery, insults, offensive objects/pictures, and interference with work performance.</td></tr>
+    <tr><td class="cat-label">👥 The Harasser</td><td>Can be the victim's supervisor, a supervisor in another area, an agent of the employer, a co-worker, or even a non-employee.</td></tr>
+  </table>
+
+  <!-- SECTION 5 -->
+  <div id="sec-5" class="section-hdr sh-teal"><span class="sec-num">5</span> <span>Examples of Harassing Conduct: Cyber</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Digital Venue</th><th>Specific Violations</th></tr>
+    <tr><td class="cat-label">📱 Social Media & Web</td><td>Posts, direct/private messages, and/or group pages on social media sites, websites, or blogs that make harassing or disparaging comments about another employee.</td></tr>
+    <tr><td class="cat-label">👁️ Cyberstalking</td><td>Cyberstalking another employee's online presence, obsessively following everything he or she does or posts online.</td></tr>
+  </table>
+
+  <!-- SECTION 6 -->
+  <div id="sec-6" class="section-hdr sh-indigo"><span class="sec-num">6</span> <span>Physical Indicators of Abuse</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Indicator Category</th><th>Observable Signs</th></tr>
+    <tr><td class="cat-label">🩺 Physical Signs</td><td>Medical and correctional staff must be observant during evaluations and screenings. Common physical indicators of sexual abuse include <strong>difficulty walking, sitting, or standing</strong>, <strong>unexplained injuries</strong>, <strong>STDs</strong>, and <strong>abdominal pain</strong>.</td></tr>
+    <tr><td class="cat-label">⚠️ Behavioral & Other Signs</td><td>Other indicators can include sudden <strong>alcohol or substance abuse</strong> as a coping mechanism. Conversely, a <strong>planned pregnancy</strong> is <em>not</em> an indicator of abuse.</td></tr>
+  </table>
+
+  <!-- SECTION 7 -->
+  <div id="sec-7" class="section-hdr sh-rose"><span class="sec-num">7</span> <span>Sexual Harassment: Quid Pro Quo</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Definition</th></tr>
+    <tr><td class="cat-label">Definition</td><td>Latin for "This for That". Occurs when a supervisor or person in authority requests sexual favors in exchange for tangible employment benefits (raises, promotions, continued employment).</td></tr>
+    <tr><td class="cat-label">Authority Requirement</td><td>Generally requires the harasser to have authority over the victim's employment status.</td></tr>
+  </table>
+
+  <!-- SECTION 8 -->
+  <div id="sec-8" class="section-hdr sh-cyan"><span class="sec-num">8</span> <span>Sexual Harassment: Hostile Environment</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Definition</th></tr>
+    <tr><td class="cat-label">Specifics</td><td>Unwelcome sexual advances, requests for sexual favors, or other verbal/physical conduct of a sexual nature that interferes with work performance.</td></tr>
+    <tr><td class="cat-label">Examples</td><td>Sexual jokes, suggestive comments, touching, or displaying sexually explicit images.</td></tr>
+  </table>
+
+  <!-- SECTION 9 -->
+  <div id="sec-9" class="section-hdr sh-orange"><span class="sec-num">9</span> <span>Gender-Based Harassment</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Definition</th></tr>
+    <tr><td class="cat-label">Non-Sexual Conduct</td><td>Harassment doesn't have to be sexual in nature. It can be based on gender/sex, such as negative comments about women in general or men in general.</td></tr>
+  </table>
+
+  <!-- SECTION 10 -->
+  <div id="sec-10" class="section-hdr sh-purple"><span class="sec-num">10</span> <span>Who is Involved?</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Role</th><th>Description</th></tr>
+    <tr><td class="cat-label">The Harasser</td><td>Can be a supervisor, co-worker, or even a non-employee (vendor, patient, or visitor).</td></tr>
+    <tr><td class="cat-label">The Victim</td><td>Does not have to be the person harassed directly; it can be anyone affected by the offensive conduct.</td></tr>
+  </table>
+
+  <!-- SECTION 11 -->
+  <div id="sec-11" class="section-hdr sh-red"><span class="sec-num">11</span> <span>Harassment Based on Other Classes</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Definition</th></tr>
+    <tr><td class="cat-label">Protected Groups</td><td>Race, Color, National Origin, Religion, Age (40+), Disability, Genetic Information.</td></tr>
+    <tr><td class="cat-label">Threshold</td><td>Behavior must be unwelcome and severe/pervasive. Petty slights and annoyances generally do not reach the legal level of harassment.</td></tr>
+  </table>
+
+  <!-- SECTION 12 -->
+  <div id="sec-12" class="section-hdr sh-teal"><span class="sec-num">12</span> <span>Defining Workplace Incivility</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Intensity</th><th>Behavioral Scope</th></tr>
+    <tr><td class="cat-label">Low Intensity</td><td>Defined as low-intensity deviant conduct with ambiguous intent to harm. It is often unclear whether the actor intended to harm the target or was simply being thoughtless or rude.</td></tr>
+  </table>
+
+  <!-- SECTION 13 -->
+  <div id="sec-13" class="section-hdr sh-indigo"><span class="sec-num">13</span> <span>Uncivil Conduct & Bullying</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Definition</th></tr>
+    <tr><td class="cat-label">Scope</td><td><strong>Incivility</strong> can be defined as anything from bullying to isolation or exclusion of an individual.</td></tr>
+    <tr><td class="cat-label">Behaviors</td><td>Interrupting others, originating rumors, ignoring/excluding colleagues, or taking credit for others' work.</td></tr>
+  </table>
+
+  <!-- SECTION 14 -->
+  <div id="sec-14" class="section-hdr sh-rose"><span class="sec-num">14</span> <span>Policy Nuances: Intent vs. Impact</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Non-Acceptable Explanations</th><th>Disciplinary Stance</th></tr>
+    <tr><td class="cat-label">⛔ "I was just kidding"</td><td>“I was just kidding” and “I didn’t mean to…” are <strong>not acceptable explanations</strong> and do not excuse harassing conduct.</td></tr>
+    <tr><td class="cat-label">⚖️ Discipline</td><td>These phrases will not stop disciplinary action from being taken against the person engaging in such conduct. Policy focus is on the impact on the victim and environment, not just the intent of the actor.</td></tr>
+  </table>
+
+  <!-- SECTION 15 -->
+  <div id="sec-15" class="section-hdr sh-cyan"><span class="sec-num">15</span> <span>Workplace Violence Categories</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Category</th><th>Description</th></tr>
+    <tr><td class="cat-label">Type I: Criminal</td><td>Perpetrator has no legitimate relationship with the business (e.g., robbery).</td></tr>
+    <tr><td class="cat-label">Type II: Customer</td><td>Perpetrator is a customer/client/patient of the business (Most common in healthcare).</td></tr>
+    <tr><td class="cat-label">Type III: Worker</td><td>Perpetrator is a current or former employee.</td></tr>
+    <tr><td class="cat-label">Type IV: Personal</td><td>Perpetrator has a personal relationship with an employee (Domestic violence spillover).</td></tr>
+  </table>
+
+  <!-- SECTION 16 -->
+  <div id="sec-16" class="section-hdr sh-orange"><span class="sec-num">16</span> <span>Industry Statistics: Healthcare</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Risk Factor</th><th>Industry Reality</th></tr>
+    <tr><td class="cat-label">🏥 Healthcare Risk</td><td><strong>Nearly 75% of workplace assaults occur in a health care setting.</strong></td></tr>
+    <tr><td class="cat-label">Time Away</td><td>Healthcare workers are four times more likely to require time away from work due to violence than workers in other industries.</td></tr>
+  </table>
+
+  <!-- SECTION 17 -->
+  <div id="sec-17" class="section-hdr sh-purple"><span class="sec-num">17</span> <span>Warning Signs of Potential Violence</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Indicator Type</th><th>Observable Behaviors</th></tr>
+    <tr><td class="cat-label">⚠️ Behavioral Traits</td><td>Perpetrators often exhibit newly acquired negative traits, such as <strong>deteriorating appearance/hygiene</strong>, <strong>erratic behavior</strong>, or <strong>reclusiveness</strong>.</td></tr>
+    <tr><td class="cat-label">🚨 Threat Indicators</td><td>Direct/veiled threats, intimidation, sudden mood swings, or obsession with weapons.</td></tr>
+    <tr><td class="cat-label">📉 Performance</td><td>Unexplained absences, decreased productivity, or refusal to accept criticism.</td></tr>
+  </table>
+
+  <!-- SECTION 18 -->
+  <div id="sec-18" class="section-hdr sh-red"><span class="sec-num">18</span> <span>Workplace Violence: Potential Risk Factors</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Category</th><th>Specific Risk Factors</th></tr>
+    <tr><td class="cat-label">🔫 Clinical/External</td><td>
+      <ul>
+          <li>Weapons among patients, their families, or friends.</li>
+          <li>Care of acutely disturbed, violent individuals.</li>
+          <li>Presence of gang members, drug/alcohol abusers, distraught family members.</li>
+      </ul>
+    </td></tr>
+    <tr><td class="cat-label">🧠 Patient System Issues</td><td>
+      <ul>
+          <li>Increasing number of acute and chronically mentally ill patients being released from hospitals without follow-up care, who now have the right to refuse medicine and who can no longer be hospitalized involuntarily unless they pose a threat to themselves or others.</li>
+      </ul>
+    </td></tr>
+    <tr><td class="cat-label">🏗️ Environmental/Training</td><td>
+      <ul>
+          <li>Isolated work with patients during exams or treatment.</li>
+          <li>Lack of training in recognizing and managing escalating hostile and aggressive behavior.</li>
+          <li>Poorly lit parking areas.</li>
+      </ul>
+    </td></tr>
+  </table>
+
+  <!-- SECTION 19 -->
+  <div id="sec-19" class="section-hdr sh-teal"><span class="sec-num">19</span> <span>Action & Reporting</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Scenario</th><th>Required Protocol</th></tr>
+    <tr><td class="cat-label">Immediate Threat</td><td>Call 911 or Facility Security immediately if there is an imminent threat of violence.</td></tr>
+    <tr><td class="cat-label">Reporting</td><td>Employees must report all incidents of harassment, incivility, or violence to their supervisor or Human Resources. Wexford Health prohibits retaliation against anyone who reports in good faith.</td></tr>
+  </table>
+
+  <!-- SECTION 20 -->
+  <div id="sec-20" class="section-hdr sh-indigo"><span class="sec-num">20</span> <span>Employee Assistance Program (EAP)</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Resource</th><th>Application</th></tr>
+    <tr><td class="cat-label">🤝 EAP Support</td><td>The Employee Assistance Program (EAP) is an appropriate resource for employees who are exhibiting incivility or struggling with personal issues that affect their workplace behavior.</td></tr>
+  </table>
+
+  <!-- SECTION 21 -->
+  <div id="sec-21" class="section-hdr sh-rose"><span class="sec-num">21</span> <span>PREA Screening</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Protocol</th><th>Application</th></tr>
+    <tr><td class="cat-label">🛡️ Screening Results</td><td>The results of the PREA (Prison Rape Elimination Act) screen are used to aid in determining housing assignments, program assignments, etc. by the correctional staff to ensure safety and prevent abuse.</td></tr>
+    <tr><td class="cat-label">🚷 Juvenile Housing</td><td>PREA specifies that juvenile offenders <strong>may not</strong> be placed in adult housing units. Strict sight and sound separation is required to protect youthful inmates.</td></tr>
+  </table>
+
+  <!-- SECTION 22 -->
+  <div id="sec-22" class="section-hdr sh-cyan"><span class="sec-num">22</span> <span>PREA Screening Timeframes</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Standard</th><th>Requirement</th></tr>
+    <tr><td class="cat-label">⏱️ Arrival Screening</td><td>According to the standards, offenders are to be screened within <strong>72 hours</strong> of arrival at the institution for their risk of being sexually abusive or abused.</td></tr>
+  </table>
+
+  <!-- SECTION 23 -->
+  <div id="sec-23" class="section-hdr sh-orange"><span class="sec-num">23</span> <span>PREA Disclosures & Referrals</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Disclosure Scenario</th><th>Required Protocol</th></tr>
+    <tr><td class="cat-label">📅 Historical Abuse</td><td>If during an intake screen you discover an inmate was a victim of sexual abuse which occurred in the past (e.g., 3 months ago), you must <strong>schedule for a mental health evaluation within 14 days</strong>. Acute measures like rape kits are not applicable for historical incidents.</td></tr>
+    <tr><td class="cat-label">⚠️ History of Abusive Behavior</td><td>If an intake screen reveals that an inmate has a previous history of sexually abusive behavior (e.g., raping a neighbor), you must <strong>schedule an appointment with mental health within 14 days for evaluation</strong>.</td></tr>
+  </table>
+
+  <!-- SECTION 24 -->
+  <div id="sec-24" class="section-hdr sh-purple"><span class="sec-num">24</span> <span>Acts Prohibited by PREA</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Category</th><th>Prohibited Acts</th></tr>
+    <tr><td class="cat-label">🛑 Physical Abuse & Contact</td><td>Intentional touching of the inner thigh, buttocks, breast, or genitalia of another person, and any genital penetration.</td></tr>
+    <tr><td class="cat-label">🛑 Staff Harassment & Voyeurism</td><td>Derogatory verbal comments of a sexual nature made by staff, repeated requests for unwelcome sexual favors, and staff members watching an inmate undress for a shower.</td></tr>
+    <tr><td class="cat-label">🛑 Inmate Harassment</td><td>Offensive verbal comments or gestures of a sexual nature made by an inmate toward another.</td></tr>
+  </table>
+
+  <!-- SECTION 25 -->
+  <div id="sec-25" class="section-hdr sh-red"><span class="sec-num">25</span> <span>PREA Risk Potential Indicators</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Indicator Category</th><th>Risk Factors for Sexual Abuse</th></tr>
+    <tr><td class="cat-label">⚠️ Increased Risk</td><td>Factors indicating an increased risk potential for sexual abuse (either being abusive or being abused) include: <strong>Developmental or intellectual disabilities</strong>, <strong>History of sexual offenses</strong>, <strong>Mental illness</strong>, and a <strong>History of being sexually abused</strong>.</td></tr>
+  </table>
+
+  <!-- SECTION 26 -->
+  <div id="sec-26" class="section-hdr sh-teal"><span class="sec-num">26</span> <span>PREA Scope Clarification</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Behavior Category</th><th>Classification Distinction</th></tr>
+    <tr><td class="cat-label">🗣️ Inmate-on-Inmate Verbal Harassment</td><td>Offensive verbal comments or gestures made by an inmate towards another inmate are generally classified as <strong>facility rule violations</strong>, rather than falling under the strict federal PREA definitions of sexual abuse or staff sexual harassment.</td></tr>
+    <tr><td class="cat-label">📝 Staff Verbal Harassment</td><td>In contrast, derogatory verbal comments made by <strong>staff</strong> are strictly prohibited under PREA guidelines.</td></tr>
+  </table>
+
+  <!-- SECTION 27 -->
+  <div id="sec-27" class="section-hdr sh-indigo"><span class="sec-num">27</span> <span>Inmate Education & Zero Tolerance</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Protocol</th><th>Requirement</th></tr>
+    <tr><td class="cat-label">📢 Information Delivery</td><td>Information regarding the <strong>zero tolerance policy</strong> and how to report incidents of sexual abuse or harassment must be given to the inmate <strong>during intake</strong>. This ensures they are immediately aware of their rights and the facility's strict prohibitions against sexual violence.</td></tr>
+  </table>
+
+  <!-- SECTION 28 -->
+  <div id="sec-28" class="section-hdr sh-rose"><span class="sec-num">28</span> <span>Frequency of Victimization</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Reality in Confinement</th></tr>
+    <tr><td class="cat-label">🔁 Repeated Abuse</td><td>It is a misconception that most people are only sexually abused once while incarcerated. In reality, victims of sexual abuse in confinement are often targeted <strong>repeatedly</strong> if there is no intervention, making immediate reporting and protective actions crucial.</td></tr>
+  </table>
+
+  <!-- SECTION 29 -->
+  <div id="sec-29" class="section-hdr sh-cyan"><span class="sec-num">29</span> <span>Terminology: Intersex</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Definition</th></tr>
+    <tr><td class="cat-label">🧬 Intersex</td><td>Individuals with a <strong>chromosomal structure other than XX or XY</strong> are defined as 'intersex'. Understanding this terminology is important for appropriate medical, mental health, and housing considerations under PREA guidelines.</td></tr>
+  </table>
+
+  <!-- SECTION 30 -->
+  <div id="sec-30" class="section-hdr sh-orange"><span class="sec-num">30</span> <span>Mental Health & Vulnerability</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Vulnerability Factor</th><th>Statistical Reality</th></tr>
+    <tr><td class="cat-label">🧠 Mental Illness Risk</td><td>Inmates with mental illness are <strong>at least 8 times more likely</strong> to suffer sexual abuse while incarcerated compared to the general inmate population.</td></tr>
+  </table>
+
+  <!-- SECTION 31 -->
+  <div id="sec-31" class="section-hdr sh-purple"><span class="sec-num">31</span> <span>Mandatory Reporting & Consent</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Protocol</th><th>Requirement</th></tr>
+    <tr><td class="cat-label">🚨 Mandatory Reporting</td><td>Staff are mandatory reporters. You must immediately report any alleged sexual abuse that occurred inside a correctional facility to designated supervisors and officials.</td></tr>
+    <tr><td class="cat-label">❌ Consent Requirement</td><td>You do <strong>not</strong> need to obtain consent from the inmate before reporting the abuse. Reporting is mandatory regardless of the victim's preference.</td></tr>
+  </table>
+
+  <!-- SECTION 32 -->
+  <div id="sec-32" class="section-hdr sh-red"><span class="sec-num">32</span> <span>Cross-Facility Reporting</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Scenario</th><th>Required Protocol</th></tr>
+    <tr><td class="cat-label">🏢 Allegations at Another Facility</td><td>If you learn of alleged sexual abuse that occurred inside a different correctional facility, you must notify the warden or superintendent. The warden/superintendent is then mandated to notify the facility where the alleged abuse occurred within <strong>72 hours</strong>.</td></tr>
+  </table>
+
+  <!-- SECTION 33 -->
+  <div id="sec-33" class="section-hdr sh-teal"><span class="sec-num">33</span> <span>Evidence Collection</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Protocol</th><th>Timeframe Requirement</th></tr>
+    <tr><td class="cat-label">🧬 Physical Evidence</td><td>Generally, physical evidence of sexual abuse (such as through a rape kit or SAFE exam) can be collected within <strong>72 hours</strong> of the incident.</td></tr>
+    <tr><td class="cat-label">🛑 Preserving Evidence</td><td>If the alleged abuse occurred within a time period allowing for evidence collection, request the victim <strong>not to take actions that could destroy evidence</strong>. This includes: brushing teeth, drinking, eating, urinating, moving bowels, smoking, or showering.</td></tr>
+  </table>
+
+  <!-- SECTION 34 -->
+  <div id="sec-34" class="section-hdr sh-purple"><span class="sec-num">34</span> <span>Nurse's Role in Alleged Assault</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Role/Responsibility</th><th>Description</th></tr>
+    <tr><td class="cat-label">👩‍⚕️ Standard Protocol</td><td>The role of the nurse in an alleged sexual assault situation includes: treating the victim with respect and dignity, determining the time frame of the alleged occurrence (to preserve evidence), notifying the medical director, and completely documenting the incident.</td></tr>
+  </table>
+
+  <!-- SECTION 35 -->
+  <div id="sec-35" class="section-hdr sh-cyan"><span class="sec-num">35</span> <span>Psychological Indicators of Abuse</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Indicator Category</th><th>Observable Signs</th></tr>
+    <tr><td class="cat-label">🧠 Psychological Signs</td><td>Common psychological indicators of sexual abuse include <strong>depression or suicidal thoughts</strong>, <strong>difficulty concentrating</strong>, <strong>feelings of guilt</strong>, and engaging in <strong>risk-taking behaviors</strong>. A positive self-image is NOT a common psychological indicator of abuse.</td></tr>
+  </table>
+
+  <!-- SECTION 36 -->
+  <div id="sec-36" class="section-hdr sh-indigo"><span class="sec-num">36</span> <span>Responses to Sexual Abuse</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Concept</th><th>Clinical Understanding</th></tr>
+    <tr><td class="cat-label">🧠 Gender Similarities</td><td>Despite common misconceptions, men and women generally have <strong>similar</strong> responses to sexual abuse. Both male and female victims experience comparable psychological and physiological trauma responses, including anxiety, depression, PTSD, and feelings of isolation or guilt.</td></tr>
+  </table>
+
+  <!-- SECTION 37 -->
+  <div id="sec-37" class="section-hdr sh-teal"><span class="sec-num">37</span> <span>Adolescent Indicators of Abuse</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Indicator Category</th><th>Observable Signs in Adolescents</th></tr>
+    <tr><td class="cat-label">🧑‍🤝‍🧑 Common Observations</td><td>Adolescent and juvenile victims may exhibit distinct behavioral and physical changes. Common observations include <strong>wearing multiple layers of clothes</strong> (to hide their body), sudden <strong>sexual promiscuity</strong> or hypersexual behavior, and severe <strong>mood swings</strong>.</td></tr>
+  </table>
+
+  <!-- SECTION 38 -->
+  <div id="sec-38" class="section-hdr sh-orange"><span class="sec-num">38</span> <span>Medical Examinations</span><a href="#" class="top-btn">↑</a></div>
+  <table class="compare-table">
+    <tr><th>Protocol</th><th>Requirement</th></tr>
+    <tr><td class="cat-label">🏥 Qualified Practitioners</td><td>Medical exams following sexual abuse must be performed by a <strong>SANE (Sexual Assault Nurse Examiner)</strong> or another qualified medical practitioner to ensure proper forensic evidence collection and trauma-informed care.</td></tr>
+  </table>
+
+</div>
+
+<!-- QUIZ OVERLAY -->
+<div id="view-quiz" class="quiz-overlay hidden">
+  <header class="quiz-header">
+    <button class="exit-btn" onclick="exitQuiz(event)">❌ Exit</button>
+    <div id="q-count-display" style="font-weight:900; font-size:1.1rem; letter-spacing: 1px;">Question 1 / 100</div>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <div id="score-circle" class="score-indicator-circle" style="font-weight:800;">0%</div>
+      <button class="quiz-badge-btn" onclick="showResults(event)">Results</button>
+    </div>
+  </header>
+  <div class="quiz-body">
+    <div id="q-container"></div>
+    <div id="nav-container" class="hidden">
+        <div class="click-continue-pulse" onclick="advanceQ(event)">Click here to continue ➡️</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROBUST RESULTS OVERLAY -->
+<div id="view-results" class="quiz-overlay hidden">
+  <header class="quiz-header">
+    <button class="exit-btn" onclick="exitQuiz(event)">❌ Exit</button>
+    <div style="flex:1; text-align:center; font-weight:900; font-size:1.2rem; text-transform:uppercase; letter-spacing: 1px;">🌙 Safety Profiling</div>
+    <button class="theme-toggle-btn" onclick="toggleTheme(event)">☀️</button>
+  </header>
+  
+  <div class="quiz-body">
+    <div id="quiz-completion" class="quiz-completion visible">
+      <div class="qc-title" id="qc-title">📊 Assessment Complete</div>
+      
+      <div class="qc-unanswered" id="qc-unanswered" style="display:none;">
+        ⚠️ You have <span id="qc-unanswered-ct">0</span> unanswered questions remaining.
+      </div>
+      
+      <div class="qc-perf">
+        <div class="qc-perf-hdr">Performance Summary</div>
+        <div class="qc-stats-grid">
+          <div class="qc-stat qc-stat-total">
+            <div class="qc-stat-icon">🎯</div>
+            <div class="qc-stat-val" id="qc-total">0/100</div>
+            <div class="qc-stat-lbl">Answered</div>
+          </div>
+          <div class="qc-stat qc-stat-correct">
+            <div class="qc-stat-icon">✅</div>
+            <div class="qc-stat-val" id="qc-correct">0</div>
+            <div class="qc-stat-lbl">Correct</div>
+          </div>
+          <div class="qc-stat qc-stat-wrong">
+            <div class="qc-stat-icon">📝</div>
+            <div class="qc-stat-val" id="qc-wrong">0</div>
+            <div class="qc-stat-lbl">Incorrect</div>
+          </div>
+          <div class="qc-stat qc-stat-score">
+            <div class="qc-stat-icon">🔥</div>
+            <div class="qc-stat-val" id="qc-pct">0%</div>
+            <div class="qc-stat-lbl">Score</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qc-weak" id="qc-weak">
+        <div class="qc-weak-hdr">🎯 Areas to Focus On</div>
+        <div id="qc-weak-body"></div>
+      </div>
+
+      <div id="qc-retest" style="display:none;">
+        <div class="qc-divider"></div>
+        <div class="qc-retest-hdr">🔄 Ready to Improve?</div>
+        <div class="qc-retest-desc">Retake the questions you missed to strengthen your knowledge and boost your score.</div>
+        <div style="text-align:center;">
+          <button class="qc-btn qc-btn-retest" onclick="retestMissed()">📝 Retest Missed (<span id="qc-missed">0</span>)</button>
+        </div>
+      </div>
+
+      <div class="qc-actions">
+        <button class="qc-btn qc-btn-reset" onclick="startQuiz(event)">🔄 Reset Quiz</button>
+        <button class="qc-btn qc-btn-home" onclick="exitQuiz(event)">🏠 Back to Study Guide</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+        btn.innerHTML = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+    });
+});
+
+const QUESTIONS = [
+  { id: 1, topic: 'Harassment Protected Classes', text: "Under harassment definitions, 'older age' is specifically defined as beginning at what age?", type: 'MC', options: ["Age 35", "Age 40", "Age 50", "Age 65"], answer: 1, rationale: "Correct! Harassment based on older age officially begins at age 40 according to the policy definitions." },
+  { id: 2, topic: 'Harassment Thresholds', text: "Harassment becomes unlawful when enduring the offensive conduct becomes a condition of continued employment.", type: 'TF', answer: true, rationale: "Correct! This is one of the two primary conditions that make harassment legally actionable (often known as Quid Pro Quo)." },
+  { id: 3, topic: 'Hostile Environment', text: "Unlawful harassment requires the conduct to be severe or pervasive enough to create a work environment that a reasonable person would consider intimidating, hostile, or abusive.", type: 'TF', answer: true, rationale: "Correct! The 'severe or pervasive' standard is the legal threshold for a hostile work environment." },
+  { id: 4, topic: 'Retaliation', text: "Anti-discrimination laws prohibit harassment against individuals in retaliation for participating in an investigation or lawsuit.", type: 'TF', answer: true, rationale: "Correct! Retaliation against whistleblowers or participants in investigations is strictly prohibited." },
+  { id: 5, topic: 'Illegal Thresholds', text: "Petty slights, annoyances, and isolated incidents will always rise to the level of illegality.", type: 'TF', answer: false, rationale: "Incorrect. Petty slights and isolated incidents generally do *not* rise to the level of illegality unless they are extremely serious." },
+  { id: 6, topic: 'Harasser Identity', text: "Which of the following individuals can be considered a harasser in the workplace?", type: 'MC', options: ["A direct supervisor", "A co-worker", "A non-employee (like a vendor or client)", "All of the above"], answer: 3, rationale: "Correct! Harassment can occur from supervisors, agents of the employer, co-workers, and even non-employees." },
+  { id: 7, topic: 'Victim Identity', text: "To file a valid harassment complaint, the victim must be the person directly targeted by the offensive conduct.", type: 'TF', answer: false, rationale: "Incorrect! The victim does *not* have to be the person harassed directly; it can be anyone negatively affected by the offensive conduct." },
+  { id: 8, topic: 'Economic Injury', text: "Unlawful harassment can occur without any economic injury to or discharge of the victim.", type: 'TF', answer: true, rationale: "Correct! Harassment does not require financial loss (like being fired or demoted) to be considered unlawful." },
+  { id: 9, topic: 'Offensive Conduct', text: "Which of the following is NOT listed as a standard example of offensive conduct?", type: 'MC', options: ["Ridicule or mockery", "Interference with work performance", "Assigning overtime shifts fairly", "Physical assaults or threats"], answer: 2, rationale: "Correct! Fairly assigning overtime is standard operational procedure. Mockery, threats, and work interference are offensive conduct." },
+  { id: 10, topic: 'Cyber Harassment', text: "Obsessively following everything a coworker does or posts online is classified as:", type: 'MC', options: ["Cyberstalking", "Networking", "Digital Monitoring", "Incivility"], answer: 0, rationale: "Correct! Obsessively monitoring or following an employee's online presence constitutes cyberstalking, a form of harassment." },
+  { id: 11, topic: 'Social Media', text: "Disparaging comments made about another employee in a 'private' social media group do not violate workplace harassment policies.", type: 'TF', answer: false, rationale: "Incorrect. Posts, direct/private messages, and group pages that make disparaging comments are still considered harassing conduct." },
+  { id: 12, topic: 'Protected Classes', text: "Sex-based protected traits explicitly include sexual orientation, gender identity, and pregnancy.", type: 'TF', answer: true, rationale: "Correct! All three are explicitly protected under the definition of sex-based harassment." },
+  { id: 13, topic: 'Genetic Info', text: "Discrimination or harassment based on an employee's family medical history is prohibited.", type: 'TF', answer: true, rationale: "Correct! Family medical history falls under the protected class of genetic information." },
+  { id: 14, topic: 'Learning Objectives', text: "According to the course objectives, you should learn the correct actions to take if you are either a victim or a witness of harassment.", type: 'TF', answer: true, rationale: "Correct! Knowing how to act as a bystander/witness is just as important as knowing what to do as a victim." },
+  { id: 15, topic: 'Hostile Environment', text: "A hostile work environment is created solely by physical threats, not by name-calling or offensive pictures.", type: 'TF', answer: false, rationale: "Incorrect! A hostile environment can be created by name-calling, offensive objects/pictures, slurs, and mockery, not just physical threats." },
+  { id: 16, topic: 'Physical Indicators', text: "One physical indicator of sexual abuse may be difficulty walking or sitting.", type: 'TF', answer: true, rationale: "Correct! Difficulty walking or sitting is a recognized physical indicator of sexual abuse that staff should monitor for during assessments." },
+  { id: 17, topic: 'Incivility', text: "Incivility can be defined as anything from bullying to isolation or exclusion of an individual.", type: 'TF', answer: true, rationale: "Correct! Incivility is defined as low-intensity conduct including bullying and social exclusion." },
+  { id: 18, topic: 'Healthcare Statistics', text: "Nearly 75% of workplace assaults occur in a health care setting.", type: 'TF', answer: true, rationale: "Correct! Statistics verify healthcare as the highest risk industry for workplace assaults." },
+  { id: 19, topic: 'Intent vs Impact', text: "“I was just kidding” and “I didn’t mean to…” are acceptable explanations that excuse harassing conduct.", type: 'TF', answer: false, rationale: "Incorrect. Intent does not excuse impact; policy dictates these are not acceptable excuses and will not stop disciplinary action." },
+  { id: 20, topic: 'Warning Signs', text: "Perpetrators of workplace violence often exhibit newly acquired negative traits, such as deteriorating appearance/hygiene, erratic behavior, or reclusiveness.", type: 'TF', answer: true, rationale: "Correct! These behavioral shifts are identified as key warning signs of potential violence." },
+  { id: 21, topic: 'Risk Factors', text: "Isolated work with patients during exams and poorly lit parking areas are potential risk factors for workplace violence.", type: 'TF', answer: true, rationale: "Correct! These are both identified as key environmental and operational risk factors." },
+  { id: 22, topic: 'Incivility Definitions', text: "Workplace incivility is defined as high-intensity aggression with clear intent to harm.", type: 'TF', answer: false, rationale: "Incorrect. Incivility is defined as 'low-intensity' deviant conduct with 'ambiguous intent'." },
+  { id: 23, topic: 'Violence Categories', text: "Which type of violence involves a perpetrator with no legitimate relationship with the business?", type: 'MC', options: ["Type I: Criminal", "Type II: Customer", "Type III: Worker", "Type IV: Personal"], answer: 0, rationale: "Correct! Type I involves criminal intent by someone without a legitimate relationship to the business (e.g., robbery)." },
+  { id: 24, topic: 'Violence Categories', text: "Type II violence is the most common in healthcare and involves patients or clients.", type: 'TF', answer: true, rationale: "Correct! Type II violence involves customers, clients, or patients, which is most frequent in healthcare settings." },
+  { id: 25, topic: 'Hostile Environment Definition', text: "A hostile work environment is a workplace where there are serious instances of harassment and discrimination against protected characteristics such as race, color, religion, sex and pregnancy, national origin, age (40 or older), disability, or genetic information.", type: 'TF', answer: true, rationale: "Correct! This strictly matches the legal and institutional definition of a Hostile Work Environment." },
+  { id: 26, topic: 'Risk Factors', text: "An increasing number of acute and chronically mentally ill patients being released from hospitals without follow-up care is considered a potential risk factor for workplace violence.", type: 'TF', answer: true, rationale: "Correct! The lack of follow-up care, combined with the right to refuse medicine and limits on involuntary hospitalization, creates a systemic risk factor." },
+  { id: 27, topic: 'EAP Resources', text: "The Employee Assistance Program (EAP) would be an appropriate resource for uncivil employees who are struggling with personal issues.", type: 'TF', answer: true, rationale: "Correct! The EAP is a valuable resource to help employees manage personal struggles that may be contributing to uncivil workplace behavior." },
+  { id: 28, topic: 'PREA Screening', text: "The results of the PREA screen are used to aid in determining housing assignments, program assignments, etc. by the correctional staff.", type: 'TF', answer: true, rationale: "Correct! PREA screening results are critical for correctional staff to make safe housing, bed, and program assignments." },
+  { id: 29, topic: 'PREA Juvenile Offenders', text: "PREA specifies that juvenile offenders may be placed in adult housing units.", type: 'TF', answer: false, rationale: "Incorrect. PREA explicitly prohibits placing juvenile offenders in adult housing units to protect them from potential abuse." },
+  { id: 30, topic: 'PREA Screening Timeframes', text: "According to the standards, offenders are to be screened within ____ hours of arrival at the institution for their risk of being sexually abusive or abused.", type: 'MC', options: ["48", "36", "12", "24", "72"], answer: 4, rationale: "Correct! PREA standards mandate that offenders must be screened within 72 hours of arrival to assess their risk of being sexually abusive or abused." },
+  { id: 31, topic: 'PREA Historical Disclosures', text: "During an intake screen, you discover an inmate was a victim of sexual abuse which occurred 3 months ago. Which of the following do you need to do?", type: 'MC', options: ["Complete a rape kit at this time", "Schedule for a medical evaluation within 7 days", "Schedule for a mental health evaluation within 14 days"], answer: 2, rationale: "Correct! For historical sexual abuse disclosures (e.g., 3 months ago), standard protocol requires scheduling a mental health evaluation within 14 days. A rape kit is no longer applicable." },
+  { id: 32, topic: 'PREA Historical Disclosures', text: "You are performing an intake screen on a new arrival to your facility. During your intake screen, you learn that the inmate has a previous history of raping a neighbor. You:", type: 'MC', options: ["Recommend placement in the sexual predator housing unit", "Schedule an appointment with mental health within 14 days for evaluation", "Collect DNA samples"], answer: 1, rationale: "Correct! If an inmate is identified as having a history of sexually abusive behavior during screening, protocol dictates scheduling a mental health evaluation within 14 days." },
+  { id: 33, topic: 'PREA Prohibited Acts', text: "From the list below, select the acts prohibited by PREA as described in the training.", type: 'SATA', options: ["Intentional touching of the inner thigh or buttocks of another person", "Genital penetration", "Derogatory verbal comments of a sexual nature made by staff", "Repeated requests for unwelcome sexual favors", "Staff member watching an inmate undress for a shower", "Offensive verbal comments or gestures made by an inmate"], answer: [0, 1, 2, 3, 4], rationale: "Correct! PREA explicitly prohibits physical sexual abuse and staff sexual harassment/voyeurism. However, inmate-on-inmate offensive verbal comments are handled as standard facility disciplinary violations, not strictly as PREA offenses." },
+  { id: 34, topic: 'PREA Risk Indicators', text: "Which of the following would NOT indicate an increased risk potential for sexual abuse?", type: 'MC', options: ["Developmental or intellectual disabilities", "History of sexual offenses", "Parents divorced at a young age", "Mental illness", "History of being sexually abused"], answer: 2, rationale: "Correct! While disabilities, mental illness, and a history of sexual offenses/abuse are all key indicators for increased risk under PREA, parents divorcing at a young age is not a standard screening indicator." },
+  { id: 35, topic: 'PREA Inmate Education', text: "Information regarding the zero tolerance policy and how to report incidents of sexual abuse or harassment should be given to the inmate:", type: 'MC', options: ["Only if the inmate asks for the information", "During the first provider visit", "During med pass", "During intake"], answer: 3, rationale: "Correct! PREA standards mandate that information regarding the zero-tolerance policy and how to report incidents must be provided to inmates immediately during the intake process." },
+  { id: 36, topic: 'Frequency of Victimization', text: "Most people are only sexually abused once while incarcerated.", type: 'TF', answer: false, rationale: "Correct! Incarcerated individuals who are sexually abused are often targeted repeatedly, not just once. This makes immediate reporting and intervention critical." },
+  { id: 37, topic: 'Terminology: Intersex', text: "Individuals with a chromosomal structure other than XX or XY are defined as 'intersex'.", type: 'TF', answer: true, rationale: "Correct! Intersex is the term used to describe individuals born with chromosomal structures or reproductive anatomies that do not strictly fit typical definitions of male (XY) or female (XX)." },
+  { id: 38, topic: 'Mental Health Vulnerability', text: "Inmates with mental illness are at least 8 times more likely to suffer sexual abuse while incarcerated.", type: 'TF', answer: true, rationale: "Correct! Statistical data indicates that inmates with mental illness face a severely heightened risk of sexual victimization, being at least 8 times more likely to be abused compared to the general population." },
+  { id: 39, topic: 'Mandatory Reporting', text: "You must obtain consent from the inmate BEFORE reporting alleged sexual abuse which occurred inside a correctional facility to designated supervisors and officials.", type: 'TF', answer: false, rationale: "Correct! Staff are mandatory reporters. You are required to report allegations of sexual abuse immediately; you do not need, and should not wait for, the inmate's consent to report." },
+  { id: 40, topic: 'Cross-Facility Reporting', text: "You should notify the warden or superintendent of any alleged sexual abuse which occurred in another facility. The warden/superintendent is to notify the facility where the alleged abuse occurred within ___ hours.", type: 'MC', options: ["24", "48", "72", "96"], answer: 2, rationale: "Correct! Under PREA, if an allegation involves another facility, the warden or superintendent must notify that specific facility within 72 hours." },
+  { id: 41, topic: 'Evidence Collection', text: "Generally, physical evidence of sexual abuse can be collected within ___ hours.", type: 'MC', options: ["72", "24", "48", "36", "12"], answer: 0, rationale: "Correct! Physical evidence of sexual abuse can generally be collected within 72 hours of the incident." },
+  { id: 42, topic: 'Preserving Evidence', text: "If the alleged abuse occurred within a time period that still allows for the collection of physical evidence, request the alleged victim not to take any actions which could destroy the evidence such as: (mark all that apply)", type: 'SATA', options: ["Brushing teeth", "Drinking", "Urinating", "Smoking", "Moving bowels", "Showering", "Eating", "Sitting or laying down"], answer: [0, 1, 2, 3, 4, 5, 6], rationale: "Correct! To preserve DNA and physical evidence for a forensic exam, the victim should be instructed not to brush teeth, drink, eat, urinate, move bowels, smoke, or shower. Sitting or laying down does not typically destroy evidence." },
+  { id: 43, topic: 'Nurse\'s Role', text: "The role of the nurse in an alleged sexual assault situation includes treating the victim with respect and dignity, determining the time frame of alleged occurrence, notifying the medical director, and completing documentation.", type: 'TF', answer: true, rationale: "Correct! The nurse's responsibilities involve respectful treatment, determining the evidence collection window, proper notification, and thorough documentation." },
+  { id: 44, topic: 'Indicators of Abuse', text: "From the list below, which is NOT a common physical indicator of sexual abuse in adults.", type: 'MC', options: ["Unexplained injury", "Difficulty walking to standing", "Planned pregnancy", "STDs", "Alcohol abuse", "Abdominal pain"], answer: 2, rationale: "Correct! A planned pregnancy is not a sign of abuse, whereas unexplained injuries, STDs, abdominal pain, difficulty walking/standing, and new alcohol/substance abuse issues are common indicators." },
+  { id: 45, topic: 'Psychological Indicators', text: "From the list below, choose the answer that is NOT a common psychological indicator of abuse.", type: 'MC', options: ["Depression/suicidal thoughts", "Difficulty concentrating", "Positive self-image", "Feelings of guilt", "Taking risks"], answer: 2, rationale: "Correct! Victims of abuse commonly experience depression, guilt, difficulty concentrating, and risk-taking behaviors. A positive self-image is not a typical psychological indicator of abuse." },
+  { id: 46, topic: 'Responses to Abuse', text: "Men and women have similar responses to sexual abuse.", type: 'TF', answer: true, rationale: "Correct! Despite societal misconceptions, men and women generally experience and exhibit similar psychological and physiological responses to the trauma of sexual abuse." },
+  { id: 47, topic: 'Adolescent Indicators', text: "Observations of sexual abuse which are common in adolescent victims include: (mark all that apply)", type: 'SATA', options: ["Wearing multiple layers of clothes", "Sexual promiscuity", "Mood swings", "Longing of intimacy and close relationships"], answer: [0, 1, 2], rationale: "Correct! Wearing multiple layers, acting out with sexual promiscuity, and mood swings are all documented indicators of abuse in adolescents. They typically struggle with intimacy rather than exhibiting a healthy longing for it." },
+  { id: 48, topic: 'Medical Examinations', text: "Medical exams following sexual abuse must be performed by a SANE or other qualified medical practitioner.", type: 'TF', answer: true, rationale: "Correct! To ensure forensic integrity and trauma-informed care, these sensitive exams must be conducted by a Sexual Assault Nurse Examiner (SANE) or equivalently qualified medical practitioner." }
+];
+
+const TOPICS = ["Definitions", "Violence Types", "Legal/EEOC", "Sexual Harassment", "De-escalation", "Reporting Policy", "Bystander Intervention"];
+for(let i=48; i<=100; i++) {
+  const topic = TOPICS[i % TOPICS.length];
+  QUESTIONS.push({
+    id: i,
+    topic: topic,
+    text: `[Placeholder Question ${i}] related to ${topic}. Content to be replaced by the next batch of screenshots.`,
+    type: 'TF',
+    answer: true,
+    rationale: `Placeholder rationale for ${topic}.`
+  });
+}
+
+let state = { idx: 0, correct: 0, incorrect: 0, isGrading: false, missedTopics: new Set(), answered: {}, sataSelections: new Set() };
+
+function toggleTheme(e) { 
+    if(e) e.stopPropagation(); 
+    document.documentElement.classList.toggle('dark'); 
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => btn.innerHTML = document.documentElement.classList.contains('dark') ? '☀️' : '🌙');
+}
+
+function startQuiz(e) {
+  if(e) e.stopPropagation();
+  state = { idx: 0, correct: 0, incorrect: 0, isGrading: false, missedTopics: new Set(), answered: {}, sataSelections: new Set() };
+  document.getElementById('view-study').classList.add('hidden');
+  document.getElementById('view-results').classList.add('hidden');
+  document.getElementById('view-quiz').classList.remove('hidden');
+  renderQ();
+}
+
+function exitQuiz(e) {
+  if(e) e.stopPropagation();
+  document.getElementById('view-quiz').classList.add('hidden');
+  document.getElementById('view-results').classList.add('hidden');
+  document.getElementById('view-study').classList.remove('hidden');
+}
+
+function renderQ() {
+  state.isGrading = false;
+  state.sataSelections = new Set();
+  const q = QUESTIONS[state.idx];
+  document.getElementById('q-count-display').innerText = `Question ${state.idx + 1} / ${QUESTIONS.length}`;
+  document.getElementById('nav-container').classList.add('hidden');
+
+  let html = `<div class="q-card" data-answered="false"><div style="color:var(--accent); font-weight:900; font-size:0.85rem; margin-bottom:1rem; text-transform:uppercase; letter-spacing:1px;">${q.topic}</div><div class="q-text">${q.text}</div>`;
+  
+  if (q.type === 'TF') {
+    html += `<div class="choice-row" onclick="processAnswer(true, this, event)">True</div><div class="choice-row" onclick="processAnswer(false, this, event)">False</div>`;
+  } else if (q.type === 'MC') {
+    html += q.options.map((o, i) => `<div class="choice-row" onclick="processAnswer(${i}, this, event)">${o}</div>`).join('');
+  } else if (q.type === 'SATA') {
+    html += q.options.map((o, i) => `<div class="choice-row sata-mode" onclick="toggleSATA(${i}, this, event)"><div class="checkbox-mock"></div>${o}</div>`).join('');
+    html += `<button class="sata-submit-btn" onclick="submitSATA(event)">Submit Answer</button>`;
+  }
+  document.getElementById('q-container').innerHTML = html + `<div id="rationale-box"></div></div>`;
+  updateScoreCircle();
+}
+
+function toggleSATA(idx, el, e) {
+  if (state.isGrading) return;
+  if(e) e.stopPropagation();
+  if (state.sataSelections.has(idx)) {
+      state.sataSelections.delete(idx);
+      el.classList.remove('selected');
+  } else {
+      state.sataSelections.add(idx);
+      el.classList.add('selected');
+  }
+}
+
+function submitSATA(e) {
+  if (state.isGrading) return;
+  if(e) e.stopPropagation();
+  state.isGrading = true;
+  
+  const q = QUESTIONS[state.idx];
+  const correctSet = new Set(q.answer);
+  
+  let isCorrect = (state.sataSelections.size === correctSet.size) && [...state.sataSelections].every(val => correctSet.has(val));
+  state.answered[state.idx] = Array.from(state.sataSelections);
+
+  if (isCorrect) {
+      state.correct++;
+  } else {
+      state.incorrect++;
+      state.missedTopics.add(q.topic);
+  }
+
+  const buttons = document.querySelectorAll('.choice-row');
+  buttons.forEach((btn, i) => {
+      btn.classList.add('disabled');
+      let isSelected = state.sataSelections.has(i);
+      let isActuallyCorrect = correctSet.has(i);
+
+      if (isActuallyCorrect) {
+          btn.classList.add('correct');
+          if(!btn.querySelector('.q-ans-icon')) btn.innerHTML += '<span class="q-ans-icon" style="color:#10b981;">✓ Required</span>';
+      } else if (isSelected && !isActuallyCorrect) {
+          btn.classList.add('incorrect');
+          if(!btn.querySelector('.q-ans-icon')) btn.innerHTML += '<span class="q-ans-icon" style="color:#ef4444;">✗ Wrong</span>';
+      }
+  });
+
+  const submitBtn = document.querySelector('.sata-submit-btn');
+  if (submitBtn) submitBtn.style.display = 'none';
+
+  const ratContainer = document.getElementById('rationale-box');
+  ratContainer.innerHTML = `
+      <div class="q-rationale visible">
+          <div class="q-rat-hdr ${isCorrect ? 'correct' : 'incorrect'}">
+              ${isCorrect ? '✔️ Correct!' : '❌ Incorrect'}
+          </div>
+          <div class="q-rat-body">
+              <div class="q-rat-label">🤓 Rationale:</div>
+              <div class="q-rat-text">${q.rationale}</div>
+          </div>
+      </div>
+  `;
+
+  const qCard = document.querySelector('.q-card');
+  if (qCard) {
+      qCard.style.cursor = 'pointer';
+      qCard.setAttribute('data-answered', 'true');
+  }
+
+  updateScoreCircle();
+  document.getElementById('nav-container').classList.remove('hidden');
+}
+
+function processAnswer(val, el, e) {
+  if (state.isGrading) return;
+  if(e) e.stopPropagation();
+  state.isGrading = true;
+  
+  const q = QUESTIONS[state.idx];
+  let isCorrect = (val === q.answer);
+  state.answered[state.idx] = val;
+
+  if (isCorrect) {
+      state.correct++;
+  } else {
+      state.incorrect++;
+      state.missedTopics.add(q.topic);
+  }
+
+  const buttons = document.querySelectorAll('.choice-row');
+  buttons.forEach((btn, i) => {
+      btn.classList.add('disabled');
+      let btnVal = (q.type === 'TF') ? (i === 0 ? true : false) : i;
+
+      if (btnVal === q.answer) {
+          btn.classList.add('correct');
+          btn.innerHTML += '<span class="q-ans-icon" style="color:#10b981;">✓</span>';
+      } else if (btnVal === val && val !== q.answer) {
+          btn.classList.add('incorrect');
+          btn.innerHTML += '<span class="q-ans-icon" style="color:#ef4444;">✗</span>';
+      }
+  });
+
+  const ratContainer = document.getElementById('rationale-box');
+  ratContainer.innerHTML = `
+      <div class="q-rationale visible">
+          <div class="q-rat-hdr ${isCorrect ? 'correct' : 'incorrect'}">
+              ${isCorrect ? '✔️ Correct!' : '❌ Incorrect'}
+          </div>
+          <div class="q-rat-body">
+              <div class="q-rat-label">🤓 Rationale:</div>
+              <div class="q-rat-text">${q.rationale}</div>
+          </div>
+      </div>
+  `;
+
+  const qCard = document.querySelector('.q-card');
+  if (qCard) {
+      qCard.style.cursor = 'pointer';
+      qCard.setAttribute('data-answered', 'true');
+  }
+
+  updateScoreCircle();
+  document.getElementById('nav-container').classList.remove('hidden');
+}
+
+function updateScoreCircle() {
+  const answered = state.correct + state.incorrect;
+  const pct = answered > 0 ? Math.round((state.correct / answered) * 100) : 0;
+  const circle = document.getElementById('score-circle');
+  if(circle) {
+      circle.innerText = `${pct}%`;
+      circle.style.borderColor = pct >= 85 ? '#10b981' : (pct > 0 ? '#ef4444' : 'rgba(255,255,255,0.4)');
+  }
+}
+
+function advanceQ(e) {
+  if(e) e.stopPropagation();
+  if (state.idx < QUESTIONS.length - 1) { 
+      state.idx++; 
+      renderQ(); 
+  } else { 
+      showResults(); 
+  }
+}
+
+document.addEventListener('click', function(e) {
+  if (!state.isGrading) return;
+  const qCard = document.querySelector('.q-card');
+  if (!qCard || qCard.getAttribute('data-answered') !== 'true') return;
+  if (e.target.closest('.exit-btn') || e.target.closest('.quiz-badge-btn') || e.target.closest('.theme-toggle-btn') || e.target.closest('.click-continue-pulse')) return;
+  advanceQ();
+});
+
+function retestMissed() {
+    if (state.incorrect === 0) return;
+    startQuiz(new Event('click'));
+}
+
+function showResults() {
+  document.getElementById('view-quiz').classList.add('hidden');
+  document.getElementById('view-results').classList.remove('hidden');
+  
+  const total = state.correct + state.incorrect;
+  const unanswered = QUESTIONS.length - total;
+  const score = total > 0 ? Math.round((state.correct / QUESTIONS.length) * 100) : 0;
+
+  const unEl = document.getElementById('qc-unanswered');
+  if (unanswered > 0) {
+    unEl.classList.remove('hidden');
+    document.getElementById('qc-unanswered-ct').innerText = unanswered;
+  } else {
+    unEl.classList.add('hidden');
+  }
+
+  document.getElementById('qc-total').innerText = `${total}/100`;
+  document.getElementById('qc-correct').innerText = state.correct;
+  document.getElementById('qc-wrong').innerText = state.incorrect;
+  document.getElementById('qc-pct').innerText = `${score}%`;
+
+  const weakBody = document.getElementById('qc-weak-body');
+  if (state.incorrect > 0) {
+    let wHtml = '';
+    const letters = ['A','B','C','D'];
+    for (let i = 0; i < QUESTIONS.length; i++) {
+        if (state.answered[i] !== undefined && state.answered[i] !== QUESTIONS[i].answer) {
+            let itm = QUESTIONS[i];
+            let qTxt = itm.text.length > 80 ? itm.text.substring(0, 80) + '...' : itm.text;
+            
+            let userAnsStr = '';
+            let corrAnsStr = '';
+            
+            if(itm.type === 'TF') {
+                userAnsStr = state.answered[i] ? 'True' : 'False';
+                corrAnsStr = itm.answer ? 'True' : 'False';
+            } else if (itm.type === 'MC') {
+                userAnsStr = letters[state.answered[i]] || 'Unknown';
+                corrAnsStr = letters[itm.answer] || 'Unknown';
+            } else if (itm.type === 'SATA') {
+                userAnsStr = 'Multiple Selections';
+                corrAnsStr = 'Multiple Required';
+            }
+            
+            wHtml += `<div class="qc-weak-item"><div class="qc-weak-q">Q${i+1}: ${qTxt}</div>` +
+                     `<div class="qc-weak-a">Your answer: ${userAnsStr} — Correct: ${corrAnsStr}</div></div>`;
+        }
+    }
+    weakBody.innerHTML = wHtml;
+    
+    document.getElementById('qc-missed').innerText = state.incorrect;
+    document.getElementById('qc-retest').style.display = 'block';
+  } else if (total > 0) {
+    weakBody.innerHTML = '<div class="qc-no-weak">🎉 Perfect score! No weak areas identified.</div>';
+    document.getElementById('qc-retest').style.display = 'none';
+  } else {
+    weakBody.innerHTML = '<div class="qc-no-weak" style="color:var(--text-muted); border-color:var(--border); background:var(--surface-alt)">No questions answered yet.</div>';
+    document.getElementById('qc-retest').style.display = 'none';
+  }
+}
+</script>
+</body>
+</html>

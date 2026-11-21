@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Not Crush Assessor — Peptopia Health</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- PDF.js for parsing PDF MedPass reports directly in the browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#F4F6FA;--card:#FFF;--border:rgba(15,23,42,.07);
+            --sh:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
+            --sh-h:0 12px 28px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
+            --t1:#0F172A;--t2:#475569;--t3:#94A3B8;
+            --brand-purple:#9000F5;--pink:#FF85E1;
+            --cyan:#06B6D4;--cyan-dark:#0891B2;--emerald:#10B981;
+            --danger:#EF4444;--danger-light:#FEE2E2;
+            --safe-light:rgba(16,185,129,0.15);
+        }
+        html.dark{
+            --bg:#0B1120;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);
+            --sh:none;--sh-h:0 0 0 0 transparent;
+            --t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;
+            --danger-light:rgba(239,68,68,0.15);
+            --safe-light:rgba(52,211,153,0.15);
+        }
+        body{
+            font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);
+            min-height:100vh;line-height:1.6;display:flex;flex-direction:column;
+            transition:background-color .35s ease,color .35s ease
+        }
+
+        /* Background atmosphere */
+        body::before{
+            content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+            background:
+                radial-gradient(ellipse at 15% 20%,rgba(239,68,68,.03) 0%,transparent 55%),
+                radial-gradient(ellipse at 85% 80%,rgba(245,158,11,.03) 0%,transparent 50%),
+                radial-gradient(ellipse at 50% 50%,rgba(239,68,68,.015) 0%,transparent 60%);
+            pointer-events:none;z-index:0;transition:background .35s ease
+        }
+        html.dark body::before{
+            background:
+                radial-gradient(ellipse at 15% 20%,rgba(239,68,68,.06) 0%,transparent 55%),
+                radial-gradient(ellipse at 85% 80%,rgba(245,158,11,.05) 0%,transparent 50%),
+                radial-gradient(ellipse at 50% 50%,rgba(239,68,68,.03) 0%,transparent 60%)
+        }
+        body::after{
+            content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+            background-image:radial-gradient(rgba(15,23,42,.04) 1px,transparent 1px);
+            background-size:32px 32px;pointer-events:none;z-index:0;transition:background-image .35s ease
+        }
+        html.dark body::after{
+            background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px)
+        }
+
+        /* Header */
+        .hdr{
+            position:relative;z-index:10;padding:20px 24px;display:flex;align-items:center;
+            justify-content:space-between;max-width:1200px;margin:0 auto;width:100%
+        }
+        .hdr-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+        .logo{
+            width:42px;height:42px;border-radius:12px;
+            background:linear-gradient(135deg,var(--brand-purple),var(--pink));
+            display:flex;align-items:center;justify-content:center;
+            font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;color:#fff;
+            box-shadow:0 0 20px rgba(144,0,245,.3)
+        }
+        .brand{display:flex;flex-direction:column}
+        .brand-name{
+            font-family:'Outfit',sans-serif;font-weight:700;font-size:1.15rem;color:var(--t1);
+            letter-spacing:2px;text-transform:uppercase;line-height:1.1;transition:color .35s ease
+        }
+        .brand-tag{font-size:.7rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;transition:color .35s ease}
+        .nav{display:flex;align-items:center;gap:8px}
+        .nav a{
+            font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;text-transform:uppercase;
+            letter-spacing:1.5px;color:var(--t2);text-decoration:none;padding:8px 16px;border-radius:8px;
+            transition:background .3s ease,color .3s ease
+        }
+        .nav a:hover{color:var(--t1);background:rgba(15,23,42,.03)}
+        html.dark .nav a:hover{background:rgba(255,255,255,.05)}
+        .theme-toggle{
+            width:40px;height:40px;border-radius:50%;border:1px solid rgba(15,23,42,.1);
+            background:#fff;color:var(--t2);cursor:pointer;display:flex;align-items:center;
+            justify-content:center;font-size:1.05rem;margin-left:4px;box-shadow:var(--sh);
+            transition:background .35s ease,border-color .35s ease,color .35s ease
+        }
+        html.dark .theme-toggle{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+        .theme-toggle:hover{color:var(--t1);background:rgba(15,23,42,.04)}
+        html.dark .theme-toggle:hover{background:rgba(255,255,255,.12)}
+        .theme-toggle .fa-sun{display:none}
+        html.dark .theme-toggle .fa-moon{display:none}
+        html.dark .theme-toggle .fa-sun{display:inline-block;color:#FBBF24}
+
+        /* Hero */
+        .hero{text-align:center;padding:32px 24px;max-width:800px;margin:0 auto;position:relative;z-index:1}
+        .hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.5rem,5vw,3.5rem);font-weight:800;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+        .hero h1 .grad{
+            background:linear-gradient(135deg,var(--danger),#B91C1C);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+        }
+        html.dark .hero h1 .grad{
+            background:linear-gradient(135deg,#FCA5A5,var(--danger));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+        }
+        .hero p{font-size:1.05rem;color:var(--t2);transition:color .35s ease; max-width: 600px; margin: 0 auto;}
+
+        /* App Controls (Upload & Assess) */
+        .app-controls {
+            max-width: 800px; margin: 0 auto 48px; padding: 0 24px; position: relative; z-index: 1;
+            display: flex; flex-direction: column; gap: 20px; align-items: center;
+        }
+        .upload-zone {
+            width: 100%; border: 2px dashed var(--cyan); border-radius: 16px; padding: 40px 20px;
+            text-align: center; background: var(--card); cursor: pointer; transition: all 0.3s ease;
+            box-shadow: var(--sh); position: relative; overflow: hidden;
+        }
+        .upload-zone:hover { background: rgba(6,182,212,0.05); border-color: var(--cyan-dark); }
+        html.dark .upload-zone:hover { background: rgba(34,211,238,0.05); }
+        .upload-zone i { font-size: 2.5rem; color: var(--cyan); margin-bottom: 12px; }
+        .upload-zone p { color: var(--t2); font-family: 'Outfit', sans-serif; font-size: 1.1rem; }
+        .upload-zone small { color: var(--t3); display: block; margin-top: 8px; font-size: 0.85rem; }
+        #file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+        
+        #file-name-display {
+            font-weight: 700; color: var(--t1); margin-top: 10px; display: none;
+            background: rgba(15,23,42,0.05); padding: 8px 16px; border-radius: 8px;
+        }
+        html.dark #file-name-display { background: rgba(255,255,255,0.05); }
+
+        .btn-assess {
+            background: linear-gradient(135deg, var(--cyan-dark), var(--cyan));
+            color: #fff; border: none; padding: 14px 32px; border-radius: 12px;
+            font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(6,182,212,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .btn-assess:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6,182,212,0.4); }
+        .btn-assess:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .toolbar {
+            display: none; width: 100%; max-width: 1200px; margin: 0 auto 20px; padding: 0 24px;
+            justify-content: flex-end; align-items: center; gap: 12px; position: relative; z-index: 1;
+        }
+        .filter-toggle {
+            display: flex; align-items: center; gap: 10px; background: var(--card); padding: 10px 16px;
+            border-radius: 8px; border: 1px solid var(--border); cursor: pointer; color: var(--t1);
+            font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem; box-shadow: var(--sh);
+            transition: all 0.3s ease;
+        }
+        .filter-toggle:hover { background: rgba(6,182,212,0.05); border-color: var(--cyan); color: var(--cyan-dark); }
+        html.dark .filter-toggle:hover { background: rgba(34,211,238,0.1); color: var(--cyan); }
+        .filter-toggle input { cursor: pointer; width: 16px; height: 16px; accent-color: var(--cyan); }
+
+        /* Output Sections & Tables */
+        .results-container { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 32px; padding-bottom: 48px; }
+        .section { padding: 0 24px; }
+        .section-title {
+            font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--t1);
+            margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(15,23,42,.06);
+            transition: color .35s ease, border-color .35s ease; display: flex; align-items: center; gap: 10px;
+        }
+        html.dark .section-title{border-color:rgba(255,255,255,.06)}
+        
+        .table-wrap {
+            width: 100%; overflow-x: auto; background: var(--card); border: 1px solid var(--border);
+            border-radius: 12px; box-shadow: var(--sh); transition: background .35s ease, border-color .35s ease;
+        }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.95rem; transition: border-color .35s ease, color .35s ease; }
+        th { font-family: 'Outfit', sans-serif; font-weight: 700; background: rgba(15,23,42,0.02); color: var(--t2); letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.85rem; }
+        html.dark th { background: rgba(255,255,255,0.02); }
+        tr:last-child td { border-bottom: none; }
+        td { color: var(--t1); }
+        
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; 
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            font-family: 'Outfit', sans-serif;
+        }
+        .bg-safe { background: var(--safe-light); color: #059669; }
+        html.dark .bg-safe { color: #34D399; }
+        .bg-danger { background: var(--danger-light); color: var(--danger); }
+        html.dark .bg-danger { color: #FCA5A5; }
+
+        /* Loader */
+        .loader {
+            display: none; width: 40px; height: 40px; border: 4px solid var(--border);
+            border-top-color: var(--cyan); border-radius: 50%; animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        .empty-state { text-align: center; color: var(--t2); padding: 40px; font-style: italic; }
+
+        /* Footer */
+        .footer{
+            position:relative;z-index:1;text-align:center;padding:32px 24px;
+            border-top:1px solid rgba(15,23,42,.06);margin-top:auto;
+            transition:border-color .35s ease
+        }
+        html.dark .footer{border-color:rgba(255,255,255,.04)}
+        .footer-inner{
+            max-width:1200px;margin:0 auto;display:flex;align-items:center;
+            justify-content:space-between;flex-wrap:wrap;gap:16px
+        }
+        .footer-copy{font-size:.78rem;color:var(--t3);letter-spacing:.5px;transition:color .35s ease}
+
+        /* Responsive */
+        @media(max-width:768px){
+            .hdr{padding:16px}
+            .brand{display:none}
+            .nav a{padding:8px 10px;font-size:.72rem;letter-spacing:1px}
+            .footer-inner{flex-direction:column;text-align:center}
+        }
+
+        /* Print Optimization */
+        @media print {
+            body { background: #fff; color: #000; display: block; }
+            body::before, body::after { display: none; }
+            .hdr, .hero, .app-controls, .toolbar, .footer { display: none !important; }
+            .results-container { padding: 0; margin: 0; max-width: 100%; display: block; }
+            .section { padding: 0; margin-bottom: 24px; page-break-inside: avoid; }
+            .table-wrap { border: 1px solid #ccc; box-shadow: none; overflow: visible; }
+            th, td { padding: 8px 12px; font-size: 10pt; color: #000; border-bottom: 1px solid #ccc; }
+            th { background: rgba(15,23,42,0.05) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .badge { border: 1px solid #999; }
+            .bg-danger { background: #FEE2E2 !important; color: #EF4444 !important; border-color: #FCA5A5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .bg-safe { background: #D1FAE5 !important; color: #059669 !important; border-color: #6EE7B7; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hdr">
+        <a href="https://peptopia-health.github.io/" class="hdr-brand">
+            <div class="logo">P</div>
+            <div class="brand">
+                <span class="brand-name">Peptopia</span>
+                <span class="brand-tag">Health &amp; Wellness</span>
+            </div>
+        </a>
+        <nav class="nav">
+            <a href="https://peptopia-health.github.io/">Home</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-sun"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1><span class="grad"><i class="fa-solid fa-notes-medical"></i> DO NOT CRUSH</span></h1>
+        <p>Upload the CorEMR MedPass Report (PDF, CSV, or TXT).<br>The report will group patients by Pod and flag any prescriptions that should not be crushed.</p>
+    </section>
+
+    <section class="app-controls">
+        <div class="upload-zone" id="upload-drop-zone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Drag & Drop MedPass Report Here</p>
+            <small>Supports .pdf, .csv, and .txt files exported from CorEMR</small>
+            <input type="file" id="file-input" accept=".pdf,.csv,.txt">
+        </div>
+        <div id="file-name-display"><i class="fa-solid fa-file-check"></i> <span id="file-name-text"></span></div>
+        <button class="btn-assess" id="btn-assess" disabled>
+            <i class="fa-solid fa-magnifying-glass"></i> Assess MedPass
+        </button>
+        <div class="loader" id="loader"></div>
+    </section>
+
+    <div class="toolbar" id="toolbar">
+        <button class="filter-toggle" onclick="window.print()" title="Print this report">
+            <i class="fa-solid fa-print"></i> Print
+        </button>
+        <label class="filter-toggle">
+            <input type="checkbox" id="show-full-list" onchange="applyFilter()">
+            <i class="fa-solid fa-list"></i> Show Full List
+        </label>
+    </div>
+
+    <div class="results-container" id="results-area">
+        <!-- Dynamic content injected here -->
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Peptopia Health &bull; Internal Clinical Tool</span>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // 1. STATIC DO NOT CRUSH / CHEW DATA LIST
+        // ==========================================
+        const DNC_LIST = [
+            { brand: "Absorica", generic: "isotretinoin" },
+            { brand: "Accutane", generic: "isotretinoin" },
+            { brand: "AcipHex", generic: "rabeprazole" },
+            { brand: "Adderall XR", generic: "amphetamine" },
+            { brand: "Ambien CR", generic: "zolpidem" },
+            { brand: "Concerta", generic: "methylphenidate" },
+            { brand: "Cymbalta", generic: "duloxetine" },
+            { brand: "Effexor XR", generic: "venlafaxine" },
+            { brand: "Metoprolol ER", generic: "metoprolol" }, // Script handles ER/Succinate distinction
+            { brand: "Morphine sulfate ER", generic: "morphine" }, // Script handles ER/Contin distinction
+            { brand: "NexIUM", generic: "esomeprazole" },
+            { brand: "OxyCONTIN", generic: "oxyCODONE" },
+            { brand: "Paxil CR", generic: "PARoxetine" },
+            { brand: "PriLOSEC", generic: "omeprazole" }
+        ];
+
+        // ==========================================
+        // 2. UI & EVENT LISTENERS
+        // ==========================================
+        const fileInput = document.getElementById('file-input');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const fileNameText = document.getElementById('file-name-text');
+        const btnAssess = document.getElementById('btn-assess');
+        const loader = document.getElementById('loader');
+        const resultsArea = document.getElementById('results-area');
+        const toolbar = document.getElementById('toolbar');
+        const filterCheckbox = document.getElementById('show-full-list');
+
+        // Setup PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileNameText.textContent = file.name;
+                fileNameDisplay.style.display = 'inline-block';
+                btnAssess.disabled = false;
+                resultsArea.innerHTML = ''; // clear previous
+                toolbar.style.display = 'none';
+                filterCheckbox.checked = false; // Reset to default filtered view
+            }
+        });
+
+        btnAssess.addEventListener('click', processFile);
+
+        // ==========================================
+        // 3. FILE PROCESSING LOGIC
+        // ==========================================
+        async function processFile() {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            btnAssess.style.display = 'none';
+            loader.style.display = 'block';
+            resultsArea.innerHTML = '';
+            toolbar.style.display = 'none';
+
+            try {
+                let rawText = "";
+                if (file.type === "application/pdf" || file.name.toLowerCase().endsWith('.pdf')) {
+                    rawText = await extractTextFromPDF(file);
+                } else {
+                    rawText = await file.text();
+                }
+
+                const records = parseCorEMRData(rawText);
+                if (records.length === 0) {
+                    throw new Error("No MedPass records found. Please ensure this is a valid CorEMR export.");
+                }
+
+                const assessedData = assessRecords(records);
+                renderResults(assessedData);
+                applyFilter(); // Immediately apply default filter (hide unflagged)
+                toolbar.style.display = 'flex';
+                
+            } catch (err) {
+                console.error(err);
+                resultsArea.innerHTML = `<div class="empty-state" style="color:var(--danger)"><i class="fa-solid fa-circle-exclamation"></i> Error processing file: ${err.message}</div>`;
+            } finally {
+                loader.style.display = 'none';
+                btnAssess.style.display = 'flex';
+            }
+        }
+
+        async function extractTextFromPDF(file) {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+            let fullText = "";
+            
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                
+                // Advanced Spatial Parsing: Group text elements by their Y-coordinate to reconstruct lines
+                let items = textContent.items;
+                items.sort((a, b) => {
+                    let yDiff = Math.round(b.transform[5]) - Math.round(a.transform[5]);
+                    // If vertical difference is tiny (<5px), they are on the same visual line, sort horizontally
+                    if (Math.abs(yDiff) < 5) {
+                        return Math.round(a.transform[4]) - Math.round(b.transform[4]);
+                    }
+                    return yDiff; 
+                });
+
+                let pageStr = "";
+                let lastY = null;
+                for (let item of items) {
+                    let currentY = Math.round(item.transform[5]);
+                    if (lastY !== null && Math.abs(currentY - lastY) >= 5) {
+                        pageStr += "\n";
+                    }
+                    pageStr += item.str + "  "; // Insert double space to preserve column gaps
+                    lastY = currentY;
+                }
+                fullText += pageStr + "\n";
+            }
+            return fullText;
+        }
+
+        function parseCorEMRData(text) {
+            const records = [];
+            const seenKeys = new Set();
+            
+            function addRecord(p, l, rx) {
+                let patient = p.replace(/[\r\n\|]+/g, ' ').replace(/\s+/g, ' ').trim();
+                let location = l.replace(/[\r\n\s\|]+/g, '').trim(); 
+                let prescription = rx.replace(/[\r\n\|]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+                if (!patient || !location || !prescription) return;
+                // Basic validation against junk lines
+                if (patient.length > 60 || prescription.length > 200) return; 
+
+                const key = `${patient}|${location}|${prescription}`;
+                if (!seenKeys.has(key)) {
+                    seenKeys.add(key);
+                    
+                    // Extract broad Pod Letter (e.g. "A" from ERJ-A-1-01-B) for grouping
+                    let podMatch = location.match(/ERJ-([A-Z])/);
+                    let pod = podMatch ? podMatch[1] : 'Other';
+
+                    // Format detailed location for display: 
+                    // e.g. "ERJ-A-1-15-B" -> "A-1, cell 15" (drops ERJ- and the bed letter -B)
+                    let formattedLocation = location;
+                    let locParts = location.match(/ERJ-([A-Z0-9\-]+?)-(\d{2,})/);
+                    if(locParts) {
+                        formattedLocation = `${locParts[1]}, cell ${locParts[2]}`;
+                    }
+
+                    records.push({ patient, location: formattedLocation, prescription, pod });
+                }
+            }
+
+            // 1. Spatial Heuristic Parsing (For raw PDF text output)
+            const lines = text.split('\n');
+            for(let line of lines) {
+                // Find the location column anchor (e.g. ERJ-)
+                let locIndex = line.indexOf('ERJ-');
+                if(locIndex !== -1) {
+                    let locMatch = line.substring(locIndex).match(/ERJ-[A-Z0-9\-]+/);
+                    if(locMatch) {
+                        let location = locMatch[0];
+                        
+                        let beforeLoc = line.substring(0, locIndex).trim();
+                        let afterLoc = line.substring(locIndex + location.length).trim();
+                        
+                        // Patient is usually the text chunk immediately preceding the location
+                        let beforeParts = beforeLoc.split('  ').map(s=>s.trim()).filter(s=>s.length>0);
+                        let patient = beforeParts.length > 0 ? beforeParts[beforeParts.length-1] : '';
+                        
+                        // Prescription is usually the text chunk immediately following the location
+                        let rxParts = afterLoc.split(/\s\s+|\d{2}\/\d{2}\/\d{4}/);
+                        let prescription = rxParts.length > 0 ? rxParts[0].trim() : '';
+                        
+                        if(patient && location && prescription) {
+                            addRecord(patient, location, prescription);
+                        }
+                    }
+                }
+            }
+
+            // 2. Fallback for clean CSV formats if heuristic didn't catch anything
+            if(records.length === 0) {
+                const csvRegex = /"([^"]+)"\s*,\s*"([^"]*ERJ-[^"]*)"\s*,\s*"([^"]+)"/g;
+                let match;
+                while ((match = csvRegex.exec(text)) !== null) {
+                    addRecord(match[1], match[2], match[3]);
+                }
+            }
+
+            return records;
+        }
+
+        function assessRecords(records) {
+            records.forEach(r => {
+                r.isFlagged = false;
+                r.flagReason = '';
+                const rxLower = r.prescription.toLowerCase();
+
+                for (let dnc of DNC_LIST) {
+                    const brandLower = dnc.brand.toLowerCase();
+                    const genLower = dnc.generic.toLowerCase();
+
+                    if (brandLower === 'metoprolol er') {
+                        if (rxLower.includes('metoprolol er') || rxLower.includes('metoprolol succinate')) {
+                            r.isFlagged = true; r.flagReason = `${dnc.brand} (${dnc.generic})`; break;
+                        }
+                    } else if (brandLower === 'morphine sulfate er') {
+                        if (rxLower.includes('morphine sulfate er') || rxLower.includes('ms contin')) {
+                            r.isFlagged = true; r.flagReason = `${dnc.brand} (${dnc.generic})`; break;
+                        }
+                    } else if (rxLower.includes(brandLower) || rxLower.includes(genLower)) {
+                        r.isFlagged = true; r.flagReason = `${dnc.brand} (${dnc.generic})`; break;
+                    }
+                }
+            });
+
+            // Group by Pod (A, E, M, etc.)
+            const grouped = {};
+            records.forEach(r => {
+                if (!grouped[r.pod]) grouped[r.pod] = [];
+                grouped[r.pod].push(r);
+            });
+
+            // Ascending sort for Pods and Locations
+            const sortedGrouped = {};
+            Object.keys(grouped).sort().forEach(key => {
+                sortedGrouped[key] = grouped[key].sort((a,b) => a.location.localeCompare(b.location));
+            });
+
+            return sortedGrouped;
+        }
+
+        // ==========================================
+        // 4. RENDERING & UI LOGIC
+        // ==========================================
+        function renderResults(groupedData) {
+            let html = '';
+            for (const [pod, patients] of Object.entries(groupedData)) {
+                const hasFlags = patients.some(p => p.isFlagged);
+                const titleIcon = hasFlags ? '<i class="fa-solid fa-triangle-exclamation" style="color:var(--danger)"></i>' : '<i class="fa-solid fa-circle-check" style="color:var(--emerald)"></i>';
+                
+                html += `
+                <section class="section unit-section" data-has-flags="${hasFlags}">
+                    <h2 class="section-title">${titleIcon} ${pod}-Pod</h2>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Location</th>
+                                    <th>DNC Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                patients.forEach(p => {
+                    const statusBadge = p.isFlagged 
+                        ? `<span class="badge bg-danger"><i class="fa-solid fa-xmark"></i> ${p.flagReason}</span>`
+                        : `<span class="badge bg-safe"><i class="fa-solid fa-check"></i> Safe</span>`;
+                    
+                    html += `
+                                <tr class="med-row" data-flagged="${p.isFlagged}">
+                                    <td><strong>${p.patient}</strong></td>
+                                    <td>${p.location}</td>
+                                    <td>${statusBadge}</td>
+                                </tr>
+                    `;
+                });
+
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                `;
+            }
+
+            resultsArea.innerHTML = html || '<div class="empty-state">No valid records could be parsed.</div>';
+        }
+
+        function applyFilter() {
+            // Default state: showFull is FALSE, so we ONLY show flagged items.
+            const showFull = filterCheckbox.checked;
+            const sections = document.querySelectorAll('.unit-section');
+            const rows = document.querySelectorAll('.med-row');
+
+            rows.forEach(row => {
+                if (!showFull && row.getAttribute('data-flagged') === 'false') {
+                    row.style.display = 'none';
+                } else {
+                    row.style.display = '';
+                }
+            });
+
+            sections.forEach(sec => {
+                if (!showFull && sec.getAttribute('data-has-flags') === 'false') {
+                    sec.style.display = 'none';
+                } else {
+                    sec.style.display = 'block';
+                }
+            });
+
+            // Check if anything is visible at all. If not, display an all clear message.
+            const anyVisible = Array.from(sections).some(sec => sec.style.display !== 'none');
+            let emptyMsg = document.getElementById('no-flags-msg');
+            
+            if (!anyVisible && !showFull) {
+                if (!emptyMsg) {
+                    resultsArea.insertAdjacentHTML('beforeend', '<div id="no-flags-msg" class="empty-state" style="padding-top:60px;"><i class="fa-solid fa-shield-check" style="font-size: 2.5rem; color: var(--emerald); margin-bottom:15px; display:block;"></i><span style="font-size:1.1rem; font-weight:600; color:var(--t1);">All clear!</span><br>No Do Not Crush restrictions found in this report.</div>');
+                } else {
+                    emptyMsg.style.display = 'block';
+                }
+            } else if (emptyMsg) {
+                emptyMsg.style.display = 'none';
+            }
+        }
+
+        // ==========================================
+        // 5. THEME LOGIC
+        // ==========================================
+        var storage=(function(){try{var s=window.self===window.top?window['local'+'Storage']:null;if(s){s.setItem('_t','1');s.removeItem('_t')}return s}catch(e){return null}})();
+        function toggleTheme(){document.documentElement.classList.toggle('dark');var d=document.documentElement.classList.contains('dark');if(storage)storage.setItem('peptopia-theme',d?'dark':'light')}
+        (function(){var s=storage?storage.getItem('peptopia-theme'):null;if(s==='dark')document.documentElement.classList.add('dark')})();
+    </script>
+</body>
+</html>

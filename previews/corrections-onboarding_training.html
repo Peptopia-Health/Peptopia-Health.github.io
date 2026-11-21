@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding - Peptopia Health</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        /* SCALING FIX */
+        html { font-size: 13px; }
+        @media (min-width: 768px) { html { font-size: 14px; } }
+
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --surface-alt: #f1f5f9;
+            --border: #e2e8f0; --text: #0f172a; --text-muted: #64748b;
+            --accent: #2563eb; --accent-light: #eff6ff; --header-bg: #1e3a8a;
+            --brand-purple: #9000F5; --pink: #FF85E1;
+        }
+
+        html.dark {
+            --bg: #0f172a; --surface: #1e293b; --surface-alt: #334155;
+            --border: #334155; --text: #f8fafc; --text-muted: #94a3b8;
+            --accent: #3b82f6; --accent-light: #1d4ed8; --header-bg: #020617;
+        }
+
+        body { background-color: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--text); line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
+
+        /* Unified Header */
+        .site-header { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .header-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .brand-mark { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--brand-purple), var(--pink)); display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.15rem; color: #fff; }
+        .brand-text { display: flex; flex-direction: column; }
+        .brand-name { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+        .theme-toggle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle .fa-sun { display: none; }
+        html.dark .theme-toggle .fa-moon { display: none; }
+        html.dark .theme-toggle .fa-sun { display: inline-block; color: #FBBF24; }
+
+        /* General UI */
+        .content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); margin-bottom: 2.5rem; }
+        .quiz-badge-btn { background: var(--surface); border: 2px solid var(--accent); padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 800; color: var(--accent); cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+        .quiz-badge-btn:hover { background: var(--accent); color: white; }
+
+        .quiz-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 2000; overflow-y: auto; display: flex; flex-direction: column; }
+        .choice-row { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border: 2px solid var(--border); border-radius: 1rem; cursor: pointer; background: var(--surface-alt); font-weight: 600; margin-bottom: 0.75rem; }
+        .choice-row:hover:not(.disabled) { border-color: var(--accent); }
+        .choice-row.correct { background: #dcfce7 !important; border-color: #10b981 !important; color: #065f46 !important; }
+        .choice-row.incorrect { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+        .choice-row.disabled { pointer-events: none; opacity: 0.7; }
+        .checkbox-mock { width: 24px; height: 24px; border: 2px solid var(--text-muted); border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .selected .checkbox-mock { background: var(--accent); border-color: var(--accent); }
+        .selected .checkbox-mock::after { content: '✓'; color: white; font-weight: 900; }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="https://peptopia-health.github.io/" class="header-brand">
+            <div class="brand-mark">P</div>
+            <div class="brand-text">
+                <span class="brand-name">Peptopia</span>
+            </div>
+        </a>
+        <div class="flex items-center gap-4">
+            <button class="quiz-badge-btn" onclick="startQuiz(event)">📝 Start Quiz</button>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-sun"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="view-study" class="max-w-5xl mx-auto p-4 md:p-8">
+        <div class="mb-8">
+            <h1 class="text-5xl font-black tracking-tighter">Clinical Onboarding</h1>
+            <p class="text-blue-500 font-bold uppercase tracking-widest mt-2">Comprehensive 50-Question Assessment</p>
+        </div>
+
+        <section class="content-card">
+            <h2 class="text-2xl font-black mb-4">Instructions</h2>
+            <p class="mb-4 text-lg">This module contains 50 highly-curated questions testing your knowledge of ethical standards, PREA protocols, medication safety, physical assessments, and corrections-specific public health. </p>
+            <p class="mb-6 text-lg">You must complete all questions to view your final score and rationale breakdown.</p>
+            <button onclick="startQuiz(event)" class="bg-blue-600 text-white px-8 py-4 rounded-full font-black uppercase shadow-lg hover:bg-blue-700 w-full md:w-auto text-lg">Begin Assessment</button>
+        </section>
+    </div>
+
+    <div id="view-quiz" class="quiz-overlay hidden">
+        <header class="bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0">
+            <button onclick="exitQuiz()" class="bg-red-500 px-6 py-2 rounded-full font-black text-sm">❌ EXIT</button>
+            <div id="q-progress" class="font-black text-xl tracking-tighter uppercase">Question 0 / 50</div>
+            <div id="q-score" class="bg-white text-slate-900 px-4 py-1 rounded-lg font-black text-sm">SCORE: 0%</div>
+        </header>
+        
+        <div class="max-w-4xl mx-auto p-4 md:p-8 w-full">
+            <div id="q-box" class="bg-white dark:bg-slate-800 p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-700"></div>
+            <div id="nav-container" class="hidden mt-8 text-center pb-12">
+                <button onclick="nextQuestion()" class="bg-blue-600 text-white px-16 py-5 rounded-full font-black shadow-xl hover:bg-blue-700 transition active:scale-95 text-2xl uppercase tracking-wider">Continue &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-results" class="quiz-overlay hidden">
+        <header class="bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0">
+            <button onclick="exitQuiz()" class="bg-blue-500 px-6 py-2 rounded-full font-black text-sm uppercase">Done</button>
+            <div class="font-black text-xl tracking-tighter uppercase">Assessment Results</div>
+        </header>
+        <div class="max-w-4xl mx-auto p-4 md:p-8 w-full">
+            <div class="bg-white dark:bg-slate-800 p-10 rounded-3xl shadow-xl">
+                <div class="text-4xl font-black text-center mb-6">📊 Results Summary</div>
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="bg-green-100 p-6 rounded-2xl text-center"><div class="text-4xl font-black text-green-700" id="qc-correct">0</div><div class="text-xs font-bold uppercase text-slate-600">Correct</div></div>
+                    <div class="bg-red-100 p-6 rounded-2xl text-center"><div class="text-4xl font-black text-red-700" id="qc-wrong">0</div><div class="text-xs font-bold uppercase text-slate-600">Incorrect</div></div>
+                    <div class="bg-blue-100 p-6 rounded-2xl text-center"><div class="text-4xl font-black text-blue-700" id="qc-pct">0%</div><div class="text-xs font-bold uppercase text-slate-600">Final Score</div></div>
+                </div>
+                <div id="qc-weak-body" class="space-y-3 max-h-96 overflow-y-auto pr-2 text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+// THEME TOGGLE LOGIC
+function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('peptopia-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+}
+if (localStorage.getItem('peptopia-theme') === 'dark') { document.documentElement.classList.add('dark'); }
+
+// 50 UNIQUE CLINICAL QUESTIONS
+const QUESTIONS = [
+    { id: 1, topic: 'Documentation', text: "The nursing history and physical is NOT a required part of the legal health record.", type: 'TF', answer: false, rationale: "False. The H&P is a mandatory clinical component of the legal medical record." },
+    { id: 2, topic: 'PREA', text: "An initial vulnerability screen is legally required within how many hours of a patient's arrival?", type: 'MC', options: ["24 hours", "48 hours", "72 hours", "96 hours"], answer: 2, rationale: "PREA mandates vulnerability screening within 72 hours of arrival." },
+    { id: 3, topic: 'Abdominal Assessment', text: "Which is the correct procedural sequence for an abdominal assessment?", type: 'MC', options: ["Inspection, Palpation, Percussion, Auscultation", "Inspection, Auscultation, Palpation, Percussion", "Palpation, Auscultation, Inspection, Percussion"], answer: 1, rationale: "Always auscultate before palpation to avoid stimulating artificial bowel sounds." },
+    { id: 4, topic: 'Safety & Falls', text: "When falling, a person should use their hands and elbows to brace for impact.", type: 'TF', answer: false, rationale: "False. Bracing with hands causes severe fractures. Staff should tuck the chin, bend limbs, and roll." },
+    { id: 5, topic: 'Insulin Admin', text: "Regular Insulin reaches its peak action at what time interval?", type: 'MC', options: ["15 to 30 minutes", "1 to 2 hours", "2 to 4 hours", "6 to 8 hours"], answer: 2, rationale: "Regular insulin peaks between 2 and 4 hours after administration." },
+    { id: 6, topic: 'Pressure Injuries', text: "Which assessment findings indicate a Stage III pressure injury? (Select all that apply)", type: 'SATA', options: ["Intact skin with non-blanchable redness", "Full-thickness tissue loss", "Subcutaneous fat may be visible", "Exposed bone or muscle"], answer: [1, 2], rationale: "Stage III involves full tissue loss and visible fat, but bone and muscle are NOT exposed." },
+    { id: 7, topic: 'Pharmacy Protocols', text: "Controlled substances may be pre-poured up to 60 minutes before a med pass.", type: 'TF', answer: false, rationale: "False. Controlled substances are NEVER allowed to be pre-poured." },
+    { id: 8, topic: 'MOUD Pharmacology', text: "Which medication is a partial agonist with a 'ceiling effect' on respiratory depression?", type: 'MC', options: ["Methadone", "Buprenorphine", "Naltrexone", "Naloxone"], answer: 1, rationale: "Buprenorphine is a partial agonist, making it safer regarding overdose risk due to the ceiling effect." },
+    { id: 9, topic: 'Ethics', text: "Harassment claims are judged by the intent of the actor, not the impact on the victim.", type: 'TF', answer: false, rationale: "False. Harassment is strictly judged by the impact on the victim." },
+    { id: 10, topic: 'Vitals', text: "Which of the following statements about measuring weight is true?", type: 'MC', options: ["Stated weight is an acceptable vital sign.", "Weight only needs to be checked monthly.", "Staff must physically measure weight; stated weight is invalid.", "Weight is not required during intake."], answer: 2, rationale: "Stated weight is never accepted as a clinical vital sign." },
+    { id: 11, topic: 'Clinical Assessment', text: "Normal bowel sounds are present in all four quadrants every:", type: 'MC', options: ["1 to 2 seconds", "5 to 10 seconds", "30 to 60 seconds", "2 to 5 minutes"], answer: 1, rationale: "Normal bowel activity produces sounds every 5 to 10 seconds." },
+    { id: 12, topic: 'Wound Care', text: "A shallow open ulcer with a red-pink wound bed and NO slough is classified as:", type: 'MC', options: ["Stage I", "Stage II", "Stage III", "Stage IV"], answer: 1, rationale: "This is the clinical definition of a Stage II pressure injury." },
+    { id: 13, topic: 'Insulin Admin', text: "Which insulins must NEVER be mixed with any other insulin? (Select all that apply)", type: 'SATA', options: ["Regular Insulin", "Lantus (Glargine)", "NPH", "70/30 Insulin"], answer: [1, 3], rationale: "Lantus and pre-mixed 70/30 insulins cannot be mixed with other insulins in the same syringe." },
+    { id: 14, topic: 'Clinical Protocols', text: "A nurse can refer a patient to the provider at any time based on clinical judgment.", type: 'TF', answer: true, rationale: "True. Nurses always retain the authority to escalate care to a provider." },
+    { id: 15, topic: 'Safe Patient Handling', text: "Lifting an uncooperative patient requires a mechanical sling and how many ADDITIONAL staff members?", type: 'MC', options: ["One", "Two", "Three", "Four"], answer: 1, rationale: "You need TWO additional caregivers (3 staff total) for an uncooperative lift." },
+    { id: 16, topic: 'Public Health', text: "A 'Strawberry Cervix' is a hallmark clinical sign of which infection?", type: 'MC', options: ["Chlamydia", "Syphilis", "Trichomoniasis", "Gonorrhea"], answer: 2, rationale: "Trichomoniasis causes petechiae on the cervix, known as a Strawberry Cervix." },
+    { id: 17, topic: 'Herbal Interactions', text: "St. John's Wort combined with SSRIs can cause life-threatening Serotonin Syndrome.", type: 'TF', answer: true, rationale: "True. St. John's Wort is highly interactive with psychiatric medications." },
+    { id: 18, topic: 'Ocular Assessment', text: "During a Snellen chart exam, what does a score of 20/50 -2 mean?", type: 'MC', options: ["The patient is legally blind.", "The patient missed exactly 2 letters on the 20/50 line.", "The patient missed more than 2 letters and failed the test.", "The patient has 20/48 vision."], answer: 1, rationale: "It means they missed exactly two letters on that specific line." },
+    { id: 19, topic: 'PREA', text: "Mentally ill inmates are statistically how many times more likely to be victims of abuse?", type: 'MC', options: ["2 times", "4 times", "8 times", "12 times"], answer: 2, rationale: "Mentally ill inmates are 8 times more likely to be victimized." },
+    { id: 20, topic: 'MOUD Pharmacology', text: "Methadone requires EKG monitoring due to the risk of:", type: 'MC', options: ["Bradycardia", "QT Prolongation", "Atrial Fibrillation", "Hypertensive Crisis"], answer: 1, rationale: "Methadone carries a severe risk of life-threatening QT Prolongation." },
+    { id: 21, topic: 'Workplace Violence', text: "Nearly 75% of all workplace assaults nationwide occur in healthcare settings.", type: 'TF', answer: true, rationale: "True. Healthcare workers face the highest risk of workplace violence." },
+    { id: 22, topic: 'Pharmacy Protocols', text: "If a medication dose is missed, the nurse should use shorthand codes on the FRONT of the MAR.", type: 'TF', answer: false, rationale: "False. Circle the initials on the front and write the full explanation on the back." },
+    { id: 23, topic: 'Ethics', text: "'Quid Pro Quo' harassment refers to:", type: 'MC', options: ["A generalized hostile environment.", "Requesting sexual favors in exchange for work benefits.", "Low-intensity rude behavior.", "Physical workplace violence."], answer: 1, rationale: "Quid Pro Quo literally means 'this for that' in exchange for benefits." },
+    { id: 24, topic: 'Evidence Preservation', text: "If abuse is suspected, the patient may shower as long as they do not change their clothes.", type: 'TF', answer: false, rationale: "False. Patients must NOT shower, wash, eat, or drink until evidence is collected." },
+    { id: 25, topic: 'Respiratory Assessment', text: "A dry cough is always considered an abnormal clinical finding.", type: 'TF', answer: true, rationale: "True. A dry cough requires clinical investigation." },
+    { id: 26, topic: 'IM Injections', text: "What is the maximum fluid volume capacity for a Deltoid IM injection?", type: 'MC', options: ["1 ml", "2 ml", "3 ml", "4 ml"], answer: 1, rationale: "The deltoid muscle can safely hold a maximum of 2 ml." },
+    { id: 27, topic: 'Herbal Interactions', text: "Which herbal supplement mimics aldosterone and can cause dangerous Hypertension and Hypokalemia?", type: 'MC', options: ["Ginkgo Biloba", "Licorice", "Ginseng", "Echinacea"], answer: 1, rationale: "Licorice root can cause severe potassium depletion and hypertension." },
+    { id: 28, topic: 'Public Health', text: "Rashes specifically located on the palms of the hands and soles of the feet are indicative of:", type: 'MC', options: ["Primary Syphilis", "Secondary Syphilis", "Herpes Simplex", "Scabies"], answer: 1, rationale: "Palmar and plantar rashes are classic signs of Secondary Syphilis." },
+    { id: 29, topic: 'Oral Assessment', text: "A white coating on the tongue is a normal finding in dehydrated patients.", type: 'TF', answer: false, rationale: "False. A white coating is pathologic and typically indicates Thrush (Candidiasis)." },
+    { id: 30, topic: 'Safety', text: "A tripping hazard can be created by a floor rise as small as:", type: 'MC', options: ["1/8 inch", "3/8 inch", "1 inch", "2 inches"], answer: 1, rationale: "A rise of just 3/8 of an inch is enough to cause a trip." },
+    { id: 31, topic: 'Ocular Assessment', text: "Which anatomical structure provides the color of the eye?", type: 'MC', options: ["Pupil", "Cornea", "Iris", "Sclera"], answer: 2, rationale: "The Iris is the colored portion of the eye." },
+    { id: 32, topic: 'MOUD Pharmacology', text: "Suboxone is a combination of Buprenorphine and:", type: 'MC', options: ["Methadone", "Naltrexone", "Naloxone", "Clonidine"], answer: 2, rationale: "Suboxone combines Buprenorphine with Naloxone to deter IV abuse." },
+    { id: 33, topic: 'Extremity Assessment', text: "Which of the following must be evaluated during an extremity exam? (Select all that apply)", type: 'SATA', options: ["Motor strength", "Presence of prosthetics", "Bilateral pulses", "Edema"], answer: [0, 1, 2, 3], rationale: "All of these are mandatory components of an extremity assessment." },
+    { id: 34, topic: 'Pharmacy Protocols', text: "Blanket medication refusals (e.g., 'I refuse all meds today') are legally permissible.", type: 'TF', answer: false, rationale: "False. Patients must refuse each medication individually." },
+    { id: 35, topic: 'Workplace Ethics', text: "Incivility is defined as high-intensity, physically aggressive behavior.", type: 'TF', answer: false, rationale: "False. Incivility is low-intensity rude or discourteous behavior." },
+    { id: 36, topic: 'Wound Care', text: "Which two nutrients are most vital for wound healing?", type: 'MC', options: ["Vitamin A and Calcium", "Protein and Vitamin C", "Iron and Vitamin D", "Carbohydrates and Potassium"], answer: 1, rationale: "Protein builds tissue, and Vitamin C is essential for collagen synthesis." },
+    { id: 37, topic: 'IM Injections', text: "What is the maximum fluid volume capacity for a Ventral Gluteal IM injection?", type: 'MC', options: ["2 ml", "3 ml", "4 ml", "5 ml"], answer: 3, rationale: "The ventral gluteal site can hold up to 5 ml of fluid safely." },
+    { id: 38, topic: 'PREA', text: "If an inmate discloses historical abuse that occurred 6 months ago, a Mental Health referral must be placed within:", type: 'MC', options: ["24 hours", "72 hours", "7 days", "14 days"], answer: 3, rationale: "Historical abuse (>3 months old) requires a referral within 14 days." },
+    { id: 39, topic: 'Cardiac Assessment', text: "During resting inspection of the neck, veins and arteries should be clearly visible.", type: 'TF', answer: false, rationale: "False. Visible resting neck veins (JVD) indicate fluid overload or heart failure." },
+    { id: 40, topic: 'Pharmacy Protocols', text: "Handwashing is required just prior to beginning the med pass.", type: 'TF', answer: true, rationale: "True. Hand hygiene must occur immediately before handling medications." },
+    { id: 41, topic: 'Herbal Interactions', text: "Which supplements increase bleeding risk and must be stopped 2 weeks before surgery? (Select all that apply)", type: 'SATA', options: ["Ginkgo Biloba", "Vitamin C", "Ginseng", "Melatonin"], answer: [0, 2], rationale: "Ginkgo and Ginseng significantly increase the risk of hemorrhage." },
+    { id: 42, topic: 'Ocular Assessment', text: "Normal sclera should be pink and moist.", type: 'TF', answer: false, rationale: "False. Sclera should be white. The conjunctiva should be pink and moist." },
+    { id: 43, topic: 'Safe Patient Handling', text: "Manual patient lifting is the #1 risk factor for worker overexertion injuries.", type: 'TF', answer: true, rationale: "True. Mechanical lifts should always be used when possible." },
+    { id: 44, topic: 'Pharmacy Protocols', text: "The person who discovers a medication error must be the one to report it.", type: 'TF', answer: true, rationale: "True. The discovering staff member is responsible for initiating the incident report." },
+    { id: 45, topic: 'MOUD Pharmacology', text: "Vivitrol is the extended-release injectable form of:", type: 'MC', options: ["Methadone", "Buprenorphine", "Naltrexone", "Naloxone"], answer: 2, rationale: "Vivitrol is injectable Naltrexone, a full opioid antagonist." },
+    { id: 46, topic: 'PREA', text: "Inmates under the age of 18 must have sight and sound separation from adults.", type: 'TF', answer: true, rationale: "True. Youth separation is a strict federal mandate." },
+    { id: 47, topic: 'Insulin Admin', text: "Rapid-acting insulin has an onset of action of approximately:", type: 'MC', options: ["15 minutes", "30 minutes", "1 hour", "2 hours"], answer: 0, rationale: "Rapid-acting insulin begins working in about 15 minutes." },
+    { id: 48, topic: 'Workplace Violence', text: "Deteriorating hygiene and sudden absenteeism are potential behavioral indicators for workplace violence.", type: 'TF', answer: true, rationale: "True. These are critical warning signs of behavioral deterioration." },
+    { id: 49, topic: 'Vitals', text: "Skin tenting during an assessment is a clinical indicator of:", type: 'MC', options: ["Edema", "Dehydration", "Infection", "Hypertension"], answer: 1, rationale: "Poor skin turgor (tenting) indicates dehydration." },
+    { id: 50, topic: 'Pharmacy Protocols', text: "Controlled substances must be jointly counted at EVERY shift change.", type: 'TF', answer: true, rationale: "True. Shift-to-shift dual counts are legally required for narcotics." }
+];
+
+let state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set(), questionsToAsk: QUESTIONS, answeredLog: {} };
+
+function startQuiz(e) {
+    if(e) e.stopPropagation();
+    state = { currentIdx: 0, score: 0, answered: 0, isGraded: false, selections: new Set(), questionsToAsk: QUESTIONS, answeredLog: {} };
+    document.getElementById('view-study').classList.add('hidden');
+    document.getElementById('view-results').classList.add('hidden');
+    document.getElementById('view-quiz').classList.remove('hidden');
+    renderQuestion();
+}
+
+function exitQuiz() {
+    document.getElementById('view-quiz').classList.add('hidden');
+    document.getElementById('view-results').classList.add('hidden');
+    document.getElementById('view-study').classList.remove('hidden');
+    window.scrollTo(0,0);
+}
+
+function renderQuestion() {
+    state.isGraded = false; state.selections = new Set();
+    const q = state.questionsToAsk[state.currentIdx];
+    document.getElementById('q-progress').innerText = `QUESTION ${state.currentIdx + 1} / ${state.questionsToAsk.length}`;
+    document.getElementById('nav-container').classList.add('hidden');
+    
+    let html = `
+        <p class="text-sm font-black text-blue-500 uppercase tracking-widest mb-3">${q.topic}</p>
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-8 leading-snug">${q.text}</h3>
+        <div class="space-y-3">`;
+    
+    if (q.type === 'TF') {
+        html += `<div class="choice-row" onclick="gradeSingle(true, event)">True</div><div class="choice-row" onclick="gradeSingle(false, event)">False</div>`;
+    } else if (q.type === 'MC') {
+        html += q.options.map((opt, i) => `<div class="choice-row" onclick="gradeSingle(${i}, event)">${opt}</div>`).join('');
+    } else if (q.type === 'SATA') {
+        html += q.options.map((opt, i) => `<div class="choice-row" id="choice-${i}" onclick="toggleSATA(${i}, event)"><div class="checkbox-mock"></div><span>${opt}</span></div>`).join('');
+        html += `<button class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black mt-6 text-xl shadow-lg hover:bg-blue-700 transition" onclick="submitSATA(event)">SUBMIT ANSWER</button>`;
+    }
+    
+    document.getElementById('q-box').innerHTML = html + `</div><div id="rat-box" class="hidden mt-8 p-6 bg-slate-100 dark:bg-slate-700 border-l-4 border-blue-500 rounded-xl"></div>`;
+}
+
+function toggleSATA(idx, e) {
+    if (state.isGraded) return;
+    const el = document.getElementById(`choice-${idx}`);
+    if (state.selections.has(idx)) { state.selections.delete(idx); el.classList.remove('selected'); }
+    else { state.selections.add(idx); el.classList.add('selected'); }
+}
+
+function gradeSingle(idx, e) {
+    if (state.isGraded) return;
+    state.isGraded = true; state.answered++;
+    const q = state.questionsToAsk[state.currentIdx];
+    const isCorrect = (idx === q.answer);
+    state.answeredLog[q.id] = idx;
+    if (isCorrect) state.score++;
+    
+    document.querySelectorAll('.choice-row').forEach((c, i) => {
+        c.classList.add('disabled');
+        let val = (q.type === 'TF') ? (i === 0) : i;
+        if (val === q.answer) c.classList.add('correct');
+        else if (val === idx) c.classList.add('incorrect');
+    });
+    showRationale(isCorrect);
+}
+
+function submitSATA(e) {
+    if (state.isGraded || state.selections.size === 0) return;
+    state.isGraded = true; state.answered++;
+    const q = state.questionsToAsk[state.currentIdx];
+    const correctSet = new Set(q.answer);
+    const isCorrect = (state.selections.size === correctSet.size) && [...state.selections].every(x => correctSet.has(x));
+    state.answeredLog[q.id] = Array.from(state.selections);
+    if (isCorrect) state.score++;
+
+    document.querySelectorAll('.choice-row').forEach((c, i) => {
+        c.classList.add('disabled');
+        if (correctSet.has(i)) c.classList.add('correct');
+        else if (state.selections.has(i)) c.classList.add('incorrect');
+    });
+    showRationale(isCorrect);
+}
+
+function showRationale(isCorrect) {
+    const rb = document.getElementById('rat-box');
+    rb.innerHTML = `<p class="font-black text-xl mb-2 ${isCorrect ? 'text-emerald-600' : 'text-red-500'} uppercase">
+        ${isCorrect ? '✔️ Correct' : '❌ Incorrect'}
+    </p><p class="font-bold text-lg">${state.questionsToAsk[state.currentIdx].rationale}</p>`;
+    rb.classList.remove('hidden');
+    document.getElementById('q-score').innerText = `SCORE: ${Math.round((state.score / state.answered) * 100)}%`;
+    document.getElementById('nav-container').classList.remove('hidden');
+}
+
+function nextQuestion() {
+    if (state.currentIdx < state.questionsToAsk.length - 1) {
+        state.currentIdx++; renderQuestion();
+    } else { showFinalResults(); }
+}
+
+function showFinalResults() {
+    document.getElementById('view-quiz').classList.add('hidden');
+    document.getElementById('view-results').classList.remove('hidden');
+    document.getElementById('qc-correct').innerText = state.score;
+    document.getElementById('qc-wrong').innerText = state.answered - state.score;
+    document.getElementById('qc-pct').innerText = `${Math.round((state.score / state.questionsToAsk.length) * 100)}%`;
+    
+    let weakHtml = '';
+    state.questionsToAsk.forEach((q, idx) => {
+        const userAns = state.answeredLog[q.id];
+        let correct = false;
+        if (q.type === 'SATA') {
+            const set = new Set(q.answer);
+            correct = userAns && (userAns.length === set.size) && userAns.every(v => set.has(v));
+        } else { correct = userAns === q.answer; }
+        if (!correct && userAns !== undefined) {
+            weakHtml += `<div class="p-4 bg-red-50 dark:bg-slate-700 border-l-4 border-red-500 rounded-lg mb-2"><strong class="text-red-800 dark:text-red-400">Q${idx+1}:</strong> <span class="dark:text-white">${q.text}</span></div>`;
+        }
+    });
+    document.getElementById('qc-weak-body').innerHTML = weakHtml || '<p class="text-center font-black text-emerald-600 text-2xl">Perfect Score!</p>';
+}
+</script>
+</body>
+</html>

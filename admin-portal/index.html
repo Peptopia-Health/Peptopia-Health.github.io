@@ -367,9 +367,9 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 @media(max-width:400px){.peptopia-hdr{padding:10px 8px;gap:6px}.peptopia-brand{gap:6px}.peptopia-logo{width:34px;height:34px}.peptopia-nav{gap:5px}.peptopia-nav>a.hdrbtn{width:74px}.peptopia-iconbtn{width:32px;height:32px}.peptopia-iconbtn img{width:32px;height:32px}}
 </style>
 <style id="audio-lib-css">
-/* ===== AUDIO LIBRARY (installed Nov 20, 2026): header icon + expanding dropdown of every audio file saved in Drive > Muse Audio. The list data lives in the marked AUDIO-LIBRARY data block after the header and is regenerated weekly by ~/workspace/audio-library/refresh_audio_library.py ===== */
+/* ===== AUDIO LIBRARY (installed Nov 20, 2026): header icon + expanding dropdown of every audio file saved in Drive > Muse Audio. The list data lives in the marked AUDIO-LIBRARY data block after the header and is regenerated weekly by ~/workspace/audio-library/refresh_audio_library.py. The render script moves the panel to <body> and fixed-positions it under the icon, so it paints above the sticky category nav (z 90) without touching the header's own z-index. ===== */
 .audio-lib-wrap{position:relative;display:inline-flex}
-.audio-lib-panel{position:absolute;top:calc(100% + 12px);right:0;width:min(430px,92vw);max-height:min(70vh,560px);display:none;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh-h);overflow:hidden;z-index:200;text-align:left}
+.audio-lib-panel{position:fixed;left:0;top:0;width:min(430px,92vw);max-height:min(70vh,560px);display:none;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh-h);overflow:hidden;z-index:1000;text-align:left}
 .audio-lib-panel.open{display:flex}
 .audio-lib-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:13px 16px 9px;border-bottom:1px solid var(--border)}
 .audio-lib-title{font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:var(--t1)}
@@ -382,7 +382,6 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 .audio-lib-name{font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .audio-lib-sub{font-size:.72rem;color:var(--t3)}
 .audio-lib-foot{padding:8px 16px 11px;border-top:1px solid var(--border);font-size:.7rem;color:var(--t3)}
-@media(max-width:640px){.audio-lib-panel{position:fixed;left:10px;right:10px;width:auto;top:64px}}
 @media print{.audio-lib-panel{display:none!important}}
 </style>
 </head>
@@ -424,20 +423,33 @@ window.AUDIO_LIBRARY=[{"title": "Week Review Audio", "date": "Nov 19, 2026", "fo
       list=document.getElementById('audioLibList'),meta=document.getElementById('audioLibMeta');
   if(!btn||!panel||!list)return;
   var items=window.AUDIO_LIBRARY||[];
-  meta.textContent=items.length+' files · Updated '+(window.AUDIO_LIBRARY_UPDATED||'—');
+  meta.textContent=items.length+' files \u00B7 Updated '+(window.AUDIO_LIBRARY_UPDATED||'\u2014');
   items.forEach(function(it){
     var a=document.createElement('a');a.className='audio-lib-item';a.href=it.link;a.target='_blank';a.rel='noopener';
     var play=document.createElement('span');play.className='audio-lib-play';play.textContent='\u25B6';
     var main=document.createElement('span');main.className='audio-lib-main';
     var nm=document.createElement('span');nm.className='audio-lib-name';nm.textContent=it.title;
     var sub=document.createElement('span');sub.className='audio-lib-sub';
-    sub.textContent=it.date+(it.folder?' · '+it.folder:'')+(it.size?' · '+it.size:'');
+    sub.textContent=it.date+(it.folder?' \u00B7 '+it.folder:'')+(it.size?' \u00B7 '+it.size:'');
     main.appendChild(nm);main.appendChild(sub);a.appendChild(play);a.appendChild(main);list.appendChild(a);
   });
+  var moved=false;
+  function place(){
+    var r=btn.getBoundingClientRect();
+    panel.style.top=(r.bottom+10)+'px';
+    if(window.innerWidth<=640){panel.style.left='10px';panel.style.width=(window.innerWidth-20)+'px';}
+    else{panel.style.width='430px';panel.style.left=Math.max(10,Math.round(r.right-430))+'px';}
+  }
+  function open(){
+    if(!moved){document.body.appendChild(panel);moved=true;}
+    place();panel.classList.add('open');btn.setAttribute('aria-expanded','true');
+  }
   function close(){panel.classList.remove('open');btn.setAttribute('aria-expanded','false');}
-  btn.addEventListener('click',function(e){e.stopPropagation();var open=panel.classList.toggle('open');btn.setAttribute('aria-expanded',open?'true':'false');});
+  btn.addEventListener('click',function(e){e.stopPropagation();if(panel.classList.contains('open'))close();else open();});
   document.addEventListener('click',function(e){if(panel.classList.contains('open')&&!panel.contains(e.target))close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  window.addEventListener('resize',function(){if(panel.classList.contains('open'))place();});
+  window.addEventListener('scroll',function(){if(panel.classList.contains('open'))close();},{passive:true});
 })();
 </script>
 

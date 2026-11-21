@@ -390,6 +390,17 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 .audio-lib-foot{padding:8px 16px 11px;border-top:1px solid var(--border);font-size:.7rem;color:var(--t3)}
 @media print{.audio-lib-panel{display:none!important}}
 </style>
+<style>
+/* ===== §52 CARD LAW (Nov 21, 2026): incomplete last rows center as a group ===== */
+.catsec>.cmd-grid{display:flex;flex-wrap:wrap;justify-content:center}
+.catsec>.cmd-grid>.cmd-card{flex:1 1 300px;max-width:424px;min-width:0}
+.bc-grid{display:flex;flex-wrap:wrap;justify-content:center}
+.bc-grid>.bc-card{flex:1 1 290px;max-width:421px;min-width:0}
+.vein-grid{display:flex;flex-wrap:wrap;justify-content:center}
+.vein-grid>.card{flex:1 1 300px;max-width:424px;min-width:0}
+.pc-top{text-align:center}
+@media(max-width:640px){.catsec>.cmd-grid>.cmd-card,.vein-grid>.card,.bc-grid>.bc-card{max-width:none}}
+</style>
 </head>
 <body>
 <div id="gate">
@@ -587,15 +598,15 @@ window.AUDIO_LIBRARY=[{"title": "Reason Kratom Brief", "date": "Nov 20, 2026", "
 <div class="cmd-card"><span class="cmd-phrase">📦 Shipment sweeps</span><p>5:30 AM and 7 PM — refreshes the self-hosted tracking report from Gmail and carrier pages.</p></div>
   </div>
 <div class="ship-panel">
-  <div class="pc-top"><span class="cmd-phrase">📦 Shipments</span><span class="ship-fresh">Swept Nov 21, 2026 · 10:26 AM</span></div>
+  <div class="pc-top"><span class="cmd-phrase">📦 Shipments</span><span class="ship-fresh">Swept Nov 7, 2026 · 5:30 AM</span></div>
   <div class="ship-chips">
-    <span class="ship-chip"><b>0</b> Out for delivery</span>
-    <span class="ship-chip"><b>2</b> In transit</span>
-    <span class="ship-chip warn"><b>4</b> Awaiting drop-off</span>
-    <span class="ship-chip"><b>42</b> Delivered</span>
-    <span class="ship-chip"><b>52</b> Tracked</span>
+    <span class="ship-chip"><b>1</b> Out for delivery</span>
+    <span class="ship-chip"><b>1</b> In transit</span>
+    <span class="ship-chip warn"><b>2</b> Awaiting drop-off</span>
+    <span class="ship-chip"><b>29</b> Delivered</span>
+    <span class="ship-chip"><b>41</b> Tracked</span>
   </div>
-  <p class="ship-attn"><b>Needs attention:</b> one outbound label created Oct 29 still shows USPS awaiting the item — no movement in 23 days; three older tracking numbers return no carrier data at all.</p>
+  <p class="ship-attn"><b>Needs attention:</b> Christian's $395 box and Lisa's box (due Tue Nov 10) are still awaiting drop-off, and the DTE inbound box has been stuck at acceptance pending since Nov 2.</p>
   <a class="pushbtn ship-open" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">Open the shipment portal</a>
 </div>
   <div class="cmd-grid">
@@ -1507,5 +1518,7 @@ img,svg{max-width:100%}
   if(/^#cat-/.test(location.hash))collapse();
 })();
 </script>
+<script>/* §52 (Nov 21, 2026): card buttons one width — the longest card-button label, measured live like the portal's .btn standard */
+(function(){function fit(){var els=[].slice.call(document.querySelectorAll('a.cardbtn'));if(!els.length)return;els.forEach(function(e){e.style.width=''});var m=0;els.forEach(function(e){var w=e.getBoundingClientRect().width;if(w>m)m=w});var W=Math.ceil(m)+'px';els.forEach(function(e){e.style.width=W})}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fit)}else{fit()}window.addEventListener('load',function(){setTimeout(fit,80)})})();</script>
 </body>
 </html>

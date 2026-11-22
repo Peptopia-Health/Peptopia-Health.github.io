@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stapelia grandiflora — Podcast · Tuscarora Arboretum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF9F2;color:#1C1917;font-family:"DM Sans",system-ui,sans-serif;line-height:1.62}
+.wrap{max-width:760px;margin:0 auto;padding:28px 20px 56px}
+h1{font-family:"Outfit","DM Sans",sans-serif;color:#7F1D2D;font-size:30px;font-weight:800;line-height:1.2;margin:14px 0 4px}
+.sub{color:#57534E;font-style:italic;margin:0 0 18px}
+.card{background:#fff;border:1px solid #F1E3D3;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(120,60,0,.05)}
+audio{width:100%;margin-top:8px}
+a{color:#7F1D2D}
+.meta{font-size:.8rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#A8A29E}
+#status{font-size:.9rem;color:#57534E;margin-top:10px}
+</style>
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stapelia grandiflora — Podcast · Tuscarora Arboretum">
+<meta property="og:description" content="A one-minute audio brief on Stapelia grandiflora, the purple carrion flower — the South African succulent whose great maroon star lies to blowflies for a living.">
+<meta property="og:image" content="https://x-peps.com/Tuscarora_Arboretum/og-stapelia-grandiflora.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://x-peps.com/Tuscarora_Arboretum/og-stapelia-grandiflora.jpg">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../theme.css">
+</head>
+<body class="podcast-page"> <div class="pod-bar" style="font-family:'DM Sans',sans-serif;font-size:.85rem;padding:12px 20px;background:#FFF7ED;border-bottom:1px solid #F1E3D3"><a href="../index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Tuscarora Arboretum</a> &nbsp;/&nbsp; <a href="index.html" style="color:#C2410C;text-decoration:none;font-weight:600">Plants</a> &nbsp;/&nbsp; Stapelia grandiflora — Podcast<span class="pod-tools"><button type="button" class="peptopia-iconbtn" onclick="window.print()" title="Print this page" aria-label="Print this page"><img src="https://x-peps.com/X-Peps/btn-print.png" alt="Print"></button><button type="button" class="peptopia-iconbtn" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme"><img class="pp-moon" src="https://x-peps.com/X-Peps/btn-moon.png" alt="Dark theme"><img class="pp-sun" src="https://x-peps.com/X-Peps/btn-sun.png" alt="Light theme"></button></span></div>
+
+<div class="wrap">
+<p class="meta">Plant Guide · Audio Brief · 70 seconds</p>
+<h1>Stapelia grandiflora — Podcast</h1>
+<p class="sub">A one-minute fireside brief on the purple carrion flower: a South African succulent that opens a star as wide as your hand, smells of carrion on purpose, and lets blowflies do all of its courting.</p>
+<div class="card">
+<audio id="pod" controls preload="none">Your browser does not support the audio element.</audio>
+<p id="status">Loading the audio&hellip;</p>
+<p style="margin:14px 0 0">Prefer reading? <a class="btn push b-guide" href="stapelia-grandiflora.html">GUIDE</a></p>
+</div>
+</div>
+<script>
+(function(){
+var parts=["stapelia-grandiflora-brief.part1.txt","stapelia-grandiflora-brief.part2.txt","stapelia-grandiflora-brief.part3.txt","stapelia-grandiflora-brief.part4.txt","stapelia-grandiflora-brief.part5.txt","stapelia-grandiflora-brief.part6.txt","stapelia-grandiflora-brief.part7.txt"];
+var status=document.getElementById('status');
+Promise.all(parts.map(function(p){return fetch(p).then(function(r){if(!r.ok)throw new Error(r.status);return r.text();});}))
+.then(function(chunks){
+var b64=chunks.join('').replace(/\s/g,'');
+var bin=atob(b64);var bytes=new Uint8Array(bin.length);
+for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+var a=document.getElementById('pod');
+a.src=URL.createObjectURL(new Blob([bytes],{type:'audio/mpeg'}));
+status.textContent='Audio ready — press play.';
+})
+.catch(function(e){status.textContent='The audio could not be loaded in this browser. You can still read the full guide linked below.';});
+})();
+</script>
+<script>
+function toggleTheme(){document.documentElement.classList.toggle('dark');}
+</script>
+</body>
+</html>

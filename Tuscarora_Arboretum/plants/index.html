@@ -16,6 +16,18 @@ main{flex:1;width:100%}
 .peptopia-hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1200px;margin:0 auto;padding:14px 24px;width:100%}
 .peptopia-brand{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;color:var(--t1);text-decoration:none}
 .peptopia-brand span{color:var(--orange)}
+.peptopia-brand{display:flex;align-items:center;gap:12px}
+.peptopia-logo{width:46px;height:46px;border-radius:50%;flex:none;object-fit:cover}
+.peptopia-brand .peptopia-wordmark{display:flex;flex-direction:column;font-family:'Outfit',sans-serif;font-weight:800;font-size:.82rem;line-height:1.15;letter-spacing:.14em;color:var(--t1)}
+.peptopia-brand .peptopia-tagline{font-size:.48rem;font-weight:600;letter-spacing:.3em;color:var(--t3)}
+.peptopia-nav{display:flex;align-items:center;gap:10px;flex:none}
+.peptopia-iconbtn{width:38px;height:38px;flex:none;border-radius:50%;background:none;border:none;box-shadow:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.peptopia-iconbtn img{width:38px;height:38px;display:block}
+.peptopia-theme-toggle .pp-sun{display:none}
+html.dark .peptopia-theme-toggle .pp-sun{display:block}
+html.dark .peptopia-theme-toggle .pp-moon{display:none}
+@media(max-width:640px){.peptopia-hdr{padding:10px 10px;gap:8px}.peptopia-logo{width:38px;height:38px}.peptopia-iconbtn{width:34px;height:34px}.peptopia-iconbtn img{width:34px;height:34px}}
+@media(max-width:400px){.peptopia-hdr{padding:10px 8px;gap:6px}.peptopia-logo{width:34px;height:34px}.peptopia-iconbtn{width:32px;height:32px}.peptopia-iconbtn img{width:32px;height:32px}}
 .hdr-nav{display:flex;gap:8px;align-items:center}
 .hdr-nav a,.hdr-nav button{font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.05em;text-decoration:none;color:var(--t2);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:7px 14px;cursor:pointer}
 .crumbs{background:#FFF7ED;border-top:1px solid #F1E3D3;border-bottom:1px solid #F1E3D3;font-size:.85rem}

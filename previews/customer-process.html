@@ -19,34 +19,36 @@
 </head>
 <body>
 <div class="card">
-<h1>Step 1 — What Changed</h1>
-<pre id="txt1">Our website and order methods changed:
+<h1>Payment Instructions</h1>
+<pre id="txt">A quick word about payments: Big Pharma has pressured the big payment processors — Cash App, GoDaddy, Square, and others — to cut off small companies that sell GLP medications. Peptopia was caught in that sweep and lost card processing. These are the 5 payment methods we can accept, in order of preference:
 
-Payment processors cracked down on peptide companies and closed our accounts—CashApp, credit cards, etc. the new process is unfortunately 1990 all over again—money orders or personal checks. If you are local, we can accept cash.</pre>
+1. Western Union (best — do it from home)
+Send from your phone or computer at westernunion.com or in the Western Union app — no trip to a store needed. Choose cash pickup. The moment you send us the MTCN (the tracking number on your receipt), your order ships.
+
+2. MoneyGram
+Send from your phone or computer at moneygram.com or in the MoneyGram app, or in person at a MoneyGram location (inside Walmart, CVS, and many other stores). The moment you send us the reference number from your receipt, your order ships.
+
+3. Money Order
+Buy one at any grocery store, Walmart, or 7-Eleven. Fill it out, take a photo of it, and send the photo to us — your order ships as soon as we see the photo. Then mail the money order itself to the address below.
+
+4. Personal Check
+Mail a check to the address below. Your order ships as soon as the check clears.
+
+5. Cash
+If you're in the Washington, DC area, you can pay in cash in person — just ask us how to arrange it.
+
+For any method that needs a payee name and address, use:
+	David Carroll
+	117 South Queen Street
+	Martinsburg, WV 25401
+
+We appreciate you!
+
+💜 Sara, David, &amp; kids.
+🏃‍♀️ Peptopia Health, LLC</pre>
 </div>
-<button id="copyBtn1" type="button">Copy Step 1</button>
-<div class="msg" id="msg1"></div>
-<div class="gap"></div>
-<div class="card">
-<h1>Step 2 — Order Process</h1>
-<pre id="txt2">Order process:
-List products you need, I respond with pricing.
-If accepted, payment options include MoneyGram, Western Union, money orders, or a check.
-
-Easiest is Western Union from home: use the Western Union app or westernunion.com, and pay by debit card or bank account. On the screen that asks how your receiver will get it, choose Cash pickup (any agent location) — not bank account. Send it to David Carroll in Martinsburg, WV. When it goes through, send me the tracking number (MTCN) from your receipt — I pick it up in cash on this end. Western Union is also at every Walmart, CVS and Walgreens.
-
-Money orders are sold at any Walmart, 7-Eleven, grocery store, places like that.
-
-If the store requires a payee or address, share my husband's name and our address:
-
-David Carroll
-117 South Queen St.
-Martinsburg, WV 25401
-
-Once purchased, send me a pic of the receipt, mail it, then I ship same day — same service as always, with tracking.</pre>
-</div>
-<button id="copyBtn2" type="button">Copy Step 2</button>
-<div class="msg" id="msg2"></div>
+<button id="copyBtn" type="button">Copy text</button>
+<div class="msg" id="msg"></div>
 <script>
 function wire(btnId, txtId, msgId) {
   document.getElementById(btnId).addEventListener('click', function () {
@@ -65,8 +67,7 @@ function wire(btnId, txtId, msgId) {
     }
   });
 }
-wire('copyBtn1', 'txt1', 'msg1');
-wire('copyBtn2', 'txt2', 'msg2');
+wire('copyBtn', 'txt', 'msg');
 </script>
 </body>
 </html>

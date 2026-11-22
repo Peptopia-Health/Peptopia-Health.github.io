@@ -28,11 +28,11 @@ body{margin:0;background:var(--paper);color:var(--ink);
 h1,h2,h3,h4{font-family:'Outfit','DM Sans',sans-serif;font-weight:800;letter-spacing:-.01em}
 .wrap{max-width:960px;margin:0 auto;padding:0 22px}
 .titlepage{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
-  text-align:center;padding:26px 24px 12px;position:relative;overflow:hidden;
+  text-align:center;padding:22px 24px 4px;position:relative;overflow:hidden;
   background:radial-gradient(1200px 600px at 50% -10%,#e9f3e4 0%,var(--paper) 60%)}
 html[data-theme="dark"] .titlepage{background:radial-gradient(1200px 600px at 50% -10%,#1d2b21 0%,var(--paper) 60%)}
-.kicker{letter-spacing:4px;text-transform:uppercase;font-size:13px;color:var(--accent);margin-bottom:14px;font-weight:700}
-.titlepage h1{font-size:clamp(38px,6vw,64px);margin:0 0 10px;color:#23402f;line-height:1.12}
+.kicker{letter-spacing:4px;text-transform:uppercase;font-size:13px;color:var(--accent);margin-bottom:8px;font-weight:700}
+.titlepage h1{font-size:clamp(38px,6vw,64px);margin:0;color:#23402f;line-height:1.12}
 html[data-theme="dark"] .titlepage h1{color:#bfe3cc}
 .titlepage .sub{font-size:clamp(17px,2.4vw,22px);color:var(--muted);max-width:640px;margin:0 0 26px}
 .titlepage .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
@@ -40,7 +40,7 @@ html[data-theme="dark"] .titlepage h1{color:#bfe3cc}
 .titlepage .date{font-size:14px;color:var(--muted)}
 .themebtn{position:absolute;top:14px;right:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);
   border-radius:999px;padding:6px 14px;font:600 13px 'DM Sans',sans-serif;cursor:pointer}
-.colorband{border-radius:14px;padding:26px 28px;margin:34px 0 20px;color:#fff;position:relative;overflow:hidden}
+.colorband{border-radius:14px;padding:26px 28px;margin:12px 0 20px;color:#fff;position:relative;overflow:hidden}
 .colorband h2{margin:0 0 6px;font-size:30px}
 .colorband p{margin:0;opacity:.94;max-width:700px}
 .colorband .bigicon{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:64px;opacity:.12}
@@ -70,7 +70,7 @@ html[data-theme="dark"] .titlepage h1{color:#bfe3cc}
 .ev-mod{background:var(--gold-soft);color:var(--gold-dk);border:1px solid var(--gold)}
 .ev-thin{background:var(--red-soft);color:var(--red-dk);border:1px solid var(--red)}
 html[data-theme="dark"] .ev-strong{color:#9fd8b4} html[data-theme="dark"] .ev-mod{color:#ecd28a} html[data-theme="dark"] .ev-thin{color:#f0a99f}
-.popbox{border-radius:12px;padding:16px 20px;margin:16px 0;border:1px solid}
+.popbox{border-radius:12px;padding:16px 20px;margin:10px 0;border:1px solid}
 .popbox.tip{background:#eef7f0;border-color:#bfe0c9}
 html[data-theme="dark"] .popbox.tip{background:#1d2b21}
 .popbox.tip::before{content:"🌿 Field note — ";font-weight:700;color:var(--green-dk)}
@@ -119,13 +119,6 @@ html,body{overflow-x:clip}
   <button class="themebtn" id="themeBtn" type="button">🌙 Dark</button>
   <div class="kicker">WestKoast Botanicals · Buying Recommendation</div>
   <h1>The 4-Way Split Pick</h1>
-  <p class="sub">Four 250&nbsp;g strains from the current split — weighted to the <b>1126 (November 2026) drop</b>, ranked by the review record, and checked against everything already on your shelf.</p>
-  <div class="badges">
-    <span class="pill">$99 · 4 × 250 g</span>
-    <span class="pill">In stock — checked Nov 22, 2026</span>
-    <span class="pill">43 strains in the split</span>
-  </div>
-  <div class="date">Prepared November 22, 2026 · Sources listed at the bottom</div>
 </div>
 
 <div class="wrap">

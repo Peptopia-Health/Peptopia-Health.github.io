@@ -312,7 +312,7 @@ code.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault
 Array.prototype.forEach.call(form.querySelectorAll('input[name="taSub"]'),function(r){r.addEventListener('change',syncSel);});
 photos.addEventListener('change',function(){var fs=photos.files||[];if(!fs.length){photoNote.textContent=NOTE0;return;}var tot=0,i;for(i=0;i<fs.length;i++){tot+=fs[i].size;}photoNote.textContent=fs.length+' photo'+(fs.length>1?'s':'')+' attached ('+Math.max(1,Math.round(tot/1024))+' KB before resizing).';});
 function setStatus(kind,msg){status.className='authstatus show '+kind;status.innerHTML=msg;}
-function readPhoto(file){return new Promise(function(res){var url=URL.createObjectURL(file);var img=new Image();img.onload=function(){var max=1400,w=img.naturalWidth||max,h=img.naturalHeight||max,s=Math.min(1,max/Math.max(w,h));var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));try{c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',0.82));}catch(e){res(null);}URL.revokeObjectURL(url);};img.onerror=function(){URL.revokeObjectURL(url);res(null);};img.src=url;});}
+function readPhoto(file,mx,q){return new Promise(function(res){var url=URL.createObjectURL(file);var img=new Image();img.onload=function(){var max=mx||1400,w=img.naturalWidth||max,h=img.naturalHeight||max,s=Math.min(1,max/Math.max(w,h));var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));try{c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',q||0.82));}catch(e){res(null);}URL.revokeObjectURL(url);};img.onerror=function(){URL.revokeObjectURL(url);res(null);};img.src=url;});}
 form.addEventListener('submit',function(e){e.preventDefault();
 var cs=sel();
 var t=topic.value.trim();
@@ -320,15 +320,15 @@ if(cs[1]==='Inventory'&&!t){t='Kratom inventory report';}
 if(!t){setStatus('err','Please give the build a topic \u2014 one line is plenty.');topic.focus();return;}
 var subj=cs[0]+' / '+cs[1]+': '+t;
 submitBtn.disabled=true;setStatus('sending','Sending\u2026 your build is being queued.');
-var payload={_subject:subj,category:cs[0],subcategory:cs[1],topic:t,message:details.value.trim(),_template:'table',_captcha:'false',_honey:''};
+var payload={access_key:'c3378175-a412-4313-bf5b-12fae9f925f3',subject:subj,category:cs[0],subcategory:cs[1],topic:t,message:details.value.trim()};
 if(cs[1]==='Articles'){payload.article_type=artType.value;}
 var fs=[];if(photos.files){for(var i=0;i<Math.min(4,photos.files.length);i++){fs.push(photos.files[i]);}}
-var names=[];var chain=Promise.resolve();
-fs.forEach(function(f,idx){chain=chain.then(function(){return readPhoto(f).then(function(d){if(d){payload['photo_'+(idx+1)+'_filename']=f.name;payload['photo_'+(idx+1)+'_jpeg_base64']=d;names.push(f.name);}});});});
-chain.then(function(){
-if(names.length){payload.photo_manifest=names.join(', ');}
-if(JSON.stringify(payload).length>9500000){submitBtn.disabled=false;setStatus('err','Those photos are too large to send this way. Please attach fewer photos, or email them with your topic to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');return null;}
-return fetch('https://formsubmit.co/ajax/peptopia@x-peps.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(!r.ok){throw new Error('send failed');}return r.json();});
+var SETS=[[1400,0.82],[1150,0.78],[950,0.74],[800,0.7],[650,0.66],[550,0.62],[480,0.58],[420,0.54]];
+function encodeAll(si){var st=SETS[Math.min(si,SETS.length-1)];var p2={};for(var k in payload){p2[k]=payload[k];}var inc=[];var ch=Promise.resolve();fs.forEach(function(f,idx){ch=ch.then(function(){return readPhoto(f,st[0],st[1]).then(function(d){if(d){p2['photo_'+(idx+1)+'_filename']=f.name;p2['photo_'+(idx+1)+'_jpeg_base64']=d;inc.push(f.name);}});});});return ch.then(function(){if(inc.length){p2.photo_manifest=inc.join(', ');}if(JSON.stringify(p2).length<=440000||si>=SETS.length-1){return p2;}return encodeAll(si+1);});}
+encodeAll(0).then(function(pl){
+payload=pl;
+if(JSON.stringify(payload).length>440000){submitBtn.disabled=false;setStatus('err','Those photos are too large to send this way. Please attach fewer photos, or email them with your topic to <a href="mailto:peptopia@x-peps.com">peptopia@x-peps.com</a>.');return null;}
+return fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(!r.ok){throw new Error('send failed');}return r.json();});
 }).then(function(j){
 if(j===null){return;}
 submitBtn.disabled=false;

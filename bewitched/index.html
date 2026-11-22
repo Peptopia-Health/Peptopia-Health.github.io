@@ -530,7 +530,7 @@ var FUNCS = {
       "🧾 The canonical ledger unrolls — every order, every gram, vendor by vendor…",
       "⚖️ Weighed, tallied, reconciled against the shelves…",
       "✨ The refreshed report steams gently, ready for your eyes." ]; },
-    command:function(v){ return "Refresh the inventory report. Scope: " + v.scope + (v.notes ? "\nNotes: " + v.notes : "") + "\nDraw ONLY from the canonical purchase-history file. Save the refreshed report with the standard file name and tell me where it lives."; }
+    command:function(v){ return "Refresh the inventory report. Scope: " + v.scope + (v.notes ? "\nNotes: " + v.notes : "") + "\nDraw ONLY from the canonical shop-order-history.csv. Save the refreshed report with the standard file name and tell me where it lives."; }
   }
 };
 
@@ -724,7 +724,7 @@ document.addEventListener("keydown", function(e){
 </div>
 <script>
 (function(){
-  var EP='https://formsubmit.co/ajax/peptopia@x-peps.com', KEY='potions-57';
+  var EP='https://api.web3forms.com/submit', KEY='potions-57';
   function post(payload){
     return fetch(EP,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).then(function(r){ if(!r.ok) throw new Error('send failed'); return r.json(); });
   }
@@ -760,9 +760,9 @@ document.addEventListener("keydown", function(e){
     if(!topic){ setSt('err','Give the build a topic first — one line is plenty.'); return; }
     btn.disabled=true; setSt('','⏳ Sending…');
     var cmd=(fn==='Guide'?'Guide: ':(fn+': '))+topic+(notes?'\nNotes: '+notes:'');
-    var base={_subject:'Guide Build Request: '+fn+' — '+topic, _template:'table', portal_key:KEY, source:'potions-direct-panel', build_function:fn, topic:topic, notes:notes, command:cmd};
+    var base={access_key:'c3378175-a412-4313-bf5b-12fae9f925f3', subject:'Guide Build Request: '+fn+' — '+topic, portal_key:KEY, source:'potions-direct-panel', build_function:fn, topic:topic, notes:notes, command:cmd};
     withFiles(files, base, function(payload){
-      if(JSON.stringify(payload).length>9500000){ btn.disabled=false; setSt('err','Those files are too large to send this way. Please attach fewer files, or email them with your topic to peptopia@x-peps.com.'); return; }
+      if(JSON.stringify(payload).length>440000){ btn.disabled=false; setSt('err','Those files are too large to send this way. Please attach fewer files, or email them with your topic to peptopia@x-peps.com.'); return; }
       post(payload).then(function(){ btn.disabled=false; setSt('ok','✨ <strong>Sent!</strong> Your build request is queued. Muse starts it within the half hour — the finished guide and its audio story will arrive in your chat.'); document.getElementById('gbr-topic').value=''; document.getElementById('gbr-notes').value=''; files=[]; render(); })
       .catch(function(){ btn.disabled=false; setSt('err','That didn’t go through. Please try once more, or email the same details to peptopia@x-peps.com.'); });
     });
@@ -779,7 +779,7 @@ document.addEventListener("keydown", function(e){
       var cmd=pre.textContent||''; if(!cmd.trim()) return;
       b.disabled=true; b.textContent='⏳ Sending…';
       var firstLine=cmd.split('\n')[0].slice(0,90);
-      post({_subject:'Guide Build Request: '+firstLine, _template:'table', portal_key:KEY, source:'potions-scroll', command:cmd})
+      post({access_key:'c3378175-a412-4313-bf5b-12fae9f925f3', subject:'Guide Build Request: '+firstLine, portal_key:KEY, source:'potions-scroll', command:cmd})
       .then(function(){ b.textContent='✅ Sent — Muse is on it'; })
       .catch(function(){ b.disabled=false; b.textContent='📨 Send to Muse — try again'; });
     });

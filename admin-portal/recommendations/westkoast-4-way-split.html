@@ -56,7 +56,7 @@ html[data-theme="dark"] .titlepage h1{color:#bfe3cc}
 .strain.white .strain-head{background:linear-gradient(100deg,var(--white-dk),var(--white))}
 .batch{font-size:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);
   padding:3px 12px;border-radius:999px;white-space:nowrap}
-.guidebtn{font:700 12px 'DM Sans',sans-serif;background:#F06000;color:#fff;text-decoration:none;
+.guidebtn{font:700 12px 'DM Sans',sans-serif;background:#F06000;color:#241533;text-decoration:none;
   padding:5px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 0 rgba(0,0,0,.25)}
 .strain-body{padding:18px 22px}
 .strain-body p{margin:8px 0}
@@ -64,7 +64,7 @@ html[data-theme="dark"] .titlepage h1{color:#bfe3cc}
 .iconrow span{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:5px 12px}
 .score{display:inline-block;min-width:44px;text-align:center;font-weight:700;border-radius:8px;
   padding:2px 8px;color:#fff;font-size:14px}
-.s5{background:#2e7d4f}.s4{background:#5c8a2f}.s3{background:#b8860b}.s2{background:#c96a1b}.s1{background:#b03a2e}
+.s5{background:#0A7300;color:#fff}.s4{background:#10C000;color:#141414}.s3{background:#F0F000;color:#141414}.s2{background:#F06000;color:#141414}.s1{background:#E01020;color:#fff}
 .ev{font-size:11.5px;font-weight:700;letter-spacing:.6px;padding:3px 10px;border-radius:999px;text-transform:uppercase}
 .ev-strong{background:var(--green-soft);color:var(--green-dk);border:1px solid var(--green)}
 .ev-mod{background:var(--gold-soft);color:var(--gold-dk);border:1px solid var(--gold)}
@@ -90,6 +90,24 @@ table.grid tr:nth-child(even) td{background:var(--paper2)}
 footer.site{text-align:center;color:var(--muted);font-size:13.5px;padding:26px 16px 34px;border-top:1px solid var(--line);margin-top:34px}
 mark{background:#FEF08A;color:#2e2a24;padding:0 3px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 html[data-theme="dark"] mark{background:#8a7a1d;color:#fff8d6}
+.splitbar{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 22px;background:var(--card)}
+.splitbar div{flex:1;padding:10px 6px;text-align:center;font-size:12.5px;line-height:1.35;color:var(--ink)}
+.splitbar div+div{border-left:1px solid var(--line)}
+.splitbar b{display:block;font-size:14.5px}
+.splitbar .w{background:var(--white-soft)} .splitbar .r{background:var(--red-soft)} .splitbar .g{background:var(--green-soft)}
+.fxbars{margin:2px 0 10px}
+.fxrow2{display:flex;align-items:center;gap:10px;margin:5px 0}
+.fxrow2 .fl{width:74px;font-size:13px;font-weight:700;text-align:right}
+.fxrow2 .ft{flex:1;background:var(--paper2);border:1px solid var(--line);border-radius:999px;height:13px;overflow:hidden}
+.fxrow2 .ff{height:100%;border-radius:999px}
+.fxrow2 .fv{width:36px;font-weight:800;font-size:14.5px}
+.gauge{display:flex;align-items:center;gap:8px;margin:8px 0 4px;font-size:13px;font-weight:700}
+.gauge .gseg{display:flex;gap:3px}
+.gauge .gseg i{width:30px;height:10px;border-radius:3px;background:var(--paper2);border:1px solid var(--line)}
+.gauge .gseg i.on1{background:#E01020;border-color:#E01020}
+.gauge .gseg i.on2{background:#b8860b;border-color:#b8860b}
+.gauge .gseg i.on3{background:#2e7d4f;border-color:#2e7d4f}
+.gcaveat{font-size:12.5px;color:var(--muted);margin:0 0 8px}
 @media(max-width:640px){.colorband h2{font-size:24px}.strain-head h3{font-size:18px}}
 @media print{body{background:#fff}.themebtn{display:none}.strain,.colorband,.popbox{break-inside:avoid}}
 </style>
@@ -131,39 +149,63 @@ html,body{overflow-x:clip}
   <div class="bigicon">🌿</div>
 </div>
 
+<div class="splitbar" role="img" aria-label="The split at a glance: four 250 gram picks making one kilogram for 99 dollars">
+  <div class="w"><b>1 · White Hulk</b>250 g · white · 1126</div>
+  <div class="r"><b>2 · Nano Red Vietnam</b>250 g · red · 1126</div>
+  <div class="w"><b>3 · Super White</b>250 g · white · 1126</div>
+  <div class="g"><b>4 · OG Green Malay</b>250 g · green · 0926/1126</div>
+</div>
+
 <div class="strain white">
   <div class="strain-head"><h3>1 · White Hulk</h3><span class="batch">Batch 1126</span><a class="guidebtn" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html#strain-white-hulk" target="_blank" rel="noopener">GUIDE</a></div>
   <div class="strain-body">
-    <div class="iconrow"><span>Mood <span class="score s5">4.6</span></span><span>Energy <span class="score s5">4.5</span></span><span>Calm <span class="score s3">2.4</span></span><span>Analgesia <span class="score s1">1.0</span></span><span class="ev ev-strong">Evidence: Strong</span></div>
+    <p class="gcaveat">The guide entry covers batch #0526 / #0726 — an earlier harvest of this strain.</p>
+    <div class="fxbars">
+      <div class="fxrow2"><span class="fl">Mood</span><span class="ft"><span class="ff" style="display:block;width:92%;background:#10C000"></span></span><span class="fv">4.6</span></div>
+      <div class="fxrow2"><span class="fl">Energy</span><span class="ft"><span class="ff" style="display:block;width:90%;background:#F06000"></span></span><span class="fv">4.5</span></div>
+      <div class="fxrow2"><span class="fl">Calm</span><span class="ft"><span class="ff" style="display:block;width:48%;background:#C9A227"></span></span><span class="fv">2.4</span></div>
+      <div class="fxrow2"><span class="fl">Analgesia</span><span class="ft"><span class="ff" style="display:block;width:20%;background:#E01020"></span></span><span class="fv">1.0</span></div>
+    </div>
+    <div class="gauge"><span class="gseg"><i class="on3"></i><i class="on3"></i><i class="on3"></i></span> Evidence: Strong</div>
     <p>The clear #1 of the drop. On-site <b>5.00/5</b>, and the only WestKoast white with an independent off-site report — Reddit: <i>“great mood, energy and get up and go without the jittery feeling.”</i> You have never owned it.</p>
   </div>
 </div>
 
 <div class="strain red">
-  <div class="strain-head"><h3>2 · Nano Red Vietnam</h3><span class="batch">Batch 1126</span></div>
+  <div class="strain-head"><h3>2 · Nano Red Vietnam</h3><span class="batch">Batch 1126</span><a class="guidebtn" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html#strain-nano-red-vietnam" target="_blank" rel="noopener">GUIDE</a></div>
   <div class="strain-body">
-    <div class="iconrow"><span>On-site <b>5.00/5</b> (nano reds)</span><span class="ev ev-mod">Evidence: Moderate</span></div>
+    <p class="gcaveat">The guide entry covers batch #0926 — an earlier harvest of this strain.</p>
+    <div class="fxbars">
+      <div class="fxrow2"><span class="fl">On-site</span><span class="ft"><span class="ff" style="display:block;width:100%;background:#b03a2e"></span></span><span class="fv">5.0</span></div>
+    </div>
+    <div class="gauge"><span class="gseg"><i class="on2"></i><i class="on2"></i><i></i></span> Evidence: Moderate — nano reds rate 5.00/5 on-site, no written reviews yet</div>
     <p>The split's nano-red slot, pure 1126. WestKoast's nano reds hold a 5.00/5 on-site rating, and your shelf has <mark>no WestKoast nano red at all</mark> — your kilo of Vietnam is the <i>green</i>. Honest limit: the rating carries no written reviews yet.</p>
   </div>
 </div>
 
 <div class="strain white">
-  <div class="strain-head"><h3>3 · Super White</h3><span class="batch">Batch 1126</span></div>
+  <div class="strain-head"><h3>3 · Super White</h3><span class="batch">Batch 1126</span><a class="guidebtn" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html#strain-super-white" target="_blank" rel="noopener">GUIDE</a></div>
   <div class="strain-body">
-    <div class="iconrow"><span>1026 predecessor: <b>4.50★</b> on-site</span><span class="ev ev-thin">Evidence: Thin</span></div>
+    <p class="gcaveat">The guide entry covers batches #0726 / #1026 — earlier harvests of this strain.</p>
+    <div class="fxbars">
+      <div class="fxrow2"><span class="fl">1026 ★</span><span class="ft"><span class="ff" style="display:block;width:90%;background:#5c8a2f"></span></span><span class="fv">4.5</span></div>
+    </div>
+    <div class="gauge"><span class="gseg"><i class="on1"></i><i></i><i></i></span> Evidence: Thin — one rating generation, no written reviews</div>
     <p>Pure 1126 and not owned. This pick rides on the freshness of the November harvest more than review depth — your own October 27 inventory check had the 1026 at 4.50★, while the guide found no written reviews. Included so the split carries a second, distinct white beside the Hulk.</p>
   </div>
 </div>
 
 <div class="strain green">
-  <div class="strain-head"><h3>4 · OG Green Malay</h3><span class="batch">Batch 0926/1126</span></div>
+  <div class="strain-head"><h3>4 · OG Green Malay</h3><span class="batch">Batch 0926/1126</span><a class="guidebtn" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html#strain-og-green-malay" target="_blank" rel="noopener">GUIDE</a></div>
   <div class="strain-body">
-    <div class="iconrow"><span>On-site ratings + a Drea video review</span><span class="ev ev-mod">Evidence: Moderate</span></div>
+    <p class="gcaveat">The guide entry covers batch #0926 — an earlier harvest of this strain.</p>
+    <div class="iconrow"><span>On-site ratings + a Drea video review</span></div>
+    <div class="gauge"><span class="gseg"><i class="on2"></i><i class="on2"></i><i></i></span> Evidence: Moderate</div>
     <p>The only green carrying 1126 that isn't already yours — every other 1126 green (Hulk, Bali) is on your shelf. It balances a white-and-red-heavy split, and it's the one dual-coded option with any third-party footprint at all.</p>
   </div>
 </div>
 
-<div class="popbox star"><b>Red Borneo 1126</b> — swap it in for Super White or the Malay if you'd rather run two reds. Pure 1126, and its nano sibling held 5.00/5 — but under this exact name it has the thinnest record of any 1126 option, so it stays the alternate, not the pick.</div>
+<div class="popbox star"><b>Red Borneo 1126</b> — swap it in for Super White or the Malay if you'd rather run two reds. Pure 1126, and its nano sibling held 5.00/5 — but under this exact name it has the thinnest record of any 1126 option, so it stays the alternate, not the pick. <a class="guidebtn" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html#strain-nano-red-borneo" target="_blank" rel="noopener">GUIDE</a> <span style="font-size:12.5px">The guide covers its nano sibling at batch #0726 — there is no entry under this exact name.</span></div>
 
 <div class="colorband band-blend">
   <h2>🧺 Already on Your Shelf — Skipped on Purpose</h2>

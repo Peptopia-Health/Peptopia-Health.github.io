@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+<title>WestKoast Botanicals — 4-Way Split Recommendation</title>
+<link rel="apple-touch-icon" href="/Tuscarora_Arboretum/apple-touch-icon.png">
+<style>
+:root{
+  --paper:#faf7ef; --paper2:#f3eee1; --ink:#2e2a24; --muted:#6f675a;
+  --red:#b03a2e; --red-dk:#7e241a; --red-soft:#f7e8e4;
+  --green:#2e7d4f; --green-dk:#1c5433; --green-soft:#e6f2ea;
+  --white:#5c8a2f; --white-dk:#3c5f1d; --white-soft:#eef4e2;
+  --gold:#b8860b; --gold-dk:#7d5f06; --gold-soft:#faf3dd;
+  --blend:#6a4c93; --blend-dk:#4a3369; --blend-soft:#efe9f7;
+  --accent:#1f6f5c; --line:#ddd3bd; --card:#ffffff;
+}
+html[data-theme="dark"]{
+  --paper:#171512; --paper2:#221f1b; --ink:#ece7db; --muted:#a89f8f;
+  --line:#3d382f; --card:#201d19; --green-soft:#1d2b21; --white-soft:#232b1a;
+  --red-soft:#2e1f1c; --gold-soft:#2c2716; --blend-soft:#272038;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.65}
+h1,h2,h3,h4{font-family:'Outfit','DM Sans',sans-serif;font-weight:800;letter-spacing:-.01em}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+.titlepage{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
+  text-align:center;padding:26px 24px 12px;position:relative;overflow:hidden;
+  background:radial-gradient(1200px 600px at 50% -10%,#e9f3e4 0%,var(--paper) 60%)}
+html[data-theme="dark"] .titlepage{background:radial-gradient(1200px 600px at 50% -10%,#1d2b21 0%,var(--paper) 60%)}
+.kicker{letter-spacing:4px;text-transform:uppercase;font-size:13px;color:var(--accent);margin-bottom:14px;font-weight:700}
+.titlepage h1{font-size:clamp(38px,6vw,64px);margin:0 0 10px;color:#23402f;line-height:1.12}
+html[data-theme="dark"] .titlepage h1{color:#bfe3cc}
+.titlepage .sub{font-size:clamp(17px,2.4vw,22px);color:var(--muted);max-width:640px;margin:0 0 26px}
+.titlepage .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:13px;background:var(--card);color:var(--muted)}
+.titlepage .date{font-size:14px;color:var(--muted)}
+.themebtn{position:absolute;top:14px;right:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:999px;padding:6px 14px;font:600 13px 'DM Sans',sans-serif;cursor:pointer}
+.colorband{border-radius:14px;padding:26px 28px;margin:34px 0 20px;color:#fff;position:relative;overflow:hidden}
+.colorband h2{margin:0 0 6px;font-size:30px}
+.colorband p{margin:0;opacity:.94;max-width:700px}
+.colorband .bigicon{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:64px;opacity:.12}
+.band-green{background:linear-gradient(120deg,var(--green-dk),var(--green))}
+.band-neutral{background:linear-gradient(120deg,#23402f,#1f6f5c)}
+.band-blend{background:linear-gradient(120deg,var(--blend-dk),var(--blend))}
+.strain{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 22px;overflow:hidden;
+  box-shadow:0 3px 12px rgba(60,50,30,.05)}
+.strain-head{display:flex;align-items:center;gap:12px;padding:16px 20px;color:#fff;flex-wrap:wrap}
+.strain-head h3{margin:0;font-size:21px;flex:1;min-width:200px}
+.strain.red .strain-head{background:linear-gradient(100deg,var(--red-dk),var(--red))}
+.strain.green .strain-head{background:linear-gradient(100deg,var(--green-dk),var(--green))}
+.strain.white .strain-head{background:linear-gradient(100deg,var(--white-dk),var(--white))}
+.batch{font-size:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);
+  padding:3px 12px;border-radius:999px;white-space:nowrap}
+.guidebtn{font:700 12px 'DM Sans',sans-serif;background:#F06000;color:#fff;text-decoration:none;
+  padding:5px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.strain-body{padding:18px 22px}
+.strain-body p{margin:8px 0}
+.iconrow{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 12px;font-size:14px}
+.iconrow span{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:5px 12px}
+.score{display:inline-block;min-width:44px;text-align:center;font-weight:700;border-radius:8px;
+  padding:2px 8px;color:#fff;font-size:14px}
+.s5{background:#2e7d4f}.s4{background:#5c8a2f}.s3{background:#b8860b}.s2{background:#c96a1b}.s1{background:#b03a2e}
+.ev{font-size:11.5px;font-weight:700;letter-spacing:.6px;padding:3px 10px;border-radius:999px;text-transform:uppercase}
+.ev-strong{background:var(--green-soft);color:var(--green-dk);border:1px solid var(--green)}
+.ev-mod{background:var(--gold-soft);color:var(--gold-dk);border:1px solid var(--gold)}
+.ev-thin{background:var(--red-soft);color:var(--red-dk);border:1px solid var(--red)}
+html[data-theme="dark"] .ev-strong{color:#9fd8b4} html[data-theme="dark"] .ev-mod{color:#ecd28a} html[data-theme="dark"] .ev-thin{color:#f0a99f}
+.popbox{border-radius:12px;padding:16px 20px;margin:16px 0;border:1px solid}
+.popbox.tip{background:#eef7f0;border-color:#bfe0c9}
+html[data-theme="dark"] .popbox.tip{background:#1d2b21}
+.popbox.tip::before{content:"🌿 Field note — ";font-weight:700;color:var(--green-dk)}
+.popbox.deep{background:#f4efe4;border-color:#e0d3ae}
+html[data-theme="dark"] .popbox.deep{background:#262216}
+.popbox.deep::before{content:"🔬 Read this first — ";font-weight:700;color:var(--gold-dk)}
+.popbox.star{background:#fdf6ec;border-color:#f0d9a8}
+html[data-theme="dark"] .popbox.star{background:#2a2313}
+.popbox.star::before{content:"⭐ Alternate — ";font-weight:700;color:#8a6d1a}
+table.grid{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;background:var(--card)}
+table.grid th{background:#23402f;color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-family:'Outfit',sans-serif}
+table.grid td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.grid tr:nth-child(even) td{background:var(--paper2)}
+.own{font-weight:700;color:var(--red-dk)} html[data-theme="dark"] .own{color:#f0a99f}
+.pick{font-weight:700;color:var(--green-dk)} html[data-theme="dark"] .pick{color:#9fd8b4}
+.srcs{font-size:13px;color:var(--muted);margin:18px 0}
+footer.site{text-align:center;color:var(--muted);font-size:13.5px;padding:26px 16px 34px;border-top:1px solid var(--line);margin-top:34px}
+mark{background:#FEF08A;color:#2e2a24;padding:0 3px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+html[data-theme="dark"] mark{background:#8a7a1d;color:#fff8d6}
+@media(max-width:640px){.colorband h2{font-size:24px}.strain-head h3{font-size:18px}}
+@media print{body{background:#fff}.themebtn{display:none}.strain,.colorband,.popbox{break-inside:avoid}}
+</style>
+<style id="wc-responsive-print-standard">
+html,body{overflow-x:clip}
+@media(max-width:640px){
+  .fld-row{grid-template-columns:1fr}
+  .sess-photos{grid-template-columns:1fr}
+  .fx-grid{grid-template-columns:1fr}
+  .panels{grid-template-columns:1fr}
+  table{font-size:.84rem}
+  .batch,.guidebtn{white-space:normal}
+}
+@media print{
+  @page{size:Letter;margin:.5in}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;padding:0}
+  .themebtn{display:none!important}
+  .strain,.colorband,.popbox,table.grid tr{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  p{orphans:3;widows:3}
+}
+</style>
+</head>
+<body>
+<div class="titlepage">
+  <button class="themebtn" id="themeBtn" type="button">🌙 Dark</button>
+  <div class="kicker">WestKoast Botanicals · Buying Recommendation</div>
+  <h1>The 4-Way Split Pick</h1>
+  <p class="sub">Four 250&nbsp;g strains from the current split — weighted to the <b>1126 (November 2026) drop</b>, ranked by the review record, and checked against everything already on your shelf.</p>
+  <div class="badges">
+    <span class="pill">$99 · 4 × 250 g</span>
+    <span class="pill">In stock — checked Nov 22, 2026</span>
+    <span class="pill">43 strains in the split</span>
+  </div>
+  <div class="date">Prepared November 22, 2026 · Sources listed at the bottom</div>
+</div>
+
+<div class="wrap">
+
+<div class="popbox deep">No reviews of any <b>1126 batch</b> exist yet — the November drop is brand new, and a batch code is a harvest date: 1126 leaf is not 1026 leaf, even under the same name. Every pick below rests on the strain's track record from earlier batches, and each card says plainly how strong that evidence is.</div>
+
+<div class="colorband band-green">
+  <h2>✅ The Pick — 4 × 250 g</h2>
+  <p>Three pure-1126 strains and one dual-coded, none of them already on your shelf.</p>
+  <div class="bigicon">🌿</div>
+</div>
+
+<div class="strain white">
+  <div class="strain-head"><h3>1 · White Hulk</h3><span class="batch">Batch 1126</span><a class="guidebtn" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html#strain-white-hulk" target="_blank" rel="noopener">GUIDE</a></div>
+  <div class="strain-body">
+    <div class="iconrow"><span>Mood <span class="score s5">4.6</span></span><span>Energy <span class="score s5">4.5</span></span><span>Calm <span class="score s3">2.4</span></span><span>Analgesia <span class="score s1">1.0</span></span><span class="ev ev-strong">Evidence: Strong</span></div>
+    <p>The clear #1 of the drop. On-site <b>5.00/5</b>, and the only WestKoast white with an independent off-site report — Reddit: <i>“great mood, energy and get up and go without the jittery feeling.”</i> You have never owned it.</p>
+  </div>
+</div>
+
+<div class="strain red">
+  <div class="strain-head"><h3>2 · Nano Red Vietnam</h3><span class="batch">Batch 1126</span></div>
+  <div class="strain-body">
+    <div class="iconrow"><span>On-site <b>5.00/5</b> (nano reds)</span><span class="ev ev-mod">Evidence: Moderate</span></div>
+    <p>The split's nano-red slot, pure 1126. WestKoast's nano reds hold a 5.00/5 on-site rating, and your shelf has <mark>no WestKoast nano red at all</mark> — your kilo of Vietnam is the <i>green</i>. Honest limit: the rating carries no written reviews yet.</p>
+  </div>
+</div>
+
+<div class="strain white">
+  <div class="strain-head"><h3>3 · Super White</h3><span class="batch">Batch 1126</span></div>
+  <div class="strain-body">
+    <div class="iconrow"><span>1026 predecessor: <b>4.50★</b> on-site</span><span class="ev ev-thin">Evidence: Thin</span></div>
+    <p>Pure 1126 and not owned. This pick rides on the freshness of the November harvest more than review depth — your own October 27 inventory check had the 1026 at 4.50★, while the guide found no written reviews. Included so the split carries a second, distinct white beside the Hulk.</p>
+  </div>
+</div>
+
+<div class="strain green">
+  <div class="strain-head"><h3>4 · OG Green Malay</h3><span class="batch">Batch 0926/1126</span></div>
+  <div class="strain-body">
+    <div class="iconrow"><span>On-site ratings + a Drea video review</span><span class="ev ev-mod">Evidence: Moderate</span></div>
+    <p>The only green carrying 1126 that isn't already yours — every other 1126 green (Hulk, Bali) is on your shelf. It balances a white-and-red-heavy split, and it's the one dual-coded option with any third-party footprint at all.</p>
+  </div>
+</div>
+
+<div class="popbox star"><b>Red Borneo 1126</b> — swap it in for Super White or the Malay if you'd rather run two reds. Pure 1126, and its nano sibling held 5.00/5 — but under this exact name it has the thinnest record of any 1126 option, so it stays the alternate, not the pick.</div>
+
+<div class="colorband band-blend">
+  <h2>🧺 Already on Your Shelf — Skipped on Purpose</h2>
+  <p>Top reviews or not, these would be rebuys.</p>
+  <div class="bigicon">📦</div>
+</div>
+
+<table class="grid">
+<tr><th>Strain</th><th>Batch</th><th>On your shelf</th><th>Why it was skipped</th></tr>
+<tr><td>Red Fuzzy Blanket</td><td>0726 + 1026</td><td>250 g + an earlier bag</td><td>The best-evidenced strain in the whole catalog — <b>15 on-site reviews, all 5 stars</b> — but the 1126 would be a third bag</td></tr>
+<tr><td>Green Bali</td><td>1026</td><td>250 g</td><td>Most-reviewed green (13 reviews, 4.92/5) — already yours</td></tr>
+<tr><td>Green Hulk</td><td>1026</td><td>250 g × 2</td><td>Kristan's high-energy batch, packed by hand for you — 500 g in hand</td></tr>
+<tr><td>White Lemon</td><td>1026</td><td>250 g + split-bag share</td><td>Owned twice over</td></tr>
+<tr><td>Nano Green Vietnam</td><td>~0926</td><td>1 kg</td><td>A full kilo in hand</td></tr>
+<tr><td>Nano Green Monster</td><td>—</td><td>1 kg</td><td>A full kilo in hand</td></tr>
+<tr><td>Bright Green</td><td>1026</td><td>250 g</td><td>From the Oct 27 split</td></tr>
+<tr><td>White Asia</td><td>1026</td><td>250 g</td><td>From the Oct 27 split</td></tr>
+<tr><td>White Ultra</td><td>—</td><td>Split-bag share</td><td>Owned via the 1 kg Ultra/Lemon bag</td></tr>
+<tr><td>White Maeng Da</td><td>—</td><td>Nov 5 order</td><td>Already bought this month</td></tr>
+<tr><td>Red Magic</td><td>—</td><td>Nov 5 order</td><td>Already bought this month</td></tr>
+<tr><td>OG Yellow MD</td><td>0726</td><td>Nov 5 order</td><td>Already bought this month</td></tr>
+</table>
+
+<div class="colorband band-neutral">
+  <h2>📋 Everything in the Split — All 43</h2>
+  <p>The full current list, with the review record for each and whether it's already yours.</p>
+  <div class="bigicon">🗂️</div>
+</div>
+
+<table class="grid">
+<tr><th>Strain</th><th>Batch</th><th>Review record</th><th>Shelf</th></tr>
+<tr><td>White Maeng Da</td><td>1126</td><td>5.00★ at 1026 (2 reviews)</td><td class="own">Owned</td></tr>
+<tr><td>White Hulk</td><td>1126</td><td>5.00/5 + independent Reddit praise</td><td class="pick">★ PICK 1</td></tr>
+<tr><td>Super White</td><td>1126</td><td>4.50★ at 1026; no written reviews</td><td class="pick">★ PICK 3</td></tr>
+<tr><td>Nano Red Vietnam</td><td>1126</td><td>Nano reds 5.00/5, no text</td><td class="pick">★ PICK 2</td></tr>
+<tr><td>Red Magic</td><td>1126</td><td>One 5★ rating, no text</td><td class="own">Owned</td></tr>
+<tr><td>Red Fuzzy Blanket</td><td>1126</td><td>15 reviews, all 5★ — catalog's best</td><td class="own">Owned ×2</td></tr>
+<tr><td>Red Borneo</td><td>1126</td><td>No record under this name</td><td>Alternate</td></tr>
+<tr><td>White Lemon</td><td>1026/1126</td><td>4.50/5 + kratom.org editorial</td><td class="own">Owned ×2</td></tr>
+<tr><td>Green Hulk</td><td>1026/1126</td><td>Owner-confirmed high-energy</td><td class="own">Owned</td></tr>
+<tr><td>Green Bali</td><td>1026/1126</td><td>13 reviews, 4.92/5</td><td class="own">Owned</td></tr>
+<tr><td>OG Green Malay</td><td>0926/1126</td><td>Ratings + Drea video review</td><td class="pick">★ PICK 4</td></tr>
+<tr><td>Bright Green</td><td>1026</td><td>5.00/5 (3 reviews)</td><td class="own">Owned</td></tr>
+<tr><td>White Ultra</td><td>1026</td><td>One verified 4/5 review</td><td class="own">Owned</td></tr>
+<tr><td>White Asia</td><td>1026</td><td>5.00★</td><td class="own">Owned</td></tr>
+<tr><td>Nano Green Vietnam</td><td>1026</td><td>4.88/5, kratom.org praised</td><td class="own">Owned 1 kg</td></tr>
+<tr><td>Nano Green Monster</td><td>1026</td><td>4.50/5 (2 reviews)</td><td class="own">Owned 1 kg</td></tr>
+<tr><td>Green Lightning</td><td>0926</td><td>8 reviews, all 5★</td><td>—</td></tr>
+<tr><td>Black MD</td><td>1026</td><td>7 reviews, all 5★ — pain-relief standout</td><td>—</td></tr>
+<tr><td>Nano Green Devil</td><td>0926</td><td>5.00/5; kratom.org's most-reviewed nano</td><td>—</td></tr>
+<tr><td>Nano Green MD</td><td>1026</td><td>6 reviews, 5.00/5</td><td>—</td></tr>
+<tr><td>Mean Green</td><td>0626</td><td>Four written 5★ reviews</td><td>—</td></tr>
+<tr><td>Premium MD</td><td>0926</td><td>Discord: strong pain reports, sleepy at rest</td><td>—</td></tr>
+<tr><td>Red Vein UF</td><td>0626</td><td>5.00/5; Discord: “actually lasted 4 hours!”</td><td>—</td></tr>
+<tr><td>Red Jongkong UF</td><td>0626</td><td>5.00/5 ratings</td><td>—</td></tr>
+<tr><td>Red Thai UF</td><td>0626</td><td>5.00/5 ratings</td><td>—</td></tr>
+<tr><td>Nano Red Devil</td><td>1026</td><td>Nano reds 5.00/5, no text</td><td>—</td></tr>
+<tr><td>Nano Super Red</td><td>0926</td><td>Nano reds 5.00/5, no text</td><td>—</td></tr>
+<tr><td>Dark Red Elephant UF</td><td>0626</td><td>4.50/5, no text</td><td>—</td></tr>
+<tr><td>Hug The Kids</td><td>1026</td><td>One 5★ rating, no text</td><td>—</td></tr>
+<tr><td>Energy Mood revised</td><td>0926</td><td>One 5★ rating, no text</td><td>—</td></tr>
+<tr><td>Nano Green Jongkong</td><td>1026</td><td>kratom.org notes; zero on-site reviews</td><td>—</td></tr>
+<tr><td>Nano Super Green</td><td>1026</td><td>Ratings only</td><td>—</td></tr>
+<tr><td>Green Thunder</td><td>0626</td><td>Ratings only</td><td>—</td></tr>
+<tr><td>OG Green Elephant</td><td>1026</td><td>Ratings only</td><td>—</td></tr>
+<tr><td>White Elephant</td><td>0626</td><td>Ratings only</td><td>—</td></tr>
+<tr><td>Elite White</td><td>0926</td><td>Ratings only</td><td>—</td></tr>
+<tr><td>Green Jungle</td><td>0726</td><td>No reviews found</td><td>—</td></tr>
+<tr><td>Green 46</td><td>0726</td><td>No reviews found</td><td>—</td></tr>
+<tr><td>OG Dark Green</td><td>1026</td><td>No reviews found</td><td>—</td></tr>
+<tr><td>Awesome Sauce</td><td>1026</td><td>No reviews found</td><td>—</td></tr>
+<tr><td>Pink Dragon</td><td>0626</td><td>No reviews found</td><td>—</td></tr>
+<tr><td>Trainwreck</td><td>1026</td><td>No WestKoast reviews found</td><td>—</td></tr>
+<tr><td>OG Yellow MD</td><td>1026</td><td>Reviews exist only for batch 0526</td><td class="own">Owned (0726)</td></tr>
+</table>
+<p style="font-size:13.5px;color:var(--muted)">Plus “Any” — the vendor's choice — as the 44th option in each dropdown.</p>
+
+<div class="popbox tip">If you ever run a <b>second split</b>, the strongest evidence not in this one isn't 1126 at all: <b>Green Lightning 0926</b> (8 reviews, all 5★), <b>Black MD 1026</b> (7 reviews, all 5★, the pain-relief standout), and <b>Nano Green Devil 0926</b> (kratom.org's most-reviewed nano green). All three beat every 1126 pick except White Hulk on evidence alone.</div>
+
+<p class="srcs"><b>Sources:</b> the live 4-Way Split 1kg product page at westkoastbotanicals.com (checked November 22, 2026 — $99.00, in stock) · your <a href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html">WestKoast Botanicals Complete Strain Guide</a> (scores, review counts, Discord reports) · your own order history (orders #19233, #20175, #20406, and the November 5, 2026 order) · your October 27, 2026 on-site inventory check.</p>
+
+</div>
+<footer class="site">WestKoast Botanicals — 4-Way Split Recommendation · Independent Customer Research · November 2026</footer>
+<script>
+(function(){var b=document.getElementById('themeBtn');function set(d){document.documentElement.setAttribute('data-theme',d?'dark':'light');b.textContent=d?'☀️ Light':'🌙 Dark';}var dark=false;b.addEventListener('click',function(){dark=!dark;set(dark);});set(false);})();
+</script>
+</body>
+</html>

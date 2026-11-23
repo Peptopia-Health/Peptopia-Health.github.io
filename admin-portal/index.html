@@ -15,7 +15,7 @@
   --t1:#0F172A; --t2:#475569; --t3:#5B6B82;
   --orange:#F06000; --theme:#2563EB; --theme-dark:#1D4ED8;
   --font-head:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
-  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000; --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0; --pal-purple-lt:#7759ED;
+  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000; --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0; --pal-purple-lt:#7759ED; --pal-tuscarora:#D97706; --pal-tuscarora-lt:#F59E0B;
 }
 html.dark{
   --bg:#020617; --card:#0F172A; --card-sub:#1E293B; --border:rgba(148,163,184,.18);
@@ -406,7 +406,7 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 /* ===== Portal button matrix (David, Nov 23 2026): 4 columns x 3 rows, one uniform width ===== */
 nav.jumpnav.pm{display:grid;grid-template-columns:repeat(4,150px);grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:8px;justify-content:center;flex-wrap:nowrap;overflow:visible}
 nav.jumpnav.pm a.jnav-btn{width:100%!important;margin:0;padding:6px 16px;justify-content:center;text-align:center;white-space:nowrap}
-nav.jumpnav a.jnav-btn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-tusc{background:linear-gradient(135deg,var(--pal-tuscarora),var(--pal-tuscarora-lt))!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
 @media (max-width:640px){
 nav.jumpnav.pm{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;justify-content:stretch}
 nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
@@ -505,7 +505,7 @@ window.AUDIO_LIBRARY=[{"title": "Reason Kratom Brief", "date": "Nov 20, 2026", "
 .catgroup-hdr{font-family:var(--font-head);font-weight:800;font-size:1.12rem;letter-spacing:.05em;padding:12px 18px;border-radius:14px;margin:34px 0 2px;box-shadow:0 2px 10px rgba(0,0,0,.18);scroll-margin-top:64px}
 .catgroup-hdr .cg-kicker{display:block;font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;opacity:.85;margin-bottom:2px}
 .cg-purple{background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
-.cg-tusc{background:linear-gradient(135deg,#E05A00,#F06000);color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.cg-tusc{background:linear-gradient(135deg,var(--pal-tuscarora),var(--pal-tuscarora-lt));color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
 .cg-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4);color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
 .cg-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
@@ -751,6 +751,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
       <tr><td class="tok">--pal-sleep</td><td><span class="pal-sw" style="background:#0A0A0A"></span>#0A0A0A</td><td>Kratom guides — Sleep chips and the picker satellite.</td></tr>
       <tr><td class="tok">--pal-cobalt</td><td><span class="pal-sw" style="background:#0070D0"></span>#0070D0</td><td>The default icon color across the guides — the picker hub sprout, catalog icons, and anything with no effect of its own.</td></tr>
       <tr><td class="tok">--pal-purple</td><td><span class="pal-sw" style="background:#6C4FE0"></span>#6C4FE0</td><td>Biohacking News homepage card — icon, tile tint, top edge and button (gradient stop --pal-purple-lt #7759ED). Homepage mockup Nov 6, 2026, awaiting David's approval; also this panel.</td></tr>
+      <tr><td class="tok">--pal-tuscarora</td><td><span class="pal-sw" style="background:linear-gradient(135deg,#D97706,#F59E0B)"></span>#D97706 → #F59E0B</td><td>Tuscarora orange — the amber gradient (135deg; deep --pal-tuscarora #D97706 to light partner --pal-tuscarora-lt #F59E0B): the original Tuscarora button color from this portal's former nav, restored as a palette standard Nov 23, 2026 at David's order. Used on the Tuscarora column matrix buttons and the Category Two header. Always with dark text #241533.</td></tr>
     </table>
     <p class="pal-note">The seven effect tokens drive the kratom guides: every effect chip, picker satellite, wheel and spectrum accent reads them, so a palette change here is the change everywhere. Homepage cards are migrating onto the same tokens — Biohacking News first, via --pal-purple. <b>Separate set:</b> the Orders page's receptor colors (GLP-1 cyan, GIP green, Glucagon orange, Amylin violet) are fixed medallion colors, <b>not</b> palette tokens, and do not change with the palette.</p>
   </div>

@@ -350,20 +350,20 @@ table{max-width:100%}
 <p class="small" style="text-align:center">Tuscarora Arboretum &middot; Martinsburg, West Virginia &middot; October 2026</p>
 <div class="author-cta">
 <p><strong>Build here.</strong></p>
-<button type="button" class="author-btn" data-ta-open>✒️ AUTHOR</button><button type="button" class="author-btn ta-close-btn" data-ta-close>✕ CLOSE</button>
+<button type="button" class="author-btn" data-ta-open>✒️ AUTHOR</button><button type="button" class="author-btn ta-close-btn iconbtn" data-ta-close aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
 </div>
 </div>
 
 <div class="patmodal" id="patModal" role="dialog" aria-modal="true" aria-label="Original patent document">
 <div class="patbox">
-<div class="pathead"><span>U.S. Design Patent 107,017 — &ldquo;Design for a Glass Bottle&rdquo; &middot; Kihn / J. T. &amp; A. Hamilton &middot; Patented November 16, 1937</span><button type="button" class="patclose" onclick="closePatent()">Close ✕</button></div>
+<div class="pathead"><span>U.S. Design Patent 107,017 — &ldquo;Design for a Glass Bottle&rdquo; &middot; Kihn / J. T. &amp; A. Hamilton &middot; Patented November 16, 1937</span><button type="button" class="patclose iconbtn" onclick="closePatent()" aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button></div>
 <iframe id="patFrame" title="U.S. Design Patent 107,017 — official patent document (PDF)"></iframe>
 <div class="patfoot">If the document does not appear above, <a href="https://patentimages.storage.googleapis.com/d7/f7/b8/1cfa03df435ccf/USD107017.pdf" target="_blank" rel="noopener">open the patent PDF directly</a>.</div>
 </div>
 </div>
 <div class="patmodal infomodal" id="infoModal" role="dialog" aria-modal="true" aria-label="More detail">
 <div class="patbox infobox">
-<div class="pathead"><span id="infoTitle"></span><button type="button" class="patclose" onclick="closeInfo()">Close ✕</button></div>
+<div class="pathead"><span id="infoTitle"></span><button type="button" class="patclose iconbtn" onclick="closeInfo()" aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button></div>
 <div class="infobody" id="infoBody"></div>
 </div>
 </div>
@@ -484,5 +484,11 @@ setStatus('err','That didn\u2019t go through. Please try once more, or email the
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('gd-themebtn');if(!b)return;b.addEventListener('click',function(){r.classList.toggle('dark');});})();
 </script>
+<style id="close-icon-css">
+.iconbtn{background:transparent;border:0;padding:0;cursor:pointer;line-height:0;border-radius:50%}
+.iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
+.iconbtn.author-btn.ta-close-btn{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important}
+.iconbtn.patclose{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important}
+</style>
 </body>
 </html>

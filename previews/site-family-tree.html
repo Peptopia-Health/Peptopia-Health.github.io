@@ -151,7 +151,7 @@ footer.site{color:var(--muted);font-size:.78rem;text-align:center;margin-top:14p
       <div class="hlbl">Enlarge</div>
     </div>
     <div class="hcell">
-      <button class="hbtn" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode"><img id="themeIco" src="https://x-peps.com/X-Peps/btn-moon.png" alt="Toggle dark mode"></button>
+      <button class="hbtn" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode"><img id="themeIco" src="https://x-peps.com/X-Peps/btn-moon.png?v=3" alt="Toggle dark mode"></button>
       <div class="hlbl">Theme</div>
     </div>
   </div>
@@ -343,7 +343,7 @@ function buildNode(n,depth){
   var themeIco=document.getElementById('themeIco');
   themeBtn.addEventListener('click',function(){
     var dark=root.classList.toggle('dark');
-    themeIco.src=dark?'https://x-peps.com/X-Peps/btn-sun.png':'https://x-peps.com/X-Peps/btn-moon.png';
+    themeIco.src=dark?'https://x-peps.com/X-Peps/btn-sun.png?v=3':'https://x-peps.com/X-Peps/btn-moon.png?v=3';
   });
   /* expand / collapse */
   document.getElementById('xAll').addEventListener('click',function(){document.querySelectorAll('details.kids').forEach(function(d){d.open=true;});});

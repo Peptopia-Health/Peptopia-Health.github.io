@@ -115,3 +115,86 @@ html.dark .peptopia-logo.logo-light{display:block}
 html.dark .peptopia-logo.logo-dark{display:none}
 /* Tight stacking above the guide author block (David, Nov 19, 2026) */
 .author-cta{margin-top:10px}
+
+/* ---- Style theme pilot (Nov 23, 2026): the token block below is mirrored
+   verbatim from style-themes.css, the pilot layer every Arboretum page links.
+   With no data-style attribute on <html> (the default) none of it takes effect. */
+/* == TOKEN BLOCK (mirrored verbatim into theme.css) == */
+:root{
+  --tx-bg:#F4F6FA; --tx-card:#FFFFFF; --tx-card2:#FFF3E4; --tx-border:rgba(15,23,42,.08);
+  --tx-t1:#0F172A; --tx-t2:#475569; --tx-t3:#94A3B8;
+  --tx-page-t1:#0F172A; --tx-page-t2:#475569; --tx-page-t3:#94A3B8;
+  --tx-accent:#F06000; --tx-accent2:#0891B2; --tx-accent3:#F59E0B; --tx-on-accent:#FFFFFF;
+  --tx-crumb-bg:#FFF7ED; --tx-crumb-border:#F1E3D3;
+  --tx-radius-card:16px; --tx-radius-btn:999px; --tx-border-w:1px;
+  --tx-shadow:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
+  --tx-shadow-h:0 12px 28px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
+  --tx-font-display:'Outfit',sans-serif; --tx-font-body:'DM Sans',sans-serif;
+  --tx-highlight:#FEF08A;
+  --tx-menu-bg:#FFFFFF; --tx-menu-ink:#1C1917; --tx-menu-border:rgba(15,23,42,.14);
+  --tx-menu-radius:14px; --tx-menu-shadow:0 18px 40px rgba(15,23,42,.25);
+}
+html[data-style="bauhaus"]{
+  --tx-bg:#F5F0E6; --tx-card:#FFFFFF; --tx-card2:#FFC500; --tx-border:#141414;
+  --tx-t1:#141414; --tx-t2:#3D3D3D; --tx-t3:#6E6E6E;
+  --tx-page-t1:#141414; --tx-page-t2:#3D3D3D; --tx-page-t3:#6E6E6E;
+  --tx-accent:#D92323; --tx-accent2:#005CA9; --tx-accent3:#FFC500; --tx-on-accent:#FFFFFF;
+  --tx-crumb-bg:#FFFFFF; --tx-crumb-border:#141414;
+  --tx-radius-card:0px; --tx-radius-btn:0px; --tx-border-w:3px;
+  --tx-shadow:6px 6px 0 #141414; --tx-shadow-h:8px 8px 0 #141414;
+  --tx-font-display:'Jost',sans-serif; --tx-font-body:'Jost',sans-serif;
+  --tx-highlight:#FFC500;
+  --tx-menu-bg:#FFFFFF; --tx-menu-ink:#141414; --tx-menu-border:#141414;
+  --tx-menu-radius:0px; --tx-menu-shadow:6px 6px 0 #141414;
+  --bg:var(--tx-bg); --card:var(--tx-card); --border:var(--tx-border); --sh:var(--tx-shadow); --sh-h:var(--tx-shadow-h);
+  --t1:var(--tx-t1); --t2:var(--tx-t2); --t3:var(--tx-t3);
+  --orange:var(--tx-accent); --amber:var(--tx-accent3); --cyan:var(--tx-accent2); --cyan-dark:var(--tx-accent2);
+  --emerald:var(--tx-accent2); --slate:var(--tx-t3); --vivid-purple:var(--tx-accent);
+  --ink:var(--tx-t1); --dim:var(--tx-t2); --mut:var(--tx-t2); --line:var(--tx-border); --tint:var(--tx-card2); --soft:var(--tx-card2); --green:var(--tx-accent2);
+  --pal-focus:var(--tx-accent); --pal-focus-lt:var(--tx-accent); --pal-mood:var(--tx-accent2); --pal-mood-lt:var(--tx-accent2);
+  --pal-turq:var(--tx-accent2); --pal-turq-dk:var(--tx-accent2); --pal-purple:var(--tx-accent); --pal-purple-lt:var(--tx-accent); --pal-highlight:var(--tx-highlight);
+  --font-display:var(--tx-font-display); --font-body:var(--tx-font-body); --cat:var(--tx-accent);
+}
+html[data-style="fauvism"]{
+  --tx-bg:#0E7C3A; --tx-card:#FFF6E0; --tx-card2:#FFC20E; --tx-border:#20124D;
+  --tx-t1:#20124D; --tx-t2:#4A3A5E; --tx-t3:#6E5A8A;
+  --tx-page-t1:#FFF6E0; --tx-page-t2:#FFEDBE; --tx-page-t3:#CDEAC0;
+  --tx-accent:#E8442E; --tx-accent2:#2743A6; --tx-accent3:#FFC20E; --tx-on-accent:#FFF6E0;
+  --tx-crumb-bg:#E8442E; --tx-crumb-border:#20124D;
+  --tx-radius-card:10px; --tx-radius-btn:6px; --tx-border-w:3px;
+  --tx-shadow:6px 6px 0 rgba(32,18,77,.5); --tx-shadow-h:8px 8px 0 rgba(32,18,77,.55);
+  --tx-font-display:'Archivo Black',sans-serif; --tx-font-body:'DM Sans',sans-serif;
+  --tx-highlight:#FFC20E;
+  --tx-menu-bg:#FFF6E0; --tx-menu-ink:#20124D; --tx-menu-border:#20124D;
+  --tx-menu-radius:10px; --tx-menu-shadow:6px 6px 0 rgba(32,18,77,.5);
+  --bg:var(--tx-bg); --card:var(--tx-card); --border:var(--tx-border); --sh:var(--tx-shadow); --sh-h:var(--tx-shadow-h);
+  --t1:var(--tx-t1); --t2:var(--tx-t2); --t3:var(--tx-t3);
+  --orange:var(--tx-accent); --amber:var(--tx-accent3); --cyan:var(--tx-accent2); --cyan-dark:var(--tx-accent2);
+  --emerald:var(--tx-accent2); --slate:var(--tx-t3); --vivid-purple:var(--tx-accent);
+  --ink:var(--tx-t1); --dim:var(--tx-t2); --mut:var(--tx-t2); --line:var(--tx-border); --tint:var(--tx-card2); --soft:var(--tx-card2); --green:var(--tx-accent2);
+  --pal-focus:var(--tx-accent); --pal-focus-lt:var(--tx-accent); --pal-mood:var(--tx-accent2); --pal-mood-lt:var(--tx-accent2);
+  --pal-turq:var(--tx-accent2); --pal-turq-dk:var(--tx-accent2); --pal-purple:var(--tx-accent); --pal-purple-lt:var(--tx-accent); --pal-highlight:var(--tx-highlight);
+  --font-display:var(--tx-font-display); --font-body:var(--tx-font-body); --cat:var(--tx-accent);
+}
+html[data-style="midcentury"]{
+  --tx-bg:#F3EBDD; --tx-card:#FFFDF7; --tx-card2:#E9F0EC; --tx-border:#6B4226;
+  --tx-t1:#3E2F23; --tx-t2:#5C4A38; --tx-t3:#8A7663;
+  --tx-page-t1:#3E2F23; --tx-page-t2:#5C4A38; --tx-page-t3:#8A7663;
+  --tx-accent:#CC5E2A; --tx-accent2:#1F7A72; --tx-accent3:#E3A72F; --tx-on-accent:#FFFDF7;
+  --tx-crumb-bg:#FFFDF7; --tx-crumb-border:#6B4226;
+  --tx-radius-card:16px; --tx-radius-btn:999px; --tx-border-w:1.5px;
+  --tx-shadow:0 4px 10px rgba(62,47,35,.12); --tx-shadow-h:0 10px 24px rgba(62,47,35,.18);
+  --tx-font-display:'Josefin Sans',sans-serif; --tx-font-body:'Josefin Sans',sans-serif;
+  --tx-highlight:#E3A72F;
+  --tx-menu-bg:#FFFDF7; --tx-menu-ink:#3E2F23; --tx-menu-border:#6B4226;
+  --tx-menu-radius:16px; --tx-menu-shadow:0 10px 24px rgba(62,47,35,.25);
+  --bg:var(--tx-bg); --card:var(--tx-card); --border:var(--tx-border); --sh:var(--tx-shadow); --sh-h:var(--tx-shadow-h);
+  --t1:var(--tx-t1); --t2:var(--tx-t2); --t3:var(--tx-t3);
+  --orange:var(--tx-accent); --amber:var(--tx-accent3); --cyan:var(--tx-accent2); --cyan-dark:var(--tx-accent2);
+  --emerald:var(--tx-accent2); --slate:var(--tx-t3); --vivid-purple:var(--tx-accent);
+  --ink:var(--tx-t1); --dim:var(--tx-t2); --mut:var(--tx-t2); --line:var(--tx-border); --tint:var(--tx-card2); --soft:var(--tx-card2); --green:var(--tx-accent2);
+  --pal-focus:var(--tx-accent); --pal-focus-lt:var(--tx-accent); --pal-mood:var(--tx-accent2); --pal-mood-lt:var(--tx-accent2);
+  --pal-turq:var(--tx-accent2); --pal-turq-dk:var(--tx-accent2); --pal-purple:var(--tx-accent); --pal-purple-lt:var(--tx-accent); --pal-highlight:var(--tx-highlight);
+  --font-display:var(--tx-font-display); --font-body:var(--tx-font-body); --cat:var(--tx-accent);
+}
+/* == END TOKEN BLOCK == */

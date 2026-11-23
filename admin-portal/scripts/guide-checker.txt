@@ -1,0 +1,253 @@
+#!/usr/bin/env python3
+"""Static standards check for a guide HTML file. Usage: check_guide.py <file.html>
+Exit 0 = PASS (warnings allowed), 1 = FAIL. Part of the standing GUIDE BUILD SCRIPT
+(~/workspace/guide-build/GUIDE_BUILD_SCRIPT.md). Extended Nov 2, 2026 with the
+exhaustive guide checks: effect palette integrity, theme-persistence ban,
+duplicate ids, visible-text 'donut' ban, kratom-guide markers (batch pills,
+reviews footnote, picker localStorage key, sortable tables, date pill)."""
+import re, sys
+
+FX = {
+    '--fx-energy': '#FFFFFF', '--fx-focus': '#F06000', '--fx-mood': '#10C000',
+    '--fx-calm': '#F0F000', '--fx-analgesia': '#E01020', '--fx-sleep': '#0A0A0A',
+    '--fx-default': '#0070D0',
+}
+
+def main(path):
+    h = open(path, encoding='utf-8').read()
+    fails, warns = [], []
+    lower = h.lower()
+    # --- hard requirements (all guides) ---
+    if 'width=device-width' not in h: fails.append('missing viewport meta (width=device-width)')
+    if 'Outfit' not in h: fails.append('Outfit font not referenced')
+    if 'DM Sans' not in h and 'DM+Sans' not in h: fails.append('DM Sans font not referenced')
+    if re.search(r'Times New Roman|font-family:[^;}]*\bserif\b(?!-)', h) and 'sans-serif' not in h:
+        fails.append('serif stack without sans-serif fallback')
+    if 'Times New Roman' in h: fails.append('Times New Roman present — never allowed')
+    if '@media print' not in h: fails.append('no @media print block')
+    if '@page' not in h: fails.append('no @page rule (Letter print standard)')
+    if 'print-color-adjust' not in h: fails.append('no print-color-adjust:exact')
+    if 'break-inside' not in h: fails.append('no break-inside rules for print')
+    if 'responsive-print-standard' not in h:
+        fails.append('missing the standing responsive-print-standard style block (must be last in <head>)')
+    else:
+        tail = h[h.rfind('responsive-print-standard'):]
+        flat = tail.replace(' ', '')
+        if '@media(max-width:640px)' not in flat:
+            fails.append('responsive block lacks the max-width:640px media query')
+        if 'grid-template-columns:1fr' not in flat:
+            fails.append('responsive block lacks single-column panels on mobile')
+        if 'overflow-x:clip' not in flat:
+            fails.append('responsive block lacks overflow-x:clip guard')
+    # responsive block must come after every other <style>
+    if 'responsive-print-standard' in h:
+        last_style = h.rfind('<style')
+        if 'responsive-print-standard' not in h[last_style:]:
+            fails.append('responsive-print-standard block is not the LAST <style> in the document')
+    # --- anchors ---
+    ids = re.findall(r'id="([^"]+)"', h) + re.findall(r"id='([^']+)'", h)
+    idset = set(ids)
+    hrefs = set(re.findall(r'href="#([^"]+)"', h)) | set(re.findall(r"href='#([^']+)'", h))
+    dead = sorted(x for x in hrefs if x and x not in idset and not x.startswith('http'))
+    if dead: fails.append(f'dead in-page anchors: {dead[:8]}')
+    # --- duplicate ids (warning: the frozen WildCraft prototype carries one benign dup, id="top") ---
+    dups = sorted({i for i in ids if ids.count(i) > 1})
+    if dups: warns.append(f'duplicate ids present (verify benign): {dups[:6]}')
+    # --- theme must never be persisted (light-default rule, script §8.3) ---
+    # ANY storage read OR write of a theme key fails: localStorage/sessionStorage
+    # directly, bracket notation, an `in` probe, or ANY alias/wrapper object
+    # (the Gemini compound frame persists via `storage.setItem('peptopia-theme', …)`
+    # behind `window['local'+'Storage']`, which a localStorage-only regex misses).
+    theme_hits = []
+    for m in re.finditer(r"\.(?:getItem|setItem|removeItem)\(\s*['\"][^'\"]*theme[^'\"]*['\"]", h, re.I):
+        theme_hits.append(m.group(0)[:64])
+    for m in re.finditer(r"(?:localStorage|sessionStorage)\s*\[\s*['\"][^'\"]*theme", h, re.I):
+        theme_hits.append(m.group(0)[:64])
+    if re.search(r"['\"][^'\"]*theme[^'\"]*['\"]\s+in\s+(?:localStorage|sessionStorage)", h, re.I):
+        theme_hits.append('theme key probed via `in localStorage`')
+    if re.search(r"window\[['\"]local['\"]\s*\+", h) or re.search(r"\[['\"]localStorage['\"]\]", h):
+        theme_hits.append("indirect localStorage access via window['local'+'Storage']")
+    if theme_hits:
+        fails.append('theme read/written via storage — theme must be visit-only, never persisted (§8.3): '
+                     + '; '.join(sorted(set(theme_hits))[:3]))
+    # --- hero + header + containment standards (Nov 5, 2026 — TLN repair round) ---
+    if 'class="subtitle">Complete Strain Guide' in h:
+        fails.append('hero carries the "Complete Strain Guide" subtitle line — never used; hero = kicker + title + one-line impact tagline')
+    if re.search(r'class="date"[^>]*>\s*Compiled', h):
+        fails.append('hero carries a "Compiled ..." date line — not part of the template; remove it')
+    if re.search(r'<button[^>]*>\s*<button', h):
+        fails.append('nested <button> inside a <button> (mangled header bar; the theme moon renders as loose text) — buttons must never nest')
+    if 'colorband' in h and 'class="wrap"' in h:
+        toks = [(m.start(), not m.group(0).startswith('</'), m.group(0))
+                for m in re.finditer(r'<div\b[^>]*>|</div>', h)]
+        wi = next((i for i, (_, op, t) in enumerate(toks) if op and 'class="wrap"' in t), None)
+        if wi is not None:
+            depth, pre = 0, {}
+            for i, (_, op, _t) in enumerate(toks):
+                pre[i] = depth
+                depth += 1 if op else -1
+            inside_level = pre[wi] + 1
+            bands = [pre[i] for i, (_, op, t) in enumerate(toks) if op and 'colorband' in t]
+            if bands and any(d == inside_level for d in bands) and not all(d == inside_level for d in bands):
+                fails.append('band containment broken: some .colorband sections sit OUTSIDE the .wrap column '
+                             '(a stray </div> after a band ejects every later section to full viewport width) — '
+                             'every band must live inside the guide column')
+    # --- WildCraft FINAL template gates (Nov 6, 2026 — script §43) ---
+    if 'Kratom Picker' in h:
+        if 'How These Scores Were Earned' not in h:
+            fails.append('missing the "⭐ How These Scores Were Earned" block after the scorecard (§43)')
+        if 'legs' not in lower:
+            warns.append('no legs/duration line markup found — every strain card needs the 0–5h legs line (§43)')
+        if 'my kitchen counter' in lower or 'my own wildcraft' in lower:
+            fails.append('personal information in the guide (first-person/home detail) — guides carry no personal info, ever')
+    # --- effect palette integrity (script §9): a present var must carry the exact hex ---
+    for var, hexv in FX.items():
+        m = re.search(re.escape(var) + r'\s*:\s*(#[0-9A-Fa-f]{6})', h)
+        if m and m.group(1).upper() != hexv:
+            fails.append(f'{var} is {m.group(1)} — standard is {hexv} (§9)')
+    # --- visible text must never say "donut" (script §15.2) ---
+    text = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', h, flags=re.S | re.I)
+    text = re.sub(r'<[^>]+>', ' ', text)
+    if re.search(r'\bdonuts?\b', text, re.I):
+        fails.append('visible text says "donut" — pies are never called donuts (§15.2)')
+    # --- §44 mechanical gates (Nov 6, 2026 — the November 6 Standards) ---
+    if '🛒' in h:
+        fails.append('shopping-cart glyph present — the catalog mark is the drawn open-catalog SVG, never a cart (§44n)')
+    if 'From the Bottom of the Guide' in h:
+        fails.append('"From the Bottom of the Guide" present — the bottom search title is "🔍 Search Strains", nothing more (§44o)')
+    # Community Standout (§44i): both words capitalized wherever the label renders.
+    # The label is generated by .popbox.star::before content rules; the LAST
+    # content-bearing rule wins the cascade. Both approved Nov 6 guides (WC
+    # phase-2 master, DTE clone) still carry one dead pre-§44 lowercase string
+    # in an early base rule, overridden by the later §44 rule — so this gate
+    # tests the WINNING rule plus visible text, and WARNs on the dead remnant
+    # rather than failing the approved files. A build whose winning rule is
+    # lowercase FAILS; delete the dead string when next touching that CSS.
+    if 'popbox' in h:
+        star_contents, _i = [], 0
+        while True:
+            _i = h.find('.popbox.star::before', _i)
+            if _i < 0: break
+            _m = re.search(r'content:\s*"([^"]*)"', h[_i:_i + 200])
+            if _m: star_contents.append(_m.group(1))
+            _i += 10
+        star_fail = bool(star_contents and 'Community standout' in star_contents[-1])
+        if star_fail:
+            fails.append('the winning .popbox.star::before rule renders "Community standout" (lowercase s) — the label is "Community Standout", both words capitalized (§44i)')
+        if 'Community standout' in text:
+            fails.append('visible text says "Community standout" (lowercase s) — the label is "Community Standout", both words capitalized (§44i)')
+        elif 'Community standout' in h and not star_fail:
+            warns.append('dead pre-§44 "Community standout" string remains in an overridden CSS rule — delete it when next touching that CSS (§44i)')
+    # unscored chips (§44b): a dash is never a score — unscored shows 0, meter omitted
+    dash_scores = [v for v in re.findall(r'<span class="fx-top">.*?<b>([^<]*)</b>', h, re.S)
+                   if v.strip() in ('–', '—')]
+    if dash_scores:
+        warns.append(f'{len(dash_scores)} effect chip(s) show a dash as the score — unscored chips show 0 with the meter element omitted (§44b)')
+    # --- §45 push-button signature (Nov 9, 2026 — WARNING-level only, never a fail) ---
+    # The permanent button standard (script §45): every button carries the
+    # homepage gloss (inset box-shadow highlight/shading) AND a true press-down
+    # (:active rule whose transform includes translateY). Presence of the
+    # signature is all a static check can prove — fit and gloss are §42 render
+    # gates — so a miss only WARNs.
+    has_inset_shadow = bool(re.search(r'box-shadow:[^;}]*inset', h, re.I))
+    has_active_press = bool(re.search(r':active[^{]*\{[^}]*transform\s*:\s*[^;}]*translateY', h, re.S | re.I))
+    if not (has_inset_shadow and has_active_press):
+        missing = []
+        if not has_inset_shadow: missing.append('no inset box-shadow highlight/shading found')
+        if not has_active_press: missing.append('no :active translateY press-down found')
+        warns.append('push-button signature incomplete (§45): ' + '; '.join(missing) +
+                     ' — every button needs the homepage gloss + true press-down; verify by render')
+    # --- images need alt text ---
+    imgs = re.findall(r'<img\b[^>]*>', h, re.I)
+    noalt = [i for i in imgs if 'alt=' not in i.lower()]
+    if noalt: warns.append(f'{len(noalt)} <img> tag(s) without alt text')
+    # --- kratom strain-guide markers (warnings: family-scoped, script §§13/17/20) ---
+    is_kratom = ('kratom picker' in lower) or ('strain-head' in h) or ('wc-spec' in h) or ('quick pick' in lower)
+    if is_kratom:
+        if not any(v in h for v in FX):
+            warns.append('kratom guide defines no --fx-* effect palette vars (§9)')
+        if 'Batch #' not in h:
+            warns.append('kratom guide has no "Batch #" pill buttons (§17.1)')
+        if 'Reviews stars are' not in h:
+            warns.append('kratom vendor guide missing the exact reviews footnote (§20.1)')
+        if '<table' in lower and 'sortable' not in lower:
+            warns.append('kratom guide has tables but no sortable marker (§17.3)')
+        if not re.search(r"localStorage\.getItem\('[^']*QpHistory'\)", h):
+            warns.append('no per-guide picker history key (*QpHistory) found (§13.2)')
+        if '📅' not in h:
+            warns.append('no 📅 date pill found (§5.7/§8.4)')
+    # --- warnings: fixed-width traps ---
+    for m in re.finditer(r'(?<![-\w])width:\s*(\d{3,})px', h):
+        if int(m.group(1)) > 480: warns.append(f'fixed width {m.group(1)}px may overflow mobile (check context)')
+    if 'white-space:nowrap' in h and 'responsive-print-standard' in h:
+        tail = h[h.rfind('responsive-print-standard'):]
+        if 'white-space:normal' not in tail.replace(' ', ''):
+            warns.append('nowrap present but responsive block does not reset it on mobile')
+    # --- WIDTH GATE (David, Nov 22, 2026 — the header-width rule, enforced) ---
+    # With --widths: render the file and FAIL if any top-level section is wider
+    # than the content column, if the site header (.peptopia-hdr) is wider than
+    # the content column, or if the page overflows horizontally, at 1280 or 390.
+    if '--widths' in sys.argv:
+        wf = width_gate(path)
+        fails.extend(wf)
+    for w in warns: print('WARN:', w)
+    for f in fails: print('FAIL:', f)
+    print(('PASS' if not fails else 'FAIL') + f' — {path} ({len(h.encode())} bytes, {len(warns)} warnings, {len(fails)} failures)')
+    return 1 if fails else 0
+
+def width_gate(path):
+    """Render `path` in Chromium and return width-rule failures (David's rule:
+    title bands/headers set ONE width; every section conforms; the header never
+    exceeds the content width; no horizontal overflow — desktop and mobile)."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception:
+        print('WARN: playwright unavailable — width gate skipped')
+        return []
+    import os
+    fails = []
+    JS = '''() => {
+      const out = {scrollW: document.documentElement.scrollWidth, inner: window.innerWidth};
+      const wrap = document.querySelector('.wrap');
+      const main = document.querySelector('main');
+      if (wrap) {
+        const cs = getComputedStyle(wrap);
+        out.content = wrap.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        out.column = wrap.offsetWidth;
+        out.childBad = [];
+        for (const el of wrap.children) {
+          if (el.offsetWidth > 0 && Math.abs(el.offsetWidth - out.content) > 2)
+            out.childBad.push(el.tagName + '.' + String(el.className).slice(0, 24) + '=' + el.offsetWidth);
+        }
+        // section-level containers anywhere in the page (top-most matches only)
+        const SEL = '.wcsec,.panels,.index,.legend,.colorband,.wk-lead';
+        for (const el of document.querySelectorAll(SEL)) {
+          if (el.offsetWidth > 0 && !el.parentElement.closest(SEL) && Math.abs(el.offsetWidth - out.content) > 2)
+            out.childBad.push('section ' + String(el.className).slice(0, 24) + '=' + el.offsetWidth);
+        }
+      } else if (main) {
+        out.content = main.offsetWidth; out.column = main.offsetWidth; out.childBad = [];
+      }
+      const hdr = document.querySelector('.peptopia-hdr');
+      if (hdr) out.hdr = hdr.offsetWidth;
+      return out;
+    }'''
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        for wpx in (1280, 390):
+            pg = b.new_page(viewport={'width': wpx, 'height': 900})
+            pg.goto('file://' + os.path.abspath(path))
+            pg.wait_for_timeout(600)
+            d = pg.evaluate(JS)
+            pg.close()
+            if d['scrollW'] > d['inner'] + 1:
+                fails.append(f"width gate @{wpx}: horizontal overflow (scrollWidth {d['scrollW']} > viewport {d['inner']})")
+            if d.get('childBad'):
+                fails.append(f"width gate @{wpx}: sections wider/narrower than the content column ({d['content']}px): " + ', '.join(d['childBad'][:4]))
+            if d.get('hdr') and d.get('column') and d['hdr'] > d['column'] + 2:
+                fails.append(f"width gate @{wpx}: header {d['hdr']}px exceeds the content column {d['column']}px")
+        b.close()
+    return fails
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1]))

@@ -1,0 +1,72 @@
+# Publish and Verify a GitHub Pages Site
+
+## Confirm which file the live domain serves
+
+- Map the custom domain to its repo and branch before editing. Check the site settings or ask which repo the domain points to, and note whether the served copy is the repo root, a subdirectory or a docs folder.
+
+- Edit only the copy the domain serves. When the repo holds near-duplicate files such as a root index.html and a subdirectory index.html, compare both before changing either, because editing the unserved copy produces a build the user never sees.
+
+- Verify the local build output goes to the served path. Rebuild after edits and confirm the changed file is the one the site reads.
+
+## Upload within the size limits without manual work
+
+- Respect the measured size limits (corrected Nov 16, 2026 — do not conflate the two caps): the GitHub MCP `--arguments-json` write route caps a single CLI argument at ~128KB, while `push-files` allows a per-file snapshot up to 16,777,216 bytes but the MCP request itself dies with HTTP 413 above ~7.7 MB total body (~4.1 MB pushes fine). Split oversized files or shrink assets before uploading, per the route actually used.
+
+- Never hand the user drag-drop, copy-paste, or other manual upload steps for GitHub publishing. Automate every upload from this side.
+
+- When a file is too large for one call, the standing default (Nov 4, 2026) is to keep the page self-contained: split embedded media into per-file JS chunk files (window.__X + Blob assembly), each pushed in its own push-files call. Externalizing images as WebP under images is NOT the default — use it only when David approves breaking self-containment. Say what you changed to fit the cap instead of asking the user to carry files.
+
+- Lowercase every filename before uploading. Confirm the commit landed by reading it back from the repo. An accepted write is not a live site.
+
+- Batch small files into fewer calls when the user asked to minimize approval clicks. Say upfront when file size or shell limits force separate approval cards.
+
+## Verify from two sources before saying live
+
+- Check the custom domain and the raw GitHub URL for the same change. New blobs can 404 on the custom domain while live on raw, so check both.
+
+- Look for a content marker unique to this change, such as a new headline or card text. A 200 response showing the old content is not verification.
+
+- Allow for CDN cache lag. When the file is in the repo but the domain still shows the old version, say "uploaded, still propagating" and set the expectation, not "live".
+
+- Cite the verification sources when reporting. Say "live" only after the marker appears in at least two sources.
+
+## Exercise linked assets on the live page itself
+
+- Test every download button, document link and media link from the live page bytes after publishing, never from a staged copy, a preview build or a local file. A control that worked in staging can point at a file that never reached the live site.
+
+- Confirm each exercised link produces the promised result on the live page, such as a valid one page PDF opening from a map download or an audio clip that actually plays. A page returning 200 does not verify the assets it links to.
+
+- Route non HTML assets around the publish route limits before claiming they work. Binary files such as PDFs cannot pass the GitHub push route as raw files, so pack the asset inside the page as encoded text or chunk files with in page assembly, or host it through a route you have verified accepts it.
+
+- Report a feature as preview only or unpublished when it exists in a staged or preview build but not on the live page. Never describe preview state as delivered.
+
+## Compare copies before claiming one differs
+
+- Hash or byte compare two copies before claiming one is a newer rebuild, a cleaner version or a different edition of the other. Identical bytes are the same file regardless of folder, filename or date.
+
+- Withdraw a difference claim in the same report when the comparison shows the copies match, and state which single version actually exists.
+
+## Available connectors
+
+- Use `muse.connector_search` to find other connectors and `muse.skill_search` to find related skills.
+
+- If nothing here fits, look on the web for a maintained API or MCP server and set it up with [Custom Connectors and MCPs](/opt/muse/skills/custom-connector-setup/SKILL.md), or build a custom connector.
+
+## Websites
+
+- [GitHub](https://github.com/) for confirming the commit landed in the served branch. Carry the repo name and branch, and verify the changed file shows the new content there.
+
+## Alternatives for better results
+
+- When uploads keep failing, keep pushing through the API with smaller commits and externalized assets. Do not revert to a manual upload checklist.
+
+- When the domain stays stale long after the repo shows the change, bypass or purge the cache before re-editing files.
+
+## Standing rules added by reconciliation (Nov 16, 2026 — from MEMORY.md / AGENTS.md)
+
+- TWO-REPO SITE (Oct 31, 2026): x-peps.com is served by TWO repos — Peptopia-Health/peptopia-health.github.io (root, /briefings/, /admin-portal/, /Tuscarora_Arboretum/, /Corrections/, /bewitched) and Peptopia-Health/X-Peps (/X-Peps/ only, files at repo root). RULE: /X-Peps/ publishes go to repo X-Peps at root paths; all other paths go to peptopia-health.github.io.
+- PATH TRAP (Nov 10, 2026, PERMANENT): `github push-files --source-dir <DIR>` resolves each paths entry relative to the source-dir and the entry text becomes the repo path verbatim. NEVER stage a preview as `index.html` in its own folder and push with a bare filename — that overwrote the live homepage for ~25 minutes. Stage at the FULL repo path under ~/workspace, push with the full repo-relative path, and after ANY push curl-verify BOTH the pushed URL and the site homepage md5 before reporting.
+- Approval cards: GitHub connector writes fire egress approval cards that EXPIRE in 30 minutes. Batch pending pushes so one active window covers them, coordinate the tap while David is active, and when David has preapproved the work, publish through his signed-in browser session instead of letting cards expire.
+- TAGLINE BAN (Nov 11, 2026, PERMANENT): the text "Premium research and education" must NEVER appear anywhere on the site — check for it on every build/publish.
+- Mockups (Nov 6, 2026): NEVER send an interactive guide/mockup as a file attachment (iOS viewers render HTML static — every button dead). Mockups go to a LIVE preview URL on GitHub Pages under a /previews/ path, never the guide's real path, with every button click-tested in a real render of the exact published bytes before the link is sent.
+- Large self-contained pages (Nov 4, 2026): split embedded audio/media into per-file JS chunk files (window.__X = base64 + Blob assembly) and push each file in its OWN push-files call.

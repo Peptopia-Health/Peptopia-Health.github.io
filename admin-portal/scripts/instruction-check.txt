@@ -1,0 +1,53 @@
+# Verify UI Steps Before Sending Them
+
+## Verify the live interface first
+
+- Open the service in a live browser session before writing the steps and confirm each button, icon and menu item you plan to name is actually present on that screen.
+
+- Fall back to the service's current official help page when no live session is available and name that source when you send the steps.
+
+- Write down the exact label the interface shows for each control and use that wording in the steps instead of a remembered label.
+
+- Drop any step whose control you could not verify and say plainly that you could not confirm that screen rather than guessing its layout.
+
+## Branch on the account state
+
+- Check the account or subscription state the screen reports before giving action steps because a pending cancellation, a failed payment or an expired plan can remove the control entirely.
+
+- State the state you found first when it explains why no action is needed, such as a membership already set to end on a named date.
+
+- Give separate short step lists for each state you verified instead of one list that assumes the common state.
+
+## Send steps the user can follow
+
+- Send a short numbered list with one action per step and the exact control label in each step.
+
+- Lead with the screen or page to open and end with the confirmation the user should see when the action worked.
+
+- Keep the whole list short enough to follow from a phone and leave out background explanation the user did not ask for.
+
+## Stop and recheck when an element is missing
+
+- Treat the user's first report that a named control is not there as proof the steps are wrong for their screen and stop sending variants of the same list.
+
+- Recheck the live interface or current help for that exact screen and account state before sending any replacement steps.
+
+- Admit in one line that the earlier steps were unverified when the recheck shows the control does not exist and give only the corrected finding.
+
+## Available connectors
+
+- Use `muse.connector_search` to find other connectors and `muse.skill_search` to find related skills.
+
+- If nothing here fits, look on the web for a maintained API or MCP server and set it up with [Custom Connectors and MCPs](/opt/muse/skills/custom-connector-setup/SKILL.md), or build a custom connector.
+
+## Alternatives for better results
+
+- Ask for a screenshot of the user's current screen when the live session shows a different layout than the user describes and write the steps from that screenshot.
+
+- Do the action in the live session yourself when the service and the user's approval allow it instead of sending instructions at all.
+
+## Standing rules added by reconciliation (Nov 16, 2026 — from MEMORY.md / AGENTS.md)
+
+- SESSION PERSISTENCE (Nov 2, 2026, PERMANENT): steps must use stay-signed-in / remember-device options and never end with logging out. A lost session is a defect to fix and report, not a normal outcome.
+- Known-walled services: Pirate Ship sign-in demands an emailed 2FA code that does NOT arrive in peptopia@x-peps.com; the 2FA page has no resend control — stop after two sign-in attempts (lockout risk) and use the workaround: label PDFs already filed in Drive Shipping Labels can be pulled and printed without a session. The saved vault passwords for GitHub and Discord went stale (rejected Oct 24 / Nov 6, 2026; GitHub's was updated by David Nov 6) — rely on David's live logged-in browser session where one exists.
+- Delivery form: keep steps short, plain, and screenshot-led. When David asks to copy an identifier, print the bare value alone. Admit a blocked page in one line. Never claim a page opened when it did not, and never display passwords.

@@ -1,0 +1,45 @@
+# Verify Spoken Audio Before Delivery
+
+## When this correction applies
+
+- Apply this check to every audio file you render with `/opt/hatch/bin/tts`, including chat voice notes, morning and evening briefings, artifact briefs and podcast audio, before you attach it in chat, archive it, or publish it to a website.
+
+- Treat this check as a delivery gate that strengthens the base skill. A successful synthesis result, a plausible file size and a correct script do not clear a file for delivery.
+
+## Decode and scan the whole file
+
+- Decode the entire rendered file from the first second to the last through `muse.exec` before delivery, and fail the file when the decode reports any error or stops early.
+
+- Scan the decoded waveform across its full length for dropouts, static bursts, stretches of silence and broken or repeated syllables, and pay extra attention to the joins between synthesis chunks where a render can break mid file.
+
+- Compare the measured duration against the duration the script length implies, and investigate any mismatch before delivery instead of trusting the returned path.
+
+- Listen to spot passages only as a supplement to the full scan, never as a substitute for it, because a clean opening does not prove the middle of the file is intact.
+
+## Act on a failed check
+
+- Keep a failed render apart from finished work and never deliver or publish it, even when only one short stretch is corrupted.
+
+- Re-render from the same script with the same voice, run the full decode and scan on the new file, and deliver only a file that passes.
+
+- Replace the bad copy in place at the same path and name everywhere it was delivered, such as the chat file, the Drive archive and the website copy, and delete the superseded copies rather than keeping extra versions.
+
+- State the check result in one short line when you deliver the audio, naming that the full decode and dropout scan passed.
+
+## Available connectors
+
+- Use `muse.connector_search` to find other connectors and `muse.skill_search` to find related skills.
+
+- If nothing here fits, look on the web for a maintained API or MCP server and set it up with [Custom Connectors and MCPs](/opt/muse/skills/custom-connector-setup/SKILL.md), or build a custom connector.
+
+## Alternatives for better results
+
+- Render a long script in shorter chunks and verify each chunk before joining when a full file keeps failing, so a bad stretch is isolated instead of re-rendered blindly.
+
+- Shorten the script and re-render when repeated renders corrupt at the same point, then verify the shorter file the same way before delivery.
+
+## Standing rules added by reconciliation (Nov 16, 2026 — from MEMORY.md)
+
+- AUDIO PALETTE (David, Nov 3, 2026, PERMANENT): every time a substantive product is shared, ask which depth he wants — (1) short summary, (2) medium basic briefing, or (3) extended intensely researched audio teaching. Never assume a default depth.
+- Voice: Smooth (avocado_v2:MAI_03) in the storyteller register is the standing voice; a re-render always uses the same voice.
+- AUDIO LIFECYCLE (Nov 1/6, 2026): after a substantive audio is delivered, offer the delete/keep choice; saved audio goes to the Muse Audio Drive archive with `Word_Word_Word_MM-DD-YY` naming. Tuscarora recordings and David's own recordings are NEVER deleted. Published-research audios are ask-first before any cleanup.

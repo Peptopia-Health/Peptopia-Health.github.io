@@ -1,0 +1,71 @@
+# Clone Build a Guide from the Frozen Prototype
+
+## Start from the frozen prototype
+
+- Read `~/workspace/guide-build/GUIDE_BUILD_SCRIPT.md` end to end before building and treat it as the governing build script for the whole task.
+
+- Back up the current guide to Drive in an appropriate folder before any update and record content counts before you change anything.
+
+- Start every rebuild from a byte copy of the frozen prototype guide file and transplant the new vendor or topic content into its existing structures.
+
+- Never regenerate a guide from the build script text description, from another guide lineage, or from a parallel builder draft.
+
+- Never change the prototype itself. When a technique from another guide looks better, pitch it to the user in simple terms with an approve or reject choice instead of adding it silently.
+
+## Transplant content without loss
+
+- Move only the vendor or topic data into the copied structures and keep every other structure, class and behaviour from the prototype.
+
+- Count cards, sections and rows again after the transplant and reconcile any drop against the backup before proceeding.
+
+- Apply the current presentation rules from the build script during the transplant, including title bands that HUG content (width:fit-content, centered; strain-guide body containers at one uniform full-column width with vein bands/card headers carrying the strain color), review quotes as bullet lists, and no first person or user information in any guide. (Wording corrected Nov 16, 2026: the earlier "bright title bars tied to dominant effect" summary predated the hug/uniform-width rules.)
+
+- Rebuild one guide at a time and present each finished preview for user approval before starting the next guide.
+
+## Gate on prototype parity, not markers alone
+
+- Run `python3 ~/workspace/guide-build/check_guide.py <file>` and require a PASS before publishing.
+
+- Diff the rebuilt guide structure against the prototype structure and investigate every added, missing or renamed structural element the transplant did not require.
+
+- Treat a checker PASS or a marker count as insufficient on its own. Compare the rebuild side by side with the prototype in rendered screenshots.
+
+- Check rendered row counts for grouped cards so a group of exactly four renders as two by two, and measure hero spacing in the render so no dead band sits under the subtitle.
+
+## Verify the rendered guide
+
+- Verify the guide in four quadrants covering mobile and desktop in both light and dark themes, with light theme as the load default and no theme choice persisted across loads.
+
+- Screenshot diagrams such as Venn diagrams and confirm every label sits fully inside its region with no overlap or clipping.
+
+- Render the print view and confirm no paragraph or graphic is sliced across a page break.
+
+- Click the summary cards, section toggles, map cells and search results in the live preview and confirm each lands or behaves as its label promises before reporting success.
+
+## Available connectors
+
+- Use `muse.connector_search` to find other connectors and `muse.skill_search` to find related skills.
+
+- If nothing here fits, look on the web for a maintained API or MCP server and set it up with [Custom Connectors and MCPs](/opt/muse/skills/custom-connector-setup/SKILL.md), or build a custom connector.
+
+## Alternatives for better results
+
+- When a parity diff is ambiguous, keep the prototype behaviour and flag the difference for the user instead of inventing a new structure.
+
+- When time is short, narrow the rebuild to one guide and finish its gates completely rather than drafting several guides in parallel.
+
+## Standing rules added by reconciliation (Nov 16, 2026 — from MEMORY.md)
+
+- BUTTON CONFIRMATION CHECK (Oct 24, 2026): on EVERY guide build or update, confirm buttons with David first — count, type, and placement — before applying them.
+- CARD-CENTERING RULE (Nov 12, 2026; expanded Nov 16, PERMANENT): when a card grid's last row has fewer than 3 cards, CENTER them as a group on the page (equidistant space on both sides) — never leave them left-aligned. Applies to every card grid in every build.
+- THE HOMEPAGE RULE (Nov 16, 2026, PERMANENT): all logos/icons/buttons MUST look like the homepage's. Copy the source masters in ~/workspace/your_files/ (logo-runner-full, btn-print-turq, btn-moon-holo, btn-sun-holo, btn-globe-dte, btn-leaf-neon, btn-scales-purple, btn-variation-cobalt) and modify ONLY (1) the color — almost always a neon hue that glows (halo) — and (2) the image inside, sized almost as large as its circle/button WITHOUT touching the borders. The glisten (sharp star point + cross flare at ~10:45, window-pane reflections, neon rim) is part of the copied source and is NEVER recreated; a soft radial/ellipse highlight is the banned SMUDGE — a defect in any file however old. GATE: side-by-side render vs the homepage/master at ≥384px before any publish.
+- GLASS + PASTEL STANDARD (Nov 13, 2026, PERMANENT): buttons use soft pastels, never dark solid colors; the translucent glass effect is a standard-build element on icons and buttons; dark-theme equivalents stay soft, not saturated. Buttons are raised glossy push-buttons with a press-down feel — flat is a defect.
+- GUIDES OPEN AT WINDOW SIZE (Nov 16, 2026, PERMANENT): every guide opens at the exact window size — correct viewport meta, fluid responsive layout, no fixed or tiny canvas; verified by rendering at phone + desktop sizes, light + dark, with print-to-PDF optimized.
+- Fonts (PERMANENT): NEVER Times New Roman or any serif. Headings/display in Outfit (700/800), body in DM Sans, stacks ending in sans-serif, webfonts loaded, rendered fonts verified before delivery. Headline/display text is bold legible orange by default.
+- TITLE BANDS HUG (Nov 2, 2026): title bands hug content (width:fit-content, centered, max-width:100%); subtitle wraps (max-width ~34ch, never nowrap). Strain-guide body CONTAINERS take one uniform width = full guide column (Oct 31, 2026).
+- PALETTE TOKENS (Nov 6, 2026): use CSS palette variables (--pal-*) strictly — Energy #FFFFFF (grey border), Focus #F06000, Mood #10C000, Calm/Gold #F0F000, Pain #E01020, Sleep #0A0A0A, Cobalt #0070D0, Purple #6C4FE0. Colors bright and cheerful, bordering on pastel — never dark saturated derivatives.
+- CARD THEME COLORS (Nov 16, 2026, PERMANENT): every homepage card carries ONE theme color that TRANSITIONS down into its destination guide as the link is clicked. Blues and magentas/purples stay FAR APART on the spectrum.
+- Content rules: NO PRIVATE LIFE in guides (Nov 5, 2026 — no Weenie or private details; generic animal wording only). Say "pain," never "analgesia" or derivatives, everywhere including bibliography (Nov 5/10, 2026). Plant-guide sources print as a bulleted list, one source per bullet (Nov 16, 2026). Kratom-guide updates are CONTENT ONLY; design changes are queued on ~/workspace/guide-build/TEMPLATE_CHANGE_REQUESTS.md, never applied silently (Nov 9, 2026).
+- Never use `filter:drop-shadow()` on SVGs in site CSS (iOS Safari/WebKit paints a solid black square; use gradient halos or box-shadow instead) — Nov 11/13, 2026 lesson.
+- TAGLINE BAN (Nov 11, 2026, PERMANENT): "Premium research and education" must never appear — check on every build.
+- FOOTER STANDARD + EMPHATIC HIGHLIGHT STANDARD (Oct 24, 2026): apply both from MEMORY.md / GUIDE_BUILD_SCRIPT on every guide build or update. Highlighter emphasis = solid background + box-decoration-break:clone covering the FULL line height; marker yellow #FEF08A.

@@ -1,0 +1,113 @@
+# Email Management Corrections
+
+## When these corrections apply
+
+- Apply the legal register to any draft addressed to a court, clerk, officer, agency or other official about a citation, case, application, dispute or formal request.
+
+- Treat these drafts as legal correspondence, not as ordinary email, even when the user asks in casual language or asks for a pointed point to be made.
+
+- Apply the recipient check whenever you send mail to a named customer or other person by replying to a message already in a mailbox.
+
+- Apply it with extra care when the message in view is a copy, a forward or a notification that was addressed to the user's own mailbox rather than to the intended recipient.
+
+- Keep the base Email skill for mailbox choice, thread reading, recipients and sending mechanics, and add only the checks and register in this amendment.
+
+## Verify who did what before writing
+
+- List each action the draft will mention and name who actually did it, using only the thread, the official notice or what the user stated in this conversation.
+
+- Drop or reword any sentence whose actor you cannot verify, such as who scheduled a hearing, who decided an outcome or who explained a rule.
+
+- State only what the official actually did, in the official's own terms where the record gives them, and never upgrade an explanation of a rule into a request, a promise or a decision.
+
+- Check names, dates, case or citation numbers and deadlines character for character against the source document before the draft is shown.
+
+## Write in the legal register
+
+- Keep the draft short, with one point per sentence and no paragraph that repeats a point already made.
+
+- Write without personal pronouns and without personal warmth, familiarity or pleading, so the draft reads as a formal record rather than a personal letter.
+
+- Make a critical point indirectly, by stating the verifiable facts in order and letting them carry the implication, rather than naming poor judgment or fault directly.
+
+- Close with the single requested action or the factual next step, and add no extra closing argument after it.
+
+## Hold for review before sending
+
+- Hold the finished draft unsent and show the exact text to the user, and never send a legal draft on the same turn it was drafted.
+
+- When the mailbox supports drafts, as Gmail does, leave the finished draft in drafts while it is held.
+
+- When the mailbox is Outlook Mail, do not attempt to create a draft, because that connector has no draft capability. Hold the draft as unsent text shown to the user in the conversation instead.
+
+- Send only after the user approves that exact text, and return to the unsent hold for a fresh approval when any wording changes after approval.
+
+- Report a held draft plainly as unsent, naming whether it is in drafts or held as shown unsent text, so the user never has to ask whether it went out.
+
+## Check the recipient before sending
+
+- Write down the intended recipient name and address from the user's instruction or the customer record before you compose the send.
+
+- Compare the To field of the composed message against that address character for character before sending.
+
+- Stop when the parent message is a store copy or a notification addressed to the user's own mailbox, because a reply to it addresses the user's mailbox and not the customer.
+
+- Compose a fresh message addressed directly to the intended recipient in that case, instead of replying to the copy.
+
+- Check any Cc field the reply inherits and remove addresses the intended send does not need.
+
+## Verify in Sent Items after sending
+
+- Open the sent copy in Sent Items after sending and read the actual To field before you tell the user the message went to that person.
+
+- Report the send as delivered to the named person only when the sent copy shows that person's address.
+
+- Say plainly that the send missed when the sent copy shows the user's own mailbox or any other wrong address, and name the address it actually went to.
+
+- Resend as a fresh message to the correct address after a miss, then verify the new sent copy the same way before reporting it.
+
+- Forward the exact sent copy to the user when they ask for proof of what was sent or who received it.
+
+## Verify list provenance before any bulk send
+
+- Treat any send to more than a handful of recipients as a bulk send and stop before proposing it until the list provenance is checked.
+
+- Name the exact source file or system each address came from and say how that source was built, and never present a count of addresses as a count of customers.
+
+- Reject a list built from a directory sweep, an imported contacts directory or a vetting file as a send list, because those sources mix customers with personal, workplace and unrelated contacts.
+
+- Keep an address only when a record the user can point to shows that person is an actual customer or an opted in contact for this business, and drop every address without that evidence.
+
+- Sweep the kept addresses for domains and senders the user has marked never email and remove every match before any proposal, draft or send.
+
+- Report the provenance result to the user as counts only, how many addresses were found, how many carried customer evidence and how many were removed, before naming any bulk send as an option.
+
+- Standing rule from Nov 19, 2026, permanent. Do not send blast emails ever for this user and do not propose one. One to one replies to individual customer requests continue under the recipient check above.
+
+## Available connectors
+
+- [Gmail](/opt/hatch/connectors/gmail/CONNECTOR.md) for the user's Gmail drafts, threads, sending and Sent Items.
+
+- [Outlook Mail](/opt/hatch/connectors/outlook_mail/CONNECTOR.md) for reading the user's Outlook and Microsoft 365 threads and, after approval of the exact text, sending. This connector cannot create drafts, so use the shown unsent text hold for Outlook mailboxes.
+
+- Use `muse.connector_search` to find other connectors and `muse.skill_search` to find related skills.
+
+- If nothing here fits, look on the web for a maintained API or MCP server and set it up with [Custom Connectors and MCPs](/opt/muse/skills/custom-connector-setup/SKILL.md), or build a custom connector.
+
+## Alternatives for better results
+
+- Offer two lengths only when the user asks for a choice, a three sentence version and a five sentence version, both in the same register and both held unsent under the hold rule above.
+
+- Attach or cite the source document the draft relies on when the official asked for proof, rather than describing that proof at length in the body.
+
+- Look the intended address up in the customer record or contacts when the thread gives more than one address for the same person, and use the address the user confirmed.
+
+- Quote the actual To line from the sent copy in your report to the user when a send has already gone wrong once in the same case.
+
+## Standing rules added by reconciliation (Nov 16, 2026 — from MEMORY.md)
+
+- NAME RULE (David, Nov 11, 2026, PERMANENT): never reveal David's name without warning him first. All customer contact stays under the Sara / Peptopia Health identity. His name appears as check payee ONLY inside a live order's payment email at the moment of payment, in a draft he approves before it sends — hidden everywhere else, never in standing copy.
+- DISCLOSURE MINIMUM (Oct 26–28, 2026, PERMANENT): never email product names, catalog, or category details. Replies to processors/platforms disclose only the minimum the question requires.
+- NO COURTROOM LANGUAGE (David, Nov 10, 2026, PERMANENT): never use "verdict" anywhere David can see it — internal order emails say Status: OK TO SELL / CHECK FIRST / DO NOT SELL, and subject lines carry no bracketed status. A customer gets ONE email carrying what's needed (items, total, payment link), stated plainly — never approval/acceptance confirmation language ("your order is accepted" is removed from all templates).
+- Customer greeting standard: "Hey <FirstName>," .
+- VA / HR / preceptor wording: nothing is sent without David's approval of the exact text — the exact-text hold in this skill applies to VA, HR, and preceptor mail as well as legal drafts. Standing hold (Nov 15–16, 2026): do not email HR.

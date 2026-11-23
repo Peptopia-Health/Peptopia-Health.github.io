@@ -1,0 +1,276 @@
+# UNIVERSAL STYLE STANDARD — Peptopia site (David, Nov 9, 2026, PERMANENT)
+
+The homepage (x-peps.com, master `~/workspace/homepage-mockup/homepage-mockup.html`)
+is the reference build. Every page on the site conforms to the values below,
+extracted from the homepage master on Nov 9, 2026. A value that drifts on any
+page is a defect. Referenced by GUIDE_BUILD_SCRIPT.md §46; buttons also §45.
+
+## 1. Type scale (homepage-extracted, exact)
+
+| Element | Font | Size | Weight / style | Line-height | Color |
+|---|---|---|---|---|---|
+| Page hero title (h1) | Outfit | `clamp(2.2rem, 4vw, 3.5rem)` | 800 | — | theme `--t1` |
+| Hero paragraph | DM Sans | `1.1rem` | 400 | — | `--t2` |
+| **Card title** | Outfit | **`1.3rem`** | 700–800 | 1.15 | per-section title color |
+| **Card subtitle** (emphasis line) | Outfit | **`1.05rem`** | 700, **italic** | 1.2 | per-section accent (lighter than title) |
+| **Descriptive text** | DM Sans | **`.9rem`** (14.4px) | 400 | **1.38** | `--t2` |
+| **Button text** | Outfit | **`.85rem`** | 700, uppercase | 1 | `#fff` on gradient |
+| Header nav text (legacy) | system/Outfit | `.8rem` | 700, uppercase | 1 | `--t2` |
+| Footer | system | `.8rem` | 500 | 1.6 | `#64748B` |
+
+Rules:
+- Card title size is THE title size on every card, every page. Subtitle size is
+  THE subtitle size. Descriptive size never varies between cards or pages.
+- Body line-height 1.6; descriptive text 1.38. No per-page size drift, ever —
+  one CSS rule wins per element; duplicate/conflicting size rules are removed,
+  not overridden-and-forgotten.
+
+## 2. Card titles: two lines, two words, no "the"
+
+- Line 1 = product/subject name (dose kept), title font (§1).
+- Line 2 = emphasis line: italic bold, distinct color, size between title and
+  descriptive text (1.05rem). It must NOT look like the title.
+- **No dash separators** in card titles — the words after the old dash move to
+  line 2, and line 2 is **exactly two words**.
+- **The word "the" is banned** from card titles and subtitles, everywhere.
+  ("Dual Agonist", not "The Dual Agonist"; "Gold Standard", not "The Gold
+  Standard"; hyphenated compounds count as one word: "One-Two Punch",
+  "Next-Gen Amylin".)
+
+## 3. Buttons (see also §45 / BUTTON_STANDARD_11-09-26.md)
+
+- Card buttons are the homepage `.btn` exactly: **36px rendered height**,
+  `padding:6px 22px`, `border-radius:999px`, `border:1.5px solid rgba(15,23,42,.28)`,
+  gloss stack `inset 0 2px 3px rgba(255,255,255,.75), inset 0 -3px 5px rgba(0,0,0,.28),
+  0 5px 10px rgba(15,23,42,.30), 0 1px 2px rgba(15,23,42,.35)`, text-shadow
+  `0 1px 2px rgba(0,0,0,.35)`, press = `translateY(2px)` + collapsed shadow,
+  hover = `brightness(1.1)`. Text `.85rem` Outfit 700 uppercase, white.
+- **BUTTON FIDELITY — TRANSPLANT, DON'T APPROXIMATE (David, Nov 9, 2026,
+  round 3):** a page's buttons must be the homepage `.btn` itself — copy the
+  homepage button element pattern and its COMPLETE defining CSS verbatim as
+  the page's single prototype rule. Legacy button recipes on the target page
+  (other gradients, sheen overlays, different borders/shadows/fonts) are
+  REMOVED, never layered under or over the prototype. Proof is a rendered
+  computed-style diff against the homepage button: **zero differing visual
+  properties** (width and label text excluded; the color variant is the
+  homepage's own `.b-*` gradient for that button). Real `<button>` elements
+  additionally need `appearance:none` to compute like the homepage's span.
+  If a difference cannot be eliminated, it is named in the build report —
+  never shipped silently. (Orders page, Nov 9: same-variant diff = 0 across
+  41 visual properties; before the transplant the card button differed in
+  gradient construction, text color, a ::after sheen, overflow, position,
+  transitions, and line-height.)
+- **UNIFORM BUTTON WIDTH = THE LONGEST LABEL (David, Nov 9, 2026, round 3;
+  supersedes the round-2 header-width rule):** measure EVERY pill-button
+  label on the page at the standard button font (`.85rem` Outfit 700
+  uppercase); EVERY pill button on the page takes that one width (longest
+  label's text width + horizontal padding + 3px border). No label ever
+  gets a shrunk font to fit a narrower button.
+- **TIGHTER BUTTON SIZING — THE 1CH EQUATION (David, Nov 9, 2026, round 4;
+  supersedes the round-3 136×36 size on the orders page):** a two-button
+  card row must fit the card's content box with **≈1 character width of
+  empty space BEFORE the first button, BETWEEN the buttons, and AFTER
+  the second** — width is solved from that equation, not picked. Button
+  height shrinks with the width; **button TEXT never shrinks** (`.85rem`
+  stays). Orders page values: content box 268px = 8 (1ch) + **122** + 8
+  (gap) + **122** + 8; height **28px**, padding `4px 14px` (longest label
+  "GHK-CU $285" = 88.4px text still fits: 88.4 + 28 + 3 = 119.4 ≤ 122).
+  Measured margins after the build: 9/8/9px (the 9s include the card's
+  1px border). Variant/popup buttons that belong to a card take that
+  card's button size exactly. Header pills share the uniform size; the
+  theme changer is a circle whose diameter = the button height (28px).
+  (The homepage keeps its own 36px-tall full-width `.btn`; the fidelity
+  rule above governs construction — gradient, gloss, border, press,
+  hover — while this rule governs the orders page's button SIZE.)
+- **Header buttons (CART / HOME / ORDERS / theme):** the prototype in the
+  logo theme — **black background, magenta border** (`#EC4899`, 2px), white
+  text/icon, same gloss stack, the SAME uniform width and height as every
+  other pill on the page, all labels at the full `.85rem`.
+  **Exception: the theme changer is a CIRCLE** — diameter = the uniform
+  button height, same black/magenta gloss recipe, icon centered. (The
+  round-2 rule "header width = the word Guide + one space each side" and
+  the ORDERS .8rem shrink are retired.)
+- **Button text padding is guaranteed:** with the horizontal padding
+  inside the uniform width (22px in the homepage prototype; 14px in the
+  round-4 tighter sizing, where the uniform width still leaves ~15px
+  clear beside the longest label), text never touches a
+  button's inner borders — verified in the rendered measurement, not
+  assumed.
+- Text never wraps inside a button, never overflows, never looks too large
+  for its button (≈0.38 × button height).
+
+## 4. Theme
+
+- **Every page loads LIGHT on first load, always** — no matter how many times
+  the visitor has been there. The theme toggle may switch for the current
+  visit only; **theme state is never written to localStorage** (or any other
+  storage). No `prefers-color-scheme` auto-dark either.
+- Dark theme must be error-free: body text contrast ≥ 4.5:1 in BOTH themes,
+  verified by render (§42 gates).
+- **Dark-theme graphic text is PLAIN WHITE — no outlines, ever (David,
+  Nov 9, 2026, round 3):** no `-webkit-text-stroke`, no SVG `stroke` /
+  `paint-order` halo, no text-shadow outline tricks on graphic/SVG text in
+  dark theme. Fill `#FFFFFF`, stroke none. (Light theme keeps dark text on
+  light fills per §6.)
+- **The logo must show in dark theme (David, Nov 9, 2026, round 3):** the
+  header/footer logo renders full-color and clearly visible in BOTH
+  themes — no grayscale/invert filters on it in dark, and never swap to a
+  near-white logo asset on a dark background (that reads as "absent").
+  Orders page fix: the vivid dark-circle logo (IMG_3345) is shown in both
+  themes; the pale IMG_3346 is not used in the header/footer.
+
+## 5. Cards & mobile
+
+- **EQUAL CARDS, 3 PER ROW (David, Nov 9, 2026, round 3):** in a card grid,
+  every card in a row is the SAME height and all button rows align to a
+  common baseline (grid stretch + card flex-column + button row pinned to
+  the card bottom with `margin-top:auto`). Desktop grid is **exactly 3
+  cards per row**; mobile is **one card per row**, vertically. Verified by
+  rendered measurement: row height spread and button-row-top spread both
+  ≤ 1px (orders page: 0.00px).
+  **The button row must be a DIRECT child of the card** — a row nested
+  inside the graphic stage (the GLOW card's pre-round-4 markup) escapes
+  the `margin-top:auto` pin and rides up while its siblings sit on the
+  baseline; round 4 caught exactly that (9.84px high) by measuring
+  button-row tops, and moved the row out of the stage.
+- **Mobile cards go near-full-width:** at phone widths a card fills the screen
+  minus a small side margin (target ≈ 93% of viewport; container side padding
+  ≈ 8px + 6px margin at ≤900px). Never flush to the edge, never stranded in
+  the middle with wide white gutters. Applies to ALL cards on ALL pages.
+- No mobile `zoom` scaling of card content — cards render at natural scale
+  (the Nov 8 zoom:0.81 experiment is retired).
+- Card padding: 20px top / 18px sides / 10px bottom (desktop), 16/12/10 mobile.
+- Phone header note (orders page): when uniform-width header pills cannot
+  share one row with the brand at phone widths, the nav wraps to its own
+  centered row under the brand — button widths never shrink to fit.
+
+## 6. Card graphics (medallions / center-of-card graphics)
+
+- Graphics sit **tight** to the text above and the buttons below — a few px of
+  separation, never a band of empty space.
+- **ONE GRAPHIC BOX PER PAGE (David, Nov 9, 2026, round 4):** the center
+  graphic of EVERY card renders at the EXACT same width and height —
+  measured in the render, ±1px, in light + dark and mobile + desktop.
+  The reference size is the size the simplest family's graphics already
+  render at (orders page: the Supplies medallions, **182 × 165.33px**);
+  every other card's graphic container is set to that box and its SVG
+  scales inside. Composite graphics (icon row + venn) fit the same box.
+- **THE GRAPHIC HUGS THE DESCRIPTOR (David, Nov 9, 2026, round 4 —
+  "asked before and it keeps getting missed"):** card content flows
+  top-down — title, subtitle, descriptor, then the graphic with only a
+  small fixed gap (**≈8px** total) under the descriptor. Leftover card
+  space collects BELOW the graphic (above the button row), never above
+  it. Proven by a measured descriptor→graphic gap table for every card,
+  not by eyeballing. An SVG's internal top whitespace counts: normalize
+  each SVG's `viewBox` to its measured content bbox (small uniform pad,
+  top-aligned scaling) so first ink starts ~3px into the box — orders
+  page: gap-to-stage 8.0px and gap-to-first-ink ≈ 10.7–11.4px on all
+  15 cards (before: 17–31px).
+- Center-circle icon fills almost the whole center circle (the center circle
+  may shrink toward the icon, but stays **larger than every satellite**).
+- Satellite-circle text grows until it **nearly touches the circle border**
+  with a small gap remaining.
+- **CONTAINMENT IS MEASURED, NOT EYEBALLED (David, Nov 9, 2026, round 3;
+  refines the "nearly touches" line above):** text printed ON a circle must
+  fit FULLY inside it (scripted check: every text-bbox corner inside the
+  circle's disc); text UNDER a circle must clear every neighboring graphic
+  element with a visible gap (scripted check: bbox-to-disc distance ≥ ~2
+  units). Shrink the text and/or enlarge the circle per case until the
+  check passes with ZERO violations — the check runs in BOTH themes.
+  (Orders page round 3: 33 violations before → 0 after, of 43 graphic texts;
+  in-circle labels at the largest size that fits cleanly — e.g. GLP-1 13.5
+  units in an r29 satellite — and under-circle labels 13.5 units standard,
+  12/11 units for the widest words, nudged outward where needed.)
+- Graphic text targets the descriptive-text size (.9rem / 14.4px rendered) and
+  must be `nowrap`, never overlap, cross, or obscure any other element or
+  border — where a long word geometrically cannot reach 14.4px inside a
+  shrunk graphic, it takes the largest size that fits cleanly and the build
+  report says so.
+- Dotted orbit rings stay; the area inside the dotted circle carries a **pale
+  pastel tint of that card's center-circle color**.
+- Receptor-satellite colors are FIXED (GLP-1 cyan, GIP green, Glucagon
+  orange/red family per product direction, Amylin violet) and white text is
+  never used on graphics; dark text on light fills, white only on dark fills.
+
+## 7. Highlights & links (orders-page rulings, Nov 9, 2026)
+
+- **Orange background highlights are banned.** Text that carried one becomes
+  **bold dark-orange text: `#C75000`** (light theme) / `#FF9A3D` (dark theme) —
+  intense orange, darkened until readable (≥4.5:1 on white). Green and other
+  pale background highlights stay.
+- Model card: Cagrilintide (orders page) — orange words are bold dark-orange
+  text, green highlights remain background marks.
+- In-text links in descriptive copy: bold, underlined, section-green
+  (`#065F46` light / `#6EE7B7` dark); a highlighted link keeps its pale tint
+  background (e.g. Retatrutide "triple agonist": very pale red `#FDECEC` +
+  dark-red text `#7F1D1D`).
+
+## 8. Footer & footer banner
+
+- Footer icons are **colored brand marks** (never grayed-out), each a working
+  link: Peptopia logo full-color, Shop emerald `#059669`, Discord `#5865F2`,
+  YouTube `#FF0000`.
+- The orders footer banner is three lines: payments line (the word "Square"
+  links to https://squareup.com), WhatsApp line (linked), closing line.
+  No "Contact by", no email address in the banner — email lives in the page
+  footer as a `mailto:` link.
+- Category titles are darkened for emphasis in both themes (deep shade on
+  light, pale shade on dark) — they never wash into the page background.
+
+## 9. Cart behavior (orders page, David, Nov 9, 2026, round 3 + round 4 + round 5)
+
+- **No floating cart bar.** The cart lives behind a **CART button pinned in
+  the header**, styled exactly like the other header buttons, positioned
+  **LEFT of HOME** (order: CART, HOME, ORDERS, theme). The button label is
+  always just "CART" — the count lives inside the popup only.
+- **NO AUTO-CLOSE (David, Nov 9, 2026, round 4; supersedes the round-3
+  5-second peek, which is REMOVED):** the user needs time to fill the
+  form in. Clicking a price adds the item AND opens the popup,
+  and it **stays open** until the user clicks **Keep Shopping** or
+  completes checkout. CART click likewise opens it to stay.
+- **Blink to find it:** when the user closes the popup via **Keep
+  Shopping**, the CART button **blinks twice** (a visible brightness
+  blink animation) so the user can find it again.
+- **5-ITEM CAP (David, Nov 9, 2026, round 4):** the cart holds at most
+  **5 items TOTAL** (quantities count). Adds and quantity-+ are refused
+  at the cap with a brief visible note inside the popup ("Your cart is
+  full — 5 items max per order. Remove an item to add another."); the
+  note shows whenever the cart is at the cap.
+- **Checkout popup form (David, Nov 9, 2026, round 4):** the instruction
+  line reads exactly: "After requesting your order, we reply by email
+  with a secure payment link. Modify your list, if needed." The words
+  **"Mailing address" appear ONCE**, as a heading; the fields follow,
+  each with its label ABOVE the field, in the order **Name, Email,
+  Address, City, State, Zip** (City/State/Zip may share one row).
+  Spacing is tightened so the whole popup — item list, note, fields,
+  buttons — fits WITHOUT scrolling for a typical order (verified:
+  scrollHeight = clientHeight at 390×844 with 1 item); scrolling is
+  acceptable only when the item list itself is long.
+- **TRIO-CARD SELECTION (David, Nov 9, 2026, round 5 — the popup variant
+  chooser is RETIRED):** a multi-variant product on ONE card (the
+  GLOW | KLOW | GHK-Cu card) is chosen IN-CARD, never in a popup. The
+  variant orbs themselves are the selectors (real buttons,
+  `aria-pressed` in sync, carrying the variant's data-og attributes):
+  tapping one **selects** it — the selected orb literally glows
+  brighter (its own colors intensified + an outer glow in that color,
+  scale ≤1.06, transform only so layout/containment never move) while
+  the other orbs **gray out and fade to ~0.25 opacity**. The card's
+  ORDER button then **lights up in the selected orb's own colors**
+  (the exact radial gradient + text color of that orb, plus a glow)
+  and reads **ORDER $<price>**, still the uniform button size
+  (122×28 on orders). Tapping the lit ORDER adds that variant (same
+  cart key scheme, same 5-item cap) and opens the cart popup;
+  **selection persists** after adding. Tapping another orb moves the
+  selection; tapping the selected orb again **deselects**. With no
+  selection the ORDER button keeps its prototype look but sits quiet
+  (reduced saturation, ~0.75 opacity) and tapping it adds nothing — it
+  only pulses the orb row to point at the choices. Initial state: no
+  selection.
+
+## 10. Product color rulings (orders page, Nov 9, 2026)
+
+- **Tirzepatide = orange** (center circle `#FFB37A → #F06000 → #C24E00`).
+- **Retatrutide = bold readable red** (center circle `#F5A3A3 → #D92323 →
+  #A51212`; its up-arrow satellite takes the red family too). Not blood-dark,
+  not pink. Its "triple agonist" text highlight is a very pale tint of that
+  red (`#FDECEC`) and links to Lilly's retatrutide story.

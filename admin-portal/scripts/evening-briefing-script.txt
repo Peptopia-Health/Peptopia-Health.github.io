@@ -1,0 +1,14 @@
+# Daily evening audio briefing
+
+Goal ID: goal_30677c4ae35c
+Goal slug: daily-evening-audio-briefing
+
+## Description
+An audio briefing in chat each evening around 7:30 PM: market close recap (Chevron/Apple), one total balance figure per institution (Fidelity, TSP, NWFCU) plus next paycheck amount/date, retirement on MONDAY evenings only, as bare totals at ages 62 and 67 (corrected Nov 16, 2026 — the earlier daily 59/62/67 wording is superseded by the cron body's Nov 12 reset spec), tomorrow's calendar and weather, kratom desk (DTE, WestKoast, WildCraft, Tree Leaf only), notable new email across accounts, bar brief, a Nursing news beat (VA + mental-health focus — the Nov 12, 2026 reset reversed the Nov 9 removal; the old 'notebook item' wording is superseded), and overnight watch. Standing rules: no spending commentary ever, never mention other briefings. Smooth voice (avocado_v2:MAI_03), a few minutes long.
+
+## Reconciliation additions (Nov 16, 2026 — from MEMORY.md; the cron body is the operative spec)
+- Beats the cron body carries that this goal text previously omitted: Jobs (top-picks, each with its POSTED DATE, never David's own facility — Nov 15, 2026), Shipping Update, Research (Lilly/Novo), Overnight/stewardship clause, Action Board (Mondays), Template-change count.
+- NO REWARD POINTS — EVER (Nov 15, 2026, PERMANENT): never track, calendar, brief, or mention them. The weekly calendar-upkeep job owned by this goal carries the same exclusion in its body (fixed Nov 16, 2026).
+- SPAM AUTO-DELETE on all accounts (Nov 12, 2026 reset).
+- WEEKLY AUDIO CLEANUP (Nov 12, 2026): published-research audios are ask-first; Tuscarora recordings and David's own recordings are NEVER touched.
+- OPEN ITEM (noted, not resolved): MEMORY's Nov 9 DAILY RETIREMENT CARD (income-vs-expenses card with the evening briefing, fresh balances, bills mined, Drive Retirement folder) has no production step in the evening cron body, which instead carries Retirement Mondays-only at 62/67 — and a separate weekly daily-retirement-card job exists. Which treatment governs is David's call (conflict D1 in the Nov 16 reconciliation log).

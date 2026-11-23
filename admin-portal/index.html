@@ -417,6 +417,10 @@ nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
 .iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
 .iconbtn:hover img{filter:brightness(1.12)}
 </style>
+<style id="copy-toast-css">
+#copyToast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(16px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;background:#111827;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:11px 22px;border-radius:999px;box-shadow:0 8px 28px rgba(0,0,0,.35);z-index:100000}
+#copyToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
 </head>
 <body>
 <div id="gate">
@@ -1768,5 +1772,9 @@ html.dark .scripts-err{color:#F87171}
 })();
 </script>
 
+<div id="copyToast" role="status" aria-live="polite">✓ Copied to clipboard</div>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest('.copybtn');if(!b)return;var t=document.getElementById('copyToast');if(!t)return;t.classList.add('show');clearTimeout(window.__ctT);window.__ctT=setTimeout(function(){t.classList.remove('show')},1600);});
+</script>
 </body>
 </html>

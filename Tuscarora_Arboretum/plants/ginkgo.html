@@ -200,7 +200,15 @@ html.dark #famTree text[fill="#166534"]{fill:#4ade80}
 }
 </style>
 <style id="green-dark-fix">html.dark h1{background:linear-gradient(92deg,#4ade80 5%,#22c55e 55%,#a3e635 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}</style>
-<style>.banner,header.site{max-width:1060px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box}</style></head>
+<style>.banner,header.site{max-width:1060px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box}</style>
+<style id="titleband-fullwidth-fix">
+@media screen{
+ .titleband{width:100%;box-sizing:border-box}
+}
+@media screen and (min-width:641px){
+ .titleband .sub{max-width:none;white-space:nowrap;font-size:min(18.6px,calc(100vw * 0.019453 - 2.02px))}
+}
+</style></head>
 <body>
 <div class="banner"><a href="https://x-peps.com/Tuscarora_Arboretum/">Tuscarora Arboretum</a> / <a href="https://x-peps.com/Tuscarora_Arboretum/artifacts/">Artifacts</a> / <a href="https://x-peps.com/Tuscarora_Arboretum/plants/">Plants</a> / Ginkgo</div>
 <header class="site">

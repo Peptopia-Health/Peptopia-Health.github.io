@@ -1711,7 +1711,7 @@ html.dark .peptopia-theme-toggle .pp-moon,html[data-theme="dark"] .peptopia-them
 <!-- Generic popup (mockup v3: warnings, definitions, dictionary, family lists) -->
 <div class="overlay" id="genOverlay" aria-hidden="true">
   <div class="medcard" role="dialog" aria-modal="true" aria-labelledby="genTitle">
-    <button type="button" class="xbtn" id="genClose" aria-label="Close popup">✕</button>
+    <button type="button" class="xbtn iconbtn" id="genClose" aria-label="Close popup"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
     <h3 id="genTitle">Popup</h3>
     <div id="genBody"></div>
   </div>
@@ -1720,7 +1720,7 @@ html.dark .peptopia-theme-toggle .pp-moon,html[data-theme="dark"] .peptopia-them
 <!-- Med modal -->
 <div class="overlay" id="medOverlay" aria-hidden="true">
   <div class="medcard" role="dialog" aria-modal="true" aria-labelledby="mcName">
-    <button type="button" class="xbtn" id="mcClose" aria-label="Close med card">✕</button>
+    <button type="button" class="xbtn iconbtn" id="mcClose" aria-label="Close med card"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
     <h3 id="mcName">Med</h3>
     <div class="brand" id="mcBrand"></div>
     <div class="mcbox" id="mcBox" aria-hidden="true"></div>
@@ -2308,5 +2308,8 @@ function openBeers(){
 <script id="peptopia-banner-js">
 (function(){if(window.__ppThemeBound)return;window.__ppThemeBound=1;document.addEventListener('click',function(e){var b=e.target.closest('.peptopia-theme-toggle');if(!b)return;var h=document.documentElement;var dark=!(h.classList.contains('dark')||h.getAttribute('data-theme')==='dark');h.classList.toggle('dark',dark);h.setAttribute('data-theme',dark?'dark':'light');});})();
 </script>
+<style id="close-icon-css">
+.iconbtn.xbtn{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important}
+</style>
 </body>
 </html>

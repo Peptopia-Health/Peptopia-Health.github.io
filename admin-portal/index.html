@@ -412,6 +412,11 @@ nav.jumpnav.pm{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;justify-con
 nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
 }
 </style>
+<style id="iconbtn-css">
+.iconbtn{background:transparent;border:0;padding:0;margin:0;cursor:pointer;line-height:0;border-radius:50%}
+.iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
+.iconbtn:hover img{filter:brightness(1.12)}
+</style>
 </head>
 <body>
 <div id="gate">
@@ -1286,7 +1291,7 @@ function toggleTheme(){
   <div id="toast" role="status"></div>
 <div class="modal-ovl" id="cmdModal" role="dialog" aria-modal="true" aria-label="How it works">
   <div class="modal-card">
-    <button type="button" class="pushbtn modal-x" id="modalX" aria-label="Close">×</button>
+    <button type="button" class="modal-x iconbtn" id="modalX" aria-label="Close" title="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
     <div id="modalBody"></div>
   </div>
 </div>
@@ -1300,7 +1305,7 @@ function toggleTheme(){
       <li>You get the findings plus an audio summary in chat — short, medium, or extended, your pick.</li>
       <li>On your approval it publishes live on the site, and the live page is verified.</li>
     </ol>
-    <div class="exrow"><code>Guide: Cagrilintide</code><button type="button" class="pushbtn small copybtn">Copy</button></div>
+    <div class="exrow"><code>Guide: Cagrilintide</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
     <p class="modal-note">Type it in chat exactly like that — the build starts with no follow-up questions.</p>
   </div>
 <div class="modal-src" id="m-simple" hidden>
@@ -1312,7 +1317,7 @@ function toggleTheme(){
       <li>When the steps switch apps or programs mid-task, the step heading says so — nobody gets lost.</li>
       <li>Delivered as one clean page, ready to print and hand out.</li>
     </ol>
-    <div class="exrow"><code>Simple Guide: Print my PowerPoint notes</code><button type="button" class="pushbtn small copybtn">Copy</button></div>
+    <div class="exrow"><code>Simple Guide: Print my PowerPoint notes</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
     <p class="modal-note">Type it in chat exactly like that — the build starts with no follow-up questions.</p>
   </div>
 <div class="modal-src" id="m-mini" hidden>
@@ -1325,7 +1330,7 @@ function toggleTheme(){
       <li>It must pass the build checker, like every guide.</li>
       <li>You get one self-contained file in chat, and a copy is filed in the matching Drive folder.</li>
     </ol>
-    <div class="exrow"><code>Mini Guide: McCoy Floraline planter</code><button type="button" class="pushbtn small copybtn">Copy</button></div>
+    <div class="exrow"><code>Mini Guide: McCoy Floraline planter</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
     <p class="modal-note">Type it in chat exactly like that — the build starts with no follow-up questions.</p>
   </div>
 <div class="modal-src" id="m-plant" hidden>
@@ -1338,7 +1343,7 @@ function toggleTheme(){
       <li>It publishes in the Tuscarora Plants wing, with its own entry card added to the Plants page.</li>
       <li>The guide is filed in Drive (Tuscarora Arboretum › Plants), and you get the file plus the live link in chat.</li>
     </ol>
-    <div class="exrow"><code>Plant Guide: Snow White waffle plant</code><button type="button" class="pushbtn small copybtn">Copy</button></div>
+    <div class="exrow"><code>Plant Guide: Snow White waffle plant</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
     <p class="modal-note">Type it in chat exactly like that — the build starts with no follow-up questions.</p>
   </div>
 <div class="modal-src" id="m-artifact" hidden>
@@ -1351,7 +1356,7 @@ function toggleTheme(){
       <li>A short fireside audio brief (about two minutes) is recorded in the Smooth voice.</li>
       <li>It publishes on the Tuscarora Arboretum with its own artifact card and dedicated page.</li>
     </ol>
-    <div class="exrow"><code>Artifact: the 1937 Hamilton bottle</code><button type="button" class="pushbtn small copybtn">Copy</button></div>
+    <div class="exrow"><code>Artifact: the 1937 Hamilton bottle</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
     <p class="modal-note">Type it in chat exactly like that — the build starts with no follow-up questions.</p>
   </div>
 <button type="button" id="toTop" class="pushbtn" aria-label="Back to top">↑</button>
@@ -1639,7 +1644,7 @@ html.dark .scripts-err{color:#F87171}
   <div class="scripts-card">
     <div class="scripts-head">
       <h3 id="scriptsTitle">📜 Build Scripts</h3>
-      <button type="button" class="scripts-x" id="scriptsX" aria-label="Close scripts window">&#10005;</button>
+      <button type="button" class="iconbtn" id="scriptsX" aria-label="Close" title="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
     </div>
     <div class="scripts-listview" id="scriptsListView">
       <p class="scripts-intro">Every product we make stands on a build script — content, layout, light &amp; dark theme, mobile &amp; desktop. Pick one to read its full steps.</p>

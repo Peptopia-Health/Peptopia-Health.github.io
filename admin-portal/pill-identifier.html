@@ -262,7 +262,7 @@ html.dark .peptopia-theme-toggle .pp-moon,html[data-theme="dark"] .peptopia-them
 
   <div class="modal" id="resultModal" role="dialog" aria-modal="true">
     <div class="sheet">
-      <button class="xbtn" id="resultX" type="button" aria-label="Close">✕</button>
+      <button class="xbtn iconbtn" id="resultX" type="button" aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
       <div class="medcard">
         <h2 id="rTitle">Result</h2>
         <p class="brandline" id="rBrand"></p>
@@ -278,7 +278,7 @@ html.dark .peptopia-theme-toggle .pp-moon,html[data-theme="dark"] .peptopia-them
 
   <div class="modal" id="logModal" role="dialog" aria-modal="true">
     <div class="sheet">
-      <button class="xbtn" id="logX" type="button" aria-label="Close">✕</button>
+      <button class="xbtn iconbtn" id="logX" type="button" aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
       <h2>📋 Med ID Log</h2>
       <p class="kv">Identifications made on this device. The master log is kept with your nursing files.</p>
       <div id="logList"></div>
@@ -725,6 +725,9 @@ body .peptopia-hdr{flex:0 1 680px;max-width:680px;min-width:0;margin:0 auto}
 @media(max-width:640px){.peptopia-nav .iconbtn{width:34px;height:34px}}
 @media(max-width:400px){.peptopia-nav .iconbtn{width:32px;height:32px}}
 @media print{.peptopia-nav .iconbtn{display:none!important}}
+</style>
+<style id="close-icon-css">
+.iconbtn.xbtn{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important}
 </style>
 </body>
 </html>

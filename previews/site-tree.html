@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Tree — x-peps.com · Peptopia Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4FA; --surface:#FFFFFF; --surface2:#EFEAF6; --ink:#221A33; --muted:#5B5470;
+  --line:#D9D2E8; --hdrw:1680px;
+}
+html.dark{
+  --bg:#120D1E; --surface:#1D1630; --surface2:#271D42; --ink:#F2EDFA; --muted:#B7AED6;
+  --line:#3B2F5C;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.42}
+img{max-width:100%}
+.wrap{max-width:var(--hdrw);margin:0 auto;padding:0 18px 34px}
+h1,h2,h3{font-family:'Outfit',sans-serif;margin:0}
+/* ---------- header ---------- */
+header.site{max-width:var(--hdrw);margin:0 auto;padding:14px 18px 10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header.site .ttl{flex:1 1 auto;min-width:220px}
+header.site h1{font-size:1.65rem;font-weight:800;line-height:1.1}
+header.site .sub{color:var(--muted);font-size:.86rem;font-weight:500;margin-top:2px}
+.hbtns{display:flex;gap:10px;align-items:center;flex:none}
+.hbtn{width:38px;height:38px;border-radius:50%;background:transparent;border:0;padding:0;cursor:pointer;line-height:0;flex:none}
+.hbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
+.hbtn.svgb{border:2px solid rgb(238,85,253);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08)}
+html.dark .hbtn.svgb{background:rgba(255,255,255,.04)}
+.hbtn:hover{filter:brightness(1.12)}
+.hbtn:focus-visible{outline:3px solid #2563EB;outline-offset:2px}
+.hlbl{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:3px;font-family:'Outfit',sans-serif}
+.hcell{display:flex;flex-direction:column;align-items:center}
+/* ---------- stats + legend ---------- */
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.stat{background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:500}
+.stat b{font-family:'Outfit',sans-serif;font-weight:800}
+.legend{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:14px}
+.legend h2{font-size:.95rem;font-weight:800;margin-bottom:8px}
+.legend .row{display:flex;flex-wrap:wrap;gap:6px 14px}
+.lg{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:500}
+.sw{width:16px;height:16px;border-radius:5px;flex:none;border:1px solid rgba(0,0,0,.18)}
+.lg .n{color:var(--muted);font-weight:700}
+/* ---------- stage / zoom ---------- */
+.zbar{display:flex;align-items:center;gap:8px;margin:0 0 8px;flex-wrap:wrap}
+.zbar .zt{font-family:'Outfit',sans-serif;font-weight:800;font-size:.9rem}
+.zbtn{font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 13px;cursor:pointer}
+.zbtn:hover{border-color:rgb(238,85,253)}
+.zbar .hint{color:var(--muted);font-size:.78rem}
+#stage{overflow:auto;border:1.5px solid var(--line);border-radius:16px;background:var(--surface2);padding:16px;max-height:82vh}
+#stage:fullscreen{max-height:none;border-radius:0}
+#canvas{transform-origin:0 0;transition:transform .18s ease}
+/* ---------- root strip ---------- */
+.rootrow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-bottom:16px}
+.rootcard{flex:1 1 300px}
+.arrow{align-self:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.5rem;color:var(--muted);padding:0 10px}
+.hubcards{display:flex;gap:12px;flex:2 1 560px;flex-wrap:wrap}
+.hubcards>.panel{flex:1 1 260px}
+/* ---------- panels & tree ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:14px;align-items:start}
+.panel{--gc:#64748B;background:var(--surface);border:2px solid var(--gc);border-radius:14px;overflow:hidden}
+.panel>h2,.panel>.ph{font-size:1.02rem;font-weight:800;color:#fff;background:var(--gc);padding:8px 14px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.panel>.ph .cnt{font-size:.8rem;font-weight:700;opacity:.92;white-space:nowrap}
+.panel .bd{padding:10px 12px 12px}
+.panel .note{font-size:.8rem;color:var(--muted);margin:0 0 8px}
+.grad-amber>h2,.grad-amber>.ph{background:linear-gradient(90deg,#D97706,#F59E0B);color:#241533}
+.darktext>h2,.darktext>.ph{color:#241533}
+ul.tree,ul.flat{list-style:none;margin:0;padding:0}
+ul.tree ul{list-style:none;margin:2px 0 2px 10px;padding-left:16px;border-left:2px solid var(--line)}
+ul.tree li{margin:3px 0;position:relative}
+ul.tree ul>li::before{content:"";position:absolute;left:-16px;top:15px;width:14px;border-top:2px solid var(--line)}
+ul.flat li{margin:3px 0}
+.cd{display:flex;align-items:baseline;gap:7px;background:var(--surface2);border:1.5px solid var(--line);border-left:5px solid var(--gc);border-radius:9px;padding:5px 9px}
+.cd b{font-family:'Outfit',sans-serif;font-weight:700;font-size:.86rem;line-height:1.25}
+.cd i{font-style:normal;color:var(--muted);font-size:.72rem;word-break:break-all;line-height:1.3}
+.cd .rp{margin-left:auto;flex:none;font-family:'Outfit',sans-serif;font-weight:800;font-size:.64rem;letter-spacing:.05em;border:1.5px solid var(--gc);color:var(--ink);border-radius:999px;padding:1px 7px}
+.cd.orph{border-style:dashed}
+.odot{flex:none;width:9px;height:9px;border-radius:50%;background:#DC2626;align-self:center}
+.tag{flex:none;font-size:.64rem;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:1px 7px;background:var(--gc);color:#fff;font-family:'Outfit',sans-serif}
+details.more{margin-top:8px}
+details.more summary{cursor:pointer;font-family:'Outfit',sans-serif;font-weight:800;font-size:.84rem;color:var(--ink);padding:4px 0}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chip{font-size:.7rem;font-weight:500;background:var(--surface2);border:1.5px solid var(--line);border-radius:999px;padding:3px 9px;word-break:break-all}
+.chip.orph{border-style:dashed;border-color:#DC2626}
+.chip.lnk{border-color:var(--gc)}
+/* ---------- orphans ---------- */
+.orphwrap{margin-top:14px}
+.orphgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px;align-items:start}
+.ofam{background:var(--surface2);border:1.5px solid var(--line);border-radius:11px;padding:9px 11px}
+.ofam h3{font-size:.9rem;font-weight:800;margin-bottom:6px}
+.ofam h3 .n{color:#DC2626}
+.ofam ul{list-style:none;margin:0;padding:0}
+.ofam li{font-size:.76rem;margin:3px 0;word-break:break-all}
+.ofam li b{font-family:'Outfit',sans-serif;font-weight:700;font-size:.78rem}
+.footnotes{margin-top:16px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 16px}
+.footnotes h2{font-size:.95rem;font-weight:800;margin-bottom:6px}
+.footnotes li{font-size:.83rem;margin:4px 0}
+footer.site{color:var(--muted);font-size:.78rem;text-align:center;margin-top:14px}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr}
+  .orphgrid{grid-template-columns:1fr}
+  header.site h1{font-size:1.3rem}
+  #stage{padding:10px;max-height:76vh}
+  .arrow{display:none}
+}
+@media print{
+  @page{size:landscape;margin:10mm}
+  .hbtns,.zbar,footer.site{display:none!important}
+  #stage{overflow:visible;max-height:none;border:0;padding:0;background:#fff}
+  #canvas{transform:none!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="ttl">
+    <h1>Site Tree — x-peps.com</h1>
+    <div class="sub">Every page on Peptopia Health, in its own container, color-coded by family — full crawl of both GitHub repos, November 23, 2026.</div>
+  </div>
+  <div class="hbtns">
+    <div class="hcell">
+      <button class="hbtn" id="printBtn" title="Print" aria-label="Print"><img src="https://x-peps.com/btn-print-holo.png" alt="Print"></button>
+      <div class="hlbl">Print</div>
+    </div>
+    <div class="hcell">
+      <button class="hbtn svgb" id="enlargeBtn" title="Enlarge the diagram" aria-label="Enlarge the diagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5B7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg>
+      </button>
+      <div class="hlbl">Enlarge</div>
+    </div>
+    <div class="hcell">
+      <button class="hbtn svgb" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">
+        <svg id="moonIco" width="19" height="19" viewBox="0 0 24 24" fill="#F0F000" stroke="#F0F000" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.2A8.5 8.5 0 1 1 10.8 4 6.8 6.8 0 0 0 20 13.2z"/></svg>
+        <svg id="sunIco" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#F0F000" stroke-width="2.2" stroke-linecap="round" style="display:none" aria-hidden="true"><circle cx="12" cy="12" r="4.4" fill="#F0F000" stroke="none"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5 5l1.8 1.8M17.2 17.2L19 19M19 5l-1.8 1.8M6.8 17.2L5 19"/></svg>
+      </button>
+      <div class="hlbl">Theme</div>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="stats">
+    <span class="stat"><b>254</b> pages total</span>
+    <span class="stat"><b>166</b> in the main repo</span>
+    <span class="stat"><b>88</b> in the X-Peps repo</span>
+    <span class="stat"><b>121</b> pages linked from another page</span>
+    <span class="stat"><b>133</b> orphans — no inbound link</span>
+    <span class="stat">Repo badge: <b>M</b> = main · <b>X</b> = X-Peps · <span class="odot" style="display:inline-block"></span> dashed card = orphan</span>
+  </div>
+  <div class="legend">
+    <h2>Legend — family colors (taken from the pages' own themes)</h2>
+    <div class="row">
+      <span class="lg"><span class="sw" style="background:#9333EA"></span>Homepage holder <span class="n">1</span></span>
+      <span class="lg"><span class="sw" style="background:#2563EB"></span>Admin Portal <span class="n">12</span></span>
+      <span class="lg"><span class="sw" style="background:#F59E0B"></span>Briefings <span class="n">50</span></span>
+      <span class="lg"><span class="sw" style="background:linear-gradient(90deg,#D97706,#F59E0B)"></span>Tuscarora Arboretum <span class="n">30</span></span>
+      <span class="lg"><span class="sw" style="background:#08672B"></span>Kratom <span class="n">31</span></span>
+      <span class="lg"><span class="sw" style="background:#10B981"></span>Pharma &amp; Peptide <span class="n">22</span></span>
+      <span class="lg"><span class="sw" style="background:#9333EA"></span>GLP-1 &amp; Smart Drug News <span class="n">12</span></span>
+      <span class="lg"><span class="sw" style="background:#7C3AED"></span>Mental Health &amp; Nursing <span class="n">17</span></span>
+      <span class="lg"><span class="sw" style="background:#F7A040"></span>Corrections Nursing <span class="n">14</span></span>
+      <span class="lg"><span class="sw" style="background:#0070D0"></span>Career &amp; Finance <span class="n">5</span></span>
+      <span class="lg"><span class="sw" style="background:#F06000"></span>Store &amp; Shipping Ops <span class="n">7</span></span>
+      <span class="lg"><span class="sw" style="background:#7C3AED"></span>Email <span class="n">1</span></span>
+      <span class="lg"><span class="sw" style="background:#D97706"></span>X-Peps Research Hub <span class="n">1</span></span>
+      <span class="lg"><span class="sw" style="background:#64748B"></span>Previews &amp; Mockups <span class="n">49</span></span>
+      <span class="lg"><span class="sw" style="background:#64748B"></span>Standalone / Ops Docs <span class="n">2</span></span>
+    </div>
+  </div>
+  <div class="zbar">
+    <span class="zt">The diagram</span>
+    <button class="zbtn" id="zOut" aria-label="Zoom out">− Zoom out</button>
+    <button class="zbtn" id="zReset">100%</button>
+    <button class="zbtn" id="zIn" aria-label="Zoom in">+ Zoom in</button>
+    <span class="hint">Scroll inside the frame to pan. The Enlarge button (top right) fills the screen at 150%.</span>
+  </div>
+  <div id="stage">
+  <div id="canvas">
+  <div class="rootrow">
+    <div class="panel rootcard" style="--gc:#9333EA">
+      <div class="ph">ROOT — Homepage (holder) <span class="cnt">1 page</span></div>
+      <div class="bd">
+        <div class="cd"><b>Peptopia Health</b><i>index.html</i><span class="rp">M</span></div>
+        <p class="note" style="margin-top:8px">The holder homepage carries <b>zero outbound links</b>. The site does not hang off the homepage — it hangs off the two hubs to the right, both reached by direct URL, header icons, and bookmarks.</p>
+      </div>
+    </div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="hubcards">
+      <div class="panel" style="--gc:#2563EB">
+        <div class="ph">HUB 1 — Admin Portal <span class="cnt">12 pages</span></div>
+        <div class="bd">
+          <div class="cd orph"><span class="odot"></span><b>Admin Portal</b><i>admin-portal/index.html</i><span class="rp">M</span></div>
+          <p class="note" style="margin-top:8px">The site's command center and its only true crossroads — the one page that links across five families (Tuscarora, Kratom, Briefings, Career, Store). Itself an orphan by static links. Full tree in its panel below.</p>
+        </div>
+      </div>
+      <div class="panel" style="--gc:#D97706">
+        <div class="ph" style="color:#241533">HUB 2 — X-Peps Research Hub <span class="cnt">1 page</span></div>
+        <div class="bd">
+          <div class="cd orph"><span class="odot"></span><b>Research Guides — Peptopia Health</b><i>X-Peps/index.html</i><span class="rp">X</span></div>
+          <p class="note" style="margin-top:8px">Root hub of the X-Peps repo. Links out to 26 pages across the Kratom, Pharma, News, and Nursing families — but has zero inbound links itself.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <section class="panel" style="--gc:#2563EB">
+      <h2>Admin Portal <span class="cnt">12 pages · all M</span></h2>
+      <div class="bd">
+        <ul class="tree">
+          <li><div class="cd orph"><span class="odot"></span><b>Admin Portal</b><i>admin-portal/index.html</i><span class="rp">M</span></div>
+            <ul>
+              <li><div class="cd"><b>The Toolbox — Peptopia Admin</b><i>admin-portal/toolbox.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Capstone Portal — AI &amp; the Future of Veteran Care · RNTTP</b><i>admin-portal/capstone.html</i><span class="rp">M</span></div>
+                <ul>
+                  <li><div class="cd"><b>RNTTP Capstone — Project Lifeline</b><i>admin-portal/capstone-lifeline.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>The Vertical Launch — Capstone Research Sighting</b><i>admin-portal/capstone-vertical-launch.html</i><span class="rp">M</span></div></li>
+                </ul></li>
+              <li><div class="cd"><b>Med ID</b> <span class="tag">pill identifier app</span><i>admin-portal/pill-identifier.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Pill Identifier</b> <span class="tag">portable copy</span><i>admin-portal/pill-identifier-portable.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Extract to Leaf Converter</b><i>admin-portal/extract-leaf-converter.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Kratom Legality — theme color palette</b> <span class="tag">retained Nov 16, 2026</span><i>admin-portal/palette-legality-11-16-26.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Vendor Review Research — DTE, WildCraft, Tree Leaf</b><i>admin-portal/vendor-review-research-11-09-26.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Shipping &amp; Pharma</b> <span class="tag">sales flow log</span><i>admin-portal/sales-flow-log.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>WestKoast Botanicals — 4-Way Split Recommendation</b><i>admin-portal/recommendations/westkoast-4-way-split.html</i><span class="rp">M</span></div></li>
+            </ul></li>
+        </ul>
+        <p class="note" style="margin-top:8px">The portal also holds the build-script texts under <i>admin-portal/scripts/</i> (.txt files, not pages).</p>
+      </div>
+    </section>
+    <section class="panel darktext" style="--gc:#F59E0B">
+      <h2>Briefings <span class="cnt">50 pages · all M</span></h2>
+      <div class="bd">
+        <p class="note">One family of near-identical audio player pages under <i>briefings/</i>. Only 4 of the 50 receive any inbound link; the other 46 players are orphans (dashed chips below).</p>
+        <ul class="flat">
+          <li><div class="cd"><b>Capstone Kickoff Briefing — November 19, 2026</b><i>briefings/capstone-briefing-11-19-26.html</i><span class="rp">M</span></div></li>
+        </ul>
+        <details class="more">
+          <summary>All 49 dated players — morning ×24 · evening ×24 · midday ×1</summary>
+          <p class="note" style="margin-top:6px"><b>Morning players (24)</b></p>
+          <div class="chips">
+            <span class="chip orph">morning-briefing-player-10-30-26.html</span><span class="chip orph">morning-briefing-player-10-31-26.html</span><span class="chip orph">morning-briefing-player-11-01-26.html</span><span class="chip orph">morning-briefing-player-11-02-26.html</span><span class="chip lnk">morning-briefing-player-11-03-26.html</span><span class="chip orph">morning-briefing-player-11-04-26.html</span><span class="chip orph">morning-briefing-player-11-05-26.html</span><span class="chip orph">morning-briefing-player-11-06-26.html</span><span class="chip orph">morning-briefing-player-11-07-26.html</span><span class="chip orph">morning-briefing-player-11-08-26.html</span><span class="chip orph">morning-briefing-player-11-09-26.html</span><span class="chip orph">morning-briefing-player-11-10-26.html</span><span class="chip orph">morning-briefing-player-11-11-26.html</span><span class="chip orph">morning-briefing-player-11-12-26.html</span><span class="chip orph">morning-briefing-player-11-13-26.html</span><span class="chip orph">morning-briefing-player-11-14-26.html</span><span class="chip orph">morning-briefing-player-11-15-26.html</span><span class="chip orph">morning-briefing-player-11-16-26.html</span><span class="chip orph">morning-briefing-player-11-17-26.html</span><span class="chip orph">morning-briefing-player-11-18-26.html</span><span class="chip orph">morning-briefing-player-11-19-26.html</span><span class="chip orph">morning-briefing-player-11-20-26.html</span><span class="chip orph">morning-briefing-player-11-21-26.html</span><span class="chip orph">morning-briefing-player-11-22-26.html</span>
+          </div>
+          <p class="note" style="margin-top:8px"><b>Evening players (24)</b></p>
+          <div class="chips">
+            <span class="chip orph">evening-briefing-player-10-27-26.html</span><span class="chip orph">evening-briefing-player-10-31-26.html</span><span class="chip orph">evening-briefing-player-11-01-26.html</span><span class="chip orph">evening-briefing-player-11-02-26.html</span><span class="chip orph">evening-briefing-player-11-03-26.html</span><span class="chip orph">evening-briefing-player-11-04-26.html</span><span class="chip orph">evening-briefing-player-11-05-26.html</span><span class="chip lnk">evening-briefing-player-11-06-26.html</span><span class="chip orph">evening-briefing-player-11-07-26.html</span><span class="chip orph">evening-briefing-player-11-08-26.html</span><span class="chip orph">evening-briefing-player-11-09-26.html</span><span class="chip orph">evening-briefing-player-11-10-26.html</span><span class="chip orph">evening-briefing-player-11-11-26.html</span><span class="chip orph">evening-briefing-player-11-12-26.html</span><span class="chip orph">evening-briefing-player-11-13-26.html</span><span class="chip orph">evening-briefing-player-11-14-26.html</span><span class="chip orph">evening-briefing-player-11-15-26.html</span><span class="chip orph">evening-briefing-player-11-16-26.html</span><span class="chip orph">evening-briefing-player-11-17-26.html</span><span class="chip orph">evening-briefing-player-11-18-26.html</span><span class="chip orph">evening-briefing-player-11-19-26.html</span><span class="chip orph">evening-briefing-player-11-20-26.html</span><span class="chip orph">evening-briefing-player-11-21-26.html</span><span class="chip lnk">evening-briefing-player-11-22-26.html</span>
+          </div>
+          <p class="note" style="margin-top:8px"><b>Midday player (1)</b></p>
+          <div class="chips">
+            <span class="chip orph">midday-briefing-player-11-09-26.html</span>
+          </div>
+        </details>
+      </div>
+    </section>
+    <section class="panel grad-amber" style="--gc:#D97706">
+      <h2>Tuscarora Arboretum <span class="cnt">30 pages · all M</span></h2>
+      <div class="bd">
+        <ul class="tree">
+          <li><div class="cd"><b>Tuscarora Arboretum — Martinsburg, West Virginia</b><i>Tuscarora_Arboretum/index.html</i><span class="rp">M</span></div>
+            <ul>
+              <li><div class="cd"><b>Artifacts</b><i>Tuscarora_Arboretum/artifacts/index.html</i><span class="rp">M</span></div>
+                <ul>
+                  <li><div class="cd"><b>Bottles</b><i>artifacts/bottles/index.html</i><span class="rp">M</span></div>
+                    <ul>
+                      <li><div class="cd"><b>The 1937 Hamilton Bottle — Identification &amp; History Guide</b><i>bottles/hamilton-bottle-guide.html</i><span class="rp">M</span></div></li>
+                      <li><div class="cd"><b>The 1937 Hamilton Bottle — Podcast</b><i>bottles/hamilton-bottle-podcast.html</i><span class="rp">M</span></div></li>
+                    </ul></li>
+                  <li><div class="cd"><b>Marbles</b><i>artifacts/marbles/index.html</i><span class="rp">M</span></div>
+                    <ul>
+                      <li><div class="cd"><b>The Galaxy Marble — Identification &amp; History Guide</b><i>marbles/galaxy-marble-guide.html</i><span class="rp">M</span></div></li>
+                      <li><div class="cd"><b>The Galaxy Marble — Podcast</b><i>marbles/galaxy-marble-podcast.html</i><span class="rp">M</span></div></li>
+                      <li><div class="cd"><b>The Mint Swirl — Identification &amp; History Guide</b><i>marbles/mint-swirl-marble-guide.html</i><span class="rp">M</span></div></li>
+                      <li><div class="cd"><b>The Mint Swirl — Podcast</b><i>marbles/mint-swirl-marble-podcast.html</i><span class="rp">M</span></div></li>
+                    </ul></li>
+                  <li><div class="cd"><b>Pottery</b><i>artifacts/pottery/index.html</i><span class="rp">M</span></div>
+                    <ul>
+                      <li><div class="cd"><b>McCoy Floraline Pedestal Planter</b><i>pottery/mccoy-floraline-planter-guide.html</i><span class="rp">M</span></div></li>
+                      <li><div class="cd"><b>McCoy's Floraline Strategy</b><i>pottery/mccoy-floraline-strategy.html</i><span class="rp">M</span></div></li>
+                    </ul></li>
+                  <li><div class="cd"><b>China</b> <span class="tag">collection tile only — no pages yet</span><span class="rp">—</span></div></li>
+                </ul></li>
+              <li><div class="cd"><b>Plants</b><i>Tuscarora_Arboretum/plants/index.html</i><span class="rp">M</span></div>
+                <ul>
+                  <li><div class="cd"><b>Aglaonema — Chinese Evergreen</b><i>plants/aglaonema.html</i><span class="rp">M</span></div>
+                    <ul>
+                      <li><div class="cd"><b>Aglaonema 'Lady Valentine'</b><i>plants/aglaonema-lady-valentine.html</i><span class="rp">M</span></div></li>
+                    </ul></li>
+                  <li><div class="cd"><b>Aglaonema 'Siam Aurora'</b><i>plants/aglaonema-siam-aurora.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Canada Goldenrod</b><i>plants/canada-goldenrod.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Coral Cactus</b> <i>plants/euphorbia-lactea-cristata.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Firesticks</b><i>plants/euphorbia-tirucalli.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Ginkgo — The Tree That Outlived the Dinosaurs</b><i>plants/ginkgo.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Gooseberry</b><i>plants/gooseberry.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Hoya 'Snow Caps'</b><i>plants/hoya-lacunosa-snow-caps.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Monstera adansonii</b><i>plants/monstera-adansonii.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Oakland Holly</b><i>plants/oakland-holly.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Snow White Waffle Plant</b><i>plants/snow-white-waffle-plant.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Stapelia grandiflora — Carrion Flower</b><i>plants/stapelia-grandiflora.html</i><span class="rp">M</span></div></li>
+                  <li><div class="cd"><b>Stapelia grandiflora — Podcast</b><i>plants/stapelia-grandiflora-podcast.html</i><span class="rp">M</span></div></li>
+                </ul></li>
+              <li><div class="cd orph"><span class="odot"></span><b>Build a New Item</b> <span class="tag">internal build page</span><i>Tuscarora_Arboretum/build.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>Pottery</b> <span class="tag">stray duplicate of the Pottery index</span><i>Tuscarora_Arboretum/artifacts/pottery-index-live.html</i><span class="rp">M</span></div></li>
+            </ul></li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#08672B">
+      <h2>Kratom <span class="cnt">31 pages · 30 X + 1 M</span></h2>
+      <div class="bd">
+        <ul class="tree">
+          <li><div class="cd"><b>Kratom Reviews</b> <span class="tag">reviews hub</span><i>X-Peps/kratom-vendor-reviews.html</i><span class="rp">X</span></div>
+            <ul>
+              <li><div class="cd"><b>Kratom Legality by State — November 2026</b><i>kratom-legality-by-state.html</i><span class="rp">X</span></div>
+                <ul>
+                  <li><div class="cd"><b>Oregon Kratom Law</b> <span class="tag">addendum</span><i>kratom-legality-oregon.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>California Kratom Law</b> <span class="tag">addendum — hub links Oregon only</span><i>kratom-legality-california.html</i><span class="rp">X</span></div></li>
+                </ul></li>
+              <li><div class="cd"><b>Direct-from-Asia Kratom Exporters</b><i>kratom-asia-exporters-guide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>Kratom Variation</b><i>kratom-variation-guide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>Kratom Strain Guide</b><i>kratom_guide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>Kratom Potentiators Protocol</b><i>kratom_potentiators.html</i><span class="rp">X</span></div>
+                <ul>
+                  <li><div class="cd orph"><span class="odot"></span><b>Kratom Potentiators Protocol</b> <span class="tag">duplicate</span><i>k.html</i><span class="rp">X</span></div></li>
+                </ul></li>
+              <li><div class="cd"><b>Vendor strain guides (20)</b><span class="rp">X</span></div>
+                <ul>
+                  <li><div class="cd"><b>DTE Botanicals — Complete Strain Guide</b><i>dte-botanicals-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>DTE Botanicals</b> <span class="tag">duplicate URL</span><i>DTE.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>Down to Earth Botanicals</b> <span class="tag">short guide</span><i>DTE_short_guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Nighttime Reds at DTE Botanicals</b><i>dte-nighttime-reds-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>4-Year Anniversary Pure MD — DTE</b><i>4-year-anniversary-pure-md.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>Imperial Green Dragon D10</b><i>imperial-green-dragon-d10-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>WestKoast Botanicals — Complete Strain Guide</b><i>westkoast-botanicals-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>WestKoast Botanicals</b> <span class="tag">duplicate URL</span><i>westkoast-botanicals-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Nighttime Reds at WestKoast Botanicals</b><i>westkoast-nighttime-reds-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>WestKoast Master Batch Database</b><i>westkoast-master-batch-database.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Wildcraft Herb Company — Complete Strain Guide</b><i>wildcraft-herb-company-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>Wildcraft Herb Company</b> <span class="tag">orphan twin</span><i>wildcraft-herb-company-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>WildCraft Testing — Batch #1020</b><i>wildcraft_testing.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd orph"><span class="odot"></span><b>WildCraft Testing — Batch #1020</b> <span class="tag">duplicate</span><i>wildcraft_testing_final.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Tree Leaf Naturalist — Complete Strain Guide</b><i>treeleaf-naturalist-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Hudson Valley Botanicals — Complete Strain Guide</b><i>hudson-valley-botanicals-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Bewitched Botanical — Complete Strain Guide</b><i>bewitched-botanical-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Phantom Herbal — Complete Strain Guide</b><i>phantom-herbal-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Sakti Botanicals — Complete Strain Guide</b><i>sakti-botanicals-strain-guide.html</i><span class="rp">X</span></div></li>
+                  <li><div class="cd"><b>Rando — Complete Strain Guide</b><i>rando-strain-guide.html</i><span class="rp">X</span></div></li>
+                </ul></li>
+              <li><div class="cd"><b>Peptopia Potions — Creator's Den</b> <span class="tag">Bewitched portal, main repo</span><i>bewitched/index.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>I Love Witches</b><i>i_love_witches.html</i><span class="rp">X</span></div></li>
+            </ul></li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#10B981">
+      <h2>Pharma &amp; Peptide Research <span class="cnt">22 pages · all X</span></h2>
+      <div class="bd">
+        <p class="note">All children of the X-Peps Research Hub (Hub 2, above), which links to nearly all of them.</p>
+        <ul class="flat">
+          <li><div class="cd"><b>Tirzepatide Research Guide</b><i>tirzepatide_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Semaglutide Research Guide</b><i>semaglutide_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Retatrutide Research Guide</b><i>retatrutide_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Cagrilintide Research Guide</b><i>cagrilintide-guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>CagriSema Research Guide</b><i>cagrisema-guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Eloralintide Research Guide</b><i>eloralintide-guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>SLU-PP-332 Research Guide</b><i>slu_pp_332_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>The Ultimate Guide to Tesofensine</b><i>tesofensine.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Modafinil Research Guide</b><i>modafinil_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Armodafinil Research Guide</b><i>armodafinil-guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>5-Amino 1MQ Research Guide</b><i>5_amino_1mq_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Melanotan I &amp; Melanotan II — A Complete Guide</b><i>melanotan-guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>BPC-157 &amp; KPV Research Guide</b><i>bpc_157_kpv_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>CJC-1295 / Ipamorelin Research Guide</b><i>cjc_1295_ipamorelin_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>GLOW &amp; KLOW Research Guide</b><i>glow_klow_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Wolverine Research Guide — BPC-157 + TB-500</b><i>wolverine-guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>DSIP &amp; Cancer Treatment</b><i>dsip.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>DSIP in Cancer Treatment</b> <span class="tag">duplicate</span><i>dsip_in_cancer_treatment.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Tirzepatide &amp; Retatrutide in Oncology Research</b><i>oncology_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Peptide Reconstitution Calculator</b><i>peptopia_reconstitution_calculator.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Universal Reconstitution Guide</b><i>reconstitution_guide.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd"><b>Storage &amp; Handling Guide</b><i>storage_handling.html</i><span class="rp">X</span></div></li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#9333EA">
+      <h2>GLP-1 &amp; Smart Drug News <span class="cnt">12 pages · all X</span></h2>
+      <div class="bd">
+        <ul class="tree">
+          <li><div class="cd"><b>Biohacking News</b> <span class="tag">news hub</span><i>X-Peps/biohacking-news.html</i><span class="rp">X</span></div>
+            <ul>
+              <li><div class="cd"><b>Retatrutide TRIUMPH-2: 18.8% Weight Change</b><i>glp-news-2026-10-12.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>Foundayo: The Once-Daily GLP-1 Pill</b><i>glp-news-2026-10-19.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>EloraTZP Beats Tirzepatide: 23.3% Weight Change</b><i>glp-news-2026-10-26.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>GLP-1s Help Shed Regained Weight After Bariatric Surgery</b><i>glp-news-2026-11-02-bariatric.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>GLP-1s vs Other Diabetes Drugs Across 181 Outcomes</b><i>glp-news-2026-11-02-outcomes.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>Retatrutide Beats Semaglutide in First Head-to-Head Trial</b><i>glp-news-2026-11-02-retatrutide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>Science Devotes a Whole Issue to GLP-1s</b><i>glp-news-2026-11-09-science.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>FDA Adds an Eye Warning to Every GLP-1 Label</b><i>glp-news-2026-11-16.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>GLP-1s &amp; Biological Aging — The Longevity Report</b><i>glps_and_aging.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>TikTok Kills Peptide Sales</b><i>tiktok-peptide-bans-2026-10-21.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>TikTok Kills Peptide Sales</b> <span class="tag">earlier version</span><i>tiktok-peptide-bans-former.html</i><span class="rp">X</span></div></li>
+            </ul></li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#7C3AED">
+      <h2>Mental Health &amp; Nursing <span class="cnt">17 pages · 2 M + 15 X</span></h2>
+      <div class="bd">
+        <ul class="tree">
+          <li><div class="cd orph"><span class="odot"></span><b>Mental Health Nursing</b> <span class="tag">portal</span><i>mental-health/index.html</i><span class="rp">M</span></div>
+            <ul>
+              <li><div class="cd"><b>Medication Administration</b> <span class="tag">Med Admin app</span><i>mental-health/medication-administration.html</i><span class="rp">M</span></div></li>
+            </ul></li>
+          <li><div class="cd"><b>Health Psychology</b> <span class="tag">guide hub</span><i>X-Peps/health-psychology.html</i><span class="rp">X</span></div>
+            <ul>
+              <li><div class="cd"><b>Dissociative Fugue — A Nursing Guide</b><i>dissociative-fugue-guide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>Dissociative Identity Disorder — A Nursing Guide</b><i>dissociative-identity-disorder-guide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd"><b>TSH &amp; Mental Health — A Nursing Guide</b><i>tsh-mental-health-nursing-guide.html</i><span class="rp">X</span></div></li>
+            </ul></li>
+          <li><div class="cd"><b>6A unit guides — no inbound links (5)</b><span class="rp">X</span></div>
+            <ul>
+              <li><div class="cd orph"><span class="odot"></span><b>Intake Procedures — 6A Mental Health Admission Guide</b><i>intake-procedures-guide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>Mini Intake — 6A Mental Health Unit</b><i>mini-intake-guide.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>Intake Procedures — Short Guide · 6A</b><i>va-intake-instructions.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>Patient Assessment — Mental Health Unit</b><i>va-daily-assessment-form.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>Mental Health Nursing — Interview Study Guide</b><i>Mental Health Interview.html</i><span class="rp">X</span></div></li>
+            </ul></li>
+          <li><div class="cd"><b>The “!” vault pages — fully isolated (6)</b><span class="rp">X</span></div>
+            <ul>
+              <li><div class="cd orph"><span class="odot"></span><b>CAPSTONE Vault</b><i>! Capstone Vault.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>HESI Exit Study Guide</b><i>! HESI Vault.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>MedSurg I / Peptopia Health</b><i>! MedSurg Teasers.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>NCLEX Vault v1.2</b><i>! NCLEX Vault.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>PEPTOPIA Portals</b><i>! Peptopia Nurse Portals.html</i><span class="rp">X</span></div></li>
+              <li><div class="cd orph"><span class="odot"></span><b>Pro-Nurse Portal</b><i>! Pro-Nurse Portal.html</i><span class="rp">X</span></div></li>
+            </ul></li>
+        </ul>
+        <p class="note" style="margin-top:8px">The Mental Health portal is the site's only other crossroads — it links out to Med ID, the Corrections pages, and the X-Peps nursing guides.</p>
+      </div>
+    </section>
+    <section class="panel darktext" style="--gc:#F7A040">
+      <h2>Corrections Nursing <span class="cnt">14 pages · all M</span></h2>
+      <div class="bd">
+        <ul class="tree">
+          <li><div class="cd"><b>Corrections Nursing</b> <span class="tag">portal</span><i>Corrections/index.html</i><span class="rp">M</span></div>
+            <ul>
+              <li><div class="cd"><b>Wexford Training — Clinical Competency</b><i>Corrections/Clinical_Competency.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Onboarding — Corrections Nursing</b><i>Corrections/Corrections_Excellence.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Detox Assessments Hub</b><i>Corrections/Detox_Assessments.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Do Not Crush or Chew List</b><i>Corrections/do_not_crush.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Do Not Crush Assessor</b><i>Corrections/dynamic_dnc_assessor.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>ERJ: Intake Screening</b><i>Corrections/ERJ_Intake_Screening.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>MedPass: B-Pod Management</b><i>Corrections/Insulin_Code.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Mental Health Triage &amp; Screening Study Guide</b><i>Corrections/Mental_Health.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Mental Health Triage &amp; Screening Study Guide</b> <span class="tag">duplicate URL</span><i>Corrections/Mental_Health_Triage.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Harassment, Incivility &amp; Violence</b><i>Corrections/Nursing_Orientation_v2.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Onboarding — Peptopia Health</b><i>Corrections/Onboarding.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Onboarding — Corrections Nursing</b><i>Corrections/Onboarding_Corrections_Guide.html</i><span class="rp">M</span></div></li>
+              <li><div class="cd"><b>Onboarding — Peptopia Health</b><i>Corrections/Onboarding_Training.html</i><span class="rp">M</span></div></li>
+            </ul></li>
+        </ul>
+        <p class="note" style="margin-top:8px">Color note: the family color is this orange, but the pages themselves declare blue accents (#2563EB / #3B82F6) — the family and its pages genuinely disagree. Repo copies are the refreshed set; the live site still serves pre-refresh bytes (flip pending at crawl time).</p>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#0070D0">
+      <h2>Career &amp; Finance <span class="cnt">5 pages · 4 M + 1 X</span></h2>
+      <div class="bd">
+        <ul class="tree">
+          <li><div class="cd"><b>Retirement Withdrawals — The Long Guide</b><i>career/retirement-withdrawals-long-11-05-26.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd"><b>Retirement Withdrawals — The Short Guide</b><i>career/retirement-withdrawals-short-11-05-26.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Finance Portal — NVDA Chart</b><i>investments/index.html</i><span class="rp">M</span></div>
+            <ul>
+              <li><div class="cd"><b>NVDA Daily Poster — Sunday, November 22, 2026</b><i>investments/nvda.html</i><span class="rp">M</span></div></li>
+            </ul></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Retirement Projection — October 2026</b><i>X-Peps/retirement-projection.html</i><span class="rp">X</span></div></li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel darktext" style="--gc:#F06000">
+      <h2>Store &amp; Shipping Ops <span class="cnt">7 pages · 3 M + 4 X</span></h2>
+      <div class="bd">
+        <ul class="flat">
+          <li><div class="cd orph"><span class="odot"></span><b>Shipping &amp; Tracking</b> <span class="tag">main-repo copy</span><i>aftership-shipments-report.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd"><b>Shipping &amp; Tracking</b> <span class="tag">X-Peps copy</span><i>X-Peps/aftership-shipments-report.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Shipping &amp; Pharma</b> <span class="tag">nested duplicate — lives at /X-Peps/X-Peps/</span><i>X-Peps/X-Peps/aftership-shipments-report.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Peptopia Health — Email Action</b><i>order-action/index.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Pharma</b> <span class="tag">stored orders mockup</span><i>orders-mockup/index.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Email — PEPTOPIA Health</b> <span class="tag">the disabled orders page</span><i>X-Peps/orders/index.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Pharma — PEPTOPIA Health</b> <span class="tag">orders thank-you</span><i>X-Peps/orders/thank-you/index.html</i><span class="rp">X</span></div></li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#7C3AED">
+      <h2>Email / Customer Contact <span class="cnt">1 page · M</span></h2>
+      <div class="bd">
+        <ul class="flat">
+          <li><div class="cd orph"><span class="odot"></span><b>Peptopia Health — Research &amp; Education</b> <span class="tag">THE /email/ page</span><i>email/index.html</i><span class="rp">M</span></div></li>
+        </ul>
+        <p class="note" style="margin-top:8px">The customer contact page every store link on the site now points to. It reads as an orphan only in static links — in practice it is reached from buttons and scripts across the portal family.</p>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#64748B">
+      <h2>Standalone / Ops Docs <span class="cnt">2 pages · both X</span></h2>
+      <div class="bd">
+        <ul class="flat">
+          <li><div class="cd orph"><span class="odot"></span><b>Guide Standards — How Our Guides Are Built</b><i>X-Peps/guide-standards.html</i><span class="rp">X</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Peptopia Website Strategy Guide / Operations Manual</b><i>X-Peps/peptopia-website-strategy-guide.html</i><span class="rp">X</span></div></li>
+        </ul>
+      </div>
+    </section>
+    <section class="panel" style="--gc:#64748B">
+      <h2>Previews &amp; Mockups <span class="cnt">49 pages · 48 M + 1 X</span></h2>
+      <div class="bd">
+        <p class="note">Working mockups and snapshots — not production pages. Only the three design-style guides link anywhere (to each other); all 46 others are orphans, as expected for mockups.</p>
+        <ul class="flat">
+          <li><div class="cd orph"><span class="odot"></span><b>Admin Portal</b> <span class="tag">portal snapshot</span><i>admin-portal/preview/index.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Admin Portal</b> <span class="tag">snapshot</span><i>previews/admin-portal-fixed.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Admin Portal</b> <span class="tag">snapshot</span><i>previews/admin-portal-mockup.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Corrections Audit — Nov 10–22, 2026</b><i>previews/corrections-audit-11-22-26.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd"><b>Bauhaus — A Design Guide for Peptopia</b><i>previews/design-bauhaus.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd"><b>Fauvism — A Design Guide for Peptopia</b><i>previews/design-fauvism.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd"><b>Mid-Century Modern — A Design Guide for Peptopia</b><i>previews/design-mid-century.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Gooseberry — Plant Guide · Tuscarora Arboretum</b><i>previews/gooseberry-green-theme.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Peptopia Health — Research &amp; Education</b> <span class="tag">homepage banner mockup</span><i>previews/homepage-banner-v2.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Email — PEPTOPIA Health</b> <span class="tag">orders cart test</span><i>previews/orders-cart-uniform.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Your Peptopia email request — sample reply</b><i>previews/sara-reply-mockup.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Visual Review — November 16, 2026</b><i>previews/visual-review-11-16-26.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Wolverine Research Guide — BPC-157 + TB-500</b> <span class="tag">preview</span><i>previews/wolverine-guide-preview.html</i><span class="rp">M</span></div></li>
+          <li><div class="cd orph"><span class="odot"></span><b>Kratom Reviews — Peptopia Health</b> <span class="tag">DTE preview, X-Peps repo</span><i>previews/kratom-reviews-dte-preview.html</i><span class="rp">X</span></div></li>
+        </ul>
+        <details class="more">
+          <summary>The other 35 previews — Corrections mirrors ×14 · orders tests ×14 · other mockups ×7</summary>
+          <p class="note" style="margin-top:6px"><b>Corrections shadow section (14)</b> — a full mirror of the live Corrections family inside <i>previews/</i>:</p>
+          <div class="chips">
+            <span class="chip orph">corrections-index.html</span><span class="chip orph">corrections-clinical_competency.html</span><span class="chip orph">corrections-corrections_excellence.html</span><span class="chip orph">corrections-detox_assessments.html</span><span class="chip orph">corrections-do_not_crush.html</span><span class="chip orph">corrections-dynamic_dnc_assessor.html</span><span class="chip orph">corrections-erj_intake_screening.html</span><span class="chip orph">corrections-insulin_code.html</span><span class="chip orph">corrections-mental_health.html</span><span class="chip orph">corrections-mental_health_triage.html</span><span class="chip orph">corrections-nursing_orientation_v2.html</span><span class="chip orph">corrections-onboarding.html</span><span class="chip orph">corrections-onboarding_corrections_guide.html</span><span class="chip orph">corrections-onboarding_training.html</span>
+          </div>
+          <p class="note" style="margin-top:8px"><b>Orders / email page tests (14)</b>:</p>
+          <div class="chips">
+            <span class="chip orph">orders-dela-test.html</span><span class="chip orph">orders-delb-test.html</span><span class="chip orph">orders-delc-test.html</span><span class="chip orph">orders-f1-test.html</span><span class="chip orph">orders-f2-test.html</span><span class="chip orph">orders-fx-test.html</span><span class="chip orph">orders-fx2-test.html</span><span class="chip orph">orders-fx3-test.html</span><span class="chip orph">orders-fx4-test.html</span><span class="chip orph">orders-nocss-test.html</span><span class="chip orph">orders-nologo-test.html</span><span class="chip orph">orders-oblong-mockup.html</span><span class="chip orph">orders-restore-mockup.html</span><span class="chip orph">orders-restyle-11-09/index.html</span>
+          </div>
+          <p class="note" style="margin-top:8px"><b>Other mockups (7)</b>:</p>
+          <div class="chips">
+            <span class="chip orph">artifacts-s52-draft.html</span><span class="chip orph">canada-goldenrod-preview.html</span><span class="chip orph">customer-changed.html</span><span class="chip orph">customer-process.html</span><span class="chip orph">extract-calculator-mockup.html</span><span class="chip orph">kratom-legality-preview.html</span><span class="chip orph">shipping-header-preview.html</span>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+  <section class="panel orphwrap" style="--gc:#DC2626">
+    <h2>Orphans — no inbound links <span class="cnt">133 pages</span></h2>
+    <div class="bd">
+      <p class="note">Measured on static links found in the crawl: “orphan” means no other page's links point to it — several (the Admin Portal, the /email/ page) are reached constantly by direct URL, header icons, and scripts. Two families — briefing players and previews — account for 92 of the 133; the remaining 41 are grouped by family below.</p>
+      <div class="orphgrid">
+        <div class="ofam">
+          <h3>Briefing players — <span class="n">46</span> of 50</h3>
+          <p class="note">Only the Capstone briefing, evening Nov 6, evening Nov 22, and morning Nov 3 players receive any inbound link. The other 46:</p>
+          <details class="more">
+            <summary>Morning ×23 · evening ×22 · midday ×1</summary>
+            <div class="chips">
+              <span class="chip orph">morning · 10-30</span><span class="chip orph">morning · 10-31</span><span class="chip orph">morning · 11-01</span><span class="chip orph">morning · 11-02</span><span class="chip orph">morning · 11-04</span><span class="chip orph">morning · 11-05</span><span class="chip orph">morning · 11-06</span><span class="chip orph">morning · 11-07</span><span class="chip orph">morning · 11-08</span><span class="chip orph">morning · 11-09</span><span class="chip orph">morning · 11-10</span><span class="chip orph">morning · 11-11</span><span class="chip orph">morning · 11-12</span><span class="chip orph">morning · 11-13</span><span class="chip orph">morning · 11-14</span><span class="chip orph">morning · 11-15</span><span class="chip orph">morning · 11-16</span><span class="chip orph">morning · 11-17</span><span class="chip orph">morning · 11-18</span><span class="chip orph">morning · 11-19</span><span class="chip orph">morning · 11-20</span><span class="chip orph">morning · 11-21</span><span class="chip orph">morning · 11-22</span><span class="chip orph">evening · 10-27</span><span class="chip orph">evening · 10-31</span><span class="chip orph">evening · 11-01</span><span class="chip orph">evening · 11-02</span><span class="chip orph">evening · 11-03</span><span class="chip orph">evening · 11-04</span><span class="chip orph">evening · 11-05</span><span class="chip orph">evening · 11-07</span><span class="chip orph">evening · 11-08</span><span class="chip orph">evening · 11-09</span><span class="chip orph">evening · 11-10</span><span class="chip orph">evening · 11-11</span><span class="chip orph">evening · 11-12</span><span class="chip orph">evening · 11-13</span><span class="chip orph">evening · 11-14</span><span class="chip orph">evening · 11-15</span><span class="chip orph">evening · 11-16</span><span class="chip orph">evening · 11-17</span><span class="chip orph">evening · 11-18</span><span class="chip orph">evening · 11-19</span><span class="chip orph">evening · 11-20</span><span class="chip orph">evening · 11-21</span><span class="chip orph">midday · 11-09</span>
+            </div>
+            <p class="note" style="margin-top:6px">Full filenames follow the pattern <i>briefings/morning-briefing-player-MM-DD-26.html</i> (and evening-/midday- likewise) — all 49 are listed in full in the Briefings panel above.</p>
+          </details>
+        </div>
+        <div class="ofam">
+          <h3>Previews &amp; mockups — <span class="n">46</span> of 49</h3>
+          <p class="note">Everything except the three design-style guides, which link to each other. All 46 are listed in the Previews panel above: the 11 dashed cards (portal snapshots ×3, Corrections audit, gooseberry theme, homepage banner, orders cart test, Sara reply mockup, visual review, Wolverine preview, Kratom Reviews DTE preview) plus the 35 in its expandable list (Corrections mirrors ×14, orders tests ×14, other mockups ×7).</p>
+        </div>
+        <div class="ofam">
+          <h3>Mental Health &amp; Nursing — <span class="n">12</span></h3>
+          <ul>
+            <li><b>Mental Health Nursing</b> (the portal itself) — mental-health/index.html · M</li>
+            <li><b>Intake Procedures — 6A Admission Guide</b> — intake-procedures-guide.html · X</li>
+            <li><b>Mini Intake — 6A</b> — mini-intake-guide.html · X</li>
+            <li><b>Intake Procedures — Short Guide · 6A</b> — va-intake-instructions.html · X</li>
+            <li><b>Patient Assessment — Mental Health Unit</b> — va-daily-assessment-form.html · X</li>
+            <li><b>Mental Health Nursing — Interview Study Guide</b> — Mental Health Interview.html · X</li>
+            <li><b>CAPSTONE Vault</b> — ! Capstone Vault.html · X</li>
+            <li><b>HESI Exit Study Guide</b> — ! HESI Vault.html · X</li>
+            <li><b>MedSurg I</b> — ! MedSurg Teasers.html · X</li>
+            <li><b>NCLEX Vault v1.2</b> — ! NCLEX Vault.html · X</li>
+            <li><b>PEPTOPIA Portals</b> — ! Peptopia Nurse Portals.html · X</li>
+            <li><b>Pro-Nurse Portal</b> — ! Pro-Nurse Portal.html · X</li>
+          </ul>
+        </div>
+        <div class="ofam">
+          <h3>Kratom — <span class="n">11</span></h3>
+          <ul>
+            <li><b>California Kratom Law</b> — kratom-legality-california.html · X</li>
+            <li><b>Kratom Potentiators Protocol</b> (duplicate) — k.html · X</li>
+            <li><b>Down to Earth Botanicals</b> (short guide) — DTE_short_guide.html · X</li>
+            <li><b>4-Year Anniversary Pure MD — DTE</b> — 4-year-anniversary-pure-md.html · X</li>
+            <li><b>Imperial Green Dragon D10</b> — imperial-green-dragon-d10-guide.html · X</li>
+            <li><b>WestKoast Botanicals</b> (duplicate URL) — westkoast-botanicals-guide.html · X</li>
+            <li><b>WestKoast Master Batch Database</b> — westkoast-master-batch-database.html · X</li>
+            <li><b>Wildcraft Herb Company</b> (orphan twin) — wildcraft-herb-company-strain-guide.html · X</li>
+            <li><b>WildCraft Testing — Batch #1020</b> — wildcraft_testing.html · X</li>
+            <li><b>WildCraft Testing — Batch #1020</b> (duplicate) — wildcraft_testing_final.html · X</li>
+            <li><b>I Love Witches</b> — i_love_witches.html · X</li>
+          </ul>
+        </div>
+        <div class="ofam">
+          <h3>Store &amp; Shipping Ops — <span class="n">6</span></h3>
+          <ul>
+            <li><b>Shipping &amp; Tracking</b> (main-repo copy) — aftership-shipments-report.html · M</li>
+            <li><b>Shipping &amp; Pharma</b> (nested duplicate) — X-Peps/X-Peps/aftership-shipments-report.html · X</li>
+            <li><b>Email Action</b> — order-action/index.html · M</li>
+            <li><b>Pharma</b> (stored orders mockup) — orders-mockup/index.html · M</li>
+            <li><b>Email — PEPTOPIA Health</b> (disabled orders page) — X-Peps/orders/index.html · X</li>
+            <li><b>Pharma — PEPTOPIA Health</b> (thank-you) — X-Peps/orders/thank-you/index.html · X</li>
+          </ul>
+        </div>
+        <div class="ofam">
+          <h3>Hubs, Tuscarora, Career &amp; the rest — <span class="n">12</span></h3>
+          <ul>
+            <li><b>Admin Portal</b> (Hub 1 itself) — admin-portal/index.html · M</li>
+            <li><b>WestKoast 4-Way Split Recommendation</b> — admin-portal/recommendations/westkoast-4-way-split.html · M</li>
+            <li><b>X-Peps Research Hub</b> (Hub 2 itself) — X-Peps/index.html · X</li>
+            <li><b>The /email/ page</b> — email/index.html · M</li>
+            <li><b>Pottery</b> (stray duplicate index) — Tuscarora_Arboretum/artifacts/pottery-index-live.html · M</li>
+            <li><b>Build a New Item</b> — Tuscarora_Arboretum/build.html · M</li>
+            <li><b>Finance Portal — NVDA Chart</b> — investments/index.html · M</li>
+            <li><b>Retirement Projection — October 2026</b> — X-Peps/retirement-projection.html · X</li>
+            <li><b>DSIP in Cancer Treatment</b> (duplicate) — dsip_in_cancer_treatment.html · X</li>
+            <li><b>TikTok Kills Peptide Sales</b> (earlier version) — tiktok-peptide-bans-former.html · X</li>
+            <li><b>Guide Standards</b> — X-Peps/guide-standards.html · X</li>
+            <li><b>Website Strategy Guide / Operations Manual</b> — X-Peps/peptopia-website-strategy-guide.html · X</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="footnotes">
+    <h2>What the crawl surfaced</h2>
+    <ul>
+      <li><b>The homepage is a dead end by design</b> — holder page, zero outbound links. The two hubs it should hang from (Admin Portal, X-Peps Research Hub) are themselves orphans: nothing links to them either.</li>
+      <li><b>Duplicates are everywhere</b> — the same guide at two URLs: DTE (×2 plus a short guide), WestKoast (×2), WildCraft (×2 plus two testing copies), DSIP (×2), Kratom Potentiators (×2), Corrections Mental Health (×2), Aftership (×3, one nested at /X-Peps/X-Peps/). In each pair, typically only one twin is linked; the other is an orphan.</li>
+      <li><b>A shadow Corrections section lives in /previews/</b> — 15 pages mirroring the 14-page live section — alongside a second full Admin Portal snapshot pair.</li>
+      <li><b>Cross-family linking is thin and runs through the Portal</b> — it is the only page linking across five families; the Mental Health portal is the only other true crossroads.</li>
+      <li><b>The legality hub links its Oregon addendum but not California's</b> — the California page is an orphan.</li>
+      <li><b>China has no pages</b> — it exists only as a collection tile on the Tuscarora Artifacts index.</li>
+      <li><b>The six “!” vault pages are completely isolated</b> — no links in or out.</li>
+      <li><b>Method note:</b> links are static links resolved against the page inventory; navigation injected by JavaScript, portal card scripts, and links in emails are not captured — so “orphan” means no static inbound link, not “unreachable in practice.”</li>
+    </ul>
+  </div>
+  <footer class="site">Site Tree — built from the full site-map crawl of November 23, 2026 · 254 pages · Peptopia Health</footer>
+  </div><!-- /canvas -->
+  </div><!-- /stage -->
+</div><!-- /wrap -->
+<script>
+(function(){
+  var root=document.documentElement;
+  var themeBtn=document.getElementById('themeBtn');
+  var moon=document.getElementById('moonIco'), sun=document.getElementById('sunIco');
+  themeBtn.addEventListener('click',function(){
+    var dark=root.classList.toggle('dark');
+    moon.style.display=dark?'none':'';
+    sun.style.display=dark?'':'none';
+  });
+  /* print: expand every collapsed list first so the full tree prints */
+  var opened=[];
+  function openAll(){opened=[];document.querySelectorAll('details.more').forEach(function(d){if(!d.open){d.open=true;opened.push(d);}});}
+  function closeOpened(){opened.forEach(function(d){d.open=false;});opened=[];}
+  window.addEventListener('beforeprint',openAll);
+  window.addEventListener('afterprint',closeOpened);
+  document.getElementById('printBtn').addEventListener('click',function(){window.print();});
+  /* zoom + enlarge */
+  var stage=document.getElementById('stage'), canvas=document.getElementById('canvas');
+  var z=1, enlarged=false;
+  var zReset=document.getElementById('zReset');
+  function setZ(n){
+    z=Math.min(2,Math.max(0.5,Math.round(n*100)/100));
+    canvas.style.transform='scale('+z+')';
+    zReset.textContent=Math.round(z*100)+'%';
+  }
+  document.getElementById('zIn').addEventListener('click',function(){setZ(z+0.25);});
+  document.getElementById('zOut').addEventListener('click',function(){setZ(z-0.25);});
+  zReset.addEventListener('click',function(){setZ(1);});
+  var enl=document.getElementById('enlargeBtn');
+  enl.addEventListener('click',function(){
+    if(!enlarged){
+      enlarged=true; setZ(1.5);
+      if(stage.requestFullscreen){stage.requestFullscreen().catch(function(){});}
+      stage.scrollTop=0; stage.scrollLeft=0;
+    }else{
+      enlarged=false; setZ(1);
+      if(document.fullscreenElement){document.exitFullscreen().catch(function(){});}
+    }
+  });
+  document.addEventListener('fullscreenchange',function(){
+    if(!document.fullscreenElement && enlarged){enlarged=false; setZ(1);}
+  });
+})();
+</script>
+</body>
+</html>

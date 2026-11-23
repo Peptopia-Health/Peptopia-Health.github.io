@@ -1,0 +1,13 @@
+# Daily morning audio briefing
+
+Goal ID: goal_6c858247b638
+Goal slug: daily-morning-audio-briefing
+
+## Description
+David asked for an audio file in chat each morning by ~6 AM covering: the day ahead, important upcoming dates, a short weather forecast, major news on the stocks he owns, kratom news, mental health nursing news, plus one piece of nursing advice. Delivered as an audio briefing (Smooth voice, avocado_v2:MAI_03 — supersedes the Carter voice, corrected Nov 16, 2026). Google Calendar IS connected and the day-ahead comes from `calendar +agenda` (the Oct 12, 2026 not-connected note is superseded).
+
+## Reconciliation additions (Nov 16, 2026 — from MEMORY.md; the cron body is the operative spec)
+- Beats the cron body carries that this goal text previously omitted: Shipping Update, Research/GLP one-line status, Bar beat (tips + openable days, never on a VA-shift day), animated-player production every run, and the Arboretum-builds chat line.
+- NO REWARD POINTS — EVER (Nov 15, 2026, PERMANENT): never track, calendar, brief, or mention reward/loyalty points.
+- SPAM AUTO-DELETE on all accounts (Nov 12, 2026 reset); GILL BLOCK: mail from any sender named Gill is blocked everywhere and deleted on sight — never in the briefing.
+- MANAGER MEETING BRIEF: do not attach, mention, or prompt about it until David asks (Nov 16, 2026).

@@ -1,0 +1,114 @@
+# Kratom Guide Build Standard — the checklist mirror
+
+**This file is the checkbox mirror of the bible: `~/workspace/guide-build/GUIDE_BUILD_SCRIPT.md`** (rebuilt exhaustive Nov 2, 2026). The script is authoritative; this checklist is its pre-publish gate in tick-box form. When the script changes, this file changes in the same job (script §34). A guide is NOT done until every applicable box is verified — on the LIVE page, by clicking, at desktop AND mobile widths, in BOTH themes, plus a print pass. Never present a preview or partially verified version (except a critique flow David explicitly orders).
+
+## Doctrine
+- [ ] WildCraft is the FROZEN prototype — never edited except David-requested small changes; every mechanic is copied from the prototype AS BUILT (script §1–§2)
+- [ ] Feature found in another guide that WildCraft lacks → assessed; if arguably better, PITCHED to David with approve/reject boxes — never silently adopted or dropped (Feature-Pitch Protocol)
+- [ ] Known source tensions (§3 of the script) not silently resolved — flagged items stay flagged
+
+## Content law (before anything else)
+- [ ] Current guide backed up to Drive BEFORE any update (`…_Guide_Backup_MM-DD-YY.html`, Kratom Strain Guides folder); local pre-edit copy kept
+- [ ] NOTHING omitted, deleted, changed, or damaged — add and improve only; a strain is never removed (sold-out → legacy row)
+- [ ] Only the flagged items changed on a critique-driven edit
+- [ ] Published content = confirmed facts only; no warnings/caution statements in kratom guides; quotes real, short, attributed; no quotes attributable to David or his community persona
+
+## Layout & state model
+- [ ] ONE uniform body width for every container = the full guide column (.wrap max-width:960px) — bands, cards, wrappers, intro blocks, panels, index, tables, Picker card
+- [ ] Every section's title container (band + lead) OPEN and readable by default; only strain cards collapsed to header bars; a card opens from its own header; arriving from a link OPENS the card
+- [ ] Every band's right-side icon is a raised gloss push BUTTON that actually collapses/reopens its section (click-tested live, every band)
+- [ ] Vein-color section never collapses (starts open, stays readable; carries the user-variability paragraph) — see script §3.2 flagged tension
+- [ ] Vein bands/card headers carry the strain color; neutral sections default to darkest green (#1E4D3B family)
+- [ ] Color panels: 4 vein panels in a 2×2 grid at the SAME width as the Picker card; panel icons are gloss BUTTONS hyperlinked to their sections; Browse arrows land on real anchors and open targets
+- [ ] Batch numbers = horizontal pill buttons "Batch #<id>" — word AND number bold — linking to their per-batch tables
+- [ ] Comparison matrix: every column sortable both directions within its color group, whole rows intact; EVERY left-column strain name hyperlinked to its card
+- [ ] Index box collapsed by default (title + icon only, unclipped; icon toggles); print shows it in full
+- [ ] Odd last card in any grid centers at normal width; no "No community data found" columns anywhere
+
+## Header, theme, fonts
+- [ ] Top-right cluster: DATE pill + THEME (sun/moon) + PRINT/PDF — small matched push buttons, pinned far right, never obscuring text
+- [ ] Light theme DEFAULT on every load; dark toggle visit-only, NEVER persisted (no localStorage theme read/write)
+- [ ] Fonts: Outfit 700/800 headings, DM Sans body, stacks end sans-serif, webfonts loaded; NEVER serif — RENDERED fonts verified live
+- [ ] Intro under the title: ONE short statement, SINGLE line, never wraps; top pills link to real sections below; no watermark glyph rows
+- [ ] Footer is ONE line only: "Complete Strain Guide for [Vendor] · Independent Customer Research · [Month Year]" — no disclaimer, no © line
+
+## Effect–color standard (script §9)
+- [ ] Palette defined ONCE as :root vars, exact hexes: Energy #FFFFFF · Focus #F06000 · Mood #10C000 · Calm #F0F000 · Analgesia #E01020 · Sleep #0A0A0A · Default Cobalt #0070D0 (+ the -dk shades)
+- [ ] White figures ALWAYS carry a grey border; black (sleep) figures carry a grey outline on dark; every effect mention color-tied
+- [ ] Cobalt = default only, never sleep; picker hub leaf cobalt #0070D0, outline #004E96, stems #F0F000
+- [ ] STRICT effect terms only — Energy/Focus/Mood/Sleep/Calm/Analgesia (never Alertness/Motivation/Relief; sole exception: the four verbatim color-map one-liners)
+- [ ] Icons: ⚡ energy · 😊 mood · 🧘 calm · 🌙 analgesia · 💤 sleep · ⏳ duration; 💤 defined in How to Use + legend + tables
+
+## Push-button standard (script §10)
+- [ ] EVERY button raised + glossy: highlight top-left, shading bottom/right, visible border, layered shadows, true :active press-down — band icons, top cluster, pills, legend dots, picker circles/hub, per-strain wheels, batch pills, ✓ fact buttons, return/top buttons. Flat 2-D = defect
+- [ ] Per-strain wheel buttons 48px with COBALT border ~3px; legend swatches are gloss CIRCLES ~15px, never squares
+- [ ] Button confirmation (count/type/placement) given to David before buttons are added/changed on a new build
+- [ ] Return button = thick single circular arrow, ~300° arc, arrowhead, gap — never a closed circle; back-to-top = bold SVG up arrow; both click-tested
+
+## Picker, spectrum, cards, pies
+- [ ] Kratom Picker shows THIS vendor's leaf and pool ONLY, under its own *QpHistory localStorage key; shows top-score winner AND rotation pick
+- [ ] Rotation rules honored: rests last strain for the feeling, switches vein (and vendor, cross-guide), never enhanced-after-enhanced; thin catalog → the wheel says so plainly
+- [ ] Every band carries a Quick Pick pill deep-linking the picker with band context (hidden in print)
+- [ ] Spectrum: vein lanes + SLEEP lane (black dots, derived sleep = round((Calm+Analgesia)/2), clamp 1–5 — same value as picker dot-bars); every dot links to its card and opens it; arrival from the map offers a return path to the map; every strain plotted in both lanes
+- [ ] Card pie → THAT strain's effect popup; panel pie → that vein's "typical mix" popup + caption line in each panel; How-to-Use bullet describes exactly this; Sleep is a black slice in both; the word "donut" appears nowhere user-facing
+- [ ] Fuzzy search covers every card by name + line and opens its target
+- [ ] Compound terms: bold emerald #0E7C66, dotted underline, definition popup (cmp/data-t)
+
+## Batches, tables, lab
+- [ ] Per-batch section: a separate sortable table for EACH batch (that batch's strains only), each with its own anchor; every "Batch #<id>" pill links to its batch's table
+- [ ] Every table: rounded corners + 2.5px border in its section/title color — header + table ONE unit (batch groups: border on the container, tinted header band inside, no double border)
+- [ ] Potency/MIT bars: filled portion ONLY (no empty track), widths proportional; gold fill #F0F000 (never mustard), line-average fill cobalt #0070D0
+- [ ] Color-tied rows carry soft pastel washes of the row color (dark theme: translucent tints, readable); non-color tables keep alternating striping
+- [ ] Lab lists: heavy metals with symbols (As/Pb/Cd/Hg) in an aligned right column; microbes with drawn SVG icons ≥28px in the same column (petri dish / budding yeast / flagellated rod / marked rod)
+- [ ] Prose audit: stats + lab numbers BOLD; strain names BOLD + vendor-green + linked; lab names BOLD + linked; all lab links open in a new window; line badges are circular gloss letters, never flag emoji
+
+## Reviews & sources
+- [ ] Reviews organized by vein color, blends separate; footnote EXACTLY: "Reviews stars are the vendor's own WooCommerce ratings (small counts on several products — see each card)."
+- [ ] Quotes: quotation marks + italics + lavender highlight at full line height, ink #555 — inline quotes too; the highlight is never removed
+- [ ] Venn pair: LEFT "Key Review Sources" (Reddit / Buyer Feedback / Podcasts / Site Reviews — labels inside, source colors NOT strain colors, each circle linked) + RIGHT "Key Review Factors"; same height, stack on mobile; intro count matches the diagrams
+- [ ] Source diversification: Discord #reviews, kratom.org, Kratom Stories, Reddit, on-site ratings — no single aggregator dominant; discrepancies flagged to David, not resolved silently
+- [ ] Honest critique (where present) hidden behind the 57 gate, never in the open body or print
+- [ ] Bibliography full + grouped; every source name BOLD and the name itself LINKED (unlinked only when no public link exists, with a note)
+- [ ] Vendor logo + social links INSIDE the index container only; unverified network = plain text, never a guessed link
+
+## Maps, modals, timelines
+- [ ] Map modal ≥92vw/≥92vh, auto-fits the whole map on open, pan/zoom kept, ✕/Esc/backdrop always work; pointer-capture only after >6px drag (script §18.5) — verified by live clicks, never jsdom
+- [ ] State popups = source chooser: "Primary — the law itself" (verified official statute link; button "Read the law ↗") then "Secondary coverage"; unverified states say so in the popup AND are listed in the delivery report
+- [ ] Map footnote: one statement line + tight bullets with rounded-square swatches ≥ capital height
+- [ ] Home-state map icon → ≥70% popup with gold star → town popup (official link + verified facts only)
+- [ ] Timelines enlarge to a full-width modal (⛶ button + background click; node links still navigate)
+
+## Ordering section
+- [ ] Shipping container: 4 icon-led paragraphs (🚚 Shipping / 🚫 Where they don't ship + map link / ↩️ Returns / ✉️ Ordering help) — no separate Returns card
+- [ ] Exactly TWO cards below: Payments (Discounts INSIDE it under 🎟️, David's exact wording; card does not grow) + Contact & Community (bullets Email/Phone/Address/Community sub-bullets; shortest names, linked, no descriptions)
+- [ ] Every product-line card links to the vendor's matching category page (new window) without growing
+
+## Inventory watch
+- [ ] Coverage audited against the vendor's CURRENT inventory (sitemap + shop) on every update — never omit an available strain; full cards + matrix + spectrum + batch integration for every purchasable product; sold-out legacy = marked rows; duplicate SKUs noted, not carded; thin evidence stated plainly
+- [ ] A standing watch exists for this vendor at its release pace; announcements trigger a prepared update + David notification with approval before changes
+
+## Mobile, desktop, print
+- [ ] Responsive-print-standard style block is LAST in <head>: overflow-x:clip, max-width:100% media, wrap rules, ≤640px panels → 1 column, nowrap reset, tables 12px
+- [ ] 390px live iframe audit: inner scrollWidth ≤ 390, nothing exceeds the frame; desktop ~1280px checked; tap targets ≥44px
+- [ ] Print: PRINT button → window.print(); @page Letter, print-color-adjust:exact, break-inside:avoid, headings kept with content; ALL content present in print (collapsed cards + full index); toolbar/controls hidden; no Peptopia chrome in print
+- [ ] PDF actually generated and inspected: no sliced cards or cut graphics, colors exact, landmarks whole, page count sane (large guides: browser print route — WeasyPrint crashes on WildCraft-scale files)
+
+## Publish & deliver
+- [ ] check_guide.py prints PASS (warnings reviewed)
+- [ ] Full link audit: zero dead in-page anchors; every external link verified live
+- [ ] Correct repo by path (/X-Peps/ → X-Peps repo at root; everything else → peptopia-health.github.io); lowercase filenames; live byte-compare after publish (a "failed" push may have landed — never re-push blind)
+- [ ] Access pages updated: Kratom Reviews card (exact current strain count, §27 standard), hub/index listings, alias URLs byte-identical
+- [ ] Drive copy updated in place; backup retained per the content law
+- [ ] Delivery: live link + short summary + detailed Smooth audio story (full decode/dropout QA passed) with the yes-delete / no-keep choice to follow
+
+## Kratom Reviews cards (hub page, script §27)
+- [ ] All cards one height, set by the longest text; ≤1 line of empty space under any card's text
+- [ ] Descriptions concise + creative (not text blocks); strain counts exact and current
+- [ ] UNIQUE color per vendor — no near-duplicate hues; adjacent cards clearly distinguishable
+- [ ] Large ROUND push-button vendor icon bottom-right (≥3 text-lines tall), card-color-matched, self-created symbol (never vendor art), opening the vendor's site in an in-page popup browser with a close/return option
+
+---
+
+## Addendum — Orders-page product cards (Nov 2, 2026)
+
+Full text in GUIDE_BUILD_SCRIPT.md §36. Headlines: (1) every card opens with a short punch line (BPC-157 = "The Body Shield") before a cut-to-the-bone explanation; (2) canonical palette only, David's product color assignments permanent; (3) order/guide buttons are maximized metallic push buttons (banded gradient, diagonal sheen, deep pop shadow, press-down); (4) paired buttons share one width (set by the longer text), height, font, and size, guide button = order text with "Guide" for the price; (5) every icon/medallion labeled; (6) visuals fill the GLOW-stage footprint, no dead space.

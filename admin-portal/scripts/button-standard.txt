@@ -1,0 +1,121 @@
+# THE PEPTOPIA BUTTON STANDARD — SPEC EXTRACT (Nov 9, 2026)
+
+**Source of truth:** `~/workspace/homepage-mockup/homepage-mockup.html` — the Nov 8, 2026 homepage build whose buttons David approved on Nov 9, 2026 and made the permanent standard for every button in every Peptopia product (Guide Build Script §45). Every value below is quoted from that file. Where the file's cascade layers disagree, the LAST layer wins — the homepage carries three layers for these buttons: (1) the base card CSS, (2) the "Round 2" circular-icon block, (3) the final block commented `Homepage restyle - David, Nov 8, 2026`. The final effective values are the ones marked **EFFECTIVE**.
+
+**Cascade note (read before copying):** in the homepage the buttons live inside whole-card links (`<a class="card">`), so the press states are written as `.card:active .btn` and `.card:active .ico` (plus per-color `.c-*:active .ico` shadow rules). In a standalone product the same values go on the button's own `:active` — the values do not change, only the selector's anchor.
+
+---
+
+## 1. The pill title button — `.btn`
+
+### 1.1 Base rule (layer 1)
+
+```css
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 24px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:100%;transition:filter .3s}
+```
+
+### 1.2 Color faces (layer 1 — keep each button's own color/identity; a restyle never recolors)
+
+```css
+.b-cyan{background:linear-gradient(135deg,#0891B2,var(--cyan))}            /* --cyan:#06B6D4 */
+.b-orange{background:linear-gradient(135deg,#EA580C,var(--orange))}        /* --orange:#F97316 */
+.b-pink{background:linear-gradient(135deg,#DB2777,#F472B6)}
+.b-purple{background:linear-gradient(135deg,var(--purple),#B347FF)}        /* --purple:#9000F5 */
+.b-emerald{background:linear-gradient(135deg,#059669,var(--emerald))}      /* --emerald:#10B981 */
+.b-amber{background:linear-gradient(135deg,#D97706,var(--amber))}          /* --amber:#F59E0B */
+.b-red{background:linear-gradient(135deg,#B91C1C,var(--red))}              /* --red:#DC2626 */
+.b-bio{background:linear-gradient(135deg,var(--pal-purple),var(--pal-purple-lt))}  /* #6C4FE0 → #7759ED */
+```
+
+### 1.3 EFFECTIVE override (layer 3, Nov 8 restyle — this is the approved design)
+
+```css
+.btn{padding:6px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.75),inset 0 -3px 5px rgba(0,0,0,.28),0 5px 10px rgba(15,23,42,.30),0 1px 2px rgba(15,23,42,.35);
+  text-shadow:0 1px 2px rgba(0,0,0,.35)}
+```
+
+- **Geometry:** pill radius `border-radius:999px`; **effective rendered height 36px** (QA-measured on the approved build; the file declares no explicit `height` — the 36px comes from `padding:6px 22px` + the `.85rem` Outfit 700 uppercase label + the 1.5px border). Width in the homepage is `width:100%` of the card; in other products the pill sizes to its label with the same padding.
+- **Gloss recipe:** the raised, glossy push-button effect "modeled on the header logo" (per the layer-3 comment) is carried entirely by the layered `box-shadow`: a bright **top inset highlight** `inset 0 2px 3px rgba(255,255,255,.75)`, **bottom inset shading** `inset 0 -3px 5px rgba(0,0,0,.28)`, and a **deep drop shadow** in two layers — `0 5px 10px rgba(15,23,42,.30)` + `0 1px 2px rgba(15,23,42,.35)`. Label depth: `text-shadow:0 1px 2px rgba(0,0,0,.35)`.
+- **Border:** `1.5px solid rgba(15,23,42,.28)` — always visible against the gradient face.
+- **Hover:** `.card:hover .btn{filter:brightness(1.1)}` (with `transition:filter .3s` from the base rule).
+
+### 1.4 Press-down (EFFECTIVE)
+
+```css
+.card:active .btn{transform:translateY(2px);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.5),inset 0 -1px 3px rgba(0,0,0,.3),0 2px 4px rgba(15,23,42,.30)}
+```
+
+The button physically sinks `translateY(2px)`, the top highlight softens (.75 → .5), the bottom inset shallows (-3px → -1px), and the drop shadow collapses (5px/10px → 2px/4px). A press state that only changes color is NOT this standard.
+
+---
+
+## 2. The circular icon button — `.card .ico`
+
+### 2.1 Geometry (EFFECTIVE)
+
+- Layer 1: `.ico{width:56px;height:56px;border-radius:16px;…}` — superseded.
+- Layer 2 ("Round 2: circular neon push-button card icons (black core, glowing ring, raised gloss)"): `width:112px;height:112px;border-radius:50%`.
+- **Layer 3 (EFFECTIVE size):**
+
+```css
+.card .ico{width:84px;height:84px}
+.card .ico .glow-ico svg{transform:scale(.75);transform-origin:center center}
+```
+
+So the approved homepage circle is **84px diameter, `border-radius:50%`**, with its glyph scaled to .75 so only the button shrank, not the artwork's proportions.
+
+### 2.2 Face, gloss, and glyph treatment (layer 2, still in force)
+
+```css
+.card .ico{width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#2A2F3A,#0B0D12 62%,#05070A);font-size:3.3rem;margin:0 0 10px;position:relative}
+.card .ico::after{content:'';position:absolute;top:7%;left:12%;width:55%;height:38%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);opacity:.5;pointer-events:none}
+.card .ico .glow-halo{position:absolute;left:0;top:0;filter:blur(6px);opacity:.8}
+.card .ico .glow-core svg{filter:drop-shadow(0 0 .7px currentColor) saturate(1.35) brightness(1.1) contrast(1.06)}  /* layer 3 */
+```
+
+- **Face:** black core — `radial-gradient(circle at 32% 28%,#2A2F3A,#0B0D12 62%,#05070A)` (light source top-left, the same 32%/28% point as the gloss).
+- **Gloss highlight:** the `::after` ellipse — top 7%, left 12%, 55% × 38%, white radial fading to transparent at 70%, opacity .5.
+- **Glyph:** drawn twice — a blurred halo copy (`filter:blur(6px);opacity:.8`) under a crisp core copy sharpened/brightened by the layer-3 filter above.
+
+### 2.3 Ring, border, and shadow stack (per color; emerald quoted in full, others identical but for the ring color)
+
+```css
+.c-emerald .ico{border:3px solid #34D399;color:#34D399;box-shadow:0 0 18px #34D399CC,0 0 44px #34D39955,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 16px 26px rgba(15,23,42,.30)}
+```
+
+Ring colors in the file: emerald `#34D399` · cyan `#22D3EE` · bio `#8B6FF0` · pink `#F472B6` · purple `#B347FF` · orange `#FB923C`. The shadow stack reads: outer neon glow (18px at CC alpha + 44px at 55 alpha) · inner black keyline `inset 0 0 0 2px rgba(0,0,0,.6)` · **bottom inset shading** `inset 0 -12px 20px rgba(0,0,0,.55)` · **top inset highlight** `inset 0 12px 18px rgba(255,255,255,.13)` · **deep drop shadow** `0 16px 26px rgba(15,23,42,.30)`.
+
+### 2.4 Press-down (EFFECTIVE)
+
+```css
+.card:active .ico{transform:translateY(2px)}
+.c-emerald:active .ico{box-shadow:0 0 18px #34D399CC,0 0 44px #34D39955,inset 0 0 0 2px rgba(0,0,0,.6),inset 0 -12px 20px rgba(0,0,0,.55),inset 0 12px 18px rgba(255,255,255,.13),0 5px 10px rgba(15,23,42,.25)}
+```
+
+Same sink (`translateY(2px)`); the glow and insets hold, and only the drop shadow collapses — `0 16px 26px rgba(15,23,42,.30)` → `0 5px 10px rgba(15,23,42,.25)`. (Every color has its own identical `:active` rule with its ring color.)
+
+### 2.5 The model in the header
+
+The effect is "modeled on the header logo" (layer-3 comment). The logo treatment in the same file:
+
+```css
+.brand-logo-img{width:48px;height:48px;object-fit:cover;border-radius:50%;border:2px solid var(--neon-border);box-shadow:0 0 10px var(--neon-border);background:transparent}  /* --neon-border:#00FFCC */
+```
+
+---
+
+## 3. Scaling rule — round buttons at other sizes
+
+Round buttons scale the §2 treatment unchanged at any diameter: the ring stays a **3px visible border** in the button's own color, the face keeps the top-left radial light point (32% 28%), the gloss ellipse keeps its proportions (top 7%, left 12%, 55% × 38%), the inset highlight/shading pair and the deep drop shadow keep the same recipe (the drop shadow may scale with the button, but never disappears), and the press stays `translateY(2px)` + drop-shadow collapse. A larger round button (picker circles, wheel buttons, medallions) is the 84px homepage circle grown — never a different, flatter design. Pill buttons likewise keep §1's recipe at any width.
+
+## 4. Text sizing rule (part of the standard — David, Nov 9, 2026)
+
+From the approved pill's own values, generalized:
+
+- **Font:** Outfit 700, uppercase, white on the color face, `text-shadow:0 1px 2px rgba(0,0,0,.35)`.
+- **Size ratio:** the label runs at **`.85rem` (≈13.6px) on the 36px pill — ≈0.38 × the button height**. That ratio is the ceiling: button text is never larger relative to its button than the homepage's.
+- **Edge distance:** horizontal padding `22px` per side on the pill (base `24px`), icon-to-label gap `6px` — text always sits comfortably away from the button's edge, exactly as on the homepage.
+- **Never wraps, never overflows:** button labels are single-line. If a label does not fit at the standard size, **shrink the font** (or shorten the label) — never let text wrap inside a button, touch its border, or overflow it. (The homepage source achieves this with short labels; the Nov 9 standard makes `white-space:nowrap` + shrink-to-fit an explicit requirement on every product.)
+- Round buttons carry glyphs/icons, not sentences; any word inside a circle follows the same rule — sized to fill without touching the border.

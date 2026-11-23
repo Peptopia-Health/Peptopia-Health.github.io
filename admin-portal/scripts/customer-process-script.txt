@@ -1,0 +1,85 @@
+# THE PEPTOPIA CUSTOMER PROCESS — standing script
+Approved by David, Nov 22, 2026. This is how every customer is handled, start to finish.
+
+## STEP 0 — The webpage ask
+The popup on the webpage asks the customer to tell us, in their own words, what they need — plus their name and email address. It names NO products and shows NO prices. The customer writes their own request, so it arrives by email. We must have their email — no email, no process.
+(Rebuilt to this spec and LIVE Nov 22, 2026: https://x-peps.com/email/ — product cards and Request buttons removed; one panel: "Tell us in your own words what you need, and we'll email you back with details and pricing," with name / email / "What do you need?" fields, submitting through Web3Forms to peptopia@x-peps.com as subject "Peptopia Email Request." Duplicate footer removed Nov 22, 2026. Page exception (David, Nov 22, 2026): on this page only, the header carries ONLY the Peptopia logo brand block (HOME/EMAIL buttons, printer, and theme toggle all removed — the logo was restored the same day after an over-removal), and the form panel sits tight below it, compacted for mobile, 560px centered on desktop; live md5 ca86b40735e7e07bd134ba1b751a1526.)
+
+## STEP 1 — The customer emails their request
+The request lands in peptopia@x-peps.com. Muse reads it the same day.
+
+## STEP 2 — Muse replies as Sara, ONE email containing all of this:
+1. **Their items, confirmed back** — what they asked for, in plain words. Anything unclear gets one short question.
+2. **Pricing** — from the STANDARD PRICE LIST below (the prices displayed on the site just before pricing was stripped, Nov 18, 2026). David confirmed Nov 22, 2026: keep the higher Tirzepatide price, $395.
+3. **The complete-kit line** — every peptide product ships as a COMPLETE KIT: the 10 vials plus bacteriostatic water, syringes, and alcohol swabs, all included in the price. The reply says so in plain words, and the kit graphic sits at the BOTTOM of the reply email, after the signature, showing the customer what they get. Graphic spec (David, Nov 22, 2026): LIGHT theme, four clean LINE DIAGRAMS side by side in the printer glyph's line style — NOT circular icons, NOT buttons: (1) the clear plastic 10-vial kit box (two rows of five, colored caps), (2) BAC water bottle, (3) syringes, (4) alcohol swab packets. (FINAL GRAPHIC APPROVED Nov 22, 2026: ~/workspace/your_files/complete-kit-email-banner.png — the traced kit box (David confirmed "Correct": traced from his own GLOW box photo, 10 vials in two straight rows of five at a three-quarter angle), the BAC water bottle with a BAC-stamped label, ONE syringe, and the swab packet stack, in a white rounded container on the lavender page background. Lesson: generator-drawn vial grids stagger — trace the real case from a photo.)
+4. **A user guide link for each product they want** — the product's published guide on x-peps.com.
+5. **A simple invoice** — one line per item (item, quantity, price), then the total. Plain words, no acceptance or approval language.
+6. **The payment instructions** — the approved text, verbatim (canonical: ~/workspace/your_files/customer-process-copy-paste.md): the Big Pharma / processor explanation, the 5 methods in order (1 Western Union, 2 MoneyGram, 3 Money Order, 4 Personal Check, 5 Cash), the tab-indented payee block, and the signature.
+
+## STEP 3 — The customer pays and replies to that email
+Ship triggers, by method:
+- **Western Union** — customer sends the MTCN → ship right away.
+- **MoneyGram** — customer sends the reference number → ship right away.
+- **Money Order** — customer sends a photo of the filled-out money order → ship right away (the money order itself follows by mail).
+- **Personal Check** — check arrives → ship after it clears.
+- **Cash** — Washington, DC area, arranged in person.
+
+## STEP 4 — Ship and confirm
+1. Muse notifies David: customer, items, total, method, trigger met.
+2. David gets the label (standard package: 1 lb, 6×4×4 box, USPS Ground Advantage via Pirate Ship) and shares it with Muse.
+3. Muse emails the customer as Sara: your package is on its way, with the tracking number and the label attached upright for the customer. David's own print copy stays exactly as downloaded.
+4. The package goes to the mailbox; the USPS pickup collects it (David schedules pickups himself).
+
+## STEP 5 — Records
+Label filed in Drive Shipping Labels; the tracking sheet and the customer's record updated the same day. Deliveries are followed by the standing tracking sweeps.
+
+## OPERATING MODEL (David, Nov 22, 2026 — Muse runs this process)
+- Muse reads, reviews, and analyzes every request in peptopia@x-peps.com, alerts David in chat (one brief line per request), and replies to the customer as Sara WITHOUT David's approval, using the approved Step 2 email (items, standard pricing, guide links, invoice, complete-kit line + banner, full payment instructions).
+- Follow-up replies from a customer are handled the same way: answer what can be answered from the records and guides. If Muse gets stuck — anything unusual, a complaint, a refund demand, a price or address change after payment, anything it cannot answer confidently — it SUSPENDS further answers to that customer and alerts David.
+- BANNED / CAUTION GATE: always check the customer's row in the vetting CSV (Flag column) before replying. BANNED or DECLINED customers (e.g., Kristina Bates — banned; Don Pando — declined, never serve, never email) get NO reply without David's approval; CAUTION customers get no auto-reply either. Alert David instead.
+- WAITING ON DAVID: whenever a ship trigger is met, the package joins the waiting list (~/workspace/orders-live/waiting-on-david.json) and David is alerted in chat "READY TO SHIP." The morning and evening briefings report which tasks are waiting on David (shipping first) from that list. David's only jobs: pack the package, get the label, share the label — then Muse sends the customer the enroute confirmation.
+- PAYMENT RECORDS: every payment event is logged in ~/workspace/orders-live/payments.json (customer, items, total, method, proof — MTCN / reference number / money order number — date, status). Money-order photos and other customer attachments are filed in the Drive folder "Customer Payment Records" (filename: CustomerName_DocType_MM-DD-YY). The customer's CSV Notes are updated the same day.
+- Per-customer price adjustments David gives in chat are recorded in ~/workspace/orders-live/price-adjustments.json and applied to that customer only.
+- The 15-minute order-request processor job runs this script for new requests and follow-ups. David is interacted with briefly and rarely — only when Muse cannot manage without him.
+
+## GUIDE LINKS (David's rule, Nov 22, 2026: if no guide exists, do NOT link the product)
+Verified live Nov 22, 2026 — link only these:
+- Tirzepatide → https://x-peps.com/X-Peps/tirzepatide_guide.html
+- Semaglutide → https://x-peps.com/X-Peps/semaglutide_guide.html
+- Retatrutide → https://x-peps.com/X-Peps/retatrutide_guide.html
+- Cagrilintide → https://x-peps.com/X-Peps/cagrilintide-guide.html
+- SLU-PP-332 → https://x-peps.com/X-Peps/slu_pp_332_guide.html
+- BPC-157 → https://x-peps.com/X-Peps/bpc_157_kpv_guide.html
+- GLOW → https://x-peps.com/X-Peps/glow_klow_guide.html
+- KLOW → https://x-peps.com/X-Peps/glow_klow_guide.html (same combined guide)
+- Modafinil → https://x-peps.com/X-Peps/modafinil_guide.html
+- Armodafinil → https://x-peps.com/X-Peps/armodafinil-guide.html
+- Tesofensine → https://x-peps.com/X-Peps/tesofensine.html
+NO guide exists — never link: GHK-Cu, CagriSema, Eloralintide, Bacteriostatic Water, Syringes, Alcohol Pads.
+REPLY EMAIL FORMAT — APPROVED BY DAVID Nov 22, 2026 ("Perfectly done. Memorialize this. I cannot imagine a better result!"): the price list is shown as a LIST (never a run-on paragraph), one row per product, each product WITH a guide hyperlinked to it; products without a guide are never linked. On the web mock-up the guide opens in a popup with an X to close; in the live email the link opens the guide in a new window. The invoice is likewise a list. Mock-up: https://x-peps.com/previews/sara-reply-mockup.html — click-tested in a real browser Nov 22, 2026, all 5 steps passed (popup opens with guide loaded, X closes, backdrop closes, banner renders). This format is the standard for every Sara reply.
+
+## PRICE ADJUSTMENTS (David's rule, Nov 22, 2026)
+David may set a different price for one specific customer. He tells Muse — that customer's reply and invoice use the adjusted price. The standard list below never changes unless David says so.
+
+## STANDARD PRICE LIST (as displayed on the site before the Nov 18, 2026 strip)
+| Product | Price |
+|---|---|
+| Tirzepatide (30mg) | $395 |
+| Semaglutide (10mg) | $285 |
+| Retatrutide (20mg) | $435 |
+| Cagrilintide (10mg) | $295 |
+| CagriSema | TBD — no price was displayed |
+| Eloralintide | TBD — no price was displayed |
+| SLU-PP-332 (20mg) | $95 |
+| BPC-157 | $265 |
+| GLOW | $325 |
+| KLOW | $375 |
+| GHK-Cu | $285 |
+| Modafinil (200mg) | $280 |
+| Armodafinil | $280 |
+| Tesofensine | $260 |
+| Bacteriostatic Water | $70 |
+| Syringes | $95 |
+| Alcohol Pads | $25 |
+
+Source: the pre-strip orders page (~/workspace/square-relink/orders.html). Cross-checks: Retatrutide $435 matches Darci's invoice; Tirzepatide $395 × 90% = $355.50 matches Monisha's 10%-discount invoice.

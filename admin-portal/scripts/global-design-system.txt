@@ -1,0 +1,37 @@
+# THE GLOBAL DESIGN SYSTEM — single source of truth (David, November 19, 2026, PERMANENT)
+
+David's words, Nov 19, 2026: "All material across our entire site must originate from and strictly adhere to this palette. I must have the capability to change the palette and have that change update across all pages where our themes apply. Think globally, not page by page… We always use the same fonts, for example. We always draw from the same palette, for example. I see pages that stray far from our established standards and this must be reigned in, repaired, and tightly controlled for all future builds."
+
+## The rules
+
+1. **ONE palette.** The approved Peptopia palette (below) is the only source of color for every page, guide, app, card, button, and graphic across the whole site. No page, build, or product may introduce a color that is not in the palette or derived from it by the documented gradient rule (light partner above, deep partner as border/shadow).
+2. **ONE font system.** Headings/display: Outfit (700/800). Body: DM Sans. Font stacks end in sans-serif. Never serif, never Times New Roman, never a third family. Fonts are part of this system, not a per-page choice.
+3. **Single-source files, never per-page copies.** Palette tokens and shared component styles (the §50 push-button standard, glass circular buttons, action rows) live in ONE shared stylesheet per site area, linked by every page — never pasted into individual pages. Tuscarora's pilot file: `Tuscarora_Arboretum/theme.css`. The site-wide end state: a root shared sheet (`/theme.css` on peptopia-health.github.io) that every product links.
+4. **Change once, propagates everywhere.** To change the palette, edit the shared stylesheet's token values only. Every linked page picks the change up on its next load — no page-by-page edits, ever. If a change requires touching individual pages, the architecture has failed and must be repaired first.
+5. **Pages carry no local color literals for themed elements.** Themed elements (buttons, accents, card bars, highlights) reference `var(--pal-*)` tokens only. A page that hard-codes an off-palette hex for a themed element is a DEFECT — reign it in on sight, the same build it is noticed.
+6. **Straying pages get repaired, not excused.** Any existing page found off-system is brought back onto the shared sheet during its next build — and in the site-wide migration waves David approves. New builds are on-system from the first byte or they do not publish.
+7. **Standards are followed, not approximated.** (David, Nov 19, 2026: "You cannot develop successfully for me without following rules, especially when they are standards.") The build scripts (GUIDE_BUILD_SCRIPT §50/§51, ARTIFACT_BUILD_SCRIPT §I) are the enforcement text; this file is the charter they answer to.
+8. **Icons — THE HOMEPAGE RULE (David, Nov 16, 2026; confirmed Nov 22, 2026).** Every icon/button graphic is copied from the homepage masters (~/workspace/your_files/), never recreated; only the neon color and the inside image may change. The inside glyph is sized ALMOST AS LARGE AS THE CIRCLE WITHOUT TOUCHING THE BORDERS — it fills the circle (David's Nov 22, 2026 reference strip: printer + moon correct; speaker + bandaid too small — an undersized glyph floating in the disc's center is a defect on sight, same class as the banned smudge). The glisten (sharp star point + cross flare at ~10:45, window-pane reflections, neon rim) is part of the copied source and is never recreated. Enforcement text: GUIDE_BUILD_SCRIPT §10A + §47 banner standard; ARTIFACT_BUILD_SCRIPT §33. Blocking gate: side-by-side render vs the master at ≥384px before any publish. **PERMANENT PRINT + STORE MASTERS (David, Nov 23, 2026 — "file these as permanent… ALWAYS used… don't make me ask again"):** the print icon is **`btn-print-holo.png`** and the store/shopping-cart icon is **`btn-cart-holo.png`** (masters in `~/workspace/your_files/`, canonical copies in `~/workspace/icon-mockup/`; glass disc, magenta perimeter, translucent neon glyph — print in turquoise, cart in emerald, glyph nearly filling the circle). These two files are THE print and store icons for every page, guide, portal, and build — no other print or cart artwork may be used or substituted; any page still carrying an older print/cart icon (flat discs, the old X-Peps `btn-print.png`, `btn-print-turq.png`, the old green-ring `btn-cart-emerald.png`) is a defect to be swept and replaced.
+
+## The approved palette (David approved, Nov 19, 2026)
+
+| Token | Hex | Role |
+|---|---|---|
+| --pal-energy | #FFFFFF | Energy (always with a grey border) |
+| --pal-focus | #F06000 | Focus — tangerine; GUIDE buttons |
+| --pal-mood | #10C000 | Mood — green; PATENT buttons |
+| --pal-calm | #F0F000 | Calm — gold (black text on yellow fills) |
+| --pal-pain | #E01020 | Pain — red |
+| --pal-sleep | #0A0A0A | Sleep — black |
+| --pal-cobalt | #0070D0 | Cobalt — default blue |
+| --pal-purple | #6C4FE0 | Purple; AUTHOR buttons (light partner #7759ED) |
+| Turquoise family | #06B6D4 / dark #0891B2 | PODCAST buttons; the hologram glass family |
+| --pal-neon | #2BFF5C | Neon leaf — kratom legality, accents |
+| Highlighter | #FEF08A | Emphasis highlight (solid, full line height) |
+
+Derived partners (the only permitted derivations): each family carries a LIGHT partner (gradient top) and a DEEP partner (border + hard shadow), recorded in GUIDE_BUILD_SCRIPT §50.1 and in the shared stylesheet itself.
+
+## Rollout state
+
+- Nov 19, 2026: Tuscarora Arboretum rebuilt as the pilot — every page links `Tuscarora_Arboretum/theme.css`; per-page color blocks eliminated.
+- Site-wide migration: HELD for David's review of the Tuscarora pilot (his instruction, Nov 19, 2026). Waves after approval: portal/homepage family → kratom/vendor guides → mental-health + remaining pages.

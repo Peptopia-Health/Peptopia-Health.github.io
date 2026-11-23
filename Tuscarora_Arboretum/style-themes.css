@@ -173,7 +173,7 @@ html[data-style] .note{background:var(--tx-card2);color:var(--tx-t1)}
 html[data-style] .pillbtn{background:var(--tx-card);color:var(--tx-t1);border-color:var(--tx-border);border-radius:var(--tx-radius-btn)}
 html[data-style] .sub{color:var(--tx-page-t2)}
 html[data-style] #status{color:var(--tx-t2)}
-html[data-style] .pod-bar{background:var(--tx-card);border-bottom-color:var(--tx-border)}
+html[data-style] .pod-bar{background:var(--tx-card)!important;border-bottom-color:var(--tx-border);color:var(--tx-t1)}
 html.dark[data-style] .pod-bar{background:var(--tx-card)!important;border-bottom-color:var(--tx-border)!important}
 
 /* ---- breadcrumb bars ---- */
@@ -182,7 +182,7 @@ html[data-style] .hdr-clamp>div:first-child a{color:var(--tx-accent2)!important}
 html[data-style="fauvism"] .hdr-clamp>div:first-child a{color:var(--tx-on-accent)!important}
 html[data-style] .hdr-clamp>div:first-child span{color:var(--tx-t2)!important}
 html[data-style="fauvism"] .hdr-clamp>div:first-child span{color:var(--tx-on-accent)!important}
-html[data-style] .crumbs{background:var(--tx-crumb-bg);border-top-color:var(--tx-crumb-border);border-bottom-color:var(--tx-crumb-border);color:var(--tx-t2)}
+html[data-style] .crumbs{background:var(--tx-crumb-bg)!important;border-top-color:var(--tx-crumb-border);border-bottom-color:var(--tx-crumb-border);color:var(--tx-t2)}
 html[data-style] .crumbs a{color:var(--tx-accent)}
 html[data-style] .crumbs .cur{color:var(--tx-t2)}
 html[data-style="fauvism"] .crumbs{color:var(--tx-on-accent)}
@@ -241,3 +241,94 @@ html[data-style] .btn-soon{background:var(--tx-card2);color:var(--tx-t3)}
 .style-opt .cur{margin-left:auto;font-size:.6rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;opacity:.7;flex:none}
 .style-opt[aria-checked="true"]{outline:2px solid var(--tx-menu-border);outline-offset:-2px}
 @media print{.style-pick{display:none!important}}
+
+/* ============================================================================
+   MODE SHIELD (Nov 23, 2026 — David: with a style chosen, toggling the
+   Moon between dark and light "breaks the color style down").
+   Root causes found by reproduction (style x mode x width audit):
+   (1) the pilot's dark pins covered only .card/.figs figure/.hero, so
+       .authbox (theme.css html.dark hard navy), .panel, .timeline and the
+       tinted .verdict card flipped to page dark colors in dark mode;
+   (2) the generic dark pins out-specified the Fauvism corrections, so
+       the Fauvism hero flipped vermilion -> cream and h1 flipped
+       gold -> vermilion in dark mode;
+   (3) theme.css podcast dark rules hard-code warm grays (#CBB9A6 /
+       #8D7E6E) for .sub/#status/.meta, illegible on the style grounds;
+   (4) header/footer chrome (.peptopia-wordmark/-tagline, footer) is
+       recolored by html.dark rules with hard-coded Peptopia slate tones;
+   (5) .crumbs/.ta-homestrip/.pod-bar carry INLINE background styles the
+       ordinary pins cannot beat (fixed with !important above + below);
+   (6) table cells inherited the page-ground text token, so on the
+       McCoy guides (table outside any card) Fauvism cream text sat on
+       white cells in BOTH modes.
+   The shield re-asserts, for dark mode only, exactly the values the
+   light rules compute, at higher specificity and last in the file.
+   Peptopia (no data-style) is untouched: its native dark theme stands.
+   ============================================================================ */
+
+/* -- chrome that must read identically in both modes (both-mode pins) -- */
+html[data-style] .peptopia-wordmark{color:var(--tx-page-t1)}
+html[data-style] .peptopia-tagline{color:var(--tx-page-t3)}
+html[data-style] footer{color:var(--tx-page-t2)}
+html[data-style] footer a{color:var(--tx-accent)}
+html[data-style="fauvism"] footer a{color:var(--tx-accent3)}
+html[data-style] td{color:var(--tx-t1)}
+html[data-style] .ta-homestrip{background:var(--tx-crumb-bg)!important;border-bottom:var(--tx-border-w) solid var(--tx-crumb-border)!important;color:var(--tx-t2)}
+html[data-style] .ta-homestrip a{color:var(--tx-accent2)!important}
+html[data-style] .ta-homestrip span{color:var(--tx-t2)!important}
+html[data-style="fauvism"] .ta-homestrip{color:var(--tx-on-accent)}
+html[data-style="fauvism"] .ta-homestrip a,html[data-style="fauvism"] .ta-homestrip span{color:var(--tx-on-accent)!important}
+html[data-style] body .ftr-email-line a{color:var(--tx-accent2)}
+html.dark[data-style] body .ftr-email-line a,html[data-theme="dark"][data-style] body .ftr-email-line a{color:var(--tx-accent2)}
+html[data-style="fauvism"] figcaption{color:var(--tx-page-t2)}
+html[data-style="fauvism"] .figs figcaption,html[data-style="fauvism"] .galgrid figcaption,html[data-style="fauvism"] .card figcaption,html[data-style="fauvism"] .panel figcaption,html[data-style="fauvism"] .hero figcaption,html[data-style="fauvism"] .timeline figcaption,html[data-style="fauvism"] .artifact-entry figcaption,html[data-style="fauvism"] .authbox figcaption,html[data-style="fauvism"] .tip figcaption,html[data-style="fauvism"] .warn figcaption,html[data-style="fauvism"] .safe figcaption,html[data-style="fauvism"] .listenbox figcaption,html[data-style="fauvism"] .verdict figcaption,html[data-style="fauvism"] .note figcaption,html[data-style="fauvism"] .badge figcaption,html[data-style="fauvism"] .titleband figcaption{color:var(--tx-t1)}
+html[data-style="fauvism"] body .ftr-email-line a{color:var(--tx-accent3)}
+html.dark[data-style="fauvism"] body .ftr-email-line a,html[data-theme="dark"][data-style="fauvism"] body .ftr-email-line a{color:var(--tx-accent3)}
+html[data-style="fauvism"] .podcast-page #status{color:var(--tx-t2)}
+html[data-style="fauvism"] .small{color:var(--tx-page-t2)}
+html[data-style="fauvism"] .card .small,html[data-style="fauvism"] .panel .small,html[data-style="fauvism"] .hero .small,html[data-style="fauvism"] .timeline .small,html[data-style="fauvism"] .artifact-entry .small,html[data-style="fauvism"] .authbox .small,html[data-style="fauvism"] .figs .small,html[data-style="fauvism"] .tip .small,html[data-style="fauvism"] .warn .small,html[data-style="fauvism"] .safe .small,html[data-style="fauvism"] .listenbox .small,html[data-style="fauvism"] .verdict .small,html[data-style="fauvism"] .note .small,html[data-style="fauvism"] .badge .small,html[data-style="fauvism"] .titleband .small{color:var(--tx-t2)}
+html[data-style] body .foot{color:var(--tx-page-t2)}
+html[data-style] .figcap{color:var(--tx-t2)}
+html[data-style] .btn-soon{color:var(--tx-t3)!important}
+html[data-style="fauvism"] .author-cta,html[data-style="fauvism"] .author-cta p{color:var(--tx-page-t2)}
+html[data-style="fauvism"] blockquote{color:var(--tx-t1)}
+html[data-style="fauvism"] .titleband h1{color:var(--tx-accent)}
+html[data-style="fauvism"] .titleband .sub{color:var(--tx-t2)}
+html[data-style="fauvism"] .banner{color:var(--tx-on-accent)}
+html[data-style="fauvism"] .banner a,html[data-style="fauvism"] .banner span{color:var(--tx-on-accent)}
+/* Classless sections exist only in the bespoke Ginkgo guide, where they are
+   white panels; the ground-heading correction must not paint their h2s. */
+html[data-style="fauvism"] section:not([class]) h2{color:var(--tx-t1)}
+html[data-style="fauvism"] .yr{color:var(--tx-accent3)}
+html[data-style="fauvism"] .card .leafcap,html[data-style="fauvism"] .panel .leafcap,html[data-style="fauvism"] .artifact-entry .leafcap,html[data-style="fauvism"] .timeline .leafcap,html[data-style="fauvism"] .authbox .leafcap,html[data-style="fauvism"] .tip .leafcap,html[data-style="fauvism"] .warn .leafcap,html[data-style="fauvism"] .safe .leafcap,html[data-style="fauvism"] .listenbox .leafcap,html[data-style="fauvism"] .verdict .leafcap,html[data-style="fauvism"] .note .leafcap,html[data-style="fauvism"] .badge .leafcap,html[data-style="fauvism"] .titleband .leafcap,html[data-style="fauvism"] .figs .leafcap{color:var(--tx-t1)}
+html[data-style="fauvism"] .card .guide-cue,html[data-style="fauvism"] .panel .guide-cue,html[data-style="fauvism"] .artifact-entry .guide-cue,html[data-style="fauvism"] .timeline .guide-cue,html[data-style="fauvism"] .authbox .guide-cue,html[data-style="fauvism"] .tip .guide-cue,html[data-style="fauvism"] .warn .guide-cue,html[data-style="fauvism"] .safe .guide-cue,html[data-style="fauvism"] .listenbox .guide-cue,html[data-style="fauvism"] .verdict .guide-cue,html[data-style="fauvism"] .note .guide-cue,html[data-style="fauvism"] .badge .guide-cue,html[data-style="fauvism"] .titleband .guide-cue{color:var(--tx-t2)}
+html[data-style="fauvism"] h3{color:var(--tx-page-t1)}
+html[data-style="fauvism"] .card h3,html[data-style="fauvism"] .panel h3,html[data-style="fauvism"] .hero h3,html[data-style="fauvism"] .timeline h3,html[data-style="fauvism"] .artifact-entry h3,html[data-style="fauvism"] .authbox h3,html[data-style="fauvism"] .tip h3,html[data-style="fauvism"] .warn h3,html[data-style="fauvism"] .safe h3,html[data-style="fauvism"] .listenbox h3,html[data-style="fauvism"] .verdict h3,html[data-style="fauvism"] .note h3,html[data-style="fauvism"] .badge h3,html[data-style="fauvism"] .titleband h3{color:var(--tx-t1)}
+
+/* -- dark shield: surfaces -- */
+html.dark[data-style] .card,html[data-theme="dark"][data-style] .card,
+html.dark[data-style] .artifact-entry,html[data-theme="dark"][data-style] .artifact-entry,
+html.dark[data-style] .panel,html[data-theme="dark"][data-style] .panel,
+html.dark[data-style] .timeline,html[data-theme="dark"][data-style] .timeline,
+html.dark[data-style] .figs figure,html[data-theme="dark"][data-style] .figs figure,
+html.dark[data-style] .authbox,html[data-theme="dark"][data-style] .authbox{background:var(--tx-card);border-color:var(--tx-border);color:var(--tx-t1)}
+html.dark[data-style] .verdict,html[data-theme="dark"][data-style] .verdict{background:var(--tx-card2);border-color:var(--tx-border);color:var(--tx-t1)}
+html.dark[data-style] .pod-bar,html[data-theme="dark"][data-style] .pod-bar{color:var(--tx-t1)}
+
+/* -- dark shield: Fauvism corrections keep their light values -- */
+html.dark[data-style="fauvism"] .hero,html[data-theme="dark"][data-style="fauvism"] .hero{background:var(--tx-accent);color:var(--tx-on-accent)}
+html.dark[data-style="fauvism"] body h1,html[data-theme="dark"][data-style="fauvism"] body h1{color:var(--tx-accent3)}
+html.dark[data-style="fauvism"] body .hero h1,html[data-theme="dark"][data-style="fauvism"] body .hero h1{color:var(--tx-on-accent)}
+html.dark[data-style="fauvism"] .taxo span.alt,html[data-theme="dark"][data-style="fauvism"] .taxo span.alt{color:var(--tx-page-t1)}
+
+/* -- dark shield: header/footer chrome -- */
+html.dark[data-style] .peptopia-wordmark,html[data-theme="dark"][data-style] .peptopia-wordmark{color:var(--tx-page-t1)}
+html.dark[data-style] .peptopia-tagline,html[data-theme="dark"][data-style] .peptopia-tagline{color:var(--tx-page-t3)}
+html.dark[data-style] footer,html[data-theme="dark"][data-style] footer{color:var(--tx-page-t2)}
+html.dark[data-style] footer a,html[data-theme="dark"][data-style] footer a{color:var(--tx-accent)}
+html.dark[data-style="fauvism"] footer a,html[data-theme="dark"][data-style="fauvism"] footer a{color:var(--tx-accent3)}
+
+/* -- dark shield: podcast pages (theme.css hard-coded dark grays) -- */
+html.dark[data-style] .podcast-page .sub,html[data-theme="dark"][data-style] .podcast-page .sub{color:var(--tx-page-t2)}
+html.dark[data-style] .podcast-page #status,html[data-theme="dark"][data-style] .podcast-page #status{color:var(--tx-t2)}
+html.dark[data-style] .podcast-page .meta,html[data-theme="dark"][data-style] .podcast-page .meta{color:var(--tx-page-t3)}

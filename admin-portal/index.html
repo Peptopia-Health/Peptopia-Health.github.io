@@ -1367,7 +1367,7 @@ function toggleTheme(){
 <button type="button" id="indexFab" class="btn b-purple" aria-label="Open the index">☰</button>
 <div id="indexPop" role="dialog" aria-modal="true" aria-label="Admin Portal index">
   <div class="index-card">
-    <button type="button" class="index-x" id="indexX" aria-label="Close">&#10005;</button>
+    <button type="button" class="index-x iconbtn" id="indexX" aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
     <h3>Index — jump to a section</h3>
     <div class="index-list">
       <a class="btn b-purple" href="#cat-briefings">🎧 Briefings &amp; Audio</a>
@@ -1552,7 +1552,7 @@ img,svg{max-width:100%}
 </style>
 <div class="sales-pop" id="salesPop" role="dialog" aria-modal="true" aria-label="Shipping and Pharma">
   <div class="sales-pop-card">
-    <div class="sales-pop-head"><span>Shipping &amp; Tracking</span><button type="button" class="sales-pop-x" id="salesPopX" aria-label="Close">&#10005;</button></div>
+    <div class="sales-pop-head"><span>Shipping &amp; Tracking</span><button type="button" class="sales-pop-x iconbtn" id="salesPopX" aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button></div>
     <iframe id="salesPopFrame" title="Sales Flow Log" loading="lazy"></iframe>
   </div>
 </div>
@@ -1794,5 +1794,8 @@ html.dark .scripts-err{color:#F87171}
 <script>
 document.addEventListener('click',function(e){var b=e.target.closest('.copybtn');if(!b)return;var t=document.getElementById('copyToast');if(!t)return;t.classList.add('show');clearTimeout(window.__ctT);window.__ctT=setTimeout(function(){t.classList.remove('show')},1600);});
 </script>
+<style id="close-icon-css">
+.iconbtn.sales-pop-x,.iconbtn.index-x{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important}
+</style>
 </body>
 </html>

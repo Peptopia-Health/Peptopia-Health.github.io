@@ -1568,14 +1568,32 @@ img,svg{max-width:100%}
 })();
 </script>
 
+<style id="catnav-collapse-css">
+.jumpnav.cat-collapsed{display:none!important}
+</style>
 <script id="catnav-collapse-js">
 (function(){
-  var nav=document.querySelector('.jumpnav'),btn=document.getElementById('catReopen');
-  if(!nav||!btn)return;
-  function collapse(){nav.style.display='none';btn.hidden=false;}
-  function expand(){nav.style.display='';btn.hidden=true;}
-  nav.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&/^#cat-/.test(a.getAttribute('href')||''))collapse();});
-  btn.addEventListener('click',expand);
+  function collapse(){
+    var nav=document.querySelector('.jumpnav');
+    if(nav)nav.classList.add('cat-collapsed');
+    var btn=document.getElementById('catReopen');
+    if(btn)btn.hidden=false;
+  }
+  function expand(){
+    var nav=document.querySelector('.jumpnav');
+    if(nav)nav.classList.remove('cat-collapsed');
+    var btn=document.getElementById('catReopen');
+    if(btn)btn.hidden=true;
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(!t||!t.closest)return;
+    if(t.closest('#catReopen')){expand();return;}
+    var a=t.closest('a.jnav-btn');
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(/^#cat-/.test(href)||href==='https://x-peps.com/email/')collapse();
+  });
   if(/^#cat-/.test(location.hash))collapse();
 })();
 </script>

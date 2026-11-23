@@ -222,7 +222,7 @@ img,svg{max-width:100%}
 @media print{html{font-size:10pt}body{background:#fff;padding:0}.hero,.card,.figs figure,.warn,.tip,.safe{break-inside:avoid}h2{break-after:avoid}img{max-height:2.2in!important} .lb{display:none!important} *{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 
-<div class="lb" id="lightbox" hidden><button type="button" class="lbx" onclick="closeZoom()">✕ Close</button><div id="lbBody" style="display:flex;flex-direction:column;align-items:center"></div><div class="lbcap" id="lbCap"></div></div>
+<div class="lb" id="lightbox" hidden><button type="button" class="lbx iconbtn" onclick="closeZoom()" aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button><div id="lbBody" style="display:flex;flex-direction:column;align-items:center"></div><div class="lbcap" id="lbCap"></div></div>
 <script>
 function openZoom(img,cap){var lb=document.getElementById('lightbox');var b=document.getElementById('lbBody');b.innerHTML='';var i=document.createElement('img');i.src=img.src;i.alt=img.alt||'';b.appendChild(i);document.getElementById('lbCap').textContent=cap||img.alt||'';lb.hidden=false;}
 function closeZoom(){document.getElementById('lightbox').hidden=true;document.getElementById('lbBody').innerHTML='';}
@@ -231,4 +231,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeZoom()
 </script>
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('gd-themebtn');if(!b)return;b.addEventListener('click',function(){r.classList.toggle('dark');});})();
-</script></body></html>
+</script><style id="close-icon-css">
+.iconbtn{background:transparent;border:0;padding:0;cursor:pointer;line-height:0;border-radius:50%}
+.iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
+.iconbtn.lbx{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important}
+</style>
+</body></html>

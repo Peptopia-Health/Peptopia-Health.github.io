@@ -241,7 +241,7 @@ html.dark .pushbtn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#2
 .modal-ovl{position:fixed;inset:0;background:rgba(10,15,26,.55);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
 .modal-ovl.open{display:flex}
 .modal-card{background:var(--card);color:var(--t1);max-width:560px;width:100%;max-height:88vh;overflow:auto;border-radius:20px;padding:26px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.35);position:relative}
-.modal-x{position:absolute;top:10px;right:12px;width:40px;height:40px;border-radius:50%;padding:0;font-size:1.25rem;line-height:1}
+.modal-x{position:absolute;top:10px;right:12px;width:48px;height:48px;border-radius:50%;padding:0;font-size:1.25rem;line-height:1}
 .modal-title{font-family:var(--font-head);font-weight:800;font-size:1.3rem;color:var(--orange);margin:0 34px 8px 0}
 .modal-what{color:var(--t2);line-height:1.5;margin:0 0 10px}
 .modal-steps{margin:0 0 14px;padding-left:22px;color:var(--t1);line-height:1.55}
@@ -446,6 +446,8 @@ nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
 .iconbtn{background:transparent;border:0;padding:0;margin:0;cursor:pointer;line-height:0;border-radius:50%}
 .iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
 .iconbtn:hover img{filter:brightness(1.12)}
+.modal-card .iconbtn img{width:48px;height:48px}
+.exlabel{font-weight:700;font-size:.95rem;color:#9A3412;margin:14px 0 6px}
 </style>
 <style id="copy-toast-css">
 #copyToast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(16px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;background:#111827;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:11px 22px;border-radius:999px;box-shadow:0 8px 28px rgba(0,0,0,.35);z-index:100000}
@@ -1467,16 +1469,17 @@ function toggleTheme(){
   </div>
 <div class="modal-src" id="m-plant" hidden>
     <h3 class="modal-title">Plant Guide: [name]</h3>
-    <p class="modal-what">Builds a one-page plant guide in the Snow White / Aglaonema style — researched true name and care, your photo as the hero when you send one — then publishes it in the Tuscarora Plants section with its own card on the Plants page, and files it in Drive.</p>
+    <p class="modal-what">Builds a one-page plant guide and publishes it in the Tuscarora Plants section.</p>
     <ol class="modal-steps">
-      <li>Say the phrase in chat — or use Author → 57 → Arboretum / Plants on the Arboretum site, with up to 4 photos.</li>
-      <li>The plant is researched properly: accepted botanical name and synonym, family, origin, measured care numbers, propagation, pests, and toxicity / pet safety.</li>
-      <li>The one-page visual guide is built — leaf-anatomy visuals, care meters with numbers, care card, numbered propagation steps, troubleshooting table.</li>
-      <li>It publishes in the Tuscarora Plants section, with its own entry card added to the Plants page.</li>
-      <li>The guide is filed in Drive (Tuscarora Arboretum › Plants), and you get the file plus the live link in chat.</li>
+      <li>Say it in chat — or use Author → 57 → Arboretum / Plants on the Arboretum site, with up to 4 photos.</li>
+      <li>Researched properly: accepted botanical name and synonym, family, origin, measured care numbers, propagation, pests, toxicity / pet safety.</li>
+      <li>Built as a one-page visual guide — leaf-anatomy visuals, care meters with numbers, care card, propagation steps, troubleshooting table.</li>
+      <li>Publishes in the Tuscarora Plants section, with its own entry card on the Plants page.</li>
+      <li>Filed in Drive (Tuscarora Arboretum › Plants) — you get the file and the live link in chat.</li>
     </ol>
+    <p class="exlabel">Example. Type in your plant name and then copy to clipboard.</p>
     <div class="exrow"><code>Plant Guide: Snow White waffle plant</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
-    <p class="modal-note">Type it in chat exactly like that — the build starts with no follow-up questions.</p>
+    <p class="modal-note">Type the plant name, then click copy button, paste in chat. The guide completes in the background.</p>
   </div>
 <div class="modal-src" id="m-artifact" hidden>
     <h3 class="modal-title">Artifact: [brief]</h3>

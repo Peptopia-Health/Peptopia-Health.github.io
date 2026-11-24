@@ -301,10 +301,7 @@ a.jnav-btn.btn{min-height:0;padding:6px 22px}
 .b-orange,button.pushbtn.b-orange,a.pushbtn.b-orange,.btn.b-orange{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
 </style>
 <script>
-(function(){function fit(){var els=[].slice.call(document.querySelectorAll('.btn:not(.cardbtn):not(.hdrbtn),button.pushbtn,a.pushbtn'));if(!els.length)return;var keep=els.map(function(e){return e.style.width});els.forEach(function(e){e.style.width='auto'});var m=0;els.forEach(function(e){var w=e.getBoundingClientRect().width;if(w>m)m=w});var W=Math.ceil(m)+'px';els.forEach(function(e,i){e.style.width=(e.id==='toTop'||e.id==='indexFab')?keep[i]:W})}
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fit)}else{fit()}
-window.addEventListener('load',function(){setTimeout(fit,60)});window.addEventListener('resize',fit);
-if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){setTimeout(fit,30)})}})();
+(function(){function vis(e){return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)}function fit(){var els=[].slice.call(document.querySelectorAll('.btn:not(.cardbtn):not(.hdrbtn),button.pushbtn,a.pushbtn'));if(!els.length||!els.some(vis))return;els.forEach(function(e){e.style.minWidth='';e.style.width='auto'});var m=0;els.forEach(function(e){if(!vis(e))return;var w=e.getBoundingClientRect().width;if(w>m)m=w});els.forEach(function(e){e.style.removeProperty('width')});if(m<10)return;var W=Math.ceil(m)+'px';els.forEach(function(e){if(e.id==='toTop'||e.id==='indexFab')return;e.style.minWidth=W})}function later(){setTimeout(fit,350);setTimeout(fit,1400)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',later)}else{later()}window.addEventListener('load',later);window.addEventListener('resize',fit);document.addEventListener('click',function(){setTimeout(fit,60)},true);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(later)}var g=document.getElementById('gate');if(g&&window.MutationObserver){new MutationObserver(function(){later()}).observe(g,{attributes:true,attributeFilter:['style','class']})}})();
 </script>
 <style>
 /* FINAL ENFORCEMENT (David, Nov 10, 11:00 PM - after the 10th flag): the portal's ORIGINAL .jnav-btn rule (line ~209) paints a pale blue-white gradient, and element+class specificity (0,1,1) beat the plain .b-* variant classes (0,1,0) — that is why buttons kept rendering pale or wrong despite repeated variant edits, and why earlier audits that assumed the variant gradient passed falsely. From here on, audits must MEASURE the computed background-image, never assume it. These nav-scoped rules (0,2,1) pin every jump button's REAL gradient + text color. */
@@ -641,7 +638,6 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
     <p class="td-sub">Tap to complete. Click Submit. Muse will update &amp; refresh.</p>
     <div id="tdList">
       <button type="button" class="td-item" data-t="t1"><span class="td-boxsq"></span><span class="td-txt">Bring the tender plants in before dark — coldest night of the week, low near 25°F</span></button>
-      <button type="button" class="td-item done" data-t="t2"><span class="td-boxsq"></span><span class="td-txt">Check the mailbox — three money orders totaling $890 are in the mail and none has arrived yet (Denise Medina's was expected Nov 23–24)</span></button>
       <button type="button" class="td-item" data-t="t3"><span class="td-boxsq"></span><span class="td-txt">Annette Kerbs (Wolverine, $325) — watch for her payment reply: MTCN, reference number, money-order photo, or check</span></button>
     </div>
     <div class="td-foot">

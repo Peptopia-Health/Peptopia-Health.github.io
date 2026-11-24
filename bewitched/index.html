@@ -791,5 +791,9 @@ document.addEventListener("keydown", function(e){
 })();
 </script>
 
+<script>
+/* Deep links: bewitched/#fn-guide (or vendor, news, audio, publish, inventory) opens that flask's spell form on arrival. */
+(function(){var m=/^#fn-(guide|vendor|news|audio|publish|inventory)$/.exec(window.location.hash||"");if(!m)return;function go(){if(typeof openFunc==="function"){openFunc(m[1]);}}if(document.readyState==="complete"){setTimeout(go,250);}else{window.addEventListener("load",function(){setTimeout(go,250);});}})();
+</script>
 </body>
 </html>

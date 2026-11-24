@@ -446,18 +446,6 @@ nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
 .iconbtn{background:transparent;border:0;padding:0;margin:0;cursor:pointer;line-height:0;border-radius:50%}
 .iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
 .iconbtn:hover img{filter:brightness(1.12)}
-.gbuild-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.gbpush{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:9px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.25);font-family:Outfit,sans-serif;font-weight:800;font-size:1.1rem;cursor:pointer;color:#1F2937;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 var(--gbb,#065F46),0 8px 16px rgba(15,23,42,.22)}
-.gbpush img{width:38px;height:38px;border-radius:50%;display:block}
-.gbpush:active{transform:translateY(3px);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 1px 0 var(--gbb,#065F46),0 3px 8px rgba(15,23,42,.22)}
-.gbpush-green{background:linear-gradient(135deg,#A7F3D0,#34D399);--gbb:#065F46}
-.gbpush-violet{background:linear-gradient(135deg,#DDD6FE,#A78BFA);--gbb:#5B21B6}
-.scripts-row{text-align:center}
-.bc-card{display:flex;flex-direction:column;align-items:center}
-.bc-card>.iconbtn{margin-top:auto}
-.bc-card>.iconbtn img{width:48px;height:48px}
-.potion-line{font-size:1.3rem;font-weight:800;color:#F06000;letter-spacing:.01em}
-.potion-line a{color:#F06000;font-weight:800;text-decoration:none}
 .modal-card .iconbtn img{width:48px;height:48px}
 .exlabel{font-weight:700;font-size:.95rem;color:#9A3412;margin:14px 0 6px}
 </style>
@@ -699,7 +687,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 </div>
   <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="#vetting">🛡️ Customer Vetting</a></div><p><b>Second door</b> — the checker itself lives in Store &amp; Customers, below. Check any customer <b>before</b> work begins — <b>2 BANNED · 2 CAUTION</b> on file.</p></div>
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-purple" href="https://x-peps.com/briefings/morning-briefing-player-11-23-26.html" target="_blank" rel="noopener">🎧 Briefing Player</a></div><p>The animated briefing wheel — press David to play.<br>Latest: Morning Briefing, Monday, November 23, 2026.</p></div>
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-purple" href="https://x-peps.com/briefings/morning-briefing-player-11-24-26.html" target="_blank" rel="noopener">🎧 Briefing Player</a></div><p>The animated briefing wheel — press David to play.<br>Latest: Morning Briefing, Tuesday, November 24, 2026.</p></div>
   </div>
 <section class="qp" id="quickpick">
     <h2>🌿 Kratom Quick Pick</h2>
@@ -868,7 +856,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <section class="catsec" id="cat-build">
   <h2 class="cat-title">🛠 Build Commands</h2>
   <p class="sub">5 ways to build: — say the phrase in chat, or tap the book icon <img src="https://x-peps.com/btn-guide-holo.png" alt="book icon" style="height:22px;width:22px;vertical-align:-5px"> on any card for the full steps.</p>
-  <div class="scripts-row"><button type="button" class="scripts-btn" id="scriptsBtn" aria-haspopup="dialog">📜 Chat Scripts — phrases to state in chat to build products.</button></div>
+  <div class="scripts-row"><button type="button" class="scripts-btn" id="scriptsBtn" aria-haspopup="dialog">📜 Scripts — every build script, mapped to its product</button></div>
   <div class="bc-grid">
 <article class="bc-card">
       <img class="bc-icon" src="https://x-peps.com/btn-fullguide-violet.png" alt="">
@@ -880,7 +868,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <article class="bc-card">
       <img class="bc-icon" src="https://x-peps.com/btn-miniguide-blue.png" alt="">
       <h3 class="bc-title">Mini Guide: [topic]</h3>
-      <p class="bc-intro"><span class="mark-o">One-page Glossy.</span><br>Short-n-Sweet.</p>
+      <p class="bc-intro"><span class="mark-o">Short-n-Sweet.</span><br>One-page glossy.</p>
       <button type="button" class="iconbtn" data-modal="m-mini" title="How it works" aria-label="How it works"><img src="https://x-peps.com/btn-guide-holo.png" alt="How it works"></button>
     </article>
 <article class="bc-card">
@@ -897,12 +885,12 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
     </article>
   </div>
 <h2>🔨 Build a Guide</h2>
-  <p style="margin:2px 0 10px">Tap a button, type the <b>topic</b>, add <b>photos</b> and <b>notes</b>, and send — the build starts on its own. Muse checks for new requests every 30 minutes and brings the finished guide to you in chat. The Mini Guide here is the same one-page Mini Guide as the chat phrase — the only difference is the intake: your photo goes in as the hero and the request files itself.</p>
+  <p style="margin:2px 0 10px">Tap a button, type the <b>topic</b>, add <b>photos</b> and <b>notes</b>, and send — the build starts on its own. Muse checks for new requests every 30 minutes and brings the finished guide to you in chat.</p>
   <div class="gbuild-row">
-    <button type="button" class="gbpush gbpush-green" onclick="gbOpen('onepage')"><img src="https://x-peps.com/btn-miniguide-blue.png" alt="">Mini Guide</button>
-    <button type="button" class="gbpush gbpush-violet" onclick="gbOpen('full')"><img src="https://x-peps.com/btn-fullguide-violet.png" alt="">Full Guide</button>
+    <button type="button" class="gbuild-btn gb-green" onclick="gbOpen('onepage')"><span class="gb-t">🌿 1-Page Guide</span><span class="gb-s">One page like the Aglaonema guide — your photo at the top, the facts below.</span></button>
+    <button type="button" class="gbuild-btn gb-violet" onclick="gbOpen('full')"><span class="gb-t">📖 Full Guide</span><span class="gb-s">The longer build — full research, sections, and room for up to 4 photos.</span></button>
   </div>
-<div class="cmd-group potion-line">🧙 Cast the Potion. [ <a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">x-peps.com/bewitched</a> ]</div>
+<div class="cmd-group">Cast it at the Potions portal — <a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">x-peps.com/bewitched</a> (or just ask in chat)</div>
   <div class="cmd-grid">
     <div class="cmd-card"><span class="cmd-phrase">Guides</span><p>Build a new guide. Saved as the master file and synced to Drive.</p></div>
     <div class="cmd-card"><span class="cmd-phrase">Reviews</span><p>Build a vendor review guide.</p></div>
@@ -1565,8 +1553,8 @@ function gbCap(){return gbMode==='onepage'?1:4;}
 function gbOpen(mode){
   gbMode=mode; gbFiles=[];
   var one = mode==='onepage';
-  document.getElementById('gbTitle').textContent = one?'\uD83C\uDF3F Mini Guide':'\uD83D\uDCD6 Full Guide';
-  document.getElementById('gbSub').textContent = one?'One compact page — your photo at the top, the facts below.':'The longer build — full research and sections, with room for up to 4 of your photos.';
+  document.getElementById('gbTitle').textContent = one?'\uD83C\uDF3F 1-Page Guide':'\uD83D\uDCD6 Full Guide';
+  document.getElementById('gbSub').textContent = one?'One page, like the Aglaonema guide — your photo at the top, the facts below.':'The longer build — full research and sections, with room for up to 4 of your photos.';
   document.getElementById('gbPhotoLabel').textContent = one?'Photo — it goes at the top of the page':'Photos — up to 4';
   var inp=document.getElementById('gbPhotos'); inp.multiple=!one; inp.value='';
   document.getElementById('gbThumbs').innerHTML='';
@@ -1763,7 +1751,7 @@ html.dark #gateErr{color:#F87171}
    uniform-width fit() script measures those classes and forces one shared width;
    this wide labeled button must stay out of that set or it would stretch every
    button on the page to its own long label width. */
-.scripts-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:6px 20px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 9px 18px rgba(15,23,42,.25)}
+.scripts-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:52px;padding:10px 26px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 9px 18px rgba(15,23,42,.25)}
 .scripts-btn:hover{filter:brightness(1.07)}
 .scripts-ovl{position:fixed;inset:0;background:rgba(10,6,24,.72);z-index:6000;display:flex;align-items:center;justify-content:center;padding:14px}
 .scripts-ovl[hidden]{display:none}

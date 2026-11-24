@@ -447,8 +447,8 @@ nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
 .iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
 .iconbtn:hover img{filter:brightness(1.12)}
 .gbuild-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.gbpush{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:9px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.25);font-family:Outfit,sans-serif;font-weight:800;font-size:1.1rem;cursor:pointer;color:#1F2937;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 var(--gbb,#065F46),0 8px 16px rgba(15,23,42,.22)}
-.gbpush img{width:38px;height:38px;border-radius:50%;display:block}
+.gbpush{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(15,23,42,.25);font-family:Outfit,sans-serif;font-weight:800;font-size:1rem;cursor:pointer;color:#1F2937;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 var(--gbb,#065F46),0 8px 16px rgba(15,23,42,.22)}
+.gbpush img{width:22px;height:22px;border-radius:50%;display:block}
 .gbpush:active{transform:translateY(3px);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 1px 0 var(--gbb,#065F46),0 3px 8px rgba(15,23,42,.22)}
 .gbpush-green{background:linear-gradient(135deg,#A7F3D0,#34D399);--gbb:#065F46}
 .gbpush-violet{background:linear-gradient(135deg,#DDD6FE,#A78BFA);--gbb:#5B21B6}
@@ -458,7 +458,7 @@ nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
 .bc-card>.iconbtn img{width:48px;height:48px}
 .potion-line{font-size:1.3rem;font-weight:800;color:#F06000;letter-spacing:.01em}
 .potion-line a{color:#F06000;font-weight:800;text-decoration:none}
-.bc-sec{margin-top:16px;scroll-margin-top:10px}
+.bc-sec{margin-top:16px;scroll-margin-top:10px;border:1.5px solid #9333EA;border-radius:16px;padding:14px 16px}
 .venn-wrap{max-width:360px;margin:2px auto}
 .venn-wrap svg{width:100%;height:auto;display:block}
 .venn-wrap text{font-family:Outfit,sans-serif;font-weight:800;fill:#111827;stroke:rgba(255,255,255,.7);stroke-width:3px;paint-order:stroke}
@@ -872,7 +872,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <h2 class="catgroup-hdr cg-purple" id="cat-studio"><span class="cg-kicker">Desk Five — Build &amp; Design</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-build">
   <h2 class="cat-title">🛠 Build Commands</h2>
-  <p class="sub">3 ways to build: — chat script, build buttons, and Potions &amp; Spells.</p>
+  <p class="sub">3 ways to build: — Chat Scripts, Build Buttons, and Potions &amp; Spells.</p>
 <div class="venn-wrap"><svg viewBox="0 0 360 292" role="img" aria-label="Three ways to build — tap a circle to jump to its section">
 <a href="#bc-sec-scripts"><circle cx="130" cy="104" r="88" fill="rgba(147,51,234,.42)"/><text x="84" y="97" text-anchor="middle" font-size="15">Chat</text><text x="84" y="115" text-anchor="middle" font-size="15">Scripts</text></a>
 <a href="#bc-sec-buttons"><circle cx="230" cy="104" r="88" fill="rgba(16,185,129,.42)"/><text x="276" y="97" text-anchor="middle" font-size="15">Build</text><text x="276" y="115" text-anchor="middle" font-size="15">Buttons</text></a>
@@ -932,7 +932,6 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 </div>
 <div class="bc-sec" id="bc-sec-potions">
 <div class="scripts-row"><a class="scripts-btn" href="https://x-peps.com/bewitched" target="_blank" rel="noopener" style="text-decoration:none">🧙 Potions &amp; Spells — cast at the Potions portal.</a></div>
-<div class="cmd-group potion-line">🧙 Cast the Potion. [ <a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">x-peps.com/bewitched</a> ]</div>
 <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-red" href="https://x-peps.com/bewitched" target="_blank" rel="noopener">🧪 Potions Portal</a></div><p>The creator portal with the six flasks:<br>📖 Guides<br>⭐ Reviews<br>📰 Articles<br>🎙️ Podcasts<br>🔄 Updates<br>📦 Inventory<br>Cast a spell to start a build.</p></div>
 </div>
@@ -1781,7 +1780,7 @@ html.dark #gateErr{color:#F87171}
    uniform-width fit() script measures those classes and forces one shared width;
    this wide labeled button must stay out of that set or it would stretch every
    button on the page to its own long label width. */
-.scripts-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:6px 20px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 9px 18px rgba(15,23,42,.25)}
+.scripts-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;min-height:38px;padding:0 18px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 9px 18px rgba(15,23,42,.25)}
 .scripts-btn:hover{filter:brightness(1.07)}
 .scripts-ovl{position:fixed;inset:0;background:rgba(10,6,24,.72);z-index:6000;display:flex;align-items:center;justify-content:center;padding:14px}
 .scripts-ovl[hidden]{display:none}

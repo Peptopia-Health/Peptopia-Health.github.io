@@ -21,7 +21,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'DM Sans','Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
-  .wrap{max-width:860px;margin:0 auto;padding:20px 18px 34px}
+  .wrap{max-width:960px;margin:0 auto;padding:20px 18px 34px}
   h1{font-family:Outfit,'Segoe UI',Arial,sans-serif;font-weight:800;font-size:clamp(28px,5.4vw,42px);color:var(--head);letter-spacing:.2px;line-height:1.12}
   h2.sec{font-family:Outfit,'Segoe UI',Arial,sans-serif;font-weight:800;font-size:clamp(20px,3.6vw,26px);color:var(--head);margin:34px 0 4px}
   .secsub{color:var(--muted);font-size:13.5px;margin-bottom:13px;max-width:78ch}
@@ -72,8 +72,8 @@
   .tbtn.amber{background:linear-gradient(135deg,#FDE68A,#FBBF24)}
   .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:16px 18px}
   /* palette exhibit */
-  .strip{display:flex;flex-wrap:wrap;gap:7px}
-  .chip{border-radius:12px;padding:8px 10px;font-size:11.5px;font-weight:700;line-height:1.3;min-width:104px;flex:1;color:#fff}
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  .chip{border-radius:12px;padding:8px 10px;font-size:11.5px;font-weight:700;line-height:1.3;color:#fff}
   .chip small{display:block;font-weight:400;opacity:.88;font-size:10.5px}
   .chip.dark{color:#241533}
   .chip.replaced{position:relative;opacity:.75}
@@ -158,8 +158,7 @@
 
   <!-- ============ A. THE PEPTOPIA PALETTE ============ -->
   <h2 class="sec">🎨 The Peptopia Palette</h2>
-  <p class="secsub" style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap"><span>Peptopia Palette</span><span>November 16, 2026</span></p>
-  <p class="secsub">The one palette the whole site is documented in. Every value is a Tailwind CSS standard color, or the nearest standard step, so the palette matches the palettes in production worldwide. Neon Leaf is the single deliberate custom color — no standard palette carries a green that bright.</p>
+  <p class="secsub">The Peptopia universal palette.</p>
 
   <h3 class="sub">On the homepage now</h3>
   <div class="strip">
@@ -167,7 +166,7 @@
     <div class="chip dark" style="background:#22D3EE">Education<small>cyan-400 #22D3EE</small></div>
     <div class="chip" style="background:#2563EB">Biohacking<small>blue-600 #2563EB</small></div>
     <div class="chip dark" style="background:#F472B6">Reviews<small>pink-400 #F472B6</small></div>
-    <div class="chip dark" style="background:#2BFF5C;outline:2.5px solid #0B3D1A;outline-offset:1px">Legality<small>NEON LEAF #2BFF5C ★</small></div>
+    <div class="chip dark" style="background:#2BFF5C">Legality<small>NEON LEAF #2BFF5C ★</small></div>
     <div class="chip" style="background:#9333EA">Nursing Ed<small>purple-600 #9333EA</small></div>
     <div class="chip" style="background:#FB923C">Corrections<small>orange-400 #FB923C</small></div>
     <div class="chip" style="background:#7C3AED">Mental Health<small>violet-600 #7C3AED</small></div>
@@ -190,12 +189,12 @@
   <!-- ============ C. CARD THEME COLORS ============ -->
   <h2 class="sec">🃏 Card Theme Colors</h2>
   <p class="secsub">Every homepage card carries ONE theme color, and the color follows the click — the card and its destination guide wear the same color.</p>
-  <div class="themerow"><div class="tsw" style="background:#34D399"></div><span class="cn">Pharma &amp; Therapeutics</span><span class="hx">emerald-400 #34D399</span><span class="arrow">→</span><span class="dest">Pharma &amp; Therapeutics</span></div>
-  <div class="themerow"><div class="tsw" style="background:#22D3EE"></div><span class="cn">Education</span><span class="hx">cyan-400 #22D3EE</span><span class="arrow">→</span><span class="dest">Education guides</span></div>
-  <div class="themerow"><div class="tsw" style="background:#2563EB"></div><span class="cn">Biohacking</span><span class="hx">blue-600 #2563EB</span><span class="arrow">→</span><span class="dest">Biohacking research</span></div>
+  <div class="themerow"><div class="tsw" style="background:#34D399"></div><span class="cn">Pharma &amp; Therapeutics</span><span class="hx">emerald-400 #34D399</span><span class="arrow">→</span><a class="dest" href="https://x-peps.com/X-Peps/orders/">Pharma &amp; Therapeutics</a></div>
+  <div class="themerow"><div class="tsw" style="background:#22D3EE"></div><span class="cn">Education</span><span class="hx">cyan-400 #22D3EE</span><span class="arrow">→</span><a class="dest" href="https://x-peps.com/X-Peps/">Education guides</a></div>
+  <div class="themerow"><div class="tsw" style="background:#2563EB"></div><span class="cn">Biohacking</span><span class="hx">blue-600 #2563EB</span><span class="arrow">→</span><a class="dest" href="https://x-peps.com/X-Peps/biohacking-news.html">Biohacking research</a></div>
   <div class="themerow"><div class="tsw" style="background:#F472B6"></div><span class="cn">Kratom Reviews</span><span class="hx">pink-400 #F472B6</span><span class="arrow">→</span><a class="dest" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html">Kratom Reviews hub</a></div>
   <div class="themerow" style="outline:2.5px solid #2BFF5C;outline-offset:1px"><div class="tsw" style="background:#2BFF5C"></div><span class="cn">Kratom Legality</span><span class="hx">NEON LEAF #2BFF5C</span><span class="arrow">→</span><a class="dest" href="https://x-peps.com/X-Peps/kratom-legality-by-state.html">Kratom Legality by State</a></div>
-  <div class="themerow"><div class="tsw" style="background:#9333EA"></div><span class="cn">Nursing Education</span><span class="hx">purple-600 #9333EA</span><span class="arrow">→</span><span class="dest">Nursing Education</span></div>
+  <div class="themerow"><div class="tsw" style="background:#9333EA"></div><span class="cn">Nursing Education</span><span class="hx">purple-600 #9333EA</span><span class="arrow">→</span><a class="dest" href="https://peptopia.github.io/NCLEX/">Nursing Education</a></div>
   <div class="themerow"><div class="tsw" style="background:#FB923C"></div><span class="cn">Corrections Nursing</span><span class="hx">orange-400 #FB923C</span><span class="arrow">→</span><a class="dest" href="https://x-peps.com/Corrections/">Corrections Nursing portal</a></div>
   <div class="themerow"><div class="tsw" style="background:#7C3AED"></div><span class="cn">Mental Health Nursing</span><span class="hx">violet-600 #7C3AED</span><span class="arrow">→</span><a class="dest" href="https://x-peps.com/mental-health/">Mental Health Nursing portal</a></div>
   <div class="rulebox"><b>The standing rule:</b> one theme color per card, transitioning down into its guide as the link is clicked. Blues and magentas stay <b>far apart</b> on the spectrum — never crowd cyan, blue, purple, and violet neighbors. A new card's color is chosen against this whole map, never on its own.</div>

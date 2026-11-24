@@ -660,7 +660,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
           state.submittedAt=Date.now();state.dirty=false;
           items.forEach(function(b){b.dataset.pristine=state.done[b.dataset.t]?'1':'0';});
           store(key,JSON.stringify(state));submitBtn.disabled=false;paint();
-          toast('Sent \u2014 Muse will update everything and refresh this box.');})
+          toast('Sent \u2014 refreshing this page in a few seconds.');setTimeout(function(){location.reload();},3500);})
         .catch(function(){submitBtn.disabled=false;toast('Could not send \u2014 tell Muse in chat: today checklist update.');});
     });
     paint();

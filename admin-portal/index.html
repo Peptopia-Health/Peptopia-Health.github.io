@@ -444,6 +444,8 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 .dsx-card-t{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;color:var(--t1)}
 .dsx-card-s{font-size:.82rem;color:var(--t3)}
 .dsx-open{margin-left:auto;flex:none}
+.dsx-card-head>div{flex:1 1 auto;min-width:0}
+.dsx-open{width:auto!important;min-width:0!important;white-space:nowrap}
 .dsx-card-note{font-size:.78rem;color:var(--t3);margin:10px 0 0}
 @media print{.dsx-panel{display:none!important}}
 </style>
@@ -569,7 +571,7 @@ window.AUDIO_LIBRARY=[{"title": "Reason Kratom Brief", "date": "Nov 20, 2026", "
 </script>
 
 <script id="design-styles-render">
-(function(){
+document.addEventListener('DOMContentLoaded',function(){
   var panel=document.getElementById('dsPanel');
   var triggers=[document.getElementById('dsBtn'),document.getElementById('dsCardBtn')].filter(Boolean);
   if(!panel||!triggers.length)return;
@@ -587,7 +589,7 @@ window.AUDIO_LIBRARY=[{"title": "Reason Kratom Brief", "date": "Nov 20, 2026", "
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
   window.addEventListener('resize',function(){ if(panel.classList.contains('open')) place(); });
   window.addEventListener('scroll',function(){ if(panel.classList.contains('open')) close(); },{passive:true});
-})();
+});
 </script>
 
 <main>

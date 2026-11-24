@@ -82,7 +82,7 @@ main{max-width:860px;margin:0 auto;padding:10px 14px 10px}
 .stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:8px 14px;box-shadow:var(--sh);font-size:.88rem;color:var(--t2)}
 .stat b{font-family:var(--font-head);color:var(--theme-dark);font-size:1.05rem}
 h2{font-family:var(--font-head);font-weight:800;color:var(--orange);font-size:1.15rem;margin:28px 0 6px}
-.sub{color:var(--t2);font-size:.92rem;margin:0 0 12px}
+.sub{color:var(--t2);font-size:.92rem;margin:0 0 8px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh);padding:16px;margin:0 0 14px;transition:box-shadow .2s}
 .card:hover{box-shadow:var(--sh-h)}
 .card h3{font-family:var(--font-head);font-weight:700;margin:0 0 4px;font-size:1.05rem}
@@ -218,8 +218,8 @@ html{scroll-behavior:smooth}
 .jnav-btn.active{border-color:var(--orange);color:#A55A07;background:linear-gradient(180deg,#FFF7ED 0%,#FFE7C7 55%,#FFD9A8 100%)}
 html.dark .jnav-btn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#26344E 55%,#1B2740 100%);border-color:#60A5FA}
 html.dark .jnav-btn.active{border-color:var(--orange);color:#FBD6AD;background:linear-gradient(180deg,#4A2E17 0%,#38220F 55%,#2A1A0D 100%)}
-.catsec{scroll-margin-top:64px;padding-top:14px}
-.cat-title{font-family:var(--font-head);font-weight:800;font-size:1.55rem;color:var(--t1);border-bottom:3px solid var(--orange);padding-bottom:7px;margin:20px 0 6px}
+.catsec{scroll-margin-top:64px;padding-top:2px}
+.cat-title{font-family:var(--font-head);font-weight:800;font-size:1.55rem;color:var(--t1);border-bottom:3px solid var(--orange);padding-bottom:4px;margin:4px 0 4px}
 .catsec h2:not(.cat-title){font-size:1.18rem;margin-top:28px}
 .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin:14px 0 8px}
 .bc-card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--sh);padding:18px 18px 16px;display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -257,7 +257,8 @@ html.dark .cmd-card a,html.dark .cmd-group a{color:#7CC4FF}
 html.dark .peptopia-ftr .ftr-email-line a{color:#7CC4FF}
 .ship-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh);padding:14px 16px;margin:12px 0 4px}
 .ship-fresh{color:var(--t3);font-size:.8rem;font-weight:600;white-space:nowrap}
-.ship-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.ship-chips{display:flex;flex-wrap:nowrap;gap:8px;margin:10px 0}
+@media (max-width:640px){.ship-chips{flex-wrap:wrap}}
 .ship-chip{background:var(--card-sub);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:.88rem;color:var(--t2)}
 .ship-chip b{font-family:var(--font-head);color:var(--t1);font-size:1rem}
 .ship-chip.warn{border-color:#D97706;background:#FFFBEB;color:#78350F}
@@ -559,15 +560,36 @@ window.AUDIO_LIBRARY=[{"title": "Reason Kratom Brief", "date": "Nov 20, 2026", "
 <button id="catReopen" class="cat-reopen" type="button" hidden>&#9776;&nbsp; Categories</button>
 <style id="portal-reorg-css">
 /* ===== Portal reorganization (Nov 23, 2026): content grouped under the matrix's four column categories ===== */
-.catgroup-hdr{font-family:var(--font-head);font-weight:800;font-size:1.12rem;letter-spacing:.05em;padding:12px 18px;border-radius:14px;margin:34px 0 2px;box-shadow:0 2px 10px rgba(0,0,0,.18);scroll-margin-top:64px}
-.catgroup-hdr .cg-kicker{display:block;font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;opacity:.85;margin-bottom:2px}
+.catgroup-hdr{display:flex;align-items:center;justify-content:space-between;height:34px;padding:0 18px;border-radius:999px;margin:12px 0 0;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;box-shadow:0 3px 0 rgba(36,21,51,.35),0 8px 16px rgba(36,21,51,.18);scroll-margin-top:64px;user-select:none;-webkit-user-select:none}
+.catgroup-hdr:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(36,21,51,.35),0 4px 8px rgba(36,21,51,.16)}
+.catgroup-hdr.cg-cyan{box-shadow:0 3px 0 #065A6E,0 8px 16px rgba(36,21,51,.18)}
+.catgroup-hdr.cg-emerald{box-shadow:0 3px 0 #065F46,0 8px 16px rgba(36,21,51,.18)}
+.catgroup-hdr.cg-tusc{box-shadow:0 3px 0 #9A4A00,0 8px 16px rgba(36,21,51,.18)}
+.catgroup-hdr.cg-bio{box-shadow:0 3px 0 #174A9E,0 8px 16px rgba(36,21,51,.18)}
+.catgroup-hdr.cg-purple{box-shadow:0 3px 0 #581C87,0 8px 16px rgba(36,21,51,.18)}
+.catgroup-hdr.cg-slate{box-shadow:0 3px 0 #334155,0 8px 16px rgba(36,21,51,.18)}
+.catgroup-hdr .cg-chev{font-size:.75rem;letter-spacing:0;transition:transform .2s}
+.catgroup-hdr.closed .cg-chev{transform:rotate(-90deg)}
+.catgroup-hdr .cg-kicker{display:inline;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;opacity:.9;margin:0}
 .cg-purple{background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 .cg-tusc{background:linear-gradient(135deg,var(--pal-tuscarora),var(--pal-tuscarora-lt));color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
 .cg-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4);color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
 .cg-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
 </style>
-<h2 class="catgroup-hdr cg-cyan" id="catgroup-today"><span class="cg-kicker">Desk One — Daily</span>Today</h2>
+<script>
+(function(){
+  document.querySelectorAll('.catgroup-hdr').forEach(function(h){
+    var sec=h.nextElementSibling; if(!sec) return;
+    var key='admin_portal_desk_'+(h.id||'');
+    var closed=false; try{closed=localStorage.getItem(key)==='1';}catch(e){}
+    function apply(){ sec.style.display=closed?'none':''; h.classList.toggle('closed',closed); }
+    apply();
+    h.addEventListener('click',function(){ closed=!closed; apply(); try{localStorage.setItem(key,closed?'1':'0');}catch(e){} });
+  });
+})();
+</script>
+<h2 class="catgroup-hdr cg-cyan" id="catgroup-today"><span class="cg-kicker">Desk One — Daily</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-today">
   <h2 class="cat-title">☀️ Today</h2>
   <style>
@@ -587,13 +609,12 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
   .td-status{color:var(--t2);font-size:.92rem}
   </style>
   <div class="td-box" id="todayBox"><span class="kind-badge kb-live">LIVE</span>
-    <div class="pc-top"><span class="cmd-phrase">✅ Today's Tasks</span><span class="td-fresh" id="tdFresh">Tuesday, November 24, 2026</span></div>
-    <p class="td-sub">Tap a task when you've finished it — the box turns <b>green with a check</b>. When you're done updating, tap <b>Submit</b>: Muse updates every file that tracks these, then refreshes this box.</p>
+    <div class="pc-top"><span class="cmd-phrase">✅ Task Tracker</span><span class="td-fresh" id="tdFresh">Tuesday, November 24, 2026</span></div>
+    <p class="td-sub">Tap a task to mark it complete. Click Submit when complete. Muse will update the databases and then refresh this page.</p>
     <div id="tdList">
       <button type="button" class="td-item" data-t="t1"><span class="td-boxsq"></span><span class="td-txt">Bring the tender plants in before dark — coldest night of the week, low near 25°F</span></button>
-      <button type="button" class="td-item" data-t="t2"><span class="td-boxsq"></span><span class="td-txt">Check the mailbox — Denise Medina's money order was expected Nov 23–24 (three money orders totaling $890 are in the mail)</span></button>
+      <button type="button" class="td-item" data-t="t2"><span class="td-boxsq"></span><span class="td-txt">Check the mailbox — three money orders totaling $890 are in the mail and none has arrived yet (Denise Medina's was expected Nov 23–24)</span></button>
       <button type="button" class="td-item" data-t="t3"><span class="td-boxsq"></span><span class="td-txt">Annette Kerbs (Wolverine, $325) — watch for her payment reply: MTCN, reference number, money-order photo, or check</span></button>
-      <button type="button" class="td-item" data-t="t4"><span class="td-boxsq"></span><span class="td-txt">WestKoast order #20893 — watch for the shipping email and tracking number</span></button>
     </div>
     <div class="td-foot">
       <button type="button" class="td-submit" id="tdSubmit" hidden>Submit my updates to Muse</button>
@@ -642,17 +663,16 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
     paint();
   })();
   </script>
-  <p class="sub attn"><b>Needs attention:</b> 3 printed labels are on David’s desk — Rhonda Balam, Denise Medina, Bryan Ranaldo — shipping Sun Nov 22 · 2 Action Board items awaiting your go · 2 BANNED · 2 CAUTION on the vetting file.</p>
 <div class="ship-panel"><span class="kind-badge kb-live">LIVE</span>
-  <div class="pc-top"><span class="cmd-phrase">📦 Shipments</span><span class="ship-fresh">Updated Nov 21, 2026 · 10:42 PM</span></div>
+  <div class="pc-top"><span class="cmd-phrase">📦 Shipments</span><span class="ship-fresh">Updated Nov 24, 2026</span></div>
   <div class="ship-chips">
-    <span class="ship-chip"><b>0</b> Out for delivery</span>
-    <span class="ship-chip"><b>0</b> In transit</span>
-    <span class="ship-chip warn"><b>3</b> Awaiting drop-off</span>
+    <span class="ship-chip"><b>0</b> Delivery</span>
+    <span class="ship-chip"><b>3</b> Enroute</span>
+    <span class="ship-chip"><b>0</b> Drop-off</span>
     <span class="ship-chip"><b>44</b> Delivered</span>
-    <span class="ship-chip"><b>52</b> Tracked</span>
+    <span class="ship-chip"><b>53</b> Tracked</span>
   </div>
-  <p class="ship-attn"><b>Needs attention:</b> 3 printed labels are on David’s desk — Rhonda Balam, Denise Medina, Bryan Ranaldo — shipping Sun Nov 22. Everything else that has gone out is confirmed delivered.</p>
+  <p class="ship-attn"><b>All caught up:</b> the 3 desk packages — Rhonda Balam, Denise Medina, Bryan Ranaldo — were picked up by USPS on Mon Nov 23 and are enroute. Nothing is waiting for drop-off; everything else that has gone out is confirmed delivered.</p>
   <a class="pushbtn ship-open" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">Open the shipment portal</a>
 </div>
   <div class="cmd-grid">
@@ -684,7 +704,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <div class="cmd-card"><span class="kind-badge kb-live">LIVE</span><div class="pc-top"><a class="btn cardbtn b-purple" href="#cat-adminarchive">✅ Action Board</a></div><p><b>2 open items</b> awaiting your go — top of the list: Adopt the 6 styling upgrades · Rename &amp; reorganize. The full board is in Admin &amp; Archive.</p></div>
   </div>
 </section>
-<h2 class="catgroup-hdr cg-emerald" id="catgroup-store"><span class="cg-kicker">Desk Two — Customers</span>Store &amp; Customers</h2>
+<h2 class="catgroup-hdr cg-emerald" id="catgroup-store"><span class="cg-kicker">Desk Two — Customers</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-store">
   <h2 class="cat-title">🛒 Store &amp; Customers</h2>
   <a class="sales-btn-wrap" id="salesBtn" href="https://x-peps.com/X-Peps/aftership-shipments-report.html"><span class="btn b-emerald">Sales</span></a>
@@ -773,7 +793,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <div class="cmd-card"><span class="kind-badge kb-doc">DOC</span><div class="pc-top"><a class="btn cardbtn b-cyan" href="https://x-peps.com/admin-portal/recommendations/westkoast-4-way-split.html" target="_blank" rel="noopener">🌿 WestKoast — 4-Way Split Pick</a></div><p>The 1126 drop ranked by reviews, minus everything you already own: White Hulk, Nano Red Vietnam, Super White, OG Green Malay.</p></div>
 </div>
 </section>
-<h2 class="catgroup-hdr cg-tusc" id="catgroup-kratom"><span class="cg-kicker">Desk Three — Research Shelf</span>Kratom Desk</h2>
+<h2 class="catgroup-hdr cg-tusc" id="catgroup-kratom"><span class="cg-kicker">Desk Three — Research Shelf</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-kratom">
   <h2 class="cat-title">🌿 Kratom Desk</h2>
   <p class="sub">The kratom research shelf — the reviews hub, the legality map, and the reference packet behind the guides.</p>
@@ -788,7 +808,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <div class="cmd-card"><span class="kind-badge kb-tool">TOOL</span><div class="pc-top"><a class="btn cardbtn b-cyan" href="#quickpick">🌿 Kratom Quick Pick</a></div><p><b>Cross-link</b> — the Quick Pick wheel’s home is the Today desk, at the top of this page. Tap to jump there.</p></div>
   </div>
 </section>
-<h2 class="catgroup-hdr cg-bio" id="cat-work"><span class="cg-kicker">Desk Four — VA</span>Work &amp; Career</h2>
+<h2 class="catgroup-hdr cg-bio" id="cat-work"><span class="cg-kicker">Desk Four — VA</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-va">
   <h2 class="cat-title">🏥 VA &amp; Work</h2>
   <div class="cmd-grid">
@@ -820,7 +840,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
     <div class="cmd-card"><span class="cmd-phrase">The five proposals</span><p>Documentation Partner · Medication Safety Co-Pilot · Veteran Navigation Agent · Predictive Staffing &amp; Flow · AI Literacy for Every Nurse.</p></div>
   </div>
 </section>
-<h2 class="catgroup-hdr cg-purple" id="cat-studio"><span class="cg-kicker">Desk Five — Build &amp; Design</span>Studio</h2>
+<h2 class="catgroup-hdr cg-purple" id="cat-studio"><span class="cg-kicker">Desk Five — Build &amp; Design</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-build">
   <h2 class="cat-title">🛠 Build Commands</h2>
   <p class="sub">Five ways to start a build — say the phrase in chat, or tap the book icon on any card for the full steps.</p>
@@ -933,7 +953,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
     <p class="dsx-card-note">The paintbrush button in the header opens the same list. The style selector itself is already live on the Tuscarora wing.</p>
   </div>
 </section>
-<h2 class="catgroup-hdr cg-slate" id="catgroup-adminarchive"><span class="cg-kicker">Desk Six — Records</span>Admin &amp; Archive</h2>
+<h2 class="catgroup-hdr cg-slate" id="catgroup-adminarchive"><span class="cg-kicker">Desk Six — Records</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-adminarchive">
   <h2 class="cat-title">🗂️ Admin &amp; Archive</h2>
 <h2>Action Board</h2>

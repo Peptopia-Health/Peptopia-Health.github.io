@@ -678,6 +678,7 @@ document.querySelectorAll(".potion").forEach(function(p){
   p.addEventListener("click", function(){ openFunc(p.dataset.fn); });
   p.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openFunc(p.dataset.fn); } });
 });
+window.openFunc = openFunc;
 cloudWrap.addEventListener("click", function(e){ if(e.target === cloudWrap && !busy){ closeCloud(); clearCasting(); } });
 document.addEventListener("keydown", function(e){
   if(e.key === "Escape"){ if($("#scrollWrap").classList.contains("open")) $("#scrollWrap").classList.remove("open"); else if(cloudWrap.classList.contains("open") && !busy){ closeCloud(); clearCasting(); } }

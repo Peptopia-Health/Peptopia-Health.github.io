@@ -458,6 +458,11 @@ nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
 .bc-card>.iconbtn img{width:48px;height:48px}
 .potion-line{font-size:1.3rem;font-weight:800;color:#F06000;letter-spacing:.01em}
 .potion-line a{color:#F06000;font-weight:800;text-decoration:none}
+.bc-sec{margin-top:16px;scroll-margin-top:10px}
+.venn-wrap{max-width:360px;margin:2px auto}
+.venn-wrap svg{width:100%;height:auto;display:block}
+.venn-wrap text{font-family:Outfit,sans-serif;font-weight:800;fill:#111827;stroke:rgba(255,255,255,.7);stroke-width:3px;paint-order:stroke}
+.venn-wrap circle{stroke:rgba(255,255,255,.55);stroke-width:1.5}
 .modal-card .iconbtn img{width:48px;height:48px}
 .exlabel{font-weight:700;font-size:.95rem;color:#9A3412;margin:14px 0 6px}
 </style>
@@ -867,9 +872,15 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <h2 class="catgroup-hdr cg-purple" id="cat-studio"><span class="cg-kicker">Desk Five — Build &amp; Design</span><span class="cg-chev">▾</span></h2>
 <section class="catsec" id="cat-build">
   <h2 class="cat-title">🛠 Build Commands</h2>
-  <p class="sub">5 ways to build: — say the phrase in chat, or tap the book icon <img src="https://x-peps.com/btn-guide-holo.png" alt="book icon" style="height:22px;width:22px;vertical-align:-5px"> on any card for the full steps.</p>
-  <div class="scripts-row"><button type="button" class="scripts-btn" id="scriptsBtn" aria-haspopup="dialog">📜 Chat Scripts — phrases to state in chat to build products.</button></div>
-  <div class="bc-grid">
+  <p class="sub">3 ways to build: — chat script, build buttons, and Potions &amp; Spells.</p>
+<div class="venn-wrap"><svg viewBox="0 0 360 292" role="img" aria-label="Three ways to build — tap a circle to jump to its section">
+<a href="#bc-sec-scripts"><circle cx="130" cy="104" r="88" fill="rgba(147,51,234,.42)"/><text x="84" y="97" text-anchor="middle" font-size="15">Chat</text><text x="84" y="115" text-anchor="middle" font-size="15">Scripts</text></a>
+<a href="#bc-sec-buttons"><circle cx="230" cy="104" r="88" fill="rgba(16,185,129,.42)"/><text x="276" y="97" text-anchor="middle" font-size="15">Build</text><text x="276" y="115" text-anchor="middle" font-size="15">Buttons</text></a>
+<a href="#bc-sec-potions"><circle cx="180" cy="182" r="88" fill="rgba(240,96,0,.42)"/><text x="180" y="229" text-anchor="middle" font-size="15">Potions</text><text x="180" y="247" text-anchor="middle" font-size="15">&amp; Spells</text></a>
+</svg></div>
+<div class="bc-sec" id="bc-sec-scripts">
+<div class="scripts-row"><button type="button" class="scripts-btn" id="scriptsBtn" aria-haspopup="dialog">📜 Chat Scripts — phrases to state in chat to build products.</button></div>
+<div class="bc-grid">
 <article class="bc-card">
       <img class="bc-icon" src="https://x-peps.com/btn-fullguide-violet.png" alt="">
       <h3 class="bc-title">Full Guide: [topic]</h3>
@@ -896,14 +907,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
       <button type="button" class="iconbtn" data-modal="m-artifact" title="How it works" aria-label="How it works"><img src="https://x-peps.com/btn-guide-holo.png" alt="How it works"></button>
     </article>
   </div>
-<h2>🔨 Build a Guide</h2>
-  <p style="margin:2px 0 10px">Tap a button, type the <b>topic</b>, add <b>photos</b> and <b>notes</b>, and send — the build starts on its own. Muse checks for new requests every 30 minutes and brings the finished guide to you in chat. The Mini Guide here is the same one-page Mini Guide as the chat phrase — the only difference is the intake: your photo goes in as the hero and the request files itself.</p>
-  <div class="gbuild-row">
-    <button type="button" class="gbpush gbpush-green" onclick="gbOpen('onepage')"><img src="https://x-peps.com/btn-miniguide-blue.png" alt="">Mini Guide</button>
-    <button type="button" class="gbpush gbpush-violet" onclick="gbOpen('full')"><img src="https://x-peps.com/btn-fullguide-violet.png" alt="">Full Guide</button>
-  </div>
-<div class="cmd-group potion-line">🧙 Cast the Potion. [ <a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">x-peps.com/bewitched</a> ]</div>
-  <div class="cmd-grid">
+<div class="cmd-grid">
     <div class="cmd-card"><span class="cmd-phrase">Guides</span><p>Build a new guide. Saved as the master file and synced to Drive.</p></div>
     <div class="cmd-card"><span class="cmd-phrase">Reviews</span><p>Build a vendor review guide.</p></div>
     <div class="cmd-card"><span class="cmd-phrase">Articles</span><p>Write a Peptopia news article — topic is exactly GLP News or Kratom News. Saved to the matching Drive news folder and the site.</p></div>
@@ -917,14 +921,27 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
     <div class="cmd-card"><span class="cmd-phrase">Author &rarr; 57 &rarr; Arboretum / Plants</span><p>Submit a plant with up to 4 photos. Its one-page guide is researched, built and published automatically in the Plants section, with its card on the Plants page — a confirmation email lands when it is done.</p></div>
     <div class="cmd-card"><span class="cmd-phrase">Author &rarr; 57 &rarr; Peptopia</span><p>The same six builds as the Potions spells — Guides, Reviews, Articles, Podcasts, Updates, Inventory — launched from the Arboretum site.</p></div>
   </div>
-  <div class="cmd-grid">
+</div>
+<div class="bc-sec" id="bc-sec-buttons">
+<div class="scripts-row"><span class="scripts-btn">🔨 Build Buttons — tap a button, add photos, send.</span></div>
+<p style="margin:2px 0 10px">Tap a button, type the <b>topic</b>, add <b>photos</b> and <b>notes</b>, and send — the build starts on its own. Muse checks for new requests every 30 minutes and brings the finished guide to you in chat. The Mini Guide here is the same one-page Mini Guide as the chat phrase — the only difference is the intake: your photo goes in as the hero and the request files itself.</p>
+  <div class="gbuild-row">
+    <button type="button" class="gbpush gbpush-green" onclick="gbOpen('onepage')"><img src="https://x-peps.com/btn-miniguide-blue.png" alt="">Mini Guide</button>
+    <button type="button" class="gbpush gbpush-violet" onclick="gbOpen('full')"><img src="https://x-peps.com/btn-fullguide-violet.png" alt="">Full Guide</button>
+  </div>
+</div>
+<div class="bc-sec" id="bc-sec-potions">
+<div class="scripts-row"><a class="scripts-btn" href="https://x-peps.com/bewitched" target="_blank" rel="noopener" style="text-decoration:none">🧙 Potions &amp; Spells — cast at the Potions portal.</a></div>
+<div class="cmd-group potion-line">🧙 Cast the Potion. [ <a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">x-peps.com/bewitched</a> ]</div>
+<div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-red" href="https://x-peps.com/bewitched" target="_blank" rel="noopener">🧪 Potions Portal</a></div><p>The creator portal with the six flasks:<br>📖 Guides<br>⭐ Reviews<br>📰 Articles<br>🎙️ Podcasts<br>🔄 Updates<br>📦 Inventory<br>Cast a spell to start a build.</p></div>
+</div>
+</div>
 <div class="cmd-card"><div class="pc-top"><a class="btn b-red" href="https://x-peps.com/admin-portal/toolbox.html" target="_blank" rel="noopener">🧰 Toolbox</a></div><p>The build shelf — the Legality palette, palette tokens, card theme colors, icon masters, and the build references. Things we like, kept where we can see them — and grow from them.</p></div>
   </div>
   <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-amber" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">🏺 Arboretum</a></div><p>The artifact portal — Bottles, Marbles, China — with the ✒️ Author button (57) for new finds.</p></div>
-  </div>
-</section>
+  </div></section>
 <style>
 .pal-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-top:14px}
 .pal-line{color:var(--t1);font-size:1rem;margin:0 0 14px}

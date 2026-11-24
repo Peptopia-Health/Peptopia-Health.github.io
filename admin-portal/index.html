@@ -364,6 +364,11 @@ nav.jumpnav.jcols .jcol a.jnav-btn{width:100%!important}
 .nowrap{white-space:nowrap}
 .potions-wide{grid-template-columns:1fr!important}
 .potions-wide .cmd-card{margin:0 auto;width:100%}
+.flask-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;padding:12px 6px 6px}
+.flask{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none}
+.flask img{height:104px;width:auto;max-width:100%}
+.flask span{font-family:Outfit,sans-serif;font-weight:700;font-size:1.02rem}
+@media (max-width:640px){.flask-grid{grid-template-columns:repeat(2,1fr)}.flask img{height:92px}}
 .hdrbtn{font-size:.72rem!important;letter-spacing:.06em;padding:5px 13px;text-decoration:none}
 button.hdrbtn.peptopia-iconbtn{width:34px!important;min-width:34px;height:34px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;padding:0}
 button.hdrbtn.peptopia-iconbtn svg{width:16px;height:16px}
@@ -863,6 +868,7 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-cyan" href="https://x-peps.com/admin-portal/sbar-handover.html" target="_blank" rel="noopener">📋 SBAR Handover</a></div><p>One-page shift handover sheet for the unit.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-cyan" href="https://x-peps.com/admin-portal/medpass-one-page.html" target="_blank" rel="noopener">🕐 MedPass One-Pager</a></div><p>The window med-pass workflow on one page.</p></div>
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-cyan" href="https://x-peps.com/admin-portal/essential-drugs.html" target="_blank" rel="noopener">💊 50 Essential Drugs</a></div><p>Your NotebookLM drug list, cleaned and verified — class, use, and one watch-for on every drug.</p></div>
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-cyan" href="https://x-peps.com/admin-portal/med-companion.html" target="_blank" rel="noopener">🩺 Med Companion</a></div><p>The Medication Safety Co-Pilot — an Eight Rights walk-through at the window, with the Pain Points Log. No patient data, ever.</p></div>
   </div>
 </section>
 <section class="catsec" id="cat-career">
@@ -950,8 +956,13 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 </div>
 <div class="bc-sec" id="bc-sec-potions">
 <div class="scripts-row"><a class="scripts-btn" href="https://x-peps.com/bewitched" target="_blank" rel="noopener" style="text-decoration:none">🧙 Potions &amp; Spells — cast at the Potions portal.</a></div>
-<div class="cmd-grid potions-wide">
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-lime" href="https://x-peps.com/bewitched" target="_blank" rel="noopener">🧪 Potions Portal</a></div><p><span class="nowrap">6 flasks. 6 Potions. Tap to cast.</span><br>📖 <a href="https://x-peps.com/bewitched/#fn-guide" target="_blank" rel="noopener">Guides</a><br>⭐ <a href="https://x-peps.com/bewitched/#fn-vendor" target="_blank" rel="noopener">Reviews</a><br>📰 <a href="https://x-peps.com/bewitched/#fn-news" target="_blank" rel="noopener">Articles</a><br>🎙️ <a href="https://x-peps.com/bewitched/#fn-audio" target="_blank" rel="noopener">Podcasts</a><br>🔄 <a href="https://x-peps.com/bewitched/#fn-publish" target="_blank" rel="noopener">Updates</a><br>📦 <a href="https://x-peps.com/bewitched/#fn-inventory" target="_blank" rel="noopener">Inventory</a></p></div>
+<div class="flask-grid">
+<a class="flask" href="https://x-peps.com/bewitched/#fn-guide" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-guide.webp" alt="Guides" style="filter:drop-shadow(0 4px 12px rgba(124,252,0,.55))"><span style="color:#4E9E00">Guides</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-vendor" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-vendor.webp" alt="Reviews" style="filter:drop-shadow(0 4px 12px rgba(155,77,255,.5))"><span style="color:#7B3FE4">Reviews</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-news" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-news.webp" alt="Articles" style="filter:drop-shadow(0 4px 12px rgba(77,200,255,.55))"><span style="color:#0090B3">Articles</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-audio" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-audio.webp" alt="Podcasts" style="filter:drop-shadow(0 4px 12px rgba(255,180,60,.6))"><span style="color:#B87A00">Podcasts</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-publish" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-publish.webp" alt="Updates" style="filter:drop-shadow(0 4px 12px rgba(255,77,216,.5))"><span style="color:#D100A8">Updates</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-inventory" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-inventory.webp" alt="Inventory" style="filter:drop-shadow(0 4px 12px rgba(255,122,77,.55))"><span style="color:#D14D1F">Inventory</span></a>
 </div>
 </div>
 

@@ -579,14 +579,17 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 </style>
 <script>
 (function(){
-  document.querySelectorAll('.catgroup-hdr').forEach(function(h){
-    var sec=h.nextElementSibling; if(!sec) return;
-    var key='admin_portal_desk_'+(h.id||'');
-    var closed=false; try{closed=localStorage.getItem(key)==='1';}catch(e){}
-    function apply(){ sec.style.display=closed?'none':''; h.classList.toggle('closed',closed); }
-    apply();
-    h.addEventListener('click',function(){ closed=!closed; apply(); try{localStorage.setItem(key,closed?'1':'0');}catch(e){} });
-  });
+  function init(){
+    document.querySelectorAll('.catgroup-hdr').forEach(function(h){
+      var sec=h.nextElementSibling; if(!sec) return;
+      var key='admin_portal_desk_'+(h.id||'');
+      var closed=false; try{closed=localStorage.getItem(key)==='1';}catch(e){}
+      function apply(){ sec.style.display=closed?'none':''; h.classList.toggle('closed',closed); }
+      apply();
+      h.addEventListener('click',function(){ closed=!closed; apply(); try{localStorage.setItem(key,closed?'1':'0');}catch(e){} });
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
 </script>
 <h2 class="catgroup-hdr cg-cyan" id="catgroup-today"><span class="cg-kicker">Desk One — Daily</span><span class="cg-chev">▾</span></h2>

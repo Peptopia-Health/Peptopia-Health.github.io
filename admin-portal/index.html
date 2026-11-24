@@ -267,6 +267,19 @@ html.dark .peptopia-ftr .ftr-email-line a{color:#7CC4FF}
 .ship-chip.warn b{color:#92400E}
 html.dark .ship-chip.warn{background:#451A03;border-color:#92400E;color:#FDE68A}
 html.dark .ship-chip.warn b{color:#FDE68A}
+.ship-panel .ship-open{display:block;width:fit-content;margin:10px auto 2px}
+.ship-chip.ship-out{background:#FEF3C7;border-color:#F59E0B;color:#92400E}
+.ship-chip.ship-transit{background:#FEF9C3;border-color:#EAB308;color:#713F12}
+.ship-chip.ship-pend{background:#E2E8F0;border-color:#64748B;color:#334155}
+.ship-chip.ship-deliv{background:#DCFCE7;border-color:#16A34A;color:#14532D}
+.ship-chip.ship-out b,.ship-chip.ship-transit b,.ship-chip.ship-pend b,.ship-chip.ship-deliv b{color:inherit}
+html.dark .ship-chip.ship-out{background:#713F12;border-color:#F59E0B;color:#FEF3C7}
+html.dark .ship-chip.ship-transit{background:#713F12;border-color:#EAB308;color:#FEF9C3}
+html.dark .ship-chip.ship-pend{background:#334155;border-color:#64748B;color:#E2E8F0}
+html.dark .ship-chip.ship-deliv{background:#14532D;border-color:#16A34A;color:#DCFCE7}
+.sales-btn-wrap{display:flex;justify-content:center;text-decoration:none}
+#salesBtn .btn{width:auto;min-width:0!important;flex:0 0 auto}
+.venn-store{max-width:420px}
 .ship-attn{margin:4px 0 12px;color:var(--t2);font-size:.93rem}
 .ship-open{text-decoration:none}
 </style>
@@ -301,7 +314,7 @@ a.jnav-btn.btn{min-height:0;padding:6px 22px}
 .b-orange,button.pushbtn.b-orange,a.pushbtn.b-orange,.btn.b-orange{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
 </style>
 <script>
-(function(){function vis(e){return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)}function fit(){var els=[].slice.call(document.querySelectorAll('.btn:not(.cardbtn):not(.hdrbtn):not(.jnav-btn),button.pushbtn,a.pushbtn'));if(!els.length||!els.some(vis))return;els.forEach(function(e){e.style.minWidth='';e.style.width='auto'});var m=0;els.forEach(function(e){if(!vis(e))return;var w=e.getBoundingClientRect().width;if(w>m)m=w});els.forEach(function(e){e.style.removeProperty('width')});if(m<10)return;var W=Math.ceil(m)+'px';els.forEach(function(e){if(e.id==='toTop'||e.id==='indexFab')return;e.style.minWidth=W})}function later(){setTimeout(fit,350);setTimeout(fit,1400)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',later)}else{later()}window.addEventListener('load',later);window.addEventListener('resize',fit);document.addEventListener('click',function(){setTimeout(fit,60)},true);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(later)}var g=document.getElementById('gate');if(g&&window.MutationObserver){new MutationObserver(function(){later()}).observe(g,{attributes:true,attributeFilter:['style','class']})}})();
+(function(){function vis(e){return !!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)}function fit(){var els=[].slice.call(document.querySelectorAll('.btn:not(.cardbtn):not(.hdrbtn):not(.jnav-btn),button.pushbtn,a.pushbtn:not(.ship-open)'));if(!els.length||!els.some(vis))return;els.forEach(function(e){e.style.minWidth='';e.style.width='auto'});var m=0;els.forEach(function(e){if(!vis(e))return;var w=e.getBoundingClientRect().width;if(w>m)m=w});els.forEach(function(e){e.style.removeProperty('width')});if(m<10)return;var W=Math.ceil(m)+'px';els.forEach(function(e){if(e.id==='toTop'||e.id==='indexFab')return;e.style.minWidth=W})}function later(){setTimeout(fit,350);setTimeout(fit,1400)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',later)}else{later()}window.addEventListener('load',later);window.addEventListener('resize',fit);document.addEventListener('click',function(){setTimeout(fit,60)},true);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(later)}var g=document.getElementById('gate');if(g&&window.MutationObserver){new MutationObserver(function(){later()}).observe(g,{attributes:true,attributeFilter:['style','class']})}})();
 </script>
 <style>
 /* FINAL ENFORCEMENT (David, Nov 10, 11:00 PM - after the 10th flag): the portal's ORIGINAL .jnav-btn rule (line ~209) paints a pale blue-white gradient, and element+class specificity (0,1,1) beat the plain .b-* variant classes (0,1,0) — that is why buttons kept rendering pale or wrong despite repeated variant edits, and why earlier audits that assumed the variant gradient passed falsely. From here on, audits must MEASURE the computed background-image, never assume it. These nav-scoped rules (0,2,1) pin every jump button's REAL gradient + text color. */
@@ -689,14 +702,14 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <div class="ship-panel">
   <div class="pc-top"><span class="cmd-phrase">📦 Shipments</span><span class="ship-fresh">Updated Nov 24, 2026</span></div>
   <div class="ship-chips">
-    <span class="ship-chip"><b>0</b> Delivery</span>
-    <span class="ship-chip"><b>3</b> Enroute</span>
-    <span class="ship-chip"><b>0</b> Drop-off</span>
-    <span class="ship-chip"><b>44</b> Delivered</span>
+    <span class="ship-chip ship-out"><b>0</b> Delivery</span>
+    <span class="ship-chip ship-transit"><b>3</b> Enroute</span>
+    <span class="ship-chip ship-pend"><b>0</b> Drop-off</span>
+    <span class="ship-chip ship-deliv"><b>44</b> Delivered</span>
     <span class="ship-chip"><b>53</b> Tracked</span>
   </div>
   <p class="ship-attn"><b>All caught up:</b> the 3 desk packages — Rhonda Balam, Denise Medina, Bryan Ranaldo — were picked up by USPS on Mon Nov 23 and are enroute. Nothing is waiting for drop-off; everything else that has gone out is confirmed delivered.</p>
-  <a class="pushbtn ship-open" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">Open the shipment portal</a>
+  <a class="pushbtn ship-open" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">Shipment Portal</a>
 </div>
   <div class="cmd-grid">
 <div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="#vetting">🛡️ Customer Vetting</a></div><p><b>Second door</b> — the checker itself lives in Store &amp; Customers, below. Check any customer <b>before</b> work begins — <b>2 BANNED · 2 CAUTION</b> on file.</p></div>
@@ -731,16 +744,11 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <section class="catsec" id="cat-store">
   <h2 class="cat-title">🛒 Store &amp; Customers</h2>
   <a class="sales-btn-wrap" id="salesBtn" href="https://x-peps.com/X-Peps/aftership-shipments-report.html"><span class="btn b-emerald">Sales</span></a>
-  <div class="cmd-grid">
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="https://x-peps.com/email/" target="_blank" rel="noopener">🛍️ Peptopia Pharma</a></div><p>The store orders page.</p></div>
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener">📦 Shipment Tracking</a></div><p>Every tracked package, swept morning and evening.</p></div>
-
-
-  </div>
-
-  <div class="cmd-grid">
-<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-emerald" href="#vetting">🛡️ Customer Vetting</a></div><p>Check any customer <b>before</b> work begins — <b>2 BANNED · 2 CAUTION</b> on file.<br>Lookup + flag list in the Vetting section below.</p></div>
-  </div>
+  <div class="venn-wrap venn-store"><svg viewBox="0 0 360 220" role="img" aria-label="Store doors — Pharma opens the send request page, Tracking opens the tracking portal, Vetting in the overlap jumps to the Customer Vetting section">
+<a href="https://x-peps.com/email/" target="_blank" rel="noopener"><circle cx="128" cy="112" r="96" fill="rgba(245,158,11,.38)"/><text x="98" y="118" text-anchor="middle" font-size="16">Pharma</text></a>
+<a href="https://x-peps.com/X-Peps/aftership-shipments-report.html" target="_blank" rel="noopener"><circle cx="232" cy="112" r="96" fill="rgba(59,130,246,.34)"/><text x="262" y="118" text-anchor="middle" font-size="16">Tracking</text></a>
+<a href="#vetting"><path d="M 180 31.3 A 96 96 0 0 1 180 192.7 A 96 96 0 0 1 180 31.3 Z" fill="rgba(16,185,129,.42)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><text x="180" y="118" text-anchor="middle" font-size="15">Vetting</text></a>
+</svg></div>
 <h2 id="vetting">🛡️ Customer Vetting</h2>
   <p class="sub">Check <b>before</b> any unpaid work — no assembly, guides, or labels for flagged customers. Snapshot: November 4, 2026 · 1,511 customers on file · the full database lives in Drive.</p>
   <style>

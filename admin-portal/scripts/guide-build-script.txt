@@ -1,4 +1,4 @@
-# GUIDE BUILD SCRIPT
+# GUIDE BUILD SCRIPT — THE BIBLE
 
 **The exhaustive, definitive build procedure for every guide Muse builds, updates, or publishes for David.**
 Rebuilt exhaustive Nov 2, 2026 at David's direct order: *"rebuild / revise / update / perfect your build script for guides as detailed as possible. Leave nothing out."*
@@ -12,7 +12,7 @@ If anything in this script conflicts with what you are about to do, STOP and re-
 ## 0. Authority order — what wins when sources disagree
 
 1. **David's most recent direct word** (chat, tap choice, or email) — always wins, always.
-2. **This script** — the consolidated Guide Build Script. It absorbs MEMORY.md rules, the Guide Standards checklist, AGENTS.md lessons, and the WildCraft build history.
+2. **This script** — the consolidated bible. It absorbs MEMORY.md rules, the Guide Standards checklist, AGENTS.md lessons, and the WildCraft build history.
 3. **The frozen WildCraft prototype AS BUILT** (§2) — for any mechanic, visual, or structural question on a kratom strain guide, open the prototype file and copy how it is actually done there. The prototype as built outranks anyone's memory of it, including this script's prose: if this script and the prototype file disagree on a detail, follow the prototype file and fix this script (§34).
 4. **MEMORY.md** standing rules not yet absorbed here.
 5. **Historical exemplars** — TreeLeaf (living example, Oct 19–20, 2026) and DTE (co-canonical) for general guide feel on non-kratom work; the TSH guide for nursing (§30A).
@@ -411,24 +411,24 @@ The family annexes are: 30A Nursing · 30B Product/study (GLP) · 30C Simple · 
 
 - **Education index:** study guides file to the Education index (X-Peps repo) — **one accent color per section**, cards tight with no dead space (the §27.1 discipline in spirit); a new guide's card ships in the same publish as the guide (§26.5).
 - New-topic comparison colors are chosen from the house discipline: clearly distinguishable from every existing topic color and from adjacent index cards (§28.7) — never a near-duplicate hue.
-### 30C. Simple Guide: [topic] (Oct 29, 2026)
-- A short, single-page abbreviated instruction set — NOT the full pipeline. David supplies the steps (or names a simple task to distill). One clean page: Outfit/DM Sans, orange headline, short intro, **numbered step cards**, at most one "before you start" note and one "what you get" note. **No research phase, no popups, charts, tables, or sources.**
-- **App-switch rule:** when the steps switch apps/programs mid-task, the step HEADING says so explicitly (founding lesson: students missed that printing happens in Word, not PowerPoint).
-- Print standard (§§25+40, Gate C per §42) still applies in full. Founding example: `~/workspace/your_files/PowerPoint_Notes_Printing_10-29-26.html`.
+### 30C. Simple Guide — RETIRED, merged into §30D (Nov 24, 2026)
+- David merged the Simple Guide and Mini Guide scripts into ONE comprehensive Mini Guide script with no duplicated steps. The `Simple Guide:` trigger is retired; "VA: Simple Guide:" email subjects route to §30D steps mode (see §30E).
 
-### 30D. Mini Guide: [topic] (Oct 31, 2026)
-- A short, single-subject RESEARCH guide — Muse researches the subject. Title = the subject's own name. Hero = a photo of the subject (David's when he supplies one, cropped to just the subject) + pictures of others like it, embedded. **Facts as facts; inferences labeled INFERENCE.** Linked references. Outfit/DM Sans, orange headline, light-default, date/theme/print cluster; checker must PASS.
-- Delivered as ONE self-contained downloadable file (images embedded) in chat AND saved to the matching Drive folder (plant subjects → Plants; **POTTERY IS NOT PLANTS** → Drive Tuscarora Arboretum › Pottery). Founding examples: the two McCoy Floraline guides (Oct 31, 2026).
+### 30D. Mini Guide: [topic] (Oct 31, 2026; merged with §30C Nov 24, 2026)
+One compact page, two modes:
+- **Subject mode (research):** Muse researches the one subject — nothing extra, nothing padded. Title = the subject's own name. Hero = a photo of the subject (David's when he supplies one, cropped to just the subject) + pictures of others like it, embedded. **Facts as facts; inferences labeled INFERENCE.** Linked references.
+- **Steps mode (how-to):** David supplies the steps (or names a simple task to distill). **No research phase, no popups, charts, tables, or sources.** The steps are cleaned up and laid out as **numbered step cards**, with at most one "before you start" note and one "what you get" note. **App-switch rule:** when the steps switch apps/programs mid-task, the step HEADING says so explicitly (founding lesson: students missed that printing happens in Word, not PowerPoint).
+- **Common standard:** one clean page — Outfit/DM Sans, orange headline, short intro, light-default, date/theme/print cluster. Print standard (§§25+40, Gate C per §42) applies in full; checker must PASS. Delivered as ONE self-contained downloadable file (images embedded) in chat AND saved to the matching Drive folder (plant subjects → Plants; **POTTERY IS NOT PLANTS** → Drive Tuscarora Arboretum › Pottery). Founding examples: `~/workspace/your_files/PowerPoint_Notes_Printing_10-29-26.html` (steps mode); the two McCoy Floraline guides, Oct 31, 2026 (subject mode).
 
 ### 30E. VA guides (email bridge workflow, Oct 29–31, 2026)
-- Sources arrive from David.Carroll8@va.gov → davidbcarroll@gmail.com; subjects **"VA: Guide: <Process>"** (full) / **"VA: Simple Guide: <Process>"** (short). Full = the complete build standard, print-first; Short = §30C family in the VA visual style (orange gradient circle number buttons, step cards), prints at its specified page count exactly (Intake Short = 2 pages; Mini = 1 page).
+- Sources arrive from David.Carroll8@va.gov → davidbcarroll@gmail.com; subjects **"VA: Guide: <Process>"** (full) / **"VA: Simple Guide: <Process>"** (short). Full = the complete build standard, print-first; Short = §30D Mini Guide steps-mode family in the VA visual style (orange gradient circle number buttons, step cards), prints at its specified page count exactly (Intake Short = 2 pages; Mini = 1 page).
 - **Print-first strictness:** staff read paper printouts — §§25+40 at maximum strictness (large readable type, headings kept with content).
 - **TWO approval gates, in order:** (1) David approves in chat → save to Drive **🏥 VA Guides** (`1RiyADt03IrdES3kXbhcINtHkjr5XOC7L`); (2) David approves again → email to **david.carroll8@va.gov**, subject exactly **"Guide"**, empty body, attachment named per Drive standard.
 - **PRIVACY (absolute):** sample patient/NOK values and identifiers from source material are NEVER reproduced — field names and order only.
 
 - **SBAR turnover guides are a standing VA sub-family** (Extended + Short, Drive 🏥 VA Guides only, never published): the 8-step turnover process, fictional SAMPLE-labeled data only (§30E privacy), in daily fine-tuning until David says done. DOS content is excluded permanently (David's correction, Nov 5, 2026). *[Gate scope — §§40+42 in full vs print-gate-mandatory-only — is PENDING David's ruling (audit R3, Nov 6, 2026); until ruled, the print gate is mandatory at maximum strictness and Gates A/B are run and reported.]* 
 ### 30F. Tuscarora Arboretum artifact guides
-- Governed by their own full script: `~/workspace/tuscarora-arboretum/ARTIFACT_BUILD_SCRIPT.md` (trigger **"Artifact: [brief]"**) + `~/workspace/COMMANDS.md`. This script's §§24–26, 28–29 still apply. Non-negotiables carried here for safety: never print David's real name or any owner mention; findspots general only; no editions/corrections/version talk; no process narrative; confidence tables = facts + labeled inferences only; clickable timeline in every guide; audio ≤2 min fireside style; entry template = exactly 2 web-optimized images + ≤3-sentence blurb + links (study guide, audio, + "View the original patent" when located).
+- Governed by their own full script: `~/workspace/tuscarora-arboretum/ARTIFACT_BUILD_SCRIPT.md` (trigger **"Artifact: [brief]"**) + `~/workspace/COMMANDS.md`. This bible's §§24–26, 28–29 still apply. Non-negotiables carried here for safety: never print David's real name or any owner mention; findspots general only; no editions/corrections/version talk; no process narrative; confidence tables = facts + labeled inferences only; clickable timeline in every guide; audio ≤2 min fireside style; entry template = exactly 2 web-optimized images + ≤3-sentence blurb + links (study guide, audio, + "View the original patent" when located).
 - **Arboretum NAV STANDARD (Oct 31, 2026):** ONE cream banner bar (#FFF7ED, border #F1E3D3, DM Sans .85rem, links #C2410C semibold) reading **Tuscarora Arboretum / Artifacts / [Category] / [Page]** is the FIRST element on every guide page and the crumbs strip under the header on category pages; category pages also carry the `.peptopia-hdr` header whose **HOME points to the Arboretum home, never Peptopia** (the footer Peptopia logo link is separate and stays).
 - Author v2 auto-build: ✒️ Author button, passcode **57**, FormSubmit → store mailbox, processor cron every 30 min, one build at a time in submission order; completion/failure email to DavidBCarroll@gmail.com and mat1066@gmail.com (pre-authorized Oct 26, 2026).
 
@@ -482,7 +482,7 @@ Full pipeline with **zero follow-ups** (David supplies the topic; the standards 
 3. Build to this script end-to-end (family annex §30 picks the skeleton).
 4. Findings + Smooth audio in chat **BEFORE** publishing; publish only on David's explicit approval (§3.4), in ONE pass including related site updates (§26.5).
 5. §28 verification live; deliver per §29.
-(Variants: `Simple Guide:` → §30C; `Mini Guide:` → §30D; `Artifact:` → §30F; VA email subjects → §30E. All are listed in `~/workspace/COMMANDS.md` and on the Admin Portal Command Phrases section.)
+(Variants: `Mini Guide:` → §30D (absorbs the retired `Simple Guide:` trigger); `Artifact:` → §30F; VA email subjects → §30E. All are listed in `~/workspace/COMMANDS.md` and on the Admin Portal Command Phrases section.)
 
 ### 32.2 The Bewitched phone launch path (David, Nov 1, 2026 — PERMANENT)
 - David launches builds from the **Bewitched page on his phone** (https://x-peps.com/bewitched — topic input field + file attach) rather than returning to chat. The page lives on his phone's home screen; it must stay the easiest door into the pipeline.

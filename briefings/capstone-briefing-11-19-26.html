@@ -58,7 +58,10 @@ h1{font-family:'Outfit',sans-serif;}
     var bin=atob(b64); var len=bin.length; var bytes=new Uint8Array(len);
     for(var i=0;i<len;i++){ bytes[i]=bin.charCodeAt(i); }
     var blob=new Blob([bytes],{type:'audio/mpeg'});
-    document.getElementById('capAudio').src=URL.createObjectURL(blob);
+    var aud=document.getElementById('capAudio');
+    aud.src=URL.createObjectURL(blob);
+    var tryPlay=function(){ var pr=aud.play(); if(pr&&pr.catch){ pr.catch(function(){ document.addEventListener('pointerdown',function h(){ document.removeEventListener('pointerdown',h); aud.play().catch(function(){}); }); }); } };
+    if(aud.readyState>=2){ tryPlay(); } else { aud.addEventListener('canplay',tryPlay,{once:true}); }
   }catch(e){}
 })();
 </script>

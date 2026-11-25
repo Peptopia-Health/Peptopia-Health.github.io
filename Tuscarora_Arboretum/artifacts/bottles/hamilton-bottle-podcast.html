@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>try{var _s=localStorage.getItem('peptopia-style');if(_s&&_s!=='peptopia')document.documentElement.setAttribute('data-style',_s)}catch(e){}</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The 1937 Hamilton Bottle — Podcast · Tuscarora Arboretum</title>
 <link rel="apple-touch-icon" href="/Tuscarora_Arboretum/apple-touch-icon.png">
@@ -51,8 +51,7 @@ status.textContent='Audio ready — press play.';
 })();
 </script>
 <script>
-function toggleTheme(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('ta-theme',d?'dark':'light')}catch(e){}}
-try{if(localStorage.getItem('ta-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}
+function toggleTheme(){document.documentElement.classList.toggle('dark');}
 </script>
 </body>
 </html>

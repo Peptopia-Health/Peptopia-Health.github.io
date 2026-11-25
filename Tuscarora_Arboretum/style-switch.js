@@ -1,12 +1,13 @@
 /* Tuscarora Arboretum — design-style switcher (pilot, Nov 23, 2026).
-   The choice lives in localStorage key "peptopia-style" and is applied
-   as the data-style attribute on <html> (see style-themes.css). An
-   inline snippet in each page's <head> applies it before first paint;
-   this file re-applies it and wires the paintbrush dropdown.
-   Choosing "Peptopia" removes the key and the attribute — the wing
-   renders exactly as built. */
+   VISIT-ONLY (David's ruling, Nov 25, 2026): the chosen style applies
+   for the current visit only and is NEVER stored — no web-storage
+   read or write. Every page load starts from the default "Peptopia"
+   look; the paintbrush dropdown still switches styles live during
+   the visit. The choice is kept in a script variable and applied as
+   the data-style attribute on <html> (see style-themes.css).
+   Choosing "Peptopia" removes the attribute — the wing renders
+   exactly as built. */
 (function () {
-  var KEY = 'peptopia-style';
   var STYLES = [
     ['peptopia', 'Peptopia', 'The current look'],
     ['bauhaus', 'Bauhaus', 'Geometry · primary color · form follows function'],
@@ -19,8 +20,9 @@
     fauvism: 'linear-gradient(135deg,#E8442E,#FFC20E 55%,#0E7C3A)',
     midcentury: 'linear-gradient(135deg,#1F7A72,#E3A72F 55%,#CC5E2A)'
   };
+  var chosen = 'peptopia';
   function current() {
-    try { return localStorage.getItem(KEY) || 'peptopia'; } catch (e) { return 'peptopia'; }
+    return chosen;
   }
   function apply(s) {
     var de = document.documentElement;
@@ -65,10 +67,7 @@
       var o = e.target.closest('.style-opt');
       if (!o) { return; }
       var v = o.getAttribute('data-style-val');
-      try {
-        if (v === 'peptopia') { localStorage.removeItem(KEY); }
-        else { localStorage.setItem(KEY, v); }
-      } catch (err) {}
+      chosen = v;
       apply(v);
       mark();
       close();

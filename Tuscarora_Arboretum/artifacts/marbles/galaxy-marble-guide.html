@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>try{var _s=localStorage.getItem('peptopia-style');if(_s&&_s!=='peptopia')document.documentElement.setAttribute('data-style',_s)}catch(e){}</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Galaxy Marble — Identification &amp; History Guide · Tuscarora Arboretum</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -246,8 +246,7 @@ table{max-width:100%}
 <button type="button" class="author-btn" data-ta-open>✒️ AUTHOR</button><button type="button" class="author-btn ta-close-btn iconbtn" data-ta-close aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
 </div>
 <script>
-function toggleTheme(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('ta-theme',d?'dark':'light')}catch(e){}}
-try{if(localStorage.getItem('ta-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}
+function toggleTheme(){document.documentElement.classList.toggle('dark');}
 </script>
 <footer class="peptopia-ftr">
 <div>&copy; 2026 Tuscarora Arboretum &bull; A Peptopia project &bull; Martinsburg, West Virginia</div>

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Commands — Peptopia Health</title>
+<link rel="apple-touch-icon" href="/Tuscarora_Arboretum/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6FA; --card:#FFFFFF; --card-sub:#F8FAFC; --border:rgba(15,23,42,.09);
+  --sh:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.03);
+  --sh-h:0 12px 28px rgba(0,0,0,.08),0 4px 10px rgba(0,0,0,.04);
+  --t1:#0F172A; --t2:#475569; --t3:#5B6B82;
+  --orange:#F06000; --theme:#2563EB; --theme-dark:#1D4ED8;
+  --font-head:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
+  --pal-energy:#FFFFFF; --pal-focus:#F06000; --pal-mood:#10C000; --pal-calm:#F0F000; --pal-pain:#E01020; --pal-sleep:#0A0A0A; --pal-cobalt:#0070D0; --pal-purple:#6C4FE0; --pal-purple-lt:#7759ED; --pal-biohacking:#2563EB; --pal-biohacking-lt:#5987ED; --pal-tuscarora:#D97706; --pal-tuscarora-lt:#F59E0B;
+}
+html.dark{
+  --bg:#020617; --card:#0F172A; --card-sub:#1E293B; --border:rgba(148,163,184,.18);
+  --t1:#F8FAFC; --t2:#CBD5E1; --t3:#94A3B8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--t1);font-family:var(--font-body);line-height:1.5}
+
+.peptopia-hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:860px;margin:0 auto;padding:14px 24px;position:relative;z-index:50}
+.peptopia-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.peptopia-logo{width:46px;height:46px;border-radius:50%;flex:none;box-shadow:0 0 10px 2px rgba(236,72,153,.55),0 0 26px 8px rgba(236,72,153,.18)}
+.peptopia-logo.logo-light,.ftr-logo .logo-light{display:none}
+html.dark .peptopia-logo.logo-light,html.dark .ftr-logo .logo-light{display:block}
+html.dark .peptopia-logo.logo-dark,html.dark .ftr-logo .logo-dark{display:none}
+.peptopia-wordmark{display:flex;flex-direction:column;font-family:var(--font-head);font-weight:800;font-size:.82rem;line-height:1.15;letter-spacing:.14em;color:#1e1b4b}
+html.dark .peptopia-wordmark{color:#f1f5f9}
+.peptopia-tagline{font-size:.48rem;font-weight:600;letter-spacing:.3em;color:#5B6B82}
+html.dark .peptopia-tagline{color:#94a3b8}
+.peptopia-nav{display:flex;align-items:center;gap:1.25rem}
+.peptopia-nav>a{font-family:var(--font-head);font-weight:700;font-size:.8rem;letter-spacing:.12em;color:#334155;text-decoration:none}
+html.dark .peptopia-nav>a{color:#cbd5e1}
+.peptopia-nav>a:hover{color:var(--theme-dark)}
+.peptopia-iconbtn{width:44px;height:44px;border-radius:50%;border:2px solid rgba(15,23,42,.18);background:linear-gradient(180deg,#FFFFFF 0%,#E3ECFA 55%,#C7D9F6 100%);color:#334155;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 4px rgba(37,99,235,.22),0 3px 6px rgba(15,23,42,.16);transition:transform .05s ease,box-shadow .05s ease}
+html.dark .peptopia-iconbtn{background:linear-gradient(180deg,#3B4B6B 0%,#26344E 55%,#1B2740 100%);border-color:#60A5FA;color:#DBEAFE;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.35),0 3px 6px rgba(0,0,0,.4)}
+.peptopia-iconbtn:hover{border-color:var(--theme);color:var(--theme-dark)}
+.peptopia-iconbtn svg{width:19px;height:19px}
+.peptopia-iconbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(15,23,42,.25)}
+html.dark .peptopia-iconbtn:hover{border-color:#7CC4FF;color:#7CC4FF}
+.peptopia-theme-toggle .pp-sun{display:none}
+html.dark .peptopia-theme-toggle .pp-sun{display:block}
+html.dark .peptopia-theme-toggle .pp-moon{display:none}
+.peptopia-ftr{border-top:1px solid rgba(15,23,42,.08);margin-top:48px;padding:22px 24px;text-align:center;font-weight:500;font-size:.8rem;line-height:1.6;color:#5B6B82}
+html.dark .peptopia-ftr{border-color:rgba(255,255,255,.08);color:#94a3b8}
+.peptopia-ftr .ftr-email-line{text-align:center;margin:6px 0}
+.peptopia-ftr .ftr-email-line a{color:#5B6B82;text-decoration:none}
+html.dark .peptopia-ftr .ftr-email-line a{color:#94a3b8}
+.peptopia-ftr .peptopia-ftr-icons{display:flex;gap:16px;justify-content:center;margin-top:10px}
+.peptopia-ftr .peptopia-ftr-icons a{color:#5B6B82;display:inline-flex}
+html.dark .peptopia-ftr .peptopia-ftr-icons a{color:#94a3b8}
+.peptopia-ftr .peptopia-ftr-icons a:hover{color:var(--theme-dark)}
+.peptopia-ftr .peptopia-ftr-icons svg{width:18px;height:18px}
+.peptopia-ftr .ftr-logo img{width:18px;height:18px;border-radius:50%;filter:grayscale(1);opacity:.55}
+.peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
+html.dark .peptopia-ftr .ftr-logo img{filter:grayscale(1) invert(1);opacity:.75}
+html.dark .peptopia-ftr .ftr-logo:hover img{filter:none;opacity:1}
+@media (max-width:640px){.peptopia-hdr{padding:10px 12px;gap:8px}.peptopia-brand{gap:8px}.peptopia-logo{width:38px;height:38px}.peptopia-wordmark{font-size:.85rem}.peptopia-nav{gap:.6rem}.peptopia-nav>a{font-size:.7rem;letter-spacing:.08em}.peptopia-iconbtn{width:44px;height:44px}}
+
+#gate{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}
+#gate .box{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh-h);max-width:360px;width:100%;padding:28px 24px;text-align:center}
+#gate img{width:72px;height:72px;border-radius:50%;box-shadow:0 0 12px 3px rgba(236,72,153,.5),0 0 30px 10px rgba(236,72,153,.16)}
+#gate h1{font-family:var(--font-head);font-weight:800;color:var(--orange);font-size:1.3rem;margin:14px 0 4px}
+#gate p{color:var(--t2);font-size:.92rem;margin:0 0 16px}
+#gate input{width:120px;font-size:1.3rem;text-align:center;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card-sub);color:var(--t1);font-family:var(--font-head);font-weight:700;letter-spacing:.2em}
+#gate button{display:block;margin:14px auto 0;background:var(--theme);color:#fff;border:none;border-radius:999px;padding:6px 22px;font-family:var(--font-head);font-weight:700;font-size:.85rem;cursor:pointer}
+#gate button:hover{background:var(--theme-dark)}
+#gateErr{color:#DC2626;font-size:.85rem;min-height:1.2em;margin-top:10px}
+#portalRoot{display:none}
+#portalRoot.unlocked{display:block}
+
+main{max-width:860px;margin:0 auto;padding:10px 14px 10px}
+.ptitle{font-family:var(--font-head);font-weight:800;color:var(--orange);font-size:1.6rem;margin:14px 0 2px}
+.psub{color:var(--t2);margin:0 0 8px}
+.strip{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:8px 14px;box-shadow:var(--sh);font-size:.88rem;color:var(--t2)}
+.stat b{font-family:var(--font-head);color:var(--theme-dark);font-size:1.05rem}
+h2{font-family:var(--font-head);font-weight:800;color:var(--orange);font-size:1.15rem;margin:28px 0 6px}
+.sub{color:var(--t2);font-size:.92rem;margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh);padding:16px;margin:0 0 14px;transition:box-shadow .2s}
+.card:hover{box-shadow:var(--sh-h)}
+.card h3{font-family:var(--font-head);font-weight:700;margin:0 0 4px;font-size:1.05rem}
+.meta{color:var(--t3);font-size:.82rem;margin:0 0 8px}
+.pill{display:inline-block;border-radius:999px;padding:1px 10px;font-size:.74rem;font-weight:600;margin:0 6px 6px 0;background:var(--card-sub);border:1px solid var(--border);color:var(--t2)}
+.pill.status{background:#DBEAFE;color:#1E40AF}
+html.dark .pill.status{background:#1E3A8A;color:#BFDBFE}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+a.open{display:inline-block;margin:6px 10px 8px 0;font-weight:600;color:var(--theme);text-decoration:none}
+a.open:hover{text-decoration:underline}
+ul{margin:6px 0 2px;padding-left:20px;color:var(--t2);font-size:.93rem}
+p.assess{color:var(--t2);font-size:.95rem;margin:4px 0}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+td,th{padding:7px 8px;border-bottom:1px solid var(--border);text-align:left;color:var(--t2)}
+th{font-family:var(--font-head);color:var(--t1)}
+.score{font-weight:700;color:var(--t1)}
+label.act{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);color:var(--t2);font-size:.95rem;cursor:pointer}
+label.act input{width:20px;height:20px;margin-top:2px;accent-color:var(--theme)}
+.act.done{opacity:.62}
+.priv{background:#DBEAFE;border:1px solid #93C5FD;color:#1E3A8A;border-radius:12px;padding:12px 14px;font-size:.9rem;margin-top:14px}
+html.dark .priv{background:#172554;color:#BFDBFE;border-color:#1D4ED8}
+@media print{#gate,.peptopia-iconbtn{display:none}#portalRoot{display:block!important}}
+
+  
+  .cmd-group{font-family:Outfit,sans-serif;font-weight:700;color:var(--acc);margin:18px 0 8px;font-size:15px}
+  .cmd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .cmd-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+  .cmd-phrase{font-family:Outfit,sans-serif;font-weight:800;font-size:16px;color:var(--ink);background:var(--accsoft);border:1px dashed var(--acc);border-radius:10px;padding:8px 12px;display:inline-block;margin-bottom:8px}
+  .cmd-card p{margin:0;color:var(--mut);font-size:14px}
+  .pc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .open-ico{flex:0 0 auto;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--accsoft);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;line-height:1}
+  .cmd-card a,.cmd-group a{color:var(--acc);font-weight:700;text-decoration:none}
+  .gbuild-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
+  @media (max-width:640px){.gbuild-row{grid-template-columns:1fr}}
+  .gbuild-btn{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:16px 18px 14px;border-radius:16px;cursor:pointer;color:#fff;font-family:Outfit,system-ui,sans-serif;box-shadow:inset 0 2px 0 rgba(255,255,255,.45),inset 0 -3px 0 rgba(0,0,0,.18),0 4px 0 var(--gbb,#065F46),0 8px 16px rgba(15,23,42,.25);transition:transform .05s,box-shadow .05s}
+  .gbuild-btn:active{transform:translateY(3px);box-shadow:inset 0 2px 0 rgba(255,255,255,.45),inset 0 -3px 0 rgba(0,0,0,.18),0 1px 0 var(--gbb,#065F46),0 3px 8px rgba(15,23,42,.25)}
+  .gbuild-btn .gb-t{font-size:1.3rem;font-weight:800;letter-spacing:.01em}
+  .gbuild-btn .gb-s{font-family:'DM Sans',system-ui,sans-serif;font-size:.92rem;font-weight:400;opacity:.94;line-height:1.35}
+  .gb-green{background:linear-gradient(180deg,#047857,#065F46 55%,#064E3B);border:2px solid #065F46;--gbb:#065F46}
+  .gb-violet{background:linear-gradient(180deg,#7C3AED,#6D28D9 55%,#5B21B6);border:2px solid #4C1D95;--gbb:#4C1D95}
+  .gb-blue{background:linear-gradient(180deg,#2563EB,#1D4ED8 55%,#1E3A8A);border:2px solid #1E3A8A;--gbb:#1E3A8A;align-items:center;text-align:center;width:100%}
+  .gb-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.58);display:flex;align-items:center;justify-content:center;z-index:999;padding:14px}
+  .gb-backdrop[hidden]{display:none}
+  .gb-modal{background:var(--card,#fff);color:inherit;border:1px solid var(--line,#E2E8F0);border-radius:18px;max-width:520px;width:100%;max-height:92vh;overflow:auto;padding:20px 20px 16px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  .gb-modal h3{margin:0 0 2px;font-family:Outfit,system-ui,sans-serif;font-size:1.35rem;font-weight:800}
+  .gb-modal .gb-sub{margin:0 0 12px;color:var(--mut,#64748B);font-size:.95rem}
+  .gb-modal label{display:block;font-weight:700;font-size:.95rem;margin:12px 0 0}
+  .gb-modal input[type=text],.gb-modal textarea{width:100%;box-sizing:border-box;margin-top:5px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line,#CBD5E1);background:var(--card,#fff);color:inherit;font:inherit;font-weight:400}
+  .gb-modal input[type=file]{margin-top:6px;font:inherit;font-weight:400}
+  .gb-thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .gb-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:9px;border:1.5px solid var(--line,#CBD5E1)}
+  .gb-actions{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .gb-cancel{background:none;border:none;color:var(--mut,#64748B);font:inherit;font-weight:700;cursor:pointer;padding:6px}
+  .gb-status{margin:10px 0 2px;font-size:.95rem;min-height:1.2em}
+
+
+  .astat{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--accsoft);color:var(--acc);font-size:12px;font-weight:700;vertical-align:middle}
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:12px;font-size:14px;max-width:88vw;text-align:center;opacity:0;pointer-events:none;transition:all .25s ease;z-index:300;box-shadow:var(--shadow)}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .vein-band{font-family:Outfit,sans-serif;font-weight:800;font-size:17px;border-radius:12px;padding:11px 16px;margin:24px 0 4px;display:flex;justify-content:space-between;align-items:center}
+  .vein-count{font-size:13px;font-weight:700;opacity:.85}
+  .vein-sub{color:var(--mut);font-size:14px;margin:0 0 10px}
+  .vein-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .vein-grid .card{margin:0}
+
+  
+  .qp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);margin:18px 0 6px}
+  .qp h2{margin:0 0 2px}
+  .qp-wheel{position:relative;width:min(390px,96vw);aspect-ratio:1/1;margin:8px auto 4px}
+  .qp-spoke{position:absolute;left:50%;top:50%;width:37.5%;height:2px;background:var(--line);transform-origin:0 50%;border-radius:2px}
+  .qp-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;background:color-mix(in srgb,#2E7D4F 13%,var(--card));border:3px solid #17452A;display:flex;align-items:center;justify-content:center;font-size:60px;z-index:2;cursor:pointer;padding:0;box-shadow:inset 0 3px 4px rgba(255,255,255,.6),inset 0 -4px 7px rgba(0,0,0,.15),0 5px 9px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease}
+  .qp-hub:active{transform:translate(-50%,-50%) translateY(3px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),inset 0 -2px 4px rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.25)}
+  .qp-node{position:absolute;transform:translate(-50%,-50%);width:106px;height:106px;border-radius:50%;background:color-mix(in srgb,var(--nc) 13%,var(--card));border:3px solid var(--nb,var(--nc));color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;z-index:3;padding:0;font-family:Outfit,sans-serif;box-shadow:inset 0 3px 4px rgba(255,255,255,.6),inset 0 -4px 7px rgba(0,0,0,.15),0 5px 9px rgba(0,0,0,.22);transition:transform .07s ease,box-shadow .07s ease,background .15s ease}
+  .qp-node .qp-emo{font-size:30px;line-height:1}
+  .qp-node small{font-size:25px;font-weight:700;letter-spacing:.03em}
+  .qp-node.on{background:var(--nc);color:#fff}
+  .qp-node:active{transform:translate(-50%,-50%) translateY(3px) scale(.96);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),inset 0 -2px 4px rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.25)}
+  .qp-name{font-family:Outfit,sans-serif;font-weight:800;font-size:26px;color:#F06000;line-height:1.15}
+  .qp-meta{color:var(--mut);font-size:14px;margin:2px 0 6px}
+  .qp-why{font-size:15px;margin:0 0 6px}
+  .qp-bars{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}
+  .qp-bar{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--mut)}
+  .qp-dots{display:flex;gap:3px;margin-top:3px}
+  .qp-dots i{width:14px;height:8px;border-radius:3px;display:block}
+  .qp-runner{font-size:14px;color:var(--mut);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .qp-runner b{color:var(--ink)}
+  .qp-note{font-size:12px;color:var(--mut);margin:10px 0 0}
+  .qp-dual{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+  @media (max-width:560px){.qp-dual{grid-template-columns:1fr}}
+  .qp-pick{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--card)}
+  .qp-tag{font-family:Outfit,sans-serif;font-weight:800;font-size:12px;letter-spacing:.06em;color:#F06000;text-transform:uppercase;margin-bottom:4px}
+  .qp-tag.rot{color:#2E7D4F}
+  .qp-pick .qp-name{font-size:22px}
+  .qp-rotwhy{font-size:13px;color:var(--mut);margin:4px 0 0}
+  .qp-take{margin-top:8px;font-family:Outfit,sans-serif;font-weight:700;font-size:14px;padding:9px 14px;border-radius:999px;border:2px solid var(--ink);background:color-mix(in srgb,#F59E0B 16%,var(--card));color:var(--ink);cursor:pointer;box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -3px 5px rgba(0,0,0,.12),0 3px 6px rgba(0,0,0,.2);transition:transform .07s ease,box-shadow .07s ease}
+  .qp-take.rot{background:color-mix(in srgb,#2E7D4F 16%,var(--card))}
+  .qp-take:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.25)}
+  .qp-logged{font-size:14px;font-weight:700;color:#2E7D4F;margin-top:8px}
+</style>
+<style id="sales-btn-css">
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 24px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:100%;transition:filter .3s}
+.btn{white-space:nowrap}
+.btn{padding:6px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.34),0 9px 18px rgba(15,23,42,.38),0 2px 4px rgba(15,23,42,.35);
+  text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.b-emerald{background:linear-gradient(135deg,#059669,#10B981)}
+.btn:hover{filter:brightness(1.1)}
+.sales-btn-wrap{display:block;text-decoration:none;cursor:pointer;margin:0 0 18px}
+.sales-btn-wrap:active .btn{transform:translateY(2px);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.6),inset 0 -2px 4px rgba(0,0,0,.32),0 3px 7px rgba(15,23,42,.32)}
+.sales-btn-wrap .btn{width:100%}
+.sales-pop{position:fixed;inset:0;background:rgba(10,6,24,.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:14px}
+.sales-pop.open{display:flex}
+.sales-pop-card{background:#fff;border-radius:20px;width:min(1440px,97vw);max-height:94vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.sales-pop-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#4C1D95;color:#fff;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem}
+.sales-pop-x{width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.6);background:transparent;color:#fff;font-size:1.3rem;cursor:pointer;line-height:1}
+.sales-pop iframe{flex:1;width:100%;min-height:78vh;border:0;background:#F6F2FB}
+</style>
+<style id="portal-v2-css">
+
+html{scroll-behavior:smooth}
+
+
+.cat-reopen{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:center;width:100%;margin:0 0 4px;padding:0 18px;height:34px;border:1px solid #7c5cd6;border-radius:999px;background:linear-gradient(180deg,#E9E4FF,#CFC2FF);color:#241533;font:600 14px 'DM Sans',sans-serif;cursor:pointer;box-shadow:0 3px 0 #7c5cd6,0 8px 16px rgba(36,21,51,.18)}
+.cat-reopen:active{transform:translateY(2px);box-shadow:0 1px 0 #7c5cd6,0 4px 8px rgba(36,21,51,.16)}
+.cat-reopen[hidden]{display:none}
+.jumpnav{position:sticky;top:0;z-index:90;display:flex;gap:8px;flex-wrap:wrap;padding:10px 2px;background:var(--bg);border-bottom:1px solid var(--border)}
+.jnav-btn{display:inline-flex;align-items:center;min-height:38px;font-family:var(--font-head);font-weight:700;font-size:.86rem;color:var(--theme-dark);text-decoration:none;background:linear-gradient(180deg,#FFFFFF 0%,#E3ECFA 55%,#C7D9F6 100%);border:2px solid var(--theme);border-radius:999px;padding:6px 15px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 4px rgba(37,99,235,.22),0 3px 6px rgba(15,23,42,.16);transition:transform .05s ease,box-shadow .05s ease}
+.jnav-btn:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(15,23,42,.25)}
+.jnav-btn.active{border-color:var(--orange);color:#A55A07;background:linear-gradient(180deg,#FFF7ED 0%,#FFE7C7 55%,#FFD9A8 100%)}
+html.dark .jnav-btn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#26344E 55%,#1B2740 100%);border-color:#60A5FA}
+html.dark .jnav-btn.active{border-color:var(--orange);color:#FBD6AD;background:linear-gradient(180deg,#4A2E17 0%,#38220F 55%,#2A1A0D 100%)}
+.catsec{scroll-margin-top:64px;padding-top:2px}
+.cat-title{font-family:var(--font-head);font-weight:800;font-size:1.55rem;color:var(--t1);border-bottom:3px solid var(--orange);padding-bottom:4px;margin:4px 0 4px}
+.catsec h2:not(.cat-title){font-size:1.18rem;margin-top:28px}
+.bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin:14px 0 8px}
+.bc-card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--sh);padding:18px 18px 16px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.bc-medal{width:100%}
+.bc-medal svg{width:100%;max-width:320px;height:auto;display:block;margin:0 auto}
+html.dark .med-cap{fill:#9FB0C9}
+.bc-title{font-family:var(--font-head);font-weight:800;font-size:1.28rem;color:var(--t1);margin:8px 0 4px}
+.bc-icon{width:84px;height:84px;display:block}
+.bc-card .iconbtn img{width:60px;height:60px}
+.bc-intro{color:var(--t2);font-size:.98rem;line-height:1.5;margin:0}
+.bc-intro mark{background:#D9FBEA;color:inherit;font-weight:700;padding:0 3px;border-radius:4px}
+.mark-o{background:transparent;font-weight:700;padding:0;border-radius:0}
+html.dark .bc-intro mark{background:#D9FBEA;color:#0F172A}
+html.dark .mark-o{color:#0F172A}
+.bc-card .pushbtn{margin-top:auto}
+.pushbtn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;font-family:var(--font-head);font-weight:700;font-size:.88rem;color:#1D4ED8;background:linear-gradient(180deg,#FFFFFF 0%,#DCE9FF 55%,#B9D2FF 100%);border:2px solid #2563EB;border-radius:999px;padding:6px 22px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 4px rgba(37,99,235,.25),0 3px 6px rgba(15,23,42,.18);transition:transform .05s ease,box-shadow .05s ease}
+.pushbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 5px rgba(15,23,42,.25)}
+.pushbtn.small{padding:6px 14px;font-size:.85rem}
+html.dark .pushbtn{color:#DBEAFE;background:linear-gradient(180deg,#3B4B6B 0%,#26344E 55%,#1B2740 100%);border-color:#60A5FA}
+.modal-ovl{position:fixed;inset:0;background:rgba(10,15,26,.55);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+.modal-ovl.open{display:flex}
+.modal-card{background:var(--card);color:var(--t1);max-width:560px;width:100%;max-height:88vh;overflow:auto;border-radius:20px;padding:26px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.35);position:relative}
+.modal-x{position:absolute;top:10px;right:12px;width:48px;height:48px;border-radius:50%;padding:0;font-size:1.25rem;line-height:1}
+.modal-title{font-family:var(--font-head);font-weight:800;font-size:1.3rem;color:var(--orange);margin:0 34px 8px 0}
+.modal-what{color:var(--t2);line-height:1.5;margin:0 0 10px}
+.modal-steps{margin:0 0 12px;padding-left:22px;color:var(--t1);line-height:1.42}.modal-steps li{margin:1px 0}
+.modal-steps li{margin-bottom:6px}
+.exrow{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--card-sub);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+.exrow code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;color:var(--t1);word-break:break-word}
+.modal-note{color:var(--t3);font-size:.88rem;margin:10px 0 0}
+#toTop{position:fixed;right:16px;bottom:16px;z-index:150;width:52px;height:52px;border-radius:50%;padding:0;font-size:1.3rem;display:none}
+#toTop.show{display:block}
+@media (max-width:640px){.bc-grid{grid-template-columns:1fr}.jumpnav{flex-wrap:nowrap;overflow-x:auto;padding-bottom:12px}.jnav-btn{white-space:nowrap}.cat-title{font-size:1.35rem}}
+html.dark a.open{color:#7CC4FF}
+html.dark .vet-note a{color:#7CC4FF}
+html.dark .cmd-card a,html.dark .cmd-group a{color:#7CC4FF}
+html.dark .peptopia-ftr .ftr-email-line a{color:#7CC4FF}
+.ship-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--sh);padding:14px 16px;margin:12px 0 4px}
+.ship-fresh{color:var(--t3);font-size:.8rem;font-weight:600;white-space:nowrap}
+.ship-chips{display:flex;flex-wrap:nowrap;gap:8px;margin:10px 0}
+@media (max-width:640px){.ship-chips{flex-wrap:wrap}}
+.ship-chip{background:var(--card-sub);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:.88rem;color:var(--t2)}
+.ship-chip b{font-family:var(--font-head);color:var(--t1);font-size:1rem}
+.ship-chip.warn{border-color:#D97706;background:#FFFBEB;color:#78350F}
+.ship-chip.warn b{color:#92400E}
+html.dark .ship-chip.warn{background:#451A03;border-color:#92400E;color:#FDE68A}
+html.dark .ship-chip.warn b{color:#FDE68A}
+.ship-panel .ship-open{display:block;width:fit-content;margin:10px auto 2px}
+.ship-chip.ship-out{background:#FEF3C7;border-color:#F59E0B;color:#92400E}
+.ship-chip.ship-transit{background:#FEF9C3;border-color:#EAB308;color:#713F12}
+.ship-chip.ship-pend{background:#E2E8F0;border-color:#64748B;color:#334155}
+.ship-chip.ship-deliv{background:#DCFCE7;border-color:#16A34A;color:#14532D}
+.ship-chip.ship-out b,.ship-chip.ship-transit b,.ship-chip.ship-pend b,.ship-chip.ship-deliv b{color:inherit}
+html.dark .ship-chip.ship-out{background:#713F12;border-color:#F59E0B;color:#FEF3C7}
+html.dark .ship-chip.ship-transit{background:#713F12;border-color:#EAB308;color:#FEF9C3}
+html.dark .ship-chip.ship-pend{background:#334155;border-color:#64748B;color:#E2E8F0}
+html.dark .ship-chip.ship-deliv{background:#14532D;border-color:#16A34A;color:#DCFCE7}
+.sales-btn-wrap{display:flex;justify-content:center;text-decoration:none}
+#salesBtn .btn{width:auto;min-width:0!important;flex:0 0 auto}
+.venn-store{max-width:420px}
+.btn-auto{width:auto!important}
+.vendor-row{display:flex;flex-wrap:nowrap;gap:8px;justify-content:space-between;margin-top:8px}
+.vendor-btn{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;flex:1;min-width:0}
+.vendor-btn img{width:52px;height:52px;border-radius:50%;transition:transform .08s ease}
+.vendor-btn:active img{transform:translateY(2px)}
+.vendor-btn span{font-family:Outfit,sans-serif;font-size:.62rem;font-weight:700;color:var(--t2);text-align:center;line-height:1.15}
+@media(max-width:640px){.vendor-row{flex-direction:column;align-items:center;gap:10px}.vendor-btn{flex-direction:row;gap:9px}.vendor-btn span{font-size:.82rem}}
+.ship-attn{margin:4px 0 12px;color:var(--t2);font-size:.93rem}
+.ship-open{text-decoration:none}
+</style>
+<style id="btn-final-css">
+
+.b-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4)}
+.b-orange{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+.b-corr{background:linear-gradient(135deg,#F6962C,#F7A040);color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+
+.b-pink{background:linear-gradient(135deg,#DB2777,#F472B6)}
+.b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)}
+.b-amber{background:linear-gradient(135deg,#D97706,#F59E0B)}
+.b-red{background:linear-gradient(135deg,#B91C1C,#DC2626)}
+.b-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF)}
+a.jnav-btn.btn{width:auto;text-decoration:none;color:#fff}
+a.jnav-btn.btn.active{color:#fff}
+html.dark a.jnav-btn.btn{color:#fff}
+a.jnav-btn.btn:active{transform:translateY(2px);box-shadow:inset 0 1px 2px rgba(255,255,255,.6),inset 0 -2px 4px rgba(0,0,0,.32),0 3px 7px rgba(15,23,42,.32)}
+button.pushbtn,a.pushbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:6px 22px;border-radius:999px;border:1.5px solid rgba(15,23,42,.28);background:linear-gradient(135deg,#1D6FF2,#4D94FF);font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;color:#fff;width:auto;min-height:0;white-space:nowrap;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.34),0 9px 18px rgba(15,23,42,.38),0 2px 4px rgba(15,23,42,.35);text-shadow:0 1px 2px rgba(0,0,0,.35);transition:filter .3s}
+button.pushbtn:hover,a.pushbtn:hover{filter:brightness(1.1)}
+button.pushbtn:active,a.pushbtn:active{transform:translateY(2px);box-shadow:inset 0 1px 2px rgba(255,255,255,.6),inset 0 -2px 4px rgba(0,0,0,.32),0 3px 7px rgba(15,23,42,.32)}
+html.dark button.pushbtn,html.dark a.pushbtn{color:#fff;background:linear-gradient(135deg,#1D6FF2,#4D94FF);border-color:rgba(15,23,42,.28)}
+
+a.jnav-btn.btn{min-height:0;padding:6px 22px}
+.b-amber{background:linear-gradient(135deg,#D97706,#F59E0B)}
+.b-amber,a.jnav-btn.btn.b-amber{color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.b-pink{background:linear-gradient(135deg,#DB2777,#F472B6);color:#fff}
+.b-orange,a.jnav-btn.btn.b-orange{color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.b-cyan,a.jnav-btn.btn.b-cyan,.b-emerald,a.jnav-btn.btn.b-emerald,.b-pink,a.jnav-btn.btn.b-pink{color:#241533;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+
+.b-orange,button.pushbtn.b-orange,a.pushbtn.b-orange,.btn.b-orange{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+</style>
+<style>
+
+nav.jumpnav a.jnav-btn.b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA)!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+nav.jumpnav a.jnav-btn.b-red{background:linear-gradient(135deg,#B91C1C,#DC2626)!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+nav.jumpnav a.jnav-btn.b-emerald{background:linear-gradient(135deg,#059669,#10B981)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-amber{background:linear-gradient(135deg,#D97706,#F59E0B)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-bio{background:linear-gradient(135deg,#1D6FF2,#4D94FF)!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+nav.jumpnav a.jnav-btn.b-orange{background:linear-gradient(135deg,#F59E0B,#FBBF24)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+nav.jumpnav a.jnav-btn.b-pink{background:linear-gradient(135deg,#DB2777,#F472B6)!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+a.jnav-btn.btn.active{color:#241533}
+</style>
+<style id="btn-final-css-2">
+
+
+#indexFab{position:fixed;right:16px;bottom:80px;z-index:151;width:52px;height:52px;border-radius:50%;padding:0;font-size:1.25rem}
+#indexPop{position:fixed;inset:0;background:rgba(10,6,24,.72);display:none;align-items:center;justify-content:center;z-index:9998;padding:14px}
+#indexPop.open{display:flex}
+.index-card{background:var(--card,#fff);border-radius:20px;width:min(560px,96vw);max-height:90vh;overflow:auto;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.index-card h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.35rem;margin:0 0 14px;color:var(--ink,#241533)}
+.index-list{display:flex;flex-direction:column;gap:10px}
+.index-list .btn{width:100%;text-decoration:none}
+.index-x{float:right;width:42px;height:42px;border-radius:50%;border:2px solid rgba(15,23,42,.25);background:transparent;color:var(--ink,#241533);font-size:1.15rem;cursor:pointer;line-height:1}
+@media print{#indexFab,#indexPop{display:none!important}}
+</style>
+<style>
+
+nav.jumpnav.jcols{display:flex;gap:14px;flex-wrap:nowrap;overflow:visible}
+nav.jumpnav.jcols .jcol{display:flex;flex-direction:column;gap:8px;flex:1 1 0;min-width:0}
+nav.jumpnav.jcols .jcol a.jnav-btn{width:100%!important}
+@media (max-width:640px){nav.jumpnav.jcols{flex-direction:column;overflow:visible}}
+</style>
+<style>
+
+.pc-top{display:block}
+.cardbtn{display:inline-flex;align-items:center;gap:6px;width:fit-content;white-space:nowrap;font-size:.84rem;line-height:1.1;padding:6px 14px;margin-bottom:8px;text-decoration:none}
+.cardbtn.long{font-size:.76rem;padding:6px 12px}
+.b-lime{background:linear-gradient(135deg,#7CFC00,#4ADE80);color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+.nowrap{white-space:nowrap}
+.potions-wide{grid-template-columns:1fr!important}
+.potions-wide .cmd-card{margin:0 auto;width:100%}
+.flask-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px;padding:12px 6px 6px}
+.flask{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none}
+.flask img{height:104px;width:auto;max-width:100%}
+.flask span{font-family:Outfit,sans-serif;font-weight:700;font-size:1.02rem}
+@media (max-width:640px){.flask-grid{grid-template-columns:repeat(2,1fr)}.flask img{height:92px}}
+.hdrbtn{font-size:.72rem!important;letter-spacing:.06em;padding:5px 13px;text-decoration:none}
+button.hdrbtn.peptopia-iconbtn{width:34px!important;min-width:34px;height:34px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;padding:0}
+button.hdrbtn.peptopia-iconbtn svg{width:16px;height:16px}
+a.cardbtn.b-purple,a.hdrbtn.b-purple{color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+a.cardbtn.b-red,a.hdrbtn.b-red{color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+a.cardbtn.b-bio,a.hdrbtn.b-bio,button.hdrbtn.b-bio{color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)!important}
+a.cardbtn.b-cyan,a.hdrbtn.b-cyan{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+a.cardbtn.b-emerald,a.hdrbtn.b-emerald{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+a.cardbtn.b-pink,a.hdrbtn.b-pink{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+a.cardbtn.b-amber,a.hdrbtn.b-amber{color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+</style>
+<style id="banner-standard-css">
+
+.peptopia-nav{gap:.55rem}
+.peptopia-nav>a.hdrbtn{width:80px;flex:none}
+a.hdrbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:999px;font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:7px 0;text-decoration:none;box-shadow:inset 0 2px 3px rgba(255,255,255,.9),inset 0 -4px 7px rgba(0,0,0,.34),0 9px 18px rgba(15,23,42,.38),0 2px 4px rgba(15,23,42,.35);transition:filter .2s,transform .05s}
+a.hdrbtn:hover{filter:brightness(1.12)}
+a.hdrbtn:active{transform:translateY(2px)}
+a.hdrbtn.b-purple{background:linear-gradient(135deg,#7E22CE,#9333EA);color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+a.hdrbtn.b-emerald{background:linear-gradient(135deg,#059669,#10B981);color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+a.hdrbtn.b-cyan{background:linear-gradient(135deg,#0891B2,#06B6D4);color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.peptopia-iconbtn{width:38px;height:38px;flex:none;border-radius:50%;background:none;border:none;box-shadow:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.peptopia-iconbtn img{width:38px;height:38px;display:block;filter:drop-shadow(0 10px 16px rgba(15,23,42,.5)) drop-shadow(0 3px 5px rgba(15,23,42,.4))}
+.peptopia-iconbtn:active{transform:translateY(2px)}
+.peptopia-theme-toggle .pp-sun{display:none}
+html.dark .peptopia-theme-toggle .pp-sun{display:block}
+html.dark .peptopia-theme-toggle .pp-moon{display:none}
+@media print{.peptopia-nav .peptopia-iconbtn{display:none!important}}
+</style>
+<style id="hdr-fit-css">
+@media(max-width:640px){.peptopia-hdr{padding:10px 10px;gap:8px}.peptopia-brand{gap:8px;min-width:0}.peptopia-logo{width:38px;height:38px}.peptopia-wordmark{font-size:.68rem;min-width:0}.peptopia-nav{gap:5px;flex:none}.peptopia-iconbtn{width:34px;height:34px}.peptopia-iconbtn img{width:34px;height:34px}}
+@media(max-width:400px){.peptopia-hdr{padding:10px 8px;gap:6px}.peptopia-brand{gap:6px}.peptopia-logo{width:34px;height:34px}.peptopia-nav{gap:5px}.peptopia-nav>a.hdrbtn{width:74px}.peptopia-iconbtn{width:32px;height:32px}.peptopia-iconbtn img{width:32px;height:32px}}
+</style>
+<style id="audio-lib-css">
+
+.audio-lib-wrap{position:relative;display:inline-flex}
+.audio-lib-panel{position:fixed;left:0;top:0;width:min(430px,92vw);max-height:min(70vh,560px);display:none;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh-h);overflow:hidden;z-index:1000;text-align:left}
+.audio-lib-panel.open{display:flex}
+.audio-lib-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:13px 16px 9px;border-bottom:1px solid var(--border)}
+.audio-lib-title{font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:var(--t1)}
+.audio-lib-meta{font-size:.72rem;color:var(--t3);white-space:nowrap}
+.audio-lib-list{overflow-y:auto;padding:6px}
+.audio-lib-item{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:12px;text-decoration:none}
+.audio-lib-item:hover{background:var(--card-sub)}
+.audio-lib-play{flex:none;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.66rem;color:#241533;background:linear-gradient(135deg,#FDE68A,#FBBF24);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 5px rgba(15,23,42,.18);padding-left:2px}
+.audio-lib-main{display:flex;flex-direction:column;min-width:0}
+.audio-lib-name{font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.audio-lib-sub{font-size:.72rem;color:var(--t3)}
+.audio-lib-foot{padding:8px 16px 11px;border-top:1px solid var(--border);font-size:.7rem;color:var(--t3)}
+@media print{.audio-lib-panel{display:none!important}}
+</style>
+<style id="design-styles-css">
+
+.dsx-wrap{position:relative;display:inline-flex}
+.dsx-panel{position:fixed;left:0;top:0;width:min(430px,92vw);display:none;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh-h);overflow:hidden;z-index:1000;text-align:left}
+.dsx-panel.open{display:flex}
+.dsx-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:13px 16px 9px;border-bottom:1px solid var(--border)}
+.dsx-title{font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:var(--t1);display:flex;align-items:center;gap:9px}
+.dsx-title img{width:26px;height:26px;border-radius:50%}
+.dsx-meta{font-size:.72rem;color:var(--t3);white-space:nowrap}
+.dsx-list{padding:6px}
+.dsx-item{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:12px;text-decoration:none}
+.dsx-item:hover{background:var(--card-sub)}
+.dsx-glyph{flex:none;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;overflow:hidden}
+.dsx-main{display:flex;flex-direction:column;min-width:0}
+.dsx-name{font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;color:var(--t1)}
+.dsx-sub{font-size:.72rem;color:var(--t3)}
+.dsx-foot{padding:8px 16px 11px;border-top:1px solid var(--border);font-size:.7rem;color:var(--t3)}
+.dsx-card{position:relative}
+.dsx-card-head{display:flex;align-items:center;gap:13px}
+.dsx-disc{width:44px;height:44px;border-radius:50%;flex:none}
+.dsx-card-t{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;color:var(--t1)}
+.dsx-card-s{font-size:.82rem;color:var(--t3)}
+.dsx-open{margin-left:auto;flex:none}
+.dsx-card-head>div{flex:1 1 auto;min-width:0}
+.dsx-open{width:auto!important;min-width:0!important;white-space:nowrap}
+.dsx-card-note{font-size:.78rem;color:var(--t3);margin:10px 0 0}
+@media print{.dsx-panel{display:none!important}}
+</style>
+<style>
+
+.catsec>.cmd-grid{display:flex;flex-wrap:wrap;justify-content:center}
+.catsec>.cmd-grid>.cmd-card{flex:1 1 300px;max-width:424px;min-width:0}
+.bc-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr}
+.bc-grid>.bc-card{max-width:none;min-width:0}
+.vein-grid{display:flex;flex-wrap:wrap;justify-content:center}
+.vein-grid>.card{flex:1 1 300px;max-width:424px;min-width:0}
+.pc-top{text-align:center}
+@media(max-width:640px){.catsec>.cmd-grid>.cmd-card,.vein-grid>.card,.bc-grid>.bc-card{max-width:none}}
+@media(max-width:640px){.bc-grid{grid-template-columns:1fr}}
+</style>
+<style>.qp-fab{position:fixed;right:26px;bottom:144px;z-index:150;box-shadow:0 4px 14px rgba(15,23,42,.35)}</style>
+<style id="portal-matrix-css">
+
+nav.jumpnav.pm{display:grid;grid-template-columns:repeat(4,150px);grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:8px;justify-content:center;flex-wrap:nowrap;overflow:visible}
+nav.jumpnav.pm a.jnav-btn{width:100%!important;margin:0;padding:6px 16px;justify-content:center;text-align:center;white-space:nowrap}
+nav.jumpnav a.jnav-btn.b-tusc{background:linear-gradient(135deg,var(--pal-tuscarora),var(--pal-tuscarora-lt))!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
+@media (max-width:640px){
+nav.jumpnav.pm{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;justify-content:stretch}
+nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
+}
+</style>
+<style id="iconbtn-css">
+.iconbtn{background:transparent;border:0;padding:0;margin:0;cursor:pointer;line-height:0;border-radius:50%}
+.iconbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
+.iconbtn:hover img{filter:brightness(1.12)}
+.gbuild-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.gbpush{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(15,23,42,.25);font-family:Outfit,sans-serif;font-weight:800;font-size:1rem;cursor:pointer;color:#1F2937;box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 4px 0 var(--gbb,#065F46),0 8px 16px rgba(15,23,42,.22)}
+.gbpush img{width:22px;height:22px;border-radius:50%;display:block}
+.gbpush:active{transform:translateY(3px);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 1px 0 var(--gbb,#065F46),0 3px 8px rgba(15,23,42,.22)}
+.gbpush-green{background:linear-gradient(135deg,#A7F3D0,#34D399);--gbb:#065F46}
+.gbpush-violet{background:linear-gradient(135deg,#DDD6FE,#A78BFA);--gbb:#5B21B6}
+.scripts-row{text-align:center}
+.bc-card{display:flex;flex-direction:column;align-items:center}
+.bc-card>.iconbtn{margin-top:auto}
+.bc-card>.iconbtn img{width:48px;height:48px}
+.potion-line{font-size:1.3rem;font-weight:800;color:#F06000;letter-spacing:.01em}
+.potion-line a{color:#F06000;font-weight:800;text-decoration:none}
+.bc-sec{margin-top:16px;scroll-margin-top:10px;border:1.5px solid #9333EA;border-radius:16px;padding:14px 16px}
+.venn-wrap{max-width:360px;margin:2px auto}
+.venn-wrap svg{width:100%;height:auto;display:block}
+.venn-wrap text{font-family:Outfit,sans-serif;font-weight:800;fill:#111827;stroke:rgba(255,255,255,.7);stroke-width:3px;paint-order:stroke}
+.venn-wrap circle{stroke:rgba(255,255,255,.55);stroke-width:1.5}
+.modal-card .iconbtn img{width:48px;height:48px}
+.exlabel{font-weight:700;font-size:.95rem;color:#9A3412;margin:14px 0 6px}
+</style>
+<style id="copy-toast-css">
+#copyToast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(16px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;background:#111827;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:11px 22px;border-radius:999px;box-shadow:0 8px 28px rgba(0,0,0,.35);z-index:100000}
+#copyToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+<style>
+.peptopia-hdr{max-width:860px}
+.peptopia-nav{display:flex!important;align-items:center;gap:.55rem}
+.peptopia-iconbtn{width:38px;height:38px;flex:none;border-radius:50%;background:none!important;border:none!important;box-shadow:none!important;display:inline-flex!important;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.peptopia-iconbtn img{width:38px;height:38px;display:block;border-radius:50%}
+#bcThemeBtn .ic-sun{display:none}
+html.dark #bcThemeBtn .ic-sun{display:block}
+html.dark #bcThemeBtn .ic-moon{display:none}
+.bcpage-wrap{max-width:860px;margin:0 auto;padding:0 24px 40px}
+.cmdref{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-top:16px}
+.cmdref-h{font-family:var(--font-head);font-weight:800;color:var(--orange,#F06000);margin:16px 0 6px;font-size:1.12rem}
+.cmdref-h:first-child{margin-top:0}
+.cmdref-p{color:var(--t2);line-height:1.55;margin:4px 0}
+.cmdref-list{color:var(--t2);line-height:1.55;margin:4px 0 8px;padding-left:22px}
+.cmdref-list li{margin:3px 0}
+.cmdref code{font-size:.88em;background:rgba(120,120,120,.14);padding:1px 5px;border-radius:6px}
+</style>
+</head>
+<body>
+<header class="peptopia-hdr">
+<a class="peptopia-brand" href="https://x-peps.com/">
+<img class="peptopia-logo logo-dark" src="https://x-peps.com/X-Peps/IMG_3345.png" alt="Peptopia Health &amp; Wellness"><img class="peptopia-logo logo-light" src="https://x-peps.com/X-Peps/IMG_3346.png" alt="Peptopia Health &amp; Wellness">
+<span class="peptopia-wordmark">PEPTOPIA HEALTH<span class="peptopia-tagline">BUILD COMMANDS</span></span>
+</a>
+<nav class="peptopia-nav" aria-label="Site">
+<a class="peptopia-iconbtn" href="https://x-peps.com/" title="Home" aria-label="Home"><img src="https://x-peps.com/btn-home-holo.png" alt="Home"></a>
+<a class="peptopia-iconbtn" href="https://x-peps.com/admin-portal/" title="Admin Portal" aria-label="Admin Portal"><img src="https://x-peps.com/btn-admin-holo.png" alt="Admin Portal"></a>
+<button type="button" class="peptopia-iconbtn" onclick="window.print()" title="Print or save as PDF" aria-label="Print"><img src="https://x-peps.com/btn-print-holo.png" alt="Print"></button>
+<button type="button" class="peptopia-iconbtn" id="bcThemeBtn" title="Switch light / dark theme" aria-label="Switch light / dark theme"><img class="ic-moon" src="https://x-peps.com/btn-moon-holo.png" alt="Theme"><img class="ic-sun" src="https://x-peps.com/btn-sun-holo.png" alt="Theme"></button>
+</nav>
+</header>
+<script>document.getElementById('bcThemeBtn').addEventListener('click',function(){document.documentElement.classList.toggle('dark')});</script>
+<main class="bcpage-wrap">
+<section class="catsec" id="cat-build">
+  <h2 class="cat-title">🛠 Build Commands</h2>
+  <p class="sub">3 ways to build: — Chat Scripts, Build Buttons, and Potions &amp; Spells.</p>
+<div class="venn-wrap"><svg viewBox="0 0 360 292" role="img" aria-label="Three ways to build — tap a circle to jump to its section">
+<a href="#bc-sec-scripts"><circle cx="130" cy="104" r="88" fill="rgba(147,51,234,.42)"/><text x="84" y="97" text-anchor="middle" font-size="15">Chat</text><text x="84" y="115" text-anchor="middle" font-size="15">Scripts</text></a>
+<a href="#bc-sec-buttons"><circle cx="230" cy="104" r="88" fill="rgba(16,185,129,.42)"/><text x="276" y="97" text-anchor="middle" font-size="15">Build</text><text x="276" y="115" text-anchor="middle" font-size="15">Buttons</text></a>
+<a href="#bc-sec-potions"><circle cx="180" cy="182" r="88" fill="rgba(240,96,0,.42)"/><text x="180" y="229" text-anchor="middle" font-size="15">Potions</text><text x="180" y="247" text-anchor="middle" font-size="15">&amp; Spells</text></a>
+</svg></div>
+<div class="bc-sec" id="bc-sec-scripts">
+<div class="scripts-row"><button type="button" class="scripts-btn" id="scriptsBtn" aria-haspopup="dialog">📜 Chat Scripts — phrases to state in chat to build products.</button></div>
+<div class="bc-grid">
+<article class="bc-card">
+      <img class="bc-icon" src="https://x-peps.com/btn-fullguide-violet.png" alt="">
+      <h3 class="bc-title">Full Guide: [topic]</h3>
+      <p class="bc-intro"><span class="mark-o">Full Research Guide.</span><br>Comprehensive presentation.</p>
+      <button type="button" class="iconbtn" data-modal="m-guide" title="How it works" aria-label="How it works"><img src="https://x-peps.com/btn-guide-holo.png" alt="How it works"></button>
+    </article>
+
+<article class="bc-card">
+      <img class="bc-icon" src="https://x-peps.com/btn-miniguide-blue.png" alt="">
+      <h3 class="bc-title">Mini Guide: [topic]</h3>
+      <p class="bc-intro"><span class="mark-o">One-page Glossy.</span><br>Short-n-Sweet.</p>
+      <button type="button" class="iconbtn" data-modal="m-mini" title="How it works" aria-label="How it works"><img src="https://x-peps.com/btn-guide-holo.png" alt="How it works"></button>
+    </article>
+<article class="bc-card">
+      <img class="bc-icon" src="https://x-peps.com/btn-plantguide-green.png" alt="">
+      <h3 class="bc-title">Plant Guide: [name]</h3>
+      <p class="bc-intro"><span class="mark-o">Botanical Research.</span><br>Cultivation &amp; Study.</p>
+      <button type="button" class="iconbtn" data-modal="m-plant" title="How it works" aria-label="How it works"><img src="https://x-peps.com/btn-guide-holo.png" alt="How it works"></button>
+    </article>
+<article class="bc-card">
+      <img class="bc-icon" src="https://x-peps.com/btn-artifact-amber.png" alt="">
+      <h3 class="bc-title">Artifact: [brief]</h3>
+      <p class="bc-intro"><span class="mark-o">Artifact Archive.</span><br>Provenance &amp; audiovisuals.</p>
+      <button type="button" class="iconbtn" data-modal="m-artifact" title="How it works" aria-label="How it works"><img src="https://x-peps.com/btn-guide-holo.png" alt="How it works"></button>
+    </article>
+  </div>
+<div class="cmd-group">The six builds — the same six at every door: say one in chat, tap its flask at the Potions portal, or launch it from the Author button below. Each name opens its flask.</div>
+<div class="cmd-grid">
+    <div class="cmd-card"><span class="cmd-phrase"><a href="https://x-peps.com/bewitched/#fn-guide" target="_blank" rel="noopener">Guides</a></span><p>Build a new guide. Saved as the master file and synced to Drive.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase"><a href="https://x-peps.com/bewitched/#fn-vendor" target="_blank" rel="noopener">Reviews</a></span><p>Build a vendor review guide.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase"><a href="https://x-peps.com/bewitched/#fn-news" target="_blank" rel="noopener">Articles</a></span><p>Write a Peptopia news article — topic is exactly GLP News or Kratom News. Saved to the matching Drive news folder and the site.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase"><a href="https://x-peps.com/bewitched/#fn-audio" target="_blank" rel="noopener">Podcasts</a></span><p>Produce an audio brief or podcast. Delivered in chat and archived to Muse Audio.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase"><a href="https://x-peps.com/bewitched/#fn-publish" target="_blank" rel="noopener">Updates</a></span><p>Make a website update — pushed live and verified.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase"><a href="https://x-peps.com/bewitched/#fn-inventory" target="_blank" rel="noopener">Inventory</a></span><p>Rebuild the kratom inventory report from your purchase record.</p></div>
+  </div>
+<div class="cmd-group">Tap the Author button — <a href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">x-peps.com/Tuscarora_Arboretum</a></div>
+  <div class="cmd-grid">
+    <div class="cmd-card"><span class="cmd-phrase">Author &rarr; 57 &rarr; Arboretum / Bottles</span><p>Submit a bottle find with photos. It is researched, built and published automatically — a confirmation email lands when it is done.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">Author &rarr; 57 &rarr; Arboretum / Plants</span><p>Submit a plant with up to 4 photos. Its one-page guide is researched, built and published automatically in the Plants section, with its card on the Plants page — a confirmation email lands when it is done.</p></div>
+    <div class="cmd-card"><span class="cmd-phrase">Author &rarr; 57 &rarr; Peptopia</span><p>The same six builds as the Potions spells — Guides, Reviews, Articles, Podcasts, Updates, Inventory — launched from the Arboretum site.</p></div>
+  </div>
+</div>
+<div class="bc-sec" id="bc-sec-buttons">
+<div class="scripts-row"><span class="scripts-btn">🔨 Build Buttons — tap a button, add photos, send.</span></div>
+<p style="margin:2px 0 10px">Tap a button, type the <b>topic</b>, add <b>photos</b> and <b>notes</b>, and send — the build starts on its own. Muse checks for new requests every 30 minutes and brings the finished guide to you in chat. The Mini Guide here is the same one-page Mini Guide as the chat phrase — the only difference is the intake: your photo goes in as the hero and the request files itself.</p>
+  <div class="gbuild-row">
+    <button type="button" class="gbpush gbpush-green" onclick="gbOpen('onepage')"><img src="https://x-peps.com/btn-miniguide-blue.png" alt="">Mini Guide</button>
+    <button type="button" class="gbpush gbpush-violet" onclick="gbOpen('full')"><img src="https://x-peps.com/btn-fullguide-violet.png" alt="">Full Guide</button>
+  </div>
+<p class="sub" style="margin-top:10px">The ✒️ AUTHOR button at the foot of every Tuscarora guide is a build button too — same tap, popup and photos; it builds that guide.</p>
+</div>
+<div class="bc-sec" id="bc-sec-potions">
+<div class="scripts-row"><a class="scripts-btn" href="https://x-peps.com/bewitched" target="_blank" rel="noopener" style="text-decoration:none">🧙 Potions &amp; Spells — cast at the Potions portal.</a></div>
+<div class="cmd-group" style="text-align:center">6 flasks. 6 Potions. Tap to cast.</div>
+<div class="flask-grid">
+<a class="flask" href="https://x-peps.com/bewitched/#fn-guide" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-guide.webp" alt="Guides" style="filter:drop-shadow(0 4px 12px rgba(124,252,0,.55))"><span style="color:#4E9E00">Guides</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-vendor" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-vendor.webp" alt="Reviews" style="filter:drop-shadow(0 4px 12px rgba(155,77,255,.5))"><span style="color:#7B3FE4">Reviews</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-news" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-news.webp" alt="Articles" style="filter:drop-shadow(0 4px 12px rgba(77,200,255,.55))"><span style="color:#0090B3">Articles</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-audio" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-audio.webp" alt="Podcasts" style="filter:drop-shadow(0 4px 12px rgba(255,180,60,.6))"><span style="color:#B87A00">Podcasts</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-publish" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-publish.webp" alt="Updates" style="filter:drop-shadow(0 4px 12px rgba(255,77,216,.5))"><span style="color:#D100A8">Updates</span></a>
+<a class="flask" href="https://x-peps.com/bewitched/#fn-inventory" target="_blank" rel="noopener"><img src="https://x-peps.com/flask-inventory.webp" alt="Inventory" style="filter:drop-shadow(0 4px 12px rgba(255,122,77,.55))"><span style="color:#D14D1F">Inventory</span></a>
+</div>
+</div>
+
+  <div class="cmd-grid">
+<div class="cmd-card"><div class="pc-top"><a class="btn cardbtn b-amber" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">🏺 Arboretum</a></div><p>The artifact portal — Bottles, Marbles, China — with the ✒️ Author button (57) for new finds.</p></div>
+  </div></section>
+<section class="cmdref" aria-label="Command list — full reference">
+<h3 class="cmdref-h">COMMAND LIST — The owner&#x27;s named build commands (Oct 25, 2026; guide sections updated Nov 2, 2026)</h3>
+<p class="cmdref-p">Say (or cast) the command; get the finished product.</p>
+<p class="cmdref-p"><strong>Where to find these commands:</strong> this file (<code>~/workspace/COMMANDS.md</code>), the <strong>Admin Portal › Command Phrases</strong> section, and — for launching a build from your phone without opening chat — the <strong>Bewitched page</strong> (<a href="https://x-peps.com/bewitched," target="_blank" rel="noopener">https://x-peps.com/bewitched,</a> on your phone&#x27;s home screen; see &quot;The Bewitched launch path&quot; below).</p>
+<p class="cmdref-p"><strong>The bible behind every guide command:</strong> <code>~/workspace/guide-build/GUIDE_BUILD_SCRIPT.md</code> — the exhaustive build script (rebuilt Nov 2, 2026). Every guide build or update runs it end-to-end without being asked, and <code>python3 ~/workspace/guide-build/check_guide.py &lt;file&gt;</code> must PASS before anything publishes. The WildCraft guide is the frozen prototype the script describes — it is never changed except for small edits the owner specifically requests.</p>
+<h3 class="cmdref-h">Chat commands</h3>
+<ol class="cmdref-list">
+<li><strong>Guide: [topic]</strong> — a full Peptopia guide in the house standard (research → build → findings + audio in chat → publish on approval → verified live). Used for kratom strain guides, vendor guides, product/study guides. EVERY guide build/update runs the standing GUIDE BUILD SCRIPT (<code>~/workspace/guide-build/GUIDE_BUILD_SCRIPT.md</code>, the exhaustive bible rebuilt Nov 2, 2026 — structure, effect colors, push buttons, picker, responsive + print standards, the §28 verification gauntlet) and <code>check_guide.py</code> must PASS, without being asked (the owner, Oct 31, 2026). Kratom strain guides are built to the frozen WildCraft prototype. Before ANY update to an existing guide, the current guide is backed up to Drive first, and no existing content is ever omitted, deleted, or damaged — reformat and add only.</li>
+<li><strong>Simple Guide: [topic]</strong> — RETIRED Nov 24, 2026: merged into <strong>Mini Guide</strong> (item 4 below / GUIDE BUILD SCRIPT §30D). The phrase now routes to Mini Guide steps mode.</li>
+</ol>
+<p class="cmdref-p"><strong>Plant Guide: [name]</strong> — the full plant pipeline (added Nov 2, 2026): research the plant properly (accepted botanical name + synonym, family, origin, measured care numbers, propagation, pests, toxicity/pet safety) → build the one-page visual guide in the Snow White / Aglaonema format (hero = The owner&#x27;s photo when supplied; leaf-anatomy visuals; care meters with numbers; care card; numbered propagation steps; troubleshooting table; relatives strip; sources credited) → publish in the Tuscarora Plants wing (guide at /Tuscarora_Arboretum/plants/&lt;slug&gt;.html with the Arboretum banner bar + entry card added to the Plants page) → file in Drive Tuscarora Arboretum › Plants → deliver file + bare live link in chat. Also launchable from the Tuscarora Author form (Author → 57 → Arboretum / Plants, with up to 4 photos); web submissions run through the arboretum-submission-processor on this same pipeline.</p>
+<ol class="cmdref-list">
+<li><strong>Artifact: [brief]</strong> — the full Tuscarora Arboretum artifact package: researched storytelling guide (artifact build script rules: no owner name, general findspot, no editions/process narrative, timeline graphic, hyperlinked sources), best photographs, ≤2-minute Smooth audio brief, patent popup + card patent link when a patent is located, artifact card + dedicated page on <a href="https://x-peps.com/Tuscarora_Arboretum." target="_blank" rel="noopener">https://x-peps.com/Tuscarora_Arboretum.</a></li>
+<li><strong>Mini Guide: [topic]</strong> — a short, single-page guide with two modes (added Oct 31, 2026; absorbed Simple Guide Nov 24, 2026). NOT the full guide pipeline. SUBJECT MODE: Muse researches the subject, then builds ONE compact page per the GUIDE BUILD SCRIPT (checker must PASS): titled by the subject&#x27;s own name; a hero image of the subject (The owner&#x27;s photo when he supplies one, cropped to the subject only); comparable images of others like it, embedded; facts as facts, inferences labeled; linked references; Outfit/DM Sans, orange headline, light theme default, date/theme/print cluster. STEPS MODE (the former Simple Guide): the owner supplies the steps (or names a simple task to distill) — no research phase, no popups, charts, tables, or sources; steps cleaned into numbered step cards, at most one &quot;before you start&quot; note and one &quot;what you get&quot; note; when the steps switch apps or programs mid-task, the step heading must SAY so (students missed that printing happens in Word, not PowerPoint; founding example: the PowerPoint notes-printing guide, ~/workspace/your_files/PowerPoint_Notes_Printing_10-29-26.html). Delivered as ONE self-contained downloadable file (all images embedded) in chat AND saved to the matching Drive folder (Plants for plant subjects; POTTERY IS NOT PLANTS — pottery guides go to Drive Tuscarora Arboretum › Pottery, per the owner Oct 31, 2026). Companion guides on request (&quot;a second guide to complement this one&quot;). Founding examples: <code>McCoy_Floraline_Planter_10-31-26.html</code> and <code>McCoy_Floraline_Strategy_10-31-26.html</code> (Drive Tuscarora Arboretum › Pottery; also published in the site&#x27;s Arboretum Pottery section).</li>
+</ol>
+<h3 class="cmdref-h">Guide upgrades to the WildCraft standard (standing queue, the owner, Nov 1, 2026)</h3>
+<p class="cmdref-p">Existing kratom guides are upgraded one at a time, most-used → least-used: <strong>TreeLeaf → DTE → WestKoast → Bewitched → Hudson Valley → Sakti → Phantom → Rando</strong>, per the upgrade workflow in GUIDE BUILD SCRIPT §31 (Drive backup → full content inventory → feature audit → reformat only → verify → publish → audio delivery). Any feature found in an older guide that WildCraft lacks is <strong>pitched to the owner with approve/reject boxes</strong> before it is adopted or dropped (Feature-Pitch Protocol) — the WildCraft prototype itself is never changed by an upgrade. Audio from any build follows the lifecycle: deleted after the owner has fully listened unless he says save it (saved audio → Muse Audio Drive archive), with a yes-delete / no-keep choice shown in chat.</p>
+<h3 class="cmdref-h">VA Simple Guides — email workflow (the owner, Oct 29, 2026)</h3>
+<p class="cmdref-p">the owner emails source files from his VA mailbox to the completion mailbox (VA bridge). Subjects: <strong>&quot;VA: Simple Guide: Intake&quot;</strong> and <strong>&quot;VA: Simple Guide: Discharge&quot;</strong> for short guides; <strong>&quot;VA: Guide: Discharge&quot;</strong> for a FULL guide (complete build + findings/audio, same approval gates) — The owner&#x27;s stated order for Discharge is full guide first, then the short one (Oct 29, 2026). One email per process; the VA: prefix is the bridge trigger — changed from M: at The owner&#x27;s direction Oct 29, 2026. Muse downloads the attachments and rebuilds each as a Simple Guide in the PowerPoint example&#x27;s style (orange gradient circle number buttons, step cards, Outfit/DM Sans), as print-first HTML under the strictest print-to-PDF rules (print-color-adjust:exact, break-inside:avoid on cards, @page margins, headings kept with content, large readable type — staff read paper printouts). TWO approval gates, in order: (1) the owner approves the built guide in chat → only then save the copy to Drive folder <strong>🏥 VA Guides</strong> (id 1RiyADt03IrdES3kXbhcINtHkjr5XOC7L); (2) the owner approves again → email the file to his VA mailbox with subject exactly <strong>&quot;Guide&quot;</strong>, empty body, attachment named per the Drive standard (e.g. VA_Intake_Instructions_MM-DD-YY.html, VA_Discharge_Instructions_MM-DD-YY.html). About 5–6 more VA unit processes are expected to follow the same pipeline.</p>
+<h3 class="cmdref-h">The Bewitched launch path — build from your phone (the owner, Nov 1, 2026)</h3>
+<p class="cmdref-p">The <strong>Bewitched page (<a href="https://x-peps.com/bewitched" target="_blank" rel="noopener">https://x-peps.com/bewitched</a>)</strong> is The owner&#x27;s phone launchpad for builds — easier than returning to chat when he&#x27;s at work or away from a computer. It has a <strong>topic input field + a file-attach option</strong>: open the page, state the topic, attach any supporting material (photos, documents), submit — and the build runs <strong>autonomously, end to end, with minimal interaction from the owner</strong>: create/update the guide per the GUIDE BUILD SCRIPT → push to GitHub → update the access pages (including adding/updating the vendor&#x27;s card on the Kratom Reviews page) → save the Drive version-control/backup copy → deliver the <strong>detailed audio story in chat</strong>. The submission itself is the approval for that build (guide-build script §32.2). Attached files are treated as build source material.</p>
+<h3 class="cmdref-h">The six Potions spells (Bewitched portal — <a href="https://x-peps.com/bewitched;" target="_blank" rel="noopener">https://x-peps.com/bewitched;</a> equally requestable in chat)</h3>
+<ol class="cmdref-list">
+<li><strong>Guides</strong> — build a new guide; saved as master file + synced to Drive Guides.</li>
+<li><strong>Reviews</strong> — build a vendor review guide.</li>
+<li><strong>Articles</strong> — write a Peptopia news article; topic selector is exactly GLP News or Kratom News; saved to the matching Drive news folder + site news card.</li>
+<li><strong>Podcasts</strong> — produce an audio brief/podcast; delivered in chat + archived to Muse Audio (Arboretum audio to Arboretum › Audio).</li>
+<li><strong>Updates</strong> — make a website update; pushed to GitHub with live verification.</li>
+<li><strong>Inventory</strong> — rebuild the kratom inventory report from the canonical purchase record (shop-order-history.csv).</li>
+</ol>
+<h3 class="cmdref-h">Standing products (scheduled; no command needed)</h3>
+<ol class="cmdref-list">
+<li><strong>Morning audio briefing</strong> (~6 AM) and <strong>Evening audio briefing</strong> (~7:30 PM), Smooth voice, in chat.</li>
+<li><strong>Weekly GLP-1 research update</strong> (Mondays) — digest into the Longevity Report.</li>
+<li><strong>Shipment tracking report</strong> — <a href="https://x-peps.com/X-Peps/aftership-shipments-report.html," target="_blank" rel="noopener">https://x-peps.com/X-Peps/aftership-shipments-report.html,</a> swept morning + evening.</li>
+<li><strong>Guides Drive sync</strong> — every 6 hours, new/updated guides backed up to Drive.</li>
+<li><strong>Action Board weekly review</strong> (Mondays ~5:40 PM) — refreshes the Admin Portal Action Board (completions marked, open items in priority order), republishes the page, and writes the status summary the briefings carry (Monday evening briefing; Tuesday morning as fallback). Added Oct 27, 2026.</li>
+</ol>
+<h3 class="cmdref-h">The Author button — web submissions (Tuscarora portal; v2, the owner, Oct 26, 2026)</h3>
+<p class="cmdref-p">The ✒️ Author button on <a href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">https://x-peps.com/Tuscarora_Arboretum</a> (portal header, Bottles page, guide page) opens the &quot;Start a build&quot; modal. It is <strong>passcode-gated</strong>: enter the author number <strong>57</strong> to reveal the form. No name or email fields; a single <strong>Submit</strong> button; up to 4 photos.</p>
+<p class="cmdref-p">Two top-level categories, each with an indented subcategory list — selecting one launches its build:</p>
+<ul class="cmdref-list">
+<li><strong>Arboretum</strong> → <strong>Plants</strong> (live — the Plant Guide pipeline above) · <strong>Bottles</strong> (live — the artifact build of <code>ARTIFACT_BUILD_SCRIPT.md</code>: tile on the Bottles page → dedicated bottle page → full Bottle Guide + ≤2-min audio; patent integrated when one exists) · <strong>Marbles</strong> (Coming soon — not selectable) · <strong>China</strong> (Coming soon — not selectable)</li>
+<li><strong>Peptopia</strong> → <strong>Guides · Reviews · Articles · Podcasts · Updates · Inventory</strong> — the same six Potions builds above (Articles keeps the GLP News / Kratom News selector).</li>
+</ul>
+<p class="cmdref-p">Submissions are <strong>built and published automatically</strong>: they land in the store Outlook mailbox via FormSubmit (subject &quot;&lt;Category&gt; / &lt;Subcategory&gt;: &lt;Topic&gt;&quot;), and the <code>arboretum-submission-processor</code> cron (every 30 minutes) works the queue in ~/workspace/tuscarora-arboretum/submissions/processed.json — <strong>one build at a time</strong>, the rest waiting silently in order. A completion (or failure) summary email goes to <strong>the completion mailbox</strong> and <strong>the second completion mailbox</strong>. No approval step for web submissions (the Oct 25 approval-gated model is superseded); The owner&#x27;s in-chat commands above are unchanged.</p>
+</section>
+</main>
+<div class="modal-ovl" id="cmdModal" role="dialog" aria-modal="true" aria-label="How it works">
+  <div class="modal-card">
+    <button type="button" class="modal-x iconbtn" id="modalX" aria-label="Close" title="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<div class="modal-src" id="m-guide" hidden>
+    <h3 class="modal-title">Full Guide: [topic]</h3>
+    <p class="modal-what">Builds a complete Peptopia guide in the house standard — research, build, audio summary in chat, published on your approval.</p>
+    <ol class="modal-steps">
+      <li>Say the phrase in chat, with your topic after the colon.</li>
+      <li>Researched thoroughly — primary sources, community experience, real numbers.</li>
+      <li>Built to the full house standard — every section, graphic, and table; must pass the build checker.</li>
+      <li>Findings plus an audio summary in chat — short, medium, or extended, your pick.</li>
+      <li>Publishes live on your approval; the page is verified.</li>
+    </ol>
+    <div class="exrow"><code>Guide: Cagrilintide</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
+    <p class="modal-note">Type it exactly like that — the build starts with no follow-up questions.</p>
+  </div>
+<div class="modal-src" id="m-mini" hidden>
+    <h3 class="modal-title">Mini Guide: [topic]</h3>
+    <p class="modal-what">One subject on one compact page — Short-n-Sweet, ready to print.</p>
+    <ol class="modal-steps">
+      <li>Say the phrase with one subject — or hand over your own steps for a how-to.</li>
+      <li>Subject mode: the subject researched, nothing padded. Steps mode: your steps cleaned and distilled, nothing added.</li>
+      <li>Photo up top; facts as facts, inferences labeled, references linked — or numbered step cards naming each app switch.</li>
+      <li>Must pass the build checker, like every guide.</li>
+      <li>Delivered in chat — one clean page, ready to print; copy filed in the matching Drive folder.</li>
+    </ol>
+    <div class="exrow"><code>Mini Guide: McCoy Floraline planter</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
+    <p class="modal-note">Type it exactly like that — the build starts with no follow-up questions.</p>
+  </div>
+<div class="modal-src" id="m-plant" hidden>
+    <h3 class="modal-title">Plant Guide: [name]</h3>
+    <p class="modal-what">One-page plant guide published in the Tuscarora Plants section; files uploaded to Drive.</p>
+    <ol class="modal-steps">
+      <li>Say it in chat — or Author → 57 → Arboretum / Plants on the Arboretum site, up to 4 photos.</li>
+      <li>Researched: accepted name + synonym, family, origin, care numbers, propagation, pests, toxicity / pet safety.</li>
+      <li>One-page visual guide — leaf anatomy, care meters, care card, propagation steps, troubleshooting table.</li>
+      <li>Publishes in Tuscarora Plants, with its own card on the Plants page.</li>
+      <li>Filed in Drive (Tuscarora Arboretum › Plants) — file + live link delivered in chat.</li>
+    </ol>
+    <p class="exlabel">Example. Type in your plant name and then copy to clipboard.</p>
+    <div class="exrow"><code>Plant Guide: Snow White waffle plant</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
+    <p class="modal-note">Type the plant name, then click copy button, paste in chat. The guide completes in the background.</p>
+  </div>
+<div class="modal-src" id="m-artifact" hidden>
+    <h3 class="modal-title">Artifact: [brief]</h3>
+    <p class="modal-what">A full artifact package — storytelling guide with timeline, photos, short audio, patent links and references.</p>
+    <ol class="modal-steps">
+      <li>Say the phrase with a short brief — or Author → 57 → Arboretum / Bottles, with photos.</li>
+      <li>Researched: age, origin, maker, circulation — facts as facts, inferences labeled.</li>
+      <li>Storytelling guide: timeline graphic + best photos; a found patent’s popup + link woven in.</li>
+      <li>Short fireside audio brief (about two minutes), in the Smooth voice.</li>
+      <li>Publishes on the Tuscarora Arboretum — own card, own page.</li>
+    </ol>
+    <div class="exrow"><code>Artifact: the 1937 Hamilton bottle</code><button type="button" class="copybtn iconbtn" aria-label="Copy" title="Copy"><img src="https://x-peps.com/btn-copy-holo.png" alt="Copy"></button></div>
+    <p class="modal-note">Type it exactly like that — the build starts with no follow-up questions.</p>
+  </div>
+<div class="scripts-ovl" id="scriptsOvl" role="dialog" aria-modal="true" aria-labelledby="scriptsTitle" hidden>
+  <div class="scripts-card">
+    <div class="scripts-head">
+      <h3 id="scriptsTitle">📜 Build Scripts</h3>
+      <button type="button" class="iconbtn" id="scriptsX" aria-label="Close" title="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
+    </div>
+    <div class="scripts-listview" id="scriptsListView">
+      <p class="scripts-intro">Every product we make stands on a build script — content, layout, light &amp; dark theme, mobile &amp; desktop. Pick one to read its full steps.</p>
+      <div id="scriptsList"></div>
+    </div>
+    <div class="scripts-readview" id="scriptsReadView" hidden>
+      <button type="button" class="scripts-back" id="scriptsBack">&larr; All scripts</button>
+      <h4 class="scripts-name" id="scriptsName"></h4>
+      <p class="scripts-meta" id="scriptsMeta"></p>
+      <div class="scripts-pane" id="scriptsPane" tabindex="0"></div>
+    </div>
+  </div>
+</div>
+<script>
+var gbMode='onepage', gbFiles=[];
+function gbCap(){return gbMode==='onepage'?1:4;}
+function gbOpen(mode){
+  gbMode=mode; gbFiles=[];
+  var one = mode==='onepage';
+  document.getElementById('gbTitle').textContent = one?'\uD83C\uDF3F Mini Guide':'\uD83D\uDCD6 Full Guide';
+  document.getElementById('gbSub').textContent = one?'One compact page — your photo at the top, the facts below.':'The longer build — full research and sections, with room for up to 4 of your photos.';
+  document.getElementById('gbPhotoLabel').textContent = one?'Photo — it goes at the top of the page':'Photos — up to 4';
+  var inp=document.getElementById('gbPhotos'); inp.multiple=!one; inp.value='';
+  document.getElementById('gbThumbs').innerHTML='';
+  document.getElementById('gbStatus').textContent='';
+  document.getElementById('gbBackdrop').hidden=false;
+  setTimeout(function(){document.getElementById('gbTopic').focus();},50);
+}
+function gbClose(){document.getElementById('gbBackdrop').hidden=true;}
+document.getElementById('gbBackdrop').addEventListener('click',function(e){if(e.target===this)gbClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')gbClose();});
+document.getElementById('gbPhotos').addEventListener('change',function(){
+  var cap=gbCap(), files=Array.prototype.slice.call(this.files||[]);
+  var note='';
+  if(files.length>cap){files=files.slice(0,cap);note='Only the first '+cap+' photo'+(cap>1?'s':'')+' will be sent.';}
+  gbFiles=files;
+  var th=document.getElementById('gbThumbs'); th.innerHTML='';
+  files.forEach(function(f){var img=document.createElement('img');img.src=URL.createObjectURL(f);img.alt=f.name;th.appendChild(img);});
+  document.getElementById('gbStatus').textContent=note;
+});
+function gbReadPhoto(file){return new Promise(function(res){var url=URL.createObjectURL(file);var img=new Image();img.onload=function(){var max=1400,w=img.naturalWidth||max,h=img.naturalHeight||max,sc=Math.min(1,max/Math.max(w,h));var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*sc));c.height=Math.max(1,Math.round(h*sc));try{c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',0.82));}catch(e){res(null);}URL.revokeObjectURL(url);};img.onerror=function(){URL.revokeObjectURL(url);res(null);};img.src=url;});}
+function gbSubmit(){
+  var topic=document.getElementById('gbTopic').value.trim();
+  var st=document.getElementById('gbStatus'), btn=document.getElementById('gbSend');
+  if(!topic){st.textContent='\u26A0\uFE0F Type the topic first — what is the guide about?';document.getElementById('gbTopic').focus();return;}
+  var fn = gbMode==='onepage'?'1-Page Guide':'Full Guide';
+  var notes=document.getElementById('gbNotes').value.trim();
+  btn.disabled=true; st.textContent='Sending\u2026';
+  var jobs=gbFiles.map(function(f,i){return gbReadPhoto(f).then(function(d){return {name:f.name||('photo-'+(i+1)+'.jpg'), data:d};});});
+  Promise.all(jobs).then(function(photos){
+    var payload={access_key:'c3378175-a412-4313-bf5b-12fae9f925f3', subject:'Guide Build Request: '+fn+' — '+topic,
+      name:'Admin Portal', replyto:'', portal_key:'potions-57',
+      build_function:fn, topic:topic, notes:notes||'(none)', source:'admin-portal',
+      command:(gbMode==='onepage'?'One-Page Guide (Aglaonema format): ':'Guide: ')+topic,
+      file_manifest: photos.length? photos.map(function(x){return x.name;}).join(', ') : 'no photos'};
+    photos.forEach(function(x,i){ if(x.data){ payload['file_'+(i+1)+'_name']=x.name; payload['file_'+(i+1)+'_b64']=x.data.split(',')[1]; }});
+    return fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+  }).then(function(r){ if(!r.ok) throw new Error('send failed'); return r.json();
+  }).then(function(){
+    st.textContent='\u2705 Sent! Your build is in the queue — Muse checks every 30 minutes and will bring the finished guide to you in chat.';
+    btn.disabled=false;
+    if(typeof showToast==='function'){try{showToast('Guide build request sent');}catch(e){}}
+    setTimeout(gbClose,2600);
+  }).catch(function(){
+    st.textContent='\u26A0\uFE0F Couldn\u2019t send — check your connection and tap Send again. Nothing was queued.';
+    btn.disabled=false;
+  });
+}
+</script>
+<script>
+(function(){
+  var ovl=document.getElementById('cmdModal'),body=document.getElementById('modalBody');
+  function openModal(id){var s=document.getElementById(id);if(!s){return;}body.innerHTML=s.innerHTML;ovl.classList.add('open');}
+  function closeModal(){ovl.classList.remove('open');body.innerHTML='';}
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-modal]');
+    if(b){openModal(b.getAttribute('data-modal'));return;}
+    if(ev.target.closest('.copybtn')){
+      var row=ev.target.closest('.exrow');var code=row?row.querySelector('code'):null;
+      if(code){var txt=code.textContent;
+        function done(){var t=document.getElementById('toast');if(t){t.textContent='Copied — paste it into chat.';t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}}
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,done);}
+        else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+      }
+      return;
+    }
+  });
+  document.getElementById('modalX').addEventListener('click',closeModal);
+  ovl.addEventListener('click',function(ev){if(ev.target===ovl){closeModal();}});
+  document.addEventListener('keydown',function(ev){if(ev.key==='Escape'){closeModal();}});
+  var toTop=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){toTop.classList.toggle('show',window.scrollY>600);},{passive:true});
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var pills={};document.querySelectorAll('.jnav-btn').forEach(function(p){pills[p.getAttribute('href').slice(1)]=p;});
+  function setActive(id){Object.keys(pills).forEach(function(k){pills[k].classList.toggle('active',k===id);});}
+  Object.keys(pills).forEach(function(k){pills[k].addEventListener('click',function(){setActive(k);});});
+  function spyUpdate(){
+    var secs=document.querySelectorAll('.catsec'),cur=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=120)cur=s;});
+    if(cur&&pills[cur.id])setActive(cur.id);
+  }
+  var spyTick=false;
+  window.addEventListener('scroll',function(){
+    if(spyTick)return; spyTick=true;
+    requestAnimationFrame(function(){spyTick=false;spyUpdate();});
+  },{passive:true});
+  spyUpdate();
+})();
+</script>
+<script>
+(function(){
+  var DATA = [{"name": "Guide Build Script", "type": "Guides — every kind: short guides, long study guides, kratom & vendor guides, plant guides, peptide guides, news articles, recommendation pages", "class": "build", "scope": "The step-by-step build for every Peptopia guide: what goes in it, how it looks, light & dark themes, buttons, pictures, and the checks before it goes live.", "path": "workspace/guide-build/GUIDE_BUILD_SCRIPT.md", "file": "guide-build-script.txt"}, {"name": "Tuscarora Artifact Build Script", "type": "Tuscarora Arboretum — artifact guide pages and short artifact audio", "class": "build", "scope": "How Tuscarora artifact entries are built: the privacy rules, entry cards, guide pages, and podcast briefs.", "path": "workspace/tuscarora-arboretum/ARTIFACT_BUILD_SCRIPT.md", "file": "artifact-build-script.txt"}, {"name": "Guide Rebuild Script", "type": "Guides — rebuilding an existing vendor or topic guide", "class": "build", "scope": "Rebuilds a guide by copying the finished, approved template page and moving the content into it, then checking the copy matches before publishing.", "path": "workspace/custom-skills/guide_template_clone_build/SKILL.md", "file": "guide-rebuild-script.txt"}, {"name": "Customer Email Process Script", "type": "Customer emails — a request comes in, one reply goes out as Sara, then payment and shipping", "class": "build", "scope": "The whole customer flow: check the customer first, reply once with the price list and payment choices, and ship when the payment trigger lands.", "path": "workspace/your_files/Customer_Process_Script_11-22-26.md", "file": "customer-email-process-script.txt"}, {"name": "Official Email Rules", "type": "Emails to officials — formal drafts and address checks", "class": "build", "scope": "The formal, legal tone for drafts to officials, and checking every recipient before and after sending.", "path": "workspace/custom-skills/email_management_corrections/SKILL.md", "file": "official-email-rules.txt"}, {"name": "Morning Briefing Script", "type": "Briefings — the daily morning audio briefing and its player page", "class": "build", "scope": "What goes into the morning briefing, in what order, in The owner's voice — and how its animated player page is built.", "path": "workspace/goals/daily-morning-audio-briefing/GOAL.md", "file": "morning-briefing-script.txt"}, {"name": "Evening Briefing Script", "type": "Briefings — the daily evening audio briefing and its player page", "class": "build", "scope": "The evening edition: the day's wrap-up, the job-search picks, and the RNTTP capstone segment at the end.", "path": "workspace/goals/daily-evening-audio-briefing/GOAL.md", "file": "evening-briefing-script.txt"}, {"name": "Spoken Audio Script", "type": "Audio — voice notes and narrated readings", "class": "build", "scope": "How spoken audio is made and delivered: voice notes, narrations for pages, and audio for scheduled jobs.", "path": "/opt/muse/skills/spoken-audio/SKILL.md", "file": "spoken-audio-script.txt"}, {"name": "Podcast Production Script", "type": "Audio — podcast episodes and narrated summaries", "class": "build", "scope": "Research, write, and produce a podcast episode or narrated summary from start to finish.", "path": "/opt/muse/skills/generate_podcast/SKILL.md", "file": "podcast-production-script.txt"}, {"name": "Website Publishing Script", "type": "Publishing — putting any finished page live on x-peps.com", "class": "build", "scope": "How guides, portals, and previews are published to the live site — and how we prove the live page is the one we built.", "path": "workspace/custom-skills/github_pages_publish/SKILL.md", "file": "website-publishing-script.txt"}, {"name": "Design System — Colors & Fonts", "type": "Design — the colors and fonts every product uses", "class": "design", "scope": "One color palette and one font pair (Outfit for headings, DM Sans for body) for everything, kept in shared stylesheets so one change updates every page.", "path": "workspace/guide-build/GLOBAL_DESIGN_SYSTEM.md", "file": "design-system-standard.txt"}, {"name": "Page Header Standard", "type": "Design — the top bar of every page", "class": "design", "scope": "How every page header is built: the runner logo, the icon row (Home first, then Print, Store, and the Moon), and the rule that the header is never wider than the content below it.", "path": "workspace/guide-build/HEADER_STANDARD.md", "file": "page-header-standard.txt"}, {"name": "Button Standard", "type": "Design — push buttons everywhere", "class": "design", "scope": "The exact button sizes, colors, and shapes, taken from the approved homepage build.", "path": "workspace/guide-build/BUTTON_STANDARD_11-09-26.md", "file": "button-standard.txt"}, {"name": "Homepage Style Standard", "type": "Design — the site-wide style values", "class": "design", "scope": "The style values from the approved homepage design that the rest of the site matches.", "path": "workspace/guide-build/UNIVERSAL_STYLE_STANDARD_11-09-26.md", "file": "homepage-style-standard.txt"}, {"name": "Guide Checker", "type": "Checking — every guide, before it goes live", "class": "qa", "scope": "The automated check run on every guide before publishing: page structure, the standards, and header widths.", "path": "workspace/guide-build/check_guide.py", "file": "guide-checker.txt"}, {"name": "Kratom Guide Checklist", "type": "Checking — kratom guides, before they go live", "class": "qa", "scope": "The checkbox version of the Guide Build Script, used as the final check on kratom guides.", "path": "workspace/kratom-guides/GUIDE_BUILD_STANDARD.md", "file": "kratom-guide-checklist.txt"}, {"name": "Audio Quality Check", "type": "Checking — every audio file, before it is delivered", "class": "qa", "scope": "Every recording is fully decoded and scanned for dropouts before it reaches the owner — no skipped checks.", "path": "workspace/custom-skills/spoken_audio_full_decode_check/SKILL.md", "file": "audio-quality-check.txt"}, {"name": "Instruction Check", "type": "Checking — how-to instructions, before they are sent", "class": "qa", "scope": "Every button and menu named in step-by-step instructions is verified in the real service or its official help first.", "path": "workspace/custom-skills/verify_ui_steps_before_sending/SKILL.md", "file": "instruction-check.txt"}];
+  var GROUPS = {build:'Build Scripts', design:'Design & Layout Standards', qa:'Quality Checkers'};
+  var btn = document.getElementById('scriptsBtn'),
+      ovl = document.getElementById('scriptsOvl'),
+      xBtn = document.getElementById('scriptsX'),
+      listView = document.getElementById('scriptsListView'),
+      readView = document.getElementById('scriptsReadView'),
+      listEl = document.getElementById('scriptsList'),
+      backBtn = document.getElementById('scriptsBack'),
+      nameEl = document.getElementById('scriptsName'),
+      metaEl = document.getElementById('scriptsMeta'),
+      pane = document.getElementById('scriptsPane'),
+      savedScroll = 0;
+
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function inline(s){
+    s = esc(s);
+    s = s.replace(/`([^`]+)`/g,'<code>$1</code>');
+    s = s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+    s = s.replace(/(^|[^*])\*([^*\n]+)\*/g,'$1<em>$2</em>');
+    s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+    return s;
+  }
+  function mdToHtml(md){
+    var lines = md.split('\n'), out = [], inUl = false, inOl = false, inPre = false, preBuf = [];
+    function closeLists(){ if(inUl){out.push('</ul>'); inUl=false;} if(inOl){out.push('</ol>'); inOl=false;} }
+    for(var i=0;i<lines.length;i++){
+      var ln = lines[i];
+      if(/^\s*```/.test(ln)){
+        if(inPre){ out.push('<pre><code>'+esc(preBuf.join('\n'))+'</code></pre>'); preBuf=[]; inPre=false; }
+        else { closeLists(); inPre = true; }
+        continue;
+      }
+      if(inPre){ preBuf.push(ln); continue; }
+      var h = ln.match(/^(#{1,5})\s+(.*)$/);
+      if(h){ closeLists(); var lvl = Math.min(h[1].length+1,5); out.push('<h'+lvl+'>'+inline(h[2])+'</h'+lvl+'>'); continue; }
+      if(/^\s*(-{3,}|\*{3,})\s*$/.test(ln)){ closeLists(); out.push('<hr>'); continue; }
+      var ul = ln.match(/^\s*[-*]\s+(.*)$/), ol = ln.match(/^\s*\d+[.)]\s+(.*)$/);
+      if(ul){ if(inOl){out.push('</ol>'); inOl=false;} if(!inUl){out.push('<ul>'); inUl=true;} out.push('<li>'+inline(ul[1])+'</li>'); continue; }
+      if(ol){ if(inUl){out.push('</ul>'); inUl=false;} if(!inOl){out.push('<ol>'); inOl=true;} out.push('<li>'+inline(ol[1])+'</li>'); continue; }
+      if(/^\s*$/.test(ln)){ closeLists(); continue; }
+      if(/^>\s?/.test(ln)){ closeLists(); out.push('<p>'+inline(ln.replace(/^>\s?/,''))+'</p>'); continue; }
+      closeLists();
+      out.push('<p>'+inline(ln)+'</p>');
+    }
+    if(inPre) out.push('<pre><code>'+esc(preBuf.join('\n'))+'</code></pre>');
+    closeLists();
+    return out.join('\n');
+  }
+
+  // Build the picker list, grouped by category, order preserved inside each group
+  ['build','design','qa'].forEach(function(g){
+    var items = DATA.filter(function(e){ return e['class'] === g; });
+    if(!items.length) return;
+    var h = document.createElement('div'); h.className = 'scripts-group'; h.textContent = GROUPS[g];
+    listEl.appendChild(h);
+    items.forEach(function(e){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'scripts-item';
+      b.innerHTML = '<span class="si-name"></span><span class="si-type"></span><span class="si-scope"></span>';
+      b.querySelector('.si-name').textContent = e.name;
+      b.querySelector('.si-type').textContent = e.type;
+      b.querySelector('.si-scope').textContent = e.scope;
+      b.addEventListener('click', function(){ openScript(e); });
+      listEl.appendChild(b);
+    });
+  });
+
+  function showList(){ readView.hidden = true; listView.hidden = false; }
+  function openScript(e){
+    nameEl.textContent = e.name;
+    metaEl.textContent = e.type;
+    pane.innerHTML = '<p>Loading…</p>';
+    listView.hidden = true; readView.hidden = false; readView.scrollTop = 0;
+    fetch('scripts/' + e.file, {credentials:'same-origin'}).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.text();
+    }).then(function(txt){
+      pane.innerHTML = mdToHtml(txt);
+    }).catch(function(err){
+      pane.innerHTML = '<p class="scripts-err">Could not load this script file (' + esc(e.file) + '). It lives in the workspace at ' + esc(e.path || '') + ' — tell Muse and it will be re-published.</p>';
+    });
+  }
+
+  function openModal(){
+    savedScroll = window.scrollY || window.pageYOffset || 0;
+    ovl.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    showList();
+    xBtn.focus();
+  }
+  function closeModal(){
+    ovl.hidden = true;
+    document.documentElement.style.overflow = '';
+    window.scrollTo(0, savedScroll);
+    if(btn) btn.focus();
+  }
+
+  if(btn) btn.addEventListener('click', openModal);
+  xBtn.addEventListener('click', closeModal);
+  backBtn.addEventListener('click', showList);
+  ovl.addEventListener('click', function(ev){ if(ev.target === ovl) closeModal(); });
+  document.addEventListener('keydown', function(ev){
+    if(!ovl.hidden && (ev.key === 'Escape' || ev.keyCode === 27)) closeModal();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rome — Desk Styles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F5FA; --surface:#FFFFFF; --surface2:#EDF0F7; --ink:#17233B; --ink-soft:#4A5872;
+  --line:#DCE1EE; --shadow:0 2px 10px rgba(23,35,59,.08);
+  --fam-vendor:#1C7A38; --fam-vendor-t:#14532D;
+  --fam-law:#0B5FA5;    --fam-law-t:#0A4A82;
+  --fam-research:#0E7C86; --fam-research-t:#0A5C64;
+  --fam-tools:#6D28D9;  --fam-tools-t:#5B21B6;
+  --fam-orders:#C25200; --fam-orders-t:#9A3F00;
+}
+html[data-theme="dark"]{
+  --bg:#12151D; --surface:#1D222E; --surface2:#262C3B; --ink:#EDF0F7; --ink-soft:#AAB4C8;
+  --line:#333B4D; --shadow:0 2px 10px rgba(0,0,0,.45);
+  --fam-vendor-t:#7BD88F; --fam-law-t:#7FC0F5; --fam-research-t:#63D6CD;
+  --fam-tools-t:#C0A8FF; --fam-orders-t:#FFB066;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;font-size:16px;line-height:1.45}
+.wrap{max-width:1200px;margin:0 auto;padding:18px 20px 34px}
+h1,h2,h3{font-family:"Outfit",sans-serif}
+a{text-decoration:none;color:inherit}
+/* header */
+.hdr{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.hdr-main{flex:1 1 420px}
+.hdr h1{font-size:30px;font-weight:800;margin:2px 0 4px;letter-spacing:.01em}
+.hdr p{margin:0;color:var(--ink-soft);font-size:15.5px}
+.themebtn{flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+  background:var(--surface);box-shadow:var(--shadow);font-size:17px;cursor:pointer;line-height:1}
+.keyline{display:flex;flex-wrap:wrap;gap:6px 16px;margin:12px 0 4px;font-size:13.5px;color:var(--ink-soft);align-items:center}
+.keyline .k{display:inline-flex;align-items:center;gap:6px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.dot-vendor{background:var(--fam-vendor)} .dot-law{background:var(--fam-law)}
+.dot-research{background:var(--fam-research)} .dot-tools{background:var(--fam-tools)}
+.dot-orders{background:var(--fam-orders)}
+/* style bands */
+.band{margin:26px 0 12px;background:linear-gradient(180deg,#3D3663,#2C2748);color:#fff;
+  border-radius:12px;padding:9px 16px;font-family:"Outfit",sans-serif;font-weight:800;font-size:17px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px}
+.band small{font-family:"DM Sans",sans-serif;font-weight:500;font-size:13px;color:#CFC9EC}
+/* kind badges */
+.kb{position:absolute;top:10px;right:12px;font-size:10.5px;font-weight:700;letter-spacing:.08em;
+  padding:3px 8px;border-radius:999px}
+.kb-guide{background:#FDEBD7;color:#9A5B13} .kb-live{background:#DDF3E2;color:#177245}
+.kb-tool{background:#E1EEFB;color:#0A4A82} .kb-doc{background:#ECE7FB;color:#5B21B6}
+html[data-theme="dark"] .kb-guide{background:#4A3517;color:#F5C98A}
+html[data-theme="dark"] .kb-live{background:#173D27;color:#8FE3AC}
+html[data-theme="dark"] .kb-tool{background:#17334D;color:#9CCBF5}
+html[data-theme="dark"] .kb-doc{background:#322457;color:#C9B8FF}
+/* family helpers */
+.fam-vendor{--fam:var(--fam-vendor);--fam-t:var(--fam-vendor-t)}
+.fam-law{--fam:var(--fam-law);--fam-t:var(--fam-law-t)}
+.fam-research{--fam:var(--fam-research);--fam-t:var(--fam-research-t)}
+.fam-tools{--fam:var(--fam-tools);--fam-t:var(--fam-tools-t)}
+.fam-orders{--fam:var(--fam-orders);--fam-t:var(--fam-orders-t)}
+.disc{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:21px;border:2.5px solid var(--fam);
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),rgba(255,255,255,.35) 55%,rgba(255,255,255,.12));
+  box-shadow:inset 0 1px 3px rgba(255,255,255,.8),0 1px 4px rgba(23,35,59,.18)}
+html[data-theme="dark"] .disc{background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.28),rgba(255,255,255,.08) 60%,rgba(255,255,255,.03))}
+.disc-sm{width:36px;height:36px;font-size:17px;border-width:2px}
+/* STYLE A — shelf rows */
+.rows{display:flex;flex-direction:column;gap:8px}
+.row{position:relative;display:flex;align-items:center;gap:14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);
+  transition:transform .12s ease,box-shadow .12s ease}
+.row:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(23,35,59,.14)}
+.row .kb{position:static;padding:2px 7px;vertical-align:2px;margin-left:6px}
+.row-main{flex:1 1 auto;min-width:0}
+.row-title{font-family:"Outfit",sans-serif;font-weight:700;font-size:16.5px;display:block}
+.row-desc{display:block;color:var(--ink-soft);font-size:14px;margin-top:1px}
+.pill{flex:0 0 auto;height:30px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;
+  background:var(--fam);color:#fff;font-family:"Outfit",sans-serif;font-weight:800;font-size:12px;letter-spacing:.09em}
+/* STYLE B — soft tiles */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);border-radius:18px;padding:14px 16px 12px;box-shadow:0 3px 12px rgba(23,35,59,.07);
+  transition:transform .12s ease,box-shadow .12s ease}
+.tile:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,35,59,.13)}
+.tile-top{display:flex;align-items:center;gap:10px;padding-right:52px}
+.tile-title{font-family:"Outfit",sans-serif;font-weight:700;font-size:17px;color:var(--fam-t)}
+.tile-desc{color:var(--ink-soft);font-size:14.5px;margin:8px 0 10px;flex:1}
+.tile-open{align-self:flex-end;font-family:"Outfit",sans-serif;font-weight:700;font-size:14px;color:var(--fam-t)}
+/* STYLE C — fixed buttons */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:14px 16px;box-shadow:var(--shadow);text-align:center}
+.card-top{display:flex;justify-content:center;padding:2px 40px 0}
+.fixbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;width:300px;max-width:94%;height:36px;
+  border-radius:999px;background:var(--fam);color:#fff;font-family:"Outfit",sans-serif;font-weight:800;
+  font-size:15px;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 2px 6px rgba(23,35,59,.22),inset 0 1px 2px rgba(255,255,255,.35)}
+.card-desc{color:var(--ink);font-size:15px;margin:10px 4px 2px;text-align:left}
+.foot{margin-top:28px;color:var(--ink-soft);font-size:13px;text-align:center}
+@media (max-width:640px){
+  .tiles,.cards{grid-template-columns:1fr}
+  .hdr h1{font-size:25px}
+  .row-desc{font-size:13.5px}
+  .fixbtn{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-main">
+      <h1>Rome — Desk Styles</h1>
+      <p>Three ways to present the Kratom Desk. Same entries, same colors by topic in all three.</p>
+    </div>
+    <button class="themebtn" id="themeToggle" type="button" aria-label="Toggle dark theme">🌙</button>
+  </div>
+  <div class="keyline">
+    <span class="k"><span class="dot dot-vendor"></span>Vendor guides</span>
+    <span class="k"><span class="dot dot-law"></span>Law &amp; legality</span>
+    <span class="k"><span class="dot dot-research"></span>Research &amp; reference</span>
+    <span class="k"><span class="dot dot-tools"></span>Tools</span>
+    <span class="k"><span class="dot dot-orders"></span>Orders &amp; live</span>
+  </div>
+
+  <div class="band"><span>Style A — Shelf Rows</span><small>one entry per row · small kind pill</small></div>
+  <div class="rows">
+<a class="row fam-orders" href="https://x-peps.com/X-Peps/treeleaf-naturalist-strain-guide.html" target="_blank" rel="noopener">
+  <span class="disc">🌿</span>
+  <span class="row-main"><span class="row-title">TreeLeaf Order <span class="kb kb-live">LIVE</span></span>
+  <span class="row-desc">Paid Nov 24 — $185 flat; payment confirmed, awaiting shipment and tracking.</span></span>
+  <span class="pill">OPEN</span>
+</a>
+<a class="row fam-research" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener">
+  <span class="disc">🌿</span>
+  <span class="row-main"><span class="row-title">Kratom Reviews <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">The reviews hub — every vendor guide in one place.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-law" href="https://x-peps.com/X-Peps/kratom-legality-by-state.html" target="_blank" rel="noopener">
+  <span class="disc">⚖️</span>
+  <span class="row-main"><span class="row-title">Kratom Legality <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">The state-by-state legality map — banned, regulated, legal, and the horizon.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-research" href="https://x-peps.com/X-Peps/kratom-us-market-guide.html" target="_blank" rel="noopener">
+  <span class="disc">📈</span>
+  <span class="row-main"><span class="row-title">U.S. Kratom Market <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">The U.S. market in one page — sales growth, user counts, and the state bans.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-research" href="https://x-peps.com/X-Peps/kratom-buying-procedure-guide.html" target="_blank" rel="noopener">
+  <span class="disc">🤝</span>
+  <span class="row-main"><span class="row-title">How We Buy <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">The short buying guide we send new suppliers.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-tools" href="https://x-peps.com/admin-portal/extract-leaf-converter.html" target="_blank" rel="noopener">
+  <span class="disc">🧪</span>
+  <span class="row-main"><span class="row-title">Extract Converter <span class="kb kb-tool">TOOL</span></span>
+  <span class="row-desc">What a dose of 7% extract equals in plain leaf, charted from 0.5 g to 5 g.</span></span>
+  <span class="pill">TOOL</span>
+</a>
+<a class="row fam-tools" href="https://x-peps.com/admin-portal/#quickpick" target="_blank" rel="noopener">
+  <span class="disc">🌿</span>
+  <span class="row-main"><span class="row-title">Kratom Quick Pick <span class="kb kb-tool">TOOL</span></span>
+  <span class="row-desc">The Quick Pick wheel — cross-link to its home on the Today desk.</span></span>
+  <span class="pill">TOOL</span>
+</a>
+<a class="row fam-vendor" href="https://x-peps.com/X-Peps/dte-botanicals-strain-guide.html" target="_blank" rel="noopener">
+  <span class="disc">🌿</span>
+  <span class="row-main"><span class="row-title">DTE Botanicals <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">The full DTE strain guide — strains, extract lines, and effects notes.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-vendor" href="https://x-peps.com/X-Peps/bewitched-botanical-strain-guide.html" target="_blank" rel="noopener">
+  <span class="disc">🌿</span>
+  <span class="row-main"><span class="row-title">Bewitched Botanical <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">Every Bewitched strain and blend in one guide.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-vendor" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html" target="_blank" rel="noopener">
+  <span class="disc">🌿</span>
+  <span class="row-main"><span class="row-title">WestKoast Botanicals <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">The full WestKoast strain guide — every strain in one place.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-research" href="https://x-peps.com/X-Peps/kratom_potentiators.html" target="_blank" rel="noopener">
+  <span class="disc">🧪</span>
+  <span class="row-main"><span class="row-title">Kratom Potentiators <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">What stretches a dose — potentiators, timing, and safety notes.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+<a class="row fam-law" href="https://x-peps.com/X-Peps/kratom-legality-california.html" target="_blank" rel="noopener">
+  <span class="disc">⚖️</span>
+  <span class="row-main"><span class="row-title">Legality · California <span class="kb kb-guide">GUIDE</span></span>
+  <span class="row-desc">California’s kratom rules, city by city.</span></span>
+  <span class="pill">GUIDE</span>
+</a>
+  </div>
+
+  <div class="band"><span>Style B — Soft Tiles, No Buttons</span><small>the whole card is the link</small></div>
+  <div class="tiles">
+<a class="tile fam-orders" href="https://x-peps.com/X-Peps/treeleaf-naturalist-strain-guide.html" target="_blank" rel="noopener">
+  <span class="kb kb-live">LIVE</span>
+  <span class="tile-top"><span class="disc disc-sm">🌿</span><span class="tile-title">TreeLeaf Order</span></span>
+  <span class="tile-desc">Paid Nov 24 — $185 flat; payment confirmed, awaiting shipment and tracking.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-research" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">🌿</span><span class="tile-title">Kratom Reviews</span></span>
+  <span class="tile-desc">The reviews hub — every vendor guide in one place.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-law" href="https://x-peps.com/X-Peps/kratom-legality-by-state.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">⚖️</span><span class="tile-title">Kratom Legality</span></span>
+  <span class="tile-desc">The state-by-state legality map — banned, regulated, legal, and the horizon.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-research" href="https://x-peps.com/X-Peps/kratom-us-market-guide.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">📈</span><span class="tile-title">U.S. Kratom Market</span></span>
+  <span class="tile-desc">The U.S. market in one page — sales growth, user counts, and the state bans.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-research" href="https://x-peps.com/X-Peps/kratom-buying-procedure-guide.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">🤝</span><span class="tile-title">How We Buy</span></span>
+  <span class="tile-desc">The short buying guide we send new suppliers.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-tools" href="https://x-peps.com/admin-portal/extract-leaf-converter.html" target="_blank" rel="noopener">
+  <span class="kb kb-tool">TOOL</span>
+  <span class="tile-top"><span class="disc disc-sm">🧪</span><span class="tile-title">Extract Converter</span></span>
+  <span class="tile-desc">What a dose of 7% extract equals in plain leaf, charted from 0.5 g to 5 g.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-tools" href="https://x-peps.com/admin-portal/#quickpick" target="_blank" rel="noopener">
+  <span class="kb kb-tool">TOOL</span>
+  <span class="tile-top"><span class="disc disc-sm">🌿</span><span class="tile-title">Kratom Quick Pick</span></span>
+  <span class="tile-desc">The Quick Pick wheel — cross-link to its home on the Today desk.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-vendor" href="https://x-peps.com/X-Peps/dte-botanicals-strain-guide.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">🌿</span><span class="tile-title">DTE Botanicals</span></span>
+  <span class="tile-desc">The full DTE strain guide — strains, extract lines, and effects notes.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-vendor" href="https://x-peps.com/X-Peps/bewitched-botanical-strain-guide.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">🌿</span><span class="tile-title">Bewitched Botanical</span></span>
+  <span class="tile-desc">Every Bewitched strain and blend in one guide.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-vendor" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">🌿</span><span class="tile-title">WestKoast Botanicals</span></span>
+  <span class="tile-desc">The full WestKoast strain guide — every strain in one place.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-research" href="https://x-peps.com/X-Peps/kratom_potentiators.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">🧪</span><span class="tile-title">Kratom Potentiators</span></span>
+  <span class="tile-desc">What stretches a dose — potentiators, timing, and safety notes.</span>
+  <span class="tile-open">Open →</span>
+</a>
+<a class="tile fam-law" href="https://x-peps.com/X-Peps/kratom-legality-california.html" target="_blank" rel="noopener">
+  <span class="kb kb-guide">GUIDE</span>
+  <span class="tile-top"><span class="disc disc-sm">⚖️</span><span class="tile-title">Legality · California</span></span>
+  <span class="tile-desc">California’s kratom rules, city by city.</span>
+  <span class="tile-open">Open →</span>
+</a>
+  </div>
+
+  <div class="band"><span>Style C — Fixed Buttons</span><small>every button the width of the longest label</small></div>
+  <div class="cards">
+<div class="card fam-orders">
+  <span class="kb kb-live">LIVE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/treeleaf-naturalist-strain-guide.html" target="_blank" rel="noopener">🌿 TreeLeaf Order</a></div>
+  <p class="card-desc">Paid Nov 24 — $185 flat; payment confirmed, awaiting shipment and tracking.</p>
+</div>
+<div class="card fam-research">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener">🌿 Kratom Reviews</a></div>
+  <p class="card-desc">The reviews hub — every vendor guide in one place.</p>
+</div>
+<div class="card fam-law">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/kratom-legality-by-state.html" target="_blank" rel="noopener">⚖️ Kratom Legality</a></div>
+  <p class="card-desc">The state-by-state legality map — banned, regulated, legal, and the horizon.</p>
+</div>
+<div class="card fam-research">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/kratom-us-market-guide.html" target="_blank" rel="noopener">📈 U.S. Kratom Market</a></div>
+  <p class="card-desc">The U.S. market in one page — sales growth, user counts, and the state bans.</p>
+</div>
+<div class="card fam-research">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/kratom-buying-procedure-guide.html" target="_blank" rel="noopener">🤝 How We Buy</a></div>
+  <p class="card-desc">The short buying guide we send new suppliers.</p>
+</div>
+<div class="card fam-tools">
+  <span class="kb kb-tool">TOOL</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/admin-portal/extract-leaf-converter.html" target="_blank" rel="noopener">🧪 Extract Converter</a></div>
+  <p class="card-desc">What a dose of 7% extract equals in plain leaf, charted from 0.5 g to 5 g.</p>
+</div>
+<div class="card fam-tools">
+  <span class="kb kb-tool">TOOL</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/admin-portal/#quickpick" target="_blank" rel="noopener">🌿 Kratom Quick Pick</a></div>
+  <p class="card-desc">The Quick Pick wheel — cross-link to its home on the Today desk.</p>
+</div>
+<div class="card fam-vendor">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/dte-botanicals-strain-guide.html" target="_blank" rel="noopener">🌿 DTE Botanicals</a></div>
+  <p class="card-desc">The full DTE strain guide — strains, extract lines, and effects notes.</p>
+</div>
+<div class="card fam-vendor">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/bewitched-botanical-strain-guide.html" target="_blank" rel="noopener">🌿 Bewitched Botanical</a></div>
+  <p class="card-desc">Every Bewitched strain and blend in one guide.</p>
+</div>
+<div class="card fam-vendor">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/westkoast-botanicals-strain-guide.html" target="_blank" rel="noopener">🌿 WestKoast Botanicals</a></div>
+  <p class="card-desc">The full WestKoast strain guide — every strain in one place.</p>
+</div>
+<div class="card fam-research">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/kratom_potentiators.html" target="_blank" rel="noopener">🧪 Kratom Potentiators</a></div>
+  <p class="card-desc">What stretches a dose — potentiators, timing, and safety notes.</p>
+</div>
+<div class="card fam-law">
+  <span class="kb kb-guide">GUIDE</span>
+  <div class="card-top"><a class="fixbtn" href="https://x-peps.com/X-Peps/kratom-legality-california.html" target="_blank" rel="noopener">⚖️ Legality · California</a></div>
+  <p class="card-desc">California’s kratom rules, city by city.</p>
+</div>
+  </div>
+
+  <p class="foot">Mockup only — the live portal is unchanged. Colors follow the topic in all three styles; text on colored fills is always white.</p>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('themeToggle');
+  b.addEventListener('click',function(){
+    var h=document.documentElement;
+    var dark=h.getAttribute('data-theme')!=='dark';
+    h.setAttribute('data-theme',dark?'dark':'light');
+    b.textContent=dark?'☀️':'🌙';
+  });
+})();
+</script>
+</body>
+</html>

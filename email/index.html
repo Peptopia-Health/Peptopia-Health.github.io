@@ -402,6 +402,7 @@ html.dark .rq-backend-title{color:#FBBF24}
 <img class="peptopia-logo logo-dark" src="https://x-peps.com/X-Peps/IMG_3345.png" alt="Peptopia Health &amp; Wellness"><img class="peptopia-logo logo-light" src="https://x-peps.com/X-Peps/IMG_3346.png" alt="Peptopia Health &amp; Wellness">
 <span class="peptopia-wordmark">PEPTOPIA<span class="peptopia-tagline">HEALTH &amp; WELLNESS</span></span>
 </a>
+<button type="button" id="themeBtn" class="peptopia-iconbtn" title="Toggle light / dark" aria-label="Toggle theme" onclick="toggleTheme()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
 </header>
 
 
@@ -1008,5 +1009,11 @@ b.addEventListener('click',function(){var d=document.documentElement.classList.c
 if(d){document.documentElement.setAttribute('data-theme','dark');}
 else{document.documentElement.removeAttribute('data-theme');}});})();
 </script>
+<style id="autofit-std">
+/* AUTO-FIT — GDS (David, Nov 26, 2026): page opens fitted to the screen; §57 type tokens */
+:root{--fs-body:1rem;--fs-small:0.8125rem}
+html,body{overflow-x:clip}
+img,svg{max-width:100%}
+</style>
 </body>
 </html>

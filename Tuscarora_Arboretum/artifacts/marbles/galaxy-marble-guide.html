@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-
+<script>try{var _s=localStorage.getItem('peptopia-style');if(_s&&_s!=='peptopia')document.documentElement.setAttribute('data-style',_s)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Galaxy Marble — Identification &amp; History Guide · Tuscarora Arboretum</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -246,7 +246,8 @@ table{max-width:100%}
 <button type="button" class="author-btn" data-ta-open>✒️ AUTHOR</button><button type="button" class="author-btn ta-close-btn iconbtn" data-ta-close aria-label="Close"><img src="https://x-peps.com/btn-close-holo.png" alt="Close"></button>
 </div>
 <script>
-function toggleTheme(){document.documentElement.classList.toggle('dark');}
+function toggleTheme(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('ta-theme',d?'dark':'light')}catch(e){}}
+try{if(localStorage.getItem('ta-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}
 </script>
 <footer class="peptopia-ftr">
 <div>&copy; 2026 Tuscarora Arboretum &bull; A Peptopia project &bull; Martinsburg, West Virginia</div>
@@ -361,6 +362,26 @@ setStatus('err','That didn\u2019t go through. Please try once more, or email the
 </html>
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('gd-themebtn');if(!b)return;b.addEventListener('click',function(){r.classList.toggle('dark');});})();
+</script>
+<style id="autofit-std">
+/* AUTO-FIT — GDS (David, Nov 26, 2026): page opens fitted to the screen; §57 type tokens */
+:root{--uw:100%;--fs-body:1rem;--fs-small:0.8125rem}
+html,body{overflow-x:clip}
+img,svg{max-width:100%}
+html.dark .verdict{background:var(--card);border-color:var(--line)}
+html.dark .hl{color:#1c1917}
+</style>
+<style>/* WIDTH-FIX: no section may exceed the wrap content box */
+.wrap>*{max-width:100%!important}.wrap>table{display:block;overflow-x:auto;max-width:100%}</style>
+<script>
+/* AUTO-FIT: unified width — --uw set from the .wrap CONTENT box */
+(function(){
+  function measure(){var wrap=document.querySelector('.wrap');if(!wrap)return;var cs=getComputedStyle(wrap);document.documentElement.style.setProperty('--uw',(wrap.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0))+'px');}
+  function go(){requestAnimationFrame(measure);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(measure,30);});
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(measure,180);});
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print Disc Swap — Mock-up</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--fs-body:1rem;--fs-small:.8125rem}
+*{box-sizing:border-box}
+body{margin:0;font-family:'DM Sans',sans-serif;background:#111827;color:#f9fafb}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.4rem;margin:8px 0 4px;color:#fb923c}
+p.sub{margin:0 0 16px;color:#d1d5db;font-size:var(--fs-body)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#1f2937;border:1px solid #374151;border-radius:12px;padding:8px 12px;margin-bottom:6px}
+.hdr .brand{font-family:'Outfit',sans-serif;font-weight:700}
+.hdr .icons{display:flex;align-items:center;gap:8px}
+.iconbtn{width:38px;height:38px;border-radius:50%;border:none;background:transparent;padding:0;cursor:pointer}
+.iconbtn img{width:38px;height:38px;border-radius:50%;display:block}
+.label{font-size:var(--fs-small);color:#9ca3af;margin:0 2px 14px}
+.label b{color:#f9fafb}
+.new{outline:2px solid #2dd4bf;border-radius:50%}
+.note{background:#1f2937;border:1px solid #374151;border-radius:12px;padding:12px;font-size:var(--fs-body)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Print Button — Disc Swap Mock-up</h1>
+<p class="sub">Same guide header, same 38px button size. Only the disc artwork changes.</p>
+
+<div class="hdr"><span class="brand">TreeLeaf Naturalist — Strain Guide</span><span class="icons"><button class="iconbtn" onclick="window.print()" title="Print (current)"><img src="https://x-peps.com/X-Peps/btn-print-holo.png" alt="Current print disc — small black disc"></button></span></div>
+<p class="label"><b>CURRENT:</b> small black disc (19,762 B) — embedded in 18 guide pages and served at the X-Peps print-disc address used by 4 more pages.</p>
+
+<div class="hdr"><span class="brand">TreeLeaf Naturalist — Strain Guide</span><span class="icons"><button class="iconbtn" onclick="window.print()" title="Print (new standard)"><img class="new" src="https://x-peps.com/btn-print-holo.png" alt="New standard print disc — turquoise holo master"></button></span></div>
+<p class="label"><b>NEW STANDARD (Option B):</b> turquoise holo master disc (363,502 B) — the root-hosted master, already live on DTE.html.</p>
+
+<div class="note">Fleet swap is staged and ready (22 pages) but NOT published. It goes live only after this mock-up is approved.</div>
+</div>
+</body>
+</html>

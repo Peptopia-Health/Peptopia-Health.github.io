@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kratom News — Law, Courts &amp; Research, As They Break</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--fs-body:1rem;--fs-small:0.8125rem;
+ --fx-energy:#FF6700;--fx-energy-dk:#C25200;--fx-energy-lt:#FFD8AD;
+ --fx-focus:#0090FF;--fx-focus-dk:#0057B8;--fx-focus-lt:#C0E5FF;
+ --fx-mood:#FFE500;--fx-mood-dk:#8A6D00;--fx-mood-lt:#FFF6A5;
+ --fx-calm:#00E065;--fx-calm-dk:#007A3D;--fx-calm-lt:#B5FFD9;
+ --fx-analgesia:#FF073A;--fx-analgesia-dk:#8F0218;--fx-analgesia-lt:#FFC3CC;
+ --fx-sleep:#9040FF;--fx-sleep-dk:#3D1FA8;--fx-sleep-lt:#DFD3FF;
+ --fx-default:#0090FF;--fx-default-dk:#0057B8;
+ --paper:#F7F4EC;--card:#FFFFFF;--ink:#1C2420;--muted:#5A6660;--line:#D9D2C0;
+ --accent:#08672B;--deep:#1E4D3B;--orange:var(--fx-energy);--link:#0B5CAD;
+ --band-ink:#FFFFFF;--wash:#EFF3EA;--chips-nolaw:#E8E6DF;
+ --c-money:var(--fx-energy-dk);--c-money-b:var(--fx-energy);--c-money-lt:var(--fx-energy-lt);
+ --c-people:var(--fx-focus-dk);--c-people-b:var(--fx-focus);--c-people-lt:var(--fx-focus-lt);
+ --c-closed:var(--fx-analgesia-dk);--c-closed-b:var(--fx-analgesia);--c-closed-lt:var(--fx-analgesia-lt);
+ --c-open:var(--fx-calm-dk);--c-open-b:var(--fx-calm);--c-open-lt:var(--fx-calm-lt);
+}
+html[data-theme="dark"]{
+ --paper:#101613;--card:#1A211D;--ink:#EDF2EE;--muted:#A9B8AE;--line:#33413A;
+ --accent:#7CC98F;--deep:#2E7D5B;--orange:var(--fx-energy);--link:#7CC4FF;--wash:#1E2A23;--chips-nolaw:#2A332D;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',-apple-system,'Segoe UI',Arial,sans-serif;line-height:1.55}
+h1,h2,h3{font-family:'Outfit','DM Sans',sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:4px 22px 0}
+.wrap>section:first-of-type .colorband{margin-top:2px}
+img,svg{max-width:100%}
+/* ---- hero (kratom-guide titlepage construction) ---- */
+.titlepage{text-align:center;padding:22px 24px 0;background:radial-gradient(1100px 520px at 50% -10%,var(--fx-calm-lt) 0%,var(--paper) 62%)}
+html[data-theme="dark"] .titlepage{background:radial-gradient(1100px 520px at 50% -10%,#1E2A23 0%,var(--paper) 62%)}
+.wc-toprow{display:flex;justify-content:space-between;align-items:center;gap:10px;max-width:1152px;margin:0 auto}
+.kicker{letter-spacing:4px;text-transform:uppercase;font-size:var(--fs-small);font-weight:700;color:var(--accent)}
+.wc-topbtns{display:flex;gap:8px;align-items:center}
+.wc-tbtn{font:700 .82rem 'DM Sans',sans-serif;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:6px 10px;cursor:pointer;box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(0,0,0,.12),0 3px 6px rgba(0,0,0,.15)}
+.wc-tbtn:active{transform:translateY(2px);box-shadow:inset 0 3px 6px rgba(0,0,0,.25),0 1px 2px rgba(0,0,0,.2)}
+.peptopia-iconbtn{background:none;border:none;padding:0;cursor:pointer;border-radius:50%;line-height:0}
+.peptopia-iconbtn img{border-radius:50%;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.peptopia-iconbtn:active{transform:translateY(2px)}
+.titlepage h1{font-size:clamp(36px,6vw,62px);font-weight:800;margin:8px 0 4px;color:var(--deep);line-height:1.08}
+.titlepage h1 .o{color:var(--orange)}
+.titlepage .sub{font-size:clamp(15px,2.6vw,21px);color:var(--muted);margin:0 auto 12px;max-width:900px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 2px}
+.pill{border:1.5px solid var(--accent);border-radius:999px;padding:5px 14px;font-size:var(--fs-small);font-weight:700;background:var(--card);color:var(--accent);text-decoration:none;box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(0,0,0,.10)}
+.pill:active{transform:translateY(2px)}
+/* ---- section bands ---- */
+.colorband{width:fit-content;max-width:100%;margin:20px auto 10px;padding:9px 70px 9px 16px;border-radius:12px;position:relative;text-align:center;color:var(--band-ink);cursor:pointer}
+.colorband h2{font-size:clamp(20px,3.4vw,25px);font-weight:800;margin:0;line-height:1.15}
+.colorband p{margin:1px 0 0;font-size:var(--fs-small);opacity:.92}
+.colorband .icobtn{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:2px solid rgba(0,0,0,.35);background:radial-gradient(circle at 32% 28%,#ffffff,#e6f2ea 48%,#bcd8c4);font-size:20px;cursor:pointer;box-shadow:inset 0 2px 3px rgba(255,255,255,.95),inset 0 -5px 8px rgba(0,0,0,.22),0 5px 10px rgba(0,0,0,.35)}
+.colorband .icobtn:active{transform:translateY(calc(-50% + 3px)) scale(.95)}
+.band-green{background:linear-gradient(135deg,#0B7A33,#08672B)} .band-orange{background:linear-gradient(135deg,var(--fx-energy),var(--fx-energy-dk))}
+.band-violet{background:linear-gradient(135deg,#5B2EE5,var(--fx-sleep-dk))} .band-red{background:linear-gradient(135deg,var(--fx-analgesia),var(--fx-analgesia-dk))}
+.band-blue{background:linear-gradient(135deg,var(--fx-focus),var(--fx-focus-dk))} .band-calm{background:linear-gradient(135deg,var(--fx-calm),var(--fx-calm-dk))}
+.band-gold{background:linear-gradient(135deg,#B98A00,var(--fx-mood-dk))} .band-deep{background:linear-gradient(135deg,#27694E,var(--deep))}
+.band-grey{background:linear-gradient(135deg,#5A6660,#3E4A44)}
+.bandbody{margin:0 auto}
+.colorband{transition:filter .15s ease}
+.colorband:hover{filter:brightness(1.08)}
+.stat[data-jump]{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.stat[data-jump]:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(60,50,30,.14)}
+.stat[data-jump]:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+.mkt-hint{font-size:var(--fs-small);color:var(--muted);margin:0 0 4px}
+section.mkt-flash{animation:mktflash 1.25s ease-out;border-radius:12px}
+@keyframes mktflash{0%{box-shadow:0 0 0 5px var(--accent)}100%{box-shadow:0 0 0 5px rgba(0,0,0,0)}}
+@media print{section.mkt-flash{animation:none!important;box-shadow:none!important}}
+/* ---- cards & figures ---- */
+.mkt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 6px}
+.stat{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--accent);border-radius:14px;padding:12px 14px 10px;box-shadow:0 3px 10px rgba(60,50,30,.07)}
+.stat .n{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(26px,4.4vw,38px);line-height:1.05}
+.stat .l{font-weight:700;font-size:var(--fs-small);margin-top:2px}
+.stat .s{color:var(--muted);font-size:var(--fs-small);margin-top:2px}
+.stat.money{border-top-color:var(--c-money-b)} .stat.money .n{color:var(--c-money)}
+.stat.people{border-top-color:var(--c-people-b)} .stat.people .n{color:var(--c-people)}
+.stat.closed{border-top-color:var(--c-closed-b)} .stat.closed .n{color:var(--c-closed)}
+.stat.open{border-top-color:var(--c-open-b)} .stat.open .n{color:var(--c-open)}
+html[data-theme="dark"] .stat.money .n{color:var(--c-money-lt)}
+html[data-theme="dark"] .stat.people .n{color:var(--c-people-lt)}
+html[data-theme="dark"] .stat.closed .n{color:var(--c-closed-lt)}
+html[data-theme="dark"] .stat.open .n{color:var(--c-open-lt)}
+.mkt-legend{font-size:var(--fs-small);margin:2px 0 4px}
+.mkt-legend .dot{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin:0 4px 0 10px}
+.mkt-legend .dot:first-child{margin-left:0}
+.fig{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px 8px;margin:6px 0 10px;box-shadow:0 3px 10px rgba(60,50,30,.06)}
+.fig h3{margin:0 0 2px;font-size:19px;font-weight:800}
+.fig .cap{color:var(--muted);font-size:var(--fs-small);margin:2px 0 4px}
+.grid line{stroke:var(--line);stroke-width:1}
+.axl{fill:var(--muted);font-size:12px;font-family:'DM Sans',sans-serif}
+.axnote{fill:var(--muted);font-size:13px;font-family:'DM Sans',sans-serif}
+.barlab{fill:var(--ink);font-size:13px;font-weight:700;font-family:'Outfit',sans-serif}
+.linelab{fill:var(--fx-focus-dk);font-size:13px;font-weight:700;font-family:'Outfit',sans-serif;paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+html[data-theme="dark"] .linelab{fill:var(--fx-focus-lt)}
+.linelab2{fill:var(--fx-calm-dk);font-size:13px;font-weight:700;font-family:'Outfit',sans-serif;paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+html[data-theme="dark"] .linelab2{fill:var(--fx-calm-lt)}
+.linelab3{fill:var(--fx-analgesia-dk);font-size:13px;font-weight:700;font-family:'Outfit',sans-serif;paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+html[data-theme="dark"] .linelab3{fill:var(--fx-analgesia-lt)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:var(--fs-small);font-weight:700;margin:2px 0 6px}
+.legend .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px}
+.callout{border-radius:12px;padding:11px 15px;margin:8px 0;font-size:var(--fs-body)}
+.callout b{font-family:'Outfit',sans-serif}
+.co-wash{background:var(--wash);border:1.5px solid var(--accent)}
+.co-red{background:var(--fx-analgesia-lt);border:1.5px solid var(--fx-analgesia-dk);color:#4A0A16}
+html[data-theme="dark"] .co-red{background:#3A0A14;border-color:var(--fx-analgesia);color:#FFD9DE}
+.co-blue{background:var(--fx-focus-lt);border:1.5px solid var(--fx-focus-dk);color:#0A2C4A}
+html[data-theme="dark"] .co-blue{background:#0B2745;border-color:var(--fx-focus);color:#D9ECFF}
+.hl{background:#FEF08A;box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 3px;border-radius:3px;color:#1C2420}
+/* ---- timeline ---- */
+.tl{position:relative;margin:6px 0 4px;padding-left:26px}
+.tl:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:3px;border-radius:2px;background:var(--line)}
+.tl-item{position:relative;padding:5px 0 5px 6px}
+.tl-item:before{content:"";position:absolute;left:-24px;top:11px;width:13px;height:13px;border-radius:50%;background:var(--card);border:3.5px solid var(--accent)}
+.tl-item.ban:before{border-color:var(--fx-analgesia)} .tl-item.fed:before{border-color:var(--fx-focus)}
+.tl-item.reg:before{border-color:var(--fx-calm)} .tl-item.rev:before{border-color:var(--fx-calm)}
+.tl-item .d{font-family:'Outfit',sans-serif;font-weight:800;font-size:var(--fs-body);color:var(--accent)}
+.tl-item.ban .d{color:var(--fx-analgesia-dk)} html[data-theme="dark"] .tl-item.ban .d{color:var(--fx-analgesia-lt)}
+.tl-item .t{font-size:var(--fs-body)}
+/* ---- chips ---- */
+.chipgroup{margin:8px 0}
+.chipgroup h3{margin:0 0 5px;font-size:17px;font-weight:800}
+.mkt-chip{display:inline-block;border-radius:999px;padding:4px 11px;margin:0 5px 6px 0;font-size:var(--fs-small);font-weight:700;border:1.5px solid}
+.chip-open{background:var(--fx-calm-lt);border-color:var(--fx-calm-dk);color:#0A3D21}
+.chip-reg{background:var(--fx-focus-lt);border-color:var(--fx-focus-dk);color:#0A2C4A}
+.chip-res{background:var(--fx-analgesia);border-color:var(--fx-analgesia-dk);color:#FFFFFF}
+html[data-theme="dark"] .chip-open{color:#0A3D21} html[data-theme="dark"] .chip-reg{color:#0A2C4A}
+/* ---- state law popups ---- */
+button.mkt-chip{font-family:inherit;cursor:pointer}
+button.mkt-chip:hover{box-shadow:0 2px 7px rgba(0,0,0,.22);transform:translateY(-1px)}
+button.mkt-chip:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+.maphint{margin:2px 0 0;font-size:var(--fs-small);color:var(--muted)}
+.stpop-wrap{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:16px}
+.stpop-wrap[hidden]{display:none}
+.stpop-backdrop{position:absolute;inset:0;background:rgba(10,14,12,.55)}
+.stpop-card{position:relative;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 34px rgba(0,0,0,.28);max-width:520px;width:100%;max-height:86vh;overflow-y:auto;padding:16px 18px 14px}
+.stpop-card h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:22px;margin:0 36px 2px 0}
+.stpop-x{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-size:var(--fs-body);font-weight:700;cursor:pointer;line-height:1;padding:0}
+.stpop-x:hover{border-color:var(--accent)}
+.stpop-lane{font-weight:700;font-size:var(--fs-small);margin:2px 0 6px}
+.stpop-lane.lane-open{color:var(--fx-calm-dk)} .stpop-lane.lane-reg{color:var(--fx-focus-dk)} .stpop-lane.lane-res{color:var(--fx-analgesia-dk)}
+html[data-theme="dark"] .stpop-lane.lane-open{color:var(--fx-calm)} html[data-theme="dark"] .stpop-lane.lane-reg{color:#7CC4FF} html[data-theme="dark"] .stpop-lane.lane-res{color:var(--fx-analgesia-lt)}
+.stpop-law{font-family:'Outfit',sans-serif;font-weight:700;font-size:var(--fs-body);margin:4px 0;padding:7px 10px;background:var(--wash);border-left:4px solid var(--accent);border-radius:6px}
+.stpop-body{font-size:var(--fs-body);margin:6px 0}
+.stpop-local,.stpop-age{font-size:var(--fs-body);margin:5px 0}
+.stpop-local b,.stpop-age b{font-family:'Outfit',sans-serif}
+.stpop-srcs{margin-top:9px;padding-top:8px;border-top:1px solid var(--line);font-size:var(--fs-small)}
+.stpop-srcs .sh{font-family:'Outfit',sans-serif;font-weight:700;font-size:var(--fs-small);text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.stpop-srcs a{display:block;color:var(--link);font-weight:700;text-decoration:none;margin:3px 0}
+.stpop-srcs a:hover{text-decoration:underline}
+@media print{.stpop-wrap{display:none!important}}
+/* ---- population bars ---- */
+.popbar{display:flex;height:52px;border-radius:12px;overflow:hidden;border:1.5px solid var(--line);margin:6px 0 4px}
+.popbar div{display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(12px,2.6vw,16px);text-align:center;padding:2px}
+.pb-open{background:var(--fx-calm-dk)} .pb-reg{background:var(--fx-focus-dk)} .pb-res{background:var(--fx-analgesia-dk)}
+.hbar{display:grid;grid-template-columns:118px 1fr 74px;align-items:center;gap:9px;margin:5px 0;font-size:var(--fs-small)}
+.hbar .track{height:20px;background:var(--chips-nolaw);border-radius:7px;overflow:hidden}
+.hbar .fill{height:100%;border-radius:7px}
+.hbar .v{font-family:'Outfit',sans-serif;font-weight:800;text-align:right}
+/* ---- prose ---- */
+.prose{font-size:var(--fs-body);margin:6px 0}
+.prose p{margin:7px 0}
+.srcs{font-size:var(--fs-small)}
+.srcs h3{margin:12px 0 3px;font-size:var(--fs-body);color:var(--accent)}
+.srcs p{margin:3px 0}
+.srcs a{color:var(--link);font-weight:700;text-decoration:none}
+.srcs a:hover{text-decoration:underline}
+.footline{text-align:center;color:var(--muted);font-size:var(--fs-small);padding:16px 0 22px}
+details.jsonbox{margin:10px 0}
+details.jsonbox summary{cursor:pointer;font-weight:700;color:var(--accent)}
+details.jsonbox pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;overflow-x:auto;font-size:var(--fs-small)}
+@media print{
+ @page{size:Letter;margin:.55in}
+ *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ body{background:#fff}
+ .wc-topbtns,.colorband .icobtn,.pill{display:none!important}
+ .stat,.fig,.callout,.tl-item,.chipgroup{break-inside:avoid}
+ h2,h3{break-after:avoid}
+}
+/* ---- Kratom News (added in the news build; semantic colors only) ---- */
+:root{--c-fed:var(--fx-sleep-dk);--c-fed-b:var(--fx-sleep);--c-fed-lt:var(--fx-sleep-lt)}
+.hero-links{font-size:var(--fs-small);text-align:center;margin:9px 0 0;color:var(--muted)}
+.hero-links a{color:var(--link);font-weight:700;text-decoration:none}
+.hero-links a:hover{text-decoration:underline}
+.news-list{display:grid;gap:10px;margin:8px 0 2px}
+.story{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--line);border-radius:12px;padding:10px 12px}
+.story.s-red{border-left-color:var(--c-closed-b)}
+.story.s-green{border-left-color:var(--c-open-b)}
+.story.s-blue{border-left-color:var(--c-people-b)}
+.story.s-violet{border-left-color:var(--c-fed-b)}
+.story-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.dbub{font-family:'Outfit',sans-serif;font-weight:800;font-size:var(--fs-small);color:#fff;border-radius:999px;padding:2px 9px;letter-spacing:.5px;background:var(--ink)}
+.s-red .dbub{background:var(--c-closed)}
+.s-green .dbub{background:var(--c-open)}
+.s-blue .dbub{background:var(--c-people)}
+.s-violet .dbub{background:var(--c-fed)}
+.chip{font-family:'Outfit',sans-serif;font-weight:700;font-size:var(--fs-small);text-transform:uppercase;letter-spacing:.6px;border-radius:999px;padding:2px 9px}
+.s-red .chip{background:var(--c-closed-lt);color:var(--c-closed)}
+.s-green .chip{background:var(--c-open-lt);color:var(--c-open)}
+.s-blue .chip{background:var(--c-people-lt);color:var(--c-people)}
+.s-violet .chip{background:var(--c-fed-lt);color:var(--c-fed)}
+.story h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.06rem;line-height:1.25;margin:2px 0 4px}
+.story p{font-size:var(--fs-body);margin:4px 0}
+.story .story-src{font-size:var(--fs-small);color:var(--muted);margin-top:6px}
+.story .story-src a{color:var(--link);font-weight:700;text-decoration:none}
+.story .story-src a:hover{text-decoration:underline}
+.hz-list{margin:4px 0 0}
+.hz-row{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.hz-row:last-child{border-bottom:0}
+.hz-date{font-family:'Outfit',sans-serif;font-weight:800;font-size:var(--fs-small);color:var(--c-people);flex:0 0 104px;padding-top:2px}
+.hz-row p{font-size:var(--fs-body);margin:0}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 2px}
+.pf-card{display:block;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c-open-b);border-radius:12px;padding:11px 12px;text-decoration:none;color:var(--ink)}
+.pf-card:hover{border-color:var(--c-open-b)}
+.pf-card h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.02rem;line-height:1.25;margin:0 0 4px}
+.pf-card p{font-size:var(--fs-small);color:var(--muted);margin:0 0 6px}
+.pf-go{font-family:'Outfit',sans-serif;font-weight:700;font-size:var(--fs-small);color:var(--c-open)}
+.news-ftr{text-align:center;padding:14px 0 0}
+.ftr-email{font-size:var(--fs-body);margin:0 0 7px}
+.ftr-email a{color:var(--link);font-weight:700;text-decoration:none}
+.ftr-email a:hover{text-decoration:underline}
+.ficons{display:flex;gap:10px;justify-content:center;align-items:center}
+.ficons a{color:var(--muted);display:flex;align-items:center;justify-content:center;width:38px;height:38px}
+.ficons a:hover{color:var(--ink)}
+.ficons svg{width:22px;height:22px}
+@media (max-width:640px){.pf-grid{grid-template-columns:1fr}.hz-date{flex-basis:88px}}
+@media print{.story,.hz-row,.pf-card{break-inside:avoid}}
+
+</style>
+<link rel="stylesheet" href="https://x-peps.com/effect-palette.css">
+
+<style id="mkt-responsive-print-standard">
+html,body{overflow-x:clip}
+img,svg{max-width:100%}
+@media (max-width:640px){
+ .wrap{padding:4px 12px 0}
+ .mkt-stats{grid-template-columns:1fr}
+ .colorband{padding:9px 60px 9px 12px}
+ .colorband p{white-space:normal}
+ .fig{padding:10px 10px 6px}
+ .stat .n{font-size:30px}
+ .hbar{grid-template-columns:92px 1fr 62px;font-size:var(--fs-small)}
+ .popbar{height:64px}
+ .titlepage{padding:16px 12px 2px}
+ .kicker{letter-spacing:2.5px;font-size:var(--fs-small)}
+}
+@media print{
+ .bandbody{display:block!important}
+ svg{max-height:340px}
+}
+/* Floating nav: index button + return arrow (bottom-right stack) */
+.mkt-fab{position:fixed;right:16px;width:48px;height:48px;border-radius:50%;border:2px solid rgb(238,85,253);background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.9),var(--card) 52%,var(--wash));color:var(--ink);font-size:21px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;box-shadow:inset 0 2px 3px rgba(255,255,255,.8),inset 0 -4px 7px rgba(0,0,0,.18),0 5px 12px rgba(0,0,0,.30);padding:0;font-family:'DM Sans',sans-serif}
+.mkt-fab:active{transform:translateY(2px);box-shadow:inset 0 3px 6px rgba(0,0,0,.25),0 1px 2px rgba(0,0,0,.25)}
+#mktIdxBtn{bottom:16px}
+#mktBackBtn{bottom:74px}
+#mktBackBtn[hidden]{display:none}
+.mkt-idx-wrap{position:fixed;inset:0;z-index:55}
+.mkt-idx-wrap[hidden]{display:none}
+.mkt-idx-backdrop{position:absolute;inset:0;background:rgba(10,14,12,.35)}
+.mkt-idx-card{position:absolute;right:16px;bottom:74px;width:min(320px,calc(100vw - 32px));max-height:min(70vh,560px);overflow-y:auto;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 34px rgba(0,0,0,.28);padding:10px}
+.mkt-idx-card h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;margin:2px 36px 8px 6px}
+.mkt-idx-x{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-size:15px;font-weight:700;cursor:pointer;line-height:1;padding:0}
+.mkt-idx-x:hover{border-color:rgb(238,85,253)}
+.mkt-idx-item{display:block;width:100%;text-align:left;background:none;border:0;border-radius:10px;padding:9px 10px;font:700 var(--fs-body) 'Outfit',sans-serif;color:var(--ink);cursor:pointer}
+.mkt-idx-item:hover,.mkt-idx-item:focus-visible{background:var(--wash)}
+@media print{.mkt-fab,.mkt-idx-wrap{display:none!important}}
+</style>
+
+</head>
+<body id="top">
+
+<div class="titlepage">
+ <div class="wc-toprow">
+  <div class="kicker">Independent Customer Research</div>
+  <div class="wc-topbtns">
+   <button type="button" class="wc-tbtn" title="November 2026">📅 11/26</button>
+   <button type="button" class="wc-tbtn" id="mktThemeBtn" title="Switch light / dark theme" aria-label="Switch light or dark theme">🌙</button>
+   <button type="button" class="peptopia-iconbtn" onclick="window.print()" title="Print or save as PDF" aria-label="Print"><img src="https://x-peps.com/btn-print-holo.png" alt="" width="38" height="38"></button>
+  </div>
+ </div>
+ <h1><span class="o">Kratom</span> News</h1>
+ <div class="sub">The running record of kratom law, court and research developments — updated as they break.</div>
+ <div class="badges">
+  <a class="pill" href="#latest">📰 The Latest</a>
+  <a class="pill" href="#horizon">🔭 On the Horizon</a>
+  <a class="pill" href="#portfolio">🗂️ The Portfolio</a>
+ </div>
+ <p class="hero-links">Part of the kratom portfolio: <a href="https://x-peps.com/X-Peps/kratom-legality-by-state.html">State-by-State Legality Guide</a> · <a href="https://x-peps.com/X-Peps/kratom-us-market-guide.html">U.S. Kratom Market Guide</a> · <a href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html">Vendor Reviews</a></p>
+</div>
+<div class="wrap">
+
+<section id="latest"><div class="colorband band-deep"><h2>The Latest</h2><p>Newest first &mdash; law, courts &amp; research</p><button type="button" class="icobtn" data-t="b-latest" aria-expanded="true" aria-label="Collapse or reopen this section">▾</button></div>
+<div class="bandbody" id="b-latest">
+ <p class="mkt-legend"><span class="dot" style="background:var(--fx-analgesia)"></span>Red = bans &amp; restrictions ·<span class="dot" style="background:var(--fx-calm)"></span>Green = protective outcomes ·<span class="dot" style="background:var(--fx-focus)"></span>Blue = process &mdash; hearings, filings, courts ·<span class="dot" style="background:var(--fx-sleep)"></span>Violet = federal</p>
+ <div class="news-list">
+  <article class="story s-violet">
+   <div class="story-top"><span class="dbub">NOV 26</span><span class="chip">Federal</span></div>
+   <h3>Federal 7-OH scheduling still unpublished; court fight may push it into 2027</h3>
+   <p>The temporary federal scheduling rule for 7-OH has still not been published. In the American Kratom Association&rsquo;s D.C. lawsuit, Justice Department attorneys attributed the delay to ongoing consultations with the Department of Health and Human Services and asked for a stay; a status report is due December 14, with briefing running through January 13, so the schedule could slip into early 2027. Mitragynine products covered by the August action (MP / MGM-15 / MGM-16) remain Schedule I.</p>
+   <p class="story-src">Source: <a href="https://painnewsnetwork.org" target="_blank" rel="noopener">Pain News Network</a>, Nov 25, 2026</p>
+  </article>
+  <article class="story s-green">
+   <div class="story-top"><span class="dbub">NOV 25</span><span class="chip">Protective</span></div>
+   <h3>Gloversville, New York tables its kratom ban</h3>
+   <p>The Common Council tabled Intro LL-2 on November 24, the night of its own public hearing. The proposal would have banned the sale and possession-for-sale of kratom, natural leaf included; tabling means it was not adopted.</p>
+   <p class="story-src">Source: Hudson Valley Botanicals hearing tracker</p>
+  </article>
+  <article class="story s-red">
+   <div class="story-top"><span class="dbub">NOV 24</span><span class="chip">Restriction</span></div>
+   <h3>New York signs 7-OH limits into law</h3>
+   <p>Governor Hochul signed Chapter 415 (S.8925-A / A.9156-B) on November 23. The law prohibits products with 7-OH over 2% of total alkaloids or over 1 mg per serving, with civil fines of $500&ndash;$1,000, and takes effect February 21, 2027. Kratom otherwise stays legal in New York at 21+.</p>
+   <p class="story-src">Source: <a href="https://www.governor.ny.gov" target="_blank" rel="noopener">Office of the Governor</a> announcement</p>
+  </article>
+  <article class="story s-blue">
+   <div class="story-top"><span class="dbub">NOV 24</span><span class="chip">Process</span></div>
+   <h3>Whatcom County, Washington weighs 21+ rules against a full ban</h3>
+   <p>The County Council discussed competing ordinances on November 24 and adopted nothing. One draft regulates sales at 21+ with signage and a $250 fine; a sheriff&rsquo;s version adds ID checks for anyone appearing under 30; a third would ban commercial kratom activity in unincorporated county areas while expressly preserving personal use. A December 8 hearing has been reported but is not confirmed scheduled &mdash; and Bellingham, Blaine and Lynden, all inside the county, have already banned sales.</p>
+   <p class="story-src">Source: <a href="https://www.cascadiadaily.com/2026/nov/24/21-plus-or-outright-ban-whatcom-county-weighs-kratom-ordinance/" target="_blank" rel="noopener">Cascadia Daily News</a>, Nov 24, 2026</p>
+  </article>
+  <article class="story s-blue">
+   <div class="story-top"><span class="dbub">NOV 23</span><span class="chip">Process</span></div>
+   <h3>Florida&rsquo;s emergency labeling rule takes effect</h3>
+   <p>Emergency Rule 5KER26-16 is in force from November 23, 2026 through February 21, 2027. It requires disclosure of 7-OH concentration and alkaloid ratio on kratom products. Florida remains a regulated 21+ state.</p>
+   <p class="story-src">Source: <a href="https://www.flrules.org" target="_blank" rel="noopener">Florida Administrative Register</a></p>
+  </article>
+  <article class="story s-red">
+   <div class="story-top"><span class="dbub">NOV 20</span><span class="chip">Restriction</span></div>
+   <h3>Pocatello, Idaho bans commercial sales citywide</h3>
+   <p>The City Council voted November 19 to ban commercial kratom sales inside city limits; personal possession remains legal. Idaho has no statewide kratom law, so city rules decide.</p>
+   <p class="story-src">Source: <a href="https://www.localnews8.com" target="_blank" rel="noopener">Local News 8 / KIFI</a> reporting</p>
+  </article>
+  <article class="story s-red">
+   <div class="story-top"><span class="dbub">NOV 20</span><span class="chip">Restriction</span></div>
+   <h3>Warren County, New York bans all kratom sales</h3>
+   <p>The Board of Supervisors voted unanimously on November 20 to adopt Local Law 9 of 2026, prohibiting the sale and distribution of kratom in all forms, natural leaf included, with fines up to $1,000. Personal possession is not banned.</p>
+   <p class="story-src">Source: <a href="https://www.warrencountyny.gov" target="_blank" rel="noopener">Warren County</a> announcement</p>
+  </article>
+  <article class="story s-blue">
+   <div class="story-top"><span class="dbub">NOV 20</span><span class="chip">Process</span></div>
+   <h3>Montana files a Schedule I ban bill for 2027</h3>
+   <p>SB 32 (Sen. Mark Noland), introduced November 20 for the 2027 session, would add mitragynine and hydroxymitragynine to Schedule I. Montana has no statewide kratom law today; a KCPA bill was tabled in committee in September for not being strict enough.</p>
+   <p class="story-src">Source: <a href="https://www.legmt.gov" target="_blank" rel="noopener">Montana Legislature Bill Explorer</a></p>
+  </article>
+ </div>
+</div></section>
+
+<section id="horizon"><div class="colorband band-blue"><h2>On the Horizon</h2><p>Hearings, deadlines &amp; effective dates ahead</p><button type="button" class="icobtn" data-t="b-horizon" aria-expanded="true" aria-label="Collapse or reopen this section">▾</button></div>
+<div class="bandbody" id="b-horizon">
+ <div class="hz-list">
+  <div class="hz-row"><span class="hz-date">DEC 1</span><p><b>Wayne, Michigan:</b> Ordinance 2026-07 (sales ban incl. synthetics) first reading before the incoming council.</p></div>
+  <div class="hz-row"><span class="hz-date">DEC 1</span><p><b>Manchester, New Hampshire:</b> compromise 21+ ordinance (ID, store certificates, alkaloid labeling) before the Committee on Bills on Second Reading.</p></div>
+  <div class="hz-row"><span class="hz-date">DEC 2</span><p><b>Madison County, Idaho:</b> hearing in Rexburg on a proposed sales/distribution ban in unincorporated areas.</p></div>
+  <div class="hz-row"><span class="hz-date">DEC 3</span><p><b>Hardwick, Massachusetts:</b> Board of Health hearing on a proposed sale/distribution prohibition.</p></div>
+  <div class="hz-row"><span class="hz-date">DEC 8</span><p><b>Whatcom County, Washington:</b> possible hearing on the competing ordinances &mdash; reported, not confirmed scheduled.</p></div>
+  <div class="hz-row"><span class="hz-date">DEC 9</span><p><b>Columbia County, New York:</b> hearing on Local Law 6, an all-forms sales/distribution ban (pharmacist exception).</p></div>
+  <div class="hz-row"><span class="hz-date">DEC 14</span><p><b>Federal:</b> court status report due in the AKA&rsquo;s 7-OH lawsuit.</p></div>
+  <div class="hz-row"><span class="hz-date">AWAITING</span><p><b>Merrimack, New Hampshire:</b> outcome of the November 19 final reading of the Chapter 195 prohibition (natural leaf exempt, 21+) still unreported.</p></div>
+  <div class="hz-row"><span class="hz-date">DEC 17&ndash;JAN 1</span><p><b>Philadelphia, Mississippi:</b> approved citywide sales ban takes effect inside this window.</p></div>
+  <div class="hz-row"><span class="hz-date">FEB 21, 2027</span><p><b>New York / Florida:</b> New York&rsquo;s Chapter 415 7-OH limits take effect; Florida&rsquo;s emergency labeling rule expires the same day.</p></div>
+  <div class="hz-row"><span class="hz-date">JUL 1, 2027</span><p><b>Kentucky:</b> the kratom ban (HB 869) takes effect.</p></div>
+ </div>
+</div></section>
+
+<section id="portfolio"><div class="colorband band-green"><h2>The Kratom Portfolio</h2><p>The guides behind the headlines</p><button type="button" class="icobtn" data-t="b-portfolio" aria-expanded="true" aria-label="Collapse or reopen this section">▾</button></div>
+<div class="bandbody" id="b-portfolio">
+ <div class="pf-grid">
+  <a class="pf-card" href="https://x-peps.com/X-Peps/kratom-legality-by-state.html"><h3>State-by-State Legality Guide</h3><p>The full map: every state&rsquo;s law, local rules, and this page&rsquo;s stories in depth.</p><span class="pf-go">Open &rarr;</span></a>
+  <a class="pf-card" href="https://x-peps.com/X-Peps/kratom-us-market-guide.html"><h3>U.S. Kratom Market Guide</h3><p>The market in numbers: sales, users, forecasts and the redrawn map.</p><span class="pf-go">Open &rarr;</span></a>
+  <a class="pf-card" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html"><h3>Vendor Reviews</h3><p>The reviewed vendor guides, strain by strain.</p><span class="pf-go">Open &rarr;</span></a>
+ </div>
+</div></section>
+
+<div class="news-ftr">
+ <div class="ftr-email"><a href="mailto:peptopia@x-peps.com?subject=From%20the%20Peptopia%20Health%20Website">peptopia@x-peps.com</a></div>
+ <div class="ficons">
+  <a href="https://x-peps.com/" title="Home" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg></a>
+  <a href="https://x-peps.com/email/" title="Shop" aria-label="Shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></a>
+  <a href="https://discord.gg/sHAYkB5NAM" target="_blank" rel="noopener" title="Discord" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.93-1.51 1.98 1.98 0 0 0-.08 1.53 19.5 19.5 0 0 0-5.9 0A1.98 1.98 0 0 0 9.34 2.86a19.8 19.8 0 0 0-4.93 1.51A20.3 20.3 0 0 0 .1 18.06a19.9 19.9 0 0 0 6.07 3.03c.46-.63.87-1.3 1.22-2a12.9 12.9 0 0 1-1.93-.92c.16-.12.32-.24.47-.37a14.2 14.2 0 0 0 12.14 0c.15.13.31.25.47.37-.61.36-1.26.68-1.93.92.35.7.76 1.37 1.22 2a19.8 19.8 0 0 0 6.07-3.03 20.2 20.2 0 0 0-4.29-13.69ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.95-2.42 2.16-2.42 2.18 1.09 2.16 2.42c0 1.34-.95 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.16-1.08-2.16-2.42s.95-2.42 2.16-2.42 2.18 1.09 2.16 2.42c0 1.34-.95 2.42-2.16 2.42Z"/></svg></a>
+  <a href="https://youtube.com/playlist?list=PLJI0wP-Amc5mLaPG7sDBdRTYVvCOA7DUR&amp;si=a0xNfjs4uDrBzKHh" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg></a>
+ </div>
+</div>
+<div class="footline">Kratom News · Independent Customer Research · November 2026</div>
+</div>
+<script>
+(function(){
+ var b=document.getElementById('mktThemeBtn');
+ b.addEventListener('click',function(){
+   var d=document.documentElement;
+   if(d.getAttribute('data-theme')==='dark'){d.removeAttribute('data-theme');b.textContent='🌙';}
+   else{d.setAttribute('data-theme','dark');b.textContent='☀️';}
+ });
+ function secBtn(sec){return sec.querySelector('.icobtn');}
+ function secBody(sec){return document.getElementById('b-'+sec.id);}
+ function secOpen(sec){var bd=secBody(sec);return !!bd&&bd.style.display!=='none';}
+ function setOpen(sec,open){
+   var bd=secBody(sec),btn=secBtn(sec); if(!bd)return;
+   bd.style.display=open?'':'none';
+   if(btn){btn.textContent=open?'\u25be':'\u25b8';btn.setAttribute('aria-expanded',open?'true':'false');}
+ }
+ function flash(sec){
+   sec.classList.remove('mkt-flash');
+   void sec.offsetWidth;
+   sec.classList.add('mkt-flash');
+   setTimeout(function(){sec.classList.remove('mkt-flash');},1350);
+ }
+ function goTo(sec){
+   if(window.mktNavNote)window.mktNavNote();
+   if(!secOpen(sec))setOpen(sec,true);
+   sec.scrollIntoView({behavior:'smooth',block:'start'});
+   setTimeout(function(){flash(sec);},400);
+ }
+ window.mktGoTo=goTo;
+ document.querySelectorAll('.icobtn').forEach(function(btn){
+   btn.addEventListener('click',function(ev){
+     ev.stopPropagation();
+     var sec=btn.closest('section'); if(!sec)return;
+     setOpen(sec,!secOpen(sec));
+   });
+ });
+ document.querySelectorAll('.colorband').forEach(function(band){
+   band.addEventListener('click',function(ev){
+     if(ev.target.closest('.icobtn'))return;
+     var sec=band.closest('section'); if(!sec)return;
+     setOpen(sec,!secOpen(sec));
+   });
+ });
+ document.querySelectorAll('a[href^="#"]').forEach(function(a){
+   a.addEventListener('click',function(ev){
+     var sec=document.getElementById(a.getAttribute('href').slice(1));
+     if(!sec||sec.tagName!=='SECTION')return;
+     ev.preventDefault();
+     if(window.history&&history.pushState)history.pushState(null,'','#'+sec.id);
+     goTo(sec);
+   });
+ });
+ document.querySelectorAll('.stat[data-jump]').forEach(function(card){
+   function jump(){var sec=document.getElementById(card.getAttribute('data-jump'));if(sec)goTo(sec);}
+   card.addEventListener('click',jump);
+   card.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();jump();}});
+ });
+ function fromHash(){
+   if(!location.hash)return;
+   var sec=document.getElementById(location.hash.slice(1));
+   if(sec&&sec.tagName==='SECTION'){if(!secOpen(sec))setOpen(sec,true);flash(sec);}
+ }
+ window.addEventListener('hashchange',fromHash);
+ fromHash();
+})();
+</script>
+
+
+
+
+
+<button type="button" class="mkt-fab" id="mktBackBtn" hidden aria-label="Back to where you were">↑</button>
+<button type="button" class="mkt-fab" id="mktIdxBtn" aria-label="Open the page index" aria-haspopup="dialog">☰</button>
+<div class="mkt-idx-wrap" id="mktIdx" hidden>
+ <div class="mkt-idx-backdrop" data-idxclose></div>
+ <div class="mkt-idx-card" role="dialog" aria-modal="true" aria-label="Page index">
+  <button type="button" class="mkt-idx-x" data-idxclose aria-label="Close the index">✕</button>
+  <h3>Index</h3>
+  <div id="mktIdxList"></div>
+ </div>
+</div>
+<script>
+(function(){
+ var backBtn=document.getElementById('mktBackBtn'),
+     idxBtn=document.getElementById('mktIdxBtn'),
+     wrap=document.getElementById('mktIdx'),
+     list=document.getElementById('mktIdxList'),
+     lastY=null;
+ window.mktNavNote=function(){lastY=window.scrollY;backBtn.hidden=false;};
+ backBtn.addEventListener('click',function(){
+   if(lastY===null)return;
+   var y=lastY; lastY=null; backBtn.hidden=true;
+   window.scrollTo({top:y,behavior:'smooth'});
+ });
+ document.querySelectorAll('section[id]').forEach(function(sec){
+   var h=sec.querySelector('.colorband h2'); if(!h)return;
+   var b=document.createElement('button');
+   b.type='button'; b.className='mkt-idx-item'; b.textContent=h.textContent;
+   b.addEventListener('click',function(){closeIdx();if(window.mktGoTo)window.mktGoTo(sec);});
+   list.appendChild(b);
+ });
+ function onKey(e){if(e.key==='Escape')closeIdx();}
+ function openIdx(){wrap.hidden=false;document.addEventListener('keydown',onKey);wrap.querySelector('.mkt-idx-x').focus();}
+ function closeIdx(){if(wrap.hidden)return;wrap.hidden=true;document.removeEventListener('keydown',onKey);idxBtn.focus();}
+ idxBtn.addEventListener('click',function(){if(wrap.hidden)openIdx();else closeIdx();});
+ wrap.querySelectorAll('[data-idxclose]').forEach(function(el){el.addEventListener('click',closeIdx);});
+})();
+</script>
+</body>
+</html>

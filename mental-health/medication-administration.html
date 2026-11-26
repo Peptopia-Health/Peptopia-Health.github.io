@@ -415,6 +415,14 @@ html.dark .pmark{background:#3A1B18}
 @media(max-width:640px){.loopwrap{width:84%}}
 .capb{font-weight:700;color:var(--pal-ink)}
 </style>
+<style id="autofit-std">
+/* AUTO-FIT — GDS (David, Nov 26, 2026): page opens fitted to the screen; §57 type tokens */
+:root{--uw:100%;--fs-body:1rem;--fs-small:0.8125rem}
+html,body{overflow-x:clip}
+img,svg{max-width:100%}
+</style>
+<style>/* WIDTH-FIX: no section may exceed the wrap content box */
+.wrap>*{max-width:100%!important}.wrap>table{display:block;overflow-x:auto;max-width:100%}</style>
 <style id="medadmin-responsive-print-standard">
 /* Standing responsive + print standard — must stay LAST in <head> */
 html,body{overflow-x:clip}
@@ -2366,6 +2374,16 @@ function openBeers(){
     var db=e.target.closest("[data-dict]");
     if(db){ e.preventDefault(); openDictionary(); return; }
   });
+})();
+</script>
+<script>
+/* AUTO-FIT: unified width — --uw set from the .wrap CONTENT box */
+(function(){
+  function measure(){var wrap=document.querySelector('.wrap');if(!wrap)return;var cs=getComputedStyle(wrap);document.documentElement.style.setProperty('--uw',(wrap.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0))+'px');}
+  function go(){requestAnimationFrame(measure);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(measure,30);});
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(measure,180);});
 })();
 </script>
 </body>

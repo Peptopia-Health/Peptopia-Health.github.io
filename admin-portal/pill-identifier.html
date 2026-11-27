@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Med ID</title>
+<link rel="icon" type="image/png" href="https://x-peps.com/admin-portal/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="https://x-peps.com/admin-portal/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -36,31 +38,28 @@
   .iconbtn:active{transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),inset 0 -2px 4px rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.25)}
   .iconbtn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
   .intro{color:var(--t2);font-size:.93rem;margin:2px 0 8px}
-  .modegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 8px}
-  .modebtn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 6px 5px;border-radius:14px;cursor:pointer;
-    border:2px solid var(--border);background:var(--card-sub);color:var(--t2);font-family:var(--font-head);
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 3px 7px rgba(15,23,42,.10);
-    transition:transform .07s ease,box-shadow .07s ease}
-  .modebtn:active{transform:translateY(2px)}
-  .modebtn .tic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;
-    background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95),rgba(221,211,255,.55) 55%,rgba(157,139,255,.50));border:2px solid #7C5CD6;
-    box-shadow:inset 0 2px 4px rgba(255,255,255,.85),inset 0 -3px 5px rgba(76,29,149,.18),0 2px 5px rgba(76,29,149,.28)}
-  .modebtn .tlab{font-weight:800;font-size:1rem;white-space:nowrap}
-  .modebtn.on{border-color:#7C5CD6;color:#241533;background:linear-gradient(145deg,#EFEAFE,#DDD3FF 60%,#C9B8FF);
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(76,29,149,.15),0 4px 9px rgba(76,29,149,.25)}
-  html.dark .modebtn.on{background:linear-gradient(145deg,#4A3A8A,#3B2A72 60%,#2C1E5C);color:#EDE9FF}
-  .photobtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:5px 10px;border-radius:12px;cursor:pointer;
-    font-family:var(--font-head);font-weight:700;font-size:1rem;color:#241533;text-align:center;
-    background:linear-gradient(145deg,#EFEAFE,#DDD3FF 60%,#C9B8FF);border:2px solid #7C5CD6;
-    box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 5px rgba(76,29,149,.15),0 4px 9px rgba(76,29,149,.25);
-    transition:transform .07s ease}
-  html.dark .photobtn{background:linear-gradient(145deg,#4A3A8A,#3B2A72 60%,#2C1E5C);color:#EDE9FF}
-  .photobtn:active{transform:translateY(2px)}
+  /* Sliding switch selector (GUIDE_BUILD_SCRIPT S59): the bubble slides to the chosen
+     option; the selected bubble takes the Identify card's soft green + bold (spec item 7). */
+  .switch{position:relative;display:flex;gap:2px;background:var(--card-sub);border:2px solid var(--border);border-radius:999px;
+    padding:3px;margin:0 0 8px;box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 2px 5px rgba(15,23,42,.08)}
+  .switch .bubble{position:absolute;top:3px;bottom:3px;left:3px;width:60px;border-radius:999px;background:#E4F9E4;
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.7),inset 0 -2px 4px rgba(11,110,11,.12),0 2px 5px rgba(11,110,11,.18);
+    transition:left .22s ease,width .22s ease}
+  html.dark .switch .bubble{background:#0C3316}
+  .switch button{position:relative;z-index:1;flex:1 1 0;border:none;background:none;cursor:pointer;border-radius:999px;
+    font-family:var(--font-head);font-weight:700;font-size:1rem;line-height:1.15;color:var(--t2);padding:4px 8px;white-space:nowrap}
+  .switch button.on{color:#0B3D12;font-weight:800}
+  html.dark .switch button.on{color:#DCFCE7}
+
   #preview{display:none;width:100%;max-height:190px;object-fit:contain;border-radius:12px;border:1px solid var(--border);margin:10px 0 0;background:var(--card-sub)}
   label.flabel{display:block;font-family:var(--font-head);font-weight:700;font-size:.86rem;margin:8px 0 4px}
   #notes{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card-sub);
-    color:var(--t1);font-family:var(--font-body);font-size:.93rem}
-  .btnrow{display:grid;grid-template-columns:1fr auto;gap:10px;margin:10px 0 0}
+    color:var(--t1);font-family:var(--font-body);font-size:.93rem;resize:none;overflow:hidden;line-height:1.4;min-height:2.5em}
+  .wordcount{font-size:.8rem;color:var(--t2);margin:4px 2px 8px;text-align:right}
+  .wordcount.over{color:#B3261E;font-weight:700}
+  .xbtn.redx{border-color:#E01020;color:#D90429;width:38px;height:38px;
+    background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.92),rgba(255,205,210,.55) 55%,rgba(224,16,32,.45))}
+  .sheet.wide{max-width:760px}
   .identifybtn{padding:5px 10px;border-radius:12px;cursor:pointer;border:2px solid #16A34A;
     font-family:var(--font-head);font-weight:800;font-size:1rem;color:#0B3D12;
     background:linear-gradient(145deg,#E4F9E4,#B9F0C0 60%,#8FE3A0);
@@ -76,13 +75,35 @@
   .resetbtn:active{transform:translateY(2px)}
   html.dark .resetbtn{background:linear-gradient(145deg,#334155,#1E293B)}
   .status{min-height:1.15em;margin:5px 2px 0;font-size:.9rem;color:var(--t2);text-align:center}
-  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:8px 0 0}
-  .step{border:1px solid var(--border);border-radius:11px;padding:6px 8px;text-align:center}
-  .step b{display:block;font-family:var(--font-head);font-size:.88rem;margin-bottom:2px}
-  .step span{font-size:.76rem;color:var(--t2)}
-  .step.s1{background:#EFEAFE}.step.s2{background:#E3F0FF}.step.s3{background:#E4F9E4}
-  html.dark .step.s1{background:#241B4D} html.dark .step.s2{background:#0E2A4A} html.dark .step.s3{background:#0C3316}
-  html.dark .step span{color:#B9C4D6}
+  .flowcards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0 0 2px}
+  .fcard{border:2px solid var(--border);border-radius:14px;padding:8px 8px 9px;text-align:center;cursor:pointer;
+    transition:border-color .15s ease,box-shadow .15s ease}
+  .fcard b{display:block;font-family:var(--font-head);font-size:.92rem;line-height:1.15}
+  .fcard .hint{display:block;font-size:.76rem;color:var(--t2);margin-top:3px;line-height:1.25}
+  .fcard.s1{background:#EFEAFE}.fcard.s2{background:#E3F0FF}.fcard.s3{background:#E4F9E4}
+  html.dark .fcard.s1{background:#241B4D} html.dark .fcard.s2{background:#0E2A4A} html.dark .fcard.s3{background:#0C3316}
+  html.dark .fcard .hint{color:#B9C4D6}
+  .fcard.lit{border-color:#00E065;box-shadow:0 0 0 2px rgba(0,224,101,.45),0 4px 14px rgba(0,160,70,.30)}
+  .fcard.busy{opacity:.6;pointer-events:none}
+  .iconrow2{display:flex;justify-content:center;gap:14px;margin-top:.95rem}
+  .discbtn{position:relative;width:64px;height:64px;border-radius:50%;cursor:pointer;flex:none;padding:0;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.65),inset 0 -3px 5px rgba(0,0,0,.22),0 3px 8px rgba(0,0,0,.25);
+    transition:transform .07s ease}
+  .discbtn:active{transform:translateY(2px)}
+  .discbtn svg{width:44px;height:44px;display:block}
+  .discbtn.cam{border:2px solid #0090FF;background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.95),rgba(192,229,255,.45) 52%,rgba(0,144,255,.35))}
+  .discbtn.up{border:2px solid #FF6700;background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.95),rgba(255,216,173,.45) 52%,rgba(255,103,0,.32))}
+  .discbtn .spark{position:absolute;top:7px;left:10px;width:14px;height:9px;border-radius:50%;background:rgba(255,255,255,.9);transform:rotate(-24deg);pointer-events:none}
+  @media(max-width:640px){
+    .discbtn{width:44px;height:44px}
+    .discbtn svg{width:31px;height:31px}
+    .discbtn .spark{top:5px;left:7px;width:10px;height:7px}
+    .iconrow2{gap:8px;margin-top:.7rem}
+    .fcard{padding:7px 5px 8px}
+    .fcard b{font-size:.82rem}
+    .fcard .hint{font-size:.7rem}
+  }
   .warnbox{margin:8px 0 0;padding:8px 14px;border-radius:12px;background:var(--warn-bg);border:2px solid var(--warn-bd);color:var(--warn-tx)}
   .warnbox p{margin:0 0 6px;font-size:.92rem}
   .warnbox p:last-child{margin:0}
@@ -108,6 +129,39 @@
   .clearbtn{margin:4px 0 0;padding:5px 14px;border-radius:10px;cursor:pointer;border:2px solid var(--border);
     font-family:var(--font-head);font-weight:700;background:var(--card-sub);color:var(--t1)}
 
+  .statusrow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:6px 0 0}
+  .statusrow .status{margin:0}
+  /* ===== Results - Essential Drugs chart format (spec items 11-13) ===== */
+  #results{display:none;margin:8px 20px 0}
+  @media(max-width:640px){ #results{margin:8px 8px 0} }
+  #results.show{display:block}
+  #results .kv{font-size:.92rem;color:var(--t2);margin:0 0 6px}
+  #results .kv b{color:var(--t1);font-family:var(--font-head)}
+  #results .brandline{font-size:1rem;margin:0 0 8px}
+  #results a{color:var(--pal-cobalt);font-weight:700}
+  html.dark #results a{color:#7CC4FF}
+  .reshead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .reshead .sec-h{display:flex;align-items:center;gap:10px;flex:1;margin:0}
+  .edchart{--ed-line:#CBE7E1;--ed-acc:#0D9488;--ed-acc-dark:#0F766E;--ed-th:#0D9488;--ed-watch-bg:#FFFBEB;--ed-watch-line:#F59E0B;--ed-zebra:#F2FAF8;--ed-card:#FFFFFF;--ed-ink:#17352F}
+  html.dark .edchart{--ed-line:#1E423B;--ed-acc:#2DD4BF;--ed-acc-dark:#5EEAD4;--ed-th:#115E59;--ed-watch-bg:#2A2110;--ed-zebra:#16332E;--ed-card:#122B27;--ed-ink:#E2F2EE}
+  .edchart .tag{font-family:var(--font-head);font-weight:800;font-size:1.02rem;letter-spacing:2px;color:var(--ed-acc-dark);text-transform:uppercase;white-space:nowrap}
+  .edchart .line{flex:1;height:3px;background:var(--ed-line);border-radius:2px}
+  .edchart .twrap{overflow-x:auto;background:var(--ed-card);border:2px solid var(--ed-line);border-radius:14px;box-shadow:0 4px 10px rgba(13,84,76,.08)}
+  .edchart table{border-collapse:collapse;width:100%;min-width:640px}
+  .edchart th{font-family:var(--font-head);font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;text-align:left;background:var(--ed-th);color:#fff;padding:8px 12px}
+  .edchart td{font-size:.9rem;padding:7px 12px;border-top:1px solid var(--ed-line);vertical-align:top;color:var(--ed-ink)}
+  .edchart tbody tr:nth-child(even){background:var(--ed-zebra)}
+  .edchart td.drug{font-family:var(--font-head);font-weight:700;font-size:.95rem;color:var(--ed-acc-dark);white-space:nowrap}
+  .edchart td.watch{background:var(--ed-watch-bg);border-left:3px solid var(--ed-watch-line)}
+  .edchart .c-drug{width:17%}.edchart .c-class{width:21%}.edchart .c-use{width:27%}.edchart .c-watch{width:35%}
+  @media(max-width:640px){ .edchart td,.edchart th{padding:6px 9px} }
+  .spinwrap{text-align:center;padding:14px 0 8px}
+  .spinner{width:76px;height:76px;margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;
+    border:3px solid #7C5CD6;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.92),rgba(221,211,255,.55) 55%,rgba(124,92,214,.5));
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -3px 5px rgba(0,0,0,.25),0 4px 10px rgba(0,0,0,.25);
+    animation:medspin 1.1s linear infinite}
+  @keyframes medspin{to{transform:rotate(360deg)}}
+  .spintext{font-family:var(--font-head);font-weight:700;margin:10px 0 0;color:var(--t1)}
   .framewrap{position:relative;display:none;margin:10px 0 0}
   .framewrap.show{display:block}
   .framewrap #preview{display:block;margin:0;width:100%}
@@ -140,7 +194,14 @@
     background:linear-gradient(145deg,#EFEAFE,#DDD3FF 60%,#C9B8FF);box-shadow:inset 0 2px 3px rgba(255,255,255,.7),0 3px 7px rgba(76,29,149,.22)}
   html.dark .listenbtn{background:linear-gradient(145deg,#4A3A8A,#3B2A72);color:#EDE9FF}
   .listenbtn:active{transform:translateY(2px)}
-  @media print{ .iconrow,.modegrid,.photobtn,.btnrow,.steps,.modal{display:none !important} body{padding:0} }
+  @media print{ .iconrow,.switch,.flowcards,.statusrow,.steppanel,.modal{display:none !important} body{padding:0} }
+  @media print{
+    body.print-results .headrow,body.print-results .intro,body.print-results .warnbox,body.print-results #resPrintBtn{display:none !important}
+    body.print-results #results{display:block !important;margin:0}
+    body.print-results .card{border:none;box-shadow:none;padding:0}
+    body.print-results .edchart .twrap{box-shadow:none}
+    body.print-results .edchart tr{break-inside:avoid}
+  }
 </style>
 </head>
 <body>
@@ -150,20 +211,49 @@
         <h1>💊 Med ID</h1>
         <div class="iconrow">
           <button class="iconbtn" id="logBtn" type="button" aria-label="Show the Med ID log" title="Med ID log"><span>📋</span></button>
-          <button class="iconbtn" id="printBtn" type="button" aria-label="Print" title="Print"><span>🖨️</span><img src="https://x-peps.com/X-Peps/btn-print.png" alt="" onerror="this.remove()"></button>
+          <button class="iconbtn" id="printBtn" type="button" aria-label="Print" title="Print"><span>🖨️</span><img src="https://x-peps.com/btn-print-holo.png" alt="" onerror="this.remove()"></button>
           <button class="iconbtn" id="themeBtn" type="button" aria-label="Toggle dark theme" title="Theme"><span>🌙</span><img id="themeImg" src="https://x-peps.com/X-Peps/btn-moon.png" alt="" onerror="this.remove()"></button>
         </div>
       </div>
 
-      <p class="intro">Locate the box, packet, bottle or other container and select the "Container" label below. If only the med is available, and no container, then select "Medication" tab below.</p>
+      <p class="intro">Locate the box, packet, bottle or other packaging and select the "Packaging" label below. If only the med is available, and no packaging, then select the "Medication" tab below.</p>
 
-      <div class="modegrid" role="group" aria-label="What are you photographing?">
-        <button type="button" class="modebtn on" id="modePacket"><span class="tic">📦</span><span class="tlab">Container</span></button>
-        <button type="button" class="modebtn" id="modePill"><span class="tic">💊</span><span class="tlab">Medication</span></button>
+      <div class="switch" id="modeSwitch" role="group" aria-label="What are you photographing?">
+        <span class="bubble" id="switchBubble"></span>
+        <button type="button" class="on" data-mode="packet">Packaging</button>
+        <button type="button" data-mode="pill">Medication</button>
       </div>
 
-      <label class="photobtn" for="photoInput">📷 Snap a pic — upload photo</label>
+      <div class="flowcards">
+        <div class="fcard s1" id="cardPhoto" tabindex="0" role="button" aria-label="Step 1 — Photo Upload">
+          <b>1 · Photo Upload</b>
+          <div class="iconrow2">
+            <button type="button" class="discbtn cam" id="camBtn" aria-label="Take a photo with the camera"><span class="spark"></span><svg viewBox="0 0 48 48" fill="none" stroke="#0090FF" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-10 24 24)" opacity=".28" stroke-width="5.5"><rect x="6" y="15" width="36" height="24" rx="4"/><circle cx="24" cy="27" r="7"/></g><g transform="rotate(-10 24 24)" stroke-width="2.4"><rect x="6" y="15" width="36" height="24" rx="4"/><path d="M17 15l3.2-5h7.6L31 15"/><circle cx="24" cy="27" r="7"/><circle cx="24" cy="27" r="3"/><circle cx="37" cy="20" r="1.4" fill="#0090FF" stroke="none"/></g></svg></button>
+            <label class="discbtn up" for="photoInput" aria-label="Upload a photo"><span class="spark"></span><svg viewBox="0 0 48 48" fill="none" stroke="#FF6700" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity=".28" stroke-width="5.5"><path d="M24 33V10"/><path d="M14 19l10-10 10 10"/></g><g stroke-width="2.4"><path d="M24 33V10"/><path d="M14 19l10-10 10 10"/><path d="M9 35v4a3 3 0 0 0 3 3h24a3 3 0 0 0 3-3v-4"/></g></svg></label>
+          </div>
+          <span class="hint" id="photoState">Camera or upload</span>
+        </div>
+        <div class="fcard s2" id="cardNotes" tabindex="0" role="button" aria-label="Step 2 — Add Notes">
+          <b>2 · Add Notes</b>
+          <span class="hint" id="notesState">Optional — tap to add notes</span>
+        </div>
+        <div class="fcard s3" id="cardIdentify" tabindex="0" role="button" aria-label="Step 3 — Identify Med">
+          <b>3 · Identify Med</b>
+          <span class="hint">Tap when ready</span>
+        </div>
+      </div>
+
       <input id="photoInput" type="file" accept="image/*" hidden>
+      <input id="camInput" type="file" accept="image/*" capture="environment" hidden>
+
+      <div class="statusrow">
+        <p class="status" id="status"></p>
+        <button type="button" class="resetbtn" id="resetBtn">↺ Reset</button>
+      </div>
+
+      <div id="results" aria-live="polite"></div>
+
+      <div class="steppanel">
       <div class="framewrap" id="frameWrap">
         <img id="preview" alt="Your photo preview">
         <span class="fc tl"></span><span class="fc tr"></span><span class="fc bl"></span><span class="fc br"></span>
@@ -181,19 +271,6 @@
         <p class="scanmsg" id="scanMsg"></p>
       </div>
 
-      <label class="flabel" for="notes">Notes — any identifying information: letters, numbers, dose amount, etc.</label>
-      <input id="notes" type="text" placeholder="e.g. sacubitril valsartan 97/103 — or imprint M / S3, pink oval" autocomplete="off">
-
-      <div class="btnrow">
-        <button type="button" class="identifybtn" id="identifyBtn">🔍 Identify</button>
-        <button type="button" class="resetbtn" id="resetBtn">↺ Reset</button>
-      </div>
-      <p class="status" id="status"></p>
-
-      <div class="steps">
-        <div class="step s1"><b>1 · Snap it</b><span>Packet or med, close and in focus</span></div>
-        <div class="step s2"><b>2 · Note it</b><span>Letters, numbers, dose — anything printed</span></div>
-        <div class="step s3"><b>3 · Identify</b><span>Tap Identify — the result pops up here</span></div>
       </div>
 
       <div class="warnbox">
@@ -203,19 +280,14 @@
     </div>
   </div>
 
-  <div class="modal" id="resultModal" role="dialog" aria-modal="true">
-    <div class="sheet">
-      <button class="xbtn" id="resultX" type="button" aria-label="Close">✕</button>
-      <h2 id="rTitle">Result</h2>
-      <p class="brandline" id="rBrand"></p>
-      <img class="rphoto" id="rPhoto" alt="Photo from the FDA label" style="display:none">
-      <p class="rphotocap" id="rPhotoCap"></p>
-      <p class="kv" id="rMfr"></p>
-      <p class="kv" id="rAppear"></p>
-      <p class="kv" id="rBasis"></p>
-      <p class="kv" id="rLink"></p>
-      <p class="kv" id="rNote"></p>
-      <button class="listenbtn" id="listenBtn" type="button">🔊 Listen</button>
+  <div class="modal" id="notesModal" role="dialog" aria-modal="true">
+    <div class="sheet wide">
+      <button class="xbtn redx" id="notesX" type="button" aria-label="Close">✕</button>
+      <h2>📝 Add Notes</h2>
+      <p class="kv">Any identifying information: letters, numbers, dose amount, etc. Notes are optional.</p>
+      <textarea id="notes" rows="1" placeholder="e.g. sacubitril valsartan 97/103 — or imprint M / S3, pink oval" autocomplete="off" aria-label="Notes — any identifying information"></textarea>
+      <p class="wordcount" id="wordCount">0 / 50 words</p>
+      <button class="identifybtn" id="notesSubmit" type="button" style="width:100%">Submit</button>
     </div>
   </div>
 
@@ -235,26 +307,54 @@
   <script>
     var pillMode = 'packet';
     var pillFile = null;
-    var modePacket = document.getElementById('modePacket');
-    var modePill = document.getElementById('modePill');
     var photoInput = document.getElementById('photoInput');
+    var camInput = document.getElementById('camInput');
     var preview = document.getElementById('preview');
     var notesEl = document.getElementById('notes');
     var statusEl = document.getElementById('status');
-    var identifyBtn = document.getElementById('identifyBtn');
+    var cardPhoto = document.getElementById('cardPhoto');
+    var cardNotes = document.getElementById('cardNotes');
+    var cardIdentify = document.getElementById('cardIdentify');
+    var resultsEl = document.getElementById('results');
 
+    /* Sliding switch (Packaging / Medication): the bubble slides to the chosen option,
+       which takes the Identify card's soft green + bold (spec items 4 + 7). */
+    var switchBtns = Array.prototype.slice.call(document.querySelectorAll('#modeSwitch button'));
+    var switchBubble = document.getElementById('switchBubble');
+    function moveBubble(){
+      var on = document.querySelector('#modeSwitch button.on');
+      if (!on || !switchBubble) return;
+      switchBubble.style.left = on.offsetLeft + 'px';
+      switchBubble.style.width = on.offsetWidth + 'px';
+    }
     function setMode(m){
       pillMode = m;
-      modePacket.classList.toggle('on', m === 'packet');
-      modePill.classList.toggle('on', m === 'pill');
+      switchBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-mode') === m); });
+      moveBubble();
       document.getElementById('scanBox').classList.toggle('show', m === 'packet');
       if (m !== 'packet' && typeof stopScan === 'function') stopScan();
     }
-    modePacket.addEventListener('click', function(){ setMode('packet'); });
-    modePill.addEventListener('click', function(){ setMode('pill'); });
+    switchBtns.forEach(function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode')); }); });
+    window.addEventListener('resize', moveBubble);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveBubble);
+    setTimeout(moveBubble, 300);
+    moveBubble();
 
-    photoInput.addEventListener('change', function(){
-      var f = (this.files || [])[0];
+    /* Flow cards: the lit card is the active step (spec items 8-11). */
+    function lightCard(n){
+      [cardPhoto, cardNotes, cardIdentify].forEach(function(c, i){ if (c) c.classList.toggle('lit', i === n - 1); });
+    }
+    cardPhoto.addEventListener('mouseenter', function(){ lightCard(1); });
+    cardPhoto.addEventListener('click', function(){ lightCard(1); });
+    document.getElementById('camBtn').addEventListener('click', function(e){
+      e.stopPropagation();
+      lightCard(1);
+      statusEl.textContent = 'Use your camera app to photo the med, with packaging if possible.';
+      camInput.click();
+    });
+
+    function onPhotoInput(input){
+      var f = (input.files || [])[0];
       pillFile = f || null;
       if (f) {
         preview.src = URL.createObjectURL(f);
@@ -262,7 +362,9 @@
         frameWrap.classList.add('show');
         frameTips.classList.add('show');
         blurNote.classList.remove('show');
-        statusEl.textContent = 'Photo ready — tap Identify.';
+        document.getElementById('photoState').textContent = 'Photo ready ✓';
+        statusEl.textContent = 'Photo ready — add notes (optional), then tap Identify Med.';
+        lightCard(2);
       } else {
         preview.style.display = 'none';
         frameWrap.classList.remove('show');
@@ -270,24 +372,64 @@
         blurNote.classList.remove('show');
         statusEl.textContent = '';
       }
-    });
+    }
+    photoInput.addEventListener('change', function(){ onPhotoInput(this); });
+    camInput.addEventListener('change', function(){ onPhotoInput(this); });
     preview.addEventListener('load', function(){ if (pillFile) checkSharpness(preview); });
+
+    /* Add Notes popup (spec item 10): optional, auto-expanding, max 50 words. */
+    var notesModal = document.getElementById('notesModal');
+    var wordCount = document.getElementById('wordCount');
+    function countWords(s){ return s.trim() ? s.trim().split(/\s+/).length : 0; }
+    function notesGrow(){
+      notesEl.style.height = 'auto';
+      notesEl.style.height = Math.min(220, notesEl.scrollHeight) + 'px';
+      var n = countWords(notesEl.value);
+      wordCount.textContent = n + ' / 50 words';
+      wordCount.classList.toggle('over', n >= 50);
+    }
+    notesEl.addEventListener('input', function(){
+      if (countWords(notesEl.value) > 50) {
+        notesEl.value = notesEl.value.trim().split(/\s+/).slice(0, 50).join(' ');
+      }
+      notesGrow();
+    });
+    function openNotes(){ lightCard(2); notesModal.classList.add('open'); notesGrow(); setTimeout(function(){ notesEl.focus(); }, 60); }
+    function closeNotes(){
+      notesModal.classList.remove('open');
+      var has = notesEl.value.trim().length > 0;
+      document.getElementById('notesState').textContent = has ? 'Notes added ✓ — tap to edit' : 'Optional — tap to add notes';
+      lightCard(3);
+    }
+    cardNotes.addEventListener('click', openNotes);
+    cardNotes.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openNotes(); } });
+    document.getElementById('notesSubmit').addEventListener('click', closeNotes);
+    document.getElementById('notesX').addEventListener('click', closeNotes);
+    notesModal.addEventListener('click', function(e){ if (e.target === this) closeNotes(); });
 
     document.getElementById('resetBtn').addEventListener('click', function(){
       pillFile = null;
       photoInput.value = '';
+      camInput.value = '';
       preview.style.display = 'none';
       frameWrap.classList.remove('show');
       frameTips.classList.remove('show');
       blurNote.classList.remove('show');
       notesEl.value = '';
+      document.getElementById('notesState').textContent = 'Optional — tap to add notes';
+      document.getElementById('photoState').textContent = 'Camera or upload';
       ndcInput.value = '';
       scannedNdc = '';
       scanMsg.textContent = '';
       stopScan();
+      stopSpeech();
       statusEl.textContent = '';
+      resultsEl.classList.remove('show');
+      resultsEl.innerHTML = '';
+      lightCard(0);
       setMode('packet');
     });
+
 
     function readPhoto(file){
       return new Promise(function(res){
@@ -365,21 +507,117 @@
       } catch(e){}
     }
 
-    function showResult(o){
-      document.getElementById('rTitle').textContent = o.title || 'Result';
-      document.getElementById('rBrand').innerHTML = o.brand || '';
-      document.getElementById('rMfr').innerHTML = o.mfr || '';
-      document.getElementById('rAppear').innerHTML = o.appear || '';
-      document.getElementById('rBasis').innerHTML = o.basis || '';
-      document.getElementById('rLink').innerHTML = o.link || '';
-      document.getElementById('rNote').innerHTML = o.note || '';
-      var phEl = document.getElementById('rPhoto'), pcEl = document.getElementById('rPhotoCap');
-      phEl.style.display = 'none'; phEl.removeAttribute('src'); pcEl.textContent = '';
+    /* ===== Results - Essential Drugs chart format (spec items 11-13) ===== */
+    function printBtnHtml(){
+      return '<button class="iconbtn" id="resPrintBtn" type="button" aria-label="Print the results" title="Print results"><span>\uD83D\uDDA8\uFE0F</span><img src="https://x-peps.com/btn-print-holo.png" alt="" onerror="this.remove()"></button>';
+    }
+    function showSpinner(){
+      resultsEl.innerHTML = '<div class="spinwrap"><div class="spinner">\uD83D\uDC8A</div><p class="spintext">Researching, wait one minute, please.</p></div>';
+      resultsEl.classList.add('show');
+    }
+    function wireResultExtras(o){
+      var pb = document.getElementById('resPrintBtn');
+      if (pb) pb.addEventListener('click', function(){
+        document.body.classList.add('print-results');
+        window.print();
+        setTimeout(function(){ document.body.classList.remove('print-results'); }, 600);
+      });
+      var lb = document.getElementById('listenBtn');
+      if (lb) {
+        lb.style.display = ('speechSynthesis' in window && speakText) ? '' : 'none';
+        lb.addEventListener('click', function(){
+          if (!('speechSynthesis' in window) || !speakText) return;
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(new SpeechSynthesisUtterance(speakText));
+        });
+      }
       photoToken++;
-      if (o.photoSetid) loadLabelPhoto(o.photoSetid, photoToken);
-      speakText = o.speak || [stripHtml(o.title), stripHtml(o.brand), stripHtml(o.mfr)].filter(Boolean).join('. ');
-      document.getElementById('listenBtn').style.display = ('speechSynthesis' in window) ? '' : 'none';
-      document.getElementById('resultModal').classList.add('open');
+      if (o.photoSetid && document.getElementById('rPhoto')) loadLabelPhoto(o.photoSetid, photoToken);
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    function renderChartResult(d){
+      speakText = d.speak || '';
+      resultsEl.innerHTML =
+        '<div class="edchart">' +
+          '<div class="reshead"><div class="sec-h"><span class="tag">' + esc(d.system) + '</span><div class="line"></div></div>' + printBtnHtml() + '</div>' +
+          '<img class="rphoto" id="rPhoto" alt="Photo from the FDA label" style="display:none">' +
+          '<p class="rphotocap" id="rPhotoCap"></p>' +
+          chartTableHtml(d) +
+        '</div>' +
+        (d.mfr ? '<p class="kv" style="margin-top:8px"><b>Manufacturer:</b> ' + esc(d.mfr) + '</p>' : '') +
+        (d.appear ? '<p class="kv"><b>From the label:</b> ' + esc(d.appear) + '</p>' : '') +
+        (d.basis ? '<p class="kv"><b>Match:</b> ' + d.basis + '</p>' : '') +
+        (d.link ? '<p class="kv">' + d.link + '</p>' : '') +
+        (d.note ? '<p class="kv">' + d.note + '</p>' : '') +
+        '<button class="listenbtn" id="listenBtn" type="button">\uD83D\uDD0A Listen</button>';
+      resultsEl.classList.add('show');
+      wireResultExtras(d);
+    }
+    function renderMessageResult(d){
+      speakText = d.speak || '';
+      resultsEl.innerHTML =
+        '<div class="edchart"><div class="reshead"><div class="sec-h"><span class="tag">' + esc(d.title) + '</span><div class="line"></div></div>' + printBtnHtml() + '</div></div>' +
+        '<p class="brandline">' + (d.body || '') + '</p>' +
+        (d.basis ? '<p class="kv"><b>Note:</b> ' + d.basis + '</p>' : '');
+      resultsEl.classList.add('show');
+      wireResultExtras(d);
+    }
+
+    /* ===== Essential Drugs chart data (spec item 12) ===== */
+    function esc(s){ return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function firstSentences(t, max){
+      t = (t || '').replace(/\s+/g, ' ').trim();
+      if (!t) return '';
+      var parts = t.split(/(?<=[.!?])\s+/);
+      var out = '';
+      for (var i = 0; i < parts.length; i++) {
+        if (out && (out + ' ' + parts[i]).length > max) break;
+        out = out ? out + ' ' + parts[i] : parts[i];
+        if (out.length >= max * 0.6) break;
+      }
+      if (out.length > max) out = out.slice(0, max - 1).trim() + '\u2026';
+      return out;
+    }
+    function classFrom(label){
+      var o = label.openfda || {};
+      var raw = (o.pharm_class_epc || o.pharm_class_cs || o.pharm_class_moa || [''])[0] || '';
+      return raw.replace(/\s*\[[^\]]*\]\s*/g, '').trim();
+    }
+    function usedForFrom(label){ return firstSentences((label.indications_and_usage || [])[0] || '', 190); }
+    function watchForFrom(label){
+      var t = (label.boxed_warning || [])[0] || (label.warnings || [])[0] || (label.warnings_and_cautions || [])[0] || '';
+      return firstSentences(t, 230);
+    }
+    function systemFor(cls, usedFor){
+      var h = (cls + ' ' + usedFor).toLowerCase();
+      if (/insulin|antidiabetic|hypoglycemic|diabetes|sglt|glp-1|sulfonylurea|biguanide/.test(h)) return 'Diabetes';
+      if (/bronchodilator|antiasthmatic|respiratory|inhal/.test(h)) return 'Respiratory';
+      if (/antipsychotic|antidepressant|anxiolytic|anticonvulsant|antiepileptic|benzodiazepine|sedative|hypnotic|stimulant|antimanic|anorexiant/.test(h)) return 'Psych / Neuro';
+      if (/opioid|analgesic|nsaid|anti-inflammatory|cox-2|antipyretic/.test(h)) return 'Pain';
+      if (/ace inhibitor|angiotensin|beta blocker|beta-blocker|diuretic|anticoagulant|antiplatelet|statin|hmg|calcium channel|vasodilator|antihypertensive|antithrombotic|thrombolytic|antiarrhythmic|cardiac|cholesterol|lipid/.test(h)) return 'Cardiovascular';
+      return 'Antibiotics / GI / Other';
+    }
+    function chartData(label, basisText){
+      var o = label.openfda || {};
+      var chem = (o.generic_name || ['Unknown'])[0];
+      var brand = (o.brand_name || [''])[0];
+      var mfr = (o.manufacturer_name || [''])[0];
+      var setid = (o.spl_id || [''])[0]; var setid2 = (o.spl_set_id || [''])[0];
+      var cls = classFrom(label);
+      var usedFor = usedForFrom(label);
+      var speakStr = titleCase(chem) + '. ' + strengthBit(label) + (brand ? ' Brand name ' + titleCase(brand) + '.' : '') + (cls ? ' Class: ' + cls + '.' : '') + (usedFor ? ' Used for: ' + usedFor : '');
+      return {
+        system: systemFor(cls, usedFor), chem: titleCase(chem), brand: brand ? titleCase(brand) : '',
+        cls: cls, usedFor: usedFor, watchFor: watchForFrom(label),
+        mfr: mfr, appear: appearanceFrom(label), basis: basisText,
+        link: setid ? '<a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=' + setid + '" target="_blank" rel="noopener">\uD83D\uDCD6 Full label &amp; photos \u2014 manufacturer listing (DailyMed)</a>' : '',
+        photoSetid: (setid2 || setid), speak: speakStr
+      };
+    }
+    function chartTableHtml(d){
+      var drugCell = esc(d.chem) + (d.brand ? ' | ' + esc(d.brand) : '');
+      return '<div class="twrap"><table><thead><tr><th class="c-drug">Drug</th><th class="c-class">Class</th><th class="c-use">Used for</th><th class="c-watch">Watch for</th></tr></thead>' +
+        '<tbody><tr><td class="drug">' + drugCell + '</td><td>' + esc(d.cls) + '</td><td>' + esc(d.usedFor) + '</td><td class="watch">' + esc(d.watchFor) + '</td></tr></tbody></table></div>';
     }
 
     var photoToken = 0;
@@ -433,20 +671,23 @@
       return '';
     }
 
-    identifyBtn.addEventListener('click', function(){
+    function runIdentify(){
       var notes = notesEl.value.trim();
       if (!pillFile && !notes && !scannedNdc) {
-        statusEl.textContent = '⚠️ Add a photo, or type what is printed on the packet or pill, then tap Identify.';
+        statusEl.textContent = '⚠️ Add a photo, or type what is printed on the packet or pill, then tap Identify Med.';
+        lightCard(1);
         return;
       }
-      identifyBtn.disabled = true;
-      statusEl.textContent = 'Identifying…';
+      cardIdentify.classList.add('busy');
+      lightCard(3);
+      showSpinner();
+      statusEl.textContent = 'Identifying\u2026';
       var photoP = submitPhoto();
       var lookNotes = scannedNdc ? (notes + ' NDC ' + scannedNdc).trim() : notes;
       var lookP = lookNotes ? lookup(lookNotes) : Promise.resolve(null);
       Promise.all([photoP, lookP]).then(function(res){
         var photoSent = res[0], label = res[1];
-        identifyBtn.disabled = false;
+        cardIdentify.classList.remove('busy');
         var today = new Date();
         var stamp = (today.getMonth() + 1) + '-' + today.getDate() + '-' + String(today.getFullYear()).slice(2);
         if (label) {
@@ -454,44 +695,37 @@
           var chem = (o.generic_name || ['Unknown'])[0];
           var brand = (o.brand_name || [''])[0];
           var mfr = (o.manufacturer_name || [''])[0];
-          var setid = (o.spl_id || [''])[0]; var setid2 = (o.spl_set_id || [''])[0];
           var appear = appearanceFrom(label);
-          var speakStr = titleCase(chem) + '. ' + strengthBit(label) + (brand ? ' Brand name ' + titleCase(brand) + '.' : '') + (mfr ? ' Made by ' + mfr + '.' : '');
           logLocal({ d: stamp, med: chem, brand: brand, basis: 'Label match (FDA)' });
           if (!pillFile) fileToDriveLog({ med: chem, brand: brand, mfr: mfr, appear: appear, notes: notes });
-          showResult({
-            title: '💊 ' + titleCase(chem),
-            brand: brand ? 'Best known as <b>' + titleCase(brand) + '</b>' : '',
-            mfr: mfr ? '<b>Manufacturer:</b> ' + mfr : '',
-            appear: appear ? '<b>From the label:</b> ' + appear : '',
-            basis: '<b>Match:</b> FDA label record for the name/number you entered.',
-            link: setid ? '<a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=' + setid + '" target="_blank" rel="noopener">📖 Full label &amp; photos — manufacturer listing (DailyMed)</a>' : '', photoSetid: (setid2 || setid),
-            speak: speakStr,
-            note: photoSent ? 'Your photo was also sent for a visual identification — the verified answer, with a reference photo, comes to you in chat and is filed in the Med ID log.' : 'Filed to the Med ID log — tap the 📋 button above to see the running list.'
-          });
-          statusEl.textContent = '✅ Identified — see the result above.';
+          var d = chartData(label, 'FDA label record for the name/number you entered.');
+          d.note = photoSent ? 'Your photo was also sent for a visual identification \u2014 the verified answer, with a reference photo, comes to you in chat and is filed in the Med ID log.' : 'Filed to the Med ID log \u2014 tap the \uD83D\uDCCB button above to see the running list.';
+          renderChartResult(d);
+          statusEl.textContent = '\u2705 Identified \u2014 see the result below.';
         } else if (photoSent) {
           logLocal({ d: stamp, med: 'Photo submitted', brand: '', basis: 'Awaiting visual identification' });
-          showResult({
-            title: '📨 Photo sent for identification',
-            brand: 'The photo is on its way. A visual identification — drug, strength, and a reference photo of what the tablet should look like — comes to you in chat and is filed in the Med ID log.',
-            basis: notes ? '<b>Note:</b> the words/numbers you typed did not match an FDA label record, so the photo read decides it.' : ''
+          renderMessageResult({
+            title: 'Photo sent',
+            body: 'The photo is on its way. A visual identification \u2014 drug, strength, and a reference photo of what the tablet should look like \u2014 comes to you in chat and is filed in the Med ID log.',
+            basis: notes ? 'the words/numbers you typed did not match an FDA label record, so the photo read decides it.' : ''
           });
-          statusEl.textContent = '✅ Photo sent — the identification comes to you in chat.';
+          statusEl.textContent = '\u2705 Photo sent \u2014 the identification comes to you in chat.';
         } else {
-          statusEl.textContent = '⚠️ Nothing matched and no photo could be sent — check the name or numbers and try again.';
+          resultsEl.classList.remove('show');
+          resultsEl.innerHTML = '';
+          statusEl.textContent = '\u26A0\uFE0F Nothing matched and no photo could be sent \u2014 check the name or numbers and try again.';
         }
       });
-    });
+    }
+    cardIdentify.addEventListener('click', runIdentify);
+    cardIdentify.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); runIdentify(); } });
 
     function titleCase(s){
       return s.toLowerCase().replace(/\b\w/g, function(c){ return c.toUpperCase(); });
     }
 
-    function closeModal(id){ if (id === 'resultModal') stopSpeech(); document.getElementById(id).classList.remove('open'); }
-    document.getElementById('resultX').addEventListener('click', function(){ closeModal('resultModal'); });
+    function closeModal(id){ document.getElementById(id).classList.remove('open'); }
     document.getElementById('logX').addEventListener('click', function(){ closeModal('logModal'); });
-    document.getElementById('resultModal').addEventListener('click', function(e){ if (e.target === this) closeModal('resultModal'); });
     document.getElementById('logModal').addEventListener('click', function(e){ if (e.target === this) closeModal('logModal'); });
 
     document.getElementById('logBtn').addEventListener('click', function(){
@@ -590,6 +824,7 @@
       var cands = ndcCandidates(raw);
       if (!cands.length) { scanMsg.textContent = 'Type the NDC digits printed under the barcode, then tap Look up NDC.'; return; }
       scannedNdc = cands[0];
+      showSpinner();
       scanMsg.textContent = 'Looking up NDC ' + scannedNdc + '…';
       var tries = [];
       cands.forEach(function(c){ tries.push('openfda.package_ndc:"' + c + '"'); tries.push('openfda.product_ndc:"' + c + '"'); });
@@ -609,19 +844,14 @@
         var stamp = (today.getMonth() + 1) + '-' + today.getDate() + '-' + String(today.getFullYear()).slice(2);
         logLocal({ d: stamp, med: chem, brand: brand, basis: 'NDC match (FDA)' });
         fileToDriveLog({ med: chem, brand: brand, mfr: mfr, appear: appear, notes: 'NDC ' + scannedNdc });
-        scanMsg.textContent = '✅ NDC match found — see the result above.';
-        showResult({
-          title: '💊 ' + titleCase(chem),
-          brand: brand ? 'Best known as <b>' + titleCase(brand) + '</b>' : '',
-          mfr: mfr ? '<b>Manufacturer:</b> ' + mfr : '',
-          appear: appear ? '<b>From the label:</b> ' + appear : '',
-          basis: '<b>Match:</b> exact NDC ' + scannedNdc + ' on the FDA label record.',
-          link: setid ? '<a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=' + setid + '" target="_blank" rel="noopener">📖 Full label &amp; photos — manufacturer listing (DailyMed)</a>' : '', photoSetid: (setid2 || setid),
-          speak: speakStr,
-          note: 'Filed to the Med ID log — tap the 📋 button above to see the running list.'
-        });
+        scanMsg.textContent = '✅ NDC match found — see the result below.';
+        var nd = chartData(label, 'exact NDC ' + scannedNdc + ' on the FDA label record.');
+        nd.note = 'Filed to the Med ID log — tap the 📋 button above to see the running list.';
+        renderChartResult(nd);
       }).catch(function(){
-        scanMsg.textContent = 'No FDA label matched NDC ' + scannedNdc + ' — it is still included when you tap Identify.';
+        resultsEl.classList.remove('show');
+        resultsEl.innerHTML = '';
+        scanMsg.textContent = 'No FDA label matched NDC ' + scannedNdc + ' — it is still included when you tap Identify Med.';
       });
     }
     document.getElementById('ndcBtn').addEventListener('click', function(){ lookupByNdc(ndcInput.value); });
@@ -676,11 +906,6 @@
 
     function stripHtml(h){ var dv = document.createElement('div'); dv.innerHTML = h || ''; return (dv.textContent || '').trim(); }
     function stopSpeech(){ if ('speechSynthesis' in window) { try { window.speechSynthesis.cancel(); } catch(e){} } }
-    document.getElementById('listenBtn').addEventListener('click', function(){
-      if (!('speechSynthesis' in window) || !speakText) return;
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(new SpeechSynthesisUtterance(speakText));
-    });
   </script>
 </body>
 </html>

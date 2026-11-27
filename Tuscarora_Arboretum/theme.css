@@ -98,7 +98,7 @@ html.dark .hdr-nav .pp-moon{display:none}
 .authmodal.open{display:flex}
 .authbox{background:#fff;border-radius:16px;max-width:620px;width:100%;max-height:calc(100dvh - 60px);overflow-y:auto;box-shadow:0 18px 50px rgba(0,0,0,.45);border:1px solid var(--border);display:flex;flex-direction:column}
 html.dark .authbox{background:#111C33}
-/* Header repair (David, Nov 19, 2026): iOS renders filter:drop-shadow() on the glass
+/* Header repair (David, Nov 19, 2026): iOS renders CSS drop shadow filters on the glass
    icon images as a SQUARE outline — banned pattern, removed. The banner standard's
    transparent button ground is restored over the generic iconbtn disc, depth moves
    to a round box-shadow on the button itself, and the logo theme swap is pinned here. */

@@ -1,0 +1,1905 @@
+{
+ "title": "Change Log",
+ "generated": "2026-11-27",
+ "sections": [
+  {
+   "title": "MedID — Medication Identification App",
+   "rows": [
+    {
+     "n": 1,
+     "date": "2026-11-27",
+     "name": "Three top cards",
+     "statement": "I have an app called MedID that you were asked to make considerable changes to, like modifying the 3 cards at the top to process he 3 tasks needed to identify a medication. The version is see now does not do that. The list was much longer, but this clue should allow you to find either the chat or the draft result. If I approved it, it should be and active link somewhere in my admin site.",
+     "done": false,
+     "basis": "David's words, main chat Nov 27, 2026 09:58 ET. NOT DONE: exhaustive audit Nov 27 (all chats incl. archived, memory + daily notes, workspace drafts in 12 folders, live Admin Portal + Mental Health portal) found no such instruction set, no draft, and no alternate live version; the live app does not do this. The app's 3 cards (Snap it / Note it / Identify) are identical in every version on record; only their position ever changed."
+    },
+    {
+     "n": 2,
+     "date": "2026-11-27",
+     "name": "Not-finished correction",
+     "statement": "This is. It the finished version there's a long list of changes I shared hat are not complete — That still doesn't look like the full list. I'll review the version you complete and then assess.",
+     "done": false,
+     "basis": "David's words, main chat Nov 27, 2026. OPEN: the Nov 27 completed version was delivered for his review; his assessment is still his to give, so the correction stands open."
+    },
+    {
+     "n": 3,
+     "date": "2026-11-27",
+     "name": "Find rebuild instructions",
+     "statement": "I gave instructions to rebuild MedID app prior to today. Please find those and list here",
+     "done": true,
+     "basis": "Main chat Nov 27, 2026 09:03 ET. Done: the Nov 13, 2026 instructions were retrieved from his email and listed in chat that morning (see the Nov 13 rows below)."
+    },
+    {
+     "n": 4,
+     "date": "2026-11-26",
+     "name": "Daily 11PM runs",
+     "statement": "Med ID and the VA watch - only check once a day, at 11 pm. the customer run scheduled at that time, too, once a day.",
+     "done": true,
+     "basis": "Main chat Nov 26, 2026 13:11 ET. Done: pill-id-processor, va-email-command-watch and order-request-processor all run once daily at 11:00 PM ET (remediation ledger W1, item 104)."
+    },
+    {
+     "n": 5,
+     "date": "2026-11-24",
+     "name": "Nursing Tools placement",
+     "statement": "the sections VA & Work should be renamed to Nursing Tools. Med ID stays, and then I move the VA GUIDES link up to this section from under career, formatted in the same way. Scour my data to find other tools we can list here that would benefit nurses. If we find any, then create a second row and link the toold. all text descriptions for these links must be short. the MED ID one seems wordy. make it concise. I don't like orange for the theme here; use the tuquoise from VA GUIDES for all buttons showing in this section.",
+     "done": true,
+     "basis": "Main chat Nov 24, 2026 02:01 ET. Done: Nursing Tools section live on the Admin Portal, turquoise buttons, Med ID short text + VA Guides in row 1, SBAR Handover + MedPass One-Pager in row 2 (MEMORY.md, Nov 24)."
+    },
+    {
+     "n": 6,
+     "date": "2026-11-20",
+     "name": "Fix broken top",
+     "statement": "Separately, my med id is broken at the top. resolve the problems.",
+     "done": true,
+     "basis": "Main chat Nov 20, 2026 20:30 ET (same message also ordered the admin-page icons converted to circles). Done: root cause found (the page's flex body put the banner beside the app column), fixed and live-verified in the Nov 20 header-fix batch (memory/2026-11-20.md)."
+    },
+    {
+     "n": 7,
+     "date": "2026-11-13",
+     "name": "Peach glass instead",
+     "statement": "Peach glass instead",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 21:10 ET — his pick of peach over violet for the result-card color. Done: peach-glass result card live that evening in both versions."
+    },
+    {
+     "n": 8,
+     "date": "2026-11-13",
+     "name": "Shrink buttons, reorganize",
+     "statement": "I also do not like the super wide buttons. can you shrink those and try to organize the app a little better so the screen looks like an Apple product / software release?",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 21:10 ET. Done: design pass live Nov 13 ~21:54 ET — content-sized pill buttons (widest 296px), steps/photo/details in rounded cards, both versions."
+    },
+    {
+     "n": 9,
+     "date": "2026-11-13",
+     "name": "Color result card",
+     "statement": "i like the med id results but feel like we need a color on the medication card background. your thoughts?",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 21:09 ET. Done: color applied — he chose peach glass (row above) and it shipped the same evening."
+    },
+    {
+     "n": 10,
+     "date": "2026-11-13",
+     "name": "Implement 2,4,5,6",
+     "statement": "implement 2, 4, 5 and 6 on MEd ID.",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 20:41 ET — (2) barcode scan, (4) voice readout, (5) photo framing guide with blur check, (6) offline mini-database of 52 meds in the shareable version. Built Nov 13; the Nov 27, 2026 audit found the offline database missing from the live portable file, and the Nov 27 fix restored it (original 52-med dataset reused exactly) and re-verified all four live."
+    },
+    {
+     "n": 11,
+     "date": "2026-11-13",
+     "name": "Portal plus comparison",
+     "statement": "augment our mental health nursing portal with that med id app. i really like the app and am open to suggestions on improving it. compare it to other similar tools in industry",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 20:15 ET. Done: Med ID card added to the Mental Health portal (Medication & Withdrawal) and the industry comparison delivered the same evening."
+    },
+    {
+     "n": 12,
+     "date": "2026-11-13",
+     "name": "Pastel glass restyle",
+     "statement": "Exchange the dark solid colors on buttons with the softer pastels used on the 1, 2, 3 cards. The beautiful translucent, see through effects on a glass-like icon shown in the printer circle is something that should be in our standard build and more widely implemented. Convert other elements when possible to use this them. I need results to popup in a window as the search results complete. The user should be able to close this window and return to the app, tgen click the log button to see the running list of drugs that were identified. Additionally, the log on my drive should update each time a new entry is looked up.",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 14:12 ET. Done: restyle live and tested Nov 13 (pastel buttons, glass icons, closable result popup, log button, Drive log updates). Parts were later overwritten by a standardization push and restored in the Nov 27, 2026 fix."
+    },
+    {
+     "n": 13,
+     "date": "2026-11-13",
+     "name": "Full emailed spec",
+     "statement": "Apply these changes to the medication identifier application that I named Med ID. Sanitize to ensure no patient data or information to associate me as a person or my company with the app. Change the title currently showing \"Pill Identifier\" to Med ID. The first paragraph must state this: Locate the box, packet, bottle or other container and select the \"Container\" label below. If only the med is available, and no container, then select \"Medication\" tab below. Snap a pic of your choice—packet or med—and upload using the photo upload button below. Add any identifying information like letters, numbers, dose amount, etc. in the notes field. Click \"Identify\". The app will positively identify the medication and respond with the output here on screen. A link to the medication's manufacturer is indicated where available. Warning: NEVER INCLUDE PATIENT INFO when uploading photos—no names, or any portion of the label that my be associated with a patient. Remember: Med ID only supports your own check as a nurse; it does not replace the MAR or other approved systems for identificaiton. Remove the section at bottom for peptopia, add a reset button to allow another identification, and store the results in a new excel sheet you create in a folder you create on our nursing folders on drive. Label all files by our standard, like this example: Med ID [11-13-26] [Medication]. List the chemical / manufacturer name and then the most common brand name. Try to include a real photo found from internet searches as an example in the output field. The field will be a popup, wide and tall enough to show the results, but optimized for mobile and sized to avoid scrolling horizontally, and vertically where possible. Reduce the vertical height of all buttons and maximize the push-button effects we have learned. The Send button should be green. Warnings should use red and an appropriate bold text and emoticons / graphics. Try to fit all this on one screen for mobile, but do not omit any features or capabilities. The screen must also show a print icon and theme icon and a button to display the log of all meds identified as a pop-up. Use the icons that are standard on the x-peps website. Remove \"nursing tool\". Do not show a link to return to admin portal and adjust the whole page for this app to hug the top of screen / tight fit with just a little extra space. The label for Packet can simply state \"Container\", do not break lines for that label, but do show an icon displayed as a circle in the glassy push button style from our homepage, and ensure that same glassy sparkle is on all icons shown here. The med tab will do the same thing—-write \"Medication\"—with the pill icon on a round glassy circle—push button icon. Show the icon for both labels above the respective title. Minimize the vertical height of both tabs, a tight fit. Be sure to print the theme, print, and log button icons for the med id list on the same line as title and align to the right of page. All buttons must be limited vertically in height. Revise the steps 1-3 shown at the bottom as needed. Use colors for background here on those containers. Use the other container at bottom to print the warnings describe above and replace what is there not. Apply your maximum graphic illustration expertise so the app is beautiful, fun to use, and interesting in the peptopia style.",
+     "done": true,
+     "basis": "David's email, Nov 13, 2026 11:33 AM ET from his VA address (also pasted into chat 14:01). Built Nov 13–14. A later standardization push regressed the top end (banner added, tabs redesigned, icons moved); the Nov 27, 2026 audit (items A–Q) found 8 gaps including two never-built items (real photo in the result popup; offline database in the portable). The Nov 27 fix restored the spec build and built both items; live md5 287d754c91c8f5b39e25131658d72c17, render-verified. David's final assessment of that version is still his to give (see the Nov 27 rows at the top of this section)."
+    },
+    {
+     "n": 14,
+     "date": "2026-11-13",
+     "name": "Results popup chat",
+     "statement": "I need the Med ID to display the information discovered as a popup in chat, with a button the user can click to show",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 13:13 ET. Done: results display in a popup with a show button (built into the Nov 13 revision)."
+    },
+    {
+     "n": 15,
+     "date": "2026-11-13",
+     "name": "Email finished file",
+     "statement": "Once complete email the resulting file to my Va email",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 11:45 ET. Done: the finished file was emailed to his VA address on Nov 13, 2026."
+    },
+    {
+     "n": 16,
+     "date": "2026-11-13",
+     "name": "Check emailed instructions",
+     "statement": "I emailed instructions to revise the pill use in my email. Check it and task it now please",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 11:37 ET. Done: the emailed spec (row 'Full emailed spec') was checked and tasked the same day."
+    },
+    {
+     "n": 17,
+     "date": "2026-11-13",
+     "name": "Portable sanitized version",
+     "statement": "Can you remove all identification from the pill I'd add op associated with me or my businesses and then share a self-contained portable lightweight app to load in a phone. Share it here and create a download link on our admin site for it.",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 10:50 ET. Done: pill-identifier-portable.html live with a download link on the Admin Portal. The Nov 27, 2026 audit found the portable had never received the Med ID revision; the Nov 27 fix applied the full revision plus the offline database (live md5 ff432d95d7b958b5104039043c3d7372)."
+    },
+    {
+     "n": 18,
+     "date": "2026-11-13",
+     "name": "Build the app",
+     "statement": "Build an app on my admin page nursing section for this task--uploading a photo ti identity a drug shown in image from a scan of the holding packet or the pill itself",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 09:15 ET. Done: built and live the same morning at https://x-peps.com/admin-portal/pill-identifier.html, end-to-end test passed."
+    },
+    {
+     "n": 19,
+     "date": "2026-11-13",
+     "name": "Show pill photo",
+     "statement": "Shoe me the pill for this — I need the exact photo for this pill — Fast please",
+     "done": true,
+     "basis": "Main chat Nov 13, 2026 09:03 ET (with a photo of a holding packet). Done: Sacubitril/Valsartan 97/103 mg identified and the exact pill photo delivered."
+    }
+   ]
+  },
+  {
+   "title": "Today — November 27, 2026",
+   "rows": [
+    {
+     "n": 20,
+     "date": "2026-11-27",
+     "name": "Build Change Log",
+     "statement": "Please audit every single chat interaction we've had starting today and working back through history until you find instructions related to the medication identification app. Once finished, list each by number, and show a green arrow after the green number for that change if it was completed. If not completed, show a red X icon. Use the icons from our icon store--the red x icon and a green check icon configured the same way. I want a complete table showing columns before numbered change item listed in reverse chronological order, the change name in 3 words or less, the exact statement record of my request, and finally an icon for completion status (green check or red x). Title this table Change Log and store on my GitHub. Publish a page showing the table, add a link to the page to the placeholder button, retitle the button Change Log, and link to me when finished. Each chat request I send you must be added to this table, row by row, so I have a record that is clear, discoverable, and auditable. Create this feature now by recording everything from today and working backwards. Add an empty row between sections of unrelated requests, such as a section of 8 changes to MedID, then earlier requests about Kratom guides. Strictly adhere to our build scripts for guide creation when designing and implementing this feature.",
+     "done": true,
+     "basis": "David's order, main chat Nov 27, 2026 09:58 ET. Done: this Change Log page (the audit, the table, GitHub storage, the portal button). Note: the live portal held no Placeholder button (position 9 already reads 'Toolbox' under his Nov 26 ruling), so the Change Log button was added to the Admin & Archive desk instead — see the README in ~/workspace/change-log/."
+    },
+    {
+     "n": 21,
+     "date": "2026-11-27",
+     "name": "Restore previous avatar",
+     "statement": "Change your avatar to my previous version.",
+     "done": true,
+     "basis": "Main chat Nov 27, 2026 09:01 ET. Done: avatar reset the same morning — rebuilt from his original September 23 portrait after the exact earlier file was reclaimed when the avatar was cleared; he was told plainly."
+    },
+    {
+     "n": 22,
+     "date": "2026-11-27",
+     "name": "Send MEDS reply",
+     "statement": "Reply with the 1-line indication summary of each med on the list, separated by line break after Metformin and after Gaba.",
+     "done": false,
+     "basis": "David's email (subject MEDS) to the Muse mailbox, Nov 27, 2026 08:02 ET. NOT SENT: the 29-line reply was prepared exactly as specified, but the send approval card timed out (Nov 27, 08:44 ET). It fires the moment he taps the card or says 'send it'."
+    },
+    {
+     "n": 23,
+     "date": "2026-11-27",
+     "name": "Resume Drive cleanup",
+     "statement": "Resume",
+     "done": false,
+     "basis": "Main chat Nov 27, 2026 07:31 ET — resume of the Drive cleanup (remediation items 63/67). IN FLIGHT: the resume was still running at last check on Nov 27; completion not yet verified, so no green check."
+    },
+    {
+     "n": 24,
+     "date": "2026-11-27",
+     "name": "Defer Empower call",
+     "statement": "I'll do empower another day",
+     "done": true,
+     "basis": "Main chat Nov 27, 2026 08:13 ET. Done: the deferral was logged on the Wexford rollover tracker the same morning; the daily reminder continues and the Nov 22 authorization stands."
+    },
+    {
+     "n": 25,
+     "date": "2026-11-27",
+     "name": "Link finished version",
+     "statement": "Link me to the finished version",
+     "done": true,
+     "basis": "Main chat Nov 27, 2026. Done: the Med ID link was sent in chat (https://x-peps.com/admin-portal/pill-identifier.html). His verdict on that version is logged in the MedID section."
+    }
+   ]
+  },
+  {
+   "title": "Briefings, Voice & MEDS — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 26,
+     "date": "2026-11-25/26",
+     "name": "Fool in briefings",
+     "statement": "Integrate Motley Fool news into my daily briefings.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 27,
+     "date": "2026-11-25/26",
+     "name": "Smooth live voice",
+     "statement": "Stop talking with weird pauses — smooth out the voice, speak plainly and normally, with no mimicking of my speech patterns and no alterations to pace.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 28,
+     "date": "2026-11-25/26",
+     "name": "Set MEDS keyword",
+     "statement": "Set up the MEDS keyword: when I send a photo of medications with the keyword MEDS — in chat, or emailed from my VA mail to davidcarroll@muse.ai — reply with one short line per med, name and what it does, and nothing extra.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 29,
+     "date": "2026-11-25/26",
+     "name": "Redo briefing audio",
+     "statement": "Redo the briefing audio based on that feedback.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 30,
+     "date": "2026-11-25/26",
+     "name": "News means news",
+     "statement": "Briefings report only news that is actually news — do not repeat the same standing information every day, and never tell me when to open the bar; mention the bar only for something specific.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "Kratom Guides, Legality & Vendors — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 31,
+     "date": "2026-11-25/26",
+     "name": "Merge DTE cards",
+     "statement": "Merge the 4 extra DTE cards into the live guide.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 32,
+     "date": "2026-11-25/26",
+     "name": "Palette on pages",
+     "statement": "Make the pages show the new finalized effect color palette — the colors on the DTE page do not match it, and the header icons are wrong.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 33,
+     "date": "2026-11-25/26",
+     "name": "Apply header mockup",
+     "statement": "Apply the approved Kratom Reviews header mockup — perfect images — without breaking the page formatting.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 34,
+     "date": "2026-11-25/26",
+     "name": "Custom header icons",
+     "statement": "Fix the Kratom Reviews header — the build script must allow page-custom icons in the header, sized like the universal icons and placed to their left, alongside the standards.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 35,
+     "date": "2026-11-25/26",
+     "name": "Wheel out title",
+     "statement": "Move the color wheel icon out of the middle of the Kratom Reviews title text.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 36,
+     "date": "2026-11-25/26",
+     "name": "Fix strain Venn",
+     "statement": "Fix the strain-card Venn: show only the colors and circles for effects associated with that strain, and make the Venn the same dimensions as the color wheel.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 37,
+     "date": "2026-11-25/26",
+     "name": "DTE bag photos",
+     "statement": "Upload and optimize the four DTE kratom bag photos, store them in the best place on Drive, and update the DTE guide with a strain review for each.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 38,
+     "date": "2026-11-25/26",
+     "name": "Find icon instructions",
+     "statement": "Find all my missed instructions about moving the icons at the top of the page, like the color wheel.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 39,
+     "date": "2026-11-25/26",
+     "name": "Find Reviews instructions",
+     "statement": "Find my Nov 11 instructions to reformat the Kratom Reviews page, explain why they are incomplete, and complete them.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 40,
+     "date": "2026-11-25/26",
+     "name": "Strain Venn mockup",
+     "statement": "Build the strain-card Venn mockup — the color wheel pushed left, the Venn to the right of it on the strain review cards.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 41,
+     "date": "2026-11-25/26",
+     "name": "Use Phantom logo",
+     "statement": "Use Phantom Herbal's logo on the review portal.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 42,
+     "date": "2026-11-25/26",
+     "name": "Phantom Herbal portal",
+     "statement": "Build a review portal for Phantom Herbal — find all my other purchases from them and update my documents.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 43,
+     "date": "2026-11-25/26",
+     "name": "Kill news page",
+     "statement": "Remove the standalone kratom news page and keep kratom news updates integrated into the legality presentation instead of duplicating it (revised later in window).",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 44,
+     "date": "2026-11-25/26",
+     "name": "Two floating buttons",
+     "statement": "Add two floating icon buttons at the bottom right of the market guide: an up-arrow that remembers the user's last spot and jumps back to it, and an index pop-up button.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 45,
+     "date": "2026-11-25/26",
+     "name": "Expanding top containers",
+     "statement": "Make the containers at the top of the market guide expand, or jump to present the content they refer to, when clicked.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 46,
+     "date": "2026-11-25/26",
+     "name": "Same portal home",
+     "statement": "The market page and the legality page should live on the same portal.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 47,
+     "date": "2026-11-25/26",
+     "name": "Themed colors legend",
+     "statement": "Give the market guide's colors a theme and meaning, with a legend — not random colors.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 48,
+     "date": "2026-11-25/26",
+     "name": "Fix market fonts",
+     "statement": "Fix the market guide's inconsistent default text sizes — body text tied to a consistent, common font assignment.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 49,
+     "date": "2026-11-25/26",
+     "name": "Hyperlink state bubbles",
+     "statement": "Hyperlink each state bubble on the market guide, with text, to the source of information.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 50,
+     "date": "2026-11-25/26",
+     "name": "Publish market guide",
+     "statement": "Publish the U.S. kratom market guide and add it to the Kratom portal.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 51,
+     "date": "2026-11-25/26",
+     "name": "Whatcom in legality",
+     "statement": "Ensure the Whatcom County item makes it into the legality daily update.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 52,
+     "date": "2026-11-25/26",
+     "name": "Build market guide",
+     "statement": "Build a 1-page guide defining the U.S. market for kratom, with trends, bar charts for growth over time, and the population figures I supplied.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 53,
+     "date": "2026-11-25/26",
+     "name": "Build Jaya review",
+     "statement": "Build a review site for Jaya Kratom, modeled after our other vendor review sites, thorough and proven correctly authored.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 54,
+     "date": "2026-11-25/26",
+     "name": "Complete WestKoast build",
+     "statement": "Complete the WestKoast build.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 55,
+     "date": "2026-11-25/26",
+     "name": "Approve Kratom pages",
+     "statement": "Approve the Kratom pages.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 56,
+     "date": "2026-11-25/26",
+     "name": "Patho Gold card",
+     "statement": "Add a Patho Gold 75% card to the TreeLeaf (DK) guide.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "Admin Portal & Rome — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 57,
+     "date": "2026-11-25/26",
+     "name": "Desks and placeholders",
+     "statement": "Put Briefings under Admin, VA Work / RNTTP under Career, and leave 2 categories open as placeholders.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Superseded in part: the desks were reorganized by domain, but 'Briefings under Admin' never became a category and both placeholder slots were consumed by later desk work (ledger W8a)."
+    },
+    {
+     "n": 58,
+     "date": "2026-11-25/26",
+     "name": "Mock up Rome",
+     "statement": "Mock up Rome as HTML so I can see it before we move ahead.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 59,
+     "date": "2026-11-25/26",
+     "name": "Fix Rome links",
+     "statement": "Fix the Rome top links so each one links to its corresponding desk — the pushbuttons look active but the links go nowhere.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 60,
+     "date": "2026-11-25/26",
+     "name": "Kill top gap",
+     "statement": "Delete the empty space at the top between the header and the site content, and modify the build scripts to prevent it — it is a common error.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 61,
+     "date": "2026-11-25/26",
+     "name": "Roads by domain",
+     "statement": "Organize the Roads to Rome by domain — a highway for Nursing School, one for Finance, and so on — without losing the refined formatting and template.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 62,
+     "date": "2026-11-25/26",
+     "name": "Boards quick-select dropdown",
+     "statement": "Add a dropdown, or similar feature, to the admin page to quickly select from and display boards.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 63,
+     "date": "2026-11-25/26",
+     "name": "Top five boards",
+     "statement": "Build the top 5 boards I need, with clickable buttons I can click for decisions.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 64,
+     "date": "2026-11-25/26",
+     "name": "Clickable choice links",
+     "statement": "Present decision options with clickable choice links.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 65,
+     "date": "2026-11-25/26",
+     "name": "Decisions space icon",
+     "statement": "Change the icon of the My Open Decisions space.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 66,
+     "date": "2026-11-25/26",
+     "name": "Build Retirement Board",
+     "statement": "Build the Retirement Board.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 67,
+     "date": "2026-11-25/26",
+     "name": "Open Decisions space",
+     "statement": "Make a space holding all my open decisions.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 68,
+     "date": "2026-11-25/26",
+     "name": "Build Commands page",
+     "statement": "Make Build Commands its own page, with a link to it from the main admin page.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "Design, Palette, Icons & Print — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 69,
+     "date": "2026-11-25/26",
+     "name": "Remove black square",
+     "statement": "Troubleshoot the upper-left corner of the portal header and remove the black square.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 70,
+     "date": "2026-11-25/26",
+     "name": "Global rules everywhere",
+     "statement": "Apply the global rules everywhere: auto-size for mobile devices, and always allow both light and dark theme.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 71,
+     "date": "2026-11-25/26",
+     "name": "Auto-fit build scripts",
+     "statement": "Add the auto-sizing feature to the permanent build scripts so it is never missed, and separately update all files to use it.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 72,
+     "date": "2026-11-25/26",
+     "name": "Fix Toolbox page",
+     "statement": "Fix the Toolbox page — it is showing small print and missing graphics.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 73,
+     "date": "2026-11-25/26",
+     "name": "Standardize all colors",
+     "statement": "Standardize every single color choice on every file to the palette — zero exceptions.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 74,
+     "date": "2026-11-25/26",
+     "name": "Palette propagates everywhere",
+     "statement": "Build the palette into the programming of every file on the site, so when we adjust the palette the change propagates everywhere.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 75,
+     "date": "2026-11-25/26",
+     "name": "Finalize effect palette",
+     "statement": "Finalize one universal effect color palette — dark, standard, and light values for every effect — with no dull earth-tone orange, Pain as an intense red softened slightly, and the Focus target recolored blue.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 76,
+     "date": "2026-11-25/26",
+     "name": "Wire kit discs",
+     "statement": "Wire the four kit discs into Sara's emails — the approved mockup goes live.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 77,
+     "date": "2026-11-25/26",
+     "name": "Mock Sara email",
+     "statement": "Mock up the Sara kit-email version with the discs in chat so I can see it and approve it from there.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 78,
+     "date": "2026-11-25/26",
+     "name": "Kit discs everywhere",
+     "statement": "Put the four kit discs in both places: Sara's customer kit emails and the Shipment Portal.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 79,
+     "date": "2026-11-25/26",
+     "name": "Deploy kit discs",
+     "statement": "Deploy the four kit holo discs — they are a standard, so they should already be deployed.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 80,
+     "date": "2026-11-25/26",
+     "name": "Start design migration",
+     "statement": "Start the site-wide design migration, in waves.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Parked by design: David did not approve the migration waves; held for his Tuscarora-pilot review (ledger W8a)."
+    },
+    {
+     "n": 81,
+     "date": "2026-11-25/26",
+     "name": "Build Biohacking blue",
+     "statement": "Build the Biohacking News card in Option B, the settled biohacking blue, not the purple.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 82,
+     "date": "2026-11-25/26",
+     "name": "Mock Biohacking card",
+     "statement": "Mock up both color versions of the Biohacking News card so I can see them.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 83,
+     "date": "2026-11-25/26",
+     "name": "Turquoise print standard",
+     "statement": "Make the turquoise disc (Option B) the universal standard for any print capability on any document, webpage, PDF, or app, and swap the print buttons across the guides to it.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 84,
+     "date": "2026-11-25/26",
+     "name": "Show print options",
+     "statement": "Show the two print-button options as images in chat, side by side, so I can select between A and B.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 85,
+     "date": "2026-11-25/26",
+     "name": "Build sourcing integration",
+     "statement": "Build the sourcing/credit integration.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 86,
+     "date": "2026-11-25/26",
+     "name": "Upload icon master",
+     "statement": "Upload the \"current\" version of the icon to the Icon Store as the master.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 87,
+     "date": "2026-11-25/26",
+     "name": "Keep Tailwind hexes",
+     "statement": "Keep the Tailwind set of palette hexes.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 88,
+     "date": "2026-11-25/26",
+     "name": "Mock MedAdmin icons",
+     "statement": "Mock up the two versions of the Med Admin icons so I can judge them.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "Tuscarora & Plants — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 89,
+     "date": "2026-11-25/26",
+     "name": "Drop location fields",
+     "statement": "Drop the location and floor fields from the plant board — one address, they are all here.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 90,
+     "date": "2026-11-25/26",
+     "name": "Populate Plant Collection",
+     "statement": "Populate the Plant Collection board with the information from Tuscarora/Plants.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 91,
+     "date": "2026-11-25/26",
+     "name": "Adopt a6 upgrades",
+     "statement": "Adopt the six styling upgrades (a6) and complete them (revised later in window).",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 92,
+     "date": "2026-11-25/26",
+     "name": "Publish Round 2",
+     "statement": "Start publishing the Round 2 batch now.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Not published: David declined the Round 2 publish later on Nov 26; the later instruction governs (ledger)."
+    },
+    {
+     "n": 93,
+     "date": "2026-11-25/26",
+     "name": "Leaf Venn shapes",
+     "statement": "Change the Venn diagram shapes from circles to overlapping leaves, with the plant in the center.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Staged, NOT published: the leaf Venn is in all 12 staged guides; zero 'venn' in the live guides (ledger W5)."
+    },
+    {
+     "n": 94,
+     "date": "2026-11-25/26",
+     "name": "Ribes stays orange",
+     "statement": "Leave the Ribes hirtellum name orange.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Staged, NOT published: present in the staged Gooseberry card only; not live (ledger W5)."
+    },
+    {
+     "n": 95,
+     "date": "2026-11-25/26",
+     "name": "Plants-2 name colors",
+     "statement": "Change Plants-2: only the common name in orange bold text; the scientific name and family stay gray.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Staged, NOT published: present in the staged plants index only; not live (ledger W5)."
+    },
+    {
+     "n": 96,
+     "date": "2026-11-25/26",
+     "name": "Approve Round 2",
+     "statement": "Approve Round 2 items Plants-3, Plants-4, Plants-5, Plants-6, Plants-7, Plants-8, Plants-9, and Plants-10.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Staged, NOT published: the Plants-3..10 changes are verified present in staging only; publishing was declined by David later on Nov 26 (ledger W5)."
+    },
+    {
+     "n": 97,
+     "date": "2026-11-25/26",
+     "name": "Visit-only theme",
+     "statement": "Make the Tuscarora theme visit-only — it applies for the visit and stores nothing.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "Finance & Retirement — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 98,
+     "date": "2026-11-25/26",
+     "name": "Fix rotation page",
+     "statement": "Fix the dead space on the rotation plan page and scrub the source comments.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 99,
+     "date": "2026-11-25/26",
+     "name": "Aggressive growth only",
+     "statement": "For Motley Fool and all lists, I am only interested in aggressive growth for the Fidelity portfolio — the TSP is the safe space.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 100,
+     "date": "2026-11-25/26",
+     "name": "Round share counts",
+     "statement": "In reports like the rotation plan, always round the number of shares — never print decimal share counts.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 101,
+     "date": "2026-11-25/26",
+     "name": "Add Supercycle PDF",
+     "statement": "Add the Motley Fool AI Supercycle PDF to our investment intelligence.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 102,
+     "date": "2026-11-25/26",
+     "name": "Rotation into portal",
+     "statement": "Integrate the rotation plan into my finance portal, with reminders in each morning briefing of the steps to take that day.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 103,
+     "date": "2026-11-25/26",
+     "name": "Supercycle extended audio",
+     "statement": "Read, analyze, and summarize the Motley Fool AI Supercycle report and provide it as extended audio, specific to my needs.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 104,
+     "date": "2026-11-25/26",
+     "name": "Draft rotation plan",
+     "statement": "Draft the rotation plan for my review.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 105,
+     "date": "2026-11-25/26",
+     "name": "Rotate dead stocks",
+     "statement": "Get out of my dead stocks and rotate toward extreme growth and AI.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 106,
+     "date": "2026-11-25/26",
+     "name": "Save Fool Top10",
+     "statement": "Save the Motley Fool Top 10 list and keep it handy as we make future investment moves.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 107,
+     "date": "2026-11-25/26",
+     "name": "Keep SPCX funding",
+     "statement": "Keep the SPCX funding plan: $30,000 from the Novo trim only.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 108,
+     "date": "2026-11-25/26",
+     "name": "Move call Friday",
+     "statement": "Move the Empower rollover call to Friday — Empower is closed today.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 109,
+     "date": "2026-11-25/26",
+     "name": "Daily SPCX bulletin",
+     "statement": "Add a daily SpaceX (SPCX) bulletin like the NVDA one to the finance portal.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 110,
+     "date": "2026-11-25/26",
+     "name": "Never mention SF-3106",
+     "statement": "Do not mention the SF-3106 form again.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 111,
+     "date": "2026-11-25/26",
+     "name": "Empower identity check",
+     "statement": "Tell me what identity check Empower makes, and create a recurring task for the rollover that runs each day until it is completed.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 112,
+     "date": "2026-11-25/26",
+     "name": "Save Empower steps",
+     "statement": "Save the Empower call steps — we will do the call another day.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "Photos, Drive & Shopping — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 113,
+     "date": "2026-11-25/26",
+     "name": "Run Drive cleanup",
+     "statement": "Run the Drive cleanup — just do not show the approvals here in chat.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Executed in part: same blocker as item 63 — structural cleanup for Categories 1–2 only; dedupe not run (ledger W4)."
+    },
+    {
+     "n": 114,
+     "date": "2026-11-25/26",
+     "name": "Optimize Drive structure",
+     "statement": "Give the Drive folder structure a thorough optimization — the folders are disparate and disorganized.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Executed in part: 7-folder skeleton built, Categories 1–2 done; Categories 3–7 and the dedupe pass stopped when Drive approvals expired Nov 26; a resume ran Nov 27 with completion not yet verified (ledger W4)."
+    },
+    {
+     "n": 115,
+     "date": "2026-11-25/26",
+     "name": "Organize Drive files",
+     "statement": "Task a worker to start organizing the files on my Google Drive.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 116,
+     "date": "2026-11-25/26",
+     "name": "Delete phone photos",
+     "statement": "When the photo move is finished, delete the photos entirely from my phone and save them to Drive, then do the optimization work — delete duplicates and unneeded shots.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. At the gate, awaiting David: the count/hash verification against the phone's 2,490 items must pass before anything is deleted; no deletion has occurred anywhere (ledger W4)."
+    },
+    {
+     "n": 117,
+     "date": "2026-11-25/26",
+     "name": "Photos backup Takeout",
+     "statement": "Do both photo steps: back up from my phone with Google Photos, and also from Google Takeout.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. At the gate, awaiting David: Google Photos backup completes on his confirmation and the Takeout verification tap on his phone (ledger W4; Nov 27 state: export ready, expires Dec 3, 2026 7:05 PM ET)."
+    },
+    {
+     "n": 118,
+     "date": "2026-11-25/26",
+     "name": "Organize all photos",
+     "statement": "Collect all my photos and organize them.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 119,
+     "date": "2026-11-25/26",
+     "name": "Collect phone photos",
+     "statement": "Go through my personal photos and find the photos needed — get them off my phone.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Partial: photos were collected from every reachable source, but the phone camera roll itself was never pulled — the route is the item-60 pipeline, still gated (ledger W4)."
+    },
+    {
+     "n": 120,
+     "date": "2026-11-25/26",
+     "name": "Find plant deals",
+     "statement": "Find plant deals.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 121,
+     "date": "2026-11-25/26",
+     "name": "No kratom sourcing",
+     "statement": "Add other products, not kratom — I do not buy kratom from any of those sources.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 122,
+     "date": "2026-11-25/26",
+     "name": "All five retailers",
+     "statement": "Include products from all the sites I shop: Amazon, Temu, Lowe's, Home Depot, and Walmart.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 123,
+     "date": "2026-11-25/26",
+     "name": "Deals refresh 3AM",
+     "statement": "Set the Black Friday deals board refresh to run at 3 AM every day, board only.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 124,
+     "date": "2026-11-25/26",
+     "name": "Build deals space",
+     "statement": "Build out the deals space from my Temu purchase history.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 125,
+     "date": "2026-11-25/26",
+     "name": "Broaden shopping list",
+     "statement": "Broaden the shopping list beyond kratom.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 126,
+     "date": "2026-11-25/26",
+     "name": "Build shopping list",
+     "statement": "Create my shopping list from everything you know from my purchase history.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 127,
+     "date": "2026-11-25/26",
+     "name": "Rename archive files",
+     "statement": "Rename the Drive archive files to the naming standard without my review — just rename them.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "SLU Guide — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 128,
+     "date": "2026-11-25/26",
+     "name": "Leave Nighttime Reds",
+     "statement": "Leave the WestKoast Nighttime Reds file alone — do not redo it.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 129,
+     "date": "2026-11-25/26",
+     "name": "SLU like TikTok",
+     "statement": "Reconfigure the SLU guide exactly like the TikTok Peptide Bans guide and the Phantom Herbal strain guide, replacing their information with SLU's, and never show shop options in guides, ever (revised later in window).",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 130,
+     "date": "2026-11-25/26",
+     "name": "Redo SLU guide",
+     "statement": "Redo the SLU guide — no buttons all across the page side to side; follow the guide build scripts.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 131,
+     "date": "2026-11-25/26",
+     "name": "Equal menu bars",
+     "statement": "Make the colored menu bars on the SLU page the same size horizontally, each reconfigured to follow the style guidelines.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 132,
+     "date": "2026-11-25/26",
+     "name": "Replace live SLU",
+     "statement": "Replace the live SLU guide with the new one.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 133,
+     "date": "2026-11-25/26",
+     "name": "Build SLU guide",
+     "statement": "Build the new SLU guide in our style.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "Customers, Jobs & Process — Nov 25–26, 2026",
+   "rows": [
+    {
+     "n": 134,
+     "date": "2026-11-25/26",
+     "name": "Audit 48 hours",
+     "statement": "Review every single chat message over the past 48 hours, do not skip any, create a list of the changes I requested, and create a remediation task to effect the changes as I requested.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 135,
+     "date": "2026-11-25/26",
+     "name": "Drop Pirate Ship",
+     "statement": "Drop Pirate Ship, period — I will no longer use it.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 136,
+     "date": "2026-11-25/26",
+     "name": "Delete Discord channels",
+     "statement": "Delete my Discord posts and channels — final scope: Peptopia only, and only channels discussing kratom, no others (revised later in window).",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 137,
+     "date": "2026-11-25/26",
+     "name": "Approvals to sidebar",
+     "statement": "Move the approval prompts out of the chat and to the sidebar so I can follow the chat.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 138,
+     "date": "2026-11-25/26",
+     "name": "Batch approvals rule",
+     "statement": "Batch approvals — I preapprove all changes in a job; do not make me click every file to approve.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 139,
+     "date": "2026-11-25/26",
+     "name": "Job Board exclusions",
+     "statement": "The Job Board must not show jobs for companies or facilities where I already worked.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 140,
+     "date": "2026-11-25/26",
+     "name": "Second emailed round",
+     "statement": "Complete the second round of emailed change requests.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Blocked — unverifiable as a discrete item: maps to the emailed change-list workstreams (items 28, 36–41) rather than a separately checkable change (ledger W1)."
+    },
+    {
+     "n": 141,
+     "date": "2026-11-25/26",
+     "name": "Clear your desk",
+     "statement": "Complete the work on your desk, without me if possible.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Blocked — unverifiable as a discrete item: a general directive that maps to the remediation program itself (ledger W1). No separate completion evidence."
+    },
+    {
+     "n": 142,
+     "date": "2026-11-25/26",
+     "name": "Fix PINCH problems",
+     "statement": "Fix the PINCH problems.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 143,
+     "date": "2026-11-25/26",
+     "name": "Work MedAdmin list",
+     "statement": "Work the emailed Medication Administration change log list, keeping an accurate log in chat as each item completes.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 144,
+     "date": "2026-11-25/26",
+     "name": "Approvals in chat",
+     "statement": "Put declined approval requests back into the main chat window so I can approve them there.",
+     "done": false,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026. Not effected as stated: superseded the next day by item 66 (approvals moved OUT of chat to the sidebar), which governs (ledger W1)."
+    },
+    {
+     "n": 145,
+     "date": "2026-11-25/26",
+     "name": "Simple file names",
+     "statement": "When reporting a file being uploaded or changed, give me just the one file name and generally where it is going — never read the full path.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 146,
+     "date": "2026-11-25/26",
+     "name": "Audit yesterday's requests",
+     "statement": "Review yesterday's entire chat history and find the requests that were not completed.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 147,
+     "date": "2026-11-25/26",
+     "name": "Close Hendri item",
+     "statement": "Stop the Hendri test-payment item — do not interact with that user again unless we hear from them, and remove it from the tracker.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 148,
+     "date": "2026-11-25/26",
+     "name": "One-at-a-time feeding",
+     "statement": "When feeding me list items, read one at a time — do not repeat the entire list.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    },
+    {
+     "n": 149,
+     "date": "2026-11-25/26",
+     "name": "Simulated testing note",
+     "statement": "Record that Med Companion capstone testing is simulated, not on live VA patients, in the notes and log entries.",
+     "done": true,
+     "basis": "Statement as recorded in the 48-hour requested-changes list compiled at David's order on Nov 26, 2026 (REQUESTED_CHANGES_48H.md); status from the remediation ledger's live verification (LEDGER.md), Nov 26–27, 2026."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Evening Work-Through",
+   "rows": [
+    {
+     "n": 150,
+     "date": "2026-11-24",
+     "name": "Template round guides",
+     "statement": "Item 1 — guide-template round on the 8 Kratom Reviews hub guides (TEMPLATE_CHANGE_REQUESTS #1–#6)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 151,
+     "date": "2026-11-24",
+     "name": "Home Screen icons",
+     "statement": "Item 2 — Home Screen (apple-touch-icon) rollout",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 152,
+     "date": "2026-11-24",
+     "name": "Icon smudge sweep",
+     "statement": "Item 3 — icon smudge sweep completion check",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 153,
+     "date": "2026-11-24",
+     "name": "Chase LLC withdrawal",
+     "statement": "Item 5 — chase Peptopia Health, LLC withdrawal confirmation",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 154,
+     "date": "2026-11-24",
+     "name": "Chase prior-service credit",
+     "statement": "Item 6 — chase prior-service credit status",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 155,
+     "date": "2026-11-24",
+     "name": "Rule Toolbox palette",
+     "statement": "Item 7 — rule on the Toolbox palette hexes (Tailwind snap flagged as possible overreach)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 156,
+     "date": "2026-11-24",
+     "name": "Legality sourcing credit",
+     "statement": "Item 8 — Kratom Legality sourcing/credit integration",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 157,
+     "date": "2026-11-24",
+     "name": "Finish theme QA",
+     "statement": "Item 18 — finish Tuscarora theme-selector QA",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 158,
+     "date": "2026-11-24",
+     "name": "NETGEAR walkthrough item",
+     "statement": "Item 19 — NETGEAR EX6100 walkthrough",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Parked or dropped by David's own word."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Admin Portal",
+   "rows": [
+    {
+     "n": 159,
+     "date": "2026-11-24",
+     "name": "Seven-point portal rebuild",
+     "statement": "Portal rebuild — his 7-point order (~00:46 EST): slim collapsible desk headers, Task Tracker rename + his intro text, no-excessive-white-space rule, shipment chips",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 160,
+     "date": "2026-11-24",
+     "name": "Remove kind badges",
+     "statement": "Remove all kind-badge spans from the portal",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 161,
+     "date": "2026-11-24",
+     "name": "Portal change list",
+     "statement": "21-item portal change list (~04:25 EST, portal-review/change-list-11-24-26.md)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 162,
+     "date": "2026-11-24",
+     "name": "Fix button corruption",
+     "statement": "Fix the portal button corruption (\"the whole guide is fucked\")",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 163,
+     "date": "2026-11-24",
+     "name": "Matrix pills overlap",
+     "statement": "Category matrix pills overlapping/truncated",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 164,
+     "date": "2026-11-24",
+     "name": "Unify 38px buttons",
+     "statement": "Button fix round 2 — unify all buttons/banners at exactly 38px",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 165,
+     "date": "2026-11-24",
+     "name": "Build Commands reorganization",
+     "statement": "Build Commands reorganization — \"3 ways to build\" intro, 3-circle Venn, unified purple banners, purple-bordered subsections",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 166,
+     "date": "2026-11-24",
+     "name": "Build Commands new-look",
+     "statement": "\"Build Commands new look & feel\" — locate the new version he believed was built",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 167,
+     "date": "2026-11-24",
+     "name": "Potions flask links",
+     "statement": "Potions — deep-link the six flasks into the Bewitched guide spell forms; put the flask graphics on the portal",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 168,
+     "date": "2026-11-24",
+     "name": "Restore flasks heading",
+     "statement": "Restore the \"6 flasks. 6 Potions. Tap to cast.\" line as a proper heading",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 169,
+     "date": "2026-11-24",
+     "name": "Store Customers Venn",
+     "statement": "Store & Customers Venn (Pharma / Tracking / Vetting lens)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 170,
+     "date": "2026-11-24",
+     "name": "Shipment buttons POST",
+     "statement": "Shipment Portal fixes — status buttons must actually POST (were localStorage-only), scrub rules, footer changes",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 171,
+     "date": "2026-11-24",
+     "name": "Verify shipment buttons",
+     "statement": "Shipment Portal buttons verified (queue item #6)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 172,
+     "date": "2026-11-24",
+     "name": "TreeLeaf desk card",
+     "statement": "Kratom Desk — add TreeLeaf order card (standing rule: update the desk on kratom progress)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 173,
+     "date": "2026-11-24",
+     "name": "Task Tracker rules",
+     "statement": "Task Tracker processing rules — checked items DELETED on Submit, page reloads, silent processing",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Unfinished-Task Queue",
+   "rows": [
+    {
+     "n": 174,
+     "date": "2026-11-24",
+     "name": "Design Styles section",
+     "statement": "#1 — Design Styles portal section",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 175,
+     "date": "2026-11-24",
+     "name": "Med Companion build",
+     "statement": "#2 — Med Companion header question + app build",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 176,
+     "date": "2026-11-24",
+     "name": "Icon Masters additions",
+     "statement": "#3 — Toolbox Icon Masters additions",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 177,
+     "date": "2026-11-24",
+     "name": "Sara kit graphic",
+     "statement": "#4 — Sara kit graphic",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 178,
+     "date": "2026-11-24",
+     "name": "Sara reply mockup",
+     "statement": "#5 — Sara reply mock-up with current payment text",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 179,
+     "date": "2026-11-24",
+     "name": "Sourcing attribution records",
+     "statement": "#7 — Sourcing/attribution records completed",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 180,
+     "date": "2026-11-24",
+     "name": "Retirement card rebuild",
+     "statement": "#8 — Retirement card rebuild",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Icons and Artwork",
+   "rows": [
+    {
+     "n": 181,
+     "date": "2026-11-24",
+     "name": "Restore guide icons",
+     "statement": "Four guide icons restored to the approved holographic masters",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 182,
+     "date": "2026-11-24",
+     "name": "Print disc master",
+     "statement": "Print master — Med Admin turquoise disc becomes THE btn-print-holo.png master",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 183,
+     "date": "2026-11-24",
+     "name": "Med Admin mockup",
+     "statement": "Med Admin icon mock-up — \"mock up the two versions so I can judge\"",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Guides and Content",
+   "rows": [
+    {
+     "n": 184,
+     "date": "2026-11-24",
+     "name": "Essential Drugs page",
+     "statement": "50 Essential Drugs page from his NotebookLM notebook",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 185,
+     "date": "2026-11-24",
+     "name": "NotebookLM inventory",
+     "statement": "NotebookLM inventory",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 186,
+     "date": "2026-11-24",
+     "name": "Shorten popup steps",
+     "statement": "Shorten the four Build Script popup steps to fit one window",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 187,
+     "date": "2026-11-24",
+     "name": "Build-a-Guide publish",
+     "statement": "First Build a Guide batch publish",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 188,
+     "date": "2026-11-24",
+     "name": "Corrections site refresh",
+     "statement": "Corrections site refresh actually going live",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Capstone — RNTTP",
+   "rows": [
+    {
+     "n": 189,
+     "date": "2026-11-24",
+     "name": "Capstone landscape review",
+     "statement": "VA-wide capstone/AI landscape review (due diligence against duplicating VA work)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 190,
+     "date": "2026-11-24",
+     "name": "Capstone terminology Lifecycle",
+     "statement": "Capstone terminology — plan is the \"Lifecycle\"; catchy proposal names; \"Pain Points Log\"",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 191,
+     "date": "2026-11-24",
+     "name": "Re-rank proposals",
+     "statement": "Re-rank the five proposals in light of the landscape review",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Parked or dropped by David's own word."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — TreeLeaf & Kratom Vendors",
+   "rows": [
+    {
+     "n": 192,
+     "date": "2026-11-24",
+     "name": "DK Friday order",
+     "statement": "TreeLeaf (DK) Black Friday order — propose, revise per his edits, send final order",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 193,
+     "date": "2026-11-24",
+     "name": "Settle DK invoice",
+     "statement": "Settle DK's invoice",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 194,
+     "date": "2026-11-24",
+     "name": "TreeLeaf emoji sets",
+     "statement": "TreeLeaf emoji sets for DK",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 195,
+     "date": "2026-11-24",
+     "name": "Add Patho extract",
+     "statement": "Add the new TreeLeaf extract to the strain guide",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    },
+    {
+     "n": 196,
+     "date": "2026-11-24",
+     "name": "Record Jaya tracking",
+     "statement": "Record Jaya Kratom tracking",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 197,
+     "date": "2026-11-24",
+     "name": "Legality daily posts",
+     "statement": "Kratom legality daily updates + Peptopia #kratom-news posts",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Customers",
+   "rows": [
+    {
+     "n": 198,
+     "date": "2026-11-24",
+     "name": "Don Pando sale",
+     "statement": "Don Pando — lift the decline for one sale; Sara confirms $375 Retatrutide kit",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 199,
+     "date": "2026-11-24",
+     "name": "Annette Kerbs reply",
+     "statement": "Annette Kerbs — Wolverine order reply",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Completed-but-defective: shipped wrong or misreported, caught, corrected and re-verified on Nov 24."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Briefings and Jobs",
+   "rows": [
+    {
+     "n": 200,
+     "date": "2026-11-24",
+     "name": "Briefing news rules",
+     "statement": "Briefing rules — NEWS MEANS NEWS; never schedule the bar for him (PERMANENT)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 201,
+     "date": "2026-11-24",
+     "name": "Redo evening briefing",
+     "statement": "Redo tonight's evening briefing under the new rules",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 202,
+     "date": "2026-11-24",
+     "name": "Evening briefing original",
+     "statement": "Evening briefing (original scheduled run)",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 203,
+     "date": "2026-11-24",
+     "name": "NVDA Daily Poster",
+     "statement": "NVDA Daily Poster",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Personal & Accounts",
+   "rows": [
+    {
+     "n": 204,
+     "date": "2026-11-24",
+     "name": "Hulu deal check",
+     "statement": "Hulu — check the $4.99/mo Disney+/Hulu deal",
+     "done": true,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log."
+    },
+    {
+     "n": 205,
+     "date": "2026-11-24",
+     "name": "Muse subscription payment",
+     "statement": "Muse subscription payment problem",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. Open — awaiting David or an external party; the assistant's part is done."
+    }
+   ]
+  },
+  {
+   "title": "November 24, 2026 — Not Completed",
+   "rows": [
+    {
+     "n": 206,
+     "date": "2026-11-24",
+     "name": "Theme QA complete",
+     "statement": "Item 18 — finish Tuscarora theme-selector QA (phone-width pass and the five newer styles)",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. NOT COMPLETED #1: desktop matrix passed; the 390px phone pass was never done and Pop Art, Minimalist, Art Nouveau, Brutalist, Pastel/Retro were never verified at any width."
+    },
+    {
+     "n": 207,
+     "date": "2026-11-24",
+     "name": "SF-3106 audio rerender",
+     "statement": "Re-render the SF-3106 briefing audio with current figures and embed it on the retirement card",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. NOT COMPLETED #2: the audio was never re-rendered and remains off the card. (David later ruled the SF-3106 topic closed — do not raise.)"
+    },
+    {
+     "n": 208,
+     "date": "2026-11-24",
+     "name": "Bewitched parity push",
+     "statement": "Bewitched guide — push the local staging master (both Sourcing deep-dive addenda) to the main repo for local↔live mirror parity",
+     "done": false,
+     "basis": "Request wording and status as recorded in the forensic audit of Nov 24, 2026 (audit-2026-11-24-requests.md), written Nov 25, 2026 at David's order from the full day log. NOT COMPLETED #4: the mirror sync push was still owed at the end of Nov 24; no visible effect on the live guide."
+    }
+   ]
+  },
+  {
+   "title": "Standing Rules — Permanent Instructions",
+   "rows": [
+    {
+     "n": 209,
+     "date": "2026-11-26",
+     "name": "Black square rule",
+     "statement": "Zero drop shadow filters on any iPhone-facing page, page-wide — any such filter anywhere on a page makes iOS Safari paint a black square at the top-left; glows are radial-gradient halos or box-shadow.",
+     "done": true,
+     "basis": "Standing rule, MEMORY.md (proven Nov 11, 2026 by David's live bisect; re-proven Nov 26). David confirmed the portal fix: 'Fixed.'"
+    },
+    {
+     "n": 210,
+     "date": "2026-11-26",
+     "name": "Lessons transfer rule",
+     "statement": "Learn from this. Lessons learned must transfer to our future selves.",
+     "done": true,
+     "basis": "David's words, Nov 26, 2026 (MEMORY.md). Done: the lesson set (check the record first, class-wide defect verification, staged ≠ done, his screenshot outranks renders) is written into AGENTS.md and MEMORY.md."
+    },
+    {
+     "n": 211,
+     "date": "2026-11-22",
+     "name": "Post the link",
+     "statement": "When a product revision is finished, always post the link to the result in chat.",
+     "done": true,
+     "basis": "Standing rule, MEMORY.md (David, Nov 22, 2026, PERMANENT). In force."
+    },
+    {
+     "n": 212,
+     "date": "2026-11-22",
+     "name": "Voice MAI_03 only",
+     "statement": "Every audio produced uses his voice avocado_v2:MAI_03 and English only, ever — never the live-call voice.",
+     "done": true,
+     "basis": "Standing rule, MEMORY.md (David, Nov 22, 2026, PERMANENT). In force; every render passes voice confirmation, decode/dropout scan and English transcription check."
+    },
+    {
+     "n": 213,
+     "date": "2026-11-22",
+     "name": "Home icon leftmost",
+     "statement": "Header: home icon leftmost; all header icons on one line.",
+     "done": true,
+     "basis": "Standing rule (David, Nov 22, 2026), ordered after Med ID's 5-icon cluster broke across two rows; carried in the Header Standard."
+    },
+    {
+     "n": 214,
+     "date": "2026-11-20",
+     "name": "Header width rule",
+     "statement": "The header is never wider than the page's content column.",
+     "done": true,
+     "basis": "Standing rule (David, Nov 20, 2026), enforced by check_widths.py on every build."
+    },
+    {
+     "n": 215,
+     "date": "2026-11-19",
+     "name": "One palette, fonts",
+     "statement": "One palette and one font system for everything — Outfit headings, DM Sans body — from shared stylesheets, linked, never pasted per page.",
+     "done": true,
+     "basis": "David's Global Design System order, Nov 19, 2026: 'All material across our entire site must originate from and strictly adhere to this palette.' In force as the universal parent script."
+    },
+    {
+     "n": 216,
+     "date": "2026-11-16",
+     "name": "Financial lock rule",
+     "statement": "No connection to financial resources may be used to sell, trade, transfer, withdraw, or otherwise move currency or change any asset unless a code is first texted to his personal phone and his confirmation received back. Exception: purchases up to $50, one at a time.",
+     "done": true,
+     "basis": "Standing rule, MEMORY.md (Nov 16, 2026, PERMANENT, self-locking). In force; Muse advises only and never trades."
+    },
+    {
+     "n": 217,
+     "date": "2026-11-16",
+     "name": "Center last-row cards",
+     "statement": "when a number less than 3 cards is shown on the last row--center them to the page instead of left align as we see in this pic",
+     "done": true,
+     "basis": "David's words, Nov 12–16, 2026 (verified extraction, MEMORY.md card-centering rule). In force site-wide."
+    },
+    {
+     "n": 218,
+     "date": "2026-11-09",
+     "name": "Cards sized identically",
+     "statement": "all cards must be identically sized vertically, and only 3 cards per row, ever, while mobile can list them vertically one-by-one. I see cards showing the buttons on bottom at different positions. they must all align to a common row.",
+     "done": true,
+     "basis": "David's words, Nov 9, 2026 (memory/2026-11-09.md). Standing build rule."
+    },
+    {
+     "n": 219,
+     "date": "2026-11-07",
+     "name": "Comprehensive compliance review",
+     "statement": "One final comprehensive compliance review of all guides (light/dark, desktop/mobile) — list discrepancies first, get approval before changes, delete former copies only once the verified file is deemed complete.",
+     "done": true,
+     "basis": "David's order, Nov 7, 2026 (recorded in MEMORY.md/research B). The review was run and the sweep regime it created is standing practice."
+    },
+    {
+     "n": 220,
+     "date": "2026-11-04",
+     "name": "Reorder homepage cards",
+     "statement": "reorder the cards so that the Shop, Education, and Biohacking News appear top row. All 3 others bottom row. Only allow max 3 cards as is currenty configured. push the update",
+     "done": true,
+     "basis": "David's words, Nov 4, 2026 (memory/2026-11-04.md). Done: homepage cards reordered as ordered."
+    },
+    {
+     "n": 221,
+     "date": "2026-11-01",
+     "name": "Standardize kratom guides",
+     "statement": "Kratom guides look inconsistent — pick the best guide, upgrade the others to that standard, and standardize the guide build script.",
+     "done": true,
+     "basis": "David's order, Nov 1, 2026 (research B). Done: the WildCraft template became the reference standard and the Guide Build Script was standardized."
+    },
+    {
+     "n": 222,
+     "date": "2026-10-29",
+     "name": "VA Simple Guides",
+     "statement": "VA Simple Guides workflow: email-bridge trigger at his direction, print-optimized Simple Guides, two approval gates before Drive save / VA email.",
+     "done": true,
+     "basis": "David's order, Oct 29, 2026 (research B). In force as the standing VA guides workflow."
+    },
+    {
+     "n": 223,
+     "date": "2026-10-24",
+     "name": "Button confirmation check",
+     "statement": "On every guide build or update, run the button confirmation check — count, type and placement listed to him first — under the approved button standard.",
+     "done": true,
+     "basis": "David's order, Oct 24, 2026 (AGENTS.md guide-builds lesson). In force."
+    }
+   ]
+  }
+ ]
+}

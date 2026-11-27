@@ -138,3 +138,37 @@ html.dark .peptopia-theme-toggle .pp-moon,html[data-theme="dark"] .peptopia-them
 
 /* Dark-mode fix (2026-11-24): the home strip keeps its pale cream band in both modes, so its text stays dark and readable in dark mode. */
 .ta-homestrip{color:#334155}
+
+/* ---- TAN BANNER STANDARD (Nov 27, 2026 — email change log items 1-3; ARTIFACT_BUILD_SCRIPT §I.44) ----
+   The tan breadcrumb banner sits directly under the header, FLUSH against it (no gap),
+   and the tan band is exactly the width of the page content column (the 1200px standard
+   column, inset to the content box) — never wider, never full-viewport.
+   Markup: <div class="ta-banner"><div class="ta-banner-in">...links...</div></div>
+   placed immediately after </header>. */
+.ta-banner{max-width:1200px;margin:0 auto;padding:0 24px;width:100%;box-sizing:border-box;position:relative;z-index:1}
+.ta-banner-in{font-family:'DM Sans',sans-serif;font-size:.85rem;padding:12px 20px;background:#FFF7ED;border-bottom:1px solid #F1E3D3;color:#78716C}
+.ta-banner-in a{color:#C2410C;font-weight:600;text-decoration:none}
+.ta-banner-in a:hover{text-decoration:underline}
+.ta-banner-title{color:#9A3412;font-weight:700}
+@media(max-width:640px){.ta-banner{padding:0 12px}}
+
+/* ---- History category accent (Nov 27, 2026): purple, from the palette ---- */
+.ac-purple::before{background:var(--pal-purple)}
+.ac-purple .card-ico{background:rgba(108,79,224,.12);color:var(--pal-purple)}
+
+/* THREE-BUTTON HEADER — PHONE FIT (Nov 27, 2026, with the History button): three category pills
+   plus four icon buttons overflow one phone row at the old metrics — the one-row layout crushed
+   the logo to a sliver (25px at 390px wide, wordmark squeezed out entirely). These ≤640px metrics
+   tighten the pills and icon buttons just enough that the logo keeps its full size and every
+   control stays on the row. Desktop header unchanged. (Selector outranks the pages' local
+   .hdrbtn rules, which were written for two pills.) */
+@media(max-width:640px){
+  .peptopia-hdr{padding:8px}
+  .peptopia-brand{flex:none}
+  .peptopia-logo{width:36px;height:36px;flex:none}
+  .peptopia-nav{gap:4px}
+  .peptopia-iconbtn{width:30px;height:30px}
+  .peptopia-iconbtn img{width:30px;height:30px}
+  #themeBtn.peptopia-iconbtn{width:30px;height:30px}
+  .peptopia-nav .btn.hdrbtn{font-size:.62rem;padding:0 7px;height:30px;letter-spacing:0;width:auto}
+}

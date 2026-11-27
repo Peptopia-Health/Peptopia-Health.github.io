@@ -10,7 +10,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://x-peps.com/X-Peps/IMG_3345.png">
 
-<link rel="apple-touch-icon" href="/Tuscarora_Arboretum/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/admin-portal/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/admin-portal/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -664,14 +665,14 @@ document.addEventListener('DOMContentLoaded',function(){
   <a class="jnav-btn btn b-purple" href="#cat-studio">🛠 Build</a>
   <a class="jnav-btn btn b-purple" href="#cat-adminarchive">✅ Admin</a>
   <a class="jnav-btn btn b-purple" href="https://x-peps.com/email/" target="_blank" rel="noopener">🛒 Storefront</a>
-  <a class="jnav-btn btn b-tusc" href="#cat-studio">🌿 Tuscarora</a>
-  <a class="jnav-btn btn b-tusc" href="#cat-kratom">📚 Guides</a>
+  <a class="jnav-btn btn b-tusc" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">🌿 Tuscarora</a>
+  <a class="jnav-btn btn b-tusc" href="https://x-peps.com/X-Peps/" target="_blank" rel="noopener">📚 Guides</a>
   <a class="jnav-btn btn b-tusc" href="#cat-today">🎧 Briefings</a>
   <a class="jnav-btn btn b-cyan" href="#cat-store">⭐ Favorites</a>
   <a class="jnav-btn btn b-cyan" href="#cat-kratom">🔗 Links</a>
   <a class="jnav-btn btn b-cyan" href="https://x-peps.com/admin-portal/toolbox.html" target="_blank" rel="noopener">Toolbox</a>
   <a class="jnav-btn btn b-bio" href="#cat-work">🏥 Work</a>
-  <a class="jnav-btn btn b-bio" href="#cat-work">💼 Career</a>
+  <a class="jnav-btn btn b-bio" href="#cat-career">💼 Career</a>
   <a class="jnav-btn btn b-bio" href="#cat-capstone">🎓 RNTTP</a>
 </nav>
 <button id="catReopen" class="cat-reopen" type="button" hidden>&#9776;&nbsp; Categories</button>
@@ -697,16 +698,40 @@ a.cardbtn.b-tusc{background:linear-gradient(135deg,#E05A00,#F06000)!important;co
 <script>
 (function(){
   function init(){
+    var desks=[];
     document.querySelectorAll('.catgroup-hdr').forEach(function(h){
       var secs=[]; var n=h.nextElementSibling;
       while(n && !n.classList.contains('catgroup-hdr')){ if(n.classList.contains('catsec')) secs.push(n); n=n.nextElementSibling; }
       if(!secs.length) return;
       var key='admin_portal_desk_'+(h.id||'');
-      var closed=false; try{closed=localStorage.getItem(key)==='1';}catch(e){}
-      function apply(){ secs.forEach(function(s){ s.style.display=closed?'none':''; }); h.classList.toggle('closed',closed); }
-      apply();
-      h.addEventListener('click',function(){ closed=!closed; apply(); try{localStorage.setItem(key,closed?'1':'0');}catch(e){} });
+      var d={h:h,secs:secs,key:key,closed:true};
+      try{d.closed=localStorage.getItem(key)!=='0';}catch(e){}
+      d.apply=function(){ secs.forEach(function(s){ s.style.display=d.closed?'none':''; }); h.classList.toggle('closed',d.closed); };
+      d.set=function(c){ d.closed=c; d.apply(); try{localStorage.setItem(key,c?'1':'0');}catch(e){} };
+      d.apply();
+      h.addEventListener('click',function(){ d.set(!d.closed); });
+      desks.push(d);
     });
+    function deskFor(el){
+      if(!el) return null;
+      for(var i=0;i<desks.length;i++){ var d=desks[i];
+        if(el===d.h || d.h.contains(el)) return d;
+        for(var j=0;j<d.secs.length;j++){ if(el===d.secs[j] || d.secs[j].contains(el)) return d; }
+      }
+      return null;
+    }
+    function openTarget(hash){
+      if(!hash || hash.length<2 || hash.charAt(0)!=='#') return;
+      var el=document.getElementById(hash.slice(1));
+      if(!el) return;
+      var d=deskFor(el);
+      if(d && d.closed){ d.set(false); setTimeout(function(){ try{el.scrollIntoView();}catch(e){} },0); }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(){ openTarget(a.getAttribute('href')); });
+    });
+    window.addEventListener('hashchange',function(){ openTarget(location.hash); });
+    if(location.hash){ openTarget(location.hash); }
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();

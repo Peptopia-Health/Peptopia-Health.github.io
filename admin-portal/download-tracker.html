@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Tracker — Peptopia Admin</title>
+<link rel="icon" type="image/png" href="/admin-portal/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/admin-portal/apple-touch-icon.png">
+<meta property="og:image" content="https://x-peps.com/X-Peps/IMG_3345.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --uw:100%; --fs-body:1rem; --fs-small:.8125rem;
+    --bg:#F4F5FA; --card:#FFFFFF; --card2:#FBFAFF; --ink:#241533; --muted:#5A5470;
+    --line:#E7E3F2; --head:#BE4B00; --shadow:0 2px 10px rgba(36,21,51,.07);
+    --font-head:'Outfit',sans-serif;
+  }
+  html.dark{
+    --bg:#14101F; --card:#1E1830; --card2:#251D3D; --ink:#F2EEFA; --muted:#B4ABD2;
+    --line:#3A2F5C; --head:#FF8A3D; --shadow:0 2px 12px rgba(0,0,0,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans','Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:var(--fs-body)}
+  .wrap{max-width:1200px;width:100%;margin:0 auto;padding:16px 18px 34px}
+  .peptopia-hdr{display:flex;align-items:center;gap:12px;max-width:1200px;margin:0 auto}
+  .peptopia-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .peptopia-logo{width:44px;height:44px;border-radius:50%;display:block}
+  .peptopia-wordmark{font-family:var(--font-head);font-weight:800;font-size:1.05rem;letter-spacing:.14em;color:var(--head)}
+  .peptopia-nav{margin-left:auto;display:flex;gap:8px;align-items:center}
+  .peptopia-iconbtn{width:44px;height:44px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:0}
+  .peptopia-iconbtn img{width:38px;height:38px;display:block;border-radius:50%}
+  html:not(.dark) .peptopia-theme-toggle .pp-sun{display:none}
+  html.dark .peptopia-theme-toggle .pp-moon{display:none}
+  h1{font-family:var(--font-head);font-weight:800;color:var(--head);font-size:1.6rem;margin:18px 0 4px}
+  .note{color:var(--muted);margin:0 0 14px}
+  .total{font-family:var(--font-head);font-weight:700;font-size:1.05rem;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px 18px;margin:0 0 18px}
+  .card h2{font-family:var(--font-head);font-weight:700;font-size:1.1rem;margin:0 0 10px}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);font-size:.95rem}
+  th{font-family:var(--font-head);font-weight:700}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  ul.recent{list-style:none}
+  ul.recent li{padding:6px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  ul.recent li:last-child{border-bottom:none}
+  ul.recent .when{color:var(--muted)}
+  .empty{color:var(--muted)}
+  /* ===== Gate (author number, same pattern as the portal index) ===== */
+  #gate{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}
+  #gate .box{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);max-width:360px;width:100%;padding:28px 24px;text-align:center}
+  #gate img{width:72px;height:72px;border-radius:50%}
+  #gate h1{font-family:var(--font-head);font-weight:800;color:var(--head);font-size:1.3rem;margin:14px 0 4px}
+  #gate p{color:var(--muted);font-size:.92rem;margin:0 0 16px}
+  #gate input{width:120px;font-size:1.3rem;text-align:center;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--ink);font-family:var(--font-head);font-weight:700;letter-spacing:.2em}
+  #gate button{display:block;margin:14px auto 0;background:#7C3AED;color:#fff;border:none;border-radius:999px;padding:6px 22px;font-family:var(--font-head);font-weight:700;font-size:.85rem;cursor:pointer;min-height:38px}
+  #gateErr{color:#DC2626;font-size:.85rem;min-height:1.2em;margin-top:10px}
+  html.dark #gateErr{color:#F87171}
+  #portalRoot{display:none}
+  #portalRoot.unlocked{display:block}
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="box">
+    <img src="/admin-portal/apple-touch-icon.png" alt="">
+    <h1>Peptopia Health</h1>
+    <p>Private archive. Enter the author number to continue.</p>
+    <input id="gateInput" type="password" inputmode="numeric" autocomplete="off" aria-label="Author number">
+    <button id="gateBtn" type="button">Enter</button>
+    <div id="gateErr"></div>
+  </div>
+</div>
+<noscript><p style="text-align:center;padding:20px">This page needs JavaScript for the author-number gate.</p></noscript>
+
+<div id="portalRoot">
+<div class="wrap">
+  <header class="peptopia-hdr">
+    <a class="peptopia-brand" href="https://x-peps.com/admin-portal/">
+      <img class="peptopia-logo" src="/admin-portal/apple-touch-icon.png" alt="">
+      <span class="peptopia-wordmark">DOWNLOAD TRACKER</span>
+    </a>
+    <nav class="peptopia-nav">
+      <button type="button" class="peptopia-iconbtn" onclick="window.print()" title="Print" aria-label="Print"><img src="https://x-peps.com/btn-print-holo.png" alt="Print"></button>
+      <button type="button" class="peptopia-iconbtn peptopia-theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" aria-label="Toggle theme"><img class="pp-moon" src="https://x-peps.com/X-Peps/btn-moon.png?v=3" alt="Dark theme"><img class="pp-sun" src="https://x-peps.com/X-Peps/btn-sun.png?v=3" alt="Light theme"></button>
+    </nav>
+  </header>
+
+  <h1>Download Tracker</h1>
+  <p class="note">Private. Counts come from the Download buttons on the Bewitched pictures page. This page is only linked from inside the portal.</p>
+  <p class="total">Total downloads: 0 &middot; Last updated: Nov 27, 2026, 11:20 PM ET</p>
+
+  <!-- TRACKER-DATA-BEGIN -->
+  <section class="card">
+    <h2>Downloads by picture</h2>
+    <table>
+      <thead><tr><th>Picture</th><th class="n">Downloads</th></tr></thead>
+      <tbody>
+        <tr><td>christmas-1-classic.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-2-rustic.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-3-elegant.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-4-cozy.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-5-victorian.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-6-boundary.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-6-boundary-redo.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-red-velvet-1.webp</td><td class="n">0</td></tr>
+        <tr><td>christmas-red-velvet-2.webp</td><td class="n">0</td></tr>
+        <tr><td>new-year-1-gold.webp</td><td class="n">0</td></tr>
+        <tr><td>new-year-2-midnight.webp</td><td class="n">0</td></tr>
+        <tr><td>new-year-1-gold-silver.webp</td><td class="n">0</td></tr>
+        <tr><td>new-year-2-midnight-silver.webp</td><td class="n">0</td></tr>
+        <tr><td>halloween-candlelight.webp</td><td class="n">0</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Recent downloads</h2>
+    <p class="empty">No downloads recorded yet.</p>
+  </section>
+  <!-- TRACKER-DATA-END -->
+
+</div>
+</div>
+
+<script>
+  (function(){try{if(localStorage.getItem('peptopia-theme')==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();
+  function toggleTheme(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('peptopia-theme',d?'dark':'light');}catch(e){}}
+  (function(){
+    var gate=document.getElementById('gate'),root=document.getElementById('portalRoot'),
+        input=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),
+        err=document.getElementById('gateErr');
+    function unlock(){gate.style.display='none';root.classList.add('unlocked');}
+    function cookieGet(n){var m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]*)'));return m?decodeURIComponent(m[1]):null;}
+    function cookieSet(n,v,days){var exp=new Date(Date.now()+days*864e5).toUTCString();document.cookie=n+'='+encodeURIComponent(v)+'; expires='+exp+'; path=/; SameSite=Lax';}
+    var unlocked=false;
+    try{unlocked=sessionStorage.getItem('admin_portal_unlocked')==='1';}catch(e){}
+    if(cookieGet('peptopia_admin_week')==='1'){unlocked=true;}
+    if(unlocked){unlock();}
+    function tryGate(){
+      if(input.value.trim()==='57'){
+        try{sessionStorage.setItem('admin_portal_unlocked','1');}catch(e){}
+        cookieSet('peptopia_admin_week','1',7);
+        unlock();
+      }else{err.textContent='That number is not the author number. Try again.';input.value='';input.focus();}
+    }
+    btn.addEventListener('click',tryGate);
+    input.addEventListener('keydown',function(ev){if(ev.key==='Enter'){tryGate();}});
+  })();
+</script>
+</body>
+</html>

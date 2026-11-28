@@ -71,7 +71,7 @@
 <script>
   function toggleTheme(){var el=document.documentElement;var dark=el.classList.toggle('dark');try{localStorage.setItem('rnttp-theme',dark?'dark':'light');}catch(e){}}
   (function(){try{if(localStorage.getItem('rnttp-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();
-  (function(){function fit(){var w=document.querySelector('.wrap');if(!w)return;var cs=getComputedStyle(w);var cw=w.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);document.documentElement.style.setProperty('--uw',cw+'px');}window.addEventListener('load',fit);window.addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);fit();})();
+  (function(){function fit(){var v=Math.min(document.documentElement.clientWidth||0,1200);if(!v)return;var s=document.documentElement.style;if(s.getPropertyValue('--uw')!==v+'px')s.setProperty('--uw',v+'px');}window.addEventListener('load',fit);var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,120);});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);fit();})();
 </script>
 </head>
 <body>

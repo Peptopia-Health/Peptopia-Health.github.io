@@ -184,5 +184,14 @@
   </figure>
 
 </div>
+<script>
+document.querySelectorAll('a.dl').forEach(function(a){
+  a.addEventListener('click', function(){
+    try {
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},keepalive:true,body:JSON.stringify({access_key:'c3378175-a412-4313-bf5b-12fae9f925f3',subject:'Picture Download',from_name:'Bewitched Pictures Page',picture:a.getAttribute('download'),page:'bewitched_pics',when:new Date().toISOString()})}).catch(function(){});
+    } catch(e) {}
+  });
+});
+</script>
 </body>
 </html>

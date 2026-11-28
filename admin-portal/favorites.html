@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --fs-body:1rem; --fs-small:.8125rem;
+    --uw:100%; --fs-body:1rem; --fs-small:.8125rem;
     --bg:#F4F5FA; --card:#FFFFFF; --card2:#FBFAFF; --ink:#241533; --muted:#5A5470;
     --line:#E7E3F2; --head:#BE4B00; --shadow:0 2px 10px rgba(36,21,51,.07);
   }
@@ -58,6 +58,8 @@
 <script>
   function toggleTheme(){var el=document.documentElement;var dark=el.classList.toggle('dark');try{localStorage.setItem('favorites-theme',dark?'dark':'light');}catch(e){}}
   (function(){try{if(localStorage.getItem('favorites-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();
+  function setUW(){var w=document.querySelector('.wrap');if(!w)return;var cs=getComputedStyle(w);var cw=w.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);if(cw>0)document.documentElement.style.setProperty('--uw',cw+'px');}
+  window.addEventListener('load',setUW);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setUW);var uwT;window.addEventListener('resize',function(){clearTimeout(uwT);uwT=setTimeout(setUW,150);});
 </script>
 </head>
 <body>

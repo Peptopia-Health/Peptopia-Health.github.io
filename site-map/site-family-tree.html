@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/admin-portal/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/admin-portal/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Family Tree — x-peps.com · Peptopia Health</title>
+<meta property="og:image" content="https://x-peps.com/X-Peps/IMG_3345.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://x-peps.com/X-Peps/IMG_3345.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4FA; --surface:#FFFFFF; --surface2:#EFEAF6; --ink:#221A33; --muted:#5B5470;
+  --line:#D9D2E8; --tl:#B4A8DC; --hdrw:1680px;
+}
+html.dark{
+  --bg:#120D1E; --surface:#1D1630; --surface2:#271D42; --ink:#F2EDFA; --muted:#B7AED6;
+  --line:#3B2F5C; --tl:#57498A;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.42}
+img{max-width:100%}
+.wrap{max-width:var(--hdrw);margin:0 auto;padding:0 18px 34px}
+h1,h2,h3{font-family:'Outfit',sans-serif;margin:0}
+/* ---------- header ---------- */
+header.site{max-width:var(--hdrw);margin:0 auto;padding:14px 18px 10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header.site .ttl{flex:1 1 auto;min-width:220px}
+header.site h1{font-size:1.65rem;font-weight:800;line-height:1.1}
+header.site .sub{color:var(--muted);font-size:.86rem;font-weight:500;margin-top:2px}
+.hbtns{display:flex;gap:10px;align-items:center;flex:none}
+.hbtn{width:38px;height:38px;border-radius:50%;background:transparent;border:0;padding:0;cursor:pointer;line-height:0;flex:none}
+.hbtn img{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block}
+.hbtn.svgb{border:2px solid rgb(238,85,253);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08)}
+html.dark .hbtn.svgb{background:rgba(255,255,255,.04)}
+.hbtn:hover{filter:brightness(1.12)}
+.hbtn:focus-visible{outline:3px solid #2563EB;outline-offset:2px}
+.hlbl{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:3px;font-family:'Outfit',sans-serif}
+.hcell{display:flex;flex-direction:column;align-items:center}
+/* ---------- stats + legend ---------- */
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.stat{background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:500}
+.stat b{font-family:'Outfit',sans-serif;font-weight:800}
+.legend{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:14px}
+.legend h2{font-size:.95rem;font-weight:800;margin-bottom:8px}
+.legend .row{display:flex;flex-wrap:wrap;gap:6px 14px}
+.lg{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:500}
+.sw{width:16px;height:16px;border-radius:5px;flex:none;border:1px solid rgba(0,0,0,.18)}
+.lg .n{color:var(--muted);font-weight:700}
+/* ---------- stage / zoom ---------- */
+.zbar{display:flex;align-items:center;gap:8px;margin:0 0 8px;flex-wrap:wrap}
+.zbar .zt{font-family:'Outfit',sans-serif;font-weight:800;font-size:.9rem}
+.zbtn{font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 13px;cursor:pointer}
+.zbtn:hover{border-color:rgb(238,85,253)}
+.zbar .hint{color:var(--muted);font-size:.78rem}
+#stage{overflow:auto;border:1.5px solid var(--line);border-radius:16px;background:var(--surface2);padding:22px 16px;max-height:84vh}
+#stage:fullscreen{max-height:none;border-radius:0}
+#canvas{transform-origin:0 0;transition:transform .18s ease}
+/* ---------- family tree ---------- */
+.ftree{--gc:#64748B;display:flex;flex-direction:column;align-items:center;width:max-content;min-width:100%;padding:4px 8px 10px}
+.ftree ul{display:flex;justify-content:center;padding:26px 0 0;position:relative;list-style:none;margin:0}
+.ftree ul::before{content:"";position:absolute;top:0;left:50%;width:0;height:26px;border-left:2px solid var(--tl)}
+.ftree>ul{padding-top:26px}
+.ftree li{display:flex;flex-direction:column;align-items:center;position:relative;padding:26px 7px 0;list-style:none}
+.ftree li::before,.ftree li::after{content:"";position:absolute;top:0;right:50%;width:50%;height:26px;border-top:2px solid var(--tl)}
+.ftree li::after{right:auto;left:50%;border-left:2px solid var(--tl)}
+.ftree li:only-child::before,.ftree li:only-child::after{display:none}
+.ftree li:only-child{padding-top:0}
+.ftree li:first-child::before,.ftree li:last-child::after{border:0 none}
+.ftree li:last-child::before{border-right:2px solid var(--tl);border-radius:0 6px 0 0}
+.ftree li:first-child::after{border-radius:6px 0 0 0}
+.ftree>ul>li::before,.ftree>ul>li::after{display:none}
+.ftree>ul>li{padding-top:0}
+/* node cards */
+.nd{position:relative;display:block;width:190px;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:12px 9px 8px;text-decoration:none;color:var(--ink);box-shadow:0 1px 4px rgba(20,10,50,.10);overflow:hidden;text-align:left}
+.nd::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--gc)}
+.nd.grad::before{background:linear-gradient(90deg,#D97706,#F59E0B)}
+a.nd:hover{border-color:var(--gc);box-shadow:0 3px 10px rgba(20,10,50,.18)}
+.nd b{font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;line-height:1.22;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nd i{display:block;font-style:normal;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;color:var(--muted);font-size:.6rem;word-break:break-all;margin-top:3px;line-height:1.3}
+.nd .meta{display:flex;gap:5px;margin-top:5px;align-items:center;flex-wrap:wrap}
+.rp{flex:none;font-family:'Outfit',sans-serif;font-weight:800;font-size:.6rem;letter-spacing:.05em;border:1.5px solid var(--gc);color:var(--ink);border-radius:999px;padding:0 6px;line-height:1.5}
+.kcnt{flex:none;font-size:.6rem;font-weight:700;font-family:'Outfit',sans-serif;color:var(--muted)}
+.nd .xl{font-size:.6rem;color:var(--muted);margin-top:4px;line-height:1.35;word-break:break-all}
+.nd .nt{font-size:.66rem;font-weight:700;color:#B3261E;margin-top:4px;line-height:1.35}
+html.dark .nd .nt{color:#F28B82}
+.nd.root{width:340px;text-align:center;padding:14px 14px 10px}
+.nd.root b{font-size:1.02rem;-webkit-line-clamp:3}
+.nd.root i{font-size:.68rem}
+.nd.syn{border-style:dashed;background:var(--surface2)}
+.nd.agg{border-color:#F59E0B}
+/* collapse toggles */
+details.kids{display:flex;flex-direction:column;align-items:center}
+details.kids>summary{list-style:none;cursor:pointer;margin-top:6px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.66rem;letter-spacing:.03em;color:var(--ink);background:var(--surface);border:1.5px solid var(--tl);border-radius:999px;padding:2px 10px;white-space:nowrap}
+details.kids>summary::-webkit-details-marker{display:none}
+details.kids>summary:hover{border-color:rgb(238,85,253)}
+details.kids>ul{margin:0}
+/* chips (aggregate + grove) */
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;max-width:520px;justify-content:center}
+.chip{font-size:.66rem;font-weight:500;background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:2px 8px;word-break:break-all;text-decoration:none;color:var(--ink)}
+a.chip:hover{border-color:#F59E0B}
+.chip.orph{border-style:dashed;color:var(--muted)}
+.chip .lk{color:#08672B;font-weight:800}
+/* ---------- grove (the unlinked) ---------- */
+.orphwrap{margin-top:16px}
+.orphwrap>h2{font-size:1.15rem;font-weight:800;margin-bottom:4px}
+.orphwrap .note{font-size:.84rem;color:var(--muted);margin:0 0 10px;max-width:1100px}
+.orphgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px;align-items:start}
+.ofam{--gc:#64748B;background:var(--surface);border:1.5px solid var(--line);border-top:6px solid var(--gc);border-radius:11px;padding:9px 11px}
+.ofam.grad{border-top:6px solid #D97706}
+.ofam h3{font-size:.9rem;font-weight:800;margin-bottom:6px}
+.ofam h3 .n{color:#B3261E}
+html.dark .ofam h3 .n{color:#F28B82}
+.ofam ul{list-style:none;margin:0;padding:0}
+.ofam li{font-size:.76rem;margin:3px 0;word-break:break-all}
+.ofam li b{font-family:'Outfit',sans-serif;font-weight:700;font-size:.78rem}
+.ofam li a{color:var(--ink);text-decoration:none}
+.ofam li a:hover{text-decoration:underline}
+.ofam .mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;color:var(--muted);font-size:.64rem}
+.ofam .chips{justify-content:flex-start;max-width:none}
+.footnotes{margin-top:16px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 16px}
+.footnotes h2{font-size:.95rem;font-weight:800;margin-bottom:6px}
+.footnotes li{font-size:.83rem;margin:4px 0}
+footer.site{color:var(--muted);font-size:.78rem;text-align:center;margin-top:14px}
+@media (max-width:640px){
+  header.site h1{font-size:1.3rem}
+  #stage{padding:12px 8px;max-height:78vh}
+  .nd.root{width:280px}
+}
+@media print{
+  @page{size:landscape;margin:10mm}
+  .hbtns,.zbar,footer.site{display:none!important}
+  #stage{overflow:visible;max-height:none;border:0;padding:0;background:#fff}
+  #canvas{transform:none!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="ttl">
+    <h1>Site Family Tree — x-peps.com</h1>
+    <div class="sub">The ancestry view: the site root at the top, every page placed under the page that links to it, generation by generation — full crawl of both GitHub repos, November 23, 2026.</div>
+  </div>
+  <div class="hbtns">
+    <div class="hcell">
+      <button class="hbtn" id="printBtn" title="Print" aria-label="Print"><img src="https://x-peps.com/btn-print-holo.png" alt="Print"></button>
+      <div class="hlbl">Print</div>
+    </div>
+    <div class="hcell">
+      <button class="hbtn" id="enlargeBtn" title="Enlarge the diagram" aria-label="Enlarge the diagram"><img src="https://x-peps.com/btn-enlarge-holo.png" alt="Enlarge"></button>
+      <div class="hlbl">Enlarge</div>
+    </div>
+    <div class="hcell">
+      <button class="hbtn" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode"><img id="themeIco" src="https://x-peps.com/X-Peps/btn-moon.png?v=3" alt="Toggle dark mode"></button>
+      <div class="hlbl">Theme</div>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="stats">
+    <span class="stat"><b>254</b> pages total</span>
+    <span class="stat"><b>121</b> pages linked from another page</span>
+    <span class="stat"><b>133</b> pages with no inbound link</span>
+    <span class="stat"><b>120</b> pages hang in the tree below</span>
+    <span class="stat">Tree depth: <b>5 generations</b> under the root</span>
+    <span class="stat">Repo badge: <b>M</b> = main · <b>X</b> = X-Peps</span>
+  </div>
+  <div class="legend">
+    <h2>Legend — family colors (taken from the pages' own themes)</h2>
+    <div class="row">
+      <span class="lg"><span class="sw" style="background:#9333EA"></span>Homepage holder <span class="n">1</span></span>
+      <span class="lg"><span class="sw" style="background:#2563EB"></span>Admin Portal <span class="n">12</span></span>
+      <span class="lg"><span class="sw" style="background:#F59E0B"></span>Briefings <span class="n">50</span></span>
+      <span class="lg"><span class="sw" style="background:linear-gradient(90deg,#D97706,#F59E0B)"></span>Tuscarora Arboretum <span class="n">30</span></span>
+      <span class="lg"><span class="sw" style="background:#08672B"></span>Kratom <span class="n">31</span></span>
+      <span class="lg"><span class="sw" style="background:#10B981"></span>Pharma &amp; Peptide <span class="n">22</span></span>
+      <span class="lg"><span class="sw" style="background:#9333EA"></span>GLP-1 &amp; Smart Drug News <span class="n">12</span></span>
+      <span class="lg"><span class="sw" style="background:#7C3AED"></span>Mental Health &amp; Nursing <span class="n">17</span></span>
+      <span class="lg"><span class="sw" style="background:#F7A040"></span>Corrections Nursing <span class="n">14</span></span>
+      <span class="lg"><span class="sw" style="background:#0070D0"></span>Career &amp; Finance <span class="n">5</span></span>
+      <span class="lg"><span class="sw" style="background:#F06000"></span>Store &amp; Shipping Ops <span class="n">7</span></span>
+      <span class="lg"><span class="sw" style="background:#7C3AED"></span>Email <span class="n">1</span></span>
+      <span class="lg"><span class="sw" style="background:#D97706"></span>X-Peps Research Hub <span class="n">1</span></span>
+      <span class="lg"><span class="sw" style="background:#64748B"></span>Previews &amp; Mockups <span class="n">49</span></span>
+      <span class="lg"><span class="sw" style="background:#64748B"></span>Standalone / Ops Docs <span class="n">2</span></span>
+    </div>
+  </div>
+  <div class="zbar">
+    <span class="zt">The family tree</span>
+    <button class="zbtn" id="zOut" aria-label="Zoom out">− Zoom out</button>
+    <button class="zbtn" id="zReset">100%</button>
+    <button class="zbtn" id="zIn" aria-label="Zoom in">+ Zoom in</button>
+    <button class="zbtn" id="xAll">Expand all</button>
+    <button class="zbtn" id="cAll">Collapse deep branches</button>
+    <span class="hint">Each page sits under the first page that links to it. Branches past generation 3 start folded — tap the ▸ pill to unfold a branch. “also linked from” tags name the other pages that point to the same page.</span>
+  </div>
+  <div id="stage">
+  <div id="canvas">
+    <div class="ftree" id="ftree"></div>
+  </div><!-- /canvas -->
+  </div><!-- /stage -->
+  <div class="orphwrap">
+    <h2>The Unlinked — no page points to these (133)</h2>
+    <p class="note">133 pages have no inbound link at all. Two of them — the Admin Portal and the X-Peps Research Hub — sit at the top of the tree by construction (nothing links to them either; they are reached by direct URL, header icons, and bookmarks). 46 more are the unlinked briefing players, shown as dashed chips inside the tree's “Briefing Players ×49” node. The remaining <b>85</b> — 50 pages and 35 preview files — are gathered in this grove, grouped by family. “Unlinked” is measured on static links in the crawl; navigation injected by scripts is not captured.</p>
+    <div class="orphgrid" id="groveGrid"></div>
+  </div>
+  <div class="footnotes">
+    <h2>How to read this tree</h2>
+    <ul>
+      <li><b>Parent = first linker.</b> A page's parent is the first page, in crawl order (Admin Portal tree before X-Peps tree), whose links point to it. Every linked page appears exactly once; extra inbound links are shown as small “also linked from” tags.</li>
+      <li><b>The homepage is a leaf, not a root.</b> The holder homepage links nowhere, so the site's real descent runs through the two hubs beside it.</li>
+      <li><b>Method note:</b> links are static links resolved against the page inventory; JavaScript-injected navigation, portal card scripts, and links in emails are not captured — so “unlinked” means no static inbound link, not “unreachable in practice.”</li>
+    </ul>
+  </div>
+  <footer class="site">Site Family Tree · Peptopia Health · companion to the Site Tree panel diagram · generated November 23, 2026</footer>
+</div><!-- /wrap -->
+<script>
+var HP={"t":"Peptopia Health","p":"index.html","c":"#9333EA","r":"M","k":[],"note":"links nowhere — the site hangs off the two hubs"};
+var BR={"t":"Linked, but not under either hub","p":"","c":"#64748B","syn":1,"k":[{"t":"Corrections Nursing — Peptopia Health","p":"Corrections/index.html","c":"#F7A040","r":"M","k":[{"t":"Wexford Training - Clinical Competency","p":"Corrections/Clinical_Competency.html","c":"#F7A040","r":"M","k":[]},{"t":"Onboarding - Corrections Nursing","p":"Corrections/Corrections_Excellence.html","c":"#F7A040","r":"M","k":[]},{"t":"Detox Assessments Hub","p":"Corrections/Detox_Assessments.html","c":"#F7A040","r":"M","k":[],"x":["mental-health/index.html"]},{"t":"Do Not Crush or Chew List","p":"Corrections/do_not_crush.html","c":"#F7A040","r":"M","k":[]},{"t":"Do Not Crush Assessor — Peptopia Health","p":"Corrections/dynamic_dnc_assessor.html","c":"#F7A040","r":"M","k":[]},{"t":"ERJ: Intake Screening","p":"Corrections/ERJ_Intake_Screening.html","c":"#F7A040","r":"M","k":[]},{"t":"MedPass: B-Pod Management","p":"Corrections/Insulin_Code.html","c":"#F7A040","r":"M","k":[]},{"t":"Mental Health Triage & Screening Study Guide - Peptopia Health","p":"Corrections/Mental_Health.html","c":"#F7A040","r":"M","k":[],"x":["mental-health/index.html"]},{"t":"Mental Health Triage & Screening Study Guide - Peptopia Health","p":"Corrections/Mental_Health_Triage.html","c":"#F7A040","r":"M","k":[],"x":["mental-health/index.html"]},{"t":"Harrassment, Incivility & Violence","p":"Corrections/Nursing_Orientation_v2.html","c":"#F7A040","r":"M","k":[]},{"t":"Onboarding - Peptopia Health","p":"Corrections/Onboarding.html","c":"#F7A040","r":"M","k":[]},{"t":"Onboarding - Corrections Nursing","p":"Corrections/Onboarding_Corrections_Guide.html","c":"#F7A040","r":"M","k":[]},{"t":"Onboarding - Peptopia Health","p":"Corrections/Onboarding_Training.html","c":"#F7A040","r":"M","k":[]}],"x":["Corrections/Detox_Assessments.html"]},{"t":"Armodafinil Research Guide — Peptopia Health","p":"armodafinil-guide.html","c":"#10B981","r":"X","k":[],"x":["previews/orders-cart-uniform.html"]},{"t":"DTE Botanicals — Kratom Strain Guide","p":"dte-botanicals-strain-guide.html","c":"#08672B","r":"X","k":[],"x":["4-year-anniversary-pure-md.html"]},{"t":"NVDA Daily Poster — Sunday, November 22, 2026","p":"investments/nvda.html","c":"#0070D0","r":"M","k":[],"x":["investments/index.html","previews/corrections-audit-11-22-26.html"]},{"t":"Medication Administration","p":"mental-health/medication-administration.html","c":"#7C3AED","r":"M","k":[],"x":["mental-health/index.html","previews/visual-review-11-16-26.html"]},{"t":"Bauhaus — A Design Guide for Peptopia","p":"previews/design-bauhaus.html","c":"#64748B","r":"M","k":[{"t":"Fauvism — A Design Guide for Peptopia","p":"previews/design-fauvism.html","c":"#64748B","r":"M","k":[],"x":["previews/design-mid-century.html"]},{"t":"Mid-Century Modern — A Design Guide for Peptopia","p":"previews/design-mid-century.html","c":"#64748B","r":"M","k":[],"x":["previews/design-fauvism.html"]}],"x":["previews/design-fauvism.html","previews/design-mid-century.html"]}]};
+var APT={"t":"Admin Portal","p":"admin-portal/index.html","c":"#2563EB","r":"M","k":[]};
+APT.k.push({"t":"RNTTP Capstone — Project Lifeline","p":"admin-portal/capstone-lifeline.html","c":"#2563EB","r":"M","k":[],"x":["admin-portal/capstone-vertical-launch.html","admin-portal/capstone.html","briefings/capstone-briefing-11-19-26.html"]});
+APT.k.push({"t":"Capstone Portal — AI & the Future of Veteran Care · RNTTP","p":"admin-portal/capstone.html","c":"#2563EB","r":"M","k":[{"t":"The Vertical Launch — Capstone Research Sighting · RNTTP","p":"admin-portal/capstone-vertical-launch.html","c":"#2563EB","r":"M","k":[]}],"x":["previews/corrections-audit-11-22-26.html"]});
+APT.k.push({"t":"Extract to Leaf Converter — Peptopia Health","p":"admin-portal/extract-leaf-converter.html","c":"#2563EB","r":"M","k":[]});
+APT.k.push({"t":"Med ID","p":"admin-portal/pill-identifier.html","c":"#2563EB","r":"M","k":[],"x":["mental-health/index.html","previews/corrections-audit-11-22-26.html","previews/visual-review-11-16-26.html"]});
+APT.k.push({"t":"Pill Identifier","p":"admin-portal/pill-identifier-portable.html","c":"#2563EB","r":"M","k":[]});
+APT.k.push({"t":"Shipping & Pharma — Peptopia Health","p":"admin-portal/sales-flow-log.html","c":"#2563EB","r":"M","k":[]});
+APT.k.push({"t":"The Toolbox — Peptopia Admin","p":"admin-portal/toolbox.html","c":"#2563EB","r":"M","k":[{"t":"Kratom Legality — theme color palette (retained Nov 16, 2026)","p":"admin-portal/palette-legality-11-16-26.html","c":"#2563EB","r":"M","k":[],"x":["previews/visual-review-11-16-26.html"]}],"x":["admin-portal/palette-legality-11-16-26.html","previews/visual-review-11-16-26.html"]});
+APT.k.push({"t":"Vendor Review Research — DTE, WildCraft, Tree Leaf","p":"admin-portal/vendor-review-research-11-09-26.html","c":"#2563EB","r":"M","k":[{"t":"DTE Botanicals — Kratom Strain Guide","p":"DTE.html","c":"#08672B","r":"X","k":[],"x":["kratom-vendor-reviews.html","previews/kratom-reviews-dte-preview.html","previews/visual-review-11-16-26.html"]},{"t":"Tree Leaf Naturalist — Complete Strain Guide","p":"treeleaf-naturalist-strain-guide.html","c":"#08672B","r":"X","k":[],"x":["kratom-vendor-reviews.html"]}]});
+APT.k.push({"t":"Capstone Kickoff Briefing — November 19, 2026","p":"briefings/capstone-briefing-11-19-26.html","c":"#F59E0B","r":"M","k":[],"x":["admin-portal/capstone-lifeline.html","admin-portal/capstone.html"]});
+APT.k.push({"t":"Briefing Players ×49","p":"briefings/","c":"#F59E0B","r":"M","agg":1,"chips":[{"f":"evening-briefing-player-10-27-26.html"},{"f":"evening-briefing-player-10-31-26.html"},{"f":"evening-briefing-player-11-01-26.html"},{"f":"evening-briefing-player-11-02-26.html"},{"f":"evening-briefing-player-11-03-26.html"},{"f":"evening-briefing-player-11-04-26.html"},{"f":"evening-briefing-player-11-05-26.html"},{"f":"evening-briefing-player-11-06-26.html","l":1,"from":["previews/admin-portal-fixed.html","previews/admin-portal-mockup.html"]},{"f":"evening-briefing-player-11-07-26.html"},{"f":"evening-briefing-player-11-08-26.html"},{"f":"evening-briefing-player-11-09-26.html"},{"f":"evening-briefing-player-11-10-26.html"},{"f":"evening-briefing-player-11-11-26.html"},{"f":"evening-briefing-player-11-12-26.html"},{"f":"evening-briefing-player-11-13-26.html"},{"f":"evening-briefing-player-11-14-26.html"},{"f":"evening-briefing-player-11-15-26.html"},{"f":"evening-briefing-player-11-16-26.html"},{"f":"evening-briefing-player-11-17-26.html"},{"f":"evening-briefing-player-11-18-26.html"},{"f":"evening-briefing-player-11-19-26.html"},{"f":"evening-briefing-player-11-20-26.html"},{"f":"evening-briefing-player-11-21-26.html"},{"f":"evening-briefing-player-11-22-26.html","l":1,"from":["admin-portal/index.html"]},{"f":"midday-briefing-player-11-09-26.html"},{"f":"morning-briefing-player-10-30-26.html"},{"f":"morning-briefing-player-10-31-26.html"},{"f":"morning-briefing-player-11-01-26.html"},{"f":"morning-briefing-player-11-02-26.html"},{"f":"morning-briefing-player-11-03-26.html","l":1,"from":["admin-portal/preview/index.html"]},{"f":"morning-briefing-player-11-04-26.html"},{"f":"morning-briefing-player-11-05-26.html"},{"f":"morning-briefing-player-11-06-26.html"},{"f":"morning-briefing-player-11-07-26.html"},{"f":"morning-briefing-player-11-08-26.html"},{"f":"morning-briefing-player-11-09-26.html"},{"f":"morning-briefing-player-11-10-26.html"},{"f":"morning-briefing-player-11-11-26.html"},{"f":"morning-briefing-player-11-12-26.html"},{"f":"morning-briefing-player-11-13-26.html"},{"f":"morning-briefing-player-11-14-26.html"},{"f":"morning-briefing-player-11-15-26.html"},{"f":"morning-briefing-player-11-16-26.html"},{"f":"morning-briefing-player-11-17-26.html"},{"f":"morning-briefing-player-11-18-26.html"},{"f":"morning-briefing-player-11-19-26.html"},{"f":"morning-briefing-player-11-20-26.html"},{"f":"morning-briefing-player-11-21-26.html"},{"f":"morning-briefing-player-11-22-26.html"}],"k":[]});
+APT.k.push({"t":"Retirement Withdrawals — The Long Guide","p":"career/retirement-withdrawals-long-11-05-26.html","c":"#0070D0","r":"M","k":[],"x":["previews/admin-portal-fixed.html","previews/admin-portal-mockup.html"]});
+APT.k.push({"t":"Retirement Withdrawals — The Short Guide","p":"career/retirement-withdrawals-short-11-05-26.html","c":"#0070D0","r":"M","k":[],"x":["previews/admin-portal-fixed.html","previews/admin-portal-mockup.html"]});
+APT.k.push({"t":"Tuscarora Arboretum — Martinsburg, West Virginia","p":"Tuscarora_Arboretum/index.html","c":"grad","r":"M","k":[{"t":"Artifacts — Tuscarora Arboretum","p":"Tuscarora_Arboretum/artifacts/index.html","c":"grad","r":"M","k":[{"t":"Bottles — Tuscarora Arboretum","p":"Tuscarora_Arboretum/artifacts/bottles/index.html","c":"grad","r":"M","k":[{"t":"The 1937 Hamilton Bottle — Identification & History Guide","p":"Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-guide.html","c":"grad","r":"M","k":[],"x":["Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-podcast.html"]},{"t":"The 1937 Hamilton Bottle — Podcast","p":"Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-podcast.html","c":"grad","r":"M","k":[]}],"x":["Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-guide.html","Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-podcast.html"]},{"t":"Marbles — Tuscarora Arboretum","p":"Tuscarora_Arboretum/artifacts/marbles/index.html","c":"grad","r":"M","k":[{"t":"The Galaxy Marble — Identification & History Guide","p":"Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-guide.html","c":"grad","r":"M","k":[],"x":["Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-podcast.html"]},{"t":"The Galaxy Marble — Podcast","p":"Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-podcast.html","c":"grad","r":"M","k":[]},{"t":"The Mint Swirl — Identification & History Guide","p":"Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-guide.html","c":"grad","r":"M","k":[],"x":["Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-podcast.html"]},{"t":"The Mint Swirl — Podcast","p":"Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-podcast.html","c":"grad","r":"M","k":[]}],"x":["Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-guide.html","Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-podcast.html","Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-guide.html","Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-podcast.html"]},{"t":"Pottery — Tuscarora Arboretum","p":"Tuscarora_Arboretum/artifacts/pottery/index.html","c":"grad","r":"M","k":[{"t":"McCoy Floraline Pedestal Planter","p":"Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-planter-guide.html","c":"grad","r":"M","k":[]},{"t":"McCoy's Floraline Strategy","p":"Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-strategy.html","c":"grad","r":"M","k":[]}],"x":["Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-planter-guide.html","Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-strategy.html"]}],"x":["Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-guide.html","Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-podcast.html","Tuscarora_Arboretum/artifacts/bottles/index.html","Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-guide.html","Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-podcast.html","Tuscarora_Arboretum/artifacts/marbles/index.html","Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-guide.html","Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-podcast.html","Tuscarora_Arboretum/artifacts/pottery/index.html","Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-planter-guide.html","Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-strategy.html","Tuscarora_Arboretum/plants/aglaonema-siam-aurora.html","Tuscarora_Arboretum/plants/canada-goldenrod.html","Tuscarora_Arboretum/plants/euphorbia-lactea-cristata.html","Tuscarora_Arboretum/plants/euphorbia-tirucalli.html","Tuscarora_Arboretum/plants/gooseberry.html","Tuscarora_Arboretum/plants/hoya-lacunosa-snow-caps.html","Tuscarora_Arboretum/plants/index.html","Tuscarora_Arboretum/plants/monstera-adansonii.html","Tuscarora_Arboretum/plants/oakland-holly.html","Tuscarora_Arboretum/plants/stapelia-grandiflora.html"]},{"t":"Plants — Tuscarora Arboretum","p":"Tuscarora_Arboretum/plants/index.html","c":"grad","r":"M","k":[{"t":"Aglaonema 'Lady Valentine' — Chinese Evergreen Plant Guide","p":"Tuscarora_Arboretum/plants/aglaonema-lady-valentine.html","c":"grad","r":"M","k":[],"x":["Tuscarora_Arboretum/plants/aglaonema.html"]},{"t":"Aglaonema 'Siam Aurora' — Plant Guide","p":"Tuscarora_Arboretum/plants/aglaonema-siam-aurora.html","c":"grad","r":"M","k":[]},{"t":"Aglaonema — Chinese Evergreen Plant Guide","p":"Tuscarora_Arboretum/plants/aglaonema.html","c":"grad","r":"M","k":[]},{"t":"Canada Goldenrod — Solidago canadensis · Plant Guide","p":"Tuscarora_Arboretum/plants/canada-goldenrod.html","c":"grad","r":"M","k":[]},{"t":"Coral Cactus — Euphorbia lactea 'Cristata' Plant Guide","p":"Tuscarora_Arboretum/plants/euphorbia-lactea-cristata.html","c":"grad","r":"M","k":[]},{"t":"Firesticks — Euphorbia tirucalli 'Sticks on Fire' Plant Guide","p":"Tuscarora_Arboretum/plants/euphorbia-tirucalli.html","c":"grad","r":"M","k":[],"x":["previews/visual-review-11-16-26.html"]},{"t":"Ginkgo — The Tree That Outlived the Dinosaurs","p":"Tuscarora_Arboretum/plants/ginkgo.html","c":"grad","r":"M","k":[]},{"t":"Gooseberry — Plant Guide","p":"Tuscarora_Arboretum/plants/gooseberry.html","c":"grad","r":"M","k":[]},{"t":"Hoya 'Snow Caps' — Hoya lacunosa 'Snow Caps' Plant Guide","p":"Tuscarora_Arboretum/plants/hoya-lacunosa-snow-caps.html","c":"grad","r":"M","k":[]},{"t":"Monstera adansonii — Swiss Cheese Vine · Plant Guide","p":"Tuscarora_Arboretum/plants/monstera-adansonii.html","c":"grad","r":"M","k":[]},{"t":"Oakland Holly — Ilex × 'Magland' Oakland Plant Guide","p":"Tuscarora_Arboretum/plants/oakland-holly.html","c":"grad","r":"M","k":[]},{"t":"Snow White Waffle Plant — Strobilanthes alternata 'Snow White'","p":"Tuscarora_Arboretum/plants/snow-white-waffle-plant.html","c":"grad","r":"M","k":[]},{"t":"Stapelia grandiflora — Carrion Flower Plant Guide","p":"Tuscarora_Arboretum/plants/stapelia-grandiflora.html","c":"grad","r":"M","k":[{"t":"Stapelia grandiflora — Podcast","p":"Tuscarora_Arboretum/plants/stapelia-grandiflora-podcast.html","c":"grad","r":"M","k":[]}],"x":["Tuscarora_Arboretum/plants/stapelia-grandiflora-podcast.html"]}],"x":["Tuscarora_Arboretum/artifacts/bottles/index.html","Tuscarora_Arboretum/artifacts/index.html","Tuscarora_Arboretum/artifacts/marbles/index.html","Tuscarora_Arboretum/artifacts/pottery/index.html","Tuscarora_Arboretum/plants/aglaonema-siam-aurora.html","Tuscarora_Arboretum/plants/aglaonema.html","Tuscarora_Arboretum/plants/canada-goldenrod.html","Tuscarora_Arboretum/plants/euphorbia-lactea-cristata.html","Tuscarora_Arboretum/plants/euphorbia-tirucalli.html","Tuscarora_Arboretum/plants/gooseberry.html","Tuscarora_Arboretum/plants/hoya-lacunosa-snow-caps.html","Tuscarora_Arboretum/plants/monstera-adansonii.html","Tuscarora_Arboretum/plants/oakland-holly.html","Tuscarora_Arboretum/plants/snow-white-waffle-plant.html","Tuscarora_Arboretum/plants/stapelia-grandiflora-podcast.html","Tuscarora_Arboretum/plants/stapelia-grandiflora.html"]}],"x":["Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-guide.html","Tuscarora_Arboretum/artifacts/bottles/hamilton-bottle-podcast.html","Tuscarora_Arboretum/artifacts/bottles/index.html","Tuscarora_Arboretum/artifacts/index.html","Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-guide.html","Tuscarora_Arboretum/artifacts/marbles/galaxy-marble-podcast.html","Tuscarora_Arboretum/artifacts/marbles/index.html","Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-guide.html","Tuscarora_Arboretum/artifacts/marbles/mint-swirl-marble-podcast.html","Tuscarora_Arboretum/artifacts/pottery-index-live.html","Tuscarora_Arboretum/artifacts/pottery/index.html","Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-planter-guide.html","Tuscarora_Arboretum/artifacts/pottery/mccoy-floraline-strategy.html","Tuscarora_Arboretum/build.html","Tuscarora_Arboretum/plants/aglaonema-siam-aurora.html","Tuscarora_Arboretum/plants/aglaonema.html","Tuscarora_Arboretum/plants/canada-goldenrod.html","Tuscarora_Arboretum/plants/euphorbia-lactea-cristata.html","Tuscarora_Arboretum/plants/euphorbia-tirucalli.html","Tuscarora_Arboretum/plants/gooseberry.html","Tuscarora_Arboretum/plants/hoya-lacunosa-snow-caps.html","Tuscarora_Arboretum/plants/index.html","Tuscarora_Arboretum/plants/monstera-adansonii.html","Tuscarora_Arboretum/plants/oakland-holly.html","Tuscarora_Arboretum/plants/snow-white-waffle-plant.html","Tuscarora_Arboretum/plants/stapelia-grandiflora-podcast.html","Tuscarora_Arboretum/plants/stapelia-grandiflora.html","admin-portal/preview/index.html","previews/admin-portal-fixed.html","previews/admin-portal-mockup.html"]});
+APT.k.push({"t":"Shipping & Tracking — Peptopia Health","p":"aftership-shipments-report.html","c":"#F06000","r":"X","k":[],"x":["admin-portal/preview/index.html","admin-portal/sales-flow-log.html","previews/admin-portal-fixed.html","previews/admin-portal-mockup.html"]});
+APT.k.push({"t":"Direct-from-Asia Kratom Exporters — Peptopia Health","p":"kratom-asia-exporters-guide.html","c":"#08672B","r":"X","k":[]});
+APT.k.push({"t":"Kratom Legality by State — November 2026","p":"kratom-legality-by-state.html","c":"#08672B","r":"X","k":[{"t":"Oregon Kratom Law — Addendum to Kratom Legality by State","p":"kratom-legality-oregon.html","c":"#08672B","r":"X","k":[],"x":["kratom-legality-california.html"]}],"x":["admin-portal/toolbox.html","kratom-asia-exporters-guide.html","kratom-legality-california.html","kratom-legality-oregon.html","kratom-vendor-reviews.html","previews/corrections-audit-11-22-26.html","previews/visual-review-11-16-26.html"]});
+APT.k.push({"t":"Kratom Reviews — Peptopia Health","p":"kratom-vendor-reviews.html","c":"#08672B","r":"X","k":[{"t":"Bewitched Botanical — Complete Strain Guide","p":"bewitched-botanical-strain-guide.html","c":"#08672B","r":"X","k":[]},{"t":"Hudson Valley Botanicals — Complete Strain Guide","p":"hudson-valley-botanicals-strain-guide.html","c":"#08672B","r":"X","k":[]},{"t":"Kratom Variation — Vein Colors, Strain Names, Vendors & the Science of Kratom Inconsistency","p":"kratom-variation-guide.html","c":"#08672B","r":"X","k":[]},{"t":"Phantom Herbal — Complete Strain Guide","p":"phantom-herbal-strain-guide.html","c":"#08672B","r":"X","k":[]},{"t":"Rando — Complete Strain Guide","p":"rando-strain-guide.html","c":"#08672B","r":"X","k":[]},{"t":"Sakti Botanicals — Complete Strain Guide","p":"sakti-botanicals-strain-guide.html","c":"#08672B","r":"X","k":[]},{"t":"WestKoast Botanicals — Complete Strain Guide","p":"westkoast-botanicals-strain-guide.html","c":"#08672B","r":"X","k":[],"x":["admin-portal/recommendations/westkoast-4-way-split.html","westkoast-nighttime-reds-guide.html"]},{"t":"Wildcraft Herb Company — Complete Strain Guide","p":"wildcraft-herb-company-guide.html","c":"#08672B","r":"X","k":[]}],"x":["admin-portal/preview/index.html","admin-portal/toolbox.html","previews/admin-portal-fixed.html","previews/admin-portal-mockup.html","previews/homepage-banner-v2.html","previews/visual-review-11-16-26.html"]});
+APT.k.push({"t":"Peptopia Potions — Creator's Den","p":"bewitched/index.html","c":"#08672B","r":"M","k":[],"x":["admin-portal/preview/index.html","previews/admin-portal-fixed.html","previews/admin-portal-mockup.html"]});
+var XPT={"t":"Research Guides — Peptopia Health","p":"index.html","c":"#D97706","r":"X","k":[{"t":"5-Amino 1MQ Research Guide — Peptopia Health","p":"5_amino_1mq_guide.html","c":"#10B981","r":"X","k":[]},{"t":"Biohacking News / Peptopia Health","p":"biohacking-news.html","c":"#9333EA","r":"X","k":[{"t":"Retatrutide TRIUMPH-2: 18.8% Weight Change / Peptopia Health","p":"glp-news-2026-10-12.html","c":"#9333EA","r":"X","k":[]},{"t":"Foundayo: The Once-Daily GLP-1 Pill / Peptopia Smart Drug News","p":"glp-news-2026-10-19.html","c":"#9333EA","r":"X","k":[]},{"t":"EloraTZP Beats Tirzepatide: 23.3% Weight Change / Peptopia Smart Drug News","p":"glp-news-2026-10-26.html","c":"#9333EA","r":"X","k":[],"x":["eloralintide-guide.html"]},{"t":"GLP-1s Help Shed Regained Weight After Bariatric Surgery / Peptopia Smart Drug News","p":"glp-news-2026-11-02-bariatric.html","c":"#9333EA","r":"X","k":[]},{"t":"GLP-1s vs Other Diabetes Drugs Across 181 Outcomes / Peptopia Smart Drug News","p":"glp-news-2026-11-02-outcomes.html","c":"#9333EA","r":"X","k":[]},{"t":"Retatrutide Beats semaglutide in First Head-to-Head Trial / Peptopia Smart Drug News","p":"glp-news-2026-11-02-retatrutide.html","c":"#9333EA","r":"X","k":[],"x":["glps_and_aging.html"]},{"t":"Science Devotes a Whole Issue to GLP-1s Beyond Weight Change / Peptopia Smart Drug News","p":"glp-news-2026-11-09-science.html","c":"#9333EA","r":"X","k":[],"x":["glps_and_aging.html"]},{"t":"FDA Adds an Eye Warning to Every GLP-1 Label / Peptopia Smart Drug News","p":"glp-news-2026-11-16.html","c":"#9333EA","r":"X","k":[],"x":["glps_and_aging.html"]},{"t":"TikTok Kills Peptide Sales / Peptopia Smart Drug News","p":"tiktok-peptide-bans-2026-10-21.html","c":"#9333EA","r":"X","k":[]}],"x":["previews/homepage-banner-v2.html"]},{"t":"BPC-157 & KPV Research Guide — Peptopia Health","p":"bpc_157_kpv_guide.html","c":"#10B981","r":"X","k":[],"x":["previews/orders-cart-uniform.html","previews/wolverine-guide-preview.html","wolverine-guide.html"]},{"t":"Cagrilintide Research Guide — Peptopia Health","p":"cagrilintide-guide.html","c":"#10B981","r":"X","k":[{"t":"Peptide Reconstitution Calculator / Peptopia Health","p":"peptopia_reconstitution_calculator.html","c":"#10B981","r":"X","k":[]},{"t":"Universal Reconstitution Guide — Peptopia Health","p":"reconstitution_guide.html","c":"#10B981","r":"X","k":[]}],"x":["eloralintide-guide.html"]},{"t":"CagriSema Research Guide — Peptopia Health","p":"cagrisema-guide.html","c":"#10B981","r":"X","k":[]},{"t":"CJC-1295 / Ipamorelin Research Guide — Peptopia Health","p":"cjc_1295_ipamorelin_guide.html","c":"#10B981","r":"X","k":[]},{"t":"DSIP & Cancer Treatment / Peptopia Guides","p":"dsip.html","c":"#10B981","r":"X","k":[]},{"t":"Nighttime Reds at DTE Botanicals","p":"dte-nighttime-reds-guide.html","c":"#08672B","r":"X","k":[]},{"t":"Eloralintide Research Guide — Peptopia Health","p":"eloralintide-guide.html","c":"#10B981","r":"X","k":[]},{"t":"GLOW & KLOW Research Guide — Peptopia Health","p":"glow_klow_guide.html","c":"#10B981","r":"X","k":[],"x":["previews/orders-cart-uniform.html","previews/sara-reply-mockup.html","previews/wolverine-guide-preview.html","wolverine-guide.html"]},{"t":"GLP-1s & Biological Aging — The Longevity Report / Peptopia","p":"glps_and_aging.html","c":"#9333EA","r":"X","k":[],"x":["biohacking-news.html","glp-news-2026-11-09-science.html","glp-news-2026-11-16.html"]},{"t":"Health Psychology / Peptopia","p":"health-psychology.html","c":"#7C3AED","r":"X","k":[{"t":"Dissociative Fugue — A Nursing Guide","p":"dissociative-fugue-guide.html","c":"#7C3AED","r":"X","k":[],"x":["mental-health/index.html"]},{"t":"Dissociative Identity Disorder — A Nursing Guide","p":"dissociative-identity-disorder-guide.html","c":"#7C3AED","r":"X","k":[],"x":["mental-health/index.html"]}],"x":["mental-health/index.html"]},{"t":"Kratom Strain Guide — Peptopia Health","p":"kratom_guide.html","c":"#08672B","r":"X","k":[]},{"t":"Kratom Potentiators Protocol / Peptopia Guides","p":"kratom_potentiators.html","c":"#08672B","r":"X","k":[]},{"t":"Melanotan I & Melanotan II — A Complete Guide","p":"melanotan-guide.html","c":"#10B981","r":"X","k":[]},{"t":"Modafinil Research Guide — Peptopia Health","p":"modafinil_guide.html","c":"#10B981","r":"X","k":[],"x":["previews/orders-cart-uniform.html"]},{"t":"Tirzepatide & Retatrutide in Oncology Research / Peptopia Guides","p":"oncology_guide.html","c":"#10B981","r":"X","k":[]},{"t":"Retatrutide Research Guide — Peptopia Health","p":"retatrutide_guide.html","c":"#10B981","r":"X","k":[],"x":["cagrilintide-guide.html"]},{"t":"Semaglutide Research Guide — Peptopia Health","p":"semaglutide_guide.html","c":"#10B981","r":"X","k":[],"x":["cagrilintide-guide.html"]},{"t":"SLU-PP-332 Research Guide / Peptopia Health","p":"slu_pp_332_guide.html","c":"#10B981","r":"X","k":[],"x":["previews/orders-cart-uniform.html"]},{"t":"Storage & Handling Guide — Peptopia Health","p":"storage_handling.html","c":"#10B981","r":"X","k":[]},{"t":"The Ultimate Guide to Tesofensine / Peptopia","p":"tesofensine.html","c":"#10B981","r":"X","k":[],"x":["previews/orders-cart-uniform.html"]},{"t":"Tirzepatide Research Guide — Peptopia Health","p":"tirzepatide_guide.html","c":"#10B981","r":"X","k":[],"x":["cagrilintide-guide.html","previews/sara-reply-mockup.html"]},{"t":"TSH & Mental Health — A Nursing Guide","p":"tsh-mental-health-nursing-guide.html","c":"#7C3AED","r":"X","k":[],"x":["health-psychology.html","mental-health/index.html"]},{"t":"Nighttime Reds at WestKoast Botanicals","p":"westkoast-nighttime-reds-guide.html","c":"#08672B","r":"X","k":[]},{"t":"Wolverine Research Guide — BPC-157 + TB-500 / Peptopia","p":"wolverine-guide.html","c":"#10B981","r":"X","k":[]}]};
+var GROVE=[{"fam":"Admin Portal","c":"#2563EB","pages":[{"t":"WestKoast Botanicals — 4-Way Split Recommendation","p":"admin-portal/recommendations/westkoast-4-way-split.html","r":"M"}]},{"fam":"Tuscarora Arboretum","c":"grad","pages":[{"t":"Pottery — Tuscarora Arboretum","p":"Tuscarora_Arboretum/artifacts/pottery-index-live.html","r":"M"},{"t":"Build a New Item — Tuscarora Arboretum","p":"Tuscarora_Arboretum/build.html","r":"M"}]},{"fam":"Kratom","c":"#08672B","pages":[{"t":"California Kratom Law — Addendum to Kratom Legality by State","p":"kratom-legality-california.html","r":"X"},{"t":"Kratom Potentiators Protocol / Peptopia Guides","p":"k.html","r":"X"},{"t":"Down to Earth Botanicals - Strain Guide","p":"DTE_short_guide.html","r":"X"},{"t":"4-Year Anniversary Pure MD — DTE Botanicals · Single-Strain Guide","p":"4-year-anniversary-pure-md.html","r":"X"},{"t":"Imperial Green Dragon D10 — Down To Earth Botanicals / Peptopia","p":"imperial-green-dragon-d10-guide.html","r":"X"},{"t":"WestKoast Botanicals — Complete Strain Guide","p":"westkoast-botanicals-guide.html","r":"X"},{"t":"WestKoast Botanicals — Master Batch Database","p":"westkoast-master-batch-database.html","r":"X"},{"t":"Wildcraft Herb Company — Complete Strain Guide","p":"wildcraft-herb-company-strain-guide.html","r":"X"},{"t":"WildCraft Testing — Batch #1020","p":"wildcraft_testing.html","r":"X"},{"t":"WildCraft Testing — Batch #1020","p":"wildcraft_testing_final.html","r":"X"},{"t":"I Love Witches","p":"i_love_witches.html","r":"X"}]},{"fam":"Pharma & Peptide Research","c":"#10B981","pages":[{"t":"DSIP in Cancer Treatment / Peptopia Guides","p":"dsip_in_cancer_treatment.html","r":"X"}]},{"fam":"GLP-1 & Smart Drug News","c":"#9333EA","pages":[{"t":"TikTok Kills Peptide Sales / Peptopia Smart Drug News","p":"tiktok-peptide-bans-former.html","r":"X"}]},{"fam":"Mental Health & Nursing","c":"#7C3AED","pages":[{"t":"Mental Health Nursing — Peptopia Health","p":"mental-health/index.html","r":"M"},{"t":"Intake Procedures — 6A Mental Health Admission Guide","p":"intake-procedures-guide.html","r":"X"},{"t":"Mini Intake — 6A Mental Health Unit","p":"mini-intake-guide.html","r":"X"},{"t":"Intake Procedures — Short Guide · 6A Mental Health Unit","p":"va-intake-instructions.html","r":"X"},{"t":"Patient Assessment — Mental Health Unit","p":"va-daily-assessment-form.html","r":"X"},{"t":"Mental Health Nursing - Interview Study Guide","p":"Mental Health Interview.html","r":"X"},{"t":"CAPSTONE Vault","p":"! Capstone Vault.html","r":"X"},{"t":"HESI Exit Study Guide","p":"! HESI Vault.html","r":"X"},{"t":"MedSurg I / Peptopia Health","p":"! MedSurg Teasers.html","r":"X"},{"t":"NCLEX Vault v1.2","p":"! NCLEX Vault.html","r":"X"},{"t":"PEPTOPIA Portals","p":"! Peptopia Nurse Portals.html","r":"X"},{"t":"Pro-Nurse Portal / Peptopia Health","p":"! Pro-Nurse Portal.html","r":"X"}]},{"fam":"Career & Finance","c":"#0070D0","pages":[{"t":"Finance Portal — NVDA Chart","p":"investments/index.html","r":"M"},{"t":"Retirement Projection — October 2026","p":"retirement-projection.html","r":"X"}]},{"fam":"Store & Shipping Ops","c":"#F06000","pages":[{"t":"Shipping & Tracking — Peptopia Health","p":"aftership-shipments-report.html","r":"M"},{"t":"Peptopia Health — Email Action","p":"order-action/index.html","r":"M"},{"t":"Pharma","p":"orders-mockup/index.html","r":"M"},{"t":"Shipping & Pharma — Peptopia Health","p":"X-Peps/aftership-shipments-report.html","r":"X"},{"t":"Email — PEPTOPIA Health","p":"orders/index.html","r":"X"},{"t":"Pharma — PEPTOPIA Health","p":"orders/thank-you/index.html","r":"X"}]},{"fam":"Email","c":"#7C3AED","pages":[{"t":"Peptopia Health - Research & Education","p":"email/index.html","r":"M"}]},{"fam":"Previews & Mockups","c":"#64748B","pages":[{"t":"Peptopia Health — Admin Portal","p":"admin-portal/preview/index.html","r":"M"},{"t":"Peptopia Health — Admin Portal","p":"previews/admin-portal-fixed.html","r":"M"},{"t":"Peptopia Health — Admin Portal","p":"previews/admin-portal-mockup.html","r":"M"},{"t":"Corrections Audit — Nov 10–22, 2026","p":"previews/corrections-audit-11-22-26.html","r":"M"},{"t":"Gooseberry — Plant Guide · Tuscarora Arboretum","p":"previews/gooseberry-green-theme.html","r":"M"},{"t":"Peptopia Health - Research & Education","p":"previews/homepage-banner-v2.html","r":"M"},{"t":"Email — PEPTOPIA Health","p":"previews/orders-cart-uniform.html","r":"M"},{"t":"Your Peptopia email request — sample reply","p":"previews/sara-reply-mockup.html","r":"M"},{"t":"Visual Review — November 16, 2026","p":"previews/visual-review-11-16-26.html","r":"M"},{"t":"Wolverine Research Guide — BPC-157 + TB-500 / Peptopia","p":"previews/wolverine-guide-preview.html","r":"M"},{"t":"Kratom Reviews — Peptopia Health","p":"previews/kratom-reviews-dte-preview.html","r":"X"}],"chips":["artifacts-s52-draft.html","canada-goldenrod-preview.html","corrections-clinical_competency.html","corrections-corrections_excellence.html","corrections-detox_assessments.html","corrections-do_not_crush.html","corrections-dynamic_dnc_assessor.html","corrections-erj_intake_screening.html","corrections-index.html","corrections-insulin_code.html","corrections-mental_health.html","corrections-mental_health_triage.html","corrections-nursing_orientation_v2.html","corrections-onboarding.html","corrections-onboarding_corrections_guide.html","corrections-onboarding_training.html","customer-changed.html","customer-process.html","extract-calculator-mockup.html","kratom-legality-preview.html","orders-dela-test.html","orders-delb-test.html","orders-delc-test.html","orders-f1-test.html","orders-f2-test.html","orders-fx-test.html","orders-fx2-test.html","orders-fx3-test.html","orders-fx4-test.html","orders-nocss-test.html","orders-nologo-test.html","orders-oblong-mockup.html","orders-restore-mockup.html","orders-restyle-11-09/index.html","shipping-header-preview.html"]},{"fam":"Standalone / Ops Docs","c":"#64748B","pages":[{"t":"Guide Standards — How Our Guides Are Built / Peptopia","p":"guide-standards.html","r":"X"},{"t":"Peptopia Website Strategy Guide / Operations Manual","p":"peptopia-website-strategy-guide.html","r":"X"}]}];
+/* ================= renderer ================= */
+function purl(r,p){return encodeURI((r==='X'?'https://x-peps.com/X-Peps/':'https://x-peps.com/')+p);}
+function dpath(n){return n.r==='X'?(n.p.indexOf('X-Peps/')===0?n.p:'X-Peps/'+n.p):n.p;}
+function descCount(n){var s=0;(n.k||[]).forEach(function(c){s+=1+descCount(c);});return s;}
+function card(n){
+  var el;
+  if(n.syn||n.agg){el=document.createElement('div');el.className='nd'+(n.syn?' syn':' agg');}
+  else{el=document.createElement('a');el.className='nd';el.href=purl(n.r,n.p);el.target='_blank';el.rel='noopener';}
+  el.style.setProperty('--gc',n.c==='grad'?'#D97706':n.c);
+  if(n.c==='grad')el.classList.add('grad');
+  var b=document.createElement('b');b.textContent=n.t;el.appendChild(b);
+  if(n.p){var i=document.createElement('i');i.textContent=dpath(n);el.appendChild(i);}
+  var meta=document.createElement('div');meta.className='meta';
+  if(!n.syn){var rp=document.createElement('span');rp.className='rp';rp.textContent=n.r;meta.appendChild(rp);}
+  if(n.k&&n.k.length){var kc=document.createElement('span');kc.className='kcnt';kc.textContent=n.k.length+(n.k.length===1?' page hangs below':' pages hang below');meta.appendChild(kc);}
+  if(meta.children.length)el.appendChild(meta);
+  if(n.note){var nt=document.createElement('div');nt.className='nt';nt.textContent=n.note;el.appendChild(nt);}
+  if(n.x&&n.x.length){
+    var xl=document.createElement('div');xl.className='xl';
+    xl.textContent='also linked from: '+n.x.slice(0,2).join(' · ')+(n.x.length>2?' · +'+(n.x.length-2)+' more':'');
+    el.appendChild(xl);
+  }
+  return el;
+}
+function buildNode(n,depth){
+  var li=document.createElement('li');
+  li.appendChild(card(n));
+  if(n.agg){
+    var det=document.createElement('details');det.className='kids';
+    var sum=document.createElement('summary');
+    var lk=n.chips.filter(function(c){return c.l;}).length;
+    sum.textContent='▸ '+n.chips.length+' briefing players — '+lk+' linked · '+(n.chips.length-lk)+' unlinked';
+    det.appendChild(sum);
+    var chips=document.createElement('div');chips.className='chips';
+    n.chips.forEach(function(ch){
+      var u='https://x-peps.com/briefings/'+ch.f;
+      if(ch.l){
+        var a=document.createElement('a');a.className='chip';a.href=u;a.target='_blank';a.rel='noopener';
+        a.title='linked from: '+ch.from.join(', ');
+        a.innerHTML='';a.textContent=ch.f+' ';
+        var s=document.createElement('span');s.className='lk';s.textContent='● linked';a.appendChild(s);
+        chips.appendChild(a);
+      }else{
+        var sp=document.createElement('span');sp.className='chip orph';sp.textContent=ch.f;chips.appendChild(sp);
+      }
+    });
+    det.appendChild(chips);li.appendChild(det);
+  }else if(n.k&&n.k.length){
+    var ul=document.createElement('ul');
+    n.k.forEach(function(c){ul.appendChild(buildNode(c,depth+1));});
+    if(depth>=3){
+      var det2=document.createElement('details');det2.className='kids';
+      var sum2=document.createElement('summary');var dc=descCount(n);
+      sum2.textContent='▸ '+dc+' descendant'+(dc===1?'':'s')+' below';
+      det2.appendChild(sum2);det2.appendChild(ul);li.appendChild(det2);
+    }else{li.appendChild(ul);}
+  }
+  return li;
+}
+(function(){
+  var ft=document.getElementById('ftree');
+  var rootNode={t:'x-peps.com — Peptopia Health (site root)',p:'',c:'#9333EA',r:'M',syn:1,k:[],note:'the origination point — every line of descent starts here'};
+  var rc=card(rootNode);rc.classList.add('root');ft.appendChild(rc);
+  var ul=document.createElement('ul');
+  [HP,APT,XPT,BR].forEach(function(n){ul.appendChild(buildNode(n,1));});
+  ft.appendChild(ul);
+  /* grove */
+  var gg=document.getElementById('groveGrid');
+  GROVE.forEach(function(g){
+    var d=document.createElement('div');d.className='ofam'+(g.c==='grad'?' grad':'');
+    d.style.setProperty('--gc',g.c==='grad'?'#D97706':g.c);
+    var h=document.createElement('h3');h.textContent=g.fam+' ';
+    var cnt=g.pages.length+(g.chips?g.chips.length:0);
+    var nn=document.createElement('span');nn.className='n';nn.textContent=cnt;h.appendChild(nn);
+    d.appendChild(h);
+    var ul2=document.createElement('ul');
+    g.pages.forEach(function(p){
+      var li=document.createElement('li');
+      var a=document.createElement('a');a.href=purl(p.r,p.p);a.target='_blank';a.rel='noopener';
+      var b=document.createElement('b');b.textContent=p.t;a.appendChild(b);li.appendChild(a);
+      li.appendChild(document.createTextNode(' '));
+      var m=document.createElement('span');m.className='mono';m.textContent=(p.r==='X'?'X-Peps/':'')+p.p;li.appendChild(m);
+      ul2.appendChild(li);
+    });
+    d.appendChild(ul2);
+    if(g.chips){
+      var det=document.createElement('details');det.className='kids';det.style.alignItems='flex-start';
+      var sum=document.createElement('summary');sum.textContent='▸ '+g.chips.length+' preview files (pattern family)';
+      det.appendChild(sum);
+      var chips=document.createElement('div');chips.className='chips';
+      g.chips.forEach(function(f){
+        var a=document.createElement('a');a.className='chip orph';a.href='https://x-peps.com/previews/'+encodeURI(f);a.target='_blank';a.rel='noopener';a.textContent=f;chips.appendChild(a);
+      });
+      det.appendChild(chips);d.appendChild(det);
+    }
+    gg.appendChild(d);
+  });
+})();
+/* ================= controls ================= */
+(function(){
+  var root=document.documentElement;
+  var themeBtn=document.getElementById('themeBtn');
+  var themeIco=document.getElementById('themeIco');
+  themeBtn.addEventListener('click',function(){
+    var dark=root.classList.toggle('dark');
+    themeIco.src=dark?'https://x-peps.com/X-Peps/btn-sun.png?v=3':'https://x-peps.com/X-Peps/btn-moon.png?v=3';
+  });
+  /* expand / collapse */
+  document.getElementById('xAll').addEventListener('click',function(){document.querySelectorAll('details.kids').forEach(function(d){d.open=true;});});
+  document.getElementById('cAll').addEventListener('click',function(){document.querySelectorAll('#ftree details.kids').forEach(function(d){d.open=false;});});
+  /* print: expand everything first so the full tree prints */
+  var opened=[];
+  function openAll(){opened=[];document.querySelectorAll('details').forEach(function(d){if(!d.open){d.open=true;opened.push(d);}});}
+  function closeOpened(){opened.forEach(function(d){d.open=false;});opened=[];}
+  window.addEventListener('beforeprint',openAll);
+  window.addEventListener('afterprint',closeOpened);
+  document.getElementById('printBtn').addEventListener('click',function(){window.print();});
+  /* zoom + enlarge */
+  var stage=document.getElementById('stage'), canvas=document.getElementById('canvas');
+  var z=1, enlarged=false;
+  var zReset=document.getElementById('zReset');
+  function setZ(n){
+    z=Math.min(2,Math.max(0.5,Math.round(n*100)/100));
+    canvas.style.transform='scale('+z+')';
+    zReset.textContent=Math.round(z*100)+'%';
+  }
+  document.getElementById('zIn').addEventListener('click',function(){setZ(z+0.25);});
+  document.getElementById('zOut').addEventListener('click',function(){setZ(z-0.25);});
+  zReset.addEventListener('click',function(){setZ(1);});
+  var enl=document.getElementById('enlargeBtn');
+  enl.addEventListener('click',function(){
+    if(!enlarged){
+      enlarged=true; setZ(1.5);
+      if(stage.requestFullscreen){stage.requestFullscreen().catch(function(){});}
+      stage.scrollTop=0; stage.scrollLeft=0;
+    }else{
+      enlarged=false; setZ(1);
+      if(document.fullscreenElement){document.exitFullscreen().catch(function(){});}
+    }
+  });
+  document.addEventListener('fullscreenchange',function(){
+    if(!document.fullscreenElement && enlarged){enlarged=false; setZ(1);}
+  });
+})();
+</script>
+</body>
+</html>

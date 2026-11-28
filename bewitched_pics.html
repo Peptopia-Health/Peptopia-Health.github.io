@@ -30,27 +30,62 @@
     text-align: center;
     color: #D8C9B4;
     font-size: 1rem;
-    margin: 10px auto 6px;
+    margin: 10px auto 26px;
     max-width: 640px;
     line-height: 1.45;
   }
-  h2 {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 1.45rem;
-    color: #FFD8AD;
-    margin: 38px 0 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  h2 .rule { flex: 1; height: 2px; background: #4A3A2A; border-radius: 2px; }
-  figure {
+  .acc {
     background: #221B15;
     border: 1px solid #3D2F21;
     border-radius: 16px;
-    padding: 14px;
-    margin: 0 0 22px;
+    margin: 0 0 20px;
+    overflow: hidden;
+  }
+  .acc-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 16px;
+    text-align: left;
+  }
+  .acc-head .lead {
+    width: 96px;
+    height: 144px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex: none;
+    display: block;
+  }
+  .acc-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #FFD8AD;
+    flex: 1;
+  }
+  .acc-count {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: #D8C9B4;
+    margin-top: 4px;
+  }
+  .chev {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    transition: transform 0.25s ease;
+  }
+  .acc.open .chev { transform: rotate(180deg); }
+  .acc-body { padding: 2px 16px 8px; }
+  figure {
+    border-top: 1px solid #3D2F21;
+    padding: 18px 0 14px;
   }
   figure img {
     display: block;
@@ -81,110 +116,142 @@
     max-height: 38px;
   }
   .dl:active { background: #C25200; }
-  .pumpkin { width: 30px; height: 30px; flex: none; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <h1>Bewitched Botanical — Holiday Pictures</h1>
-  <p class="sub">Every picture is full size and full quality (1712 × 1232). Tap the Download button under any picture and it saves straight to your device — no zip files.</p>
+  <p class="sub">Tap a section to open it. Every picture is full size and full quality (1712 × 1232) — tap the Download button under any picture and it saves straight to your device, no zip files.</p>
 
-  <h2>Christmas <span class="rule"></span></h2>
+  <section class="acc" id="sec-christmas">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <img class="lead" src="bewitched-pics/christmas-6-boundary.webp" alt="Christmas">
+      <span class="acc-title">Christmas<span class="acc-count">9 pictures</span></span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8 8 8-8" fill="none" stroke="#F06000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="acc-body" hidden>
 
-  <figure>
-    <img src="bewitched-pics/christmas-1-classic.webp" alt="Bewitched Botanical Christmas — Classic">
-    <figcaption>Christmas 1 — Classic</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-1-classic.webp" download="christmas-1-classic.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-1-classic.webp" alt="Bewitched Botanical Christmas — Classic" loading="lazy">
+        <figcaption>Christmas 1 — Classic</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-1-classic.webp" download="christmas-1-classic.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-2-rustic.webp" alt="Bewitched Botanical Christmas — Rustic" loading="lazy">
-    <figcaption>Christmas 2 — Rustic</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-2-rustic.webp" download="christmas-2-rustic.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-2-rustic.webp" alt="Bewitched Botanical Christmas — Rustic" loading="lazy">
+        <figcaption>Christmas 2 — Rustic</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-2-rustic.webp" download="christmas-2-rustic.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-3-elegant.webp" alt="Bewitched Botanical Christmas — Elegant" loading="lazy">
-    <figcaption>Christmas 3 — Elegant</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-3-elegant.webp" download="christmas-3-elegant.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-3-elegant.webp" alt="Bewitched Botanical Christmas — Elegant" loading="lazy">
+        <figcaption>Christmas 3 — Elegant</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-3-elegant.webp" download="christmas-3-elegant.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-4-cozy.webp" alt="Bewitched Botanical Christmas — Cozy" loading="lazy">
-    <figcaption>Christmas 4 — Cozy</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-4-cozy.webp" download="christmas-4-cozy.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-4-cozy.webp" alt="Bewitched Botanical Christmas — Cozy" loading="lazy">
+        <figcaption>Christmas 4 — Cozy</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-4-cozy.webp" download="christmas-4-cozy.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-5-victorian.webp" alt="Bewitched Botanical Christmas — Victorian" loading="lazy">
-    <figcaption>Christmas 5 — Victorian</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-5-victorian.webp" download="christmas-5-victorian.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-5-victorian.webp" alt="Bewitched Botanical Christmas — Victorian" loading="lazy">
+        <figcaption>Christmas 5 — Victorian</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-5-victorian.webp" download="christmas-5-victorian.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-6-boundary.webp" alt="Bewitched Botanical Christmas — Boundary" loading="lazy">
-    <figcaption>Christmas 6 — Boundary</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-6-boundary.webp" download="christmas-6-boundary.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-6-boundary.webp" alt="Bewitched Botanical Christmas — Boundary" loading="lazy">
+        <figcaption>Christmas 6 — Boundary</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-6-boundary.webp" download="christmas-6-boundary.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-6-boundary-redo.webp" alt="Bewitched Botanical Christmas — Boundary, three-wick redo" loading="lazy">
-    <figcaption>Christmas 6 — Boundary Redo (three wicks, holly berries)</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-6-boundary-redo.webp" download="christmas-6-boundary-redo.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-6-boundary-redo.webp" alt="Bewitched Botanical Christmas — Boundary, three-wick redo" loading="lazy">
+        <figcaption>Christmas 6 — Boundary Redo (three wicks, holly berries)</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-6-boundary-redo.webp" download="christmas-6-boundary-redo.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-red-velvet-1.webp" alt="Bewitched Botanical Christmas — Red Velvet" loading="lazy">
-    <figcaption>Christmas — Red Velvet 1</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-red-velvet-1.webp" download="christmas-red-velvet-1.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-red-velvet-1.webp" alt="Bewitched Botanical Christmas — Red Velvet" loading="lazy">
+        <figcaption>Christmas — Red Velvet 1</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-red-velvet-1.webp" download="christmas-red-velvet-1.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/christmas-red-velvet-2.webp" alt="Bewitched Botanical Christmas — Red Velvet, boundary" loading="lazy">
-    <figcaption>Christmas — Red Velvet 2 (boundary)</figcaption>
-    <a class="dl" href="bewitched-pics/christmas-red-velvet-2.webp" download="christmas-red-velvet-2.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/christmas-red-velvet-2.webp" alt="Bewitched Botanical Christmas — Red Velvet, boundary" loading="lazy">
+        <figcaption>Christmas — Red Velvet 2 (boundary)</figcaption>
+        <a class="dl" href="bewitched-pics/christmas-red-velvet-2.webp" download="christmas-red-velvet-2.webp">Download</a>
+      </figure>
 
-  <h2>New Year's <span class="rule"></span></h2>
+    </div>
+  </section>
 
-  <figure>
-    <img src="bewitched-pics/new-year-1-gold.webp" alt="Bewitched Botanical New Year's — Gold" loading="lazy">
-    <figcaption>New Year's 1 — Gold</figcaption>
-    <a class="dl" href="bewitched-pics/new-year-1-gold.webp" download="new-year-1-gold.webp">Download</a>
-  </figure>
+  <section class="acc" id="sec-newyear">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <img class="lead" src="bewitched-pics/new-year-2-midnight-silver.webp" alt="New Year's">
+      <span class="acc-title">New Year's<span class="acc-count">4 pictures</span></span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8 8 8-8" fill="none" stroke="#F06000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="acc-body" hidden>
 
-  <figure>
-    <img src="bewitched-pics/new-year-2-midnight.webp" alt="Bewitched Botanical New Year's — Midnight" loading="lazy">
-    <figcaption>New Year's 2 — Midnight</figcaption>
-    <a class="dl" href="bewitched-pics/new-year-2-midnight.webp" download="new-year-2-midnight.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/new-year-1-gold.webp" alt="Bewitched Botanical New Year's — Gold" loading="lazy">
+        <figcaption>New Year's 1 — Gold</figcaption>
+        <a class="dl" href="bewitched-pics/new-year-1-gold.webp" download="new-year-1-gold.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/new-year-1-gold-silver.webp" alt="Bewitched Botanical New Year's — Gold on silver" loading="lazy">
-    <figcaption>New Year's 1 — Gold on Silver</figcaption>
-    <a class="dl" href="bewitched-pics/new-year-1-gold-silver.webp" download="new-year-1-gold-silver.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/new-year-2-midnight.webp" alt="Bewitched Botanical New Year's — Midnight" loading="lazy">
+        <figcaption>New Year's 2 — Midnight</figcaption>
+        <a class="dl" href="bewitched-pics/new-year-2-midnight.webp" download="new-year-2-midnight.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/new-year-2-midnight-silver.webp" alt="Bewitched Botanical New Year's — Midnight on silver" loading="lazy">
-    <figcaption>New Year's 2 — Midnight on Silver</figcaption>
-    <a class="dl" href="bewitched-pics/new-year-2-midnight-silver.webp" download="new-year-2-midnight-silver.webp">Download</a>
-  </figure>
+      <figure>
+        <img src="bewitched-pics/new-year-1-gold-silver.webp" alt="Bewitched Botanical New Year's — Gold on silver" loading="lazy">
+        <figcaption>New Year's 1 — Gold on Silver</figcaption>
+        <a class="dl" href="bewitched-pics/new-year-1-gold-silver.webp" download="new-year-1-gold-silver.webp">Download</a>
+      </figure>
 
-  <h2>
-    <svg class="pumpkin" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 10c1-3 3-5 6-6-1 3-2 5-2 7 8 1 14 7 14 15 0 9-8 16-18 16S6 35 6 26c0-8 6-14 14-15 0-1 1-1 4-1z" fill="#F06000"/><path d="M17 22l4 4h-6zM31 22l4 4h-6zM18 32c2 2 4 3 6 3s4-1 6-3l-2 5H20z" fill="#171310"/></svg>
-    Halloween <span class="rule"></span>
-  </h2>
+      <figure>
+        <img src="bewitched-pics/new-year-2-midnight-silver.webp" alt="Bewitched Botanical New Year's — Midnight on silver" loading="lazy">
+        <figcaption>New Year's 2 — Midnight on Silver</figcaption>
+        <a class="dl" href="bewitched-pics/new-year-2-midnight-silver.webp" download="new-year-2-midnight-silver.webp">Download</a>
+      </figure>
 
-  <figure>
-    <img src="bewitched-pics/halloween-candlelight.webp" alt="Bewitched Botanical Halloween — the original candlelight picture" loading="lazy">
-    <figcaption>Halloween — The Original</figcaption>
-    <a class="dl" href="bewitched-pics/halloween-candlelight.webp" download="halloween-candlelight.webp">Download</a>
-  </figure>
+    </div>
+  </section>
+
+  <section class="acc" id="sec-halloween">
+    <button class="acc-head" type="button" aria-expanded="false">
+      <img class="lead" src="bewitched-pics/halloween-candlelight.webp" alt="Halloween">
+      <span class="acc-title">Halloween<span class="acc-count">1 picture</span></span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8 8 8-8" fill="none" stroke="#F06000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="acc-body" hidden>
+
+      <figure>
+        <img src="bewitched-pics/halloween-candlelight.webp" alt="Bewitched Botanical Halloween — the original candlelight picture" loading="lazy">
+        <figcaption>Halloween — The Original</figcaption>
+        <a class="dl" href="bewitched-pics/halloween-candlelight.webp" download="halloween-candlelight.webp">Download</a>
+      </figure>
+
+    </div>
+  </section>
 
 </div>
 <script>
+document.querySelectorAll('.acc-head').forEach(function(head){
+  head.addEventListener('click', function(){
+    var sec = head.parentElement;
+    var body = sec.querySelector('.acc-body');
+    var open = sec.classList.toggle('open');
+    body.hidden = !open;
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+});
 document.querySelectorAll('a.dl').forEach(function(a){
   a.addEventListener('click', function(){
     try {

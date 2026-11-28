@@ -470,13 +470,13 @@ html.dark .peptopia-theme-toggle .pp-moon{display:none}
 @media(max-width:640px){.bc-grid{grid-template-columns:1fr}}
 </style>
 <style>.qp-fab{position:fixed;right:26px;bottom:144px;z-index:150;box-shadow:0 4px 14px rgba(15,23,42,.35)}</style><style id="portal-matrix-css">
-/* ===== Portal button matrix (David, Nov 23 2026): 4 columns x 3 rows, one uniform width ===== */
-nav.jumpnav.pm{display:grid;grid-template-columns:repeat(4,150px);grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:8px;justify-content:center;flex-wrap:nowrap;overflow:visible}
-nav.jumpnav.pm a.jnav-btn{width:100%!important;margin:0;padding:6px 16px;justify-content:center;text-align:center;white-space:nowrap}
+/* ===== Portal button matrix (David, Nov 23 2026; 4 rows added Nov 27 2026): 4 columns x 4 rows, one uniform width ===== */
+nav.jumpnav.pm{display:grid;grid-template-columns:repeat(4,150px);grid-template-rows:repeat(4,auto);grid-auto-flow:column;gap:8px;justify-content:center;flex-wrap:nowrap;overflow:visible}
+nav.jumpnav.pm a.jnav-btn{width:100%!important;margin:0;padding:6px 8px;justify-content:center;text-align:center;white-space:nowrap;font-size:.68rem}
 nav.jumpnav a.jnav-btn.b-tusc{background:linear-gradient(135deg,var(--pal-tuscarora),var(--pal-tuscarora-lt))!important;color:#241533!important;text-shadow:0 1px 0 rgba(255,255,255,.45)!important}
 @media (max-width:640px){
 nav.jumpnav.pm{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;justify-content:stretch}
-nav.jumpnav.pm a.jnav-btn{font-size:.62rem;padding:6px 2px}
+nav.jumpnav.pm a.jnav-btn{font-size:.48rem;padding:6px 1px}
 }
 </style>
 <style id="iconbtn-css">
@@ -662,18 +662,22 @@ document.addEventListener('DOMContentLoaded',function(){
 <section class="bd-panel" id="bd-deals"><h2>🛍️ Black Friday Deals Board</h2><p>Deals board — refreshes daily at 3 AM, board only.</p></section>
 </div>
 <nav class="jumpnav pm" aria-label="Portal categories">
-  <a class="jnav-btn btn b-purple" href="#cat-studio">🛠 Build</a>
-  <a class="jnav-btn btn b-purple" href="#cat-adminarchive">✅ Admin</a>   <a class="jnav-btn btn b-purple" href="https://x-peps.com/admin-portal/toolbox.html" target="_blank" rel="noopener">Toolbox</a>
-  <a class="jnav-btn btn b-purple" href="https://x-peps.com/email/" target="_blank" rel="noopener">🛒 Storefront</a>
-  <a class="jnav-btn btn b-tusc" href="https://x-peps.com/Tuscarora_Arboretum" target="_blank" rel="noopener">🌿 Tuscarora</a>
-  <a class="jnav-btn btn b-tusc" href="https://x-peps.com/X-Peps/" target="_blank" rel="noopener">📚 Guides</a>
-  <a class="jnav-btn btn b-tusc" href="#cat-today">🎧 Briefings</a>
-  <a class="jnav-btn btn b-cyan" href="https://x-peps.com/admin-portal/favorites.html" target="_blank" rel="noopener">⭐ Favorites</a>
-  <a class="jnav-btn btn b-cyan" href="#cat-kratom">🔗 Links</a>
-  
-  <a class="jnav-btn btn b-bio" href="#cat-work">🏥 Work</a>
-  <a class="jnav-btn btn b-bio" href="#cat-career">💼 Career</a>
-  <a class="jnav-btn btn b-bio" href="#cat-capstone" onclick="window.open('https://x-peps.com/admin-portal/capstone.html','_blank','noopener');">🎓 RNTTP</a>
+  <a class="jnav-btn btn b-purple" href="https://x-peps.com/admin-portal/#cat-kratom">Admin</a>
+  <a class="jnav-btn btn b-tusc" href="https://x-peps.com/Tuscarora_Arboretum/index.html" target="_blank" rel="noopener">Tuscarora Arboretum</a>
+  <a class="jnav-btn btn b-purple" href="https://x-peps.com/admin-portal/peptides.html" target="_blank" rel="noopener">Peptides</a>
+  <a class="jnav-btn btn b-purple" href="https://x-peps.com/admin-portal/stimulants.html" target="_blank" rel="noopener">Stimulants</a>
+  <a class="jnav-btn btn b-tusc" href="https://x-peps.com/X-Peps/kratom-vendor-reviews.html" target="_blank" rel="noopener">Botanicals</a>
+  <a class="jnav-btn btn b-bio" href="https://x-peps.com/admin-portal/career.html" target="_blank" rel="noopener">Career</a>
+  <a class="jnav-btn btn b-bio" href="https://x-peps.com/admin-portal/rnttp.html" target="_blank" rel="noopener">RNTTP</a>
+  <a class="jnav-btn btn b-cyan" href="https://x-peps.com/admin-portal/news.html" target="_blank" rel="noopener">News</a>
+  <a class="jnav-btn btn b-purple" href="https://x-peps.com/admin-portal/studio.html" target="_blank" rel="noopener">Studio</a>
+  <a class="jnav-btn btn b-cyan" href="https://x-peps.com/admin-portal/platforms.html" target="_blank" rel="noopener">Platforms</a>
+  <a class="jnav-btn btn b-cyan" href="https://x-peps.com/admin-portal/favorites.html" target="_blank" rel="noopener">Favorites</a>
+  <a class="jnav-btn btn b-bio" href="https://x-peps.com/admin-portal/finance.html" target="_blank" rel="noopener">Finance</a>
+  <a class="jnav-btn btn" href="https://x-peps.com/X-Peps/biohacking-news.html" target="_blank" rel="noopener" style="background:#2563EB;color:#fff">Biohacking News</a>
+  <a class="jnav-btn btn" aria-disabled="true" style="background:#7C3AED;color:#fff;cursor:default">Placeholder</a>
+  <a class="jnav-btn btn" aria-disabled="true" style="background:#06B6D4;color:#fff;cursor:default">Placeholder</a>
+  <a class="jnav-btn btn b-purple" href="https://x-peps.com/admin-portal/change-log.html" target="_blank" rel="noopener">Change Log</a>
 </nav>
 <button id="catReopen" class="cat-reopen" type="button" hidden>&#9776;&nbsp; Categories</button>
 <style id="portal-reorg-css">
